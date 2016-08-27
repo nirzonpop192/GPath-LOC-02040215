@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rel"
+    tools:context="com.siddiquinoor.restclient.activity.sub_activity.assign_program.ddr.AssignForDDRMalwaiFFA">
+    <include layout="@layout/header"
+        android:id="@+id/header"/>
+    <RelativeLayout
+        android:layout_below="@+id/header"
+        android:id="@+id/page_title"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"
+            android:text="Assign Criteia Malwai"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:id="@+id/tv_ass_page2Title" />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/page_title"
+        android:id="@+id/scroll_1"
+        android:layout_marginTop="5dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relate_view">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linear_1"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".7"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="Member ID"/>
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="Member Name"/>
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="HH Name"/>
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="Criteria"/>
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="Reg Date"/>
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="Disable"/>
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="@string/category_label"/>
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="@string/group_label"/>
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="@string/active_lable"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".3"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical">
+                    <TextView
+                        style="@style/text_view"
+                        android:hint="Member ID"
+                        android:id="@+id/txt_assign_mal_MemberID_ddr"/>
+                    <TextView
+                        style="@style/text_view"
+                        android:hint="Member Name"
+                        android:id="@+id/txt_assign_mal_MemberName_ddr"/>
+                    <TextView
+                        style="@style/text_view"
+                        android:hint="HH Name"
+                        android:id="@+id/txt_assign_mal_HHName_ddr"/>
+                    <TextView
+                        style="@style/text_view"
+                        android:hint="Criteria"
+                        android:id="@+id/txt_assign_mal_Criteria_ddr"/>
+                    <TextView
+                        style="@style/text_view"
+                        android:hint="Date"
+                        android:id="@+id/txt_assign_mal_Reg_Date_ddr"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/black"
+                        />
+                    <Spinner
+                        android:id="@+id/sp_ass_disable_mal_ddr"
+                        style="@style/spinner_style"
+                        android:layout_width="match_parent" />
+                    <Spinner
+                        android:id="@+id/sp_ass_GroupCategories_mal_ddr"
+                        style="@style/spinner_style"
+                        android:layout_width="match_parent" />
+                    <Spinner
+                        android:id="@+id/sp_ass_GroupCode_mal_ddr"
+                        style="@style/spinner_style"
+                        android:layout_width="match_parent" />
+                    <Spinner
+
+                        android:id="@+id/sp_ass_Active_mal_ddr"
+                        style="@style/spinner_style"
+                        android:layout_width="match_parent" />
+                </LinearLayout>
+            </LinearLayout>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:id="@+id/radio_grp_mal_ddr"
+                android:layout_below="@+id/linear_1">
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rb_ass_mal_ddr_1"
+                    android:text="1. Child-headed households (orphan-headed households or where the parent or grandparent is incapable of undertaking the usual head of household roles)"/>
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rb_ass_mal_ddr_2"
+                    android:text="2. Elderly-headed households (more than 60 years old) with no other able-bodied adult household members."/>
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rb_ass_mal_ddr_3"
+                    android:text="3. The most food insecure households with chronically ill/HIV or AIDS affected members"/>
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rb_ass_mal_ddr_4"
+                    android:text="4. Female-headed households"/>
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rb_ass_mal_ddr_5"
+                    android:text="5. Households with two or more years of successive crop failure"/>
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rb_ass_mal_ddr_6"
+                    android:text="6. Households with children receiving supplementary or therapeutic feeding"/>
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rb_ass_mal_ddr_7"
+                    android:text="7. Willingness"/>
+            </RadioGroup>
+        </RelativeLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_above="@+id/footer"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_mal_goAssignePage_ddr"
+            android:text="@string/btn_AssignLabel"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+
+            android:textSize="12dp"
+            android:background="@drawable/button_style_inner"
+            android:textColor="@color/green" />
+
+        <Button
+            android:id="@+id/btn_assign_mal_save_ddr"
+            android:text="@string/btn_label_submit"
+
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+
+            android:textSize="12dp"
+            android:background="@drawable/button_style_inner"
+            android:textColor="@color/green"/>
+    </LinearLayout>
+    <include layout="@layout/footer"
+        android:id="@+id/footer"/>
+</RelativeLayout>

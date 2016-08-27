@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context="com.siddiquinoor.restclient.activity.MainActivity">
+    <include layout="@layout/header"
+        />
+    <LinearLayout
+        android:id="@+id/welcome_message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:background="#FFFFFF"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Welcome"
+                android:textColor="#000000"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="fullName"
+                android:textColor="#333333"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <!-- <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+
+             android:layout_alignParentLeft="true"
+             android:layout_alignParentStart="true"
+
+             android:layout_centerHorizontal="true"
+             android:layout_marginTop="2dp"
+             android:gravity="center_horizontal"
+             android:text="@string/log_in_version_lable"
+             android:textColor="#000"
+             android:textSize="12dp" />-->
+    </LinearLayout>
+    <ScrollView
+        android:id="@+id/scrollableContents"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/welcome_message"
+        android:background="#FFFFFF">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingBottom="40dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="10dp">
+            <!-- load Country section
+             IF ANNY THING GOES WRONG COMMENT THE BELO LINE-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:text="Country"
+                    android:textSize="15dp" />
+
+
+                <Spinner
+                    android:id="@+id/spDCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|right"
+                    android:layout_marginLeft="50dp"
+                    android:background="#FFFFFF"
+                    android:drawSelectorOnTop="true"
+                    android:padding="2dp"
+
+                    android:textColor="#939393" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".55"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="5dp"
+                    android:weightSum="1"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ACTIVITY"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:gravity="left"
+                        android:layout_marginBottom="10dp"/>
+
+                    <Button
+                        android:id="@+id/btnGroup"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="  Group"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.125"
+                        android:drawableLeft="@drawable/group_unite"
+                        android:paddingLeft="15dp" />
+                    <Button
+                        android:id="@+id/btnNewReg"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="  Registration"
+                        android:layout_weight="0.125"
+                        android:gravity="center_vertical"
+                        android:drawableLeft="@drawable/registration"
+
+                        android:paddingLeft="15dp" />
+                    <Button
+                        android:id="@+id/btnAssinge"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="  Assign"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.125"
+                        android:drawableLeft="@drawable/assign"
+                        android:paddingLeft="15dp" />
+                    <Button
+                        android:id="@+id/btnGraduation"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="  Graduation"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.125"
+                        android:drawableLeft="@drawable/exit"
+                        android:paddingLeft="15dp" />
+                    <Button
+                        android:id="@+id/btnCardRequest"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="  Card Request"
+                        android:gravity="center_vertical"
+
+                        android:layout_weight="0.125"
+                        android:drawableLeft="@drawable/card_request"
+                        android:paddingLeft="15dp" />
+                    <Button
+                        android:id="@+id/btnService"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="  Service"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.125"
+                        android:drawableLeft="@drawable/service"
+                        android:paddingLeft="15dp" />
+                    <Button
+                        android:id="@+id/btnDistribution"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="  Distribution"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.125"
+                        android:drawableLeft="@drawable/distribution"
+                        android:paddingLeft="15dp" />
+                    <Button
+                        android:id="@+id/btnGPS"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="  GPS"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.125"
+                        android:drawableLeft="@drawable/map_btn_icon"
+                        android:paddingLeft="15dp" />
+
+
+
+                    <Button
+                        android:id="@+id/btnSummaryReport"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:text="  Summary"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.125"
+                        android:drawableLeft="@drawable/summession_b"
+                        android:paddingLeft="15dp" />
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".45"
+                    android:layout_margin="8dp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="APK ON DEVICE"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:paddingBottom="10dp"
+                        android:textSize="18sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="15dp"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Version Name"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="5dp"
+                            android:gravity="center_horizontal"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/log_in_version_lable"
+                            android:id="@+id/textTitle"
+                            android:gravity="center_horizontal"
+                            />
+                    </LinearLayout>
+                    <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="User Name"
+                            android:gravity="center_horizontal"
+                            android:textStyle="bold"
+                            android:layout_marginTop="5dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="XXXX-XXXX"
+                            android:id="@+id/tv_user_name"
+                            android:gravity="center_horizontal"
+                            android:layout_marginTop="5dp"/>
+                    </LinearLayout>-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="15dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:text="Operation Mode"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/tv_operation_mode"
+                            android:text=""/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="15dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="GEO-DATA"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:textSize="15sp"
+                            android:gravity="center_horizontal"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="XXXXXX-XXXXXXXX"
+                            android:id="@+id/tv_geo_data_1"
+                            android:gravity="center_horizontal"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="15dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Last Sync"
+                                android:layout_marginTop="5dp"
+                                android:textStyle="bold"
+                                android:textSize="15sp"
+                                android:gravity="center_horizontal"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:layout_marginTop="5dp"
+                                android:id="@+id/tv_last_sync"
+                                android:text="N/A"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="15dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sync Required"
+                                    android:layout_marginTop="5dp"
+                                    android:textStyle="bold"
+                                    android:textSize="15sp"
+                                    android:gravity="center_horizontal"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_horizontal"
+                                    android:id="@+id/tv_sync_required"
+                                    android:layout_marginTop="5dp"
+                                    android:text=""/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <Button
+                    android:id="@+id/btnSyncRecord"
+                    style="@style/btn_sync"
+                    android:layout_weight=".55"
+                    android:text="  SYNC"
+                    android:drawableLeft="@drawable/sync"
+                    android:paddingLeft="15dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="4dp"
+                    android:textSize="15sp"/>
+                <Button
+                    android:id="@+id/btnLogout"
+                    style="@style/btn_logout"
+                    android:layout_weight=".45"
+                    android:text="  Logout"
+                    android:paddingLeft="92dp"
+                    android:drawableLeft="@drawable/logout"
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center_vertical"
+
+                    android:textSize="15sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    &lt;!&ndash; Header and Footer &ndash;&gt;
+    <include layout="@layout/header" />
+
+    <LinearLayout
+        android:id="@+id/welcome_message"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/welcome"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/name"
+                android:textColor="@color/lbl_name"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:gravity="center_horizontal"
+            android:text="@string/log_in_version_lable"
+            android:textColor="#000"
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scrollableContents"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/welcome_message"
+        android:background="@color/white">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingBottom="40dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="10dp">
+            &lt;!&ndash; load Country section
+             IF ANNY THING GOES WRONG COMMENT THE BELO LINE&ndash;&gt;
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/border_blue"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:text="Country"
+                    android:textSize="15dp" />
+
+
+                <Spinner
+                    android:id="@+id/spDCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|right"
+                    android:layout_marginLeft="50dp"
+                    android:background="@color/white"
+                    android:drawSelectorOnTop="true"
+                    android:padding="2dp"
+
+                    android:textColor="@color/gray" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llay_btnHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/llay_btnVertical_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnNewReg"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="@dimen/main_button_bottomMargin"
+                        android:layout_marginEnd="@dimen/main_button_sideMargin"
+                        android:layout_marginRight="@dimen/main_button_sideMargin"
+                        android:text="@string/btn_house_label"
+
+                        />
+
+                    <Button
+                        android:id="@+id/btnService"
+
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="@dimen/main_button_bottomMargin"
+                        android:layout_marginEnd="@dimen/main_button_sideMargin"
+                        android:layout_marginRight="@dimen/main_button_sideMargin"
+                        android:text="@string/btn_service_label" />
+
+                    <Button
+                        android:id="@+id/btnCardRequest"
+
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="@dimen/main_button_bottomMargin"
+                        android:layout_marginEnd="@dimen/main_button_sideMargin"
+                        android:layout_marginRight="@dimen/main_button_sideMargin"
+                        android:text="@string/btn_Card_request_lable" />
+
+                    <Button
+                        android:id="@+id/btnGPS"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="@dimen/main_button_bottomMargin"
+                        android:layout_marginEnd="@dimen/main_button_sideMargin"
+                        android:layout_marginRight="@dimen/main_button_sideMargin"
+                        android:text="@string/btn_labelGPS" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llay_btnVertical_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <Button
+
+                        android:id="@+id/btnAssinge"
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="@dimen/main_button_bottomMargin"
+                        android:layout_marginLeft="@dimen/main_button_sideMargin"
+                        android:layout_marginStart="@dimen/main_button_sideMargin"
+                        android:text="@string/btn_AssignLabel"
+
+                        />
+
+                    <Button
+                        android:id="@+id/btnGraduation"
+
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="@dimen/main_button_bottomMargin"
+
+                        android:layout_marginLeft="@dimen/main_button_sideMargin"
+                        android:layout_marginStart="@dimen/main_button_sideMargin"
+                        android:text="@string/btn_GraduationLabel" />
+
+                    <Button
+                        android:id="@+id/btnDistribution"
+
+
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="@dimen/main_button_sideMargin"
+                        android:layout_marginStart="@dimen/main_button_sideMargin"
+                        android:text="@string/btn_distribution_label" />
+
+                    <Button
+                        android:id="@+id/btnSummaryReport"
+
+                        style="@style/btn_main_page"
+                        android:layout_marginBottom="@dimen/main_button_bottomMargin"
+
+                        android:layout_marginLeft="@dimen/main_button_sideMargin"
+                        android:layout_marginStart="@dimen/main_button_sideMargin"
+                        android:text="Summary Report" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout_action"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnSyncRecord"
+                    style="@style/btn_main_page"
+
+
+                    android:text="@string/btn_synchronizeLable"
+
+
+                    />
+
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/btn_logut_bg"
+                    android:text="@string/btn_logout"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>-->

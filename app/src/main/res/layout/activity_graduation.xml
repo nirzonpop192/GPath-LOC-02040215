@@ -1,0 +1,341 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+
+    tools:context="com.siddiquinoor.restclient.Service">
+    <!-- Header aligned to top -->
+    <include layout="@layout/header" />
+    <RelativeLayout
+        android:layout_below="@+id/header"
+        android:id="@+id/page_title"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"
+            android:text="@string/tv_GraduationTitleLabel"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:id="@+id/tv_ass_page2Title" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_below="@+id/page_title"
+        android:id="@+id/ll_details"
+        android:layout_width="fill_parent"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- For label -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight=".3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/award_label"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:layout_height="@dimen/view_height"
+                    android:id="@+id/tv_awardLable" />
+
+                <TextView
+                    android:text="Program "
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:layout_height="@dimen/view_height"
+                    />
+                <TextView
+                    android:text="Criteria"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp"
+                    android:layout_height="@dimen/view_height"
+                    />
+            </LinearLayout>
+            <!-- For combox -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight=".7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <Spinner
+                    style="@style/spinner_style"
+                    android:id="@+id/sp_Award_Graduation"  />
+                <Spinner
+                    style="@style/spinner_style"
+                    android:id="@+id/sp_Program_Graduation"
+                    />
+                <Spinner
+                    style="@style/spinner_style"
+                    android:id="@+id/sp_Criteria_Graduation" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <!-- search id field -->
+        <RelativeLayout
+          android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:weightSum="1"
+            android:layout_height="wrap_content">
+
+                <EditText
+
+                    android:id="@+id/edt_searchId"
+                    android:layout_width="450dp"
+                    android:layout_height="@dimen/view_height"
+                    style="@style/edit_text"
+                    android:maxLength="2"
+                    android:hint="Search Member ID"
+                    android:inputType="number"
+                    />
+
+
+                <!-- search member id Button -->
+
+
+            <Button
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+
+                android:id="@+id/btn_Graduation_SearchID"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/search_20_20"
+                android:text="@string/lbl_search_btn"
+                android:padding="5dp"
+                 />
+
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <!-- title of list view  -->
+    <LinearLayout android:id="@+id/table_title"
+        android:layout_below="@+id/ll_details"
+        android:layout_width="fill_parent"
+        android:background="@color/title_bg_col"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:text="HHId"
+                android:textSize="@dimen/abc_text_size_menu_material"
+                android:id="@+id/text_table"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight=".2"
+            android:layout_height="match_parent"
+
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Member"
+                android:textSize="@dimen/abc_text_size_menu_material"
+                android:textColor="@color/white"
+                android:layout_marginLeft="0dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:text="Name"
+                android:textSize="@dimen/abc_text_size_menu_material"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:text="Reason"
+                android:textSize="@dimen/abc_text_size_menu_material"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".4"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:text="Date"
+                android:textSize="@dimen/abc_text_size_menu_material"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:text="Edit"
+                android:textSize="@dimen/abc_text_size_menu_material"
+
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_below="@id/table_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_graduationList"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <!-- Search Button -->
+
+    <LinearLayout
+        android:layout_below="@+id/lv_assign"
+
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footer"
+        >
+
+        <!-- search Button -->
+        <!--
+        <Button
+
+            android:id="@+id/btn_assign_search"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="@string/btn_search"
+            android:textSize="12dp"
+            android:background="@drawable/button_style_inner"
+            android:textColor="@color/green" />
+            -->
+
+        <!--   <Button
+
+               android:layout_width="0dp"
+               android:layout_height="50dp"
+               android:layout_weight="1"
+               android:text="@string/btn_RemoveLabel"
+               android:textSize="12dp"
+               android:background="@drawable/button_style_inner"
+               android:textColor="@color/green"/>-->
+
+    </LinearLayout>
+    <include layout="@layout/footer" />
+
+</RelativeLayout>
+
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.siddiquinoor.restclient.activity.ServiceActivity">
+
+        <include layout="@layout/header"        />
+        <RelativeLayout
+            android:layout_below="@+id/header"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <TextView android:text="@string/hello_world" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+       <include layout="@layout/footer"/>
+
+    </RelativeLayout> -->
+
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context="com.siddiquinoor.restclient.activity.AssignActivity">
+
+        <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>-->
+
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context="com.siddiquinoor.restclient.activity.Graduation    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>-->

@@ -1,0 +1,465 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.siddiquinoor.restclient.activity.sub_activity.graduation_sub.GraduationUpdate">
+
+    <!-- Header aligned to top -->
+    <include layout="@layout/header" />
+    <RelativeLayout
+        android:layout_below="@+id/header"
+        android:id="@+id/page_title"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"
+            android:text="Graduation"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:id="@+id/tv_ass_page2Title" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_below="@+id/page_title"
+        android:id="@+id/ll_details"
+        android:layout_width="fill_parent"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:orientation="vertical"
+
+        android:layout_height="wrap_content">
+
+        <!-- Award -->
+        <LinearLayout
+            android:weightSum="1"
+
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+
+            android:layout_height="wrap_content">
+
+            <!-- Award  -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+                <LinearLayout
+                    android:layout_weight=".2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/lable_textView"
+
+                        android:text="Award"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight=".8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_gradu_award"
+                        style="@style/text_view"
+                        android:clickable="false"
+                        android:hint="Award"
+
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+        <!-- Program -->
+        <LinearLayout
+            android:weightSum="1"
+
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+
+            android:layout_height="wrap_content">
+
+            <!-- Program  -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+                <LinearLayout
+                    android:layout_weight=".2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/lable_textView"
+
+                        android:text="Program"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight=".8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_gradu_Program"
+                        style="@style/text_view"
+                        android:clickable="false"
+                        android:hint="Program"
+
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Criteria -->
+        <LinearLayout
+            android:weightSum="1"
+
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+
+            android:layout_height="wrap_content">
+
+            <!-- Criteria label  -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+                <LinearLayout
+                    android:layout_weight=".2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/lable_textView"
+
+                        android:text="Criteria"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight=".8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_gradu_Criteria"
+                        style="@style/text_view"
+                        android:clickable="false"
+                        android:hint="Criteria"
+
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!-- Village -->
+        <LinearLayout
+            android:weightSum="1"
+
+            android:layout_width="fill_parent"
+            android:orientation="horizontal"
+
+            android:layout_height="wrap_content">
+
+            <!-- Village label  -->
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+                <LinearLayout
+                    android:layout_weight=".2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/lable_textView"
+
+                        android:text="Village"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight=".8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_gradu_Village"
+                        style="@style/text_view"
+                        android:clickable="false"
+                        android:hint="Village"
+
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+        <!-- HH ID  -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_weight=".2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/lable_textView"
+
+                    android:text="HH ID"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight=".8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_gradu_hhID"
+                    style="@style/text_view"
+                    android:clickable="false"
+                    android:hint="hhID"
+
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+        <!-- working abobe -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+            <!--    <TextView android:text="Village"
+                    android:layout_weight=".5"
+                    android:layout_width="match_parent"
+                    android:textSize="16sp" android:layout_height="wrap_content"
+                    />-->
+
+            <!-- <Spinner
+                 style="@style/spinner_style"
+                 android:layout_weight=".5"
+                 android:clickable="false"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:id="@+id/nspMemberId"
+                 />-->
+            <LinearLayout
+                android:layout_weight=".2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/lable_textView"
+
+                    android:text="Member ID"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight=".8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_gradu_MemberID"
+                    style="@style/text_view"
+                    android:clickable="false"
+                    android:hint="Member ID"
+
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- MemberName -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_height="wrap_content">
+            <!--  <TextView
+                  android:text="Criteria"
+                  android:layout_weight=".5"
+                  android:layout_width="match_parent"
+                  android:textSize="16sp"
+                  android:layout_height="wrap_content"
+                  />-->
+
+            <!-- <Spinner
+                 style="@style/spinner_style"
+                 android:layout_weight=".5"
+                 android:clickable="false"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:id="@+id/nspMemberName"
+                 />-->
+            <LinearLayout
+                android:layout_weight=".2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/lable_textView"
+
+                    android:text="Member Name"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight=".8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_gradu_MemberName"
+                    style="@style/text_view"
+                    android:clickable="false"
+                    android:hint="MemberName"
+
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!--Reason-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+
+            <LinearLayout
+                android:layout_weight=".2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/lable_textView"
+
+                    android:text="Reason"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight=".8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <Spinner
+                    style="@style/spinner_style"
+                    android:textColor="@color/black"
+
+                    android:id="@+id/spGraduationReason"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--Date-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_weight=".2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/lable_textView"
+
+                    android:text="Date"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight=".8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/text_view"
+                    android:hint="Date"
+                    android:clickable="true"
+
+                    android:id="@+id/tv_gradu_GRDDate" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+
+    <!-- Save Button -->
+
+    <LinearLayout
+        android:layout_below="@+id/lv_assign"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footer"
+        android:gravity="bottom"
+        >
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btn_Graduation_Save"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="@string/btn_label_submit"
+            android:textSize="12dp"
+            android:background="@drawable/button_style_inner"
+            android:textColor="@color/green" />
+        <!-- Delete Button -->
+        <Button
+            android:id="@+id/btn_Graduation_Delete"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Delete"
+            android:textSize="12dp"
+            android:background="@drawable/button_style_inner"
+            android:textColor="@color/green"/>
+        <!-- Search Button -->
+        <Button
+            android:id="@+id/btn_Graduation_Search"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Search"
+            android:textSize="12dp"
+            android:background="@drawable/button_style_inner"
+            android:textColor="@color/green"/>
+
+    </LinearLayout>
+    <include layout="@layout/footer" />
+
+
+</RelativeLayout>

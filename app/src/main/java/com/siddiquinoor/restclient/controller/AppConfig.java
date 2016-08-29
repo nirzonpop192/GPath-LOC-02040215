@@ -18,6 +18,8 @@ public class AppConfig {
      * //Windows Server Azure VM Live Server
      */
     public static final String API_LINK = "http://pciapp.cloudapp.net/api/";
+            //LIVE LINK
+  //    public static final String API_LINK = "http://pciapp.cloudapp.net/apilive/";
     /************************************************************************/
 
     /***********************************************************************

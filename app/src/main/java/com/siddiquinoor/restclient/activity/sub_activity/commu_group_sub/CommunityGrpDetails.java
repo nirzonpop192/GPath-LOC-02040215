@@ -60,7 +60,7 @@ public class CommunityGrpDetails extends BaseActivity {
     private String idStatus;
     private String strContactNo;
     private String strRepresentative;
-    private String strDate;
+   // private String strDate;
     private String entryBy;
     private String entryDate;
     private String strFormationDate;
@@ -307,11 +307,19 @@ public class CommunityGrpDetails extends BaseActivity {
      */
     private void loadLayR2List(String cCode) {
         int position = 0;
-        String criteria = "SELECT " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.DISTRICT_CODE_COL + " || '' || " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPCODE_COL + ", " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPZILLA_NAME_COL
+        String criteria = "SELECT " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.DISTRICT_CODE_COL + " || '' || " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPCODE_COL
+                + ", " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPZILLA_NAME_COL
                 + " FROM " + SQLiteHandler.UPAZILLA_TABLE
-               // +" INNER JOIN "+
-                // todo: staff
-               + " WHERE " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "'"
+                + " INNER JOIN "
+
+                + SQLiteHandler.STAFF_GEO_INFO_ACCESS_TABLE + " AS geo "
+                + " ON geo." + SQLiteHandler.COUNTRY_CODE_COL + " = " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL
+                + " AND geo." + SQLiteHandler.DISTRICT_CODE_COL + " = " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.DISTRICT_CODE_COL
+                + " AND geo." + SQLiteHandler.UPCODE_COL + " = " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPCODE_COL
+                + " WHERE " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "'"
+                + " AND ( " + SQLiteHandler.BTN_NEW_COL + " = 1 OR "
+                + SQLiteHandler.BTN_SAVE_COL + " = 1 OR "
+                + SQLiteHandler.BTN_DEL_COL + " ) "
                 + " GROUP BY " +
                 SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPCODE_COL + ", " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPZILLA_NAME_COL;
         // SQLiteQuery.getUpzillaJoinQuery(idCountry, idDist);
@@ -348,7 +356,7 @@ public class CommunityGrpDetails extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                //strUpazilla = parent.getItemAtPosition(position).toString();
+
                 strUpazilla = ((SpinnerHelper) spUpazilla.getSelectedItem()).getValue();
                 idUP = ((SpinnerHelper) spUpazilla.getSelectedItem()).getId();
 
@@ -839,6 +847,7 @@ public class CommunityGrpDetails extends BaseActivity {
                 //  syntax.setFundSupport(null);
                 syntax.setRepresentativeName(strRepresentative);
                 syntax.setRepresentativePhoneNumber(strContactNo);
+                syntax.setFormationDate(strFormationDate);
                 syntax.setStaffCode(idStaff);
                 syntax.setEntryBy(getStaffID());
                 syntax.setEntryDate(entryDate);
@@ -851,10 +860,11 @@ public class CommunityGrpDetails extends BaseActivity {
                 if (!addNewFlag) {
                     syntax.setGrpCode(idGroup);
 
-                    sqlH.addIntoGroupDetails(idCountry, idDonor, idAward, idProgram, idGroup, idOrg, idStaff, null, null, null, idActive, strRepresentative, strContactNo, strFormationDate, null, idStatus, entryBy, entryDate, null, null);
-                    sqlH.insertIntoUploadTable(syntax.sqlServerCommunityGrpDetail());
+                    sqlH.updateIntoGroupDetails(idCountry, idDonor, idAward, idProgram, idGroup, idOrg, idStaff, null, null, null, idActive, strRepresentative, strContactNo, strFormationDate, null, idStatus, entryBy, entryDate, null, null);
+                    sqlH.insertIntoUploadTable(syntax.updateIntoCommunityGrpDetail());
                 } else {
                     idGroup = sqlH.getNextGroupId(idCountry, idDonor, idAward, idProgram);
+                    Log.d("CHUP","idGroup:"+idGroup);
                     syntax.setGrpCode(idGroup);
 
 
@@ -870,7 +880,7 @@ public class CommunityGrpDetails extends BaseActivity {
                     sqlH.addIntoGroupDetails(idCountry, idDonor, idAward, idProgram, idGroup, idOrg, getUserID(), null, null, null, idActive, strRepresentative, strContactNo, strFormationDate, null, idStatus, entryBy, entryDate, null, null);
 
 
-                    sqlH.insertIntoUploadTable(syntax.sqlServerCommunityGrpDetail());
+                    sqlH.insertIntoUploadTable(syntax.insertIntoCommunityGrpDetail());
 
                 }
 
@@ -903,7 +913,7 @@ public class CommunityGrpDetails extends BaseActivity {
     private void getText() {
         strContactNo = edtContactNo.getText().toString();
         strRepresentative = edtRepresentative.getText().toString();
-        strDate = tvFormation.getText().toString();
+        strFormationDate = tvFormation.getText().toString();
 
 
         if (strContactNo.length() > 0) {

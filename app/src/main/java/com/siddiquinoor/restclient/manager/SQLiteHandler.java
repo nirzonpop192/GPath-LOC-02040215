@@ -18,6 +18,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -53,13 +54,17 @@ import com.siddiquinoor.restclient.views.adapters.SummaryModel;
 import com.siddiquinoor.restclient.views.adapters.SummaryServiceListModel;
 import com.siddiquinoor.restclient.views.adapters.VouItemServiceExtDataModel;
 import com.siddiquinoor.restclient.views.adapters.raf_data_model.GraduationDateCode;
+import com.siddiquinoor.restclient.views.helper.LocationHelper;
 import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
 
 import org.osmdroid.tileprovider.modules.IFilesystemCache;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class SQLiteHandler extends SQLiteOpenHelper {
 
@@ -3558,7 +3563,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         ArrayList<dataUploadDB> allData = new ArrayList<dataUploadDB>();
 
 
-        String selectQuery = "SELECT  * FROM " + UPLOAD_SYNTAX_TABLE + " WHERE " + SYNC_COL + "=0";
+        String selectQuery = "SELECT  * FROM " + UPLOAD_SYNTAX_TABLE + " WHERE " + SYNC_COL + "=0 "
+                + " ORDER BY " + ID_COL + " ASC ";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -3672,6 +3678,34 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.close();
 
         return memberName;
+    }
+
+
+    public String getAwardGraduation(String cCode, String donorCode, String awardCode) {
+        String grdDate = "";
+        //String temp="";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "Select " + AWARD_END_DATE_COL +
+                " FROM " + ADM_AWARD_TABLE +
+                " WHERE " + COUNTRY_CODE_COL + " = '" + cCode + "' "
+                + " AND " + DONOR_CODE_COL + " = '" + donorCode + "' "
+                + " AND " + AWARD_CODE_COL + " = '" + awardCode + "' ";
+
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                grdDate = cursor.getString(0);
+            }
+
+            cursor.close();
+
+            db.close();
+        }
+
+
+        return grdDate;
     }
 
 
@@ -5098,6 +5132,38 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return listAsignPeople;
 
 
+    }
+
+
+    public void updateIntoGroupDetails(String AdmCountryCode, String donorCode
+            , String awardCode, String progCode, String grpCode
+            , String orgCode, String staffCode, String landSizeUnder, String iirigrationSysUsed, String fundSuppot
+            , String active, String reapName, String reapPhone, String formation, String typeOfGrp
+            , String status, String entryBy, String entryDate, String projecftNo, String projectTitle) {
+        String where = "";
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        where = COUNTRY_CODE_COL + " = '" + AdmCountryCode + "' "
+                + " AND " + DONOR_CODE_COL + " = '" + donorCode + "' "
+                + " AND " + AWARD_CODE_COL + " = '" + awardCode + "' "
+                + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "' "
+                + " AND " + GROUP_CODE_COL + " = '" + grpCode + "' ";
+        values.put(ORG_CODE_COL, orgCode);
+        values.put(STAFF_CODE_COL, staffCode);
+        values.put(LAND_SIZE_UNDER_IRRIGATION_COL, landSizeUnder);
+        values.put(IRRIGATION_SYSTEM_USED_COL, iirigrationSysUsed);
+        values.put(FUND_SUPPORT_COL, fundSuppot);
+        values.put(ACTIVE_COL, active);
+        values.put(REP_NAME_COL, reapName);
+        values.put(REP_PHONE_NUMBER_COL, reapPhone);
+        values.put(FORMATION_DATE_COL, formation);
+        values.put(TYPE_OF_GROUP, typeOfGrp);
+        values.put(STATUS, status);
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
+        values.put(PROJECT_NO_COL, projecftNo);
+        values.put(PROJECT_TITLE, projectTitle);
+        db.update(COMMUNITY_GRP_DETAIL_TABLE, values, where, null);
     }
 
 
@@ -6775,6 +6841,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 person.setAddressCode(cursor.getString(cursor.getColumnIndex("addcode")));
                 person.setAddressName(cursor.getString(cursor.getColumnIndex("addname")));
 
+                person.setRank(cursor.getString(cursor.getColumnIndex("wRank")));
+
 
                 // adding all into personList array
                 personList.add(person);
@@ -7983,14 +8051,14 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         String padded_id = "";
 
         if (grp_len > 0) {
-            int pad = 2 - grp_len;
+            int pad = 3 - grp_len;
 
             for (int i = 0; i < pad; i++) {
                 padded_id += "0";
             }
             padded_id = padded_id + next_grp_id;
         } else {
-            padded_id = "01";
+            padded_id = "001";
         }
 
         return padded_id;
@@ -8354,6 +8422,38 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         // returning list item
         return listItem;
+    }
+
+
+    public List<LocationHelper> getLocationList(String cCode, String searchLocName) {
+        int position = 0;
+        List<LocationHelper> list = new ArrayList<LocationHelper>();
+        String sql = "SELECT " + SQLiteHandler.GROUP_CODE_COL + " || '' ||" + SQLiteHandler.SUB_GROUP_CODE_COL + " || '' ||" + SQLiteHandler.LOCATION_CODE_COL
+                + "," + SQLiteHandler.LOCATION_NAME_COL
+
+                + ", CASE WHEN  ifnull(length(" + SQLiteHandler.GPS_LOCATION_TABLE + "." + SQLiteHandler.LATITUDE_COL + "), 0) = 0  THEN 'N' ELSE 'Y' END AS dataExit "
+
+                + " FROM " + SQLiteHandler.GPS_LOCATION_TABLE
+                + " WHERE " + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "'"
+                + " AND " + SQLiteHandler.LOCATION_NAME_COL + " LIKE '%" + searchLocName + "%' "
+                + " ORDER BY " + SQLiteHandler.LOCATION_NAME_COL + " ASC ";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+
+                list.add(new LocationHelper(position, cursor.getString(0), cursor.getString(1),cursor.getString(2)));
+//                Log.d(TAG, " table name :" + table_name + " :- " + cursor.getColumnName(0) + " : " + cursor.getString(0) + "  " + cursor.getColumnName(1) + " : " + cursor.getString(1));
+                position++;
+            } while (cursor.moveToNext());
+
+            cursor.close();
+            db.close();
+        }
+
+        return list;
     }
 
     public long addLUP_RegNAddLookup(String countryCode, String addressLookupCode, String addressLookup, String districtCode, String upozillaCode, String unitCode, String villageCode) {
@@ -9695,7 +9795,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                                           String extraElderlyBecauseE, String extraIllBecauseEbola, String BCntCattle, String BValCattle, String ACntCattle, String AValCattle, String BCntSGoats, String BValSGoats, String ACntSGoats, String AValSGoats, String BCntPoultry, String BValPoultry, String ACntPoultry, String AfValPoultry, String BCntOther, String BValOther, String ACntOther, String AValOther,
                                           String BAcreCultivable, String BValCultivable, String AAcreCultivable, String AValueCultivable, String BAcreNonCultivable, String BValNonCultivable, String AAcreNonCultivable, String AValNonCultivable, String BAcreOrchards, String BValOrchards, String AAcreOrchards, String AValOrchards, String BValCrop, String AValCrop, String BValLivestock, String AValLivestock,
                                           String BValSmallBusiness, String AValSmallBusiness, String BValEmployment, String AValEmployment, String BValRemittances, String AValRemittances, String BCntWageEnr, String ATCntWageEnr, String is_online, String wRank
-            ,String LTp2Hectres, String LT3mFoodStock, String NoMajorCommonLiveStock, String ReceiveNoFormalWages, String NoIGA,String RelyPiecework) {
+            , String LTp2Hectres, String LT3mFoodStock, String NoMajorCommonLiveStock, String ReceiveNoFormalWages, String NoIGA, String RelyPiecework) {
 
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -9801,7 +9901,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         long id = db.insert(REGISTRATION_TABLE, null, values);
         db.close(); // Closing database connection
 
-   //     Log.d(TAG, "New Registration data added into Registration Table: " + id);
+        //     Log.d(TAG, "New Registration data added into Registration Table: " + id);
     }
 
 
@@ -10400,7 +10500,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return id;
     }
 
-    public boolean getHouseHoldRegistrationIsChecked(String columnName, String c_code, String dname, String upname, String uname, String vname,  String pid) {
+    public boolean getHouseHoldRegistrationIsChecked(String columnName, String c_code, String dname, String upname, String uname, String vname, String pid) {
         boolean isChecked;
         String str = "";
         SQLiteDatabase db = this.getReadableDatabase();

@@ -53,6 +53,17 @@ public class ListDataModel {
     private String str_CA2;
     private String addressCode;
     private String addressName;
+    private String rank;
+   // private String status;
+
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
 
     public String getAddressCode() {
         return addressCode;

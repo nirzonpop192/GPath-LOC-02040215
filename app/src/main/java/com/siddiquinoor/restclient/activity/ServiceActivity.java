@@ -1,5 +1,6 @@
 package com.siddiquinoor.restclient.activity;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -88,7 +90,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
     private TextView tv_srvDate;
     private Calendar calendar = Calendar.getInstance();
     private SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
-   private Button btnHome, btnSummary;
+    private Button btnHome, btnSummary;
 
     private Button btnSave;
     private ServiceDataListAdapter adapter;
@@ -502,6 +504,8 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
         tv_srvTitleCount = (TextView) findViewById(R.id.tv_srvTitleCount);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+
     private void setUpSummaryButton() {
         btnSummary.setText("");
         Drawable summeryImage = getResources().getDrawable(R.drawable.summession_b);
@@ -519,6 +523,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
         btnHome.setPadding(180, 10, 180, 10);
     }
 */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void addIconHomeButton() {
 
         btnHome.setText("");
@@ -527,6 +532,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
         btnHome.setPadding(180, 5, 180, 5);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpSaveButton() {
         btnSave.setText("");
         Drawable saveImage = getResources().getDrawable(R.drawable.save_b);
@@ -1310,12 +1316,12 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
     /**
      * LOAD :: Criteria
      *
-     * @param cCode            Country Code
-     * @param donorCode        Donor Code
-     * @param awardCode        award Code
-     * @param srvCenterCode    Service Center Code
-     * @param fdpCode food distribution point
-     * @param srvMonthCode service month Code
+     * @param cCode         Country Code
+     * @param donorCode     Donor Code
+     * @param awardCode     award Code
+     * @param srvCenterCode Service Center Code
+     * @param fdpCode       food distribution point
+     * @param srvMonthCode  service month Code
      */
     private void loadCriteria(final String cCode, final String donorCode, final String awardCode, final String srvCenterCode, final String fdpCode, final String srvMonthCode) {
 

@@ -103,6 +103,7 @@ public class KEY {
     public static final String REDIRECT = "redirect";
     public static final String ADDRESS_CODE = "address_code";
     public static final String ADDRESS_NAME = "address_name";
+    public static final String WALTH_RANK = "idWRank";
 
 
     public static final String PAGE_TITLE = "PAGE_TITLE";

@@ -1,11 +1,13 @@
 package com.siddiquinoor.restclient.activity;
 
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -109,7 +111,7 @@ public class MemberSearchPage extends BaseActivity {
         addIconHomeButton();
     }
 
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void addIconHomeButton() {
 
         btnHome.setText("");

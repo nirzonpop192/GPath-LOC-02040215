@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
- tools:context="com.siddiquinoor.restclient.activity.AssignActivity">
+    tools:context="com.siddiquinoor.restclient.activity.AssignActivity">
     <!-- Header aligned to top -->
     <include
         android:id="@+id/header"
@@ -36,26 +36,16 @@
         android:paddingRight="10dp">
 
         <!-- search id field -->
-        <RelativeLayout
+  <!--      <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <EditText
-                android:id="@+id/edt_assign_memberSearch"
-                style="@style/edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:paddingLeft="20dp"
-                android:paddingStart="20dp"
 
-                android:hint="@string/search_id"
-                android:inputType="number"
-                android:padding="0dp"
-                android:layout_toLeftOf="@+id/btn_assign_search"
-                android:layout_toStartOf="@+id/btn_assign_search" />
-            <!-- search member id Button -->
+
+
+            &lt;!&ndash; search member id Button &ndash;&gt;
             <Button
                 android:id="@+id/btn_assign_search"
                 android:layout_width="30dp"
@@ -63,9 +53,8 @@
                 android:layout_alignParentRight="true"
                 android:background="@drawable/search_20_20"
 
-                android:padding="5dp"
-                />
-        </RelativeLayout>
+                android:padding="5dp" />
+        </RelativeLayout>-->
 
 
         <!-- Award list spinner-->
@@ -80,6 +69,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".8"
                 android:orientation="vertical">
+                <TextView
+
+
+                    style="@style/txt_label"
+
+                    android:text="Id" />
 
                 <TextView
 
@@ -90,8 +85,7 @@
                 <TextView
                     style="@style/txt_label"
 
-                    android:text="@string/program_label"
-                    />
+                    android:text="@string/program_label" />
 
 
                 <TextView
@@ -101,12 +95,12 @@
 
                     />
 
-           <!--     <TextView
-                    android:id="@+id/tv_assign_ac_layR4Label"
-                    style="@style/txt_label"
+                <!--     <TextView
+                         android:id="@+id/tv_assign_ac_layR4Label"
+                         style="@style/txt_label"
 
-                    android:text="@string/village_label"
-                    />-->
+                         android:text="@string/village_label"
+                         />-->
 
             </LinearLayout>
 
@@ -115,6 +109,21 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".2"
                 android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edt_assign_memberSearch"
+                    style="@style/edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_toLeftOf="@+id/btn_assign_search"
+
+                    android:hint="@string/search_id"
+                    android:inputType="number"
+                    android:padding="0dp"
+                    android:paddingLeft="20dp"
+                    android:paddingStart="20dp"
+                    android:layout_toRightOf="@+id/id_lable"
+                    android:layout_toEndOf="@+id/id_lable" />
 
                 <Spinner
                     android:id="@+id/sp_assine_awardList"
@@ -129,13 +138,12 @@
                     android:id="@+id/spCriteriaA"
                     style="@style/spinner_style" />
 
-            <!--    <Spinner
-                    android:id="@+id/spVillageA"
-                    style="@style/spinner_style" />-->
+                <!--    <Spinner
+                        android:id="@+id/spVillageA"
+                        style="@style/spinner_style" />-->
             </LinearLayout>
 
         </LinearLayout>
-
 
 
     </LinearLayout>
@@ -167,7 +175,6 @@
         </LinearLayout>
 
 
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -178,14 +185,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:paddingLeft="70dp"
-
-                android:paddingTop="10dp"
                 android:paddingBottom="10dp"
+
+                android:paddingLeft="70dp"
+                android:paddingTop="10dp"
                 android:text="Name"
                 android:textColor="@color/white"
-                android:textSize="13sp"
-                />
+                android:textSize="13sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -197,31 +203,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_weight="0.70"
                 android:paddingTop="10dp"
                 android:text="Assign"
                 android:textColor="@color/white"
-                android:textSize="13sp"
 
-
-                android:layout_weight="0.70" />
-        </LinearLayout>
-
-       <!-- <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".3">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:text="Edit"
-                android:textColor="@color/white"
 
                 android:textSize="13sp" />
-        </LinearLayout>-->
+        </LinearLayout>
+
+        <!-- <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight=".3">
+
+             <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_horizontal"
+                 android:gravity="center_horizontal"
+                 android:padding="10dp"
+                 android:text="Edit"
+                 android:textColor="@color/white"
+
+                 android:textSize="13sp" />
+         </LinearLayout>-->
 
     </LinearLayout>
 
@@ -248,10 +254,10 @@
         android:layout_below="@+id/lv_assign">
 
 
-
     </LinearLayout>
 
-    <include layout="@layout/footer"
-        android:id="@+id/footer"/>
+    <include
+        android:id="@+id/footer"
+        layout="@layout/footer" />
 
 </RelativeLayout>

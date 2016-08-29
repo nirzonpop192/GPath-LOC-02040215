@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.siddiquinoor.restclient.activity.sub_activity.gps_sub.GPSActivity">
+    tools:context=".activity.sub_activity.gps_sub.PointAttributes">
     <!-- Header aligned to top -->
     <include
         android:id="@+id/header"

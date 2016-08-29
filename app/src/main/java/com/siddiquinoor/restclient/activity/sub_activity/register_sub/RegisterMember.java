@@ -584,6 +584,8 @@ public class RegisterMember extends BaseActivity {
                 malawiMember.setMmHHRelation(idRelation);
                 malawiMember.setEntryBy(str_entry_by);
                 malawiMember.setEntryDate(str_entry_date);
+                malawiMember.setMmMemAge(str_age);
+
                 sqlH.insertIntoUploadTable(malawiMember.insertIntoRegNMemberForMalawi());
                 Toast.makeText(getApplicationContext(), "save successfully", Toast.LENGTH_LONG).show();
                 setIsMemberSaved(true);

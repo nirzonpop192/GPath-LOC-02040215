@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -242,6 +243,8 @@ public class Register extends BaseActivity implements View.OnClickListener {
         idAddress = intnt.getStringExtra(KEY.ADDRESS_CODE);
         strAddress = intnt.getStringExtra(KEY.ADDRESS_NAME);
 
+        idWRank = intnt.getStringExtra(KEY.WALTH_RANK);
+
         criteria = "";
         //  loadCountry();
 
@@ -253,12 +256,12 @@ public class Register extends BaseActivity implements View.OnClickListener {
             loadLayR4List(idCountry);
             /// todo: checke Check Box
 
-           chkBxHhCat1.setChecked( sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.LTP_2_HECTRES_COL,idCountry,idDist,idUP,idUnion,idVill,intnt.getStringExtra(KEY.REG_ID)));
-           chkBxHhCat2.setChecked( sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.LT_3_FOOD_STOCK_COL,idCountry,idDist,idUP,idUnion,idVill,intnt.getStringExtra(KEY.REG_ID)));
-           chkBxHhCat3.setChecked( sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.NO_MAJOR_COMMON_LIVE_STOCK_COL,idCountry,idDist,idUP,idUnion,idVill,intnt.getStringExtra(KEY.REG_ID)));
-           chkBxHhCat4.setChecked( sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.RECEIVE_NO_FORMAL_WAGES_COL,idCountry,idDist,idUP,idUnion,idVill,intnt.getStringExtra(KEY.REG_ID)));
-           chkBxHhCat5.setChecked( sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.NO_IGA_COL,idCountry,idDist,idUP,idUnion,idVill,intnt.getStringExtra(KEY.REG_ID)));
-           chkBxHhCat6.setChecked( sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.RELY_PICE_EORK_COL,idCountry,idDist,idUP,idUnion,idVill,intnt.getStringExtra(KEY.REG_ID)));
+            chkBxHhCat1.setChecked(sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.LTP_2_HECTRES_COL, idCountry, idDist, idUP, idUnion, idVill, intnt.getStringExtra(KEY.REG_ID)));
+            chkBxHhCat2.setChecked(sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.LT_3_FOOD_STOCK_COL, idCountry, idDist, idUP, idUnion, idVill, intnt.getStringExtra(KEY.REG_ID)));
+            chkBxHhCat3.setChecked(sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.NO_MAJOR_COMMON_LIVE_STOCK_COL, idCountry, idDist, idUP, idUnion, idVill, intnt.getStringExtra(KEY.REG_ID)));
+            chkBxHhCat4.setChecked(sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.RECEIVE_NO_FORMAL_WAGES_COL, idCountry, idDist, idUP, idUnion, idVill, intnt.getStringExtra(KEY.REG_ID)));
+            chkBxHhCat5.setChecked(sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.NO_IGA_COL, idCountry, idDist, idUP, idUnion, idVill, intnt.getStringExtra(KEY.REG_ID)));
+            chkBxHhCat6.setChecked(sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.RELY_PICE_EORK_COL, idCountry, idDist, idUP, idUnion, idVill, intnt.getStringExtra(KEY.REG_ID)));
 
         }
 
@@ -344,37 +347,9 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
             case R.id.btnRegisterFooter:
 
-                finish();
+                gotoTheMemberRegistrationPage();
 
-                EntryBy = getStaffID();
-                try {
-                    EntryDate = getDateTime();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                registeredId = regId.getText().toString();
-                name = regName.getText().toString();
 
-                Intent dIntent = new Intent(Register.this, RegisterMember.class);
-
-                dIntent.putExtra("redirect", "");
-                dIntent.putExtra("page_from", "Register");
-                dIntent.putExtra("str_country", strCountry);
-                dIntent.putExtra("str_district", strDistrict);
-                dIntent.putExtra("str_upazilla", strUpazilla);
-                dIntent.putExtra("str_union", strUnion);
-                dIntent.putExtra("str_village", strVillage);
-                dIntent.putExtra("str_c_code", idCountry);
-                dIntent.putExtra("str_districtCode", idDist);
-                dIntent.putExtra("str_upazillaCode", idUP);
-                dIntent.putExtra("str_unionCode", idUnion);
-                dIntent.putExtra("str_villageCode", idVill);
-                dIntent.putExtra("str_entry_by", EntryBy);
-                dIntent.putExtra("str_entry_date", EntryDate);
-                dIntent.putExtra("str_hhID", registeredId);
-                dIntent.putExtra("str_hhName", name);
-
-                startActivity(dIntent);
                 break;
 
             case R.id.btnClearData:
@@ -402,6 +377,40 @@ public class Register extends BaseActivity implements View.OnClickListener {
                 break;
 
         } // End Switch
+    }
+
+    private void gotoTheMemberRegistrationPage() {
+        finish();
+
+        EntryBy = getStaffID();
+        try {
+            EntryDate = getDateTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        registeredId = regId.getText().toString();
+        name = regName.getText().toString();
+
+        Intent dIntent = new Intent(Register.this, RegisterMember.class);
+
+        dIntent.putExtra("redirect", "");
+        dIntent.putExtra("page_from", "Register");
+        dIntent.putExtra("str_country", strCountry);
+        dIntent.putExtra("str_district", strDistrict);
+        dIntent.putExtra("str_upazilla", strUpazilla);
+        dIntent.putExtra("str_union", strUnion);
+        dIntent.putExtra("str_village", strVillage);
+        dIntent.putExtra("str_c_code", idCountry);
+        dIntent.putExtra("str_districtCode", idDist);
+        dIntent.putExtra("str_upazillaCode", idUP);
+        dIntent.putExtra("str_unionCode", idUnion);
+        dIntent.putExtra("str_villageCode", idVill);
+        dIntent.putExtra("str_entry_by", EntryBy);
+        dIntent.putExtra("str_entry_date", EntryDate);
+        dIntent.putExtra("str_hhID", idDist + idUP + idUnion + idVill + registeredId);
+        dIntent.putExtra("str_hhName", name);
+
+        startActivity(dIntent);
     }
 
     private void clearData() {
@@ -1036,6 +1045,9 @@ public class Register extends BaseActivity implements View.OnClickListener {
      * LOAD :: MStatus
      */
     private void loadMStatus() {
+        int pos = 0;
+
+        Log.d("MORA","strMStatus : "+strMStatus);
 
         spMStatus = (Spinner) findViewById(R.id.spMStatus);
         ArrayAdapter<CharSequence> adtMStatus = ArrayAdapter.createFromResource(
@@ -1045,18 +1057,25 @@ public class Register extends BaseActivity implements View.OnClickListener {
         spMStatus.setAdapter(adtMStatus);
 
         if (strMStatus != null) {
-            spMStatus.setSelection(getSpinnerIndex(spMStatus, strMStatus));
+            if (strMStatus.equals("R"))
+                pos = 0;
+            else if (strMStatus.equals("M"))
+                pos = 1;
+            else
+                pos = 2;
+
+            spMStatus.setSelection(pos);
+            // spMStatus.setSelection(getSpinnerIndex(spMStatus, strMStatus));
         }
         spMStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
 
-
                 strMStatus = parent.getItemAtPosition(position).toString();
                 if (strMStatus.equals("Resident"))
                     strMStatus = "R";
-                else if(strMStatus.equals("Migrated"))
+                else if (strMStatus.equals("Migrated"))
                     strMStatus = "M";
                 else
                     strMStatus = "O";

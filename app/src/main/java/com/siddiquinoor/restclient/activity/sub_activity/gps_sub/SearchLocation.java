@@ -20,6 +20,7 @@ import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.views.adapters.SearchLocationAdapter;
+import com.siddiquinoor.restclient.views.helper.LocationHelper;
 import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
 
 import java.util.List;
@@ -70,7 +71,7 @@ public class SearchLocation extends BaseActivity {
         btn_search_loc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String locationName = edt_searchLocation.getText().toString();
+                String locationName = edt_searchLocation.getText().toString().trim();
                 if (locationName.length() > 0) {
                     loadLocation(idCountry, locationName);
                 }
@@ -103,21 +104,22 @@ public class SearchLocation extends BaseActivity {
      */
 
     private void loadLocation(final String cCode, final String searchLocName) {
-        int position = 0;
+      /*  int position = 0;
         String criteria = "SELECT " + SQLiteHandler.GROUP_CODE_COL + " || '' ||" + SQLiteHandler.SUB_GROUP_CODE_COL + " || '' ||" + SQLiteHandler.LOCATION_CODE_COL
                 + "," + SQLiteHandler.LOCATION_NAME_COL
                 + " FROM " + SQLiteHandler.GPS_LOCATION_TABLE
                 + " WHERE " + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "'"
                 + " AND " + SQLiteHandler.LOCATION_NAME_COL + " LIKE '%" + searchLocName + "%' "
-                + " ORDER BY " + SQLiteHandler.LOCATION_NAME_COL + " ASC ";
+                + " ORDER BY " + SQLiteHandler.LOCATION_NAME_COL + " ASC ";*/
 
         // Spinner Drop down elements for Location
-        final List<SpinnerHelper> listOfLocation = sqlH.getListAndID(SQLiteHandler.CUSTOM_QUERY, criteria, null, false);
+//        final List<SpinnerHelper> listOfLocation = sqlH.getListAndID(SQLiteHandler.CUSTOM_QUERY, criteria, null, false);
+        final List<LocationHelper> listOfLocation = sqlH.getLocationList(cCode, searchLocName);
 // remove 1st elements
 
-        listOfLocation.remove(0);
+       // listOfLocation.remove(0);
         // Creating adapter for spinner
-        //   final ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(SearchSubGroup.this, R.layout.spinner_layout, listOfLocation);
+
         final SearchLocationAdapter dataAdapter = new SearchLocationAdapter(SearchLocation.this, listOfLocation, idCountry);
 
 
@@ -174,7 +176,7 @@ public class SearchLocation extends BaseActivity {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpGoToGpsButton() {
         btnGps.setText("");
-        Drawable saveImage = getResources().getDrawable(R.drawable.goto_b);
+        Drawable saveImage = getResources().getDrawable(R.drawable.add);
         btnGps.setCompoundDrawablesRelativeWithIntrinsicBounds(saveImage, null, null, null);
         btnGps.setPadding(180, 10, 180, 10);
     }

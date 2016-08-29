@@ -54,7 +54,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GPSActivity extends BaseActivity {
+public class PointAttributes extends BaseActivity {
 
     private static final String TAG = "GPSActivity";
     private static final String NO_LOOK_UP = "000";
@@ -91,12 +91,11 @@ public class GPSActivity extends BaseActivity {
     private static final int CAMERA_REQUEST_5 = 50;
 
 
-
-    private static final String IMG_CONTENT_CODE_1  = "01";
-    private static final String IMG_CONTENT_CODE_2  = "02";
-    private static final String IMG_CONTENT_CODE_3  = "03";
-    private static final String IMG_CONTENT_CODE_4  = "04";
-    private static final String IMG_CONTENT_CODE_5  = "05";
+    private static final String IMG_CONTENT_CODE_1 = "01";
+    private static final String IMG_CONTENT_CODE_2 = "02";
+    private static final String IMG_CONTENT_CODE_3 = "03";
+    private static final String IMG_CONTENT_CODE_4 = "04";
+    private static final String IMG_CONTENT_CODE_5 = "05";
 
     private static final String REMARKS_1 = "1";
     private static final String REMARKS_2 = "2";
@@ -104,7 +103,7 @@ public class GPSActivity extends BaseActivity {
     private static final String REMARKS_4 = "4";
     private static final String REMARKS_5 = "5";
 
-    private final Context CONTEXT = GPSActivity.this;
+    private final Context CONTEXT = PointAttributes.this;
 
     HorizontalScrollView horizontalScrollView;
 
@@ -202,7 +201,7 @@ public class GPSActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (permissionForGoMap) {
-                    Intent iGoToMap = new Intent(GPSActivity.this, MapActivity.class);
+                    Intent iGoToMap = new Intent(PointAttributes.this, MapActivity.class);
                     /**
                      * Send data to other activity
                      */
@@ -218,7 +217,7 @@ public class GPSActivity extends BaseActivity {
                     gpsData.setLocationName(strLocation);
                     iGoToMap.putExtra(KEY.GPS_DATA_OBJECT_KEY, gpsData);
 
-                    iGoToMap.putExtra(KEY.DIR_CLASS_NAME_KEY,TAG);
+                    iGoToMap.putExtra(KEY.DIR_CLASS_NAME_KEY, TAG);
                     finish();
                     startActivity(iGoToMap);
                 } else {
@@ -295,7 +294,7 @@ public class GPSActivity extends BaseActivity {
                                 sqlServer.setEntryBy(entryBy);
                                 sqlServer.setEntryDate(entryDate);
 
-                                sqlH.addGPSLocationAttributes(idCountry, idGroup, idSubGroup, idLocation, subAtt.getAttributeCode(), null,getmEncodedImageString(), entryBy, entryDate);
+                                sqlH.addGPSLocationAttributes(idCountry, idGroup, idSubGroup, idLocation, subAtt.getAttributeCode(), null, getmEncodedImageString(), entryBy, entryDate);
 
                                 sqlH.insertIntoUploadTable(sqlServer.insertIntoGPSLocationAttributesTable());
 
@@ -324,7 +323,7 @@ public class GPSActivity extends BaseActivity {
                                 sqlServer.setEntryBy(entryBy);
                                 sqlServer.setEntryDate(entryDate);
 
-                                sqlH.addGPSLocationAttributes(idCountry, idGroup, idSubGroup, idLocation, subAtt.getAttributeCode(), string[i],null, entryBy, entryDate);
+                                sqlH.addGPSLocationAttributes(idCountry, idGroup, idSubGroup, idLocation, subAtt.getAttributeCode(), string[i], null, entryBy, entryDate);
 
                                 sqlH.insertIntoUploadTable(sqlServer.insertIntoGPSLocationAttributesTable());
                             }
@@ -355,7 +354,7 @@ public class GPSActivity extends BaseActivity {
                                 sqlServer.setEntryDate(entryDate);
 
 
-                                sqlH.addGPSLocationAttributes(idCountry, idGroup, idSubGroup, idLocation, subAtt.getAttributeCode(), "1",null, entryBy, entryDate);
+                                sqlH.addGPSLocationAttributes(idCountry, idGroup, idSubGroup, idLocation, subAtt.getAttributeCode(), "1", null, entryBy, entryDate);
                                 sqlH.insertIntoUploadTable(sqlServer.insertIntoGPSLocationAttributesTable());
 
 
@@ -394,7 +393,7 @@ public class GPSActivity extends BaseActivity {
         spLocation = (Spinner) findViewById(R.id.spGPS_location);
         llayout_Dynamic_Attribute = (LinearLayout) findViewById(R.id.llayout_Dynamic_Attribute);
 
-        horizontalScrollView =(HorizontalScrollView)findViewById(R.id.hsvImageView_Controller);
+        horizontalScrollView = (HorizontalScrollView) findViewById(R.id.hsvImageView_Controller);
         horizontalScrollView.setVisibility(View.GONE);
 
         mImageView1 = (ImageView) findViewById(R.id.iv_gpsAtt_1);
@@ -402,7 +401,6 @@ public class GPSActivity extends BaseActivity {
         mImageView3 = (ImageView) findViewById(R.id.iv_gpsAtt_3);
         mImageView4 = (ImageView) findViewById(R.id.iv_gpsAtt_4);
         mImageView5 = (ImageView) findViewById(R.id.iv_gpsAtt_5);
-
 
 
         btnHome = (Button) findViewById(R.id.btnRegisterFooter);
@@ -419,10 +417,8 @@ public class GPSActivity extends BaseActivity {
         tv_longitude = (TextView) findViewById(R.id.gps_tv_lng);
 
 
-
-
-
     }
+
     private void setUpGoButton() {
         btnMap.setText("");
         Drawable imageGoto = getResources().getDrawable(R.drawable.map_btn_icon);
@@ -430,20 +426,19 @@ public class GPSActivity extends BaseActivity {
         btnMap.setPadding(380, 5, 380, 5);
     }
 
-    private void implementImageCapture()
-    {
+    private void implementImageCapture() {
         //image 1
         mImageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                captureOrViewImageOption(CAMERA_REQUEST_1,idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_1);
+                captureOrViewImageOption(CAMERA_REQUEST_1, idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_1);
             }
         });
         //image 2
         mImageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                captureOrViewImageOption(CAMERA_REQUEST_2,idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_2);
+                captureOrViewImageOption(CAMERA_REQUEST_2, idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_2);
 
             }
         });
@@ -451,14 +446,14 @@ public class GPSActivity extends BaseActivity {
         mImageView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                captureOrViewImageOption(CAMERA_REQUEST_3,idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_3);
+                captureOrViewImageOption(CAMERA_REQUEST_3, idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_3);
             }
         });
         //image 4
         mImageView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                captureOrViewImageOption(CAMERA_REQUEST_4,idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_4);
+                captureOrViewImageOption(CAMERA_REQUEST_4, idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_4);
             }
         });
 
@@ -466,7 +461,7 @@ public class GPSActivity extends BaseActivity {
         mImageView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                captureOrViewImageOption(CAMERA_REQUEST_5,idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_5);
+                captureOrViewImageOption(CAMERA_REQUEST_5, idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_5);
             }
         });
 
@@ -523,9 +518,9 @@ public class GPSActivity extends BaseActivity {
                 if (idGroup.length() > 2)
                     loadSubGroup(cCode, idGroup);
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
 
@@ -701,6 +696,27 @@ public class GPSActivity extends BaseActivity {
 
             if (attList.get(i).getLookUpCode().equals(NO_LOOK_UP)) {
 
+
+                EditText et = new EditText(this);
+                allEdt.add(et);
+                et.setHint(st);
+                et.setId(i);
+                et.setPadding(15, 5, 0, 5);
+                et.setBackground(getResources().getDrawable(R.drawable.edit_box_background));
+                switch (attList.get(i).getDataType()) {
+                    case TEXT_TYPE:
+                        et.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case NUMERIC:
+                        et.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        break;
+                }
+                llayout_Dynamic_Attribute.addView(et);
+
+
+            } else {
+
+
                 if (attList.get(i).getDataType().equals(IMAGE_TYPE)) {
 
                     LinearLayout parent = new LinearLayout(this);
@@ -721,20 +737,17 @@ public class GPSActivity extends BaseActivity {
                         public void onClick(View v) {
                             Toast.makeText(CONTEXT, "Take photo ", Toast.LENGTH_SHORT).show();
 
-                            if (!isDeviceSupportCamera())
-                            {
+                            if (!isDeviceSupportCamera()) {
                                 Toast.makeText(getApplicationContext(), "Sorry! Your device doesn't support camera", Toast.LENGTH_LONG).show();
 
-                            }
-                            else
-                            {
+                            } else {
                                 horizontalScrollView.setVisibility(View.VISIBLE);
 
-                                viewImageFromDatabase(idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_1,mImageView1);
-                                viewImageFromDatabase(idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_2,mImageView2);
-                                viewImageFromDatabase(idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_3,mImageView3);
-                                viewImageFromDatabase(idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_4,mImageView4);
-                                viewImageFromDatabase(idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_5,mImageView5);
+                                viewImageFromDatabase(idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_1, mImageView1);
+                                viewImageFromDatabase(idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_2, mImageView2);
+                                viewImageFromDatabase(idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_3, mImageView3);
+                                viewImageFromDatabase(idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_4, mImageView4);
+                                viewImageFromDatabase(idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_5, mImageView5);
 
 
                             }
@@ -747,44 +760,24 @@ public class GPSActivity extends BaseActivity {
                     parent.addView(bt);
                     llayout_Dynamic_Attribute.addView(parent);
                 } else {
-                    EditText et = new EditText(this);
-                    allEdt.add(et);
-                    et.setHint(st);
-                    et.setId(i);
-                    et.setPadding(15, 5, 0, 5);
-                    et.setBackground(getResources().getDrawable(R.drawable.edit_box_background));
-                    switch (attList.get(i).getDataType()) {
-                        case TEXT_TYPE:
-                            et.setInputType(InputType.TYPE_CLASS_TEXT);
-                            break;
-                        case NUMERIC:
-                            et.setInputType(InputType.TYPE_CLASS_NUMBER);
-                            break;
-                    }
-                    llayout_Dynamic_Attribute.addView(et);
+                    final CheckBox cb = new CheckBox(this);
+                    cb.setText(st);
+                    cb.setId(i);
+                    cb.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Log.d(TAG, "Check box " + cb.getId() + " is checked ");
+                        }
+                    });
+                    allCheckBox.add(cb);
+                    llayout_Dynamic_Attribute.addView(cb);
                 }
 
-
-            } else {
-
-                final CheckBox cb = new CheckBox(this);
-                cb.setText(st);
-                cb.setId(i);
-                cb.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d(TAG, "Check box " + cb.getId() + " is checked ");
-                    }
-                });
-                allCheckBox.add(cb);
-                llayout_Dynamic_Attribute.addView(cb);
 
             }
         }
 
     }
-
-
 
 
     /**
@@ -831,17 +824,16 @@ public class GPSActivity extends BaseActivity {
         sqlServer.setEntryDate(entryDate);
 
 
-
-        if(requestCode==CAMERA_REQUEST_1 && resultCode== RESULT_OK && data !=null ) {
+        if (requestCode == CAMERA_REQUEST_1 && resultCode == RESULT_OK && data != null) {
 
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             photo.compress(Bitmap.CompressFormat.PNG, 99, stream);
             byte[] byteArray = stream.toByteArray();
-            String base64 = Base64.encodeToString(byteArray,Base64.DEFAULT);
-            base64=base64.trim();
+            String base64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
+            base64 = base64.trim();
             try {
-                sqlH.insertIntoGPSLocationContentTable(idCountry,idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_1, byteArray, REMARKS_1, getStaffID(), getDateTime());
+                sqlH.insertIntoGPSLocationContentTable(idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_1, byteArray, REMARKS_1, getStaffID(), getDateTime());
                 sqlServer.setAdmCountryCode(idCountry);
                 sqlServer.setContentCode(IMG_CONTENT_CODE_1);
                 sqlServer.setImageFile(base64);
@@ -850,21 +842,18 @@ public class GPSActivity extends BaseActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if(data !=null && resultCode==RESULT_OK)
-            {
+            if (data != null && resultCode == RESULT_OK) {
                 mImageView1.setImageBitmap(photo);
             }
-        }
-        else if(requestCode==CAMERA_REQUEST_2 && resultCode== RESULT_OK  && data !=null )
-        {
+        } else if (requestCode == CAMERA_REQUEST_2 && resultCode == RESULT_OK && data != null) {
 
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            photo.compress(Bitmap.CompressFormat.PNG,99, stream);
+            photo.compress(Bitmap.CompressFormat.PNG, 99, stream);
             byte[] byteArray = stream.toByteArray();
-            String base64 = Base64.encodeToString(byteArray,Base64.DEFAULT);
+            String base64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
             try {
-                sqlH.insertIntoGPSLocationContentTable(idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_2,byteArray,REMARKS_2,getStaffID(),getDateTime());
+                sqlH.insertIntoGPSLocationContentTable(idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_2, byteArray, REMARKS_2, getStaffID(), getDateTime());
                 sqlServer.setAdmCountryCode(idCountry);
                 sqlServer.setContentCode(IMG_CONTENT_CODE_2);
                 sqlServer.setImageFile(base64);
@@ -873,21 +862,18 @@ public class GPSActivity extends BaseActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if(data !=null && resultCode==RESULT_OK)
-            {
+            if (data != null && resultCode == RESULT_OK) {
 
                 mImageView2.setImageBitmap(photo);
             }
-        }
-        else if(requestCode==CAMERA_REQUEST_3 && resultCode== RESULT_OK && data !=null)
-        {
+        } else if (requestCode == CAMERA_REQUEST_3 && resultCode == RESULT_OK && data != null) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            photo.compress(Bitmap.CompressFormat.PNG,99, stream);
+            photo.compress(Bitmap.CompressFormat.PNG, 99, stream);
             byte[] byteArray = stream.toByteArray();
-            String base64 = Base64.encodeToString(byteArray,Base64.DEFAULT);
+            String base64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
             try {
-                sqlH.insertIntoGPSLocationContentTable(idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_3,byteArray,REMARKS_3,getStaffID(),getDateTime());
+                sqlH.insertIntoGPSLocationContentTable(idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_3, byteArray, REMARKS_3, getStaffID(), getDateTime());
                 sqlServer.setAdmCountryCode(idCountry);
                 sqlServer.setContentCode(IMG_CONTENT_CODE_3);
                 sqlServer.setImageFile(base64);
@@ -896,22 +882,19 @@ public class GPSActivity extends BaseActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if(data !=null && resultCode==RESULT_OK)
-            {
+            if (data != null && resultCode == RESULT_OK) {
 
                 mImageView3.setImageBitmap(photo);
             }
-        }
-        else if(requestCode==CAMERA_REQUEST_4 && resultCode== RESULT_OK && data !=null)
-        {
+        } else if (requestCode == CAMERA_REQUEST_4 && resultCode == RESULT_OK && data != null) {
 
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            photo.compress(Bitmap.CompressFormat.PNG,99, stream);
+            photo.compress(Bitmap.CompressFormat.PNG, 99, stream);
             byte[] byteArray = stream.toByteArray();
-            String base64 = Base64.encodeToString(byteArray,Base64.DEFAULT);
+            String base64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
             try {
-                sqlH.insertIntoGPSLocationContentTable(idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_4,byteArray,REMARKS_4,getStaffID(),getDateTime());
+                sqlH.insertIntoGPSLocationContentTable(idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_4, byteArray, REMARKS_4, getStaffID(), getDateTime());
                 sqlServer.setAdmCountryCode(idCountry);
                 sqlServer.setContentCode(IMG_CONTENT_CODE_4);
                 sqlServer.setImageFile(base64);
@@ -921,22 +904,19 @@ public class GPSActivity extends BaseActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if(data !=null && resultCode==RESULT_OK)
-            {
+            if (data != null && resultCode == RESULT_OK) {
 
                 mImageView4.setImageBitmap(photo);
             }
-        }
-        else if(requestCode==CAMERA_REQUEST_5 && resultCode== RESULT_OK && data !=null)
-        {
+        } else if (requestCode == CAMERA_REQUEST_5 && resultCode == RESULT_OK && data != null) {
 
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            photo.compress(Bitmap.CompressFormat.PNG,99, stream);
+            photo.compress(Bitmap.CompressFormat.PNG, 99, stream);
             byte[] byteArray = stream.toByteArray();
-            String base64 = Base64.encodeToString(byteArray,Base64.DEFAULT);
+            String base64 = Base64.encodeToString(byteArray, Base64.DEFAULT);
             try {
-                sqlH.insertIntoGPSLocationContentTable(idCountry,idGroup,idSubGroup,idLocation,IMG_CONTENT_CODE_5,byteArray,REMARKS_5,getStaffID(),getDateTime());
+                sqlH.insertIntoGPSLocationContentTable(idCountry, idGroup, idSubGroup, idLocation, IMG_CONTENT_CODE_5, byteArray, REMARKS_5, getStaffID(), getDateTime());
                 sqlServer.setAdmCountryCode(idCountry);
                 sqlServer.setContentCode(IMG_CONTENT_CODE_5);
                 sqlServer.setImageFile(base64);
@@ -945,18 +925,14 @@ public class GPSActivity extends BaseActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            if(data !=null && resultCode==RESULT_OK)
-            {
+            if (data != null && resultCode == RESULT_OK) {
 
                 mImageView5.setImageBitmap(photo);
             }
-        }
-        else if(resultCode==RESULT_CANCELED && data == null)
-        {
+        } else if (resultCode == RESULT_CANCELED && data == null) {
             finish();
         }
     }
-
 
 
     private String mEncodedImageString;
@@ -1096,11 +1072,9 @@ public class GPSActivity extends BaseActivity {
     AlertDialog cameRaDialog;
 
     /**
-     *
      * @param REQUEST
      */
-    private void captureOrViewImageOption(final int REQUEST, final String CountryCode, final String GrpCode, final String subGrpCode, final String LocationCode, final String ContentCode)
-    {
+    private void captureOrViewImageOption(final int REQUEST, final String CountryCode, final String GrpCode, final String subGrpCode, final String LocationCode, final String ContentCode) {
 
        /* AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 GPSActivity.this);
@@ -1137,20 +1111,19 @@ public class GPSActivity extends BaseActivity {
 
         final CharSequence[] items = getResources().getStringArray(R.array.cameraOption);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(GPSActivity.this, android.R.style.Theme_Holo_Light_Dialog));
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(PointAttributes.this, android.R.style.Theme_Holo_Light_Dialog));
         builder.setTitle("Photo:");
         builder.setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                switch (which)
-                {
+                switch (which) {
                     case 0:
                         //cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         //startActivityForResult(cameraIntent,REQUEST);
                         captureImageAlert(REQUEST);
                         break;
                     case 1:
-                        checkPhotoAvailability(CountryCode,GrpCode,subGrpCode,LocationCode,ContentCode);
+                        checkPhotoAvailability(CountryCode, GrpCode, subGrpCode, LocationCode, ContentCode);
                         break;
                     case 2:
                         cameRaDialog.dismiss();
@@ -1164,18 +1137,10 @@ public class GPSActivity extends BaseActivity {
     }
 
 
-
-
-
-
-
-
     /**
-     *
      * @param REQUEST
      */
-    private void captureImageAlert(final int REQUEST)
-    {
+    private void captureImageAlert(final int REQUEST) {
        /* AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 GPSActivity.this);
 
@@ -1191,7 +1156,7 @@ public class GPSActivity extends BaseActivity {
         // if this button is clicked, close
         // current activity
         cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent,REQUEST);
+        startActivityForResult(cameraIntent, REQUEST);
                    /*     // GPSActivity.this.finish();
                     }
                 })
@@ -1211,12 +1176,11 @@ public class GPSActivity extends BaseActivity {
 
     }
 
-    private void checkPhotoAvailability(final String CountryCode, final String GrpCode, final String subGrpCode, final String LocationCode, final String ContentCode)
-    {
-        if(sqlH.checkDataAvailableOrNotInGpsLocationContentTable(CountryCode,GrpCode,subGrpCode,LocationCode,ContentCode)!=true) {
+    private void checkPhotoAvailability(final String CountryCode, final String GrpCode, final String subGrpCode, final String LocationCode, final String ContentCode) {
+        if (sqlH.checkDataAvailableOrNotInGpsLocationContentTable(CountryCode, GrpCode, subGrpCode, LocationCode, ContentCode) != true) {
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                    GPSActivity.this);
+                    PointAttributes.this);
 
             // set title
             alertDialogBuilder.setTitle("");
@@ -1225,20 +1189,18 @@ public class GPSActivity extends BaseActivity {
             alertDialogBuilder
                     .setMessage("Failed To Delete.")
                     .setCancelable(false)
-                    .setPositiveButton("OK",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
                         }
                     });
 
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
-        }
-        else
-        {
+        } else {
             final SQLServerSyntaxGenerator sqlServer = new SQLServerSyntaxGenerator();
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                    GPSActivity.this);
+                    PointAttributes.this);
 
             // set title
             alertDialogBuilder.setTitle("");
@@ -1247,29 +1209,20 @@ public class GPSActivity extends BaseActivity {
             alertDialogBuilder
                     .setMessage("Delete Image?")
                     .setCancelable(false)
-                    .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
 
                             //TODO: DELETE QUERY
-                            sqlH.deleteRowFromGpsLocationContentTable(CountryCode,GrpCode,subGrpCode,LocationCode,ContentCode);
-                            if(ContentCode.equals(IMG_CONTENT_CODE_1))
-                            {
+                            sqlH.deleteRowFromGpsLocationContentTable(CountryCode, GrpCode, subGrpCode, LocationCode, ContentCode);
+                            if (ContentCode.equals(IMG_CONTENT_CODE_1)) {
                                 mImageView1.setImageResource(R.drawable.cam);
-                            }
-                            else if(ContentCode.equals(IMG_CONTENT_CODE_2))
-                            {
+                            } else if (ContentCode.equals(IMG_CONTENT_CODE_2)) {
                                 mImageView2.setImageResource(R.drawable.cam);
-                            }
-                            else if(ContentCode.equals(IMG_CONTENT_CODE_3))
-                            {
+                            } else if (ContentCode.equals(IMG_CONTENT_CODE_3)) {
                                 mImageView3.setImageResource(R.drawable.cam);
-                            }
-                            else if(ContentCode.equals(IMG_CONTENT_CODE_4))
-                            {
+                            } else if (ContentCode.equals(IMG_CONTENT_CODE_4)) {
                                 mImageView4.setImageResource(R.drawable.cam);
-                            }
-                            else if(ContentCode.equals(IMG_CONTENT_CODE_5))
-                            {
+                            } else if (ContentCode.equals(IMG_CONTENT_CODE_5)) {
                                 mImageView5.setImageResource(R.drawable.cam);
                             }
                             sqlServer.setAdmCountryCode(idCountry);
@@ -1281,8 +1234,8 @@ public class GPSActivity extends BaseActivity {
 
                         }
                     })
-                    .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,int id) {
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
                         }
                     });
@@ -1293,9 +1246,8 @@ public class GPSActivity extends BaseActivity {
         }
     }
 
-    private void viewImageFromDatabase(String CountryCode, String GrpCode, String subGrpCode,String LocationCode,String ContentCode, ImageView imageView)
-    {
-        sqlH.getImageFromDatabase(CountryCode,GrpCode,subGrpCode,LocationCode,ContentCode,imageView);
+    private void viewImageFromDatabase(String CountryCode, String GrpCode, String subGrpCode, String LocationCode, String ContentCode, ImageView imageView) {
+        sqlH.getImageFromDatabase(CountryCode, GrpCode, subGrpCode, LocationCode, ContentCode, imageView);
 
     }
 }

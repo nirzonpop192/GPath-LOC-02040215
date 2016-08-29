@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.activity.MapActivity;
 import com.siddiquinoor.restclient.utils.KEY;
+import com.siddiquinoor.restclient.views.helper.LocationHelper;
 import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
 
 import java.util.ArrayList;
@@ -30,9 +31,9 @@ public class SearchLocationAdapter extends BaseAdapter {
     private String countryCode;
 
 
-    List<SpinnerHelper> list = new ArrayList<SpinnerHelper>();
+    List<LocationHelper> list = new ArrayList<LocationHelper>();
 
-    public SearchLocationAdapter(Activity activity, List<SpinnerHelper> list,String countryCode) {
+    public SearchLocationAdapter(Activity activity, List<LocationHelper> list, String countryCode) {
         this.activity = activity;
         this.list = list;
         this.countryCode = countryCode;
@@ -73,6 +74,7 @@ public class SearchLocationAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.tv_locationName = (TextView) row.findViewById(R.id.tv_location);
             holder.im_btnGoToMap = (ImageButton) row.findViewById(R.id.imgbtnGoMap);
+            holder.tvDataExits = (TextView) row.findViewById(R.id.tv_locExits);
 
             row.setTag(holder);
 
@@ -80,10 +82,11 @@ public class SearchLocationAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
 
-        final SpinnerHelper data = list.get(position);
+        final LocationHelper data = list.get(position);
 
 
         holder.tv_locationName.setText(data.getValue());
+        holder.tvDataExits.setText(data.getLocationExits());
 
         if (position % 2 == 0) {
             row.setBackgroundColor(Color.WHITE);
@@ -115,6 +118,8 @@ public class SearchLocationAdapter extends BaseAdapter {
 
     private void changeTextColor(int color) {
         holder.tv_locationName.setTextColor(color);
+        holder.tvDataExits.setTextColor(color);
+
     }
 
     /**
@@ -123,6 +128,7 @@ public class SearchLocationAdapter extends BaseAdapter {
 
     class ViewHolder {
         TextView tv_locationName;
+        TextView tvDataExits;
         ImageButton im_btnGoToMap;
 
     }

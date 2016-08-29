@@ -13,6 +13,8 @@
         android:layout_below="@+id/header"
         android:text="@string/group_details" />
     <ScrollView
+
+        android:layout_above="@+id/ll_saveLay"
         android:layout_below="@+id/tv_ass_page2Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -160,10 +162,11 @@
         </RelativeLayout>
     </ScrollView>
     <LinearLayout
+        android:id="@+id/ll_saveLay"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/footer"
-        android:layout_below="@+id/lv_assign"
+
         android:gravity="bottom">
 
         <!-- Save Button -->

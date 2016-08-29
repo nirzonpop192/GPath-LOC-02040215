@@ -445,8 +445,17 @@ public class SQLiteQuery {
                 + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.HHID_COL + " || \"\" || "
                 + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.HH_MEM_ID + " LIKE '%" + memberSearchId + "%' "
 
-                + " ORDER BY " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.HHID_COL
-                + " DESC "
+               // group by
+                +" GROUP BY "+ SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.DISTRICT_NAME_COL + " , "
+                + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.UPZILLA_NAME_COL + " , "
+                + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.UNITE_NAME_COL + " , "
+                + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.VILLAGE_NAME_COL + " , "
+                + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.HHID_COL + " , "
+                + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.HH_MEM_ID + " "
+
+
+
+                + " ORDER BY " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.HHID_COL + " DESC "
                 ;
 
 
@@ -1881,7 +1890,7 @@ public class SQLiteQuery {
     public static String getRegisteredData_ifVillageExt_SelectQuery(String ext_village, String hhId) {
 
 
-         String sql= "SELECT "
+        String sql = "SELECT "
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ID_COL + ", "
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.REG_DATE_COL + ", "
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.COUNTRY_CODE + ", "
@@ -1902,12 +1911,14 @@ public class SQLiteQuery {
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.LONGITUDE_COL + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.AG_LAND + ","
                 + "(" + " CASE WHEN " + SQLiteHandler.V_STATUS + "==" + "'Y'" + " THEN " + "'Yes'" + " ELSE " + "'No'" + " END " + ") AS VStatus" + ","
-                + "(" + " CASE WHEN " + SQLiteHandler.M_STATUS + "==" + "'Y'" + " THEN " + "'Yes'" + " ELSE " + "'No'" + " END " + ") AS MStatus" + ","
+                + " " + SQLiteHandler.M_STATUS + " AS MStatus " + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ENTRY_BY + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ENTRY_DATE + " , "
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.VSLA_GROUP + " , "
                 + SQLiteHandler.LUP_REGN_ADDRESS_LOOKUP_TABLE + "." + SQLiteHandler.REGN_ADDRESS_LOOKUP_NAME_COL + " as addname , "//25
-                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.REGN_ADDRESS_LOOKUP_CODE_COL + " as addcode "//26
+                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.REGN_ADDRESS_LOOKUP_CODE_COL + " as addcode ,"//26
+                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.W_RANK_COL + " as wRank ,"//26
+                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.M_STATUS + " as status "//26
                 + " FROM " + SQLiteHandler.REGISTRATION_TABLE
                 + " LEFT JOIN " + SQLiteHandler.COUNTRY_TABLE
                 + " ON " + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "=" + SQLiteHandler.COUNTRY_TABLE + "." + SQLiteHandler.COUNTRY_CODE
@@ -1946,7 +1957,7 @@ public class SQLiteQuery {
                 + " AND " + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.PID_COL + " LIKE '%" + hhId + "%' "
                 + " GROUP BY " + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ID_COL /// this GROUP BY PREVENT TO SHOW DUPLICATED VALUES // Faisal Mohammad  @email:nirzon192@gmail.com @email:nirzon192@gmail.com @email:nirzon192@gmail.com @email:nirzon192@gmail.commodify
                 + " ORDER BY " + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ID_COL + " DESC";
-           Log.d("MAR",sql);
+        Log.d("MAR", sql);
         return sql;
 
     }
@@ -2050,12 +2061,15 @@ public class SQLiteQuery {
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.LONGITUDE_COL + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.AG_LAND + ","
                 + "(" + " CASE WHEN " + SQLiteHandler.V_STATUS + "==" + "'Y'" + " THEN " + "'Yes'" + " ELSE " + "'No'" + " END " + ") AS VStatus" + ","
-                + "(" + " CASE WHEN " + SQLiteHandler.M_STATUS + "==" + "'Y'" + " THEN " + "'Yes'" + " ELSE " + "'No'" + " END " + ") AS MStatus" + ","
+                + " " + SQLiteHandler.M_STATUS +" AS MStatus" + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ENTRY_BY + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ENTRY_DATE + " , "
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.VSLA_GROUP + " , "
                 + SQLiteHandler.LUP_REGN_ADDRESS_LOOKUP_TABLE + "." + SQLiteHandler.REGN_ADDRESS_LOOKUP_NAME_COL + " as addname , "//25
-                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.REGN_ADDRESS_LOOKUP_CODE_COL + " as addcode "//26
+                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.REGN_ADDRESS_LOOKUP_CODE_COL + " as addcode ,"//26
+                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.W_RANK_COL + " as wRank ,"//26
+                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.M_STATUS + " as status "//26
+
                 + " FROM " + SQLiteHandler.REGISTRATION_TABLE
                 + " LEFT JOIN " + SQLiteHandler.COUNTRY_TABLE
                 + " ON " + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "=" + SQLiteHandler.COUNTRY_TABLE + "." + SQLiteHandler.COUNTRY_CODE
@@ -2124,13 +2138,15 @@ public class SQLiteQuery {
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.LONGITUDE_COL + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.AG_LAND + ","
                 + "(" + " CASE WHEN " + SQLiteHandler.V_STATUS + "==" + "'Y'" + " THEN " + "'Yes'" + " ELSE " + "'No'" + " END " + ") AS VStatus" + ","
-                + "(" + " CASE WHEN " + SQLiteHandler.M_STATUS + "==" + "'Y'" + " THEN " + "'Yes'" + " ELSE " + "'No'" + " END " + ") AS MStatus" + ","
+                + "  " + SQLiteHandler.M_STATUS+" AS MStatus " + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ENTRY_BY + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ENTRY_DATE + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.VSLA_GROUP + " , "
                 + " , "
                 + SQLiteHandler.LUP_REGN_ADDRESS_LOOKUP_TABLE + "." + SQLiteHandler.REGN_ADDRESS_LOOKUP_NAME_COL + " as addname , "//25
-                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.REGN_ADDRESS_LOOKUP_CODE_COL + " as addcode "//26
+                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.REGN_ADDRESS_LOOKUP_CODE_COL + " as addcode ,"//26
+                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.W_RANK_COL + " as wRank ,"//26
+                + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.M_STATUS + " as status "//26
 
                 + " FROM " + SQLiteHandler.REGISTRATION_TABLE
                 + " LEFT JOIN " + SQLiteHandler.COUNTRY_TABLE

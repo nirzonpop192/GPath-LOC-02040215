@@ -626,6 +626,17 @@ public class AssignAGR extends BaseActivity {
 
     }
 
+
+   /**
+     * @date: 2015-11-23
+     * @description: calculate the the graduation date
+     */
+    private String calculateGRDDate(String cCode,String donorCode,String awardCode) {
+       return sqlH.getAwardGraduation(cCode,donorCode,awardCode);
+
+
+    }
+
     /**
      * save data
      */
@@ -687,6 +698,10 @@ public class AssignAGR extends BaseActivity {
                 /**
                  *  for upload
                  */
+
+               // assignMem.setRegNDate(regDate);
+                assignMem.setGrdCode(sqlH.getGRDDefaultActiveReason(assignMem.getProgram_code(), assignMem.getService_code()));
+                assignMem.setGrdDate(calculateGRDDate(assignMem.getCountryCode(),assignMem.getDonor_code(),assignMem.getAward_code()));
                 saveDataForSqlServer();
 
 
@@ -807,15 +822,24 @@ public class AssignAGR extends BaseActivity {
         assign_agr.setAdmAwardCode(assignDataModel.getAward_code());
         assign_agr.setLayR1ListCode(assignDataModel.getDistrictCode());
         assign_agr.setLayR2ListCode(assignDataModel.getUpazillaCode());
-        assign_agr.setLayR3ListCode(assignDataModel.getVillageCode());
+        assign_agr.setLayR3ListCode(assignDataModel.getUnitCode());
         assign_agr.setLayR4ListCode(assignDataModel.getVillageCode());
+
+        assign_agr.setProgCode(assignDataModel.getProgram_code());
+        assign_agr.setSrvCode(assignDataModel.getService_code());
+
+
         assign_agr.setHHID(assignDataModel.getHh_id());
         assign_agr.setMemID(assignDataModel.getMemId());
         assign_agr.setRegNDate(assignDataModel.getRegNDate());
+        assign_agr.setGRDCode(assignDataModel.getGrdCode());
+
+        assign_agr.setGRDDate(assignDataModel.getGrdDate());
+
         assign_agr.setElderlyYN(getElderley());
-        //TODO: HAVE TO CHANGE
+
         assign_agr.setEntryBy(assignDataModel.getEntryBy());
-        //TODO: HAVE TO CHANGE
+
         assign_agr.setEntryDate(assignDataModel.getEntryDate());
         assign_agr.setLandSize(edtLandSize.getText().toString());
         assign_agr.setDependOnGanyu(getDependOnGunnyu());
@@ -823,6 +847,11 @@ public class AssignAGR extends BaseActivity {
         assign_agr.setWinterCultivation(getWinterCultivation());
         assign_agr.setVulnerableHH(getVurnableHousehold());
         assign_agr.setPlantingValueChainCrop(idVcCrop);
+        /**
+         * new added column */
+
+
+
         assign_agr.setAgoInvc(data.getStrOtherAgActivitiesINVC());
         assign_agr.setAgoNasfam(data.getStrOtherAgActivitiesNASFAM());
         assign_agr.setAgoCu(data.getStrOtherAgActivitiesCU());

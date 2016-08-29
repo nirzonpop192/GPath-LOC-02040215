@@ -1,11 +1,13 @@
 package com.siddiquinoor.restclient.activity;
 
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -219,7 +221,7 @@ public class GroupSearchPage extends BaseActivity {
         addIconHomeButton();
         addIconAddGroupButton();
     }
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void addIconHomeButton() {
 
         btnHome.setText("");
@@ -228,7 +230,7 @@ public class GroupSearchPage extends BaseActivity {
         btnHome.setPadding(180, 5, 180, 5);
     }
 
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void addIconAddGroupButton() {
 
         btnAddGroup.setText("");

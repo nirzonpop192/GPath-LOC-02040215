@@ -1,5 +1,6 @@
 package com.siddiquinoor.restclient.activity;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -8,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -90,7 +92,7 @@ public class AssignActivity extends BaseActivity {
     private String strVillage;
     // private int positionVillage;
     //  private Button btnHome;
-    private Button btnSearch;
+  //  private Button btnSearch;
     private EditText edt_mmSearch;
     String entryBy;
     String entryDate;
@@ -264,7 +266,7 @@ public class AssignActivity extends BaseActivity {
 
 
         listViewAss = (ListView) findViewById(R.id.lv_assign);
-        btnSearch = (Button) findViewById(R.id.btn_assign_search);
+       // btnSearch = (Button) findViewById(R.id.btn_assign_search);
         edt_mmSearch = (EditText) findViewById(R.id.edt_assign_memberSearch);
 
         btnGoTo = (Button) findViewById(R.id.btnHomeFooter);
@@ -276,10 +278,10 @@ public class AssignActivity extends BaseActivity {
 
     }
 
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpSummaryButton() {
         btnSummary.setText("");
-        Drawable summeryImage = getResources().getDrawable(R.drawable.summession_b);
+        Drawable summeryImage = getResources().getDrawable(R.drawable.goto_back);
         btnSummary.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
         btnSummary.setPadding(180, 10, 180, 10);
     }
@@ -287,6 +289,7 @@ public class AssignActivity extends BaseActivity {
     /**
      * Icon set by the method
      */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpGotoButton() {
         btnGoTo.setText("");
         Drawable imageGoto = getResources().getDrawable(R.drawable.goto_b);
@@ -300,16 +303,22 @@ public class AssignActivity extends BaseActivity {
         btnSummary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+           /*   *//**  go to the Summary *//*
                 Intent iSummary = new Intent(mcontext, AllSummaryActivity.class);
                 iSummary.putExtra(KEY.COUNTRY_ID, idCountry);
-                startActivity(iSummary);
+                startActivity(iSummary);*/
+
+                Intent iMemSearch = new Intent(getApplicationContext(), MemberSearchPage.class);
+                iMemSearch.putExtra(KEY.COUNTRY_ID, idCountry);
+                finish();
+                startActivity(iMemSearch);
             }
         });
 
         sqlH = new SQLiteHandler(this);
 
         pDialog = new ProgressDialog(this);
-        btnSearch.setOnClickListener(new View.OnClickListener() {
+    /*    btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -321,7 +330,7 @@ public class AssignActivity extends BaseActivity {
 
 
             }
-        });
+        });*/
 
         edt_mmSearch.setOnClickListener(new View.OnClickListener() {
             @Override

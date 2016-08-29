@@ -2540,6 +2540,7 @@ public class SQLServerSyntaxGenerator {
                 "           ,[MemName]" +
                 "           ,[MemSex]" +
                 "           ,[HHRelation]" +
+                "           ,[MemAge]" +
                 "           ,[EntryBy]" +
                 "           ,[EntryDate]" +
                 "            )" +
@@ -2554,6 +2555,7 @@ public class SQLServerSyntaxGenerator {
                 "           , " + getMmMemName() +
                 "           , " + getMmMemSex() +
                 "           , " + getMmHHRelation() +
+                "           , " + getMmMemAge() +
                 "           , " + getEntryBy() +
                 "           , " + getEntryDate() +
 
@@ -3082,6 +3084,8 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setDependOnGanyu(String dependOnGanyu) {
+        dependOnGanyu = checkStringNull(dependOnGanyu);
+
         this.DependOnGanyu = dependOnGanyu;
     }
 
@@ -3090,6 +3094,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setLandSize(String landSize) {
+        landSize = checkIntNull(landSize);
         this.LandSize = landSize;
     }
 
@@ -3098,6 +3103,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setWillingness(String willingness) {
+        willingness = checkStringNull(willingness);
         this.Willingness = willingness;
     }
 
@@ -3106,6 +3112,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setWinterCultivation(String winterCultivation) {
+        winterCultivation = checkStringNull(winterCultivation);
         this.WinterCultivation = winterCultivation;
     }
 
@@ -3114,6 +3121,8 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setVulnerableHH(String vulnerableHH) {
+        vulnerableHH = checkStringNull(vulnerableHH);
+
         this.VulnerableHH = vulnerableHH;
     }
 
@@ -3122,6 +3131,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setPlantingValueChainCrop(String plantingValueChainCrop) {
+        plantingValueChainCrop = checkStringNull(plantingValueChainCrop);
         PlantingValueChainCrop = plantingValueChainCrop;
     }
 
@@ -3131,6 +3141,9 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setElderlyYN(String elderlyYN) {
+        elderlyYN = checkStringNull(elderlyYN);
+
+
         this.ElderlyYN = elderlyYN;
     }
 
@@ -3233,7 +3246,18 @@ public class SQLServerSyntaxGenerator {
                 "           ,[Willingness]" +
                 "           ,[WinterCultivation]" +
                 "           ,[VulnerableHH]" +
-                "           ,[PlantingValueChainCrop])" +
+                "           ,[PlantingValueChainCrop]" +
+                "           ,[AGOINVC] " +
+                "           ,[AGONASFAM]" +
+                "           ,[AGOCU]" +
+                "           ,[AGOOther]" +
+                "           ,[LSGoat]" +
+                "           ,[LSChicken]" +
+                "           ,[LSPigeon]" +
+                "           ,[LSOther]" +
+
+
+                " )" +
                 "     VALUES   " +
                 "           ( " + getAdmCountryCode() +
                 "           , " + getLayR1ListCode() +
@@ -3252,6 +3276,14 @@ public class SQLServerSyntaxGenerator {
                 "           , " + getWinterCultivation() +
                 "           , " + getVulnerableHH() +
                 "           , " + getPlantingValueChainCrop() +
+                "           , " + getAgoInvc() +
+                "           , " + getAgoNasfam() +
+                "           , " + getAgoCu() +
+                "           , " + getAgoOther() +
+                "           , " + getLsGoat() +
+                "           , " + getLsChicken() +
+                "           , " + getLsPigeon() +
+                "           , " + getLsOther() +
                 " ) ";
     }
 
@@ -4807,10 +4839,10 @@ public class SQLServerSyntaxGenerator {
     String ProjectTitle;
 
 
-    public String sqlServerCommunityGrpDetail() {
+    public String insertIntoCommunityGrpDetail() {
         return "INSERT INTO [dbo].[CommunityGrpDetail]" +
-                "( [AdmCountryCode] "
-                + "  , [AdmDonorCode] "
+                " ( [AdmCountryCode] "
+                + "  ,  [AdmDonorCode] "
                 + "   , [AdmAwardCode] "
                 + "   , [AdmProgCode]  "
                 + "   , [GrpCode] "
@@ -4828,10 +4860,11 @@ public class SQLServerSyntaxGenerator {
                 + "   , [EntryBy] "
                 + "   , [EntryDate] "
                 + "   , [ProjectNo] "
-                + "   , [ProjectTitle] "
+                + "   , [ProjectTitle] )"
                 + " VALUES "
                 + " ( "
-                + getAdmAwardCode()
+                + getAdmCountryCode()
+                + " , " + getAdmDonorCode()
                 + " , " + getAdmAwardCode()
                 + " , " + getProgCode()
                 + " , " + getGrpCode()
@@ -4905,70 +4938,86 @@ public class SQLServerSyntaxGenerator {
                 " )";
     }
 
-    public String sqlSpRegNMemAwardProgCombN_Save()
-    {
-        return "exec [dbo].[RegNMemAwardProgCombN_Save] "
-                + getAdmCountryCode()+" , "
-                + getAdmDonorCode()+" , "
-                +getAdmAwardCode()+" , "
-                +getLayR1ListCode()+" , "
-                +getLayR2ListCode()+" , "
-                +getLayR3ListCode()+" , "
-                +getLayR4ListCode()+" , "
-                +getHHID()+" , "
-                +getMemID()+" , "
-                +getEntryBy()+" , "
-                +getEntryDate();
+    public String sqlSpRegNMemAwardProgCombN_Save() {
+        return " RegNMemAwardProgCombN_Save "
+                + getAdmCountryCode() + " , "
+                + getAdmDonorCode() + " , "
+                + getAdmAwardCode() + " , "
+                + getLayR1ListCode() + " , "
+                + getLayR2ListCode() + " , "
+                + getLayR3ListCode() + " , "
+                + getLayR4ListCode() + " , "
+                + getHHID() + " , "
+                + getMemID() + " , "
+                + getEntryBy() + " , "
+                + getEntryDate();
     }
 
 
     public String getLTp2Hectres() {
         return LTp2Hectres;
     }
+
     public void setLTp2Hectres(String LTp2Hectres) {
         LTp2Hectres = checkStringNull(LTp2Hectres);
         this.LTp2Hectres = LTp2Hectres;
     }
+
     private String LTp2Hectres;
+
     public String getLT3mFoodStock() {
         return LT3mFoodStock;
     }
+
     public void setLT3mFoodStock(String LT3mFoodStock) {
         LT3mFoodStock = checkStringNull(LT3mFoodStock);
         this.LT3mFoodStock = LT3mFoodStock;
     }
+
     private String LT3mFoodStock;
+
     public String getNoMajorCommonLiveStock() {
         return NoMajorCommonLiveStock;
     }
+
     public void setNoMajorCommonLiveStock(String noMajorCommonLiveStock) {
         noMajorCommonLiveStock = checkStringNull(noMajorCommonLiveStock);
         NoMajorCommonLiveStock = noMajorCommonLiveStock;
     }
+
     private String NoMajorCommonLiveStock;
+
     public String getReceiveNoFormalWages() {
         return ReceiveNoFormalWages;
     }
+
     public void setReceiveNoFormalWages(String receiveNoFormalWages) {
         receiveNoFormalWages = checkStringNull(receiveNoFormalWages);
         ReceiveNoFormalWages = receiveNoFormalWages;
     }
+
     private String ReceiveNoFormalWages;
+
     public String getNoIGA() {
         return NoIGA;
     }
+
     public void setNoIGA(String noIGA) {
         noIGA = checkStringNull(noIGA);
         NoIGA = noIGA;
     }
+
     private String NoIGA;
+
     public String getRelyPiecework() {
         return RelyPiecework;
     }
+
     public void setRelyPiecework(String relyPiecework) {
         relyPiecework = checkStringNull(relyPiecework);
         RelyPiecework = relyPiecework;
     }
+
     private String RelyPiecework;
 
 
@@ -4999,7 +5048,7 @@ public class SQLServerSyntaxGenerator {
                 "           ,[NoMajorCommonLiveStock]" +
                 "           ,[ReceiveNoFormalWages]" +
                 "           ,[NoIGA]" +
-                "           ,[RelyPiecework]"+
+                "           ,[RelyPiecework]" +
                 ")" +
                 "VALUES " +
                 "("
@@ -5030,6 +5079,56 @@ public class SQLServerSyntaxGenerator {
                 + "," + getNoIGA()
                 + "," + getRelyPiecework()
                 + " )";
+    }
+
+    /*public String updateIntoCommunityGrpDetail() {
+        return "UPDATE [dbo].[CommunityGrpDetail] " +
+                " SET " + "[OrgCode] = " + getOrganizationCode() +
+                " , " + "[StfCode] = " + getStaffCode() +
+                " , " + "[LandSizeUnderIrrigation] = " + getLandSizeUnderIrrigation() +
+                " , " + "[IrrigationSystemUsed] = " + getIrrigationSystemUsed() +
+                " , " + "[FundSupport] = " + getFundSupport() +
+                " , " + "[ActiveStatus] = " + getActive() +
+                " , " + "[RepName] = " + getRepresentativeName() +
+                " , " + "[RepPhoneNumber] = " + getRepresentativePhoneNumber() +
+                " , " + "[FormationDate] = " + getFormationDate() +
+                " , " + "[TypeOfGroup] = " + getTypeOfGroup() +
+                " , " + "[Status] = " + getStatus() +
+                " , " + "[EntryBy] = " + getEntryBy() +
+                " , " + "[EntryDate] = " + getEntryDate() +
+                " , " + "[ProjectNo] = " + getProjectNo() +
+                " , " + "[ProjectTitle] = " + getProjectTitle() +
+                " WHERE " + "[AdmCountryCode] = " + getAdmCountryCode() +
+                " AND " + "[AdmDonorCode] = " + getAdmDonorCode() +
+                " AND " + "[AdmAwardCode] = " + getAdmAwardCode() +
+                " AND " + "[AdmProgCode] =" + getProgCode() +
+                " AND " + "[GrpCode] = " + getGrpCode();
+    }*/
+
+
+    public String updateIntoCommunityGrpDetail()
+    {
+        return "UPDATE [dbo].[CommunityGrpDetail] "+
+                " SET " +  "   [OrgCode] = "+getOrganizationCode()+
+                "     ,      "   +  "   [StfCode] = "+getStaffCode()+
+                "     ,      "   +  "   [LandSizeUnderIrrigation] = "+getLandSizeUnderIrrigation()+
+                "     ,      "   +  "   [IrrigationSystemUsed] = "+getIrrigationSystemUsed()+
+                "     ,      "   +  "   [FundSupport] = "+getFundSupport()+
+                "     ,      "   +  "   [ActiveStatus] = "+getActive()+
+                "     ,      "   +  "   [RepName] = "+getRepresentativeName()+
+                "     ,      "   +  "   [RepPhoneNumber] = "+getRepresentativePhoneNumber()+
+                "     ,      "   +  "   [FormationDate] = "+getFormationDate()+
+                "     ,      "   +  "   [TypeOfGroup] = "+getTypeOfGroup()+
+                "     ,      "   +  "   [Status] = "+getStatus()+
+                "     ,      "   +  "   [EntryBy] = "+getEntryBy()+
+                "     ,      "   +  "   [EntryDate] = "+getEntryDate()+
+                "     ,      "   +  "   [ProjectNo] = "+getProjectNo()+
+                "     ,      "   +  "   [ProjectTitle] = "+getProjectTitle()+
+                " WHERE " +  "   [AdmCountryCode] = "+getAdmCountryCode()+
+                " AND "   +  "   [AdmDonorCode] = "+getAdmDonorCode()+
+                " AND "   +  "   [AdmAwardCode] = " +getAdmAwardCode()+
+                " AND "   +  "   [AdmProgCode] = "+getProgCode()+
+                " AND "   +  "   [GrpCode] = "+getGrpCode();
     }
 
 }

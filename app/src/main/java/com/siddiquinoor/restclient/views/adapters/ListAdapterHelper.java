@@ -69,6 +69,7 @@ public class ListAdapterHelper extends BaseAdapter {
     String vsla_group;
     String address_code;
     String address_name;
+    String rankCode;
 
     ArrayList<String> occupation;
     //String sOccupation;
@@ -178,6 +179,8 @@ public class ListAdapterHelper extends BaseAdapter {
 
                     address_code=registrationData.get(position).getAddressCode();
                     address_name=registrationData.get(position).getAddressName();
+
+                    rankCode=registrationData.get(position).getRank();
                   //  Log.d("MI","address_code:"+address_code+" address_name: "+address_name);
 
                     if (country_code.equals("0004")) {
@@ -242,6 +245,7 @@ public class ListAdapterHelper extends BaseAdapter {
 
                         dIntent.putExtra(KEY.ADDRESS_CODE, address_code);
                         dIntent.putExtra(KEY.ADDRESS_NAME, address_name);
+                        dIntent.putExtra(KEY.WALTH_RANK, rankCode);
 
 
                         //dIntent.putExtra("pId", pId);
@@ -382,6 +386,8 @@ public class ListAdapterHelper extends BaseAdapter {
         dIntent.putExtra(KEY.P_ID, pId);
         dIntent.putExtra(KEY.ADDRESS_CODE, address_code);
         dIntent.putExtra(KEY.ADDRESS_NAME, address_name);
+
+        dIntent.putExtra(KEY.WALTH_RANK, rankCode);
 
         activity.startActivity(dIntent);
 

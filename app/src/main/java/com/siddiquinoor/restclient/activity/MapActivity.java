@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
@@ -25,10 +24,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.siddiquinoor.restclient.R;
-import com.siddiquinoor.restclient.activity.sub_activity.gps_sub.GPSActivity;
+import com.siddiquinoor.restclient.activity.sub_activity.gps_sub.PointAttributes;
+import com.siddiquinoor.restclient.activity.sub_activity.gps_sub.SearchLocation;
 import com.siddiquinoor.restclient.data_model.GPS_LocationDataModel;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
@@ -81,7 +79,7 @@ public class MapActivity extends BaseActivity {
     private LocationListener gpsListener;
     private Context context = MapActivity.this;
     private Button btnSave;
-    private Button btnHome;
+    private Button btnBackToLocSEARCH;
     private TextView tvLat;
     private TextView tvLong, tvGroupName, tvSubGroupName, tv_exitLong, tv_exitLat;
 
@@ -268,10 +266,9 @@ public class MapActivity extends BaseActivity {
                          */
                         if (subGrpName.length() > 0 && !subGrpName.equals("")) {
                             goToGpsModule();
-                        }
-                        else {
-                            ADNotificationManager dialog= new ADNotificationManager();
-                            dialog.showAlertDialog(context,"Missing","SubGroup missing ...",true);
+                        } else {
+                            ADNotificationManager dialog = new ADNotificationManager();
+                            dialog.showAlertDialog(context, "Missing", "SubGroup missing ...", true);
                         }
 
 
@@ -303,20 +300,28 @@ public class MapActivity extends BaseActivity {
          */
         clearMapScreen();
 
-        mapViewController.setZoom(3);
         InfoWindow.closeAllInfoWindowsOn(mMapView);
 
-        for (int i = 0; i < listOfGpsData.size(); i++) {
-            GPS_LocationDataModel data = listOfGpsData.get(i);
-            // // TODO: 7/21/2016  Calculate Distance
-            setMarker(data.getLocationName(), Double.valueOf(data.getLat()), Double.valueOf(data.getLng()));
+        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (lastLocation != null) {
+            GeoPoint locGeoPoint = new GeoPoint(lastLocation.getLatitude(), lastLocation.getLongitude());
+            mapViewController.setCenter(locGeoPoint);
+            mapViewController.setZoom(8);
+            for (int i = 0; i < listOfGpsData.size(); i++) {
+                GPS_LocationDataModel data = listOfGpsData.get(i);
+                // // TODO: 7/21/2016  Calculate Distance
+                if (calculateDistanceBetween2Point(lastLocation.getLatitude(), lastLocation.getLongitude(), Double.valueOf(data.getLat()), Double.valueOf(data.getLng())) < 500)
+                    setMarker(data.getLocationName(), Double.valueOf(data.getLat()), Double.valueOf(data.getLng()));
 /*          For Test purpose
 
             Log.d(TAG, " Location name : " + data.getLocationName()
                     + " lat: " + data.getLat()
                     + " long :" + data.getLng());*/
 
+            }
         }
+
+
     }
 
     private void clearMapScreen() {
@@ -324,7 +329,11 @@ public class MapActivity extends BaseActivity {
     }
 
     /**
-     * @return distance Between 2 point
+     * @param startLat  gps lat
+     * @param startLong gps lon
+     * @param endLat    exti lat
+     * @param endLong   exit long
+     * @return distance in KM
      * @since 02040215
      * <p>Distance, bearing and more between Latitude/Longitude points</p>
      * <p> R is earth’s radius (mean radius = 6,371km)</p>
@@ -338,6 +347,8 @@ public class MapActivity extends BaseActivity {
      * <p> Math.sin(delLong / 2) * Math.sin(delLong / 2);</p>
      * <p> var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));</p>
      * <p>  var d = R * c;</p>
+     * <p/>
+     * *
      */
 
     public double calculateDistanceBetween2Point(double startLat, double startLong, double endLat, double endLong) {
@@ -373,7 +384,7 @@ public class MapActivity extends BaseActivity {
 
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         distance = earthR * c;
-
+        Log.d("DIS", "distance:" + distance);
 
         return distance;
     }
@@ -381,7 +392,7 @@ public class MapActivity extends BaseActivity {
 
     /**
      * @param loc      Location object
-     * @param fistTime
+     * @param fistTime detect flag
      */
 
     private void updateLoc(Location loc, boolean fistTime) {
@@ -443,47 +454,64 @@ public class MapActivity extends BaseActivity {
             if (tvLat.getText().toString().equals("00.00") || tvLong.getText().toString().equals("00.00")) {
                 gpsSettingShowDialog();
             } else {
-                double latitude = Double.valueOf(tvLat.getText().toString());
-                double longitude = Double.valueOf(tvLong.getText().toString());
+
+                String subGrpName = tvSubGroupName.getText().toString();
+                /**
+                 * We introduce  select the sub group column  is must bucause
+                 * with out selecting the sub grtoup user can easy access  the
+                 * set attributes (GPS Activity )class  and with out sub group
+                 * no lang and lat value available on the page so user will easyly confuse
+                 * to  click necessary action(Image need all code) button s
+                 */
+                if (subGrpName.length() > 0 && !subGrpName.equals("")) {
+
+                    double latitude = Double.valueOf(tvLat.getText().toString());
+                    double longitude = Double.valueOf(tvLong.getText().toString());
 
 
-                String entryBy = "";
-                String entryDate = "";
+                    String entryBy = "";
+                    String entryDate = "";
 
-                try {
-                    entryBy = getStaffID();
-                    entryDate = getDateTime();
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                    try {
+                        entryBy = getStaffID();
+                        entryDate = getDateTime();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    gpsData.setLat(String.valueOf(latitude));
+                    gpsData.setLng(String.valueOf(longitude));
+                    gpsData.setEntryBy(entryBy);
+                    gpsData.setEntryDate(entryDate);
+                    /**
+                     * set marker in map here in save
+                     */
+
+                    setMarker(gpsData.getLocationName(), latitude, longitude);
+                    SQLServerSyntaxGenerator sqlSyntax = new SQLServerSyntaxGenerator();
+                    sqlSyntax.setAdmCountryCode(gpsData.getAdmCountryCode());
+                    sqlSyntax.setGrpCode(gpsData.getGroupCode());
+                    sqlSyntax.setSubGrpCode(gpsData.getSubGroupCode());
+                    sqlSyntax.setLocationCode(gpsData.getLocationCode());
+                    sqlSyntax.setLatd(gpsData.getLat());
+                    sqlSyntax.setLong(gpsData.getLng());
+                    sqlSyntax.setEntryBy(entryBy);
+                    sqlSyntax.setEntryDate(entryDate);
+                    /**
+                     * for local data base
+                     */
+                    sqlH.updateGpsLocation(gpsData.getAdmCountryCode(), gpsData.getGroupCode(), gpsData.getSubGroupCode(), gpsData.getLocationCode(), gpsData.getLat(), gpsData.getLng(), entryBy, entryDate);
+
+                    sqlH.insertIntoUploadTable(sqlSyntax.updateGPS_GeoLocationTable());
+
+
+                    Toast.makeText(context, "save successfully", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    ADNotificationManager dialog = new ADNotificationManager();
+                    dialog.showAlertDialog(context, "Missing", "SubGroup missing \nSave deny ", true);
                 }
 
-                gpsData.setLat(String.valueOf(latitude));
-                gpsData.setLng(String.valueOf(longitude));
-                gpsData.setEntryBy(entryBy);
-                gpsData.setEntryDate(entryDate);
-                /**
-                 * set marker in map here in save
-                 */
-
-                setMarker(gpsData.getLocationName(), latitude, longitude);
-                SQLServerSyntaxGenerator sqlSyntax = new SQLServerSyntaxGenerator();
-                sqlSyntax.setAdmCountryCode(gpsData.getAdmCountryCode());
-                sqlSyntax.setGrpCode(gpsData.getGroupCode());
-                sqlSyntax.setSubGrpCode(gpsData.getSubGroupCode());
-                sqlSyntax.setLocationCode(gpsData.getLocationCode());
-                sqlSyntax.setLatd(gpsData.getLat());
-                sqlSyntax.setLong(gpsData.getLng());
-                sqlSyntax.setEntryBy(entryBy);
-                sqlSyntax.setEntryDate(entryDate);
-                /**
-                 * for local data base
-                 */
-                sqlH.updateGpsLocation(gpsData.getAdmCountryCode(), gpsData.getGroupCode(), gpsData.getSubGroupCode(), gpsData.getLocationCode(), gpsData.getLat(), gpsData.getLng(), entryBy, entryDate);
-
-                sqlH.insertIntoUploadTable(sqlSyntax.updateGPS_GeoLocationTable());
-
-
-                Toast.makeText(context, "save successfully", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -539,7 +567,7 @@ public class MapActivity extends BaseActivity {
     public void turnGPSOn() {
 
 
-        startActivity( new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+        startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
     /*    Intent intent = new Intent("android.location.GPS_ENABLED_CHANGE");
         intent.putExtra("enabled", true);
         this.context.sendBroadcast(intent);
@@ -558,7 +586,7 @@ public class MapActivity extends BaseActivity {
 
     private void viewReference() {
 
-        btnHome = (Button) findViewById(R.id.btnRegisterFooter);
+        btnBackToLocSEARCH = (Button) findViewById(R.id.btnRegisterFooter);
         btnSave = (Button) findViewById(R.id.btnHomeFooter);
         tvLat = (TextView) findViewById(R.id.tv_latval);
         tvLong = (TextView) findViewById(R.id.tv_longval);
@@ -583,20 +611,24 @@ public class MapActivity extends BaseActivity {
 
     private void setUpGpsButton() {
 
-        btnHome.setText("");
-        Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
-        btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        btnHome.setPadding(LEFT_PADDING, TOP_PADDING, RIGHT_PADDING, BOTTOM_PADDING);
+        btnBackToLocSEARCH.setText("");
+        Drawable imageHome = getResources().getDrawable(R.drawable.goto_back);
+        btnBackToLocSEARCH.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
+        btnBackToLocSEARCH.setPadding(LEFT_PADDING, TOP_PADDING, RIGHT_PADDING, BOTTOM_PADDING);
     }
 
 
     private void goHome() {
-        btnHome.setOnClickListener(new View.OnClickListener() {
+        btnBackToLocSEARCH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-                Intent iHome = new Intent(context, MainActivity.class);
-                startActivity(iHome);
+                Intent ibackSearch = new Intent(context, SearchLocation.class);
+
+                ibackSearch.putExtra(KEY.COUNTRY_ID, idCountry);
+                ibackSearch.putExtra(KEY.DIR_CLASS_NAME_KEY, "MapActivity");
+
+                startActivity(ibackSearch);
             }
         });
     }
@@ -623,9 +655,9 @@ public class MapActivity extends BaseActivity {
         Log.d(TAG, "in onResume method");
         Log.d(TAG, "id Country : id " + idCountry);
 
-
+        //   if (ContextCompat..c.checkSelfPermission(MapActivity.this, Manifest.permission.WRITE_CALENDAR))
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);
+//        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);
 
 
     }
@@ -726,7 +758,7 @@ public class MapActivity extends BaseActivity {
          * */
 
 
-        Intent iGpsPage = new Intent(MapActivity.this, GPSActivity.class);
+        Intent iGpsPage = new Intent(MapActivity.this, PointAttributes.class);
         iGpsPage.putExtra(KEY.DIR_CLASS_NAME_KEY, "MapActivity");
         iGpsPage.putExtra(KEY.LATITUDE, tvLat.getText().toString());
         iGpsPage.putExtra(KEY.LONGITUDE, tvLong.getText().toString());
@@ -834,17 +866,18 @@ public class MapActivity extends BaseActivity {
  */
 
         if (data.getLatitude().length() > 1 && data.getLongitude().length() > 1) {
-
-            setMarker(locationName, Double.valueOf(data.getLatitude()), Double.valueOf(data.getLongitude()));
+            if (!data.getLatitude().equals("null") && !data.getLongitude().equals("null"))
+                setMarker(locationName, Double.valueOf(data.getLatitude()), Double.valueOf(data.getLongitude()));
 
             tv_exitLat.setText(data.getLatitude());
             tv_exitLong.setText(data.getLongitude());
             // todo: center of the location
+            if (!data.getLatitude().equals("null") && !data.getLongitude().equals("null")) {
+                GeoPoint center = new GeoPoint(Double.valueOf(data.getLatitude()), Double.valueOf(data.getLongitude()));
 
-            GeoPoint center = new GeoPoint(Double.valueOf(data.getLatitude()), Double.valueOf(data.getLongitude()));
-
-            mapViewController.setCenter(center);
-            mMapView.invalidate();
+                mapViewController.setCenter(center);
+                mMapView.invalidate();
+            }
 
 
         } else {

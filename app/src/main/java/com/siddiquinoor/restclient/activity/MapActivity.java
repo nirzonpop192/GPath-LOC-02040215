@@ -66,7 +66,7 @@ public class MapActivity extends BaseActivity {
     Marker myMarker;
 
     //Context resProxyImp = MapActivity.this;
-    ArrayList<OverlayItem> anotherOverlayItemArray;
+    private ArrayList<OverlayItem> anotherOverlayItemArray;
     MyLocationNewOverlay myLocationNewOverlay = null;
 
 
@@ -117,9 +117,9 @@ public class MapActivity extends BaseActivity {
             idLocation = intent.getStringExtra(KEY.LOCATION_CODE);
             strLocation = intent.getStringExtra(KEY.LOCATION_NAME);
 
-            Log.d(TAG, "id Country : id " + idCountry
+ /*           Log.d(TAG, "id Country : id " + idCountry
                     + "idLocation: " + idLocation + "  strLocation:" + strLocation
-            );
+            );*/
 
         } else if (dir.equals("GPSActivity")) {
             /**
@@ -172,7 +172,7 @@ public class MapActivity extends BaseActivity {
             public void onClick(View v) {
 
                 showNearBySelectDialog();
-//                setNearByCoordinates();
+
             }
         });
     }
@@ -506,6 +506,17 @@ public class MapActivity extends BaseActivity {
 
 
                     Toast.makeText(context, "save successfully", Toast.LENGTH_SHORT).show();
+
+
+                    GPSLocationLatLong data = sqlH.getLocationSpecificLatLong(idCountry, gpsData.getGroupCode(), gpsData.getSubGroupCode(), gpsData.getLocationCode());
+/**
+ * if data exits in data base
+ */
+
+
+                    tv_exitLat.setText(data.getLatitude());
+                    tv_exitLong.setText(data.getLongitude());
+
 
                 } else {
                     ADNotificationManager dialog = new ADNotificationManager();

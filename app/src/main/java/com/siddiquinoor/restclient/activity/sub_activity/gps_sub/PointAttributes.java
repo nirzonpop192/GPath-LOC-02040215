@@ -57,7 +57,7 @@ import java.util.List;
 public class PointAttributes extends BaseActivity {
 
     private static final String TAG = "GPSActivity";
-    private static final String NO_LOOK_UP = "000";
+    private static final String NO_LOOK_UP = "N";
     private static final String TEXT_TYPE = "B";
     private static final String NUMERIC = "N";
     private static final String IMAGE_TYPE = "I";
@@ -164,7 +164,7 @@ public class PointAttributes extends BaseActivity {
             String lon = intent.getStringExtra(KEY.LONGITUDE);
 
 
-            Log.d(TAG, " From Map Sub directoirs \n"
+    /*        Log.d(TAG, " From Map Sub directoirs \n"
 
 
                     + " idCountry : " + idCountry
@@ -176,7 +176,7 @@ public class PointAttributes extends BaseActivity {
 
                     + " idLocation : " + idLocation
                     + " strLocation : " + strLocation
-            );
+            );*/
 
 
             setVisibletyLatLongViews(View.VISIBLE);
@@ -275,11 +275,11 @@ public class PointAttributes extends BaseActivity {
                     if (attList.get(j).getLookUpCode().equals(NO_LOOK_UP)) {
                         if (attList.get(j).getDataType().equals(IMAGE_TYPE)) {
 
-                            Log.d(TAG, " in save method \n "
+                      /*      Log.d(TAG, " in save method \n "
                                     + "idCountry : " + idCountry + "idGroup : " + idGroup
                                     + "idSubGroup : " + idSubGroup + "idLocation : " + idLocation
                                     + "AttributeCode : " + subAtt.getAttributeCode() + "AttributeValue : photo"
-                                    + "entryBy : " + entryBy + "entryDate : " + entryDate);
+                                    + "entryBy : " + entryBy + "entryDate : " + entryDate);*/
 
                             if (getmEncodedImageString() != null) {
 
@@ -305,14 +305,14 @@ public class PointAttributes extends BaseActivity {
 
                             for (int i = 0; i < allEdt.size(); i++) {
                                 string[i] = allEdt.get(i).getText().toString();
-                                Log.d(TAG, "Attributes " + string[i]);
+                         /*       Log.d(TAG, "Attributes " + string[i]);*/
 
-
+/*
                                 Log.d(TAG, " in save method \n "
                                         + "idCountry : " + idCountry + "idGroup : " + idGroup
                                         + "idSubGroup : " + idSubGroup + "idLocation : " + idLocation
                                         + "AttributeCode : " + subAtt.getAttributeCode() + "AttributeValue : " + string[i]
-                                        + "entryBy : " + entryBy + "entryDate : " + entryDate);
+                                        + "entryBy : " + entryBy + "entryDate : " + entryDate);*/
                                 SQLServerSyntaxGenerator sqlServer = new SQLServerSyntaxGenerator();
                                 sqlServer.setAdmCountryCode(idCountry);
                                 sqlServer.setGrpCode(idGroup);
@@ -337,11 +337,11 @@ public class PointAttributes extends BaseActivity {
                             if (allCheckBox.get(i).isChecked()) {
 
 
-                                Log.d(TAG, " in save method \n "
+                             /*   Log.d(TAG, " in save method \n "
                                         + "idCountry : " + idCountry + "idGroup : " + idGroup
                                         + "idSubGroup : " + idSubGroup + "idLocation : " + idLocation
                                         + "AttributeCode : " + subAtt.getAttributeCode() + "AttributeValue : " + 1
-                                        + "entryBy : " + entryBy + "entryDate : " + entryDate);
+                                        + "entryBy : " + entryBy + "entryDate : " + entryDate);*/
 
                                 SQLServerSyntaxGenerator sqlServer = new SQLServerSyntaxGenerator();
                                 sqlServer.setAdmCountryCode(idCountry);
@@ -614,7 +614,7 @@ public class PointAttributes extends BaseActivity {
                 strLocation = ((SpinnerHelper) spLocation.getSelectedItem()).getValue();
                 idLocation = ((SpinnerHelper) spLocation.getSelectedItem()).getId();
 
-                Log.d(TAG, " strLocation :" + strLocation + " idLocation : " + idLocation);
+              /*  Log.d(TAG, " strLocation :" + strLocation + " idLocation : " + idLocation);*/
                 if (!idLocation.equals("00")) {
                     permissionForGoMap = true;
                     setVisibletyLatLongViews(View.VISIBLE);
@@ -697,26 +697,6 @@ public class PointAttributes extends BaseActivity {
             if (attList.get(i).getLookUpCode().equals(NO_LOOK_UP)) {
 
 
-                EditText et = new EditText(this);
-                allEdt.add(et);
-                et.setHint(st);
-                et.setId(i);
-                et.setPadding(15, 5, 0, 5);
-                et.setBackground(getResources().getDrawable(R.drawable.edit_box_background));
-                switch (attList.get(i).getDataType()) {
-                    case TEXT_TYPE:
-                        et.setInputType(InputType.TYPE_CLASS_TEXT);
-                        break;
-                    case NUMERIC:
-                        et.setInputType(InputType.TYPE_CLASS_NUMBER);
-                        break;
-                }
-                llayout_Dynamic_Attribute.addView(et);
-
-
-            } else {
-
-
                 if (attList.get(i).getDataType().equals(IMAGE_TYPE)) {
 
                     LinearLayout parent = new LinearLayout(this);
@@ -760,18 +740,40 @@ public class PointAttributes extends BaseActivity {
                     parent.addView(bt);
                     llayout_Dynamic_Attribute.addView(parent);
                 } else {
-                    final CheckBox cb = new CheckBox(this);
-                    cb.setText(st);
-                    cb.setId(i);
-                    cb.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Log.d(TAG, "Check box " + cb.getId() + " is checked ");
-                        }
-                    });
-                    allCheckBox.add(cb);
-                    llayout_Dynamic_Attribute.addView(cb);
+
+                    EditText et = new EditText(this);
+                    allEdt.add(et);
+                    et.setHint(st);
+                    et.setId(i);
+                    et.setPadding(15, 5, 0, 5);
+                    et.setBackground(getResources().getDrawable(R.drawable.edit_box_background));
+                    switch (attList.get(i).getDataType()) {
+                        case TEXT_TYPE:
+                            et.setInputType(InputType.TYPE_CLASS_TEXT);
+                            break;
+                        case NUMERIC:
+                            et.setInputType(InputType.TYPE_CLASS_NUMBER);
+                            break;
+                    }
+                    llayout_Dynamic_Attribute.addView(et);
+
                 }
+
+
+            } else {
+
+
+                final CheckBox cb = new CheckBox(this);
+                cb.setText(st);
+                cb.setId(i);
+                cb.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                   /*     Log.d(TAG, "Check box " + cb.getId() + " is checked ");*/
+                    }
+                });
+                allCheckBox.add(cb);
+                llayout_Dynamic_Attribute.addView(cb);
 
 
             }
@@ -1065,7 +1067,7 @@ public class PointAttributes extends BaseActivity {
             gps[0] = l.getLatitude();
             gps[1] = l.getLongitude();
         }
-        Log.d(TAG, "getLatitude : " + gps[0] + "getLatitude : " + gps[1]);
+     /*   Log.d(TAG, "getLatitude : " + gps[0] + "getLatitude : " + gps[1]);*/
         return gps;
     }
 
@@ -1141,38 +1143,12 @@ public class PointAttributes extends BaseActivity {
      * @param REQUEST
      */
     private void captureImageAlert(final int REQUEST) {
-       /* AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                GPSActivity.this);
 
-        // set title
-        alertDialogBuilder.setTitle("");
-
-        // set dialog message
-        alertDialogBuilder
-                .setMessage("Active Camera ?")
-                .setCancelable(false)
-                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {*/
         // if this button is clicked, close
         // current activity
         cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, REQUEST);
-                   /*     // GPSActivity.this.finish();
-                    }
-                })
-                .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
-                        // if this button is clicked, just close
-                        // the dialog box and do nothing
-                        dialog.dismiss();
-                    }
-                });
 
-        // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        //show it
-        alertDialog.show();*/
 
     }
 

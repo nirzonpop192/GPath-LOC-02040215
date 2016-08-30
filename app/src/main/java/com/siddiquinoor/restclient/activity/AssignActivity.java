@@ -92,7 +92,7 @@ public class AssignActivity extends BaseActivity {
     private String strVillage;
     // private int positionVillage;
     //  private Button btnHome;
-  //  private Button btnSearch;
+    //  private Button btnSearch;
     private EditText edt_mmSearch;
     String entryBy;
     String entryDate;
@@ -266,7 +266,7 @@ public class AssignActivity extends BaseActivity {
 
 
         listViewAss = (ListView) findViewById(R.id.lv_assign);
-       // btnSearch = (Button) findViewById(R.id.btn_assign_search);
+        // btnSearch = (Button) findViewById(R.id.btn_assign_search);
         edt_mmSearch = (EditText) findViewById(R.id.edt_assign_memberSearch);
 
         btnGoTo = (Button) findViewById(R.id.btnHomeFooter);
@@ -303,10 +303,7 @@ public class AssignActivity extends BaseActivity {
         btnSummary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           /*   *//**  go to the Summary *//*
-                Intent iSummary = new Intent(mcontext, AllSummaryActivity.class);
-                iSummary.putExtra(KEY.COUNTRY_ID, idCountry);
-                startActivity(iSummary);*/
+
 
                 Intent iMemSearch = new Intent(getApplicationContext(), MemberSearchPage.class);
                 iMemSearch.putExtra(KEY.COUNTRY_ID, idCountry);
@@ -318,19 +315,7 @@ public class AssignActivity extends BaseActivity {
         sqlH = new SQLiteHandler(this);
 
         pDialog = new ProgressDialog(this);
-    /*    btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-
-                Intent iMemSearch = new Intent(getApplicationContext(), MemberSearchPage.class);
-                iMemSearch.putExtra(KEY.COUNTRY_ID, idCountry);
-                finish();
-                startActivity(iMemSearch);
-
-
-            }
-        });*/
 
         edt_mmSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -352,7 +337,7 @@ public class AssignActivity extends BaseActivity {
 
     private boolean btnNextValidation() {
 // if ((spAward != null && spAward.getSelectedItem() != null) || (spProgram != null && spProgram.getSelectedItem() != null) || (spCriteria != null && spCriteria.getSelectedItem() != null)) {
-        if ((idAward == null || strAward == null) || (idProgram.equals("00")  || strProgram.equals("Select Program") ) || (idCriteria.equals("00") || strCriteria.equals("Select Criteria") )) {
+        if ((idAward == null || strAward == null) || (idProgram.equals("00") || strProgram.equals("Select Program")) || (idCriteria.equals("00") || strCriteria.equals("Select Criteria"))) {
             return false;
         } else {
             return true;
@@ -776,7 +761,7 @@ public class AssignActivity extends BaseActivity {
     }
 
 
-    public void goToAlert() {
+    /*public void goToAlert() {
         final CharSequence[] items = getResources().getStringArray(R.array.assign_got_array);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(AssignActivity.this, android.R.style.Theme_Holo_Light_Dialog));
@@ -794,12 +779,7 @@ public class AssignActivity extends BaseActivity {
                         intent = new Intent(AssignActivity.this, MainActivity.class);
                         startActivity(intent);
                         break;
-                   /* case 1:
-//                        finish();
-//                        intent = new Intent(AssignActivity.this,RegisterMemberLiberia.class);
-//
-//                        startActivity(intent);
-                        break;*/
+
                     case 1:
                         finish();
                         intent = new Intent(AssignActivity.this, DistributionActivity.class);
@@ -820,7 +800,7 @@ public class AssignActivity extends BaseActivity {
                         intent.putExtra(KEY.COUNTRY_ID, sqlH.selectCountryCode());
                         startActivity(intent);
                         break;
-                    case 4:
+                    case 4:h heloo world he
                         finish();
                         intent = new Intent(AssignActivity.this, RegisterLiberia.class);
                         startActivity(intent);
@@ -839,5 +819,5 @@ public class AssignActivity extends BaseActivity {
         }
 // setAlertDevider();
 
-    }
+    }*/
 }

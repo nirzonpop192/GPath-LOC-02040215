@@ -115,10 +115,7 @@ public class SearchLocation extends BaseActivity {
         // Spinner Drop down elements for Location
 //        final List<SpinnerHelper> listOfLocation = sqlH.getListAndID(SQLiteHandler.CUSTOM_QUERY, criteria, null, false);
         final List<LocationHelper> listOfLocation = sqlH.getLocationList(cCode, searchLocName);
-// remove 1st elements
 
-       // listOfLocation.remove(0);
-        // Creating adapter for spinner
 
         final SearchLocationAdapter dataAdapter = new SearchLocationAdapter(SearchLocation.this, listOfLocation, idCountry);
 

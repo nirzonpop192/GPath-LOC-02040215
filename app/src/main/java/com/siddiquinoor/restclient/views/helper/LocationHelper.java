@@ -9,12 +9,18 @@ public class LocationHelper {
     private String databaseId;
     private String databaseValue;
     private String locationExits;
+    private String gpsGroupName;
 
-    public LocationHelper ( int position, String databaseId , String databaseValue , String locationExits ) {
+    public LocationHelper ( int position, String databaseId , String databaseValue , String locationExits ,String gpsGroupName) {
         this.position = position;
         this.databaseId = databaseId;
         this.databaseValue = databaseValue;
         this.locationExits = locationExits;
+        this.gpsGroupName = gpsGroupName;
+    }
+
+    public String getGpsGroupName() {
+        return gpsGroupName;
     }
 
     public String getLocationExits() {

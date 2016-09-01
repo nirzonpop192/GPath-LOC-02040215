@@ -75,6 +75,8 @@ public class SearchLocationAdapter extends BaseAdapter {
             holder.tv_locationName = (TextView) row.findViewById(R.id.tv_location);
             holder.im_btnGoToMap = (ImageButton) row.findViewById(R.id.imgbtnGoMap);
             holder.tvDataExits = (TextView) row.findViewById(R.id.tv_locExits);
+            holder.tv_groupName = (TextView) row.findViewById(R.id.value_groupName);
+            holder.tv_groupNameLable = (TextView) row.findViewById(R.id.lable_groupName);
 
             row.setTag(holder);
 
@@ -87,6 +89,7 @@ public class SearchLocationAdapter extends BaseAdapter {
 
         holder.tv_locationName.setText(data.getValue());
         holder.tvDataExits.setText(data.getLocationExits());
+        holder.tv_groupName.setText(data.getGpsGroupName());
 
         if (position % 2 == 0) {
             row.setBackgroundColor(Color.WHITE);
@@ -119,6 +122,9 @@ public class SearchLocationAdapter extends BaseAdapter {
     private void changeTextColor(int color) {
         holder.tv_locationName.setTextColor(color);
         holder.tvDataExits.setTextColor(color);
+        holder.tv_groupName.setTextColor(color);
+        holder.tv_groupNameLable.setTextColor(color);
+
 
     }
 
@@ -129,6 +135,8 @@ public class SearchLocationAdapter extends BaseAdapter {
     class ViewHolder {
         TextView tv_locationName;
         TextView tvDataExits;
+        TextView tv_groupName;
+        TextView tv_groupNameLable;
         ImageButton im_btnGoToMap;
 
     }

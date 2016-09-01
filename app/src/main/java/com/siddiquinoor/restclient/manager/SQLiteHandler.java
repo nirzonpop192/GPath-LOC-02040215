@@ -8428,15 +8428,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public List<LocationHelper> getLocationList(String cCode, String searchLocName) {
         int position = 0;
         List<LocationHelper> list = new ArrayList<LocationHelper>();
-        String sql = "SELECT " + SQLiteHandler.GROUP_CODE_COL + " || '' ||" + SQLiteHandler.SUB_GROUP_CODE_COL + " || '' ||" + SQLiteHandler.LOCATION_CODE_COL
-                + "," + SQLiteHandler.LOCATION_NAME_COL
+        String sql = "SELECT " + GPS_LOCATION_TABLE + "." + SQLiteHandler.GROUP_CODE_COL + " || '' || " + GPS_LOCATION_TABLE + "." + SQLiteHandler.SUB_GROUP_CODE_COL + " || '' || " + GPS_LOCATION_TABLE + "." + SQLiteHandler.LOCATION_CODE_COL
+                + " , " + GPS_LOCATION_TABLE + "." + SQLiteHandler.LOCATION_NAME_COL
 
                 + ", CASE WHEN  ifnull(length(" + SQLiteHandler.GPS_LOCATION_TABLE + "." + SQLiteHandler.LATITUDE_COL + "), 0) = 0  THEN 'N' ELSE 'Y' END AS dataExit "
-
+                + " , " + GPS_GROUP_TABLE + "." + GROUP_NAME_COL
                 + " FROM " + SQLiteHandler.GPS_LOCATION_TABLE
-                + " WHERE " + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "'"
-                + " AND " + SQLiteHandler.LOCATION_NAME_COL + " LIKE '%" + searchLocName + "%' "
-                + " ORDER BY " + SQLiteHandler.LOCATION_NAME_COL + " ASC ";
+                +" LEFT JOIN "+GPS_GROUP_TABLE
+                +" ON "+GPS_GROUP_TABLE+"."+GROUP_CODE_COL+" = "+GPS_LOCATION_TABLE+"."+GROUP_CODE_COL
+                + " WHERE " + GPS_LOCATION_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "'"
+                + " AND " + GPS_LOCATION_TABLE + "." + SQLiteHandler.LOCATION_NAME_COL + " LIKE '%" + searchLocName + "%' "
+                + " ORDER BY " + GPS_LOCATION_TABLE + "." + SQLiteHandler.LOCATION_NAME_COL + " ASC ";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(sql, null);
@@ -8444,8 +8446,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
 
-                list.add(new LocationHelper(position, cursor.getString(0), cursor.getString(1),cursor.getString(2)));
-//                Log.d(TAG, " table name :" + table_name + " :- " + cursor.getColumnName(0) + " : " + cursor.getString(0) + "  " + cursor.getColumnName(1) + " : " + cursor.getString(1));
+                list.add(new LocationHelper(position, cursor.getString(0), cursor.getString(1), cursor.getString(2),cursor.getString(3)));
+
                 position++;
             } while (cursor.moveToNext());
 

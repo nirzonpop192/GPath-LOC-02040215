@@ -1479,30 +1479,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     JSONArray gps_locations = jObj.getJSONArray(GPS_LOCATION_JSON_A);
                     JsonDeserialization.gpsLocationParse(gps_locations, db);
 
-             /*       String AdmCountryCode;
-                    String GrpCode;
-                    String SubGrpCode;
-                    String LocationCode;
-                    String LocationName;
-                    String Long;
-                    String Latd;
-                    size = gps_locations.length();
-                    for (int i = 0; i < size; i++) {
-                        JSONObject gps_location = gps_locations.getJSONObject(i);
-                        AdmCountryCode = gps_location.getString(ADM_COUNTRY_CODE);
-                        GrpCode = gps_location.getString(GRP_CODE);
-                        SubGrpCode = gps_location.getString(SUB_GRP_CODE);
-                        LocationCode = gps_location.getString(LOCATION_CODE);
-                        LocationName = gps_location.getString(LOCATION_NAME);
-                        Long = gps_location.getString(LONG);
-                        Latd = gps_location.getString(LATD);
 
-
-                        db.addGpsLocation(AdmCountryCode, GrpCode, SubGrpCode, LocationCode, LocationName, Long, Latd);
-
-
-                        // Log.d(TAG, "In Location Table- AdmCountryCode :"+ AdmCountryCode+" GroupCode : " + GrpCode + " SubGroupCode : " + SubGrpCode +" LocationCode : "+LocationCode+" LocationName : " + LocationName  + " Long : " + Long + " Latd : " + Latd  );
-                    }*/
                 }
 
                 publishProgress(++progressIncremental);
@@ -1510,19 +1487,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 // * Adding data into adm_countryaward Table
 
                 if (!jObj.isNull(ADM_COUNTRY_AWARD_JSON_A)) {
+
+                    String AdmCountryCode;
+                    String AdmDonorCode;
+                    String AdmAwardCode;
+                    String AwardRefNumber;
+                    String AwardStartDate;
+                    String AwardEndDate;
+                    String AwardShortName;
+                    String AwardStatus;
                     JSONArray adm_countryawards = jObj.getJSONArray(ADM_COUNTRY_AWARD_JSON_A);
                     size = adm_countryawards.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject adm_countryaward = adm_countryawards.getJSONObject(i);
 
-                        String AdmCountryCode = adm_countryaward.getString(ADM_COUNTRY_CODE);
-                        String AdmDonorCode = adm_countryaward.getString(ADM_DONOR_CODE);
-                        String AdmAwardCode = adm_countryaward.getString(ADM_AWARD_CODE);
-                        String AwardRefNumber = adm_countryaward.getString(AWARD_REF_NUMBER);
-                        String AwardStartDate = adm_countryaward.getString(AWARD_START_DATE);
-                        String AwardEndDate = adm_countryaward.getString(AWARD_END_DATE);
-                        String AwardShortName = adm_countryaward.getString(AWARD_SHORT_NAME);
-                        String AwardStatus = adm_countryaward.getString(AWARD_STATUS);
+                        AdmCountryCode = adm_countryaward.getString(ADM_COUNTRY_CODE);
+                        AdmDonorCode = adm_countryaward.getString(ADM_DONOR_CODE);
+                        AdmAwardCode = adm_countryaward.getString(ADM_AWARD_CODE);
+                        AwardRefNumber = adm_countryaward.getString(AWARD_REF_NUMBER);
+                        AwardStartDate = adm_countryaward.getString(AWARD_START_DATE);
+                        AwardEndDate = adm_countryaward.getString(AWARD_END_DATE);
+                        AwardShortName = adm_countryaward.getString(AWARD_SHORT_NAME);
+                        AwardStatus = adm_countryaward.getString(AWARD_STATUS);
 
 
                         db.addCountryAward(AdmCountryCode, AdmDonorCode, AdmAwardCode, AwardRefNumber, AwardStartDate, AwardEndDate, AwardShortName, AwardStatus);
@@ -2583,7 +2569,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     size = staff_master_Datas.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject staff_master_Data = staff_master_Datas.getJSONObject(i);
-
 
 
                         String StfCode = staff_master_Data.getString("StfCode");

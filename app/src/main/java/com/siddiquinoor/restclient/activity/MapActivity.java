@@ -384,8 +384,9 @@ public class MapActivity extends BaseActivity {
 
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         distance = earthR * c;
-        Log.d("DIS", "distance:" + distance);
 
+       // distance=distance/1000;
+        Log.d("DIS", "distance:" + distance);
         return distance;
     }
 
@@ -486,6 +487,7 @@ public class MapActivity extends BaseActivity {
                     /**
                      * set marker in map here in save
                      */
+                    initializeMap();
 
                     setMarker(gpsData.getLocationName(), latitude, longitude);
                     SQLServerSyntaxGenerator sqlSyntax = new SQLServerSyntaxGenerator();

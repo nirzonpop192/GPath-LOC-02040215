@@ -657,7 +657,7 @@ public class Schema {
 
     /**
      * added by Faisal Mohammad
-     * create GPS_GROUP_TABLE table
+     * create GPS_SUB_GROUP_TABLE table
      * AdmServiceMaster_Schema schema
      * remarks-
      */

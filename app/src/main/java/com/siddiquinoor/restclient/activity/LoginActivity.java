@@ -1900,29 +1900,7 @@ public class LoginActivity extends BaseActivity {
                 writeJSONToTextFile(response, SERVICE_DATA);
 
                 Log.d(TAG, " After write data in Service Data");
-                //  hideDialog();
 
-
-                // DOING STRING OPERATION TO AVOID ALLOCATE CACHE MEMORY
-
-             /*   try {
-                    JSONObject jObj = new JSONObject(response);
-                    boolean error = jObj.getBoolean("error");
-                    if (!error) {
-
-                        downLoadAssignProgSrv(user_Name, pass_word, selectedVilJArry, operationMode);
-
-                    } else {
-                        // Error in login. Invalid UserName or Password
-                        String errorMsg = response.substring(response.indexOf("error_msg") + 11);
-                        Toast.makeText(getApplicationContext(),
-                                errorMsg, Toast.LENGTH_LONG).show();
-                        // hideDialog();
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }*/
 
                 String errorResult = response.substring(9, 14);
 

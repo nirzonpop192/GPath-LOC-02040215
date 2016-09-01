@@ -1050,10 +1050,10 @@ public class JsonDeserialization {
                 Latd = gps_location.getString(MainActivity.LATD);
 
 
-                sqlH.addGpsLocation(AdmCountryCode, GrpCode, SubGrpCode, LocationCode, LocationName, Long, Latd);
+                sqlH.addGpsLocation(AdmCountryCode, GrpCode, SubGrpCode, LocationCode, LocationName,  Latd,Long);
 
 
-                Log.d(TAG, "In Location Table- AdmCountryCode :" + AdmCountryCode + " GroupCode : " + GrpCode + " SubGroupCode : " + SubGrpCode + " LocationCode : " + LocationCode + " LocationName : " + LocationName + " Long : " + Long + " Latd : " + Latd);
+
 
             } catch (Exception e) {
                 Log.d(TAG, "Expetion : " + e);

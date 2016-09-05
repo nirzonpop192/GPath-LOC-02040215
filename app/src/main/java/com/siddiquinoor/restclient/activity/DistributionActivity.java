@@ -933,6 +933,7 @@ public class DistributionActivity extends BaseActivity {
                             distributedData.setDistStatus(distDataP.getDistStatus());
                             distributedData.setSrvOpMonthCode(distDataP.getSrvOpMonthCode());
                             distributedData.setDistFlag(distDataP.getDistFlag());
+                            distributedData.setWD(distDataP.getWd());
                             distributedData.setEntryBy(EntryBy);
                             distributedData.setEntryDate(EntryDate);
                             sqlH.insertIntoUploadTable(distributedData.insertIntoDistributionTable());
@@ -977,6 +978,7 @@ public class DistributionActivity extends BaseActivity {
         dPeople.setFDPCode(gridData.getFdpCode());
         dPeople.setID(gridData.getnMId());
         dPeople.setDistStatus(gridData.getStatus());
+        dPeople.setWd(gridData.getWd());
         return dPeople;
     }
 
@@ -1065,10 +1067,10 @@ public class DistributionActivity extends BaseActivity {
             holder.memSrvShortName.setText(disPeople.getServiceShortName());
 
 
-            String memDistStatus = sqH.getDistributionStatusFromDistributionTable(disPeople.getC_code(), disPeople.getDonorCode(), disPeople.getAwardCode(), disPeople.getDistrictCode(), disPeople.getUpazillaCode(), disPeople.getUnitCode(), disPeople.getVillageCode(), disPeople.getProgram_code(), disPeople.getService_code(), distOpMonthCode, fdpCode, disPeople.getRpt_id());
-            Log.d("All", disPeople.getRpt_id() + " Name :" + disPeople.getRpt_name() +
+            String memDistStatus = sqH.getDistributionStatusFromDistributionTable(disPeople.getC_code(), disPeople.getDonorCode(), disPeople.getAwardCode(), disPeople.getDistrictCode(), disPeople.getUpazillaCode(), disPeople.getUnitCode(), disPeople.getVillageCode(), disPeople.getProgram_code(), disPeople.getService_code(), distOpMonthCode, fdpCode,idDistributionType, disPeople.getRpt_id());
+        /*    Log.d("All", disPeople.getRpt_id() + " Name :" + disPeople.getRpt_name() +
                     "\n Service Code:" + disPeople.getService_code() + "\n memDistStatus:" + memDistStatus
-            );
+            );*/
 
 
             holder.memDistStatus.setText(memDistStatus);

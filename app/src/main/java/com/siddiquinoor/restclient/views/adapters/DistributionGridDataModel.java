@@ -8,6 +8,42 @@ import android.os.Parcelable;
  */
 public class DistributionGridDataModel implements Parcelable {
 
+
+
+    private String c_code;
+    private String districtCode;         // from Service Table
+    private String upazillaCode;            // from Service Table
+    private String unitCode;              // from Service Table
+    private String villageCode;          // from Service Table
+    private String donorCode;
+    private String awardCode;
+    private String program_code;        // from Service Table
+    private String service_code;         // from Service Table
+
+    private String rpt_id;
+    private String rpt_name;
+
+    private String srvMonthCode;
+    private String serviceCenter;
+    private String serviceShortName;
+    private String distOpMonthCode;
+    private String fdpCode;
+    private String srvOpMonthCode;
+    private String distFlag;
+    private String nMId;
+    //  private String distOpMonthCode;
+    private String status;
+
+    private String tempAwardString;
+    private String tempProgString;
+    private String tempDistTypeId;
+    private String tempDistTypeString;
+    private String tempsrvMonthName;
+    private String tempDistMonthName;
+    private String tempUpazillaName; // in liberia & layer2  is District  & in malawi Upazilla
+    private String tempFDPName;
+    private String wd;
+
     public DistributionGridDataModel() {
     }
 
@@ -28,10 +64,6 @@ public class DistributionGridDataModel implements Parcelable {
 
     private void readFromParcel(Parcel in) {
 
-           /* firstName = in .readString();
-            lastName  = in .readString();
-            Address   = in .readString();
-            Age       = in .readInt();*/
 
 
         c_code = in.readString();
@@ -49,14 +81,8 @@ public class DistributionGridDataModel implements Parcelable {
         rpt_id = in.readString();
         rpt_name = in.readString();
 
-
-
-      //  hh_id = in.readString();
-      //  hh_name = in.readString();
         villageCode = in.readString();
-     //   mem_id = in.readString();
 
-      //  mem_name = in.readString();
         srvMonthCode = in.readString();
         serviceCenter = in.readString();
         serviceShortName = in.readString();
@@ -74,9 +100,11 @@ public class DistributionGridDataModel implements Parcelable {
         distFlag = in.readString();
 
 
-        nMId            = in.readString();
-      //  distOpMonthCode = in.readString();
-        status          = in.readString();
+        nMId = in.readString();
+        //  distOpMonthCode = in.readString();
+        status = in.readString();
+
+        wd = in.readString();
 
 
     }
@@ -106,12 +134,9 @@ public class DistributionGridDataModel implements Parcelable {
         dest.writeString(rpt_name);
 
 
-      //  dest.writeString(hh_id);
-       // dest.writeString(hh_name);
-        dest.writeString(villageCode);
-       // dest.writeString(mem_id);
 
-     //   dest.writeString(mem_name);
+        dest.writeString(villageCode);
+
         dest.writeString(srvMonthCode);
         dest.writeString(serviceCenter);
         dest.writeString(serviceShortName);
@@ -131,52 +156,21 @@ public class DistributionGridDataModel implements Parcelable {
         dest.writeString(distFlag);
 
         dest.writeString(nMId);
-    //    dest.writeString(distOpMonthCode);
+        //    dest.writeString(distOpMonthCode);
         dest.writeString(status);
-
-
-
-
+        dest.writeString(wd);
 
 
     }
 
 
-    private String c_code;
-    private String districtCode;         // from Service Table
-    private String upazillaCode;            // from Service Table
-    private String unitCode;              // from Service Table
-    private String villageCode;          // from Service Table
-    private String donorCode;
-    private String awardCode;
-    private String program_code;        // from Service Table
-    private String service_code;         // from Service Table
+    public String getWd() {
+        return wd;
+    }
 
-    private String rpt_id;
-    private String rpt_name;
- //   private String hh_id;
-  //  private String hh_name;      // house hold id
- //   private String mem_id;        // house hold member id
-  //  private String mem_name;
-    private String srvMonthCode;
-    private String serviceCenter;
-    private String serviceShortName;
-    private String distOpMonthCode;
-    private String fdpCode;
-    private String srvOpMonthCode;
-    private String distFlag;
-    private String nMId;
-  //  private String distOpMonthCode;
-    private String status;
-
-    private String tempAwardString;
-    private String tempProgString;
-    private String tempDistTypeId;
-    private String tempDistTypeString;
-    private String tempsrvMonthName;
-    private String tempDistMonthName;
-    private String tempUpazillaName; // in liberia & layer2  is District  & in malawi Upazilla
-    private String tempFDPName;
+    public void setWd(String wd) {
+        this.wd = wd;
+    }
 
     public String getRpt_id() {
         return rpt_id;
@@ -202,13 +196,7 @@ public class DistributionGridDataModel implements Parcelable {
         this.nMId = nMId;
     }
 
-/*    public String getDistOpMonthCode() {
-        return distOpMonthCode;
-    }
 
-    public void setDistOpMonthCode(String distOpMonthCode) {
-        this.distOpMonthCode = distOpMonthCode;
-    }*/
 
     public String getStatus() {
         return status;
@@ -258,11 +246,7 @@ public class DistributionGridDataModel implements Parcelable {
         this.tempDistMonthName = tempDistMonthName;
     }
 
-    // private String regNDate	;
-    // private String exitDate	;
-    // private String srvCount	;
-    // private String maxCardSL	;
-    // private String idType		;
+
 
 
     public String getTempsrvMonthName() {
@@ -412,39 +396,7 @@ public class DistributionGridDataModel implements Parcelable {
         this.service_code = service_code;
     }
 
-/*
-    public String getHh_id() {
-        return hh_id;
-    }
 
-    public void setHh_id(String hh_id) {
-        this.hh_id = hh_id;
-    }
-
-    public String getHh_name() {
-        return hh_name;
-    }
-
-    public void setHh_name(String hh_name) {
-        this.hh_name = hh_name;
-    }
-*/
-
-/*    public String getMem_id() {
-        return mem_id;
-    }*/
-
-/*    public void setMem_id(String mem_id) {
-        this.mem_id = mem_id;
-    }
-
-    public String getMem_name() {
-        return mem_name;
-    }
-
-    public void setMem_name(String mem_name) {
-        this.mem_name = mem_name;
-    }*/
 
     public String getSrvMonthCode() {
         return srvMonthCode;

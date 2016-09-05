@@ -1183,6 +1183,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         database.delete(SELECTED_VILLAGE_TABLE, null, null);/// Delete selected Village TABLE
         database.delete(SELECTED_FDP_TABLE, null, null);/// Delete selected Village TABLE
+        database.delete(SELECTED_SERVICE_CENTER_TABLE, null, null);/// Delete selected Village TABLE
 
     }
 
@@ -2408,10 +2409,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
-    public long addInDistributionTableFormOnLine(DistributionSaveDataModel dist_data) {
+    public void addInDistributionTableFormOnLine(DistributionSaveDataModel dist_data) {
         dist_data.setEntryBy("-");
         dist_data.setEntryDate("-");
-        return addInDistributionTable(dist_data);
+         addInDistributionTable(dist_data);
 
     }
 
@@ -2433,6 +2434,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(DISTRIBUTION_STATUS_COL, distData.getDistStatus());
         values.put(SRV_OP_MONTH_CODE_COL, distData.getSrvOpMonthCode());
         values.put(DIST_FLAG_COL, distData.getDistFlag());
+        values.put(WORK_DAY_COL, distData.getWd());
+
+
+
 
         values.put(ENTRY_BY, distData.getEntryBy());
         values.put(ENTRY_DATE, distData.getEntryDate());
@@ -6857,13 +6862,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return personList;
     }
 
-    public String getDistributionStatusFromDistributionTable(String cCode, String donorCode, String awardCode, String districtCode, String upCode, String unCode, String vilCode, String progCode, String srvCode, String distMonthCode, String fdpCode, String id) {
+    public String getDistributionStatusFromDistributionTable(String cCode, String donorCode, String awardCode, String districtCode, String upCode, String unCode, String vilCode, String progCode, String srvCode, String distMonthCode, String fdpCode, String distFlag, String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String selectQuery = "-";
 
         String status = "";
-        selectQuery = SQLiteQuery.getDistributionStatusFromDistributionTableQuery(cCode, donorCode, awardCode, districtCode, upCode, unCode, vilCode, progCode, srvCode, distMonthCode, fdpCode, id);
+        selectQuery = SQLiteQuery.getDistributionStatusFromDistributionTableQuery(cCode, donorCode, awardCode, districtCode, upCode, unCode, vilCode, progCode, srvCode, distMonthCode, fdpCode, distFlag, id);
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor != null) {
@@ -6873,10 +6878,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             cursor.close();
             db.close();
         }
-        if (status.equals("null")) {
-            status = "-";
-        } else {
+        Log.d("All_4", "status:" + status + "\n length :" + status.length());
+        if (!status.equals("null") && !(status.length() == 0)) {
             status = "R";
+        } else {
+            status = "-";
         }
 
         return status;
@@ -6943,6 +6949,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 distbutedPerson.setMem_name(cursor.getString(cursor.getColumnIndex("MemName")));
                 distbutedPerson.setServiceShortName(cursor.getString(cursor.getColumnIndex("srvName")));*/
                 distbutedPerson.setProgram_code(cursor.getString(cursor.getColumnIndex("program")));
+                distbutedPerson.setWd(cursor.getString(cursor.getColumnIndex("wd")));
+
 
                 // distbutedPerson.setMember_age(cursor.getString(5));
 
@@ -6963,7 +6971,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-        Log.d("NIM", DatabaseUtils.dumpCursorToString(cursor));
+       // Log.d("NIM", DatabaseUtils.dumpCursorToString(cursor));
         cursor.close();
         db.close();
 
@@ -8434,8 +8442,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + ", CASE WHEN  ifnull(length(" + SQLiteHandler.GPS_LOCATION_TABLE + "." + SQLiteHandler.LATITUDE_COL + "), 0) = 0  THEN 'N' ELSE 'Y' END AS dataExit "
                 + " , " + GPS_GROUP_TABLE + "." + GROUP_NAME_COL
                 + " FROM " + SQLiteHandler.GPS_LOCATION_TABLE
-                +" LEFT JOIN "+GPS_GROUP_TABLE
-                +" ON "+GPS_GROUP_TABLE+"."+GROUP_CODE_COL+" = "+GPS_LOCATION_TABLE+"."+GROUP_CODE_COL
+                + " LEFT JOIN " + GPS_GROUP_TABLE
+                + " ON " + GPS_GROUP_TABLE + "." + GROUP_CODE_COL + " = " + GPS_LOCATION_TABLE + "." + GROUP_CODE_COL
                 + " WHERE " + GPS_LOCATION_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "'"
                 + " AND " + GPS_LOCATION_TABLE + "." + SQLiteHandler.LOCATION_NAME_COL + " LIKE '%" + searchLocName + "%' "
                 + " ORDER BY " + GPS_LOCATION_TABLE + "." + SQLiteHandler.LOCATION_NAME_COL + " ASC ";
@@ -8446,7 +8454,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
 
-                list.add(new LocationHelper(position, cursor.getString(0), cursor.getString(1), cursor.getString(2),cursor.getString(3)));
+                list.add(new LocationHelper(position, cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
 
                 position++;
             } while (cursor.moveToNext());

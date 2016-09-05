@@ -2029,6 +2029,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                         data.setSrvOpMonthCode(distribution_tableData.getString(SRV_OP_MONTH_CODE));
                         data.setDistFlag(distribution_tableData.getString(DIST_FLAG));
+                        data.setWd(distribution_tableData.getString("WD"));
 
                         db.addInDistributionTableFormOnLine(data);
 

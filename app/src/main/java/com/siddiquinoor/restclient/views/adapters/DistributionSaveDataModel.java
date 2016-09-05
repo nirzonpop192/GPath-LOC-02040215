@@ -8,6 +8,28 @@ import android.os.Parcelable;
  */
 public class DistributionSaveDataModel  implements Parcelable {
 
+
+
+
+    private String countryCode;
+    private String AdmDonorCode ;
+    private String AdmAwardCode ;
+    private String districtCode ;
+    private String upCode ;
+    private String uniteCode ;
+    private String villageCode ;
+    private String ProgCode ;
+    private String SrvCode ;
+    private String OpMonthCode ;
+    private String FDPCode ;
+    private String ID ; // the Id can be house hold or member aslo
+    private String DistStatus ;
+    private String EntryBy ;
+    private String EntryDate ;
+    private String distFlag ;
+    private String srvOpMonthCode ;
+    private String wd ;
+
     public DistributionSaveDataModel() {
     }
 
@@ -52,6 +74,7 @@ public class DistributionSaveDataModel  implements Parcelable {
 
         distFlag = in.readString();
         srvOpMonthCode = in.readString();
+        wd = in.readString();
 
 
     }
@@ -87,30 +110,19 @@ public class DistributionSaveDataModel  implements Parcelable {
 
         dest.writeString(distFlag);
         dest.writeString(srvOpMonthCode);
+        dest.writeString(wd);
 
 
     }
 
 
+    public String getWd() {
+        return wd;
+    }
 
-
-            private String countryCode;
-            private String AdmDonorCode ;
-            private String AdmAwardCode ;
-            private String districtCode ;
-            private String upCode ;
-            private String uniteCode ;
-            private String villageCode ;
-            private String ProgCode ;
-            private String SrvCode ;
-            private String OpMonthCode ;
-            private String FDPCode ;
-            private String ID ; // the Id can be house hold or member aslo
-            private String DistStatus ;
-            private String EntryBy ;
-            private String EntryDate ;
-            private String distFlag ;
-            private String srvOpMonthCode ;
+    public void setWd(String wd) {
+        this.wd = wd;
+    }
 
     public String getDistFlag() {
         return distFlag;

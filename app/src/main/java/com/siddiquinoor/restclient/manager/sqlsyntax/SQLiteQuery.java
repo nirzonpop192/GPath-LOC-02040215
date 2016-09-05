@@ -445,14 +445,13 @@ public class SQLiteQuery {
                 + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.HHID_COL + " || \"\" || "
                 + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.HH_MEM_ID + " LIKE '%" + memberSearchId + "%' "
 
-               // group by
-                +" GROUP BY "+ SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.DISTRICT_NAME_COL + " , "
+                // group by
+                + " GROUP BY " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.DISTRICT_NAME_COL + " , "
                 + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.UPZILLA_NAME_COL + " , "
                 + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.UNITE_NAME_COL + " , "
                 + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.VILLAGE_NAME_COL + " , "
                 + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.HHID_COL + " , "
                 + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.HH_MEM_ID + " "
-
 
 
                 + " ORDER BY " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.HHID_COL + " DESC "
@@ -1024,7 +1023,9 @@ public class SQLiteQuery {
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.PNAME_COL + " AS HhName , "
                 + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.MEM_NAME_COL + " AS MemName , "
                 + SQLiteHandler.SERVICE_TABLE + "." + SQLiteHandler.OP_MONTH_CODE_COL + " , "
-                + SQLiteHandler.SERVICE_TABLE + "." + SQLiteHandler.SERVICE_CENTER_CODE_COL + "   "
+                + SQLiteHandler.SERVICE_TABLE + "." + SQLiteHandler.SERVICE_CENTER_CODE_COL + " ,  "
+                + SQLiteHandler.SERVICE_TABLE + "." + SQLiteHandler.WORK_DAY_COL + " AS wd  "
+
                 // can n't sub query or join because of where condition
                 // + "  "+getDistributionStatusFromDistributionTableQuery()+ " )   AS DistStatus "
                 // + " CASE WHEN " + SQLiteHandler.DISTRIBUTION_TABLE + "." + SQLiteHandler.DISTRIBUTION_STATUS_COL + " IS NULL THEN '-' ELSE 'R'  AS DistStatus"
@@ -1090,7 +1091,7 @@ public class SQLiteQuery {
 
                 + " AND (" + SQLiteHandler.SERVICE_TABLE + "." + SQLiteHandler.DISTRIBUTION_STATUS_COL + " IN ( 'S', 'P' )) "
                 + " AND  " + SQLiteHandler.SERVICE_TABLE + "." + SQLiteHandler.DIST_DATE_COL + " = 'null' "
-                //    --	AND (DistStatus IN (''S'', ''P'')) AND DistDT IS NULL
+
                 + " AND (" + SQLiteHandler.SERVICE_TABLE + "." + SQLiteHandler.SERVICE_CENTER_CODE_COL + " IN ( SELECT "
                 + SQLiteHandler.SERVICE_CENTER_TABLE + "." + SQLiteHandler.SERVICE_CENTER_CODE_COL + " FROM "
                 + SQLiteHandler.SERVICE_CENTER_TABLE + " WHERE " + SQLiteHandler.SERVICE_CENTER_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + countryCode + "' "
@@ -1109,8 +1110,8 @@ public class SQLiteQuery {
 
     }
 
-    public static String getDistributionStatusFromDistributionTableQuery(String countryCode, String donorCode, String awardCode, String districtCode, String upzillaCode, String uniteCode, String villageCode, String programCode, String srviceCode, String distMonthCode, String fdpCode, String id) {
-        return "SELECT CASE WHEN " + SQLiteHandler.DISTRIBUTION_STATUS_COL + " IS NULL THEN '-' ELSE " + SQLiteHandler.DISTRIBUTION_STATUS_COL + " END   AS " + SQLiteHandler.DISTRIBUTION_STATUS_COL
+    public static String getDistributionStatusFromDistributionTableQuery(String countryCode, String donorCode, String awardCode, String districtCode, String upzillaCode, String uniteCode, String villageCode, String programCode, String srviceCode, String distMonthCode, String fdpCode,final  String distFlag, String id) {
+        String sql = "SELECT CASE WHEN " + SQLiteHandler.DISTRIBUTION_STATUS_COL + " IS NULL THEN '-' ELSE " + SQLiteHandler.DISTRIBUTION_STATUS_COL + " END   AS " + SQLiteHandler.DISTRIBUTION_STATUS_COL
                 + " FROM " + SQLiteHandler.DISTRIBUTION_TABLE
                 + " WHERE "
                 + SQLiteHandler.DISTRIBUTION_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + countryCode + "' "
@@ -1124,8 +1125,10 @@ public class SQLiteQuery {
                 + " AND " + SQLiteHandler.DISTRIBUTION_TABLE + "." + SQLiteHandler.SERVICE_CODE_COL + " = '" + srviceCode + "' "
                 + " AND " + SQLiteHandler.DISTRIBUTION_TABLE + "." + SQLiteHandler.OP_MONTH_CODE_COL + " = '" + distMonthCode + "' "
                 + " AND " + SQLiteHandler.DISTRIBUTION_TABLE + "." + SQLiteHandler.FDP_CODE_COL + " = '" + fdpCode + "' "
+                + " AND " + SQLiteHandler.DISTRIBUTION_TABLE + "." + SQLiteHandler.DIST_FLAG_COL  + " = '" + distFlag + "' "
                 + " AND " + SQLiteHandler.DISTRIBUTION_TABLE + "." + SQLiteHandler.MEM_ID_15_D_COL + " = '" + id + "' ";
-
+        Log.d("All_1", "sql:" + sql);
+        return sql;
     }
 
     public static String getSingleHouseHoldDataForLiberiaQuery(String countryCode, String districtCode, String upzellaCode, String unitCode, String villageCode, String houseHoldId) {
@@ -2061,7 +2064,7 @@ public class SQLiteQuery {
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.LONGITUDE_COL + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.AG_LAND + ","
                 + "(" + " CASE WHEN " + SQLiteHandler.V_STATUS + "==" + "'Y'" + " THEN " + "'Yes'" + " ELSE " + "'No'" + " END " + ") AS VStatus" + ","
-                + " " + SQLiteHandler.M_STATUS +" AS MStatus" + ","
+                + " " + SQLiteHandler.M_STATUS + " AS MStatus" + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ENTRY_BY + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ENTRY_DATE + " , "
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.VSLA_GROUP + " , "
@@ -2138,7 +2141,7 @@ public class SQLiteQuery {
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.LONGITUDE_COL + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.AG_LAND + ","
                 + "(" + " CASE WHEN " + SQLiteHandler.V_STATUS + "==" + "'Y'" + " THEN " + "'Yes'" + " ELSE " + "'No'" + " END " + ") AS VStatus" + ","
-                + "  " + SQLiteHandler.M_STATUS+" AS MStatus " + ","
+                + "  " + SQLiteHandler.M_STATUS + " AS MStatus " + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ENTRY_BY + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.ENTRY_DATE + ","
                 + SQLiteHandler.REGISTRATION_TABLE + "." + SQLiteHandler.VSLA_GROUP + " , "

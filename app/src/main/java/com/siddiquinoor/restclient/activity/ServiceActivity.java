@@ -626,7 +626,27 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
                             switch (progName) {
 
                                 case DRR:
-                                    wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "FoodFlag");
+                                       switch (idDistributionType)    {
+                                           case DistributionActivity.NONE :
+                                           break;
+                                           case DistributionActivity.FOOD_TYPE:
+                                               wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "FoodFlag");
+                                               break;
+                                           case DistributionActivity.NON_FOOD_TYPE:
+                                               wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "NFoodFlag");
+                                               break;
+                                           case DistributionActivity.CASH_TYPE:
+                                               wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "CashFlag");
+                                               break;
+                                           case DistributionActivity.VOUCHER_TYPE:
+                                               wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "VOFlag");
+                                               break;
+                                       }
+
+
+
+
+
                                     Log.d("SAVE", "wd:" + wd);
                                     break;
                                 case UCT:

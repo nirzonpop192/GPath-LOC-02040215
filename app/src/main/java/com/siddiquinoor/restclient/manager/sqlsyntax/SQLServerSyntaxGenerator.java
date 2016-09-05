@@ -3048,6 +3048,7 @@ public class SQLServerSyntaxGenerator {
                 "           ,[DistStatus]     " +
                 "           ,[SrvOpMonthCode] " +
                 "           ,[DistFlag]        " +
+                "           ,[WD]        " +
                 "           ,[EntryBy]        " +
                 "           ,[EntryDate])     " +
                 "     VALUES    " +
@@ -3066,6 +3067,7 @@ public class SQLServerSyntaxGenerator {
                 "           , " + getDistStatus() +
                 "           , " + getSrvOpMonthCode() +
                 "           , " + getDistFlag() +
+                "           , " + getWD() +
                 "           , " + getEntryBy() +
                 "           , " + getEntryDate() +
                 " )";

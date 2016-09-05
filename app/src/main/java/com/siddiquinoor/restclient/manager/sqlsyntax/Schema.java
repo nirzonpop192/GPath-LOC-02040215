@@ -506,6 +506,7 @@ public class Schema {
 
                 + SQLiteHandler.SRV_OP_MONTH_CODE_COL + " VARCHAR(2), "
                 + SQLiteHandler.DIST_FLAG_COL + " VARCHAR(100), "
+                + SQLiteHandler.WORK_DAY_COL + " VARCHAR(10), "
                 + SQLiteHandler.ENTRY_BY + " VARCHAR(20), "
                 + SQLiteHandler.ENTRY_DATE + " VARCHAR(22) "
                 + " )";

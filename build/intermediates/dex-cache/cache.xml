@@ -2,256 +2,256 @@
 <items version="2" >
 
     <item
-        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\jars\classes.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-8.1.0_82d5c6172eae7d82fbc2f33aa47f59d33b6be73a\classes.dex" />
-    </item>
-    <item
-        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.1.0\jars\classes.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="993834cb17d07d51b92db89d2c330243592ebf77">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-games-8.1.0_24a93cd780b53603921455a8d52027ed82733f15\classes.dex" />
-    </item>
-    <item
-        jar="G:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-22.2.0_4c5dec1cee5b46114f4e3d578f1a260157579f04\classes.dex" />
-    </item>
-    <item
-        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\org.osmdroid\osmdroid-android\5.2\jars\classes.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="cda01332a856e8e42893b84cdb513de913a733cf">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\org.osmdroid-osmdroid-android-5.2_a4fc5335dcacb29e965babb30492e0b0b4f5ab59\classes.dex" />
-    </item>
-    <item
-        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\osmbonuspack_v5.8.1\jars\classes.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="332ef38709d9435852da4c0daeb6658ea91b1fca">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\intermediates-exploded-aar-osmbonuspack_v5.8.1_a117e24938e3ec3a63799b1040d778bc173467fb\classes.dex" />
-    </item>
-    <item
-        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.journeyapps\zxing-android-embedded\2.3.0\jars\classes.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="64380fc4876a34f3f97cc7e59ef3182543624231">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.journeyapps-zxing-android-embedded-2.3.0_a6b25c03a2fb26b96d67af8bc5e34c2ff021a10b\classes.dex" />
-    </item>
-    <item
-        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="60d3ff5fa5b78b1e392fcef5d18aa19ce9d41a6b">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_a35d5c6a097180591ec33b88c2bb59ed4e9ef394\classes.dex" />
-    </item>
-    <item
-        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\jars\classes.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-8.1.0_0ab1c70ed34c8f97c034d100e5b6d547c3df10e1\classes.dex" />
-    </item>
-    <item
-        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-8.1.0_b99f515dfc8a9bbb924dc3232a7102c109d47585\classes.dex" />
-    </item>
-    <item
-        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\jars\classes.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-fitness-8.1.0_28c1b3098ff2a8f823ef58531274b23464fd3dad\classes.dex" />
-    </item>
-    <item
-        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
-        jumboMode="true"
-        revision="21.1.2"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-22.2.0_a0879cf2b8fa23d503dec8d0e00cfc52671d660d\classes.dex" />
-    </item>
-    <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="3178362320bcf51228835b60ff978efadfd1f783">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-8.1.0_ba571cb5f3664cdf3725963eba828ded1eafe2ca\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-cast-8.1.0_ba571cb5f3664cdf3725963eba828ded1eafe2ca.jar" />
+    </item>
+    <item
+        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gcm-8.1.0_82d5c6172eae7d82fbc2f33aa47f59d33b6be73a.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="3c729e6d76a36c5dc27e6a4c4009296f49eaa88a">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-drive-8.1.0_6487e1053b51980e506d29d56b7d27b7bd0bfbee\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-drive-8.1.0_6487e1053b51980e506d29d56b7d27b7bd0bfbee.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="997773777cf3904c11d6764fe3b7668538220e49">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-8.1.0_748c2447e58f90f8e861bb8cf776794423a7f87f\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-8.1.0_748c2447e58f90f8e861bb8cf776794423a7f87f.jar" />
+    </item>
+    <item
+        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="993834cb17d07d51b92db89d2c330243592ebf77">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-games-8.1.0_24a93cd780b53603921455a8d52027ed82733f15.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="325788a04b436a0bccbc5b4c54cf0f12ebdcbd2d">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wallet-8.1.0_5887c52a54035754f0e36e85f659f7c1da88036b\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wallet-8.1.0_5887c52a54035754f0e36e85f659f7c1da88036b.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="041d93cf0533591c29d1d7263b2fa114dbfb20bd">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-nearby-8.1.0_ef0a7496cea8cd2429714014adf07045463c0997\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-nearby-8.1.0_ef0a7496cea8cd2429714014adf07045463c0997.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="d294caf562c4c678b2ef351662a0ca6f1a4d06c0">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-8.1.0_760abe94730b8a27177e4514edfe191563d62011\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-identity-8.1.0_760abe94730b8a27177e4514edfe191563d62011.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="95758a2905669affbffc5ddd262921d375674fad">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-analytics-8.1.0_cc7fdd0a229c470214ab478869040a0088e8cb55\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-8.1.0_cc7fdd0a229c470214ab478869040a0088e8cb55.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-8.1.0_2e23f242e075b52c60fbfc72b3bad324ddd94a02\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-8.1.0_2e23f242e075b52c60fbfc72b3bad324ddd94a02.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-mediarouter-v7-22.2.0_95244d36100f49d381968d8064e1abe1849aebce\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.android.support-mediarouter-v7-22.2.0_95244d36100f49d381968d8064e1abe1849aebce.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="3b05c18f60969ecc2ba49c0409c4b96be2d9cb0c">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-safetynet-8.1.0_5bd556fff8ff321ef4271975c97f8e615e432e72\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-safetynet-8.1.0_5bd556fff8ff321ef4271975c97f8e615e432e72.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="17449c47df35c754b257532052f1270c444f7993">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-8.1.0_dff53152f0e6d3a222dca5534226c90871082966\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-vision-8.1.0_dff53152f0e6d3a222dca5534226c90871082966.jar" />
+    </item>
+    <item
+        jar="G:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0_4c5dec1cee5b46114f4e3d578f1a260157579f04.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\libs\volley.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\2\volley_9a9b0b53cf77d497479afa964066d89094358933\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\volley_9a9b0b53cf77d497479afa964066d89094358933.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="d61920aba361832a9545a43fa8c9453eb02f18f7">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-plus-8.1.0_b1e2f0e45999db67034393d855e4dd825d70e89a\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-plus-8.1.0_b1e2f0e45999db67034393d855e4dd825d70e89a.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.journeyapps\zxing-android-integration\2.3.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="bca1d3229113cccbb9ca38c1d2e6d51be318da9e">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.journeyapps-zxing-android-integration-2.3.0_36d0e033f3aab8a0c1d85a61eab363bf5113136f\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.journeyapps-zxing-android-integration-2.3.0_36d0e033f3aab8a0c1d85a61eab363bf5113136f.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="97f3b099801a9ad9d70e835b9125273e986eb68d">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-wearable-8.1.0_badc302313916a0b1153a9bdafd0da882726dfb0\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wearable-8.1.0_badc302313916a0b1153a9bdafd0da882726dfb0.jar" />
+    </item>
+    <item
+        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\org.osmdroid\osmdroid-android\5.2\jars\classes.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="cda01332a856e8e42893b84cdb513de913a733cf">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\org.osmdroid-osmdroid-android-5.2_a4fc5335dcacb29e965babb30492e0b0b4f5ab59.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appindexing-8.1.0_339338bbeca974cbe8df4a08951922904f568bf0\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appindexing-8.1.0_339338bbeca974cbe8df4a08951922904f568bf0.jar" />
+    </item>
+    <item
+        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\osmbonuspack_v5.8.1\jars\classes.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="332ef38709d9435852da4c0daeb6658ea91b1fca">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\intermediates-exploded-aar-osmbonuspack_v5.8.1_a117e24938e3ec3a63799b1040d778bc173467fb.jar" />
+    </item>
+    <item
+        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.journeyapps\zxing-android-embedded\2.3.0\jars\classes.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="64380fc4876a34f3f97cc7e59ef3182543624231">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.journeyapps-zxing-android-embedded-2.3.0_a6b25c03a2fb26b96d67af8bc5e34c2ff021a10b.jar" />
+    </item>
+    <item
+        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="d730a70daf83cfe10ab312f12791faeb8e95b824">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_a35d5c6a097180591ec33b88c2bb59ed4e9ef394.jar" />
+    </item>
+    <item
+        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-8.1.0_0ab1c70ed34c8f97c034d100e5b6d547c3df10e1.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="d93480da1d303122ee67dc3bc23e6297bdef9951">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-8.1.0_2ccefd3a1072d33a36320a3e7890131ac04fd775\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-panorama-8.1.0_2ccefd3a1072d33a36320a3e7890131ac04fd775.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.0_cf55fe4e3b15eba1c585726bfb719ff076f01b75\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0_cf55fe4e3b15eba1c585726bfb719ff076f01b75.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="3aed37c38c56679602255dd72ef356da5d327cda">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-8.1.0_53f96723172dab37766585de7f54cf8538bfea2e\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-location-8.1.0_53f96723172dab37766585de7f54cf8538bfea2e.jar" />
+    </item>
+    <item
+        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-8.1.0_b99f515dfc8a9bbb924dc3232a7102c109d47585.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         revision="21.1.2"
-        sha1="3f6c0192bec30e27b3d26dc89fa7288868534c8a">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_dc347f3812e02479f01e0986a293b1a2a8e053b8\classes.dex" />
+        sha1="aefffad7527b32bda53e9bfb727b326d057f1069">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\instant-run_dc347f3812e02479f01e0986a293b1a2a8e053b8.jar" />
+    </item>
+    <item
+        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\jars\classes.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-fitness-8.1.0_28c1b3098ff2a8f823ef58531274b23464fd3dad.jar" />
     </item>
     <item
         jar="C:\Users\USER\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.2.0\e019d15a13a9786f881141d2df6654b8510bce8b\core-3.2.0.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="e019d15a13a9786f881141d2df6654b8510bce8b">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\core-3.2.0_2d0ed3b1af01123fdb9c6e80af8e9bd61e6337e5\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\core-3.2.0_2d0ed3b1af01123fdb9c6e80af8e9bd61e6337e5.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="b92002cb2f0e11a226ac5bac6dff1dc2a9d0b774">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-8.1.0_ab429d9d971b2498708a2d3ba192364b77b75ca5\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appinvite-8.1.0_ab429d9d971b2498708a2d3ba192364b77b75ca5.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.1.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="482de223655d06253cc6a4955d653f8994169500">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-measurement-8.1.0_d5544c722436b063aba06ffa7e632d8daa8cc577\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-measurement-8.1.0_d5544c722436b063aba06ffa7e632d8daa8cc577.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.0_1578bc4409718931a1faf48ee79a261c8e1c68a5\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0_1578bc4409718931a1faf48ee79a261c8e1c68a5.jar" />
     </item>
     <item
         jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
         jumboMode="true"
         revision="21.1.2"
         sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-22.2.0_f58a01340663d1d0094c918450b98e5eff78106b\classes.dex" />
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-22.2.0_f58a01340663d1d0094c918450b98e5eff78106b.jar" />
+    </item>
+    <item
+        jar="D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
+        jumboMode="true"
+        revision="21.1.2"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="D:\Android\GPath-LOC-02040215\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-22.2.0_a0879cf2b8fa23d503dec8d0e00cfc52671d660d.jar" />
     </item>
 
 </items>

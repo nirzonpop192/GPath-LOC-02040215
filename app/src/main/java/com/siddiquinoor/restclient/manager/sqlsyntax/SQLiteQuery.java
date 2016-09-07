@@ -1476,13 +1476,25 @@ public class SQLiteQuery {
     }
 
     public static String get_DetailsAssignedMemberSummarySelectQuery(String countryCode, String districtCode, String upzellaCode, String unionCode, String villageCode, String donorCode, String awardCord, String programCode, String srvCode) {
+
+
+        String getMemberName;
+        if (countryCode.equals("0004")) {
+            getMemberName = SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.MEM_NAME_FIRST_COL +
+                    "|| ' ' || " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.MEM_NAME_MIDDLE_COL +
+                    "|| ' ' || " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.MEM_NAME_LAST_COL;
+
+        } else
+            getMemberName = SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.MEM_NAME_COL;
+
+
         return "SELECT " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.DISTRICT_CODE_COL
                 + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.UPCODE_COL
                 + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.UCODE_COL
                 + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.VCODE_COL
                 + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.HHID_COL
                 + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.HH_MEM_ID + " AS NewID "
-                + ", " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.MEM_NAME_COL + "  AS memberName"
+                + ", " + getMemberName + "  AS memberName"
                 + " , " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.REG_N_DAT_COL + " AS regDate"
                 + " FROM " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + " JOIN " + SQLiteHandler.REGISTRATION_MEMBER_TABLE
                 + " ON " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL +
@@ -2409,4 +2421,113 @@ public class SQLiteQuery {
                 + " AND " + SQLiteHandler.VOUCHER_COUNTRY_PROGRAM_ITEM_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL + " = '" + programCode + "'  "
                 + " GROUP BY " + SQLiteHandler.SERVICE_EXTENDED_TABLE + "." + SQLiteHandler.VOUCHER_ITEM_SPEC_COL;
     }
-}
+
+    public static String getGroupSummaryList_sql(final String  cCode){
+        return "SELECT " +
+
+                "   regG." + SQLiteHandler.COUNTRY_CODE_COL + " " +
+                " , regG." + SQLiteHandler.DONOR_CODE_COL +
+                " , regG." + SQLiteHandler.AWARD_CODE_COL +
+                " , regG." + SQLiteHandler.PROGRAM_CODE_COL +
+                " , cgc." + SQLiteHandler.GROUP_CAT_CODE_COL +
+                " , cgc." + SQLiteHandler.GROUP_CAT_SHORT_NAME_COL +
+                " , cg." +  SQLiteHandler.GROUP_CODE_COL +
+                " , cg." +  SQLiteHandler.GROUP_NAME_COL +
+                " , srv." + SQLiteHandler.SERVICE_SHORT_NAME_COL +
+
+                " , Count(*) AS c " +
+
+                " FROM " + SQLiteHandler.REG_N_MEM_PROG_GRP_TABLE + " AS regG " +
+
+                " LEFT JOIN " + SQLiteHandler.COMMUNITY_GROUP_TABLE + "  AS cg " +
+                " ON regG." +  SQLiteHandler.COUNTRY_CODE_COL + " = cg." + SQLiteHandler.COUNTRY_CODE_COL + " " +
+                " AND regG." + SQLiteHandler.DONOR_CODE_COL + " = cg." + SQLiteHandler.DONOR_CODE_COL +
+                " AND regG." + SQLiteHandler.AWARD_CODE_COL + " = cg." + SQLiteHandler.AWARD_CODE_COL +
+                " AND regG." + SQLiteHandler.PROGRAM_CODE_COL + " = cg." + SQLiteHandler.PROGRAM_CODE_COL +
+                " AND regG." + SQLiteHandler.GROUP_CODE_COL + " = cg." + SQLiteHandler.GROUP_CODE_COL +
+                " LEFT JOIN " + SQLiteHandler.COMMUNITY_GROUP_CATEGORY_TABLE + " AS cgc " +
+                " ON regG." + SQLiteHandler.COUNTRY_CODE_COL + " = cgc." +SQLiteHandler. COUNTRY_CODE_COL +
+                " AND regG." + SQLiteHandler.DONOR_CODE_COL + " = cgc." + SQLiteHandler.DONOR_CODE_COL +
+                " AND regG." + SQLiteHandler.AWARD_CODE_COL + " = cgc." + SQLiteHandler.AWARD_CODE_COL +
+                " AND regG." + SQLiteHandler.PROGRAM_CODE_COL + " = cgc." + SQLiteHandler.PROGRAM_CODE_COL +
+                " AND cg." + SQLiteHandler.GROUP_CAT_CODE_COL + " = cgc." + SQLiteHandler.GROUP_CAT_CODE_COL +
+                " LEFT JOIN " + SQLiteHandler.SERVICE_MASTER_TABLE + " AS srv " +
+                " ON regG." + SQLiteHandler.PROGRAM_CODE_COL + " = srv. " + SQLiteHandler.PROGRAM_CODE_COL +
+                " AND regG." + SQLiteHandler.SERVICE_CODE_COL + " = srv." + SQLiteHandler.SERVICE_CODE_COL +
+                " WHERE regG." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "' " +
+                " GROUP BY cgc." + SQLiteHandler.GROUP_CAT_CODE_COL + ", cg." + SQLiteHandler.GROUP_CODE_COL;
+    }
+
+    public static  String loadVillageInAssignSummary_sql(String cCode){
+       return "SELECT " + " v." + SQLiteHandler.COUNTRY_CODE_COL + " || '' ||  v." + SQLiteHandler.DISTRICT_CODE_COL + " || '' || v." + SQLiteHandler.UPCODE_COL + " || '' || v." +
+               SQLiteHandler.UCODE_COL + " || '' || v." + SQLiteHandler.VCODE_COL + " AS v_code," +
+               " v." + SQLiteHandler.VILLAGE_NAME_COL + " AS Vill_Name " +
+                     /*   " COUNT("+PID_COL+") AS records"*/" FROM " + SQLiteHandler.VILLAGE_TABLE + " AS v" +
+               " LEFT JOIN " + SQLiteHandler.REGISTRATION_TABLE + " AS r" +
+               " ON r." + SQLiteHandler.COUNTRY_CODE_COL + "= v." + SQLiteHandler.COUNTRY_CODE_COL
+               + " AND " + "r." + SQLiteHandler.DISTRICT_NAME_COL + "= v." + SQLiteHandler.DISTRICT_CODE_COL
+               + " AND " + "r." + SQLiteHandler.UPZILLA_NAME_COL + "= v." + SQLiteHandler.UPCODE_COL
+               + " AND " + "r." + SQLiteHandler.UNITE_NAME_COL + "= v." + SQLiteHandler.UCODE_COL
+               + " AND " + "r." + SQLiteHandler.VILLAGE_NAME_COL + "= v." + SQLiteHandler.VCODE_COL +
+               " Inner join " + SQLiteHandler.SELECTED_VILLAGE_TABLE + " AS s"
+               + " on " + " s." + SQLiteHandler.COUNTRY_CODE_COL + "= v." + SQLiteHandler.COUNTRY_CODE_COL
+               + " AND " + "s." + SQLiteHandler.DISTRICT_CODE_COL + "= v." + SQLiteHandler.DISTRICT_CODE_COL
+               + " AND " + "s." + SQLiteHandler.UPCODE_COL + "= v." + SQLiteHandler.UPCODE_COL
+               + " AND " + "s." + SQLiteHandler.UCODE_COL + "= v." + SQLiteHandler.UCODE_COL
+               + " AND " + "s." + SQLiteHandler.VCODE_COL + "= v." + SQLiteHandler.VCODE_COL +
+
+               " WHERE v." + SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "'" + /** send the no of village for selected country added by Faisal Mohammad*/
+               "  GROUP BY v." + SQLiteHandler.COUNTRY_CODE_COL + ",v." + SQLiteHandler.DISTRICT_CODE_COL + ",v." + SQLiteHandler.UPCODE_COL + ",v." + SQLiteHandler.UCODE_COL + ",v." + SQLiteHandler.VCODE_COL;
+
+    }
+
+
+    public  static  String getIdListInGroupInGroupSummary_sql(String cCode, String donorCode, String awardCode, String prgCode, String grpCode){
+
+
+        String getMemberName;
+        if (cCode.equals("0004")) {
+            getMemberName =  " regMem." + SQLiteHandler.MEM_NAME_FIRST_COL +
+                    "|| ' ' || " + " regMem." + SQLiteHandler.MEM_NAME_MIDDLE_COL +
+                    "|| ' ' || " +  " regMem." + SQLiteHandler.MEM_NAME_LAST_COL;
+
+        } else
+            getMemberName =  " regMem." + SQLiteHandler.MEM_NAME_COL;
+        return  "SELECT " +
+
+
+                "  regG." + SQLiteHandler.DISTRICT_CODE_COL +
+                " || '' || regG." + SQLiteHandler.UPCODE_COL +
+                " || '' || regG." + SQLiteHandler.UCODE_COL +
+                " || '' || regG." + SQLiteHandler.VCODE_COL +
+                " || '' || regG." + SQLiteHandler.HHID_COL +
+                " || '' || regG." + SQLiteHandler.HH_MEM_ID + " AS idMem " +
+
+                " , srv." + SQLiteHandler.SERVICE_SHORT_NAME_COL +
+                " , " + getMemberName +" AS memName "+
+                " FROM " + SQLiteHandler.REG_N_MEM_PROG_GRP_TABLE + " AS regG " +
+
+
+                " LEFT JOIN " + SQLiteHandler.SERVICE_MASTER_TABLE + " AS srv " +
+                " ON regG." + SQLiteHandler.PROGRAM_CODE_COL + " = srv. " + SQLiteHandler.PROGRAM_CODE_COL +
+                " AND regG." + SQLiteHandler.SERVICE_CODE_COL + " = srv." + SQLiteHandler.SERVICE_CODE_COL +
+
+                " LEFT JOIN " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + " AS regMem " +
+
+                " ON " + " regG." + SQLiteHandler.COUNTRY_CODE_COL + " = " + " regMem." + SQLiteHandler.COUNTRY_CODE_COL +
+                " AND " + " regG." + SQLiteHandler.DISTRICT_CODE_COL + " = " + " regMem." + SQLiteHandler.DISTRICT_NAME_COL +
+                " AND " + " regG." + SQLiteHandler.UPCODE_COL + " = " + " regMem." + SQLiteHandler.UPZILLA_NAME_COL +
+                " AND " + " regG." + SQLiteHandler.UCODE_COL + " = " + " regMem." + SQLiteHandler.UNITE_NAME_COL +
+                " AND " + " regG." + SQLiteHandler.VCODE_COL + " = " + " regMem." + SQLiteHandler.VILLAGE_NAME_COL +
+                " AND " + " regG." + SQLiteHandler.HHID_COL + " = " + " regMem." + SQLiteHandler.HHID_COL +
+                " AND " + " regG." + SQLiteHandler.HH_MEM_ID + " = " + " regMem." + SQLiteHandler.HH_MEM_ID + " " +
+
+
+                " WHERE regG." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "' " +
+                " AND regG." + SQLiteHandler.DONOR_CODE_COL + " = '" + donorCode + "' " +
+                " AND regG." + SQLiteHandler.AWARD_CODE_COL + " = '" + awardCode + "' " +
+                " AND regG." + SQLiteHandler.PROGRAM_CODE_COL + " = '" + prgCode + "' " +
+                " AND regG." + SQLiteHandler.GROUP_CODE_COL + " = '" + grpCode + "' ";
+
+    }
+}//end of class

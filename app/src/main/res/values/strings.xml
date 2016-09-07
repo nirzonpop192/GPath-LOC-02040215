@@ -183,7 +183,7 @@
     <string name="srv_summary_TitleLable">Service Summary </string>
     <string name="tv_criteria">Criteria</string>
     <!-- LOG IN SCREEN -->
-    <string name="log_in_version_lable">GPath-LIV-02040228</string>
+    <string name="log_in_version_lable">GPath-UAT-02040228</string>
     <!-- VERSION -->
 
 
@@ -536,7 +536,6 @@
     <string name="other_specify">Other(specify)</string>
 
 
-
     <string-array name="cameraOption">
         <item>Capture</item>
         <item>Delete</item>
@@ -552,4 +551,14 @@
 
         <string name="unsyn_msg">Login with the same user for whom the device was configured.
 Otherwise, initiate to sync and login again.</string>
+    <!--  Group Summary page resource-->
+
+    <string name="title_grp_summary">Group Summary</string>
+    <string name="group_name">Group Name</string>
+    <string name="group">Group</string>
+    <string name="category">Category</string>
+    <string name="srv_name">Srv Name</string>
+    <string name="count_lable">Count</string>
+    <!-- ID List in Group   Summary page resource-->
+    <string name="title_id_list_in_grp_summary">ID List in Group </string>
 </resources>

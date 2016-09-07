@@ -1599,35 +1599,6 @@ public class LoginActivity extends BaseActivity {
 
 
 
-                      /*      //Your logic when OK button is clicked
-                        //    db.deleteFromSelectedServiceCenter();
-                         //   selectedServiceCenterList.clear();
-                            for (int i = 0; i < itemChecked.length; i++) {
-                                if (itemChecked[i] == true) {
-
-                                    for (int j = 0; j < communityGroupList.size(); j++) {
-                                        if (aLServiceCenter_itemsSelected.get(i).getServiceCenterCode().equals(communityGroupList.get(j).getSrvCenterCode())) {
-                                            selectedServiceCenterList.add(aLServiceCenter_itemsSelected.get(i));
-                                        }
-                                    }
-
-
-                                }
-                            }
-
-                            if (selectedServiceCenterList.size() > 0) {
-                                JSONArray serviceCenterJSONarry = UtilClass.srvCenterCodeJSONConverter("LoginActivity", selectedServiceCenterList, db);
-                                aLServiceCenter_itemsSelected.clear();
-                                Log.d(TAG, " Service Center  jeson to string :" + serviceCenterJSONarry.toString());
-                                *//**//** 3 is operation code Service *//**//*
-                                checkLogin(user_name, password, serviceCenterJSONarry, "3"); // checking online
-                                editor.putInt(UtilClass.OPERATION_MODE, 3);
-                                editor.commit();
-                            } else {
-                                hideDialog();
-                                Toast.makeText(LoginActivity.this, "No Community Center in service center . Contact Admin.", Toast.LENGTH_LONG).show();
-                            }
-*/
 
                         }
                     })

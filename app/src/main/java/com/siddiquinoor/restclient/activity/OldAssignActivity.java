@@ -144,7 +144,7 @@ public class OldAssignActivity extends BaseActivity implements AdapterView.OnIte
         mredirection = redirection;
         // if it Comes from Sub page Of
         if (redirection) {
-            // // TODO: it commes from Summay page than it should  go differet algorith
+
             getDataFromIntent(intent);
 
             loadAward(idCountry);
@@ -271,7 +271,7 @@ public class OldAssignActivity extends BaseActivity implements AdapterView.OnIte
             case R.id.btn_assign_search:
                 //Toast.makeText(AssignActivity.this,"button is pressed ",Toast.LENGTH_SHORT).show();
 
-                // todo: set the condition for user must select all the spinner field
+                //  set the condition for user must select all the spinner field
                 String temId = edt_mmSearch.getText().toString().trim();
                 if (!temId.equals("") && temId.length() > 0) {
 
@@ -568,7 +568,7 @@ public class OldAssignActivity extends BaseActivity implements AdapterView.OnIte
     }
 
     /**
-     * TODO: Delete the below fromating Code
+     *  Delete the below fromating Code
      */
     private class LoadListView extends AsyncTask<Void, Integer, String> {
 

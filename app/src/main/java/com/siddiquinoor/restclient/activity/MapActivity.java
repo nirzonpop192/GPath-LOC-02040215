@@ -178,7 +178,7 @@ public class MapActivity extends BaseActivity {
     }
 
     /**
-     * todo: show the Attribute if exits
+     *
      */
     /**
      * <p>This Method Create A Custom Dialog .Which will show the List of The Sub Group </p>
@@ -309,7 +309,7 @@ public class MapActivity extends BaseActivity {
             mapViewController.setZoom(8);
             for (int i = 0; i < listOfGpsData.size(); i++) {
                 GPS_LocationDataModel data = listOfGpsData.get(i);
-                // // TODO: 7/21/2016  Calculate Distance
+
                 if (calculateDistanceBetween2Point(lastLocation.getLatitude(), lastLocation.getLongitude(), Double.valueOf(data.getLat()), Double.valueOf(data.getLng())) < 500)
                     setMarker(data.getLocationName(), Double.valueOf(data.getLat()), Double.valueOf(data.getLng()));
 /*          For Test purpose
@@ -884,7 +884,9 @@ public class MapActivity extends BaseActivity {
 
             tv_exitLat.setText(data.getLatitude());
             tv_exitLong.setText(data.getLongitude());
-            // todo: center of the location
+            /**
+             * center of the location
+             * */
             if (!data.getLatitude().equals("null") && !data.getLongitude().equals("null")) {
                 GeoPoint center = new GeoPoint(Double.valueOf(data.getLatitude()), Double.valueOf(data.getLongitude()));
 

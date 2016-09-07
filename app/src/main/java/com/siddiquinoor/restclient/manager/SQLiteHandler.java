@@ -50,6 +50,8 @@ import com.siddiquinoor.restclient.views.adapters.ServiceDataModel;
 import com.siddiquinoor.restclient.views.adapters.ServiceSlDataModle;
 import com.siddiquinoor.restclient.views.adapters.SummaryAssignListModel;
 import com.siddiquinoor.restclient.views.adapters.SummaryCriteriaModel;
+import com.siddiquinoor.restclient.views.adapters.SummaryGroupListDataModel;
+import com.siddiquinoor.restclient.views.adapters.SummaryIdListInGroupDataModel;
 import com.siddiquinoor.restclient.views.adapters.SummaryModel;
 import com.siddiquinoor.restclient.views.adapters.SummaryServiceListModel;
 import com.siddiquinoor.restclient.views.adapters.VouItemServiceExtDataModel;
@@ -859,94 +861,77 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.execSQL(Schema.sqlCreateServiceTable());
 
 
-        // create Country Award Table
         db.execSQL(Schema.sqlCreateCountryAwardTable());
 
 
-        // create Country Donor Table
         db.execSQL(Schema.sqlCreateDonorTable());
 
 
-        // create Country Program Master Table
         db.execSQL(Schema.sqlCreateProgramMasterTable());
 
 
-        // create Country Program Master Table
         db.execSQL(Schema.sqlCreateServiceMasterTable());
-//        Log.d(TAG, "Service Master  table created");
 
 
-        // create Country Register N Assign Program Service Table
         db.execSQL(Schema.sqlCreateRegNAssignPrgSrvTable());
-//        Log.d(TAG, " Reg NassignPrg Srv table created");
 
-        // create GPS Group Table
+
         db.execSQL(Schema.sqlCreateGpsGroupTable());
 
 
-        // create GPS SUB Group Table --
         db.execSQL(Schema.sqlCreateGpsSubGroupTable());
 
 
-        // create GPS Location Table -- ADDED BY POP REMARKS-
         db.execSQL(Schema.sqlCreateGpsLocationTable());
 
 
-        // create adm op-month Table -- ADDED BY POP REMARKS-ok
         db.execSQL(Schema.sqlCreateOpMonthTable());
-//        Log.d(TAG, " Adm op monthe table created");
 
-        // create adm op-month Table -- ADDED BY POP REMARKS-ok
+
         db.execSQL(Schema.sqlCreateADM_CountryProgram());
-//        Log.d(TAG, " Adm Country program table created");
 
-        // create adm op-month Table -- ADDED BY POP REMARKS-ok
+
         db.execSQL(Schema.sqlCreateRegNLMTable());
-//        Log.d(TAG, " Reg N lm table created");
 
-        // create adm op-month Table -- ADDED BY POP REMARKS-ok
+
         db.execSQL(Schema.sqlCreateServiceCenterTable());
-//        Log.d(TAG, " Service Center Table created");
+
 
         // create dob Reg-N-PW Table -- ADDED BY POP REMARKS
         db.execSQL(Schema.sqlCreateRegNPWTable());
-//        Log.d(TAG, " Reg N PW table created");
 
-        // create dob Reg-N-CU2 Table -- ADDED BY POP REMARKS
+
         db.execSQL(Schema.sqlCreateRegNCU2Table());
-//        Log.d(TAG, " Reg N CU2 table created");
+
 
         // create dob Reg-N-CA2 Table --
         db.execSQL(Schema.sqlCreateRegNCA2Table());
-//        Log.d(TAG, " Reg N CA2 table created");
 
 
         // create dob StaffGeoInfoAccess Table --
         db.execSQL(Schema.sqlCreateStaffGeoInfoAccessTable());
-//        Log.d(TAG, " Staff Geo Info Access table created");
+
 
         // create dob StaffGeoInfoAccess Table --
         db.execSQL(Schema.sqlCreateHouseHoldCategoryTable());
-//        Log.d(TAG, " StaffHouseHoldCategory table created");
+
         // TO MARGE THE TABEL DELETE THE CODE
         // todo  delete LIBERIA_REGISTRATION_TABLE
         db.execSQL(Schema.sqlCreateLiberiaRegistrationTable());
 //        Log.d(TAG, " LiberiaRegistration created");
 
         db.execSQL(Schema.sqlCreateGraduationTable());
-//        Log.d(TAG, " Graduation created");
+
 
         db.execSQL(Schema.sqlCreateCardTypeTable());
-//        Log.d(TAG, " Report table created");
 
 
         db.execSQL(Schema.sqlCreateCardPrintReasonTable());
-//        Log.d(TAG, " Card Print Reason table created");
+
 
         db.execSQL(Schema.sqlCreateRegMemberCardPrintTable());
-//        Log.d(TAG, " Reg Meber Card Print Table created");
+
         db.execSQL(Schema.sqlCreate_RegN_CT_Table());
-//        Log.d(TAG, " RegN_CT_Table created");
 
 
         db.execSQL(Schema.sqlCreateStaffFDPAccessTable());
@@ -988,7 +973,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 //        Log.d(TAG, "  Create sqlCreateSelected Village_Table ");
 
         db.execSQL(Schema.sqlCreateSelectedFDP_Table());
-//        Log.d(TAG, "  Create sqlCreateSelected Village_Table ");
+
 
         db.execSQL(Schema.sqlCreateSelectedServiceCenter_Table());
 
@@ -2412,7 +2397,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public void addInDistributionTableFormOnLine(DistributionSaveDataModel dist_data) {
         dist_data.setEntryBy("-");
         dist_data.setEntryDate("-");
-         addInDistributionTable(dist_data);
+        addInDistributionTable(dist_data);
 
     }
 
@@ -2435,8 +2420,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(SRV_OP_MONTH_CODE_COL, distData.getSrvOpMonthCode());
         values.put(DIST_FLAG_COL, distData.getDistFlag());
         values.put(WORK_DAY_COL, distData.getWd());
-
-
 
 
         values.put(ENTRY_BY, distData.getEntryBy());
@@ -3589,13 +3572,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * @date : 2015-10-17
-     * @modified:
-     * @author : Faisal Mohammad
-     * @email: nirzon192@gmail.com
-     * @caller: SummaryAssignBaseCriteria.class
-     * @status
-     * @description : base on the criteria this method will list of member which are assigned in particular Criteria or Service
+     * date : 2015-10-17
+     * <p/>
+     * Faisal Mohammad
+     * <p/>
+     * SummaryAssignBaseCriteria.class
+     * <p/>
+     * description : base on the criteria this method will list of member which are assigned in particular Criteria or Service
      */
 
     public List<SummaryAssignListModel> getTotalAssignSummary(String cCode, String distCode, String upCode, String unCode, String vCode,
@@ -3641,10 +3624,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * @date :
+     * :
      * 2015-11-07
-     * @status
-     * @description :
+     * <p/>
+     * :
      */
     public String getMemberName(String cCode, String disCode,
                                 String upCode, String unCode,
@@ -3686,12 +3669,73 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
+    public List<SummaryGroupListDataModel> getGroupSummaryList(String cCode) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<SummaryGroupListDataModel> list = new ArrayList<SummaryGroupListDataModel>();
+
+        String sql = SQLiteQuery.getGroupSummaryList_sql(cCode);
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            do {
+                SummaryGroupListDataModel data = new SummaryGroupListDataModel();
+                data.setcCode(cursor.getString(cursor.getColumnIndex(COUNTRY_CODE_COL)));
+                data.setDonorCode(cursor.getString(cursor.getColumnIndex(DONOR_CODE_COL)));
+                data.setAwardCode(cursor.getString(cursor.getColumnIndex(AWARD_CODE_COL)));
+                data.setProgramCode(cursor.getString(cursor.getColumnIndex(PROGRAM_CODE_COL)));
+
+                data.setGroupCatCode(cursor.getString(cursor.getColumnIndex(GROUP_CAT_CODE_COL)));
+                data.setGroupCatShortName(cursor.getString(cursor.getColumnIndex(GROUP_CAT_SHORT_NAME_COL)));
+                data.setGroupCode(cursor.getString(cursor.getColumnIndex(GROUP_CODE_COL)));
+
+                data.setGroupName(cursor.getString(cursor.getColumnIndex(GROUP_NAME_COL)));
+                data.setSrvShortName(cursor.getString(cursor.getColumnIndex(SERVICE_SHORT_NAME_COL)));
+                data.setCount(cursor.getString(cursor.getColumnIndex("c")));
+
+                list.add(data);
+
+            } while (cursor.moveToNext());
+        }
+        return list;
+    }
+
+
+
+    public List<SummaryIdListInGroupDataModel> getIdListInGroupInGroupSummary(String cCode, String donorCode, String awardCode, String prgCode, String grpCode) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<SummaryIdListInGroupDataModel> list = new ArrayList<SummaryIdListInGroupDataModel>();
+
+
+
+
+        String sql = SQLiteQuery.getIdListInGroupInGroupSummary_sql(cCode, donorCode, awardCode, prgCode, grpCode);
+
+
+        // SQLiteQuery.getGroupSummaryList_sql(cCode);
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            do {
+                SummaryIdListInGroupDataModel data = new SummaryIdListInGroupDataModel();
+                data.setnMemId(cursor.getString(cursor.getColumnIndex("idMem")));
+                data.setMemName(cursor.getString(cursor.getColumnIndex("memName")));
+                data.setSrvName(cursor.getString(cursor.getColumnIndex(SERVICE_SHORT_NAME_COL)));
+
+
+                list.add(data);
+
+            } while (cursor.moveToNext());
+        }
+        return list;
+    }
+
+
     public String getAwardGraduation(String cCode, String donorCode, String awardCode) {
         String grdDate = "";
         //String temp="";
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "Select " + AWARD_END_DATE_COL +
+        String selectQuery = "SELECT " + AWARD_END_DATE_COL +
                 " FROM " + ADM_AWARD_TABLE +
                 " WHERE " + COUNTRY_CODE_COL + " = '" + cCode + "' "
                 + " AND " + DONOR_CODE_COL + " = '" + donorCode + "' "
@@ -3715,8 +3759,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
 
     /**
-     * todo: check grd date format
-     *
      * @param cCode
      * @param disCode
      * @param upCode
@@ -6971,7 +7013,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-       // Log.d("NIM", DatabaseUtils.dumpCursorToString(cursor));
+        // Log.d("NIM", DatabaseUtils.dumpCursorToString(cursor));
         cursor.close();
         db.close();
 

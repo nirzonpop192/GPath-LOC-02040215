@@ -136,7 +136,7 @@ public class ViewRecordDetail extends BaseActivity implements View.OnClickListen
         str_upazilla = intnt.getStringExtra(KEY.UPAZILLA);
         str_union = intnt.getStringExtra(KEY.UNIT);
         str_village = intnt.getStringExtra(KEY.VILLAGE_NAME);
-        // todo Address
+
         str_Address = intnt.getStringExtra(KEY.ADDRESS_NAME);
 
 
@@ -160,7 +160,8 @@ public class ViewRecordDetail extends BaseActivity implements View.OnClickListen
 
         tv_regDate.setText(intnt.getStringExtra(KEY.REG_DATE));
         tv_person_name.setText(str_hhName);
-        // todo : set Condition here if malaw than below code will exiqute
+        /**
+         *  set Condition here if malaw than below code will execute */
         if (c_code.equals(MALAWI)) {
             rLayoutLiberia.setVisibility(View.GONE);
             tv_LayR4Name.setText(intnt.getStringExtra(KEY.SEX));
@@ -465,7 +466,7 @@ public class ViewRecordDetail extends BaseActivity implements View.OnClickListen
                     intentAdd = new Intent(getApplicationContext(), RegisterMember.class);
                 else // else goto Liberia Page
                     intentAdd = new Intent(getApplicationContext(), RegisterMemberLiberia.class);
-                // todo reference the key
+                //  reference the key
                 intentAdd.putExtra("pID", pID);
                 intentAdd.putExtra("redirect", "view_detail");
                 intentAdd.putExtra("str_hhID", str_hhID);

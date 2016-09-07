@@ -489,6 +489,7 @@
     <dimen name="title_text_size">13sp</dimen>
     <dimen name="txt_size_list_row_14sp">14sp</dimen>
     <dimen name="txt_size_list_row_15sp">15sp</dimen>
+    <dimen name="txt_size_list_row_20sp">20sp</dimen>
     <dimen name="view_height">35dp</dimen>
     <dimen name="zxing_half_padding">4dip</dimen>
     <dimen name="zxing_standard_padding">8dip</dimen>
@@ -592,6 +593,7 @@
     <string name="cast_notification_connected_message">Connected to <ns1:g id="name">%1$s</ns1:g></string>
     <string name="cast_notification_connecting_message">Connecting to <ns1:g id="name">%1$s</ns1:g></string>
     <string name="cast_notification_disconnect">Disconnect</string>
+    <string name="category">Category</string>
     <string name="category_label">Category</string>
     <string name="cattle">CATTLE</string>
     <string name="cb_label_CIllness_Cerebral_Palsy">Cerebral Palsy</string>
@@ -670,6 +672,7 @@
     <string name="common_signin_button_text_long">Sign in with Google</string>
     <string name="compass">Compass</string>
     <string name="count">COUNT</string>
+    <string name="count_lable">Count</string>
     <string name="create_calendar_message">Allow Ad to create a calendar event?</string>
     <string name="create_calendar_title">Create calendar event</string>
     <string name="criteria_label">Criteria</string>
@@ -699,8 +702,10 @@
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
         AIzaSyB6R6Saou2TpmqGKcuZwbnUvhJhlv6nSls
     </string>
+    <string name="group">Group</string>
     <string name="group_details">Group Details</string>
     <string name="group_label">Group Name</string>
+    <string name="group_name">Group Name</string>
     <string name="h">H.Core Criteria: HHs with PLW or CU2; Secondary Criteria: HHs with one or more orphan child below 18 years old</string>
     <string name="hello_world">Hello world!</string>
     <string name="hh_id_label">HH ID</string>
@@ -775,7 +780,7 @@
     <string name="livestock">LIVESTOCK</string>
     <string name="lmp_date">LMP Date</string>
     <string name="location_name">Location Name</string>
-    <string name="log_in_version_lable">GPath-LIV-02040228</string>
+    <string name="log_in_version_lable">GPath-UAT-02040228</string>
     <string name="longTitle">Longitude</string>
     <string name="map_mode">Map Source</string>
     <string name="mapbox">MapBox</string>
@@ -850,6 +855,7 @@
     <string name="set_mode_online">Set to online mode</string>
     <string name="set_mode_show_me">showing and tracking my current location</string>
     <string name="sex">Sex</string>
+    <string name="srv_name">Srv Name</string>
     <string name="srv_sum_crite_TitleLable">Service Summary</string>
     <string name="srv_summary_TitleLable">Service Summary </string>
     <string name="status_bar_notification_info_overflow">999+</string>
@@ -880,6 +886,8 @@
     <string name="title_activity_summary_assign_base_criteria">SummaryAssignBaseCriteria</string>
     <string name="title_activity_summary_service">SummaryService</string>
     <string name="title_catagories">FAMILY COMPOSITION AND  HOUSING</string>
+    <string name="title_grp_summary">Group Summary</string>
+    <string name="title_id_list_in_grp_summary">ID List in Group </string>
     <string name="title_register">HHRegistration</string>
     <string name="title_register_member">Member Registration</string>
     <string name="topo">Topographic</string>

@@ -193,13 +193,13 @@ public final class R {
 		public static final int common_google_play_services_updating_text = 0x7f080028;
 		public static final int common_google_play_services_updating_title = 0x7f080029;
 		public static final int common_open_on_phone = 0x7f08002a;
-		public static final int common_signin_button_text = 0x7f0800cc;
-		public static final int common_signin_button_text_long = 0x7f0800cd;
-		public static final int create_calendar_message = 0x7f0800d0;
-		public static final int create_calendar_title = 0x7f0800d1;
-		public static final int decline = 0x7f0800d7;
-		public static final int store_picture_message = 0x7f080160;
-		public static final int store_picture_title = 0x7f080161;
+		public static final int common_signin_button_text = 0x7f0800cd;
+		public static final int common_signin_button_text_long = 0x7f0800ce;
+		public static final int create_calendar_message = 0x7f0800d2;
+		public static final int create_calendar_title = 0x7f0800d3;
+		public static final int decline = 0x7f0800d9;
+		public static final int store_picture_message = 0x7f080165;
+		public static final int store_picture_title = 0x7f080166;
 		public static final int wallet_buy_button_place_holder = 0x7f080031;
 	}
 	public static final class style {

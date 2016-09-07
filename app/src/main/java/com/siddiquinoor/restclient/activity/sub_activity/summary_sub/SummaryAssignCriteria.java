@@ -20,6 +20,7 @@ import com.siddiquinoor.restclient.activity.MainActivity;
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
+import com.siddiquinoor.restclient.manager.sqlsyntax.SQLiteQuery;
 import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.views.adapters.SummaryCriteriaModel;
 import com.siddiquinoor.restclient.views.adapters.SummaryCriteriaListAdapter;
@@ -33,7 +34,7 @@ import java.util.List;
  * @date: 2015-10-15
  */
 
-public class SummaryAssignCriteria extends BaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class SummaryAssignCriteria extends BaseActivity implements  AdapterView.OnItemClickListener {
     private static final String TAG = SummaryAssignCriteria.class.getSimpleName();
     private Button btn_home;
 
@@ -72,7 +73,8 @@ public class SummaryAssignCriteria extends BaseActivity implements View.OnClickL
         dialog = new ADNotificationManager();
         sqlH = new SQLiteHandler(mcontext);
         viewReference();
-        btn_home.setOnClickListener(this);
+        setAllListener();
+
         boolean redir;
         Intent intent = getIntent();
         idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
@@ -92,7 +94,28 @@ public class SummaryAssignCriteria extends BaseActivity implements View.OnClickL
         }
         loadProgram(idCountry);
 
-        btn_sammary.setOnClickListener(this);
+
+    }
+
+    private void setAllListener() {
+        btn_sammary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent iSummary = new Intent(mcontext, AllSummaryActivity.class);
+                iSummary.putExtra(KEY.COUNTRY_ID, idCountry);
+
+                startActivity(iSummary);
+            }
+        });
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent iHome = new Intent(mcontext, MainActivity.class);
+                startActivity(iHome);
+            }
+        });
     }
 
     private void viewReference() {
@@ -126,23 +149,7 @@ public class SummaryAssignCriteria extends BaseActivity implements View.OnClickL
         btn_home.setPadding(180, 10, 180, 10);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnHomeFooter:
-                finish();
-                Intent iHome = new Intent(mcontext, MainActivity.class);
-                startActivity(iHome);
-                break;
-            case R.id.btnRegisterFooter:
-                finish();
-                Intent iSummary = new Intent(mcontext, AllSummaryActivity.class);
-                iSummary.putExtra(KEY.COUNTRY_ID, idCountry);
 
-                startActivity(iSummary);
-                break;
-        }
-    }
 
     /**
      * LOAD :: Program
@@ -208,26 +215,7 @@ public class SummaryAssignCriteria extends BaseActivity implements View.OnClickL
     private void loadVillage(String cCode) {
         int position = 0;
 
-        String criteria = "SELECT " + " v." + SQLiteHandler.COUNTRY_CODE_COL + " || '' ||  v." + SQLiteHandler.DISTRICT_CODE_COL + " || '' || v." + SQLiteHandler.UPCODE_COL + " || '' || v." +
-                SQLiteHandler.UCODE_COL + " || '' || v." + SQLiteHandler.VCODE_COL + " AS v_code," +
-                " v." + SQLiteHandler.VILLAGE_NAME_COL + " AS Vill_Name " +
-                     /*   " COUNT("+PID_COL+") AS records"*/" FROM " + SQLiteHandler.VILLAGE_TABLE + " AS v" +
-                " LEFT JOIN " + SQLiteHandler.REGISTRATION_TABLE + " AS r" +
-                " ON r." + SQLiteHandler.COUNTRY_CODE_COL + "= v." + SQLiteHandler.COUNTRY_CODE_COL
-                + " AND " + "r." + SQLiteHandler.DISTRICT_NAME_COL + "= v." + SQLiteHandler.DISTRICT_CODE_COL
-                + " AND " + "r." + SQLiteHandler.UPZILLA_NAME_COL + "= v." + SQLiteHandler.UPCODE_COL
-                + " AND " + "r." + SQLiteHandler.UNITE_NAME_COL + "= v." + SQLiteHandler.UCODE_COL
-                + " AND " + "r." + SQLiteHandler.VILLAGE_NAME_COL + "= v." + SQLiteHandler.VCODE_COL +
-                " Inner join " + SQLiteHandler.SELECTED_VILLAGE_TABLE + " AS s"
-                + " on " + " s." + SQLiteHandler.COUNTRY_CODE_COL + "= v." + SQLiteHandler.COUNTRY_CODE_COL
-                + " AND " + "s." + SQLiteHandler.DISTRICT_CODE_COL + "= v." + SQLiteHandler.DISTRICT_CODE_COL
-                + " AND " + "s." + SQLiteHandler.UPCODE_COL + "= v." + SQLiteHandler.UPCODE_COL
-                + " AND " + "s." + SQLiteHandler.UCODE_COL + "= v." + SQLiteHandler.UCODE_COL
-                + " AND " + "s." + SQLiteHandler.VCODE_COL + "= v." + SQLiteHandler.VCODE_COL +
-
-                " WHERE v." + SQLiteHandler.COUNTRY_CODE_COL + "='" + getCountryCode() + "'" + /** send the no of village for selected country added by Faisal Mohammad*/
-                "  GROUP BY v." + SQLiteHandler.COUNTRY_CODE_COL + ",v." + SQLiteHandler.DISTRICT_CODE_COL + ",v." + SQLiteHandler.UPCODE_COL + ",v." + SQLiteHandler.UCODE_COL + ",v." + SQLiteHandler.VCODE_COL;
-
+        String criteria = SQLiteQuery.loadVillageInAssignSummary_sql(getCountryCode());
         List<SpinnerHelper> listVillage = sqlH.getListAndID(SQLiteHandler.CUSTOM_QUERY, criteria, getCountryCode(), false);
 
 
@@ -325,7 +313,7 @@ public class SummaryAssignCriteria extends BaseActivity implements View.OnClickL
 
 //        Log.d(TAG, "You clicked Item: " + id + " at position:" + position);
         SummaryCriteriaModel criteriaS = (SummaryCriteriaModel) adapter.getItem(position);
-        Log.d(TAG, "program :" + criteriaS.getCriteria_id().substring(0, 3) + " service : " + criteriaS.getCriteria_id().substring(3, 5));
+//        Log.d(TAG, "program :" + criteriaS.getCriteria_id().substring(0, 3) + " service : " + criteriaS.getCriteria_id().substring(3, 5));
         Intent iAssignSummary = new Intent(mcontext, SummaryAssignBaseCriteria.class);
         finish();
         //  idProgram=criteriaS.getCriteria_id().substring(0,3);

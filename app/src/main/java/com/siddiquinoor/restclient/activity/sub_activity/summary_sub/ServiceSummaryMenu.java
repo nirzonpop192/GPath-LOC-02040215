@@ -94,7 +94,7 @@ public class ServiceSummaryMenu extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                // todo:
+
                 if (idAward.equals("00")) {
                     dialog.showErrorDialog(CONTEXT, "Select Award");
                 } else if (idProgram.equals("00")) {

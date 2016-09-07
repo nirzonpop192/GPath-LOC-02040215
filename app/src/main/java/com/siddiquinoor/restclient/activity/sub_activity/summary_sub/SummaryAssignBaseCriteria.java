@@ -27,7 +27,7 @@ import com.siddiquinoor.restclient.views.notifications.ADNotificationManager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SummaryAssignBaseCriteria extends BaseActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class SummaryAssignBaseCriteria extends BaseActivity implements AdapterView.OnItemClickListener {
 
     private static final String TAG = SummaryAssignBaseCriteria.class.getSimpleName();
     private TextView tvProgram, tvVillage;
@@ -71,9 +71,35 @@ public class SummaryAssignBaseCriteria extends BaseActivity implements AdapterVi
         tvVillage.setText(strVillage);
         tvCriteria.setText(strCriteria);
         loadAssignSummaryList(idCountry, idDistrict, idUpazila, idUnit, idVillage, idDonor, idAward, idProgram, idService);
-        btnHome.setOnClickListener(this);
-        btnAssignSummary.setOnClickListener(this);
 
+       setAllListener();
+
+
+    }
+
+    private void setAllListener() {
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(mcontext, MainActivity.class));
+            }
+        });
+        btnAssignSummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent iAssSummayCri = new Intent(mcontext, SummaryAssignCriteria.class);
+//                iAssSummayCri.putExtra("COUNTRY_ID", idCountry);
+                iAssSummayCri.putExtra(KEY.COUNTRY_ID, idCountry);
+                iAssSummayCri.putExtra("ASS_SUMM_DIR", true);
+                iAssSummayCri.putExtra(KEY.PROGRAM_CODE, idProgram);
+                iAssSummayCri.putExtra(KEY.PROGRAM_NAME, strProgram);
+                iAssSummayCri.putExtra(KEY.VILLAGE_CODE, idVillage);
+                iAssSummayCri.putExtra(KEY.VILLAGE_NAME, strVillage);
+                startActivity(iAssSummayCri);
+            }
+        });
     }
 
     private void getDataFromIntent() {
@@ -143,9 +169,9 @@ public class SummaryAssignBaseCriteria extends BaseActivity implements AdapterVi
     }
 
     /**
-     * @date: 2015-10-17
-     * @autor: Faial Mohammad
-     * @description: LOAD :: Criteria in list view
+     * : 2015-10-17
+     * : Faisal Mohammad
+     * description: LOAD :: Criteria in list view
      */
     public void loadAssignSummaryList(String cCode, String disCode, String upCode, String unCode, String donorCode, String vCode, String awardCode, String progCode, String srvCode) {
         Log.d(TAG, "In load service List ");
@@ -159,7 +185,7 @@ public class SummaryAssignBaseCriteria extends BaseActivity implements AdapterVi
                 // add contacts data in arrayList
                 assignLisArray.add(data);
             }
-            //   adapter = new SummaryCriteriaListAdapter(this, criteriaArray);
+
             adapter = new SummaryAssignListModelAdapter((Activity) mcontext, assignLisArray);
             adapter.notifyDataSetChanged();
             lv_assignList.setAdapter(adapter);
@@ -167,7 +193,7 @@ public class SummaryAssignBaseCriteria extends BaseActivity implements AdapterVi
             lv_assignList.setFocusableInTouchMode(true);
             Toast.makeText(mcontext, "Size : " + assignList.size(), Toast.LENGTH_SHORT).show();
         } else {
-            dialog.showInfromDialog(mcontext, "No DATA", " No data for this village");
+            dialog.showInfromDialog(mcontext, "No Data", " No data for this village");
         }
         //hidePDialog();
     }
@@ -179,35 +205,15 @@ public class SummaryAssignBaseCriteria extends BaseActivity implements AdapterVi
     }
 
     /**
-     * @date: 2015-10-17
-     * @autor: Faial Mohammad
-     * @description: off the back press button
+     *  2015-10-17
+     *  Faial Mohammad
+     *  off the back press button
      */
 
- /*   @Override
+  @Override
     public void onBackPressed() {
         //super.onBackPressed();
-    }*/
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnHomeFooter:
-                finish();
-                startActivity(new Intent(mcontext, MainActivity.class));
-                break;
-            case R.id.btnRegisterFooter:
-                finish();
-                Intent iAssSummayCri = new Intent(mcontext, SummaryAssignCriteria.class);
-//                iAssSummayCri.putExtra("COUNTRY_ID", idCountry);
-                iAssSummayCri.putExtra(KEY.COUNTRY_ID, idCountry);
-                iAssSummayCri.putExtra("ASS_SUMM_DIR", true);
-                iAssSummayCri.putExtra(KEY.PROGRAM_CODE, idProgram);
-                iAssSummayCri.putExtra(KEY.PROGRAM_NAME, strProgram);
-                iAssSummayCri.putExtra(KEY.VILLAGE_CODE, idVillage);
-                iAssSummayCri.putExtra(KEY.VILLAGE_NAME, strVillage);
-                startActivity(iAssSummayCri);
-
-        }
     }
+
+
 }

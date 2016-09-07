@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 
 import com.siddiquinoor.restclient.R;
+import com.siddiquinoor.restclient.activity.sub_activity.summary_sub.GroupSummary;
 import com.siddiquinoor.restclient.activity.sub_activity.summary_sub.ServiceSummaryMenu;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.activity.sub_activity.summary_sub.Summary;
@@ -26,6 +27,7 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
     private Button btnGo, btnHome;
     private String idCountry;
     private RadioButton rbAssign;
+    private RadioButton rbtGroup;
 
     private ADNotificationManager dialog;
     private final Context CONTEXT = AllSummaryActivity.this;
@@ -37,7 +39,7 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_all_summary);
 
-        initil();
+        initial();
 
         Intent innt = getIntent();
 
@@ -52,7 +54,7 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
 
     }
 
-    private void initil() {
+    private void initial() {
         reference();
         dialog = new ADNotificationManager();
 
@@ -61,6 +63,7 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
         rbHouseHold.setEnabled(false);
         rbService.setEnabled(false);
         rbAssign.setEnabled(false);
+        rbtGroup.setEnabled(false);
     }
 
 
@@ -75,6 +78,7 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
             case UtilClass.REGISTRATION_OPERATION_MODE:
                 rbHouseHold.setEnabled(true);
                 rbAssign.setEnabled(true);
+                rbtGroup.setEnabled(true);
 
                 break;
             case UtilClass.DISTRIBUTION_OPERATION_MODE:
@@ -92,6 +96,7 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
         rbService = (RadioButton) findViewById(R.id.rbtn_service_samm);
         rbDistribution = (RadioButton) findViewById(R.id.rbtn_distribution_samm);
         rbAssign = (RadioButton) findViewById(R.id.rbtn_Assign_summary);
+        rbtGroup = (RadioButton) findViewById(R.id.rbtn_Group_summary);
 
         /**
          * view swipt views
@@ -145,6 +150,9 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
                     intent.putExtra(KEY.COUNTRY_ID, idCountry);
                     intent.putExtra(KEY.FLAG, KEY.DIST_FLAG);
                     intent.putExtra(KEY.DIR_CLASS_NAME_KEY, "AllSummaryActivity");
+                }else if(rbtGroup.isChecked()){
+                    intent = new Intent(AllSummaryActivity.this, GroupSummary.class);
+                    intent.putExtra(KEY.COUNTRY_ID, idCountry);
                 } else
                     dialog.showErrorDialog(CONTEXT, "No Menu is selected yet");
 

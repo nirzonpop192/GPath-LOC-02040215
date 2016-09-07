@@ -57,6 +57,10 @@
                 android:id="@+id/rbtn_Assign_summary"
                 style="@style/radio_btn"
                 android:text="@string/label_assign_summary" />
+            <RadioButton
+                android:id="@+id/rbtn_Group_summary"
+                style="@style/radio_btn"
+                android:text="@string/group" />
 
             <RadioButton
                 android:id="@+id/rbtn_service_samm"

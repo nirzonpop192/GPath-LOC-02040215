@@ -337,7 +337,7 @@ public class AssignDataModelAdapter extends BaseAdapter {
                                     case EC3://PROGRAM CODE EC3 OPEN
                                         switch (srvCode) {
                                             case MS://SERVICE CODE MS OPEN
-                                                //TODO: INTENT GOSE HERE WHEN DEVELOPED
+
                                                 break;//SERVICE CODE MS CLOSE
                                         }
                                         break;//PROGRAM CODE EC3 CLOSE
@@ -348,7 +348,7 @@ public class AssignDataModelAdapter extends BaseAdapter {
                                     case ETU://PROGRAM CODE ETU OPEN
                                         switch (srvCode) {
                                             case MTS://SERVICE CODE MTS OPEN
-                                                //TODO: INTENT GOSE HERE WHEN DEVELOPED
+
                                                 break;//SERVICE CODE MTS CLOSE
                                         }
                                         break;//PROGRAM CODE ETU CLOSE
@@ -359,7 +359,7 @@ public class AssignDataModelAdapter extends BaseAdapter {
                                     case REACT://PROGRAM CODE REACT OPEN
                                         switch (srvCode) {
                                             case MA://SERVICE CODE MA OPEN
-                                                //TODO: INTENT GOSE HERE WHEN DEVELOPED
+
                                                 break;//SERVICE CODE MA CLOSE
                                         }
                                         break;//PROGRAM CODE REACT CLOSE

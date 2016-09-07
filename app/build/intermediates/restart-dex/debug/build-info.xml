@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="armeabi-v7a,armeabi"
-    api-level="14"
+    abi="x86"
+    api-level="21"
     density="mdpi"
     format="7"
-    timestamp="33404528847233"
-    token="-2412017787919546035" >
+    timestamp="25614459310040"
+    token="-2412017787919546035"
+    verifier="METHOD_DELETED" >
 
     <task
         name="javac"
-        duration="3236" />
+        duration="959" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="10696" />
+        duration="16" />
     <task
         name="verifier"
-        duration="3880" />
+        duration="1" />
 
     <artifact
-        location="D:\Android\GPath-LOC-02040215\app\build\outputs\apk\app-debug.apk"
-        type="MAIN" />
+        location="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_0\classes.dex"
+        type="DEX" />
 
-    <build timestamp="33404528847233" >
+    <build timestamp="24276734852537" >
         <artifact
             location="D:\Android\GPath-LOC-02040215\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
+    </build>
+    <build timestamp="25327889545862" >
+        <artifact
+            location="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_4\classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="25614459310040"
+        verifier="METHOD_DELETED" >
+        <artifact
+            location="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_0\classes.dex"
+            type="DEX" />
     </build>
 
 </instant-run>

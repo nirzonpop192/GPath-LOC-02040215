@@ -27,6 +27,11 @@ import com.siddiquinoor.restclient.views.notifications.ADNotificationManager;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author  Faisal
+ * This class show a list of member id And inserted in specifice Group
+ */
+
 
 public class IdListInGroupSummary extends BaseActivity implements AdapterView.OnItemClickListener {
 
@@ -87,6 +92,9 @@ public class IdListInGroupSummary extends BaseActivity implements AdapterView.On
         });
     }
 
+    /**
+     * This method invoke in @see #onCreate(Bundle) to initiate necessary variable
+     */
 
     private void initial() {
         viewReference();
@@ -140,7 +148,7 @@ public class IdListInGroupSummary extends BaseActivity implements AdapterView.On
         } else {
             dialog.showInfromDialog(mContext, "No Data", "");
         }
-        //hidePDialog();
+
 
 
 

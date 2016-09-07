@@ -10673,26 +10673,72 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return false;
     }
 
+    /**
+     * this method check is the user is admin
+     * @param admin_user admin_user
+     * @param admin_pass password
+     * @return
+     */
+
+    public boolean isValidAdminLocalLogin(final String admin_user, final String admin_pass) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * FROM " + STAFF_MASTER_TABLE
+                + " WHERE " + USER_LOGIN_NAME + " = " + "'" + admin_user + "' "
+                +" AND " + USER_LOGIN_PW + " = " + "'" + admin_pass + "' "
+                +" AND " + STAFF_ADMIN_ROLE_COL + " IN ('A' ,'C') " ;
+
+        try {
+
+            final Cursor c = db.rawQuery(selectQuery, null);
+            if (c != null) {
+                if (c.getCount() > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "isValidLocalLogin() Method: " + e.getMessage());
+
+        } finally {
+            // close database connection
+            db.close();
+        }
+        return false;
+    }
+
+
 
     /**
      * Storing user details in database
+     * @param user_id
+     * @param country_code
+     * @param login_name
+     * @param login_pw
+     * @param first_name
+     * @param last_name
+     * @param email
+     * @param email_verification
+     * @param user_status
+     * @param entry_by
+     * @param entry_date
      */
     public void addUser(String user_id, String country_code, String login_name, String login_pw, String first_name, String last_name, String email, String email_verification, String user_status, String entry_by, String entry_date) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(USER_ID, user_id); // user_id
-        values.put(COUNTRY_CODE, country_code); // user_id
-        values.put(USER_LOGIN_NAME, login_name); // login_name
-        values.put(USER_LOGIN_PW, login_pw); // login_pw
-        values.put(USER_FIRST_NAME, first_name); // first_name
-        values.put(USER_LAST_NAME, last_name); // last_name
-        values.put(USER_EMAIL, email); // email
-        values.put(USER_EMAIL_VERIFICATION, email_verification); // email_verification
-        values.put(USER_STATUS, user_status); // user_status
-        values.put(ENTRY_BY, entry_by); // entry_by
-        values.put(ENTRY_DATE, entry_date); // entry_date
+        values.put(USER_ID, user_id);
+        values.put(COUNTRY_CODE, country_code);
+        values.put(USER_LOGIN_NAME, login_name);
+        values.put(USER_LOGIN_PW, login_pw);
+        values.put(USER_FIRST_NAME, first_name);
+        values.put(USER_LAST_NAME, last_name);
+        values.put(USER_EMAIL, email);
+        values.put(USER_EMAIL_VERIFICATION, email_verification);
+        values.put(USER_STATUS, user_status);
+        values.put(ENTRY_BY, entry_by);
+        values.put(ENTRY_DATE, entry_date);
 
         // Inserting Row
         long id = db.insert(LOGIN_TABLE, null, values);

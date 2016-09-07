@@ -12,19 +12,34 @@ import com.siddiquinoor.restclient.R;
 
 import java.util.ArrayList;
 
+
 /**
- * Created by USER on 9/6/2016.
+ * @author Faisal
+ * @since 9/6/2016.
+ * this class generate list row in the in @see #IdListInGroupSummar  Class
  */
 public class SummaryIdListInGroupAdapter extends BaseAdapter {
 
-    private ArrayList<SummaryIdListInGroupDataModel> arrayList=new ArrayList<SummaryIdListInGroupDataModel>();
+    private ArrayList<SummaryIdListInGroupDataModel> arrayList = new ArrayList<SummaryIdListInGroupDataModel>();
     private Activity mActivity;
     private LayoutInflater inflater;
+
+    /**
+     *
+     * @param mActivity invoking activity
+     * @param arrayList idListed array
+     */
 
     public SummaryIdListInGroupAdapter(Activity mActivity, ArrayList<SummaryIdListInGroupDataModel> arrayList) {
         this.mActivity = mActivity;
         this.arrayList = arrayList;
     }
+
+    /**
+     *
+     * @return size of the array
+     */
+
     @Override
     public int getCount() {
         return arrayList.size();
@@ -41,27 +56,27 @@ public class SummaryIdListInGroupAdapter extends BaseAdapter {
     }
 
     ViewHolder holder;
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View row=convertView;
+        View row = convertView;
 
-        if (inflater==null){
-            inflater= (LayoutInflater) mActivity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        if (inflater == null) {
+            inflater = (LayoutInflater) mActivity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         }
-        if (convertView==null){
-            row=inflater.inflate(R.layout.list_row_summary_id_listed_in_group,null);
-            holder=new ViewHolder();
-            holder.tv_memId= (TextView) row.findViewById(R.id.list_row_summ_mem_id_in_grp_tv_memId);
-            holder.tv_memName= (TextView) row.findViewById(R.id.list_row_summ_mem_id_in_grp_tv_memName);
-            holder.srvName= (TextView) row.findViewById(R.id.list_row_summ_mem_id_in_grp_tv_srvName);
+        if (convertView == null) {
+            row = inflater.inflate(R.layout.list_row_summary_id_listed_in_group, null);
+            holder = new ViewHolder();
+            holder.tv_memId = (TextView) row.findViewById(R.id.list_row_summ_mem_id_in_grp_tv_memId);
+            holder.tv_memName = (TextView) row.findViewById(R.id.list_row_summ_mem_id_in_grp_tv_memName);
+            holder.srvName = (TextView) row.findViewById(R.id.list_row_summ_mem_id_in_grp_tv_srvName);
 
 
             row.setTag(holder);
+        } else {
+            holder = (ViewHolder) row.getTag();
         }
-        else {
-            holder= (ViewHolder) row.getTag();
-        }
-        SummaryIdListInGroupDataModel data=getItem(position);
+        SummaryIdListInGroupDataModel data = getItem(position);
 
         holder.tv_memId.setText(data.getnMemId());
         holder.tv_memName.setText(data.getMemName());
@@ -78,17 +93,17 @@ public class SummaryIdListInGroupAdapter extends BaseAdapter {
         return row;
     }
 
-    class ViewHolder{
+    class ViewHolder {
         TextView tv_memId;
         TextView tv_memName;
         TextView srvName;
 
     }
+
     private void changeTextColor(int color) {
         holder.tv_memId.setTextColor(color);
         holder.tv_memName.setTextColor(color);
         holder.srvName.setTextColor(color);
-
 
 
     }

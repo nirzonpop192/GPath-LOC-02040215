@@ -669,6 +669,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Intent iGraduation = new Intent(getApplicationContext(), GraduationActivity.class);
                 iGraduation.putExtra(KEY.COUNTRY_ID, idCountry);
                 iGraduation.putExtra(KEY.STR_COUNTRY, strCountry);
+                iGraduation.putExtra(KEY.DIR_CLASS_NAME_KEY, "MainActivity");
                 startActivity(iGraduation);
                 break;
 

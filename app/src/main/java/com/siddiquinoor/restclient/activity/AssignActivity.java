@@ -50,11 +50,7 @@ import java.util.List;
 
 public class AssignActivity extends BaseActivity {
 
-  /*  @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assign);
-    }*/
+
 
     private static final String TAG = OldAssignActivity.class.getName();
     AlertDialog goToDialog;
@@ -90,9 +86,7 @@ public class AssignActivity extends BaseActivity {
     //private Spinner spVillage;
     private String idVillage;
     private String strVillage;
-    // private int positionVillage;
-    //  private Button btnHome;
-    //  private Button btnSearch;
+
     private EditText edt_mmSearch;
     String entryBy;
     String entryDate;

@@ -1,13 +1,17 @@
 package com.siddiquinoor.restclient.activity;
 /**
  * This class is for Graduate the member
+ *
  * @author: Faisal Mohammad
  * @virsion:
  */
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,13 +21,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
+import com.siddiquinoor.restclient.utils.CalculationPadding;
 import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.views.adapters.GraduationGridAdapter;
 import com.siddiquinoor.restclient.views.adapters.GraduationGridDataModel;
@@ -33,9 +37,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class GraduationActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class GraduationActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
-    private final String TAG=GraduationActivity.class.getName();
+    private final String TAG = GraduationActivity.class.getName();
 
     private String idCountry;
     private String strCounty;
@@ -59,8 +63,8 @@ public class GraduationActivity extends BaseActivity implements View.OnClickList
     private Button btnSearchId;
 
 
-    private Button btn_Home;
-    private Button btn_sammary;
+    private Button btnHome;
+    private Button btnSummary;
     private GraduationGridAdapter adapter;
     private String idDonor;
 
@@ -71,71 +75,135 @@ public class GraduationActivity extends BaseActivity implements View.OnClickList
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_graduation);
 
-        mContext =GraduationActivity.this;
-        sqlH=new SQLiteHandler(this);
-        Intent intent=getIntent();
+        initial();
 
-        idCountry=intent.getStringExtra(KEY.COUNTRY_ID);
-        strCounty=intent.getStringExtra(KEY.STR_COUNTRY);
 
-        referenceViewId();
+        Intent intent = getIntent();
+
+        String dir = intent.getStringExtra(KEY.DIR_CLASS_NAME_KEY);
+        if (dir.equals("MainActivity")) {
+            idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
+            strCounty = intent.getStringExtra(KEY.STR_COUNTRY);
+        } else {
+            idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
+
+        }
+
+
+        Log.d(TAG, "id Country : id " + idCountry);
+
         loadAward(idCountry);
 
         edt_searchId.requestFocus();
-        InputMethodManager imm=(InputMethodManager)getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
         imm.showSoftInput(edt_searchId, InputMethodManager.SHOW_IMPLICIT);
 
+        setAllListener();
 
     }
 
-    private void referenceViewId() {
+    private void initial() {
+        mContext = GraduationActivity.this;
+        sqlH = new SQLiteHandler(this);
+        viewReference();
+    }
 
-        spAward= (Spinner) findViewById(R.id.sp_Award_Graduation);
-        spProgram= (Spinner) findViewById(R.id.sp_Program_Graduation);
-        spCriteria= (Spinner) findViewById(R.id.sp_Criteria_Graduation);
 
-        btn_Home= (Button) findViewById(R.id.btnHomeFooter);
-        btn_Home.setOnClickListener(this);
-        btn_sammary= (Button) findViewById(R.id.btnRegisterFooter);
-        btn_sammary.setText("Summary");
-        btn_sammary.setOnClickListener(this);
-        lv_garduation= (ListView) findViewById(R.id.lv_graduationList);
-        edt_searchId= (EditText) findViewById(R.id.edt_searchId);
+    private void setAllListener() {
+        btnSearchId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String memberId = edt_searchId.getText().toString();
+                loadGraduationGrid(idCountry, idDonor, idAward, idProgram, idService, memberId);
+            }
+        });
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMainActivity((Activity) mContext);
+            }
+        });
+        btnSummary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToSummaryActivity((Activity) mContext, idCountry);
+            }
+        });
+    }
+
+    private void viewReference() {
+
+        spAward = (Spinner) findViewById(R.id.sp_Award_Graduation);
+        spProgram = (Spinner) findViewById(R.id.sp_Program_Graduation);
+        spCriteria = (Spinner) findViewById(R.id.sp_Criteria_Graduation);
+
+        btnHome = (Button) findViewById(R.id.btnHomeFooter);
+
+        btnSummary = (Button) findViewById(R.id.btnRegisterFooter);
+
+
+        lv_garduation = (ListView) findViewById(R.id.lv_graduationList);
+        edt_searchId = (EditText) findViewById(R.id.edt_searchId);
         btnSearchId = (Button) findViewById(R.id.btn_Graduation_SearchID);
-        btnSearchId.setOnClickListener(this);
+
     }
+
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btnHomeFooter:
-              /*  Intent iHome=new Intent(mContext, MainActivity.class);
-                startActivity(iHome);*/
-                goToMainActivity((Activity)mContext);
-
-                break;
-            case R.id.btnRegisterFooter:
-//                startActivity(new Intent(mContext, AllSummaryActivity.class));
-                goToSummaryActivity((Activity) mContext, idCountry);
-                break;
-            case R.id.btn_Graduation_SearchID:
-                String memberId=edt_searchId.getText().toString();
-                loadGraduationGrid(idCountry, idDonor, idAward, idProgram, idService, memberId);
-               // Toast.makeText(mContext,"search",Toast.LENGTH_SHORT).show();
-                break;
-
-        }
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        setUpSummaryButton();
+        setUpHomeButton();
     }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setUpSummaryButton() {
+        btnSummary.setText("");
+        Drawable summeryImage = getResources().getDrawable(R.drawable.summession_b);
+        btnSummary.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
+        int leftPadd, rightPadd;
+        CalculationPadding calPadd = new CalculationPadding();
+
+        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, summeryImage, btnHome);
+
+        btnSummary.setPadding(leftPadd, 5, rightPadd, 5);
+    }
+
+    /**
+     * Icon set by the method
+     */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setUpHomeButton() {
+
+        btnHome.setText("");
+        Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
+        btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
+
+        int leftPadd, rightPadd;
+        CalculationPadding calPadd = new CalculationPadding();
+
+        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, imageHome, btnHome);
+
+        btnHome.setPadding(leftPadd, 5, rightPadd, 5);
+
+    }
+
 
     /**
      * LOAD :: Award
      */
-    private void loadAward(final String cCode){
+    private void loadAward(final String cCode) {
 
-        int position=0;
-        String criteria = " WHERE " + SQLiteHandler.ADM_AWARD_TABLE +"."+ SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "'";
+        int position = 0;
+        String criteria = " WHERE " + SQLiteHandler.ADM_AWARD_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "'";
         // Spinner Drop down elements for District
-        List<SpinnerHelper> listAward = sqlH.getListAndID(SQLiteHandler.ADM_AWARD_TABLE, criteria, null,false);
+        List<SpinnerHelper> listAward = sqlH.getListAndID(SQLiteHandler.ADM_AWARD_TABLE, criteria, null, false);
 
         // Creating adapter for spinner
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listAward);
@@ -152,9 +220,8 @@ public class GraduationActivity extends BaseActivity implements View.OnClickList
                     position = i;
                 }
             }
-            spAward.setSelection( position );
+            spAward.setSelection(position);
         }
-
 
 
         spAward.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -164,10 +231,10 @@ public class GraduationActivity extends BaseActivity implements View.OnClickList
                 idAward = ((SpinnerHelper) spAward.getSelectedItem()).getId();
 
 
-                if (idAward.length()>2){
-                         idDonor = idAward.substring(0, 2);
-                         idAward = idAward.substring( 2);
-                        loadProgram(idAward, idDonor, cCode);
+                if (idAward.length() > 2) {
+                    idDonor = idAward.substring(0, 2);
+                    idAward = idAward.substring(2);
+                    loadProgram(idAward, idDonor, cCode);
                 }
                 Log.d(TAG, "idAward : " + idAward.substring(2) + " donor id :" + idAward.substring(0, 2));
 
@@ -184,13 +251,13 @@ public class GraduationActivity extends BaseActivity implements View.OnClickList
     /**
      * LOAD :: Program
      */
-    private void loadProgram (final String awardCode, final String donorCode, final String idcCode){
+    private void loadProgram(final String awardCode, final String donorCode, final String idcCode) {
 
-        int position=0;
-        String criteria = " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE +"."+ SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
-                +" AND " +SQLiteHandler.COUNTRY_PROGRAM_TABLE +"."+ SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'" ;
+        int position = 0;
+        String criteria = " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
+                + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'";
         // Spinner Drop down elements for District
-        List<SpinnerHelper> listProgram = sqlH.getListAndID(SQLiteHandler.COUNTRY_PROGRAM_TABLE, criteria, null,false);
+        List<SpinnerHelper> listProgram = sqlH.getListAndID(SQLiteHandler.COUNTRY_PROGRAM_TABLE, criteria, null, false);
 
         // Creating adapter for spinner
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listProgram);
@@ -207,16 +274,15 @@ public class GraduationActivity extends BaseActivity implements View.OnClickList
                     position = i;
                 }
             }
-            spProgram.setSelection( position );
+            spProgram.setSelection(position);
         }
-
 
 
         spProgram.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                strProgram   =  ( (SpinnerHelper) spProgram.getSelectedItem () ).getValue();
-                idProgram   = ( (SpinnerHelper) spProgram.getSelectedItem () ).getId();
+                strProgram = ((SpinnerHelper) spProgram.getSelectedItem()).getValue();
+                idProgram = ((SpinnerHelper) spProgram.getSelectedItem()).getId();
 
                 Log.d(TAG, "load Prog data " + idProgram);
 
@@ -236,14 +302,14 @@ public class GraduationActivity extends BaseActivity implements View.OnClickList
     /**
      * LOAD :: Criteria
      */
-    private void loadCriteria(final String awardCode, final String donorCode, final String programCode, final String cCode){
+    private void loadCriteria(final String awardCode, final String donorCode, final String programCode, final String cCode) {
 
-        int position=0;
-        String criteria = " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE +"."+ SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
-                +" AND " +SQLiteHandler.COUNTRY_PROGRAM_TABLE  +"."+ SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'"
-                +" AND " +SQLiteHandler.COUNTRY_PROGRAM_TABLE +"."+ SQLiteHandler.PROGRAM_CODE_COL + "='" + programCode + "'" ;
+        int position = 0;
+        String criteria = " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
+                + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'"
+                + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL + "='" + programCode + "'";
         // Spinner Drop down elements for District
-        List<SpinnerHelper> listCriteria = sqlH.getListAndID(SQLiteHandler.SERVICE_MASTER_TABLE, criteria, null,false);
+        List<SpinnerHelper> listCriteria = sqlH.getListAndID(SQLiteHandler.SERVICE_MASTER_TABLE, criteria, null, false);
 
         // Creating adapter for spinner
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listCriteria);
@@ -260,21 +326,19 @@ public class GraduationActivity extends BaseActivity implements View.OnClickList
                     position = i;
                 }
             }
-            spCriteria.setSelection( position );
+            spCriteria.setSelection(position);
         }
-
 
 
         spCriteria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                strCriteria   =  ( (SpinnerHelper) spCriteria.getSelectedItem () ).getValue();
-                idCriteria    = ( (SpinnerHelper) spCriteria.getSelectedItem () ).getId();
+                strCriteria = ((SpinnerHelper) spCriteria.getSelectedItem()).getValue();
+                idCriteria = ((SpinnerHelper) spCriteria.getSelectedItem()).getId();
 
-
-                if(Integer.parseInt(idCriteria)>0) {
-                    idService=idCriteria;
-                  loadGraduationGrid(cCode,donorCode,awardCode,programCode,idService,"");
+                if (Integer.parseInt(idCriteria) > 0) {
+                    idService = idCriteria;
+                    loadGraduationGrid(cCode, donorCode, awardCode, programCode, idService, "");
                 }
 
 
@@ -292,6 +356,7 @@ public class GraduationActivity extends BaseActivity implements View.OnClickList
 
     /**
      * This method load the list of GraduatedPeople
+     *
      * @param countryCode
      * @param donorCode
      * @param awardCode
@@ -300,16 +365,15 @@ public class GraduationActivity extends BaseActivity implements View.OnClickList
      * @param memid
      */
 
-    public void loadGraduationGrid(String countryCode, String donorCode, String awardCode,String programCode,
-                                    String serviceCode,String memid)
-    {
+    public void loadGraduationGrid(String countryCode, String donorCode, String awardCode, String programCode,
+                                   String serviceCode, String memid) {
         Log.d(TAG, "In loadGraduationGrid List ");
-        // use veriable to like operation
+        // use variable to like operation
 
         ArrayList<GraduationGridDataModel> graduationList =
                 sqlH.getGRDGridList(countryCode, programCode, serviceCode, donorCode, awardCode, memid);
 
-        adapter = new GraduationGridAdapter(graduationList,this,strAward,strProgram,strCriteria,awardCode,programCode,donorCode,serviceCode);
+        adapter = new GraduationGridAdapter(graduationList, this, strAward, strProgram, strCriteria, awardCode, programCode, donorCode, serviceCode);
         adapter.notifyDataSetChanged();
         lv_garduation.setAdapter(adapter);
         lv_garduation.setOnItemClickListener(this);
@@ -322,7 +386,9 @@ public class GraduationActivity extends BaseActivity implements View.OnClickList
 
     }
 
-    /** back press button is disable */
+    /**
+     * back press button is disable
+     */
     @Override
     public void onBackPressed() {
         //super.onBackPressed();

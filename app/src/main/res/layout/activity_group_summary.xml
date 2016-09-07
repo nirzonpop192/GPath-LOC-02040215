@@ -55,9 +55,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginRight="15dp"
 
-            android:layout_toLeftOf="@+id/srvName"
-
-            android:layout_toStartOf="@+id/srvName"
+            android:layout_toLeftOf="@+id/tv_status"
+            android:layout_toStartOf="@+id/tv_status"
             android:padding="5dp"
 
             android:paddingTop="10dp"
@@ -67,23 +66,7 @@
             android:textSize="@dimen/txt_size_list_row_20sp" />
 
 
-        <TextView
-            android:id="@+id/srvName"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
 
-
-            android:layout_toLeftOf="@+id/tv_status"
-            android:layout_toStartOf="@+id/tv_status"
-            android:gravity="center"
-            android:padding="5dp"
-
-            android:text="@string/srv_name"
-            android:textColor="@color/white"
-            android:textSize="@dimen/txt_size_list_row_20sp"
-
-            />
 
         <TextView
             android:id="@+id/tv_status"

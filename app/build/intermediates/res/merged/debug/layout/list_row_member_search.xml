@@ -28,19 +28,11 @@
         android:textSize="14sp"
         android:layout_toRightOf="@+id/memS_row_memId"
         android:layout_above="@+id/tv_LayR4Name"
-        android:layout_toStartOf="@+id/ibtn_group_sear_edit"
-        android:layout_toLeftOf="@+id/ibtn_group_sear_edit" />
+        android:layout_toStartOf="@+id/ibtn_goTo_assign"
+        android:layout_toLeftOf="@+id/ibtn_goTo_assign" />
 
 
-    <ImageButton
 
-        android:id="@+id/ibtn_group_sear_edit"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/goto_b" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -59,11 +51,29 @@
         android:layout_height="wrap_content"
         android:text="er"
         android:id="@+id/memSear_tv_AddressName"
-        android:layout_toLeftOf="@+id/ibtn_group_sear_edit"
-        android:layout_alignBottom="@+id/ibtn_group_sear_edit"
+        android:layout_toLeftOf="@+id/ibtn_goTo_assign"
+        android:layout_toStartOf="@+id/ibtn_goTo_assign"
+        android:layout_alignBottom="@+id/ibtn_goTo_assign"
         android:layout_alignLeft="@+id/memS_row_mem_name"
         android:layout_alignStart="@+id/memS_row_mem_name" />
+    <ImageButton
 
+        android:id="@+id/ibtn_goTo_assign"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toLeftOf="@+id/ibtn_goTo_graduation"
+        android:layout_toStartOf="@+id/ibtn_goTo_graduation"
 
+        android:src="@drawable/assign" />
+
+    <ImageButton
+
+        android:id="@+id/ibtn_goTo_graduation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/exit" />
 </RelativeLayout>
 

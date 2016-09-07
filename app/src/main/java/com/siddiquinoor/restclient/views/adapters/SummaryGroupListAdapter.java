@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by Faisal on 9/5/2016.
  */
 public class SummaryGroupListAdapter extends BaseAdapter {
-    private ArrayList<SummaryGroupListDataModel> arrayList=new ArrayList<SummaryGroupListDataModel>();
+    private ArrayList<SummaryGroupListDataModel> arrayList = new ArrayList<SummaryGroupListDataModel>();
     private Activity mActivity;
     private LayoutInflater inflater;
 
@@ -41,31 +41,31 @@ public class SummaryGroupListAdapter extends BaseAdapter {
     }
 
     ViewHolder holder;
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View row=convertView;
+        View row = convertView;
 
-        if (inflater==null){
-            inflater= (LayoutInflater) mActivity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        if (inflater == null) {
+            inflater = (LayoutInflater) mActivity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         }
-        if (convertView==null){
-            row=inflater.inflate(R.layout.list_row_summary_grp_list,null);
-            holder=new ViewHolder();
-            holder.tv_groupName= (TextView) row.findViewById(R.id.list_row_summ_grp_tv_Grp_Name);
-            holder.tv_groupCatName= (TextView) row.findViewById(R.id.list_row_summ_grp_tv_Grp_CatName);
-            holder.tv_srvShortName= (TextView) row.findViewById(R.id.list_row_summ_grp_tv_srvShortName);
-            holder.tv_count= (TextView) row.findViewById(R.id.list_row_summ_grp_tv_count);
+        if (convertView == null) {
+            row = inflater.inflate(R.layout.list_row_summary_grp_list, null);
+            holder = new ViewHolder();
+            holder.tv_groupName = (TextView) row.findViewById(R.id.list_row_summ_grp_tv_Grp_Name);
+            holder.tv_groupCatName = (TextView) row.findViewById(R.id.list_row_summ_grp_tv_Grp_CatName);
+
+            holder.tv_count = (TextView) row.findViewById(R.id.list_row_summ_grp_tv_count);
 
             row.setTag(holder);
+        } else {
+            holder = (ViewHolder) row.getTag();
         }
-        else {
-            holder= (ViewHolder) row.getTag();
-        }
-        SummaryGroupListDataModel data=getItem(position);
+        SummaryGroupListDataModel data = getItem(position);
 
         holder.tv_groupName.setText(data.getGroupName());
         holder.tv_groupCatName.setText(data.getGroupCatShortName());
-        holder.tv_srvShortName.setText(data.getSrvShortName());
+
         holder.tv_count.setText(data.getCount());
         if (position % 2 == 0) {
             row.setBackgroundColor(Color.WHITE);
@@ -78,16 +78,17 @@ public class SummaryGroupListAdapter extends BaseAdapter {
         return row;
     }
 
-     class ViewHolder{
+    class ViewHolder {
         TextView tv_groupName;
         TextView tv_groupCatName;
-        TextView tv_srvShortName;
+
         TextView tv_count;
     }
+
     private void changeTextColor(int color) {
         holder.tv_groupName.setTextColor(color);
         holder.tv_groupCatName.setTextColor(color);
-        holder.tv_srvShortName.setTextColor(color);
+
         holder.tv_count.setTextColor(color);
 
 

@@ -27,26 +27,14 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:layout_toLeftOf="@+id/list_row_summ_grp_tv_srvShortName"
-        android:layout_toStartOf="@+id/list_row_summ_grp_tv_srvShortName"
+        android:layout_toLeftOf="@+id/list_row_summ_grp_tv_count"
+        android:layout_toStartOf="@+id/list_row_summ_grp_tv_count"
         android:text="Cat Name"
         android:textSize="@dimen/txt_size_list_row_20sp"
 
         />
 
-    <TextView
-        android:id="@+id/list_row_summ_grp_tv_srvShortName"
-        android:gravity="center_horizontal"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_toLeftOf="@+id/list_row_summ_grp_tv_count"
-        android:layout_toStartOf="@+id/list_row_summ_grp_tv_count"
-        android:text="Srv Name"
-        android:textSize="@dimen/txt_size_list_row_20sp"
 
-        />
 
     <TextView
         android:gravity="center_horizontal"

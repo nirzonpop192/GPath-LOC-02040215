@@ -4,6 +4,7 @@ package com.siddiquinoor.restclient.activity;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -23,6 +24,7 @@ import android.widget.Spinner;
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
+import com.siddiquinoor.restclient.utils.CalculationPadding;
 import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.views.adapters.AssignDataModel;
 import com.siddiquinoor.restclient.views.adapters.AssignDataModelAdapter;
@@ -55,6 +57,7 @@ public class MemberSearchPage extends BaseActivity {
 
     private Button btn_searchMember;
     private EditText edt_memberId;
+    private final Context mContext = MemberSearchPage.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,27 +69,36 @@ public class MemberSearchPage extends BaseActivity {
         idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
         loadLayRList(idCountry);
 
+        setListener();
+
+
+    }
+
+    private void setListener() {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                Intent iHome = new Intent(MemberSearchPage.this, MainActivity.class);
-                startActivity(iHome);
+                goToMainActivity((Activity) mContext);
             }
         });
 
         btn_searchMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String idMember=edt_memberId.getText().toString();
-                if (idMember.length()>0){
+                String idMember = edt_memberId.getText().toString();
+                if (idMember.length() > 0) {
 
-                    LoadListView loading = new LoadListView(idCountry, idDistrictC, idUpazilaC, idUnitC, idVillageC,idMember);
+                    LoadListView loading = new LoadListView(idCountry, idDistrictC, idUpazilaC, idUnitC, idVillageC, idMember);
                     loading.execute();
                 }
             }
         });
     }
+
+    /**
+     * initialize the global variable
+     *
+     */
 
     private void initialize() {
         sqlH = new SQLiteHandler(MemberSearchPage.this);
@@ -97,34 +109,55 @@ public class MemberSearchPage extends BaseActivity {
     }
 
     /**
-     * Refere the XML views with java object
+     * Refer the XML views with java object
      */
     private void viewReference() {
         spVillage = (Spinner) findViewById(R.id.search_mem_spVillage);
         listOfMember = (ListView) findViewById(R.id.lv_mem_search);
         btnHome = (Button) findViewById(R.id.btnHomeFooter);
-     Button   btnSummary = (Button) findViewById(R.id.btnRegisterFooter);
+        Button btnSummary = (Button) findViewById(R.id.btnRegisterFooter);
         btnSummary.setVisibility(View.GONE);
 
-        btn_searchMember= (Button) findViewById(R.id.btn_memberSearch);
-        edt_memberId= (EditText) findViewById(R.id.edt_memberSearch);
-        addIconHomeButton();
+        btn_searchMember = (Button) findViewById(R.id.btn_memberSearch);
+        edt_memberId = (EditText) findViewById(R.id.edt_memberSearch);
+
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void addIconHomeButton() {
 
+
+
         btnHome.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        btnHome.setPadding(380, 5, 380, 5);
+        int leftPadd,rightPadd;
+        CalculationPadding calPadd = new CalculationPadding();
+
+        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, imageHome, btnHome);
+
+        btnHome.setPadding(leftPadd, 5, rightPadd, 5);
     }
+
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        addIconHomeButton();
+    }
+
     /**
      * @param cCode Country Code
      */
     private void loadLayRList(final String cCode) {
         int position = 0;
-        //  String criteria=" WHERE "+SQLiteHandler.COUNTRY_CODE_COL +" = '"+idcCode+"' ";
+
         String criteria = " AS v   INNER JOIN " + SQLiteHandler.SELECTED_VILLAGE_TABLE + " as S "
                 + " ON S." + SQLiteHandler.COUNTRY_CODE_COL
 
@@ -169,13 +202,13 @@ public class MemberSearchPage extends BaseActivity {
 
 
                     String countryCode = idVillage.substring(0, 4);
-                     idDistrictC      = idVillage.substring(4, 6);
-                     idUpazilaC       = idVillage.substring(6, 8);
-                     idUnitC          = idVillage.substring(8, 10);
-                     idVillageC       = idVillage.substring(10);
+                    idDistrictC = idVillage.substring(4, 6);
+                    idUpazilaC = idVillage.substring(6, 8);
+                    idUnitC = idVillage.substring(8, 10);
+                    idVillageC = idVillage.substring(10);
 
 
-                    LoadListView loading = new LoadListView(countryCode, idDistrictC, idUpazilaC, idUnitC, idVillageC,"");
+                    LoadListView loading = new LoadListView(countryCode, idDistrictC, idUpazilaC, idUnitC, idVillageC, "");
                     loading.execute();
 
 
@@ -183,9 +216,7 @@ public class MemberSearchPage extends BaseActivity {
                     adapter = new MemberSearchAdapter();
                     adapter.notifyDataSetChanged();
                     listOfMember.setAdapter(adapter);
-                  /*  if (pDialog.isShowing()){
-                        pDialog.dismiss();
-                    }*/
+
                 }
 
 
@@ -198,9 +229,13 @@ public class MemberSearchPage extends BaseActivity {
         });
     }// end of the village spinner
 
+    /**
+     * This Class i used For  Loading List in thread
+     */
+
     private class LoadListView extends AsyncTask<Void, Integer, String> {
 
-        // private String mMemberIdS;// for member id search
+
         private String temCCode;
         private String temDistCode;
         private String temUpazilaCode;
@@ -209,8 +244,8 @@ public class MemberSearchPage extends BaseActivity {
         private String memId;
 
 
-        public LoadListView(final String temCCode, final String temDistCode, final String temUpazilaCode, final String temUnitCode, final String temVillageCode ,final String memId) {
-            /*this.mMemberIdS = mMemberIdS;*/
+        public LoadListView(final String temCCode, final String temDistCode, final String temUpazilaCode, final String temUnitCode, final String temVillageCode, final String memId) {
+
             this.temCCode = temCCode;
             this.temDistCode = temDistCode;
             this.temUpazilaCode = temUpazilaCode;
@@ -224,7 +259,7 @@ public class MemberSearchPage extends BaseActivity {
         protected String doInBackground(Void... params) {
 
 
-            loadAssignedListData(temCCode, temDistCode, temUpazilaCode, temUnitCode, temVillageCode,memId);
+            loadAssignedListData(temCCode, temDistCode, temUpazilaCode, temUnitCode, temVillageCode, memId);
 
 
             return "successes";
@@ -232,7 +267,9 @@ public class MemberSearchPage extends BaseActivity {
 
         }
 
-
+        /**
+         * Initiate the dialog
+         */
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -258,12 +295,17 @@ public class MemberSearchPage extends BaseActivity {
                 listOfMember.setFocusableInTouchMode(true);
 
             } else {
-                Log.d(TAG, "Adapter Is Empety ");
+                Log.d(TAG, "Adapter Is Empty ");
 
             }
 
         }
     }
+
+    /**
+     *
+     * @param msg text massage
+     */
 
     private void startProgressBar(String msg) {
 
@@ -275,25 +317,33 @@ public class MemberSearchPage extends BaseActivity {
         pDialog.show();
     }
 
+    /**
+     * @param cCode  Country Code
+     * @param dCode  LayR1 code
+     * @param upCode LayR2 code
+     * @param uCode  LayR3 code
+     * @param vCode  LayR4 code
+     * @param memId  15 digit member id
+     */
 
-    private void loadAssignedListData(final String cCode,final String dCode, final String upCode,final String uCode, final String vCode,final String memId) { // mwmSId = memeber searchin variable
+    private void loadAssignedListData(final String cCode, final String dCode, final String upCode, final String uCode, final String vCode, final String memId) { // mwmSId = memeber searchin variable
 
-        List<AssignDataModel> memberList = sqlH.getMemberList(cCode, dCode, upCode, uCode, vCode,memId);
+        List<AssignDataModel> memberList = sqlH.getMemberList(cCode, dCode, upCode, uCode, vCode, memId);
 
 
         ArrayList<AssignDataModel> assignedArray = new ArrayList<AssignDataModel>();
         if (memberList.size() != 0) {
-            assignedArray.clear();
-            for (AssignDataModel asdata : memberList) {
-                // add contacts data in arrayList
 
-                assignedArray.add(asdata);
+            assignedArray.clear();
+
+            for (AssignDataModel data : memberList) {
+                // add contacts data in arrayList
+                assignedArray.add(data);
             }
 
-
-
-
-
+/**
+ * Assign the Adapter in list
+ */
             adapter = new MemberSearchAdapter((Activity) MemberSearchPage.this, assignedArray);
         }
     }

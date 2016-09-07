@@ -65,19 +65,17 @@ public class GroupSummary extends BaseActivity implements AdapterView.OnItemClic
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                Intent iSummary = new Intent(mContext, AllSummaryActivity.class);
-                iSummary.putExtra(KEY.COUNTRY_ID, idCountry);
 
-                startActivity(iSummary);
+                goToSummaryActivity((Activity) mContext, idCountry);
+
             }
         });
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                Intent iHome = new Intent(mContext, MainActivity.class);
-                startActivity(iHome);
+
+                goToMainActivity((Activity) mContext);
+
             }
         });
     }

@@ -13,12 +13,14 @@ import android.widget.TextView;
 
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.activity.AssignActivity;
+import com.siddiquinoor.restclient.activity.GraduationActivity;
 import com.siddiquinoor.restclient.utils.KEY;
 
 import java.util.ArrayList;
 
 /**
  * Created by Faisal
+ * This Adapter Class is used for navigation through all model
  * @since  8/4/2016.
  */
 public class MemberSearchAdapter extends BaseAdapter {
@@ -60,18 +62,20 @@ public class MemberSearchAdapter extends BaseAdapter {
 
         if (inflater == null)
             inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        /**
+         * view Reference
+         */
         if (convertView == null) {
             row = inflater.inflate(R.layout.list_row_member_search, null);
 
             holder = new ViewHolder();
 
             holder.memberId = (TextView) row.findViewById(R.id.memS_row_memId);
-
             holder.tv_mmName = (TextView) row.findViewById(R.id.memS_row_mem_name);
-          // holder.tv_age = (TextView) row.findViewById(R.id.mem_search_row_tv_assignView);
             holder.tv_LayR4Name = (TextView) row.findViewById(R.id.tv_LayR4Name);
             holder.tv_AddressName = (TextView) row.findViewById(R.id.memSear_tv_AddressName);
-            holder.imgEdit = (ImageView) row.findViewById(R.id.ibtn_group_sear_edit);
+            holder.imgGoToAssign = (ImageView) row.findViewById(R.id.ibtn_goTo_assign);
+            holder.imgGoToGraduation = (ImageView) row.findViewById(R.id.ibtn_goTo_graduation);
 
             row.setTag(holder);
         } else {
@@ -79,30 +83,43 @@ public class MemberSearchAdapter extends BaseAdapter {
         }
 
 
-
-
+/**
+ * the member are in 15 digit
+ */
         holder.memberId.setText(memData.getNewId());  // 15 digit
 
         holder.tv_mmName.setText(memData.getHh_mm_name());
-       // holder.tv_age.setText(memData.getMember_age());
+
         holder.tv_LayR4Name.setText(memData.getVillageName());
         holder.tv_AddressName.setText(memData.getAddressName());
 
+/**
+ * this button take to the assign Page
+ */
 
-
-        holder.imgEdit.setOnClickListener(new View.OnClickListener() {
+        holder.imgGoToAssign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                activity.finish();
 
                 Intent intent= new Intent(activity, AssignActivity.class);
-
                 intent.putExtra(KEY.COUNTRY_ID,memData.getCountryCode());
                 intent.putExtra(KEY.MEMBER_ID,memData.getNewId());
+                activity.finish();
                 activity.startActivity(intent);
 
+            }
+        });
 
+        holder.imgGoToGraduation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(activity, GraduationActivity.class);
+                intent.putExtra(KEY.COUNTRY_ID,memData.getCountryCode());
+                intent.putExtra(KEY.MEMBER_ID,memData.getNewId());
+                intent.putExtra(KEY.DIR_CLASS_NAME_KEY,"ME");
+                activity.finish();
+                activity.startActivity(intent);
 
             }
         });
@@ -121,10 +138,11 @@ public class MemberSearchAdapter extends BaseAdapter {
 
         TextView memberId;
         TextView tv_mmName;
-       // TextView tv_age;
+
         TextView tv_LayR4Name;
         TextView tv_AddressName;
-        ImageView imgEdit;
+        ImageView imgGoToAssign;
+        ImageView imgGoToGraduation;
 
 
     }

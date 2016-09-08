@@ -57,6 +57,7 @@ import java.util.List;
 
 public class MapActivity extends BaseActivity {
     private static final String TAG = "MapActivity";
+    // // TODO: 9/8/2016  delete the keys constants  
     public static final int TOP_PADDING = 5;
     public static final int BOTTOM_PADDING = 5;
     public static final int LEFT_PADDING = 180;

@@ -34,6 +34,10 @@ public class GraduationGridDataModel implements Parcelable{
 
 
     private String villageName;
+    /**
+     * 15 digit memid
+     */
+    private  String nMemId;
     private GraduationGridDataModel mGraduationGridDataModel;
 
     public static final Parcelable.Creator<GraduationGridDataModel> CREATOR
@@ -75,6 +79,7 @@ public class GraduationGridDataModel implements Parcelable{
         dest.writeString(graduationTitle);
         dest.writeString(criteria_name);
         dest.writeString(villageName);
+        dest.writeString(nMemId);
 
 
 
@@ -111,7 +116,16 @@ public class GraduationGridDataModel implements Parcelable{
         criteria_name =in.readString();
        // awardStr=in.readString();
         villageName=in.readString();
+        nMemId=in.readString();
 
+    }
+
+    public String getnMemId() {
+        return nMemId;
+    }
+
+    public void setnMemId(String nMemId) {
+        this.nMemId = nMemId;
     }
 
     public String getHh_id() {

@@ -36,25 +36,25 @@
         android:paddingRight="10dp">
 
         <!-- search id field -->
-  <!--      <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
+        <!--      <RelativeLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:weightSum="1">
 
 
 
 
-            &lt;!&ndash; search member id Button &ndash;&gt;
-            <Button
-                android:id="@+id/btn_assign_search"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/search_20_20"
+                  &lt;!&ndash; search member id Button &ndash;&gt;
+                  <Button
+                      android:id="@+id/btn_assign_search"
+                      android:layout_width="30dp"
+                      android:layout_height="30dp"
+                      android:layout_alignParentRight="true"
+                      android:background="@drawable/search_20_20"
 
-                android:padding="5dp" />
-        </RelativeLayout>-->
+                      android:padding="5dp" />
+              </RelativeLayout>-->
 
 
         <!-- Award list spinner-->
@@ -69,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".8"
                 android:orientation="vertical">
+
                 <TextView
 
 
@@ -114,16 +115,14 @@
                     android:id="@+id/edt_assign_memberSearch"
                     style="@style/edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_toLeftOf="@+id/btn_assign_search"
+                    android:layout_height="40dp"
+
 
                     android:hint="@string/search_id"
                     android:inputType="number"
-                    android:padding="0dp"
-                    android:paddingLeft="20dp"
-                    android:paddingStart="20dp"
-                    android:layout_toRightOf="@+id/id_lable"
-                    android:layout_toEndOf="@+id/id_lable" />
+                    android:padding="10dp"
+
+                    />
 
                 <Spinner
                     android:id="@+id/sp_assine_awardList"

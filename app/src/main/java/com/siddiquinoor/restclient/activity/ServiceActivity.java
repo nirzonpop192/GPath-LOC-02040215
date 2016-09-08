@@ -529,6 +529,8 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
         btnHome.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
+
+
         btnHome.setPadding(180, 5, 180, 5);
     }
 
@@ -1454,6 +1456,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
      * @param srvCenterCode Service Center Code
      * @param grpCode       GroupCod e
      *                      <p> this method </p>
+     *                      todo:09-08-2016 implements graduatio date
      */
 
 

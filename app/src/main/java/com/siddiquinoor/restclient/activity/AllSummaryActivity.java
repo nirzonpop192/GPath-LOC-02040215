@@ -1,11 +1,13 @@
 package com.siddiquinoor.restclient.activity;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -17,9 +19,14 @@ import com.siddiquinoor.restclient.activity.sub_activity.summary_sub.ServiceSumm
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.activity.sub_activity.summary_sub.Summary;
 import com.siddiquinoor.restclient.activity.sub_activity.summary_sub.SummaryAssignCriteria;
+import com.siddiquinoor.restclient.utils.CalculationPadding;
 import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.utils.UtilClass;
 import com.siddiquinoor.restclient.views.notifications.ADNotificationManager;
+
+/**
+ * This is Summary Option Page
+ */
 
 
 public class AllSummaryActivity extends BaseActivity implements View.OnClickListener {
@@ -30,7 +37,7 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
     private RadioButton rbtGroup;
 
     private ADNotificationManager dialog;
-    private final Context CONTEXT = AllSummaryActivity.this;
+    private final Context mContext = AllSummaryActivity.this;
 
 
     @Override
@@ -73,7 +80,7 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
 
         settings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         int operationMode = settings.getInt(UtilClass.OPERATION_MODE, 0);
-        Log.d("NIR1", "operation mode : " + operationMode);
+//        Log.d("NIR1", "operation mode : " + operationMode);
         switch (operationMode) {
             case UtilClass.REGISTRATION_OPERATION_MODE:
                 rbHouseHold.setEnabled(true);
@@ -106,26 +113,57 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
         btnHome = (Button) findViewById(R.id.btnRegisterFooter);
         btnGo = (Button) findViewById(R.id.btnHomeFooter);
 
-        setUpHomeButton();
 
-        setUpGoButton();
 
 
     }
+
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        setUpHomeButton();
+        setUpGoButton();
+    }
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 
     private void setUpGoButton() {
         btnGo.setText("");
         Drawable imageGoto = getResources().getDrawable(R.drawable.goto_b);
         btnGo.setCompoundDrawablesRelativeWithIntrinsicBounds(imageGoto, null, null, null);
-        btnGo.setPadding(180, 10, 180, 10);
+        int leftPadd, rightPadd,topPadd,bottomPadd;
+        CalculationPadding calPadd = new CalculationPadding();
+
+        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, imageGoto, btnGo);
+        /**
+         * set the value in resource
+         */
+        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
+        btnGo.setPadding(leftPadd,topPadd , rightPadd, bottomPadd);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpHomeButton() {
 
         btnHome.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        btnHome.setPadding(180, 10, 180, 10);
+        int leftPadd, rightPadd,topPadd,bottomPadd;
+        CalculationPadding calPadd = new CalculationPadding();
+
+        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, imageHome, btnHome);
+        /**
+         * set the value in resource
+         */
+        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
+
+        btnHome.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
     }
 
     @Override
@@ -154,7 +192,7 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
                     intent = new Intent(AllSummaryActivity.this, GroupSummary.class);
                     intent.putExtra(KEY.COUNTRY_ID, idCountry);
                 } else
-                    dialog.showErrorDialog(CONTEXT, "No Menu is selected yet");
+                    dialog.showErrorDialog(mContext, "No Menu is selected yet");
 
 
                 if (intent != null) {
@@ -167,7 +205,7 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
             // home button
             case R.id.btnRegisterFooter:
                 finish();
-                Intent iHome = new Intent(AllSummaryActivity.this, MainActivity.class);
+                Intent iHome = new Intent(mContext, MainActivity.class);
                 startActivity(iHome);
 
                 break;

@@ -1,5 +1,6 @@
 package com.siddiquinoor.restclient.activity;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -38,6 +40,7 @@ import com.siddiquinoor.restclient.activity.sub_activity.dist_sub.DistrubutionVo
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 import com.siddiquinoor.restclient.manager.sqlsyntax.SQLServerSyntaxGenerator;
+import com.siddiquinoor.restclient.utils.CalculationPadding;
 import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.manager.sqlsyntax.SQLiteQuery;
 import com.siddiquinoor.restclient.utils.UtilClass;
@@ -53,7 +56,7 @@ import java.util.List;
 public class DistributionActivity extends BaseActivity {
     private static final int ONCE = 1;
     public static final String NONE = "NoneFlag";
-    AlertDialog goToDialog;
+    //    AlertDialog goToDialog;
     Intent intent;
 
     private static final String TAG = DistributionActivity.class.getSimpleName();
@@ -62,8 +65,8 @@ public class DistributionActivity extends BaseActivity {
     public static final String CASH_TYPE = "CashFlag";
     public static final String VOUCHER_TYPE = "VOFlag";
     private String idCountry, strCounty;
-    private final Context MCONTEXT = DistributionActivity.this;
-    ;
+    private final Context mContext = DistributionActivity.this;
+
     private SQLiteHandler sqlH;
     private Spinner spAward, spProgram, spDistributionType, spServiceMonth, spDistributionMonth, spUpazilla, spFDP;
     private String strAward, strProgram, strServiceMonth, strDistMonth, strUpazilla, strFDP, strDistType;
@@ -119,6 +122,9 @@ public class DistributionActivity extends BaseActivity {
 
 
             loadAward(idCountry);
+     /*       *//**
+             * FOR TEST PURPOSE
+             *//*
             Log.d(TAG, "From the Distribution  Dir page idCountry:" + idCountry
                     + " idAward : " + idAward + " strAward: " + strAward
                     + " idDonor : " + idDonor + " idProgram: " + idProgram
@@ -127,9 +133,7 @@ public class DistributionActivity extends BaseActivity {
                     + " strServiceMonth : " + strServiceMonth + " idDisMonth: " + idDisMonth
                     + " strDistMonth : " + strDistMonth + " idUP: " + idUP
                     + " strUpazilla : " + strUpazilla + " idFDP: " + idFDP
-                    + " strFDP : " + strFDP + " idFDP: " + idFDP
-
-            );
+                    + " strFDP : " + strFDP + " idFDP: " + idFDP  );*/
 
        /*     loadDistributionListView(String cCode, String donorCode, String awardCode,
                     String srvOpMCode, String fdpCode, String distOpMCode, String mem)*/
@@ -141,7 +145,7 @@ public class DistributionActivity extends BaseActivity {
             loadAward(idCountry);
         }
         Log.d(TAG, " in ON Create method");
-        tvLayR2Label.setText(UtilClass.getLayR2LabelName(MCONTEXT, idCountry));
+        tvLayR2Label.setText(UtilClass.getLayR2LabelName(mContext, idCountry));
 
         setListener();
 
@@ -211,7 +215,7 @@ public class DistributionActivity extends BaseActivity {
         btnSummary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSummaryActivity((Activity) MCONTEXT, idCountry);
+                goToSummaryActivity((Activity) mContext, idCountry);
             }
         });
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -226,7 +230,7 @@ public class DistributionActivity extends BaseActivity {
                 if (edtMemSearch.getText().toString() != null && !edtMemSearch.getText().toString().equals("")) {
                     Log.d(TAG, "In Search button : idCountry :" + idCountry + ", idDonor :" + idDonor + " idAward:" + idAward + " idServiceMonth:" + idServiceMonth + " idFDP:" + idFDP + " idDisMonth:" + idDisMonth);
 
-                    LoadingList ld = new LoadingList(idCountry, idDonor, idAward,idProgram, idServiceMonth, idFDP, idDisMonth, edtMemSearch.getText().toString());
+                    LoadingList ld = new LoadingList(idCountry, idDonor, idAward, idProgram, idServiceMonth, idFDP, idDisMonth, edtMemSearch.getText().toString());
                     ld.execute();
 
                 }
@@ -263,7 +267,7 @@ public class DistributionActivity extends BaseActivity {
                 if (fromQR) {
                     if (edtMemSearch.getText().toString() != null && !edtMemSearch.getText().toString().equals("")) {
 
-                        LoadingList ld = new LoadingList(idCountry, idDonor, idAward,idProgram, idServiceMonth, idFDP, idDisMonth, edtMemSearch.getText().toString());
+                        LoadingList ld = new LoadingList(idCountry, idDonor, idAward, idProgram, idServiceMonth, idFDP, idDisMonth, edtMemSearch.getText().toString());
                         ld.execute();
                         fromQR = false;
                     }
@@ -279,24 +283,7 @@ public class DistributionActivity extends BaseActivity {
     }
 
 
-    /*@Override
-    public void onClick(View v) {
-        switch (v.getId()) {
 
-            case R.id.btn_dist_save:
-                saveDistributionData();
-                break;
-            case R.id.btn_distribution_search:
-                if (edtMemSearch.getText().toString() != null && !edtMemSearch.getText().toString().equals("")) {
-                    Log.d(TAG, "In Search button : idCountry :" + idCountry + ", idDonor :" + idDonor + " idAward:" + idAward + " idServiceMonth:" + idServiceMonth + " idFDP:" + idFDP + " idDisMonth:" + idDisMonth);
-
-                    LoadingList ld = new LoadingList(idCountry, idDonor, idAward, idServiceMonth, idFDP, idDisMonth, edtMemSearch.getText().toString());
-                    ld.execute();
-
-                }
-                break;
-        }
-    }*/
 
     private void viewReference() {
         spAward = (Spinner) findViewById(R.id.sp_dist_awardList);
@@ -316,11 +303,25 @@ public class DistributionActivity extends BaseActivity {
         btnSearch = (Button) findViewById(R.id.btn_distribution_search);
         edtMemSearch = (EditText) findViewById(R.id.edt_dist_memberSearch);
         tvLayR2Label = (TextView) findViewById(R.id.tv_layR2Label);
+
+
+
+    }
+
+
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
         setUpGpsButton();
         setUpSummaryButton();
         setUpSaveButton();
-
-
     }
 
     private void setUpSaveButton() {
@@ -330,28 +331,52 @@ public class DistributionActivity extends BaseActivity {
         btnSave.setPadding(380, 30, 380, 30);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+
     private void setUpSummaryButton() {
         btnSummary.setText("");
         Drawable summeryImage = getResources().getDrawable(R.drawable.summession_b);
         btnSummary.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
-        btnSummary.setPadding(180, 20, 180, 20);
+
+        /**
+         * calculate padding in pixel
+         */
+        int leftPadd, rightPadd, topPadd, bottomPadd;
+        CalculationPadding calPadd = new CalculationPadding();
+
+        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, summeryImage, btnSummary);
+        /**
+         * set the value in resource
+         */
+        topPadd = bottomPadd = getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
+
+        btnSummary.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
     }
 
     /**
      * Icon set by the method
      */
-/*    private void setUpGotoButton() {
-        btnHome.setText("");
-        Drawable imageGoto = getResources().getDrawable(R.drawable.goto_b);
-        btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageGoto, null, null, null);
-        btnHome.setPadding(180, 20, 180, 20);
-    }*/
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpGpsButton() {
 
         btnHome.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        btnHome.setPadding(MapActivity.LEFT_PADDING, MapActivity.TOP_PADDING, MapActivity.RIGHT_PADDING, MapActivity.BOTTOM_PADDING);
+        /**
+         * calculate padding in pixel
+         */
+        int leftPadd, rightPadd, topPadd, bottomPadd;
+        CalculationPadding calPadd = new CalculationPadding();
+
+        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, imageHome, btnHome);
+        /**
+         * set the value in resource
+         */
+        topPadd = bottomPadd = getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
+
+        btnHome.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
+
     }
 
     @Override
@@ -533,7 +558,7 @@ public class DistributionActivity extends BaseActivity {
                 idFDP = ((SpinnerHelper) spFDP.getSelectedItem()).getId();
 
                 if (Integer.parseInt(idFDP) > 0) {
-                    LoadingList ld = new LoadingList(idCountry, idDonor, idAward,idProgram, idServiceMonth, idFDP, idDisMonth, "");
+                    LoadingList ld = new LoadingList(idCountry, idDonor, idAward, idProgram, idServiceMonth, idFDP, idDisMonth, "");
                     ld.execute();
 
                     /**
@@ -554,7 +579,7 @@ public class DistributionActivity extends BaseActivity {
     } // end Load Spinner
 
     /**
-     * ** LOAD:: DistributionType
+     * LOAD:: DistributionType
      */
     private void loadDistributionType() {
         int position = 0;
@@ -611,6 +636,10 @@ public class DistributionActivity extends BaseActivity {
         });
     }
 
+    /**
+     * LOAD:: ServiceMonth
+     */
+
     private void loadServiceMonth(String countryCode) {
 
         int position = 0;
@@ -661,6 +690,9 @@ public class DistributionActivity extends BaseActivity {
 
     } // end Load Spinner
 
+    /**
+     * ** LOAD:: DistributionMonth
+     */
 
     private void loadDistributionMonth(String countryCode) {
 
@@ -763,14 +795,16 @@ public class DistributionActivity extends BaseActivity {
     }
 
     /**
+     * LOAD :: GRID THREAD
+     * <p/>
      * While load data to the adapter
      */
     private class LoadingList extends AsyncTask<Void, Integer, String> {
 
 
-        private String country, donor, award,program, serviceMonth, fDP, disMonth, memSearch;
+        private String country, donor, award, program, serviceMonth, fDP, disMonth, memSearch;
 
-        public LoadingList(String country, String donor, String award,String program ,String serviceMonth, String fDP, String disMonth, String memSearch) {
+        public LoadingList(String country, String donor, String award, String program, String serviceMonth, String fDP, String disMonth, String memSearch) {
             this.country = country;
             this.donor = donor;
             this.award = award;
@@ -785,7 +819,7 @@ public class DistributionActivity extends BaseActivity {
         protected String doInBackground(Void... params) {
             try {
 
-                    loadDistributionListView(country, donor, award,program, serviceMonth, fDP, disMonth, memSearch);
+                loadDistributionListView(country, donor, award, program, serviceMonth, fDP, disMonth, memSearch);
             } catch (Exception e) {
 
                 return "UNKNOWN";
@@ -828,10 +862,10 @@ public class DistributionActivity extends BaseActivity {
 
 
                 if (adapter.getCount() == 0) {
-                    dialog.showInfromDialog(MCONTEXT, "No Data", "No Data found");
+                    dialog.showInfromDialog(mContext, "No Data", "No Data found");
                 }
             } else {
-                dialog.showInfromDialog(MCONTEXT, "No Data", "No Data found");
+                dialog.showInfromDialog(mContext, "No Data", "No Data found");
             }
 
         }
@@ -847,9 +881,11 @@ public class DistributionActivity extends BaseActivity {
         pDialog.show();
     }
 
-
+    /**
+     * LOAD :: Distribution List
+     */
     public void loadDistributionListView(String cCode, String donorCode, String awardCode, String progCode, String srvOpMCode, String fdpCode, String distOpMCode, String mem) {
-        Log.d("KuTa", "progCode: " + progCode);
+
         // use veriable to like operation
         List<DistributionGridDataModel> distributedListData = sqlH.getDistributionDataList(cCode, donorCode, awardCode, progCode, srvOpMCode, fdpCode, mem);
 
@@ -881,9 +917,9 @@ public class DistributionActivity extends BaseActivity {
 
         if (invalid) {
             invalid = true;
-            dialog.showErrorDialog(MCONTEXT, "Please select a Date");
+            dialog.showErrorDialog(mContext, "Please select a Date");
         } else if (adapter == null) {
-            dialog.showErrorDialog(MCONTEXT, "Invalid Attempt to save");
+            dialog.showErrorDialog(mContext, "Invalid Attempt to save");
         } else {
 
             ArrayList<DistributionGridDataModel> alist = new ArrayList<DistributionGridDataModel>();
@@ -939,7 +975,6 @@ public class DistributionActivity extends BaseActivity {
                             sqlH.insertIntoUploadTable(distributedData.insertIntoDistributionTable());
 
 
-
                             count++;
                         }
                     }
@@ -947,7 +982,7 @@ public class DistributionActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(), "Saved Successfully", Toast.LENGTH_LONG).show();
 
 
-                    LoadingList ld = new LoadingList(idCountry, idDonor, idAward,idProgram, idServiceMonth, idFDP, idDisMonth, "");
+                    LoadingList ld = new LoadingList(idCountry, idDonor, idAward, idProgram, idServiceMonth, idFDP, idDisMonth, "");
                     ld.execute();
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -1067,7 +1102,7 @@ public class DistributionActivity extends BaseActivity {
             holder.memSrvShortName.setText(disPeople.getServiceShortName());
 
 
-            String memDistStatus = sqH.getDistributionStatusFromDistributionTable(disPeople.getC_code(), disPeople.getDonorCode(), disPeople.getAwardCode(), disPeople.getDistrictCode(), disPeople.getUpazillaCode(), disPeople.getUnitCode(), disPeople.getVillageCode(), disPeople.getProgram_code(), disPeople.getService_code(), distOpMonthCode, fdpCode,idDistributionType, disPeople.getRpt_id());
+            String memDistStatus = sqH.getDistributionStatusFromDistributionTable(disPeople.getC_code(), disPeople.getDonorCode(), disPeople.getAwardCode(), disPeople.getDistrictCode(), disPeople.getUpazillaCode(), disPeople.getUnitCode(), disPeople.getVillageCode(), disPeople.getProgram_code(), disPeople.getService_code(), distOpMonthCode, fdpCode, idDistributionType, disPeople.getRpt_id());
         /*    Log.d("All", disPeople.getRpt_id() + " Name :" + disPeople.getRpt_name() +
                     "\n Service Code:" + disPeople.getService_code() + "\n memDistStatus:" + memDistStatus
             );*/
@@ -1094,17 +1129,21 @@ public class DistributionActivity extends BaseActivity {
                     if (isAllValuesChecked()) {
 
 
-                        // set HeaderCheck box to true
+                        /**
+                         *  set HeaderCheck box to true
+                         */
 
                         checkBox_header.setChecked(isChecked);
-//                        Toast.makeText(activity, "Scroll to the last row to ensure all row  is selected.", Toast.LENGTH_SHORT).show();
+
                     }
 
 
                     int getPosition = (Integer) buttonView.getTag();
 
-                    // get the object of specific row & set the value of the
-                    // save the checkbox of that particular state
+                    /**
+                     * Get the object of specific row & set the value of the
+                     * save the checkbox of that particular state .
+                     * */
                     getDistributedPerson(getPosition).setCheckBoxMember(isChecked);
 
 
@@ -1144,7 +1183,7 @@ public class DistributionActivity extends BaseActivity {
             disPeople.setDistOpMonthCode(distOpMonthCode);// send Distrebutaion of monthe Code
             disPeople.setFdpCode(fdpCode);
 
-             disPeople.setStatus("R");
+            disPeople.setStatus("R");
 
 
             if (position % 2 == 0) {
@@ -1202,11 +1241,10 @@ public class DistributionActivity extends BaseActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int selectedID) {
 
-                                    if (sqlH.getDistIsprepare(disPeople.getC_code(),disPeople.getDonorCode(),
-                                            disPeople.getAwardCode(), disPeople.getProgram_code(),"3",idServiceMonth,idDisMonth,idFDP)){
+                                    if (sqlH.getDistIsprepare(disPeople.getC_code(), disPeople.getDonorCode(),
+                                            disPeople.getAwardCode(), disPeople.getProgram_code(), "3", idServiceMonth, idDisMonth, idFDP)) {
                                         Toast.makeText(activity, "ERROR: Distribution Plan already prepared. Delete attempt denied.", Toast.LENGTH_LONG).show();
-                                    }
-                                    else {
+                                    } else {
                                         DistributionSaveDataModel dsM = new DistributionSaveDataModel();
 
 
@@ -1266,7 +1304,6 @@ public class DistributionActivity extends BaseActivity {
 
 
                                     }
-
 
 
                                 }

@@ -5,15 +5,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Build;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -22,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.activity.sub_activity.assign_program.agr.AssignAGR;
@@ -37,8 +32,8 @@ import com.siddiquinoor.restclient.activity.sub_activity.assign_program.peer.Ass
 import com.siddiquinoor.restclient.activity.sub_activity.assign_program.peer.AssignForLiberiaUCT;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
+import com.siddiquinoor.restclient.utils.CalculationPadding;
 import com.siddiquinoor.restclient.utils.KEY;
-import com.siddiquinoor.restclient.utils.UtilClass;
 import com.siddiquinoor.restclient.views.adapters.AssignDataModel;
 import com.siddiquinoor.restclient.views.adapters.AssignDataModelAdapter;
 import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
@@ -70,7 +65,7 @@ public class AssignActivity extends BaseActivity {
     public static final String ASSIGN_UNIT_CODE = "ASSIGN_UNIT_CODE";
     public static final String SUB_ASSIGN_DIR = "Sub_Ass_dir";
     private SQLiteHandler sqlH;
-    private Context mcontext;
+    private Context mContext;
 
     private String idCountry;
     private String strAward;
@@ -109,7 +104,7 @@ public class AssignActivity extends BaseActivity {
      * fotter button important
      */
     private Button btnGoTo;
-    private Button btnSummary;
+    private Button btnMemberSearchPage;
 
     private boolean mredirection;
     //private TextView tvLayR4Lable;
@@ -170,7 +165,7 @@ public class AssignActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign);
-        mcontext = AssignActivity.this;
+        mContext = AssignActivity.this;
         dialog = new ADNotificationManager();
 
         viewReference();
@@ -266,18 +261,43 @@ public class AssignActivity extends BaseActivity {
         btnGoTo = (Button) findViewById(R.id.btnHomeFooter);
 
 
-        btnSummary = (Button) findViewById(R.id.btnRegisterFooter);
-        setUpSummaryButton();
-        setUpGotoButton();
+        btnMemberSearchPage = (Button) findViewById(R.id.btnRegisterFooter);
+
+
 
     }
 
+
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        setUpGoToSearchMemPageButton();
+        setUpGotoButton();
+    }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private void setUpSummaryButton() {
-        btnSummary.setText("");
-        Drawable summeryImage = getResources().getDrawable(R.drawable.goto_back);
-        btnSummary.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
-        btnSummary.setPadding(180, 10, 180, 10);
+    private void setUpGoToSearchMemPageButton() {
+        btnMemberSearchPage.setText("");
+        Drawable backImage = getResources().getDrawable(R.drawable.goto_back);
+        btnMemberSearchPage.setCompoundDrawablesRelativeWithIntrinsicBounds(backImage, null, null, null);
+
+        int leftPadd, rightPadd,topPadd,bottomPadd;
+        CalculationPadding calPadd = new CalculationPadding();
+
+        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, backImage, btnMemberSearchPage);
+        /**
+         * set the value in resource
+         */
+        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
+
+        btnMemberSearchPage.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
     }
 
     /**
@@ -288,13 +308,24 @@ public class AssignActivity extends BaseActivity {
         btnGoTo.setText("");
         Drawable imageGoto = getResources().getDrawable(R.drawable.goto_b);
         btnGoTo.setCompoundDrawablesRelativeWithIntrinsicBounds(imageGoto, null, null, null);
-        btnGoTo.setPadding(180, 10, 180, 10);
+
+        int leftPadd, rightPadd,topPadd,bottomPadd;
+        CalculationPadding calPadd = new CalculationPadding();
+
+        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, imageGoto, btnGoTo);
+
+        /**
+         * set the value in resource
+         */
+        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
+
+        btnGoTo.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
     }
 
 
     private void buttonListener() {
 
-        btnSummary.setOnClickListener(new View.OnClickListener() {
+        btnMemberSearchPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -360,16 +391,16 @@ public class AssignActivity extends BaseActivity {
                             case MCHN: //PROGRAM CODE MCHN OPEN
                                 switch (srvCode) {
                                     case PREGNANT_WOMEN:
-                                        iSubAssignClass = new Intent(mcontext, AssignPW.class);
+                                        iSubAssignClass = new Intent(mContext, AssignPW.class);
                                         break;
                                     case LACTATING_MOTHER:
-                                        iSubAssignClass = new Intent(mcontext, AssignLM.class);
+                                        iSubAssignClass = new Intent(mContext, AssignLM.class);
                                         break;
                                     case CHILDEN_UNDER_2:
-                                        iSubAssignClass = new Intent(mcontext, AssignCU2.class);
+                                        iSubAssignClass = new Intent(mContext, AssignCU2.class);
                                         break;
                                     case CHILD_ABOVE_2:
-                                        iSubAssignClass = new Intent(mcontext, AssignCA2.class);
+                                        iSubAssignClass = new Intent(mContext, AssignCA2.class);
                                         break;
                                 }
                                 break;//PROGRAM CODE MCHN CLOSE
@@ -377,10 +408,10 @@ public class AssignActivity extends BaseActivity {
                             case DDR://PROGRAM CODE DDR START
                                 switch (srvCode) {
                                     case VUL:
-                                        iSubAssignClass = new Intent(mcontext, AssignForDDRMalwaiVUL.class);
+                                        iSubAssignClass = new Intent(mContext, AssignForDDRMalwaiVUL.class);
                                         break;
                                     case FFA:
-                                        iSubAssignClass = new Intent(mcontext, AssignForDDRMalwaiFFA.class);
+                                        iSubAssignClass = new Intent(mContext, AssignForDDRMalwaiFFA.class);
                                         break;
                                 }
                                 break;//PROGRAM CODE DDR CLOSE
@@ -388,19 +419,19 @@ public class AssignActivity extends BaseActivity {
                             case AGRP://program code AGRP OPEN
                                 switch (srvCode) {
                                     case AGR:
-                                        iSubAssignClass = new Intent(mcontext, AssignAGR.class);
+                                        iSubAssignClass = new Intent(mContext, AssignAGR.class);
                                         break;
                                     case PG:
-                                        iSubAssignClass = new Intent(mcontext, AssignAGR.class);
+                                        iSubAssignClass = new Intent(mContext, AssignAGR.class);
                                         break;
                                     case IG:
-                                        iSubAssignClass = new Intent(mcontext, AssignAGR.class);
+                                        iSubAssignClass = new Intent(mContext, AssignAGR.class);
                                         break;
                                     case LG:
-                                        iSubAssignClass = new Intent(mcontext, AssignAGR.class);
+                                        iSubAssignClass = new Intent(mContext, AssignAGR.class);
                                         break;
                                     case MG:
-                                        iSubAssignClass = new Intent(mcontext, AssignAGR.class);
+                                        iSubAssignClass = new Intent(mContext, AssignAGR.class);
                                         break;
                                 }
                                 break;//program code AGRP ClOSE
@@ -416,13 +447,13 @@ public class AssignActivity extends BaseActivity {
                             case UCT://PROGRAM CODE UCT OPEN
                                 switch (srvCode) {
                                     case EVD_C1:
-                                        iSubAssignClass = new Intent(mcontext, AssignForLiberiaUCT.class);
+                                        iSubAssignClass = new Intent(mContext, AssignForLiberiaUCT.class);
                                         break;
                                     case CFED_C2:
-                                        iSubAssignClass = new Intent(mcontext, AssignForLiberiaUCT.class);
+                                        iSubAssignClass = new Intent(mContext, AssignForLiberiaUCT.class);
                                         break;
                                     case PLW_C3:
-                                        iSubAssignClass = new Intent(mcontext, AssignForLiberiaUCT.class);
+                                        iSubAssignClass = new Intent(mContext, AssignForLiberiaUCT.class);
                                         break;
 
                                 }
@@ -431,26 +462,26 @@ public class AssignActivity extends BaseActivity {
                             case AIV://program Code AIV Start
                                 switch (srvCode) {
                                     case EVD_C1:
-                                        iSubAssignClass = new Intent(mcontext, AssignForLiberiaAIV.class);
+                                        iSubAssignClass = new Intent(mContext, AssignForLiberiaAIV.class);
                                         break;
                                     case CFED_C2:
-                                        iSubAssignClass = new Intent(mcontext, AssignForLiberiaAIV.class);
+                                        iSubAssignClass = new Intent(mContext, AssignForLiberiaAIV.class);
                                         break;
                                     case PLW_C3:
-                                        iSubAssignClass = new Intent(mcontext, AssignForLiberiaAIV.class);
+                                        iSubAssignClass = new Intent(mContext, AssignForLiberiaAIV.class);
                                         break;
                                 }
                                 break;//program Code AIV CLOSE
                             case CFW://program code CFW start
                                 switch (srvCode) {
                                     case EVD_C1:
-                                        iSubAssignClass = new Intent(mcontext, AssignForLiberiaCFW.class);
+                                        iSubAssignClass = new Intent(mContext, AssignForLiberiaCFW.class);
                                         break;
                                     case CFED_C2:
-                                        iSubAssignClass = new Intent(mcontext, AssignForLiberiaCFW.class);
+                                        iSubAssignClass = new Intent(mContext, AssignForLiberiaCFW.class);
                                         break;
                                     case PLW_C3:
-                                        iSubAssignClass = new Intent(mcontext, AssignForLiberiaCFW.class);
+                                        iSubAssignClass = new Intent(mContext, AssignForLiberiaCFW.class);
                                         break;
                                 }
                                 break;//program code CFW close

@@ -167,12 +167,16 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
         btnSummary.setText("");
         Drawable summeryImage = getResources().getDrawable(R.drawable.summession_b);
         btnSummary.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
-        int leftPadd, rightPadd;
+        int leftPadd, rightPadd,topPadd,bottomPadd;
         CalculationPadding calPadd = new CalculationPadding();
 
-        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, summeryImage, btnHome);
+        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, summeryImage, btnSummary);
+        /**
+         * set the value in resource
+         */
+        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
 
-        btnSummary.setPadding(leftPadd, 5, rightPadd, 5);
+        btnSummary.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
     }
 
     /**
@@ -185,12 +189,16 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
         Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
 
-        int leftPadd, rightPadd;
+        int leftPadd, rightPadd,topPadd,bottomPadd;
         CalculationPadding calPadd = new CalculationPadding();
 
         leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, imageHome, btnHome);
+        /**
+         * set the value in resource
+         */
+        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
 
-        btnHome.setPadding(leftPadd, 5, rightPadd, 5);
+        btnHome.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
 
     }
 
@@ -371,7 +379,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
         // use variable to like operation
 
         ArrayList<GraduationGridDataModel> graduationList =
-                sqlH.getGRDGridList(countryCode, programCode, serviceCode, donorCode, awardCode, memid);
+                sqlH.getMemberGraduationStatusList(countryCode, donorCode, awardCode, programCode, serviceCode, memid);
 
         adapter = new GraduationGridAdapter(graduationList, this, strAward, strProgram, strCriteria, awardCode, programCode, donorCode, serviceCode);
         adapter.notifyDataSetChanged();

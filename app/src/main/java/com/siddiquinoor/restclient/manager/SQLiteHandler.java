@@ -13,12 +13,10 @@ package com.siddiquinoor.restclient.manager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -59,14 +57,9 @@ import com.siddiquinoor.restclient.views.adapters.raf_data_model.GraduationDateC
 import com.siddiquinoor.restclient.views.helper.LocationHelper;
 import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
 
-import org.osmdroid.tileprovider.modules.IFilesystemCache;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class SQLiteHandler extends SQLiteOpenHelper {
 
@@ -2950,22 +2943,19 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         long id = db.insert(FDP_MASTER_TABLE, null, values);
         db.close(); // Closing database connection
 
-        Log.d(TAG, "FDp master table inserted into " + FDP_MASTER_TABLE + ": " + id);
+//        Log.d(TAG, "FDp master table inserted into " + FDP_MASTER_TABLE + ": " + id);
 
     }
 
 
-    /**
-     * **************************************SELECT QUERY**********************************************************
-     */
 
-    public ArrayList<GraduationGridDataModel>
-    getGRDGridList(String cCode, String programCode, String srvCode, String donorCode, String awardCode, String memCode) {
+
+    public ArrayList<GraduationGridDataModel> getMemberGraduationStatusList(String cCode, String donorCode, String awardCode, String programCode, String srvCode, String memCode) {
 
         ArrayList<GraduationGridDataModel> graduationGridList = new ArrayList<GraduationGridDataModel>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = SQLiteQuery.getGRDGridList_Select_Query(cCode, programCode, srvCode, donorCode, awardCode, memCode);
+        String selectQuery = SQLiteQuery.getMemberGraduationStatusList_sql(cCode, programCode, srvCode, donorCode, awardCode, memCode);
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         String dateformat;
@@ -3700,12 +3690,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
-
     public List<SummaryIdListInGroupDataModel> getIdListInGroupInGroupSummary(String cCode, String donorCode, String awardCode, String prgCode, String grpCode) {
         SQLiteDatabase db = this.getReadableDatabase();
         List<SummaryIdListInGroupDataModel> list = new ArrayList<SummaryIdListInGroupDataModel>();
-
-
 
 
         String sql = SQLiteQuery.getIdListInGroupInGroupSummary_sql(cCode, donorCode, awardCode, prgCode, grpCode);
@@ -7703,6 +7690,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         Log.d("NI2", "id affected:" + id);
     }
 
+
+    // todo: impelements Graduatae Date to load data
+
     public List<ServiceDataModel> getFFAMemberListForService(String cCode, String donorCode,
                                                              String awardCode, String programCode,
                                                              String serviceCode, String mm_SearchId,
@@ -10675,6 +10665,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * this method check is the user is admin
+     *
      * @param admin_user admin_user
      * @param admin_pass password
      * @return
@@ -10684,8 +10675,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT  * FROM " + STAFF_MASTER_TABLE
                 + " WHERE " + USER_LOGIN_NAME + " = " + "'" + admin_user + "' "
-                +" AND " + USER_LOGIN_PW + " = " + "'" + admin_pass + "' "
-                +" AND " + STAFF_ADMIN_ROLE_COL + " IN ('A' ,'C') " ;
+                + " AND " + USER_LOGIN_PW + " = " + "'" + admin_pass + "' "
+                + " AND " + STAFF_ADMIN_ROLE_COL + " IN ('A' ,'C') ";
 
         try {
 
@@ -10708,9 +10699,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
-
     /**
      * Storing user details in database
+     *
      * @param user_id
      * @param country_code
      * @param login_name

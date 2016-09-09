@@ -8,8 +8,9 @@
 
     tools:context="com.siddiquinoor.restclient.activity.GraduationActivity">
     <!-- Header aligned to top -->
-    <include layout="@layout/header"
-        android:id="@+id/header"/>
+    <include
+        android:id="@+id/header"
+        layout="@layout/header" />
 
     <RelativeLayout
         android:id="@+id/page_title"
@@ -83,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight=".7"
                 android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/edt_searchId"
                     style="@style/edit_text"
@@ -119,15 +121,15 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-        <!--    <EditText
+            <!--    <EditText
 
-                android:id="@+id/edt_searchId"
-                style="@style/edit_text"
-                android:layout_width="450dp"
-                android:layout_height="@dimen/view_height"
-                android:hint="Search Member ID"
-                android:inputType="number"
-                android:maxLength="2" />-->
+                    android:id="@+id/edt_searchId"
+                    style="@style/edit_text"
+                    android:layout_width="450dp"
+                    android:layout_height="@dimen/view_height"
+                    android:hint="Search Member ID"
+                    android:inputType="number"
+                    android:maxLength="2" />-->
 
 
             <!-- search member id Button -->
@@ -149,47 +151,92 @@
 
     </LinearLayout>
     <!-- title of list view  -->
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/table_title"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@+id/ll_details"
         android:background="@color/title_bg_col">
 
+
+        <TextView
+            android:id="@+id/text_table"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+
+
+            android:padding="10dp"
+
+            android:text="Id"
+            android:textColor="@color/white"
+            android:textSize="@dimen/abc_text_size_menu_material" />
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_toLeftOf="@+id/textView2"
+
+            android:layout_toRightOf="@+id/text_table"
+            android:layout_toStartOf="@+id/textView2"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/abc_text_size_menu_material" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_gravity="center_horizontal"
+            android:layout_toLeftOf="@+id/txt_Date"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Reason"
+            android:textColor="@color/white"
+            android:textSize="@dimen/abc_text_size_menu_material" />
+
+
+        <TextView
+            android:id="@+id/txt_Date"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_toLeftOf="@+id/txt_edit"
+            android:layout_toStartOf="@+id/txt_edit"
+            android:gravity="center_horizontal"
+          android:padding="10dp"
+            android:text="Date"
+            android:textColor="@color/white"
+            android:textSize="@dimen/abc_text_size_menu_material" />
+
+
+        <TextView
+            android:id="@+id/txt_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Edit"
+
+            android:textColor="@color/white"
+            android:textSize="@dimen/abc_text_size_menu_material" />
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".2">
+            android:layout_weight=".3">
 
-            <TextView
-                android:id="@+id/text_table"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="HHId"
-                android:textColor="@color/white"
-                android:textSize="@dimen/abc_text_size_menu_material" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".2"
-
-            >
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="0dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="Member"
-                android:textColor="@color/white"
-                android:textSize="@dimen/abc_text_size_menu_material" />
         </LinearLayout>
 
         <LinearLayout
@@ -197,33 +244,7 @@
             android:layout_height="wrap_content"
             android:layout_weight=".3">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="Name"
-                android:textColor="@color/white"
-                android:textSize="@dimen/abc_text_size_menu_material" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".3">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="Reason"
-                android:textColor="@color/white"
-                android:textSize="@dimen/abc_text_size_menu_material" />
         </LinearLayout>
 
         <LinearLayout
@@ -231,16 +252,7 @@
             android:layout_height="wrap_content"
             android:layout_weight=".4">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="Date"
-                android:textColor="@color/white"
-                android:textSize="@dimen/abc_text_size_menu_material" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -248,20 +260,10 @@
             android:layout_height="wrap_content"
             android:layout_weight=".2">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="Edit"
 
-                android:textColor="@color/white"
-                android:textSize="@dimen/abc_text_size_menu_material" />
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/lv_graduationList"

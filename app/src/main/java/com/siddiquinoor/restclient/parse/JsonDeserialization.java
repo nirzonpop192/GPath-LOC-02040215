@@ -1063,7 +1063,7 @@ public class JsonDeserialization {
     } //end of the method
 
 
-    public static void regNAssignProgSrvParser(JSONArray reg_m_assign_prog_srvs, SQLiteHandler sqlH) {
+    public static void regNAssignProgSrvParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
         int size;
         String AdmCountryCode;
         String LayR1ListCode;
@@ -1082,11 +1082,11 @@ public class JsonDeserialization {
         String SrvMin;
         String SrvMax;
         // JSONArray reg_m_assign_prog_srvs = jObj.getJSONArray(REG_M_ASSIGN_PROG_SRV_JSON_A);
-        size = reg_m_assign_prog_srvs.length();
+        size = jsonArrayData.length();
         for (int i = 0; i < size; i++) {
             try {
 
-                JSONObject reg_m_assign_prog_srv = reg_m_assign_prog_srvs.getJSONObject(i);
+                JSONObject reg_m_assign_prog_srv = jsonArrayData.getJSONObject(i);
                 AdmCountryCode = reg_m_assign_prog_srv.getString(MainActivity.ADM_COUNTRY_CODE);
                 LayR1ListCode = reg_m_assign_prog_srv.getString(MainActivity.LAY_R_1_LIST_CODE);
                 LayR2ListCode = reg_m_assign_prog_srv.getString(MainActivity.LAY_R_2_LIST_CODE);
@@ -1118,6 +1118,10 @@ public class JsonDeserialization {
                 e.printStackTrace();
             }
         }
+
+    }
+
+    public static void  staff_master_DataParser(JSONArray reg_m_assign_prog_srvs, SQLiteHandler sqlH){
 
     }
 

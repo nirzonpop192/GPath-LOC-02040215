@@ -3,6 +3,7 @@ package com.siddiquinoor.restclient.views.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,8 @@ import com.siddiquinoor.restclient.manager.SQLiteHandler;
 import java.util.ArrayList;
 
 /**
- * Created by USER on 9/30/2015.
+ * Created by Faisal  on 9/30/2015.
+ *
  */
 public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClickListener {
     private Activity activity;
@@ -34,7 +36,8 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
     private String programCode;
     private String donorCode;
     private String serviceCode;
-   // private GraduationGridDataModel grad;
+    ViewHolder holder;
+
 
 
     public GraduationGridAdapter(ArrayList<GraduationGridDataModel> graduationData, Activity activity,
@@ -73,7 +76,7 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         View row = convertView;
-        GraduationViewHolder holder;
+
 
         if (inflater == null)
             inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -82,10 +85,10 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
         {
             row = inflater.inflate(R.layout.list_row_graduation, null);
 
-            holder = new GraduationViewHolder();
+            holder = new ViewHolder();
 
-            holder.tv_HHId = (TextView)row.findViewById(R.id.tv_raw_gra_hhID);
-            holder.tv_memberId = (TextView)row.findViewById(R.id.tv_raw_gra_memberID);
+
+            holder.tv_memberId = (TextView)row.findViewById(R.id.tv_raw_gra_idMem);
             holder.tv_memberName = (TextView)row.findViewById(R.id.tv_raw_gra_memberName);
             holder.tv_reason = (TextView)row.findViewById(R.id.tv_raw_gra_Reason);
             holder.tv_grdDate = (TextView)row.findViewById(R.id.tv_raw_gra_grdDate);
@@ -94,7 +97,7 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
             row.setTag(holder);
         } else
         {
-            holder = (GraduationViewHolder)row.getTag();
+            holder = (ViewHolder)row.getTag();
         }
 
 
@@ -102,15 +105,14 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
          GraduationGridDataModel mGraduation = graduationData.get(position);
 
 
-       /* mGraduation.setEntryBy(getEntryBy());
-        mGraduation.setEntryDate(getEntryDate());*/
 
-        holder.tv_HHId.setText(mGraduation.getHh_id());  // Registration ID or Holding ID
-        holder.tv_memberId.setText(mGraduation.getMember_Id());
+
+
+        holder.tv_memberId.setText(mGraduation.getnMemId());
         holder.tv_memberName.setText(mGraduation.getMember_name());
         holder.tv_reason.setText(mGraduation.getGraduationTitle());
         holder.tv_grdDate.setText(mGraduation.getGraduationDate());
-       // grad=new GraduationGridDataModel(mGraduation);
+
 
         holder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +126,7 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
                 mgrad.setProgram_name(proName);
                 mgrad.setCriteria_name(criteriaName);
                // mgrad.setCriteria_name(criteriaName);
-               // Toast.makeText(activity," position : "+position,Toast.LENGTH_SHORT).show();
+
 
               final  GraduationGridDataModel grad=mgrad;
                 Intent igradUpdate=new Intent(activity, GraduationUpdate.class);
@@ -133,10 +135,18 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
             }
         });
 
+        if (position % 2 == 0) {
+            row.setBackgroundColor(Color.WHITE);
+            changeTextColor(activity.getResources().getColor(R.color.blue));
+        } else {
+            row.setBackgroundColor(activity.getResources().getColor(R.color.list_divider));
+            changeTextColor(activity.getResources().getColor(R.color.black));
+        }
+
         return row;
     }
-    private static class GraduationViewHolder{
-        TextView tv_HHId;
+    private  class ViewHolder{
+
         TextView tv_memberId;
         TextView tv_memberName;
         TextView tv_reason;
@@ -145,14 +155,20 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
 
     }
 
-   /* @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.edit_graduation_holder:
-                Intent igradUpdate=new Intent(activity, GraduationUpdate.class);
-                igradUpdate
-                activity.startActivity(new Intent(activity, GraduationUpdate.class));
-                break;
-        }
-    }*/
+    /**
+     * The method change the color of the textView
+     *
+     * @param color Color of text View
+     */
+    private void changeTextColor(int color) {
+        holder.tv_memberId.setTextColor(color);
+        holder.tv_memberName.setTextColor(color);
+        holder.tv_reason.setTextColor(color);
+        holder.tv_grdDate.setTextColor(color);
+
+
+
+    }
+
+
 }

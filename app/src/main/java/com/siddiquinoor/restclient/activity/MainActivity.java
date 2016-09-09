@@ -2552,11 +2552,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         String EntryDate = community_grp_detail_Data.getString("EntryDate");
                         String ProjectNo = community_grp_detail_Data.getString("ProjectNo");
                         String ProjectTitle = community_grp_detail_Data.getString("ProjectTitle");
-                        Log.d(TAG, "AdmCountryCode:" + AdmCountryCode + "AdmDonorCode:" + AdmDonorCode + "AdmAwardCode:" + AdmAwardCode +
+      /*                  Log.d(TAG, "AdmCountryCode:" + AdmCountryCode + "AdmDonorCode:" + AdmDonorCode + "AdmAwardCode:" + AdmAwardCode +
                                 "AdmProgCode:" + AdmProgCode + "GrpCode:" + GrpCode + "OrgCode:" + OrgCode + "StfCode:" + StfCode + "LandSizeUnderIrrigation:" + LandSizeUnderIrrigation +
                                 "IrrigationSystemUsed:" + IrrigationSystemUsed + "FundSupport:" + FundSupport + "ActiveStatus:" + ActiveStatus +
                                 "RepName:" + RepName + "RepPhoneNumber:" + RepPhoneNumber + "FormationDate:" + FormationDate + "TypeOfGroup:" + TypeOfGroup +
-                                "Status" + Status + "EntryBy:" + EntryBy + "EntryDate:" + EntryDate + "ProjectNo:" + ProjectNo + "ProjectTitle:" + ProjectTitle);
+                                "Status" + Status + "EntryBy:" + EntryBy + "EntryDate:" + EntryDate + "ProjectNo:" + ProjectNo + "ProjectTitle:" + ProjectTitle);*/
                         db.addIntoGroupDetails(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, GrpCode,
                                 OrgCode, StfCode, LandSizeUnderIrrigation, IrrigationSystemUsed, FundSupport,
                                 ActiveStatus, RepName, RepPhoneNumber, FormationDate, TypeOfGroup, Status,
@@ -2569,24 +2569,64 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (!jObj.isNull("staff_master")) {
                     JSONArray staff_master_Datas = jObj.getJSONArray("staff_master");
                     size = staff_master_Datas.length();
+
+                    String StfCode;
+                    String OrigAdmCountryCode;
+                    String StfName;
+                    String OrgNCode;
+                    String OrgNDesgNCode;
+                    String StfStatus;
+                    String StfCategory;
+                    String UsrLogInName;
+                    String UsrLogInPW;
+                    String StfAdminRole;
                     for (int i = 0; i < size; i++) {
                         JSONObject staff_master_Data = staff_master_Datas.getJSONObject(i);
 
 
-                        String StfCode = staff_master_Data.getString("StfCode");
-                        String OrigAdmCountryCode = staff_master_Data.getString("OrigAdmCountryCode");
-                        String StfName = staff_master_Data.getString("StfName");
-                        String OrgNCode = staff_master_Data.getString("OrgNCode");
-                        String OrgNDesgNCode = staff_master_Data.getString("OrgNDesgNCode");
-                        String StfStatus = staff_master_Data.getString("StfStatus");
-                        String StfCategory = staff_master_Data.getString("StfCategory");
-                        String UsrLogInName = staff_master_Data.getString("UsrLogInName");
-                        String UsrLogInPW = staff_master_Data.getString("UsrLogInPW");
-                        String StfAdminRole = staff_master_Data.getString("StfAdminRole");
+                        StfCode = staff_master_Data.getString("StfCode");
+                        OrigAdmCountryCode = staff_master_Data.getString("OrigAdmCountryCode");
+                        StfName = staff_master_Data.getString("StfName");
+                        OrgNCode = staff_master_Data.getString("OrgNCode");
+                        OrgNDesgNCode = staff_master_Data.getString("OrgNDesgNCode");
+                        StfStatus = staff_master_Data.getString("StfStatus");
+                        StfCategory = staff_master_Data.getString("StfCategory");
+                        UsrLogInName = staff_master_Data.getString("UsrLogInName");
+                        UsrLogInPW = staff_master_Data.getString("UsrLogInPW");
+                        StfAdminRole = staff_master_Data.getString("StfAdminRole");
 
 
-                        db.insertIntoStaffMasterTable(StfCode, OrigAdmCountryCode, StfName, OrgNCode, OrgNDesgNCode, StfStatus
-                                , StfCategory, UsrLogInName, UsrLogInPW, StfAdminRole);
+                        db.insertIntoStaffMasterTable(StfCode, OrigAdmCountryCode, StfName, OrgNCode, OrgNDesgNCode, StfStatus, StfCategory, UsrLogInName, UsrLogInPW, StfAdminRole);
+
+                    }
+                }
+
+
+
+
+                if (!jObj.isNull("gps_lup_list")) {
+                    JSONArray gps_lup_list_data = jObj.getJSONArray("gps_lup_list");
+                    size = gps_lup_list_data.length();
+
+                    String GrpCode;
+                    String SubGrpCode;
+                    String AttributeCode;
+                    String LupValueCode;
+                    String LupValueText;
+
+                    for (int i = 0; i < size; i++) {
+                        JSONObject gps_lup_list = gps_lup_list_data.getJSONObject(i);
+
+
+                        GrpCode = gps_lup_list.getString("GrpCode");
+                        SubGrpCode = gps_lup_list.getString("SubGrpCode");
+                        AttributeCode = gps_lup_list.getString("AttributeCode");
+                        LupValueCode = gps_lup_list.getString("LupValueCode");
+                        LupValueText = gps_lup_list.getString("LupValueText");
+
+
+
+                        db.insertIntoLupGpsList(GrpCode, SubGrpCode, AttributeCode, LupValueCode, LupValueText);
 
                     }
                 }

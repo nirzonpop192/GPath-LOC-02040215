@@ -22,8 +22,10 @@ import android.widget.ImageView;
 
 import com.siddiquinoor.restclient.data_model.AGR_DataModel;
 import com.siddiquinoor.restclient.data_model.FDPItem;
+import com.siddiquinoor.restclient.data_model.GPS_LocationAttributeDataModel;
 import com.siddiquinoor.restclient.data_model.GPS_LocationDataModel;
 import com.siddiquinoor.restclient.data_model.GPS_SubGroupAttributeDataModel;
+import com.siddiquinoor.restclient.data_model.Lup_gpsListDataModel;
 import com.siddiquinoor.restclient.data_model.RegNAssgProgSrv;
 
 import com.siddiquinoor.restclient.data_model.ServiceCenterItem;
@@ -194,6 +196,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String REG_N_VUL_TABLE = "RegN_VUL";
 
     public static final String LUP_SRV_OPTION_LIST_TABLE = "LUP_SrvOptionList";
+    public static final String LUP_GPS_LIST_TABLE = "LUP_GPSList";
+
+    public static final String LUP_VALUE_CODE_COL = "LupValueCode";
+    public static final String LUP_VALUE_TEXT_COL = "LupValueText";
+
 
     /**
      * *************************************************************************
@@ -1003,6 +1010,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.execSQL(Schema.createTableProgOrgNRole());
         db.execSQL(Schema.createTableProgOrgN());
 
+        db.execSQL(Schema.sqlCreateLUP_GpsList());
+
 
         Log.d(TAG, "  Create All Table ");
 
@@ -1092,6 +1101,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.execSQL(DROP_TABLE_IF_EXISTS + PROGRAM_ORGANIZATION_ROLE_TABLE);
 
             db.execSQL(DROP_TABLE_IF_EXISTS + STAFF_MASTER_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + STAFF_MASTER_TABLE);
+
+            db.execSQL(DROP_TABLE_IF_EXISTS + LUP_GPS_LIST_TABLE);
 
 
             Log.d(TAG, "All table Dropped.");
@@ -1248,6 +1260,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.delete(PROGRAM_ORGANIZATION_NAME_TABLE, null, null);
             db.delete(PROGRAM_ORGANIZATION_ROLE_TABLE, null, null);
             db.delete(STAFF_MASTER_TABLE, null, null);
+            db.delete(LUP_GPS_LIST_TABLE, null, null);
 
 
             Log.d(TAG, "All User data Deleted.");
@@ -1288,6 +1301,24 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         long id = db.insert(GPS_LOCATION_CONTENT_TABLE, null, values);
         db.close();
         Log.d(TAG, "NEW Insert into GPSLocationContent Table: " + id);
+    }
+
+    public void insertIntoLupGpsList(String grpCode, String subGrpCode, String attbuteCode, String lup_valueCode, String lup_value_text) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+
+        values.put(GROUP_CODE_COL, grpCode);
+        values.put(SUB_GROUP_CODE_COL, subGrpCode);
+        values.put(ATTRIBUTE_CODE_COL, attbuteCode);
+        values.put(LUP_VALUE_CODE_COL, lup_valueCode);
+        values.put(LUP_VALUE_TEXT_COL, lup_value_text);
+
+        long id = db.insert(LUP_GPS_LIST_TABLE, null, values);
+        db.close();
+//        Log.d(TAG, "Insert into " + STAFF_MASTER_TABLE + " Table: " + id);
+
+
     }
 
 
@@ -2948,42 +2979,41 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
-
-
     public ArrayList<GraduationGridDataModel> getMemberGraduationStatusList(String cCode, String donorCode, String awardCode, String programCode, String srvCode, String memCode) {
 
         ArrayList<GraduationGridDataModel> graduationGridList = new ArrayList<GraduationGridDataModel>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = SQLiteQuery.getMemberGraduationStatusList_sql(cCode, programCode, srvCode, donorCode, awardCode, memCode);
+        String selectQuery = SQLiteQuery.getMemberGraduationStatusList_sql(cCode, donorCode, awardCode, programCode, srvCode, memCode);
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         String dateformat;
         if (cursor.moveToFirst()) {
             do {
-                GraduationGridDataModel graduation = new GraduationGridDataModel();
+                GraduationGridDataModel data = new GraduationGridDataModel();
 
-                graduation.setHh_id(cursor.getString(cursor.getColumnIndex(HHID_COL)));
-                graduation.setMember_Id(cursor.getString(cursor.getColumnIndex(HH_MEM_ID)));
-                graduation.setMember_name(cursor.getString(cursor.getColumnIndex("memName")));
+                data.setHh_id(cursor.getString(cursor.getColumnIndex(HHID_COL)));
+                data.setMember_Id(cursor.getString(cursor.getColumnIndex(HH_MEM_ID)));
+                data.setMember_name(cursor.getString(cursor.getColumnIndex("memName")));
 
-                graduation.setCountryCode(cursor.getString(cursor.getColumnIndex(COUNTRY_CODE_COL)));
-                graduation.setDistrictCode(cursor.getString(cursor.getColumnIndex(DISTRICT_CODE_COL)));
-                graduation.setUpazillaCode(cursor.getString(cursor.getColumnIndex(UPCODE_COL)));
-                graduation.setUnitCode(cursor.getString(cursor.getColumnIndex(UCODE_COL)));
-                graduation.setVillageCode(cursor.getString(cursor.getColumnIndex(VCODE_COL)));
-                graduation.setProgram_code(cursor.getString(cursor.getColumnIndex(PROGRAM_CODE_COL)));
-                graduation.setService_code(cursor.getString(cursor.getColumnIndex(SERVICE_CODE_COL)));
+                data.setCountryCode(cursor.getString(cursor.getColumnIndex(COUNTRY_CODE_COL)));
+                data.setDistrictCode(cursor.getString(cursor.getColumnIndex(DISTRICT_CODE_COL)));
+                data.setUpazillaCode(cursor.getString(cursor.getColumnIndex(UPCODE_COL)));
+                data.setUnitCode(cursor.getString(cursor.getColumnIndex(UCODE_COL)));
+                data.setVillageCode(cursor.getString(cursor.getColumnIndex(VCODE_COL)));
+                data.setProgram_code(cursor.getString(cursor.getColumnIndex(PROGRAM_CODE_COL)));
+                data.setService_code(cursor.getString(cursor.getColumnIndex(SERVICE_CODE_COL)));
 
 //                graduation.setGraduationDate(removeTimestamp(cursor.getString(cursor.getColumnIndex(GRD_DATE_COL))));
-                graduation.setGraduationDate(cursor.getString(cursor.getColumnIndex(GRD_DATE_COL)));
+                data.setGraduationDate(cursor.getString(cursor.getColumnIndex(GRD_DATE_COL)));
 
-                graduation.setVillageName(cursor.getString(cursor.getColumnIndex(VILLAGE_NAME_COL)));
-                graduation.setGraduationTitle(cursor.getString(cursor.getColumnIndex("GRDTitle")));
+                data.setVillageName(cursor.getString(cursor.getColumnIndex(VILLAGE_NAME_COL)));
+                data.setGraduationTitle(cursor.getString(cursor.getColumnIndex("GRDTitle")));
+                data.setnMemId(cursor.getString(cursor.getColumnIndex("nMemId")));
 
                 //  Log.d(TAG, DatabaseUtils.dumpCursorToString(cursor));
 
-                graduationGridList.add(graduation);
+                graduationGridList.add(data);
 
             } while (cursor.moveToNext());
 
@@ -3290,6 +3320,38 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.close();
         }
         return alist;
+    }
+
+
+    public ArrayList<Lup_gpsListDataModel> getLupGPSList(String groupCode, String subGroupCode, String attCode) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Lup_gpsListDataModel> list = new ArrayList<Lup_gpsListDataModel>();
+
+        String selectQuery = "SELECT * "
+
+                + " FROM " + LUP_GPS_LIST_TABLE
+                + " WHERE " + GROUP_CODE_COL + " = '" + groupCode + "' "
+                + " AND " + SUB_GROUP_CODE_COL + " = '" + subGroupCode + "' "
+                + " AND " + ATTRIBUTE_CODE_COL + " = '" + attCode + "' ";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Lup_gpsListDataModel data = new Lup_gpsListDataModel();
+                data.setGroupCode(cursor.getString(0));
+                data.setSubGroupCode(cursor.getString(1));
+                data.setAttributeCode(cursor.getString(2));
+                data.setLupValueCode(cursor.getString(3));
+                data.setLupValueText(cursor.getString(4));
+
+
+                list.add(data);
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+            db.close();
+        }
+        return list;
     }
 
 
@@ -4857,6 +4919,57 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
+    public boolean isDataExistsInGpsLocationAttributesTable(String cCode, String groupCode, String subGroupCode, String locationCode, String attributeCode) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT * FROM " + GPS_LOCATION_ATTRIBUTES_TABLE + " WHERE " +
+
+                COUNTRY_CODE_COL + " = '" + cCode + "' AND " +
+                GROUP_CODE_COL + " = '" + groupCode + "' AND " +
+                SUB_GROUP_CODE_COL + " = '" + subGroupCode + "' AND " +
+                LOCATION_CODE_COL + " = '" + locationCode + "' AND " +
+                ATTRIBUTE_CODE_COL + " = '" + attributeCode + "' ";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if (cursor.getCount() > 0) {
+            cursor.close();
+            db.close();
+            return true;
+        } else
+            return false;
+
+
+    }
+
+
+    public GPS_LocationAttributeDataModel getDataFromInGpsLocationAttributesTable(String cCode, String groupCode, String subGroupCode, String locationCode, String attributeCode) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        GPS_LocationAttributeDataModel data = new GPS_LocationAttributeDataModel();
+        String sql = "SELECT * FROM " + GPS_LOCATION_ATTRIBUTES_TABLE + " WHERE " +
+
+                COUNTRY_CODE_COL + " = '" + cCode + "' AND " +
+                GROUP_CODE_COL + " = '" + groupCode + "' AND " +
+                SUB_GROUP_CODE_COL + " = '" + subGroupCode + "' AND " +
+                LOCATION_CODE_COL + " = '" + locationCode + "' AND " +
+                ATTRIBUTE_CODE_COL + " = '" + attributeCode + "' ";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                data.setCountryCode(cursor.getString(0));
+                data.setGroupCode(cursor.getString(1));
+                data.setSubGroupCode(cursor.getString(2));
+                data.setLocationCode(cursor.getString(3));
+                data.setAttributeCode(cursor.getString(4));
+                data.setAttributeValue(cursor.getString(5));
+
+
+            }
+
+        }
+        return data;
+
+    }
+
 
     public void addCommunityGroup(String cCode, String donorCode, String awardCode, String progCode, String groupCode,
                                   String groupName, String groupCatCode, String distCode, String upCode, String srvCenterCode) {
@@ -5339,8 +5452,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + ADM_DONOR_TABLE + " AS don "
                 + " ON "
 
+
                 + "  don." + SQLiteHandler.DONOR_CODE_COL + " = cgc." + SQLiteHandler.DONOR_CODE_COL
-                + " INNER JOIN " +
+                + " LEFT JOIN " +
                 COMMUNITY_GRP_DETAIL_TABLE + " AS grpDetail "
                 + " ON "
                 + " grpDetail." + SQLiteHandler.COUNTRY_CODE_COL + " = cgc." + SQLiteHandler.COUNTRY_CODE_COL
@@ -5350,9 +5464,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + " AND grpDetail." + SQLiteHandler.GROUP_CODE_COL + " = cg." + SQLiteHandler.GROUP_CODE_COL
 
 
-                + " INNER JOIN " + PROGRAM_ORGANIZATION_NAME_TABLE + " AS org "
+                + " LEFT JOIN " + PROGRAM_ORGANIZATION_NAME_TABLE + " AS org "
                 + " ON org." + SQLiteHandler.ORG_CODE_COL + " = grpDetail." + SQLiteHandler.ORG_CODE_COL
-                + " INNER JOIN " + SQLiteHandler.STAFF_MASTER_TABLE + " AS staff "
+                + " LEFT JOIN " + SQLiteHandler.STAFF_MASTER_TABLE + " AS staff "
                 + " ON staff." + SQLiteHandler.STAFF_ID_COL + " = " + " grpDetail." + STAFF_CODE_COL
                 + " AND staff." + SQLiteHandler.COUNTRY_CODE + " = " + " cgc." + COUNTRY_CODE_COL
                 + " AND staff." + SQLiteHandler.ORG_CODE_COL + " = " + " grpDetail." + ORG_CODE_COL

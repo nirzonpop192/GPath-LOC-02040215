@@ -1196,6 +1196,19 @@ public class Schema {
 
     }
 
+    // Creating LUP_SrvOptionList Schema
+    public static String sqlCreateLUP_GpsList() {
+        return CREATE_TABLE_IF_NOT_EXISTS + SQLiteHandler.LUP_GPS_LIST_TABLE + "("
+
+                + SQLiteHandler.GROUP_CODE_COL + " VARCHAR(5)  , "
+                + SQLiteHandler.SUB_GROUP_CODE_COL + " VARCHAR(4), "
+                + SQLiteHandler.ATTRIBUTE_CODE_COL + " VARCHAR(4), "
+                + SQLiteHandler.LUP_VALUE_CODE_COL + " VARCHAR(4), "
+                + SQLiteHandler.LUP_VALUE_TEXT_COL + " VARCHAR(100) "
+                + " )";
+    }
+
+
 
     public static String sqlCreateServiceSpecification_Table() {
 

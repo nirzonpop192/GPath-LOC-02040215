@@ -2434,36 +2434,36 @@ public class SQLiteQuery {
     public static String getGroupSummaryList_sql(final String cCode) {
         return "SELECT " +
 
-                "   regG." + SQLiteHandler.COUNTRY_CODE_COL + " " +
-                " , regG." + SQLiteHandler.DONOR_CODE_COL +
-                " , regG." + SQLiteHandler.AWARD_CODE_COL +
-                " , regG." + SQLiteHandler.PROGRAM_CODE_COL +
+                "   cg." + SQLiteHandler.COUNTRY_CODE_COL + " " +
+                " , cg." + SQLiteHandler.DONOR_CODE_COL +
+                " , cg." + SQLiteHandler.AWARD_CODE_COL +
+                " , cg." + SQLiteHandler.PROGRAM_CODE_COL +
                 " , cgc." + SQLiteHandler.GROUP_CAT_CODE_COL +
                 " , cgc." + SQLiteHandler.GROUP_CAT_SHORT_NAME_COL +
                 " , cg." + SQLiteHandler.GROUP_CODE_COL +
                 " , cg." + SQLiteHandler.GROUP_NAME_COL +
                 " , srv." + SQLiteHandler.SERVICE_SHORT_NAME_COL +
 
-                " , Count(*) AS c " +
+                " , ( select Count(*) from "+SQLiteHandler.REG_N_MEM_PROG_GRP_TABLE+" )  AS c " +
 
-                " FROM " + SQLiteHandler.REG_N_MEM_PROG_GRP_TABLE + " AS regG " +
+                " FROM " +  SQLiteHandler.COMMUNITY_GROUP_TABLE + "  AS cg " +
 
-                " LEFT JOIN " + SQLiteHandler.COMMUNITY_GROUP_TABLE + "  AS cg " +
+                " LEFT JOIN " +SQLiteHandler.REG_N_MEM_PROG_GRP_TABLE + " AS regG " +
                 " ON regG." + SQLiteHandler.COUNTRY_CODE_COL + " = cg." + SQLiteHandler.COUNTRY_CODE_COL + " " +
                 " AND regG." + SQLiteHandler.DONOR_CODE_COL + " = cg." + SQLiteHandler.DONOR_CODE_COL +
                 " AND regG." + SQLiteHandler.AWARD_CODE_COL + " = cg." + SQLiteHandler.AWARD_CODE_COL +
                 " AND regG." + SQLiteHandler.PROGRAM_CODE_COL + " = cg." + SQLiteHandler.PROGRAM_CODE_COL +
                 " AND regG." + SQLiteHandler.GROUP_CODE_COL + " = cg." + SQLiteHandler.GROUP_CODE_COL +
                 " LEFT JOIN " + SQLiteHandler.COMMUNITY_GROUP_CATEGORY_TABLE + " AS cgc " +
-                " ON regG." + SQLiteHandler.COUNTRY_CODE_COL + " = cgc." + SQLiteHandler.COUNTRY_CODE_COL +
-                " AND regG." + SQLiteHandler.DONOR_CODE_COL + " = cgc." + SQLiteHandler.DONOR_CODE_COL +
-                " AND regG." + SQLiteHandler.AWARD_CODE_COL + " = cgc." + SQLiteHandler.AWARD_CODE_COL +
-                " AND regG." + SQLiteHandler.PROGRAM_CODE_COL + " = cgc." + SQLiteHandler.PROGRAM_CODE_COL +
+                " ON cg." + SQLiteHandler.COUNTRY_CODE_COL + " = cgc." + SQLiteHandler.COUNTRY_CODE_COL +
+                " AND cg." + SQLiteHandler.DONOR_CODE_COL + " = cgc." + SQLiteHandler.DONOR_CODE_COL +
+                " AND cg." + SQLiteHandler.AWARD_CODE_COL + " = cgc." + SQLiteHandler.AWARD_CODE_COL +
+                " AND cg." + SQLiteHandler.PROGRAM_CODE_COL + " = cgc." + SQLiteHandler.PROGRAM_CODE_COL +
                 " AND cg." + SQLiteHandler.GROUP_CAT_CODE_COL + " = cgc." + SQLiteHandler.GROUP_CAT_CODE_COL +
                 " LEFT JOIN " + SQLiteHandler.SERVICE_MASTER_TABLE + " AS srv " +
-                " ON regG." + SQLiteHandler.PROGRAM_CODE_COL + " = srv. " + SQLiteHandler.PROGRAM_CODE_COL +
+                " ON cg." + SQLiteHandler.PROGRAM_CODE_COL + " = srv. " + SQLiteHandler.PROGRAM_CODE_COL +
                 " AND regG." + SQLiteHandler.SERVICE_CODE_COL + " = srv." + SQLiteHandler.SERVICE_CODE_COL +
-                " WHERE regG." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "' " +
+                " WHERE cg." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "' " +
                 " GROUP BY cgc." + SQLiteHandler.GROUP_CAT_CODE_COL + ", cg." + SQLiteHandler.GROUP_CODE_COL;
     }
 

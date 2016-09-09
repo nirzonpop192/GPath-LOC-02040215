@@ -23,12 +23,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,8 +39,11 @@ import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.activity.MainActivity;
 import com.siddiquinoor.restclient.activity.MapActivity;
 
+import com.siddiquinoor.restclient.activity.sub_activity.summary_sub.IdListInGroupSummary;
+import com.siddiquinoor.restclient.data_model.GPS_LocationAttributeDataModel;
 import com.siddiquinoor.restclient.data_model.GPS_LocationDataModel;
 import com.siddiquinoor.restclient.data_model.GPS_SubGroupAttributeDataModel;
+import com.siddiquinoor.restclient.data_model.Lup_gpsListDataModel;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 import com.siddiquinoor.restclient.manager.sqlsyntax.SQLServerSyntaxGenerator;
@@ -73,7 +77,8 @@ public class PointAttributes extends BaseActivity {
     private Button btnSave;
 
     List<EditText> allEdt = new ArrayList<EditText>();
-    List<CheckBox> allCheckBox = new ArrayList<CheckBox>();
+    List<RadioButton> allistedRadioButton = new ArrayList<RadioButton>();
+    private String[] radioButtonValue;
     private Button btnMap;
     private boolean permissionForGoMap = false;
     private TextView lbel_lng, lbel_lat;
@@ -333,8 +338,13 @@ public class PointAttributes extends BaseActivity {
 
                     } else {
 
-                        for (int i = 0; i < allCheckBox.size(); i++) {
-                            if (allCheckBox.get(i).isChecked()) {
+                        for (int i = 0; i < allistedRadioButton.size(); i++) {
+                            if (allistedRadioButton.get(i).isChecked()) {
+
+                                Log.d("MOR", "lupCode value :00" + allistedRadioButton.get(i).getId());
+
+                               String attValue=String.valueOf(allistedRadioButton.get(i).getId());
+                                attValue=getPadding(attValue.length(),attValue);
 
 
                              /*   Log.d(TAG, " in save method \n "
@@ -349,23 +359,43 @@ public class PointAttributes extends BaseActivity {
                                 sqlServer.setSubGrpCode(idSubGroup);
                                 sqlServer.setLocationCode(idLocation);
                                 sqlServer.setAttributeCode(subAtt.getAttributeCode());
-                                sqlServer.setAttributeValue("1");
+                                sqlServer.setAttributeValue(attValue);
                                 sqlServer.setEntryBy(entryBy);
                                 sqlServer.setEntryDate(entryDate);
 
 
-                                sqlH.addGPSLocationAttributes(idCountry, idGroup, idSubGroup, idLocation, subAtt.getAttributeCode(), "1", null, entryBy, entryDate);
+                                sqlH.addGPSLocationAttributes(idCountry, idGroup, idSubGroup, idLocation, subAtt.getAttributeCode(), attValue, null, entryBy, entryDate);
                                 sqlH.insertIntoUploadTable(sqlServer.insertIntoGPSLocationAttributesTable());
 
 
                             }
                         }
+                        break;
                     }
                 }
 
                 Toast.makeText(CONTEXT, "Save successfully ", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    private String getPadding(int id_len, String next_id) {
+
+        String padded_id = "";
+
+        if (id_len > 0) {
+            int pad = 3 - id_len;
+
+            for (int i = 0; i < pad; i++) {
+                padded_id += "0";
+            }
+            padded_id = padded_id + next_id;
+        } else {
+            padded_id = "000";
+        }
+
+        return padded_id;
     }
 
     /**
@@ -565,7 +595,8 @@ public class PointAttributes extends BaseActivity {
                 idSubGroup = ((SpinnerHelper) spSubGroup.getSelectedItem()).getId();
                 if (idSubGroup.length() > 2) {
                     loadLocation(cCode, idGroup, idSubGroup);
-                    createDynamicViews(idGroup, idSubGroup);
+
+
                 }
 
             }
@@ -620,6 +651,8 @@ public class PointAttributes extends BaseActivity {
                     setVisibletyLatLongViews(View.VISIBLE);
                     GPSLocationLatLong latLong = sqlH.getLocationSpecificLatLong(idCountry, groupCode, subGroupCode, idLocation);
                     setLatLongInTextView(latLong);
+
+                    createDynamicViews(idCountry, idGroup, idSubGroup, idLocation);
                 } else {
                     permissionForGoMap = false;
                     setVisibletyLatLongViews(View.GONE);
@@ -669,7 +702,7 @@ public class PointAttributes extends BaseActivity {
         startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
     }*/
 
-    private void createDynamicViews(String groupCode, String subGroupCode) {
+    private void createDynamicViews(String cCode, String groupCode, String subGroupCode, String locationCode) {
 
 /**
  * clean the view  before generate new views
@@ -678,7 +711,8 @@ public class PointAttributes extends BaseActivity {
             ((LinearLayout) llayout_Dynamic_Attribute).removeAllViews();
 
         /**
-         *  connect database */
+         *  connect database
+         *  */
 
         ArrayList<GPS_SubGroupAttributeDataModel> attList = sqlH.getGpsSubGroupAttributes(groupCode, subGroupCode);
         int size = attList.size();
@@ -743,9 +777,20 @@ public class PointAttributes extends BaseActivity {
 
                     EditText et = new EditText(this);
                     allEdt.add(et);
-                    et.setHint(st);
+                    /**
+                     * if data exit data will be restore
+                     */
+                    if (sqlH.isDataExistsInGpsLocationAttributesTable(cCode, groupCode, subGroupCode, locationCode, attList.get(i).getAttributeCode())) {
+                        GPS_LocationAttributeDataModel attData= sqlH.getDataFromInGpsLocationAttributesTable(cCode, groupCode, subGroupCode, locationCode, attList.get(i).getAttributeCode());
+
+                        et.setText(attData.getAttributeValue());
+                    } else {
+                        et.setHint(st);
+                    }
+
                     et.setId(i);
                     et.setPadding(15, 5, 0, 5);
+//                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
                     et.setBackground(getResources().getDrawable(R.drawable.edit_box_background));
                     switch (attList.get(i).getDataType()) {
                         case TEXT_TYPE:
@@ -761,19 +806,40 @@ public class PointAttributes extends BaseActivity {
 
 
             } else {
+                RadioGroup radGroup = new RadioGroup(this);
+                radGroup.setOrientation(RadioGroup.VERTICAL);
+                List<Lup_gpsListDataModel> lookupList = sqlH.getLupGPSList(groupCode, subGroupCode, attList.get(i).getAttributeCode());
+                if (lookupList.size() > 0) {
 
+                    for (int lookupCount = 0; lookupCount < lookupList.size(); lookupCount++) {
 
-                final CheckBox cb = new CheckBox(this);
-                cb.setText(st);
-                cb.setId(i);
-                cb.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                        final RadioButton rbtn = new RadioButton(this);
+                        rbtn.setText(lookupList.get(lookupCount).getLupValueText());
+                        rbtn.setId(Integer.parseInt(lookupList.get(lookupCount).getLupValueCode()));
+                        /**
+                         * if data exit data will be restore
+                         */
+                        if (sqlH.isDataExistsInGpsLocationAttributesTable(cCode, groupCode, subGroupCode, locationCode, attList.get(i).getAttributeCode())) {
+                            rbtn.setChecked(true);
+
+                         
+                        }
+                        else {
+                            rbtn.setChecked(false);
+                        }
+                        rbtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
                    /*     Log.d(TAG, "Check box " + cb.getId() + " is checked ");*/
+                            }
+                        });
+                        allistedRadioButton.add(rbtn);
+//                        llayout_Dynamic_Attribute.addView(rbtn);
+                        radGroup.addView(rbtn);
+
                     }
-                });
-                allCheckBox.add(cb);
-                llayout_Dynamic_Attribute.addView(cb);
+                    llayout_Dynamic_Attribute.addView(radGroup);
+                }
 
 
             }
@@ -960,7 +1026,7 @@ public class PointAttributes extends BaseActivity {
 
             mImageView1.setVisibility(View.VISIBLE);
 
-            // bimatp factory
+            // bitmap factory
             BitmapFactory.Options options = new BitmapFactory.Options();
 
             // downsizing image as it throws OutOfMemory Exception for larger

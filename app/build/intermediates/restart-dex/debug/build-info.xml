@@ -1,53 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
     abi="x86"
-    api-level="21"
-    density="mdpi"
+    api-level="16"
+    density="xhdpi"
     format="7"
-    timestamp="13632332322025"
-    token="-2412017787919546035"
-    verifier="R_CLASS_CHANGE" >
+    timestamp="23453659793151"
+    token="-2412017787919546035" >
 
     <task
         name="javac"
-        duration="1392" />
+        duration="2430" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="15" />
+        duration="1908" />
     <task
         name="verifier"
-        duration="4" />
+        duration="388" />
 
     <artifact
-        location="D:\Android\GPath-LOC-02040215\app\build\intermediates\res\resources-debug.ap_"
-        type="RESOURCES" />
-    <artifact
-        location="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_4\classes.dex"
-        type="DEX" />
-    <artifact
-        location="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
-        type="DEX" />
+        location="D:\Android\GPath-LOC-02040215\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="13459394014738" >
+    <build timestamp="23453659793151" >
         <artifact
             location="D:\Android\GPath-LOC-02040215\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
-    </build>
-    <build
-        timestamp="13632332322025"
-        verifier="R_CLASS_CHANGE" >
-        <artifact
-            location="D:\Android\GPath-LOC-02040215\app\build\intermediates\res\resources-debug.ap_"
-            type="RESOURCES" />
-        <artifact
-            location="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_4\classes.dex"
-            type="DEX" />
-        <artifact
-            location="D:\Android\GPath-LOC-02040215\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
-            type="DEX" />
     </build>
 
 </instant-run>

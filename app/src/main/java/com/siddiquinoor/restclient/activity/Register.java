@@ -907,10 +907,11 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
         adtGender.setDropDownViewResource(R.layout.spinner_layout);
         spWRank.setAdapter(adtGender);
+        Log.d("MOR","idWRank : "+idWRank);
 
-        if (idWRank != null) {
+        if (idWRank != null&&idWRank.length()>0) {
 
-            spWRank.setSelection(Integer.parseInt(idWRank) - 1);
+            spWRank.setSelection(Integer.parseInt(idWRank)-1 );
 
         }
            /* if (idWRank.equals("1"))

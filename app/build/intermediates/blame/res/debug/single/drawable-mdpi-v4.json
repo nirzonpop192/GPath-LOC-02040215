@@ -232,12 +232,12 @@
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.1.0\\res\\drawable-mdpi\\common_signin_btn_text_focus_dark.9.png"
     },
     {
-        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_plusone_tall_off_client.png",
-        "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-plus\\8.1.0\\res\\drawable-mdpi\\ic_plusone_tall_off_client.png"
-    },
-    {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_btn_rating_star_off_mtrl_alpha.png",
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable-mdpi\\abc_btn_rating_star_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_plusone_tall_off_client.png",
+        "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-plus\\8.1.0\\res\\drawable-mdpi\\ic_plusone_tall_off_client.png"
     },
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\common_signin_btn_text_disabled_focus_dark.9.png",

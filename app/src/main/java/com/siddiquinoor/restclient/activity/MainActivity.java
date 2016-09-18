@@ -835,47 +835,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (!jObj.isNull(REG_M_ASSIGN_PROG_SRV_JSON_A)) {
 
                     JsonDeserialization.regNAssignProgSrvParser(jObj.getJSONArray(REG_M_ASSIGN_PROG_SRV_JSON_A), db);
-                   /* String AdmCountryCode;
-                    String LayR1ListCode;
-                    String LayR2ListCode;
-                    String LayR3ListCode;
-                    String LayR4ListCode;
-                    String AdmDonorCode;
-                    String AdmAwardCode;
-                    String HHID;
-                    String MemID;
-                    String ProgCode;
-                    String SrvCode;
-                    String RegNDate;
-                    String GRDCode;
-                    String GRDDate;
-                    JSONArray reg_m_assign_prog_srvs = jObj.getJSONArray(REG_M_ASSIGN_PROG_SRV_JSON_A);
-                    size = reg_m_assign_prog_srvs.length();
-                    for (int i = 0; i < size; i++) {
-                        JSONObject reg_m_assign_prog_srv = reg_m_assign_prog_srvs.getJSONObject(i);
-                        AdmCountryCode = reg_m_assign_prog_srv.getString(ADM_COUNTRY_CODE);
-                        LayR1ListCode = reg_m_assign_prog_srv.getString(LAY_R_1_LIST_CODE);
-                        LayR2ListCode = reg_m_assign_prog_srv.getString(LAY_R_2_LIST_CODE);
-                        LayR3ListCode = reg_m_assign_prog_srv.getString(LAY_R_3_LIST_CODE);
-                        LayR4ListCode = reg_m_assign_prog_srv.getString(LAY_R_4_LIST_CODE);
-                        AdmDonorCode = reg_m_assign_prog_srv.getString(ADM_DONOR_CODE);
-                        AdmAwardCode = reg_m_assign_prog_srv.getString(ADM_AWARD_CODE);
-                        HHID = reg_m_assign_prog_srv.getString(MainActivity.HHID);
-                        MemID = reg_m_assign_prog_srv.getString(MEM_ID);
-                        ProgCode = reg_m_assign_prog_srv.getString(PROG_CODE);
-                        SrvCode = reg_m_assign_prog_srv.getString(SRV_CODE);
-                        RegNDate = reg_m_assign_prog_srv.getString(REG_N_DATE);
-                        GRDCode = reg_m_assign_prog_srv.getString(GRD_CODE);
-                        GRDDate = reg_m_assign_prog_srv.getString(GRD_DATE);
 
-
-                        db.addRegNassignProgServiceFromOnline(AdmCountryCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, AdmDonorCode, AdmAwardCode, HHID, MemID, ProgCode, SrvCode, RegNDate, GRDCode, GRDDate);
-
-
-//                        Log.d(TAG, "In reg_m_assign_prog_srv Table- AdmCountryCode :" + AdmCountryCode + " AdmDonorCode : " + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode
-//                                + " LayR4ListCode : " + LayR4ListCode + " HHID : " + HHID + " MemID : " + MemID + " ProgCode : " + ProgCode + " SrvCode : " + SrvCode +
-//                                " RegNDate : " + RegNDate + "GRDCode: " + GRDCode + " GDRDate : " + GRDDate);
-                    }*/
                 }
 
 
@@ -970,7 +930,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         db.addRegNLMFromOnLine(AdmCountryCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, HHID, MemID, AdmProgCode, AdmSrvCode, RegNDate, GRDCode, LMDOB, LMGRDDate, ChildName, ChildSex);//, SrvCenterCatCode, FDPCode);
 
 
-                        Log.d(TAG, "In RegNLM Table- AdmCountryCode :" + AdmCountryCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode + " HHID : " + HHID + " MemID  : " + MemID + " AdmProgCode : " + AdmProgCode + " AdmSrvCode : " + AdmSrvCode + " RegNDate : " + RegNDate + " GRDCode : " + GRDCode + " EntryBy : " + " EntryDate : " + " LMDOB : " + LMDOB + " LMGRDDate : " + LMGRDDate);// + " FDPCode  : " + FDPCode );
                     }
                 }
 
@@ -1160,6 +1119,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         //  Log.d(TAG, "In Reg Mem Card Request Table: AdmCountryCode : " + AdmCountryCode + " AdmDonorCode : " + AdmDonorCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : "
                         //        + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode+ " HHID : " + HHID);
                     }
+                }
+
+
+                if (!jObj.isNull("reg_n_ffa")) {
+
+
+                    JsonDeserialization.reg_N_FFAPerser(jObj.getJSONArray("reg_n_ffa"), db);
+
                 }
 
             } catch (Exception e) {
@@ -2602,8 +2569,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
 
 
-
-
                 if (!jObj.isNull("gps_lup_list")) {
                     JSONArray gps_lup_list_data = jObj.getJSONArray("gps_lup_list");
                     size = gps_lup_list_data.length();
@@ -2623,7 +2588,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         AttributeCode = gps_lup_list.getString("AttributeCode");
                         LupValueCode = gps_lup_list.getString("LupValueCode");
                         LupValueText = gps_lup_list.getString("LupValueText");
-
 
 
                         db.insertIntoLupGpsList(GrpCode, SubGrpCode, AttributeCode, LupValueCode, LupValueText);

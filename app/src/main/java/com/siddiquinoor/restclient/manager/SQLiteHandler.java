@@ -6597,6 +6597,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_DATE, entryDate);
         db.insert(REG_N_FFA_TABLE, null, values);
 
+
     }
 
 

@@ -1050,9 +1050,7 @@ public class JsonDeserialization {
                 Latd = gps_location.getString(MainActivity.LATD);
 
 
-                sqlH.addGpsLocation(AdmCountryCode, GrpCode, SubGrpCode, LocationCode, LocationName,  Latd,Long);
-
-
+                sqlH.addGpsLocation(AdmCountryCode, GrpCode, SubGrpCode, LocationCode, LocationName, Latd, Long);
 
 
             } catch (Exception e) {
@@ -1108,10 +1106,10 @@ public class JsonDeserialization {
                 sqlH.addRegNassignProgServiceFromOnline(AdmCountryCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, AdmDonorCode, AdmAwardCode, HHID, MemID, ProgCode, SrvCode, RegNDate, GRDCode, GRDDate, SrvMin, SrvMax);
 
 
-                Log.d(TAG, "RegNAss- AdmCountryCode :" + AdmCountryCode + " AdmDonorCode : " + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode
+               /* Log.d(TAG, "RegNAss- AdmCountryCode :" + AdmCountryCode + " AdmDonorCode : " + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode
                         + " LayR4ListCode : " + LayR4ListCode + " HHID : " + HHID + " MemID : " + MemID + " ProgCode : " + ProgCode + " SrvCode : " + SrvCode +
                         " RegNDate : " + RegNDate + "GRDCode: " + GRDCode + " GDRDate : " + GRDDate);
-
+*/
 
             } catch (Exception e) {
                 Log.d(TAG, "Expetion : " + e);
@@ -1121,7 +1119,61 @@ public class JsonDeserialization {
 
     }
 
-    public static void  staff_master_DataParser(JSONArray reg_m_assign_prog_srvs, SQLiteHandler sqlH){
+    public static void reg_N_FFAPerser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+        int size;
+
+        String CountryCode;
+        String DistrictCode;
+        String UpazillaCode;
+        String UnitCode;
+        String VillageCode;
+        String HhId;
+        String MemID;
+        String OrphanedChildren;
+        String ChildHeaded;
+        String ElderlyHeaded;
+        String ChronicallyIll;
+        String FemaleHeaded;
+        String CropFailure;
+        String ChildrenRecSuppFeedN;
+        String Willingness;
+
+
+        size = jsonArrayData.length();
+
+        try {
+            for (int i = 0; i < size; i++) {
+                JSONObject reg_n_ffa_tableData = jsonArrayData.getJSONObject(i);
+
+                CountryCode = reg_n_ffa_tableData.getString(MainActivity.ADM_COUNTRY_CODE);
+                DistrictCode = reg_n_ffa_tableData.getString(MainActivity.LAY_R_1_LIST_CODE);
+                UpazillaCode = reg_n_ffa_tableData.getString(MainActivity.LAY_R_2_LIST_CODE);
+                UnitCode = reg_n_ffa_tableData.getString(MainActivity.LAY_R_3_LIST_CODE);
+                VillageCode = reg_n_ffa_tableData.getString(MainActivity.LAY_R_4_LIST_CODE);
+                HhId = reg_n_ffa_tableData.getString(MainActivity.HHID);
+                MemID = reg_n_ffa_tableData.getString(MainActivity.MEM_ID);
+                OrphanedChildren = reg_n_ffa_tableData.getString("OrphanedChildren");
+                ChildHeaded = reg_n_ffa_tableData.getString("ChildHeaded");
+                ElderlyHeaded = reg_n_ffa_tableData.getString("ElderlyHeaded");
+                ChronicallyIll = reg_n_ffa_tableData.getString("ChronicallyIll");
+                FemaleHeaded = reg_n_ffa_tableData.getString("FemaleHeaded");
+                CropFailure = reg_n_ffa_tableData.getString("CropFailure");
+                ChildrenRecSuppFeedN = reg_n_ffa_tableData.getString("ChildrenRecSuppFeedN");
+                Willingness = reg_n_ffa_tableData.getString("Willingness");
+
+
+                sqlH.insertIntoDDR_RegN_FFATable(CountryCode, DistrictCode, UpazillaCode, UnitCode, VillageCode, HhId, MemID, OrphanedChildren, ChildHeaded, ElderlyHeaded, ChronicallyIll, FemaleHeaded, CropFailure, ChildrenRecSuppFeedN, Willingness, "", "");
+            }
+
+        } catch (Exception e) {
+            Log.e(TAG, "Expetion : " + e);
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public static void staff_master_DataParser(JSONArray reg_m_assign_prog_srvs, SQLiteHandler sqlH) {
 
     }
 

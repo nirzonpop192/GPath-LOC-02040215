@@ -93,8 +93,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbfa6c68-24f6-4379-bbc2-497898403be8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR$15.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR$15.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR$16.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR$16.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/ddr/AssignForDDRMalwaiFFA.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/ddr/AssignForDDRMalwaiFFA.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/ddr/AssignForDDRMalwaiFFA.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/ddr/AssignForDDRMalwaiFFA.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -113,11 +119,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AssignAGR.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AssignAGR.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.7241379">
-              <caret line="1357" column="0" selection-start-line="1357" selection-start-column="0" selection-end-line="1357" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.44181034">
+              <caret line="722" column="0" selection-start-line="722" selection-start-column="0" selection-end-line="722" selection-end-column="0" />
               <folding>
                 <element signature="e#7020#7248#0" expanded="true" />
                 <element signature="e#7247#7248#0" expanded="true" />
@@ -150,10 +156,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AssignForDDRMalwaiFFA.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AssignForDDRMalwaiFFA.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/ddr/AssignForDDRMalwaiFFA.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.4556962">
+            <state vertical-scroll-proportion="0.0">
               <caret line="552" column="0" selection-start-line="552" selection-start-column="0" selection-end-line="552" selection-end-column="0" />
               <folding>
                 <element signature="e#9700#13442#0" expanded="true" />
@@ -219,7 +225,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLServerSyntaxGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5248" column="29" selection-start-line="5248" selection-start-column="29" selection-end-line="5248" selection-end-column="29" />
+              <caret line="2148" column="27" selection-start-line="2148" selection-start-column="27" selection-end-line="2148" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -2199,12 +2205,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLServerSyntaxGenerator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/utils/UtilClass.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_assign_for_malwai_agr.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/parse/JsonDeserialization.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/ddr/AssignForDDRMalwaiFFA.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.java" />
       </list>
     </option>
   </component>
@@ -2799,7 +2805,7 @@
     <property name="settings.editor.selected.configurable" value="IntelliLang.Configuration" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="android.sdk.path" value="G:/Android/sdk" />
-    <property name="device.picker.selection" value="192.168.49.101:5555" />
+    <property name="device.picker.selection" value="192.168.49.102:5555" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="65" />
@@ -3178,7 +3184,13 @@
       <option name="project" value="LOCAL" />
       <updated>1474209359077</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="FFA update method fix">
+      <created>1474209667948</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1474209667948</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -3192,7 +3204,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Documentation" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11584327" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="92" y="92" width="1176" height="544" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -3202,7 +3214,7 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14480409" sideWeight="0.4969605" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.112436116" sideWeight="0.4969605" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.713799" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -3215,7 +3227,7 @@
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2725724" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31914893" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31914893" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28960818" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -3251,7 +3263,8 @@
     <MESSAGE value="AGR decimal bug fixing&#10;" />
     <MESSAGE value="Group Summary showing wrong data solved" />
     <MESSAGE value="FFA parsing" />
-    <option name="LAST_COMMIT_MESSAGE" value="FFA parsing" />
+    <MESSAGE value="FFA update method fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="FFA update method fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3486,7 +3499,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.java</url>
-          <line>1351</line>
+          <line>1352</line>
           <properties />
           <option name="timeStamp" value="73" />
         </line-breakpoint>
@@ -3988,21 +4001,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7241379">
-          <caret line="1357" column="0" selection-start-line="1357" selection-start-column="0" selection-end-line="1357" selection-end-column="0" />
-          <folding>
-            <element signature="e#7020#7248#0" expanded="true" />
-            <element signature="e#7247#7248#0" expanded="true" />
-            <element signature="e#9269#9435#0" expanded="true" />
-            <element signature="e#9434#9435#0" expanded="true" />
-            <element signature="e#9696#9847#0" expanded="true" />
-            <element signature="e#9846#9847#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/IdListInGroupSummary.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4037,14 +4035,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1130" column="0" selection-start-line="1130" selection-start-column="0" selection-end-line="1130" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.62069">
@@ -4060,17 +4050,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLServerSyntaxGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5248" column="29" selection-start-line="5248" selection-start-column="29" selection-end-line="5248" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/ddr/AssignForDDRMalwaiFFA.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.4556962">
+        <state vertical-scroll-proportion="0.0">
           <caret line="552" column="0" selection-start-line="552" selection-start-column="0" selection-end-line="552" selection-end-column="0" />
           <folding>
             <element signature="e#9700#13442#0" expanded="true" />
@@ -4090,6 +4072,37 @@
             <element signature="e#27527#27542#0" expanded="true" />
             <element signature="method#loadGroup#0;class#AssignForDDRMalwaiFFA#0" expanded="false" />
             <element signature="e#29993#30008#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1130" column="0" selection-start-line="1130" selection-start-column="0" selection-end-line="1130" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLServerSyntaxGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2148" column="27" selection-start-line="2148" selection-start-column="27" selection-end-line="2148" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44181034">
+          <caret line="722" column="0" selection-start-line="722" selection-start-column="0" selection-end-line="722" selection-end-column="0" />
+          <folding>
+            <element signature="e#7020#7248#0" expanded="true" />
+            <element signature="e#7247#7248#0" expanded="true" />
+            <element signature="e#9269#9435#0" expanded="true" />
+            <element signature="e#9434#9435#0" expanded="true" />
+            <element signature="e#9696#9847#0" expanded="true" />
+            <element signature="e#9846#9847#0" expanded="true" />
           </folding>
         </state>
       </provider>

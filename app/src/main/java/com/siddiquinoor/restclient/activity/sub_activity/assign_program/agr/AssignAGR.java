@@ -719,18 +719,20 @@ public class AssignAGR extends BaseActivity {
                 assignMem.setGrdDate(calculateGRDDate(assignMem.getCountryCode(), assignMem.getDonor_code(), assignMem.getAward_code()));
                 saveDataForSqlServer();
 
+                assign_agr.setGRDDate(assignMem.getGrdDate());
+
 
                 if (sqlH.ifExistsInRegNAssProgSrv(assignDataModel)) {
-                    /**
-                     * TODO: DO SOME CALCULATION IF NEEDED
-                     */
+
 
 
                     assignDataModel.setRegNDate(strRegDate);
                     int id = sqlH.editMemberDataIn_RegNAsgProgSrv(assignDataModel);
                     //Syntax Generator
+
+
                     sqlH.insertIntoUploadTable(assign_agr.updateRegAssProgSrvForAssign());
-                    Log.d(TAG, "Update Into Upload Table");
+
                 } else {
                     sqlH.addMemberDataInto_RegNAsgProgSrv(assignDataModel);
                     sqlH.insertIntoUploadTable(assign_agr.insertIntoRegAssProgSrv());
@@ -741,8 +743,7 @@ public class AssignAGR extends BaseActivity {
                 if (sqlH.ifDataExistIn_RegN_AGR(assignDataModel.getCountryCode(), assignDataModel.getDistrictCode(), assignDataModel.getUpazillaCode(), assignDataModel.getUnitCode(),
                         assignDataModel.getVillageCode(), assignDataModel.getHh_id(), assignDataModel.getMemId())) {
                     Log.d(TAG, " data exits in AGR table ");
-                    //TODO:: UPDATE TABLE TO SQLITE
-//            String text =tvPageTitle.getText().toString();
+
                     int srvCode = Integer.parseInt(assignDataModel.getService_code());
                     String land = edtLandSize.getText().toString();
 

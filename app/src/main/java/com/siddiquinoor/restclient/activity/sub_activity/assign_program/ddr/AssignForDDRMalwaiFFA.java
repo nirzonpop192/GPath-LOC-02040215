@@ -118,8 +118,8 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
          * resorting the the save data to view
          */
 
-        if (sqlH.ifExistsInRegNAssProgSrv(assignMem)){
-           String regDate= sqlH.getRegDateFromRegNAssignProgSrv(assignMem.getCountryCode(), assignMem.getDistrictCode(), assignMem.getUpazillaCode(), assignMem.getUnitCode(), assignMem.getVillageCode(), assignMem.getHh_id(), assignMem.getMemId(),assignMem.getDonor_code(),assignMem.getAward_code(),assignMem.getProgram_code(),assignMem.getService_code());
+        if (sqlH.ifExistsInRegNAssProgSrv(assignMem)) {
+            String regDate = sqlH.getRegDateFromRegNAssignProgSrv(assignMem.getCountryCode(), assignMem.getDistrictCode(), assignMem.getUpazillaCode(), assignMem.getUnitCode(), assignMem.getVillageCode(), assignMem.getHh_id(), assignMem.getMemId(), assignMem.getDonor_code(), assignMem.getAward_code(), assignMem.getProgram_code(), assignMem.getService_code());
             tvRegDate.setText(regDate);
 
         }
@@ -142,11 +142,11 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
                 rb_7.setChecked(true);
             }
 
-            idGroupCat=assignMem.getGroupCatCode();
-            strGroupCat=assignMem.getGroupCatName();
-            idGroup=assignMem.getGroupCode();
-            strGroup=assignMem.getGroupName();
-            idActive=assignMem.getActiveCode();
+            idGroupCat = assignMem.getGroupCatCode();
+            strGroupCat = assignMem.getGroupCatName();
+            idGroup = assignMem.getGroupCode();
+            strGroup = assignMem.getGroupName();
+            idActive = assignMem.getActiveCode();
 
 
         }
@@ -529,19 +529,28 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
 
 
                     sqlH.editIntoDDR_RegN_FFATable(idCountry, assignMem.getDistrictCode(), assignMem.getUpazillaCode(), assignMem.getUnitCode(), assignMem.getVillageCode(), assignMem.getHh_id(), assignMem.getMemId(), orphanedChildren, model.getChildHeadedRb1(), model.getElderlyHeadedRb2(), model.getChronicallyIllRb3(), model.getFemaleHeadedRb4(), model.getCropFailureRb5(), model.getChildrenRecSuppFeedNRb6(), model.getWillingnessRb7(), entryBy, entryDate);
-// todo upload update syntex
+
+                    /**
+                     * Upload Syntax
+                     * update method
+                     */
+                    sqlH.insertIntoUploadTable(sqlServer.updateIntoRegN_FFA_table());
 
                 } else {
 
                     sqlH.insertIntoDDR_RegN_FFATable(idCountry, assignMem.getDistrictCode(), assignMem.getUpazillaCode(), assignMem.getUnitCode(), assignMem.getVillageCode(), assignMem.getHh_id(), assignMem.getMemId(), orphanedChildren, model.getChildHeadedRb1(), model.getElderlyHeadedRb2(), model.getChronicallyIllRb3(), model.getFemaleHeadedRb4(), model.getCropFailureRb5(), model.getChildrenRecSuppFeedNRb6(), model.getWillingnessRb7(), entryBy, entryDate);
 
-                    sqlH.insertIntoUploadTable(sqlServer.updateIntoRegN_FFA_table());
+                    /**
+                     * Upload Syntax
+                     * insert method
+                     */
+                    sqlH.insertIntoUploadTable(sqlServer.insertIntoRegN_FFA_table());
                 }// end of else
 
 
-                /**
-                 * check group
-                 */
+/**
+ * check group
+ */
                 if (sqlH.ifExistsInRegNmemProgGroup(assignMem.getCountryCode(), assignMem.getDonor_code(), assignMem.getAward_code(), assignMem.getDistrictCode(), assignMem.getUpazillaCode(), assignMem.getUnitCode(), assignMem.getVillageCode(), assignMem.getHh_id(), assignMem.getMemId(), assignMem.getProgram_code(), assignMem.getService_code())) {
                     sqlH.editMemberIn_RegNmemProgGroup(assignMem.getCountryCode(), assignMem.getDonor_code(), assignMem.getAward_code(), assignMem.getDistrictCode(), assignMem.getUpazillaCode(), assignMem.getUnitCode(), assignMem.getVillageCode(), assignMem.getHh_id(), assignMem.getMemId(), assignMem.getProgram_code(), assignMem.getService_code(), idGroup, idActive, entryBy, entryDate);
 

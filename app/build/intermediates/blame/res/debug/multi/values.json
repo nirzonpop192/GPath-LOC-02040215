@@ -3657,14 +3657,7 @@
                     "endOffset": 42665
                 },
                 "from": {
-                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 565,
-                        "startColumn": 4,
-                        "startOffset": 23534,
-                        "endColumn": 327,
-                        "endOffset": 23857
-                    }
+                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml"
                 }
             },
             {
@@ -3676,14 +3669,7 @@
                     "endOffset": 42900
                 },
                 "from": {
-                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 566,
-                        "startColumn": 4,
-                        "startOffset": 23862,
-                        "endColumn": 234,
-                        "endOffset": 24092
-                    }
+                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml"
                 }
             },
             {
@@ -3695,14 +3681,7 @@
                     "endOffset": 43102
                 },
                 "from": {
-                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 567,
-                        "startColumn": 4,
-                        "startOffset": 24097,
-                        "endColumn": 201,
-                        "endOffset": 24294
-                    }
+                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml"
                 }
             },
             {
@@ -3714,14 +3693,7 @@
                     "endOffset": 43186
                 },
                 "from": {
-                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 568,
-                        "startColumn": 4,
-                        "startOffset": 24299,
-                        "endColumn": 83,
-                        "endOffset": 24378
-                    }
+                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml"
                 }
             },
             {
@@ -3733,14 +3705,7 @@
                     "endOffset": 43342
                 },
                 "from": {
-                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 569,
-                        "startColumn": 4,
-                        "startOffset": 24383,
-                        "endColumn": 155,
-                        "endOffset": 24534
-                    }
+                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml"
                 }
             },
             {
@@ -3752,14 +3717,7 @@
                     "endOffset": 43520
                 },
                 "from": {
-                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 570,
-                        "startColumn": 4,
-                        "startOffset": 24539,
-                        "endColumn": 177,
-                        "endOffset": 24712
-                    }
+                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml"
                 }
             },
             {
@@ -3771,14 +3729,7 @@
                     "endOffset": 43578
                 },
                 "from": {
-                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 571,
-                        "startColumn": 4,
-                        "startOffset": 24717,
-                        "endColumn": 57,
-                        "endOffset": 24770
-                    }
+                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml"
                 }
             },
             {
@@ -6864,7 +6815,14 @@
                     "endOffset": 62712
                 },
                 "from": {
-                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml"
+                    "file": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 185,
+                        "startColumn": 4,
+                        "startOffset": 6161,
+                        "endColumn": 67,
+                        "endOffset": 6224
+                    }
                 }
             },
             {

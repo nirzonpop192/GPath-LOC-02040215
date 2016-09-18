@@ -1,10 +1,12 @@
 package com.siddiquinoor.restclient.activity.sub_activity.assign_program.agr;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +33,7 @@ import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 
 import com.siddiquinoor.restclient.manager.sqlsyntax.SQLServerSyntaxGenerator;
+import com.siddiquinoor.restclient.utils.CalculationPadding;
 import com.siddiquinoor.restclient.utils.KEY;
 
 import com.siddiquinoor.restclient.views.adapters.AssignDataModel;
@@ -564,45 +567,60 @@ public class AssignAGR extends BaseActivity {
         //  cbOTHER.setOnClickListener(checkboxClickListener);
 
 
-        /**
-         * set up icon
-         */
-        setUpHomeButton();
-        setUpGoToAssgnButton();
-        setUpSaveButton();
-        setUpSummaryButton();
+
+
 
     }
 
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpSummaryButton() {
         btnSummary.setText("");
         Drawable summeryImage = getResources().getDrawable(R.drawable.summession_b);
         btnSummary.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
-        btnSummary.setPadding(180, 10, 180, 10);
+
+        setPaddingButton(mContext, summeryImage, btnSummary);
+
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpSaveButton() {
         btnSave.setText("");
         Drawable saveImage = getResources().getDrawable(R.drawable.save_b);
         btnSave.setCompoundDrawablesRelativeWithIntrinsicBounds(saveImage, null, null, null);
-        btnSave.setPadding(180, 10, 180, 10);
+        setPaddingButton(mContext, saveImage, btnSave);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpGoToAssgnButton() {
         btnBackToAssign.setText("");
-        Drawable saveImage = getResources().getDrawable(R.drawable.goto_back);
-        btnBackToAssign.setCompoundDrawablesRelativeWithIntrinsicBounds(saveImage, null, null, null);
-        btnBackToAssign.setPadding(180, 10, 180, 10);
+        Drawable backImage = getResources().getDrawable(R.drawable.goto_back);
+        btnBackToAssign.setCompoundDrawablesRelativeWithIntrinsicBounds(backImage, null, null, null);
+
+        setPaddingButton(mContext, backImage, btnBackToAssign);
+
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpHomeButton() {
 
         btnHome.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        btnHome.setPadding(180, 10, 180, 10);
+
+        setPaddingButton(mContext, imageHome, btnHome);
+
     }
+
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        setUpHomeButton();
+        setUpGoToAssgnButton();
+        setUpSaveButton();
+        setUpSummaryButton();
+    }
+
 
     private void updateAddededData() {
         //SQLiteQuery query = new SQLiteQuery();
@@ -627,12 +645,12 @@ public class AssignAGR extends BaseActivity {
     }
 
 
-   /**
+    /**
      * @date: 2015-11-23
      * @description: calculate the the graduation date
      */
-    private String calculateGRDDate(String cCode,String donorCode,String awardCode) {
-       return sqlH.getAwardGraduation(cCode,donorCode,awardCode);
+    private String calculateGRDDate(String cCode, String donorCode, String awardCode) {
+        return sqlH.getAwardGraduation(cCode, donorCode, awardCode);
 
 
     }
@@ -699,9 +717,9 @@ public class AssignAGR extends BaseActivity {
                  *  for upload
                  */
 
-               // assignMem.setRegNDate(regDate);
+                // assignMem.setRegNDate(regDate);
                 assignMem.setGrdCode(sqlH.getGRDDefaultActiveReason(assignMem.getProgram_code(), assignMem.getService_code()));
-                assignMem.setGrdDate(calculateGRDDate(assignMem.getCountryCode(),assignMem.getDonor_code(),assignMem.getAward_code()));
+                assignMem.setGrdDate(calculateGRDDate(assignMem.getCountryCode(), assignMem.getDonor_code(), assignMem.getAward_code()));
                 saveDataForSqlServer();
 
 
@@ -851,7 +869,6 @@ public class AssignAGR extends BaseActivity {
          * new added column */
 
 
-
         assign_agr.setAgoInvc(data.getStrOtherAgActivitiesINVC());
         assign_agr.setAgoNasfam(data.getStrOtherAgActivitiesNASFAM());
         assign_agr.setAgoCu(data.getStrOtherAgActivitiesCU());
@@ -887,7 +904,7 @@ public class AssignAGR extends BaseActivity {
 
     /**
      * @param intent Intent
-     *               <p/>
+     *               <p>
      *               get Data from Intent because of further use
      */
     private void getDataFromIntent(Intent intent) {
@@ -1124,11 +1141,11 @@ public class AssignAGR extends BaseActivity {
         spGroup.setVisibility(View.VISIBLE);
         spActive.setVisibility(View.VISIBLE);
 
-        idGroupCat=assignMem.getGroupCatCode();
-        strGroupCat=assignMem.getGroupCatName();
-        idGroup=assignMem.getGroupCode();
-        strGroup=assignMem.getGroupName();
-        idActive=assignMem.getActiveCode();
+        idGroupCat = assignMem.getGroupCatCode();
+        strGroupCat = assignMem.getGroupCatName();
+        idGroup = assignMem.getGroupCode();
+        strGroup = assignMem.getGroupName();
+        idActive = assignMem.getActiveCode();
 
         loadGroupCategory(temAssignMemData.getCountryCode(), temAssignMemData.getDonor_code(), temAssignMemData.getAward_code(), temAssignMemData.getProgram_code());
 

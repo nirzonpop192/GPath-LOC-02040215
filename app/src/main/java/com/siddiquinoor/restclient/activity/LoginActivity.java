@@ -249,7 +249,7 @@ public class LoginActivity extends BaseActivity {
  */
                                 if (db.isValidAdminLocalLogin(user_name, password)) {
                                     gotoHomePage();
-                                } else{
+                                } else {
                                     showAlert(getResources().getString(R.string.unsyn_msg));
                                 }
 

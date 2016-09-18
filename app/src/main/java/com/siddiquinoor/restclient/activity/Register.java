@@ -431,11 +431,21 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
         loadMStatus();
         loadVStatus();
+        loadWRank();
+
         String next_id = sqlH.getRegistrationID(idCountry, idDist, idUP, idUnion, idVill);
         regId.setText(next_id);
 
         btnAddMember.setEnabled(false);
         btnAddMember.setTextColor(getResources().getColor(R.color.input_label_hint));
+
+
+        chkBxHhCat1.setChecked(false);
+        chkBxHhCat2.setChecked(false);
+        chkBxHhCat3.setChecked(false);
+        chkBxHhCat4.setChecked(false);
+        chkBxHhCat5.setChecked(false);
+        chkBxHhCat6.setChecked(false);
 
             /*    Intent intent = getIntent();
                 overridePendingTransition(0, 0);
@@ -478,7 +488,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
 
         registeredId = regId.getText().toString();
-        name = regName.getText().toString();
+        name = regName.getText().toString().trim();
         String regDate = reDOB.getText().toString();
 
         String HHSize = hhSize.getText().toString();
@@ -907,35 +917,13 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
         adtGender.setDropDownViewResource(R.layout.spinner_layout);
         spWRank.setAdapter(adtGender);
-        Log.d("MOR","idWRank : "+idWRank);
+//        Log.d("MOR","idWRank : "+idWRank);
 
-        if (idWRank != null&&idWRank.length()>0) {
+        if (idWRank != null && idWRank.length() > 0) {
 
-            spWRank.setSelection(Integer.parseInt(idWRank)-1 );
+            spWRank.setSelection(Integer.parseInt(idWRank) - 1);
 
         }
-           /* if (idWRank.equals("1"))
-                strWRank="Very Poor";
-            else if(idWRank.equals("2")){
-                strWRank="Poor";                
-            }
-            else{
-                strWRank="Well off";
-            }
-
-            spWRank.setSelection(getSpinnerIndex(spWRank, strWRank));
-        }
-*/
-
-     /*   if (idWRank != null) {
-            for (int i = 0; i < spWRank.getCount(); i++) {
-                String village = spWRank.getItemAtPosition(i).toString();
-                if (village.equals(strWRank)) {
-                    position = i;
-                }
-            }
-            spWRank.setSelection(position);
-        }*/
 
 
         spWRank.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1048,7 +1036,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
     private void loadMStatus() {
         int pos = 0;
 
-        Log.d("MORA","strMStatus : "+strMStatus);
+        Log.d("MORA", "strMStatus : " + strMStatus);
 
         spMStatus = (Spinner) findViewById(R.id.spMStatus);
         ArrayAdapter<CharSequence> adtMStatus = ArrayAdapter.createFromResource(

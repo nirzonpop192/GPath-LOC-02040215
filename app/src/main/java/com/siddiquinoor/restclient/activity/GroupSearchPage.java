@@ -51,7 +51,7 @@ public class GroupSearchPage extends BaseActivity {
     private String idAward;
     private String idDonor;
     private String idProgram;
- //   private String idService;
+    //   private String idService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,7 @@ public class GroupSearchPage extends BaseActivity {
                     idProgram = idCriteria.substring(4, 7);
                     idService = idCriteria.substring(7);*/
 
-                        LoadListView loading = new LoadListView(idCountry, idDonor, idAward, idProgram,  "");
+                        LoadListView loading = new LoadListView(idCountry, idDonor, idAward, idProgram, "");
                         loading.execute();
                     }
                 }
@@ -99,7 +99,7 @@ public class GroupSearchPage extends BaseActivity {
         btnAddGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(GroupSearchPage.this, CommunityGrpDetails.class);
+                Intent intent = new Intent(GroupSearchPage.this, CommunityGrpDetails.class);
 
                 intent.putExtra(KEY.ADD_FLAG_KEY, true);
                 intent.putExtra(KEY.DONOR_CODE, idDonor);
@@ -131,7 +131,7 @@ public class GroupSearchPage extends BaseActivity {
         String criteria = "SELECT " +
                 SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + " || '' || "
                 + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + " || '' || "
-                + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL+ " AS criteriaId" + " , " +
+                + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL + " AS criteriaId" + " , " +
                 SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_SHORT_NAME_COL + " AS Criteria" +
                 " FROM " + SQLiteHandler.PROGRAM_MASTER_TABLE
 
@@ -143,7 +143,7 @@ public class GroupSearchPage extends BaseActivity {
                 + " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "' "
 
                 + " GROUP BY " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_SHORT_NAME_COL
-               + " ORDER BY Criteria ";
+                + " ORDER BY Criteria ";
 
 
         // Spinner Drop down elements for District
@@ -180,14 +180,14 @@ public class GroupSearchPage extends BaseActivity {
                         idDonor = idCriteria.substring(0, 2);
                         idAward = idCriteria.substring(2, 4);
                         idProgram = idCriteria.substring(4, 7);
-                       // idService = idCriteria.substring(7);
+                        // idService = idCriteria.substring(7);
 
-                        LoadListView loading = new LoadListView(idCountry, idDonor, idAward, idProgram,  "");
+                        LoadListView loading = new LoadListView(idCountry, idDonor, idAward, idProgram, "");
                         loading.execute();
                     }
 
                     Log.d("MOR", "idCountry" + idCountry + " idAward " + idAward +
-                            "  idDonor " + idDonor + "  idProgram " + idProgram   );
+                            "  idDonor " + idDonor + "  idProgram " + idProgram);
 
 
                 }
@@ -218,25 +218,43 @@ public class GroupSearchPage extends BaseActivity {
 
         btn_searchGroup = (Button) findViewById(R.id.btn_groupSearch);
         edt_groupSearch = (EditText) findViewById(R.id.edt_groupSearch);
-        addIconHomeButton();
-        addIconAddGroupButton();
+
     }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void addIconHomeButton() {
 
         btnHome.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        btnHome.setPadding(180, 5, 180, 5);
+
+        setPaddingButton(GroupSearchPage.this, imageHome, btnHome);
+
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void addIconAddGroupButton() {
 
         btnAddGroup.setText("");
-        Drawable imageHome = getResources().getDrawable(R.drawable.add);
-        btnAddGroup.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        btnAddGroup.setPadding(180, 5, 180, 5);
+        Drawable addImage = getResources().getDrawable(R.drawable.add);
+        btnAddGroup.setCompoundDrawablesRelativeWithIntrinsicBounds(addImage, null, null, null);
+
+        setPaddingButton(GroupSearchPage.this, addImage, btnAddGroup);
+
+    }
+
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        addIconHomeButton();
+        addIconAddGroupButton();
     }
 
     private class LoadListView extends AsyncTask<Void, Integer, String> {
@@ -250,13 +268,13 @@ public class GroupSearchPage extends BaseActivity {
         private String groupName;
 
 
-        public LoadListView(final String temCCode, final String temDonorCode, final String temAwardCode, final String temProgCode,  final String groupName) {
+        public LoadListView(final String temCCode, final String temDonorCode, final String temAwardCode, final String temProgCode, final String groupName) {
             /*this.mMemberIdS = mMemberIdS;*/
             this.temCCode = temCCode;
             this.temDonorCode = temDonorCode;
             this.temAwardCode = temAwardCode;
             this.temProgCode = temProgCode;
-           // this.temSrvCode = temSrvCode;
+            // this.temSrvCode = temSrvCode;
             this.groupName = groupName;
 
         }
@@ -265,7 +283,7 @@ public class GroupSearchPage extends BaseActivity {
         protected String doInBackground(Void... params) {
 
 
-            loadAssignedListData(temCCode, temDonorCode, temAwardCode, temProgCode,  groupName);
+            loadAssignedListData(temCCode, temDonorCode, temAwardCode, temProgCode, groupName);
 
 
             return "successes";
@@ -316,9 +334,9 @@ public class GroupSearchPage extends BaseActivity {
         pDialog.show();
     }
 
-    private void loadAssignedListData(final String cCode, final String donorCode, final String awardCode, final String progCode,  final String groupName) { // mwmSId = memeber searchin variable
+    private void loadAssignedListData(final String cCode, final String donorCode, final String awardCode, final String progCode, final String groupName) { // mwmSId = memeber searchin variable
 
-        List<CommunityGroupDataModel> groupList = sqlH.getCommunityGroupList(cCode, donorCode, awardCode, progCode,  groupName);
+        List<CommunityGroupDataModel> groupList = sqlH.getCommunityGroupList(cCode, donorCode, awardCode, progCode, groupName);
 
 
         ArrayList<CommunityGroupDataModel> groupArray = new ArrayList<CommunityGroupDataModel>();

@@ -1,5 +1,6 @@
 package com.siddiquinoor.restclient.activity.sub_activity.assign_program.ddr;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
+import com.siddiquinoor.restclient.manager.SQLiteHandler;
+import com.siddiquinoor.restclient.views.adapters.AssignDataModel;
 
 public class AssignForDDRMalwaiFFA extends BaseActivity {
     TextView tv_MemberID, tv_MemberName,tv_HHName,tv_Criteria,tv_Date;
@@ -20,6 +23,50 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
     RadioButton rb_1,rb_2,rb_3,rb_4,rb_5,rb_6,rb_7;
 
     Button btnSave, btnSummary, btnHome,btnBackToAssign;
+
+
+   private TextView tv_MemberID, tv_MemberName, tv_HHName, tv_Criteria, tv_Date;
+    private Spinner spGroupCategories, spGroup, spDisable, spActive;
+    private String idGroupCat, idGroup, idActive;
+    private String strGroupCat, strGroup;
+    RadioGroup radioGroup_mal_DDR;
+    RadioButton rb_1, rb_2, rb_3, rb_4, rb_5, rb_6, rb_7;
+    int position;
+    Context mContext = AssignForDDRMalwaiFFA.this;
+
+    private static final String YES = "Y";
+    private static final String NO = "N";
+    private String idCountry;
+
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+    private Calendar calendar = Calendar.getInstance();
+    private SimpleDateFormat formatUSA = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
+
+    public String getStrRegDate() {
+        return strRegDate;
+    }
+
+
+    private String strRegDate;
+
+    public void setStrRegDate(String strRegDate) {
+        this.strRegDate = strRegDate;
+    }
+
+
+    private AssignDDR_FFA_DataModel model = new AssignDDR_FFA_DataModel();
+
+
+    private static final String TAG = AssignForDDRMalwaiFFA.class.getSimpleName();
+
+    Button btnSave, btnSummary, btnHome, btnBackToAssign;
+    TextView label_disable;
+    Intent intent;
+    AssignDataModel assignMem = new AssignDataModel();
+    SQLiteHandler sqlH;
+    String entryBy;
+    String entryDate;
+    AssignDataModel assignDataModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

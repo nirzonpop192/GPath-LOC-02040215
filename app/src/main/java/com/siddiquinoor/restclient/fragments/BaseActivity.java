@@ -18,11 +18,13 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,6 +35,7 @@ import com.siddiquinoor.restclient.activity.MainActivity;
 import com.siddiquinoor.restclient.controller.AppConfig;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 import com.siddiquinoor.restclient.controller.SessionManager;
+import com.siddiquinoor.restclient.utils.CalculationPadding;
 import com.siddiquinoor.restclient.utils.KEY;
 
 import java.io.BufferedReader;
@@ -472,5 +475,24 @@ public abstract class BaseActivity extends Activity {
 
         startActivity(iSummary);
 
+    }
+
+    /**
+     *
+     * @param context invoking class name
+     * @param image Drawable image
+     * @param btn button view
+     */
+    protected void setPaddingButton(Context context, Drawable image , Button btn){
+        int leftPadd,rightPadd,topPadd,bottomPadd;
+        CalculationPadding calPadd = new CalculationPadding();
+
+        leftPadd = rightPadd = calPadd.calculateViewPadding(context, image, btn);
+        /**
+         * get the value  from resource
+         */
+        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
+
+        btn.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
     }
 }

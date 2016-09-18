@@ -97,7 +97,6 @@ public class MemberSearchPage extends BaseActivity {
 
     /**
      * initialize the global variable
-     *
      */
 
     private void initialize() {
@@ -127,20 +126,12 @@ public class MemberSearchPage extends BaseActivity {
     private void addIconHomeButton() {
 
 
-
         btnHome.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        int leftPadd,rightPadd,topPadd,bottomPadd;
-        CalculationPadding calPadd = new CalculationPadding();
+        setPaddingButton(mContext, imageHome, btnHome);
 
-        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, imageHome, btnHome);
-        /**
-         * get the value  from resource
-         */
-        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
 
-        btnHome.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
     }
 
     /**
@@ -307,7 +298,6 @@ public class MemberSearchPage extends BaseActivity {
     }
 
     /**
-     *
      * @param msg text massage
      */
 

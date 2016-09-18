@@ -167,16 +167,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
         btnSummary.setText("");
         Drawable summeryImage = getResources().getDrawable(R.drawable.summession_b);
         btnSummary.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
-        int leftPadd, rightPadd,topPadd,bottomPadd;
-        CalculationPadding calPadd = new CalculationPadding();
-
-        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, summeryImage, btnSummary);
-        /**
-         * set the value in resource
-         */
-        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
-
-        btnSummary.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
+        setPaddingButton(mContext, summeryImage, btnSummary);
     }
 
     /**
@@ -188,17 +179,8 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
         btnHome.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
+        setPaddingButton(mContext, imageHome, btnHome);
 
-        int leftPadd, rightPadd,topPadd,bottomPadd;
-        CalculationPadding calPadd = new CalculationPadding();
-
-        leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, imageHome, btnHome);
-        /**
-         * set the value in resource
-         */
-        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
-
-        btnHome.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
 
     }
 

@@ -292,4 +292,19 @@ public class UtilClass {
     }
 
 
+
+    /**
+     * @since : 2016-09-18
+     *
+     * calculate Graduation date for all program and service
+     * todo:      pw,lm,cu2,ca2,agr,ddr, uat
+     *
+     */
+    public static String calculateGRDDate(String cCode, String donorCode, String awardCode, SQLiteHandler sqLiteHandler) {
+        return sqLiteHandler.getAwardGraduation(cCode, donorCode, awardCode);
+
+
+    }
+
+
 }

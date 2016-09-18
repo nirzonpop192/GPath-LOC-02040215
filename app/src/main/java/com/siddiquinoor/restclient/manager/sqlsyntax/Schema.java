@@ -1475,6 +1475,7 @@ public class Schema {
                 + " , " + SQLiteHandler.CHILD_HEADED_COL+" VARCHAR(1) "
                 + " , " + SQLiteHandler.ELDERLY_HEADED_COL+" VARCHAR(1) "
                 + " , " + SQLiteHandler.CHRONICALLY_ILL_COL +" VARCHAR(1) "
+                + " , " + SQLiteHandler.FEMALE_HEADED_COL +" VARCHAR(1) "
                 + " , " + SQLiteHandler.CROP_FAILURE_COL + " VARCHAR(1) "
                 +"  , " + SQLiteHandler.CHILDREN_REC_SUPP_FEED_N_COL +" VARCHAR(1) "
                 +"  , " + SQLiteHandler.WILLINGNESS_COL+ " VARCHAR(1) "

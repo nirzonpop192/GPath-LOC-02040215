@@ -27,13 +27,11 @@ import android.widget.Toast;
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.activity.AllSummaryActivity;
 import com.siddiquinoor.restclient.activity.AssignActivity;
-import com.siddiquinoor.restclient.activity.OldAssignActivity;
 import com.siddiquinoor.restclient.data_model.AGR_DataModel;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 
 import com.siddiquinoor.restclient.manager.sqlsyntax.SQLServerSyntaxGenerator;
-import com.siddiquinoor.restclient.utils.CalculationPadding;
 import com.siddiquinoor.restclient.utils.KEY;
 
 import com.siddiquinoor.restclient.views.adapters.AssignDataModel;
@@ -41,7 +39,6 @@ import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
 import com.siddiquinoor.restclient.views.notifications.ADNotificationManager;
 import com.siddiquinoor.restclient.views.notifications.AlertDialogManager;
 
-import java.io.StringWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -221,7 +218,7 @@ public class AssignAGR extends BaseActivity {
         setTextToTextView();
         titlePage();
         loadVcCrop();
-        if (sqlH.ifDataExiteIn_RegN_AGR(assignDataModel.getCountryCode(), assignDataModel.getDistrictCode(), assignDataModel.getUpazillaCode(), assignDataModel.getUnitCode(),
+        if (sqlH.ifDataExistIn_RegN_AGR(assignDataModel.getCountryCode(), assignDataModel.getDistrictCode(), assignDataModel.getUpazillaCode(), assignDataModel.getUnitCode(),
                 assignDataModel.getVillageCode(), assignDataModel.getHh_id(), assignDataModel.getMemId())) {
             setVisibilityifDataExists();
         }
@@ -635,7 +632,7 @@ public class AssignAGR extends BaseActivity {
             sqlH.insertIntoUploadTable(assign_agr.updateRegAssProgSrvForAssign());
         }
 
-        if (sqlH.ifDataExiteIn_RegN_AGR(assignDataModel.getCountryCode(), assignDataModel.getDistrictCode(), assignDataModel.getUpazillaCode(), assignDataModel.getUnitCode(),
+        if (sqlH.ifDataExistIn_RegN_AGR(assignDataModel.getCountryCode(), assignDataModel.getDistrictCode(), assignDataModel.getUpazillaCode(), assignDataModel.getUnitCode(),
                 assignDataModel.getVillageCode(), assignDataModel.getHh_id(), assignDataModel.getMemId())) {
             Log.d(TAG, " data exits in AGR table ");
             //TODO:: UPDATE TABLE TO SQLITE
@@ -741,7 +738,7 @@ public class AssignAGR extends BaseActivity {
                 }
 
 
-                if (sqlH.ifDataExiteIn_RegN_AGR(assignDataModel.getCountryCode(), assignDataModel.getDistrictCode(), assignDataModel.getUpazillaCode(), assignDataModel.getUnitCode(),
+                if (sqlH.ifDataExistIn_RegN_AGR(assignDataModel.getCountryCode(), assignDataModel.getDistrictCode(), assignDataModel.getUpazillaCode(), assignDataModel.getUnitCode(),
                         assignDataModel.getVillageCode(), assignDataModel.getHh_id(), assignDataModel.getMemId())) {
                     Log.d(TAG, " data exits in AGR table ");
                     //TODO:: UPDATE TABLE TO SQLITE
@@ -1344,17 +1341,6 @@ public class AssignAGR extends BaseActivity {
        /* Intent iAssign = new Intent(mContext, OldAssignActivity.class);
         finish();
 // todo: use Constant
-        iAssign.putExtra(KEY.COUNTRY_ID, assignDataModel.getCountryCode());
-        iAssign.putExtra(OldAssignActivity.SUB_ASSIGN_DIR, true);
-        iAssign.putExtra(OldAssignActivity.ASSIGN_AWARD_CODE, assignDataModel.getAward_code());
-        iAssign.putExtra(OldAssignActivity.ASSIGN_AWARD_STR, holderStrAward);
-        iAssign.putExtra(OldAssignActivity.ASSIGN_PROGRAM_CODE, assignDataModel.getProgram_code());
-        iAssign.putExtra(OldAssignActivity.ASSIGN_PROGRAM_STR, holderStrProgram);
-        iAssign.putExtra(OldAssignActivity.ASSIGN_DONOR_CODE, assignDataModel.getDonor_code());
-        iAssign.putExtra(OldAssignActivity.ASSIGN_CRITERIA_CODE, assignDataModel.getService_code());// service Code is criteria Code
-        iAssign.putExtra(OldAssignActivity.ASSIGN_CRITERIA_STR, holderStrCriteria);
-        iAssign.putExtra(OldAssignActivity.ASSIGN_VILLAGE_CODE, assignDataModel.getVillageCode());
-        iAssign.putExtra(OldAssignActivity.ASSIGN_VILLAGE_STR, holderStrVillage);
 
         iAssign.putExtra(OldAssignActivity.ASSIGN_DISTRICT_CODE, assignDataModel.getDistrictCode());
         iAssign.putExtra(OldAssignActivity.ASSIGN_UPZELA_CODE, assignDataModel.getUpazillaCode());

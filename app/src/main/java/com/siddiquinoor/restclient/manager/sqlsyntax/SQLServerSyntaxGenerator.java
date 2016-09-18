@@ -5133,4 +5133,139 @@ public class SQLServerSyntaxGenerator {
                 " AND "   +  "   [GrpCode] = "+getGrpCode();
     }
 
+
+    private String OrphanedChildren;
+    private String ChildHeaded;
+    private String ElderlyHeaded;
+    private String ChronicallyIll;
+    private String FemaleHeaded;
+    private String CropFailure;
+    private String ChildrenRecSuppFeedN;
+
+    public String getOrphanedChildren() {
+        return OrphanedChildren;
+    }
+
+    public void setOrphanedChildren(String orphanedChildren) {
+        orphanedChildren= checkStringNull(orphanedChildren);
+        OrphanedChildren = orphanedChildren;
+    }
+
+    public String getChildHeaded() {
+        return ChildHeaded;
+    }
+
+    public void setChildHeaded(String childHeaded) {
+        childHeaded= checkStringNull(childHeaded);
+        ChildHeaded = childHeaded;
+    }
+
+    public String getElderlyHeaded() {
+        return ElderlyHeaded;
+    }
+
+    public void setElderlyHeaded(String elderlyHeaded) {
+        elderlyHeaded= checkStringNull(elderlyHeaded);
+        ElderlyHeaded = elderlyHeaded;
+    }
+
+    public String getChronicallyIll() {
+        return ChronicallyIll;
+    }
+
+    public void setChronicallyIll(String chronicallyIll) {
+        chronicallyIll= checkStringNull(chronicallyIll);
+        ChronicallyIll = chronicallyIll;
+    }
+
+    public String getFemaleHeaded() {
+        return FemaleHeaded;
+    }
+
+    public void setFemaleHeaded(String femaleHeaded) {
+        femaleHeaded= checkStringNull(femaleHeaded);
+        FemaleHeaded = femaleHeaded;
+    }
+
+    public String getCropFailure() {
+        return CropFailure;
+    }
+
+    public void setCropFailure(String cropFailure) {
+        cropFailure= checkStringNull(cropFailure);
+        CropFailure = cropFailure;
+    }
+
+    public String getChildrenRecSuppFeedN() {
+        return ChildrenRecSuppFeedN;
+    }
+
+    public void setChildrenRecSuppFeedN(String childrenRecSuppFeedN) {
+        childrenRecSuppFeedN= checkStringNull(childrenRecSuppFeedN);
+        ChildrenRecSuppFeedN = childrenRecSuppFeedN;
+    }
+
+    public String insertIntoRegN_FFA_table() {
+        return "INSERT INTO [dbo].[RegN_FFA] "
+                + " ( [AdmCountryCode] "
+                + " , [LayR1ListCode] "
+                + " , [LayR2ListCode] "
+                + " , [LayR3ListCode] "
+                + " , [LayR4ListCode] "
+                + " , [HHID] "
+                + " , [MemID] "
+                + " , [OrphanedChildren]"
+                + " , [ChildHeaded] "
+                + " , [ElderlyHeaded] "
+                + " , [ChronicallyIll] "
+                + " , [FemaleHeaded] "
+                + " , [CropFailure] "
+                + " , [ChildrenRecSuppFeedN] "
+                + " , [Willingness] "
+                + " , [EntryBy] "
+                + " , [EntryDate] ) "
+                + "VALUES ( "
+                        + getAdmCountryCode()
+                + " , " + getLayR1ListCode()
+                + " , " + getLayR2ListCode()
+                + " , " + getLayR3ListCode()
+                + " , " + getLayR4ListCode()
+                + " , " + getHHID()
+                + " , " + getMemID()
+                + " , " + getOrphanedChildren()
+                + " , " + getChildHeaded()
+                + " , " + getElderlyHeaded()
+                + " , " + getChronicallyIll()
+                + " , " + getFemaleHeaded()
+                + " , " + getCropFailure()
+                + " , " + getChildrenRecSuppFeedN()
+                + " , " + getWillingness()
+                + " , " + getEntryBy()
+                + " , " + getEntryDate()
+                + " ) ";
+    }
+
+
+    public String updateIntoRegN_FFA_table() {
+        return " UPDATE [dbo].[RegN_FFA] "
+       +"  SET "
+       +"          [ChildHeaded]	= 	 "+getChildHeaded()
+       +"  ,[ElderlyHeaded] = 	  "+getElderlyHeaded()
+       +"  ,[ChronicallyIll] =	  "+ getChronicallyIll()
+       +"  ,[FemaleHeaded] =	  "+ getFemaleHeaded()
+       +"  ,[CropFailure]	= 	  "+ getCropFailure()
+       +"  ,[ChildrenRecSuppFeedN]= "+ getChildrenRecSuppFeedN()
+       +"  ,[Willingness] = "+ getWillingness()
+       +"  ,[EntryBy] =  "+ getEntryBy()
+       +"  ,[EntryDate]	=   "+ getEntryDate()
+       +"  WHERE MemID =  "+getMemID()
+       +"          AND AdmCountryCode =  "+getAdmCountryCode()
+       +"          AND LayR1ListCode =  "+getLayR1ListCode()
+       +"          AND LayR2ListCode =  "+getLayR2ListCode()
+       +"          AND LayR3ListCode =  "+getLayR3ListCode()
+       +"          AND LayR4ListCode =  "+getLayR4ListCode()
+       +"          AND HHID =  "+getHHID();
+    }
+
+
 }

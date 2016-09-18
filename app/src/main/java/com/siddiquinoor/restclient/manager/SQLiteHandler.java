@@ -21,6 +21,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.siddiquinoor.restclient.data_model.AGR_DataModel;
+import com.siddiquinoor.restclient.data_model.AssignDDR_FFA_DataModel;
 import com.siddiquinoor.restclient.data_model.FDPItem;
 import com.siddiquinoor.restclient.data_model.GPS_LocationAttributeDataModel;
 import com.siddiquinoor.restclient.data_model.GPS_LocationDataModel;
@@ -793,6 +794,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String ELDERLY_HEADED_COL = "ElderlyHeaded";
     public static final String CHRONICALLY_ILL_COL = "ChronicallyIll";
     public static final String CROP_FAILURE_COL = "CropFailure";
+    public static final String FEMALE_HEADED_COL = "FemaleHeaded";
     public static final String CHILDREN_REC_SUPP_FEED_N_COL = "ChildrenRecSuppFeedN";
 
 
@@ -3075,9 +3077,26 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return next_id;
     }
 
-    public boolean ifDataExiteIn_RegN_AGR(String cCode, String distCode, String upCode, String unCode, String vCode, String hhID, String mmId) {
-        return checkDataExistInTable(SQLiteQuery.checkDataExitsQueryInRegN_Agr_TableAssignForMalwai(cCode, distCode, upCode, unCode, vCode, hhID, mmId), REG_N_AGR_TABLE);
+    /**
+     * @param cCode
+     * @param distCode
+     * @param upCode
+     * @param unCode
+     * @param vCode
+     * @param hhID
+     * @param mmId
+     * @return specific data exit or not
+     * @see #checkDataExistInTable(String, String)
+     */
+
+    public boolean ifDataExistIn_RegN_AGR(String cCode, String distCode, String upCode, String unCode, String vCode, String hhID, String mmId) {
+        return checkDataExistInTable(SQLiteQuery.checkDataExitsQueryInRegN_ARG_TableSQL(cCode, distCode, upCode, unCode, vCode, hhID, mmId), REG_N_AGR_TABLE);
     }
+
+    public boolean ifDataExistIn_RegN_FFA(String cCode, String distCode, String upCode, String unCode, String vCode, String hhID, String mmId) {
+        return checkDataExistInTable(SQLiteQuery.checkDataExitsQueryInRegN_FFA_TableSQL(cCode, distCode, upCode, unCode, vCode, hhID, mmId), REG_N_FFA_TABLE);
+    }
+
 
     public ArrayList<ServiceSlDataModle> getServiceDetailsForMember(String cCode, String donorCode, String awardCord,
                                                                     String districCode, String upCode, String unCode,
@@ -4192,16 +4211,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 agr_dataModel.setIntChicken(cursor.getInt(cursor.getColumnIndex(AG_L_S_CHICKEN)));
                 agr_dataModel.setIntPegion(cursor.getInt(cursor.getColumnIndex(AG_L_S_PIGION)));
                 agr_dataModel.setIntOther(cursor.getInt(cursor.getColumnIndex(AG_L_S_OTHER)));
-                Log.d("MOR1", "agr_dataModel.getAgInvc()="
-                        + agr_dataModel.getAgInvc()
-                        + agr_dataModel.getAgNasfam()
-                        + agr_dataModel.getAgCu()
-                        + agr_dataModel.getAgOrther()
-                        + agr_dataModel.getIntGoat()
-                        + agr_dataModel.getIntChicken()
-                        + agr_dataModel.getIntPegion()
-                        + agr_dataModel.getIntOther()
-                );
+                Log.d("MOR1", "agr_dataModel.getAgInvc()=" + agr_dataModel.getAgInvc()
+                        + agr_dataModel.getAgNasfam() + agr_dataModel.getAgCu()
+                        + agr_dataModel.getAgOrther() + agr_dataModel.getIntGoat()
+                        + agr_dataModel.getIntChicken() + agr_dataModel.getIntPegion()
+                        + agr_dataModel.getIntOther());
 
 
             }
@@ -4212,18 +4226,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * @date :2015-11-09
-     * @modified:
-     * @author : Faisal mohamad
-     * @status
-     * @description : get DalivaryStatus no from MemberCardRequestTable
+     * @since :2015-11-09
+     * <p/>
+     * <p/>
+     * <p/>
+     * get DalivaryStatus no from MemberCardRequestTable
      */
-    public String getCardDeliveryStatus(String cCode, String donorCode,
-                                        String awardCode, String disCode,
-                                        String upCode, String unCode,
-                                        String vCode, String hhID,
-                                        String memID, String rptGroup,
-                                        String reportCode, String requestSl) {
+    public String getCardDeliveryStatus(String cCode, String donorCode, String awardCode, String disCode, String upCode, String unCode, String vCode, String hhID, String memID, String rptGroup, String reportCode, String requestSl) {
         String cardDelivaryStatus = "";
         //String temp="";
 
@@ -4705,10 +4714,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
 
     /**
-     * @date : 2015-10-15
-     * @author : Faisal Mohammad
-     * @modifly: 2015-10-19
-     * @discription: this method load Assign  Criteria for Assigne Summmary Criteria
+     * @since : 2015-10-15 m:2015-10-19
+     * <p/>
+     * <p/>
+     * this method load Assign  Criteria for Assigne Summary Criteria
      */
 
     public List<SummaryCriteriaModel> getAssignCriteriaList(String cCode, String distCode, String upCode, String unCode, String vCode, String donorCode, String awardCode, String progCode) {//, String opMCode) {
@@ -5153,7 +5162,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * get data from registration & memeber & reg Nass srv table
      *
      * @param cCode     Country
-     * @param disCode   District Cod e
+     * @param disCode   District Code LayR1
      * @param upCode    upCode
      * @param unCode    Unite Code
      * @param vCode     Village Code
@@ -5613,8 +5622,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * @date :
-     * @author : Faisal Mohammad  @email:nirzon192@gmail.com @email:nirzon192@gmail.com @email:nirzon192@gmail.com @email:nirzon192@gmail.com
+     *
+     *
      */
 
     public boolean ifExistsInRegNAssProgSrv(AssignDataModel asPeople) {
@@ -5710,7 +5719,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * @date : 2016-02-07
-     * @discription: check the data exists in Every Table
+     * check the data exists in Every Table
      */
     public boolean checkDataExistInTable(String query, String tableName) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -6485,7 +6494,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
-    public long insertIntoDDR_RegN_FFATable(String countryCode, String districtCode, String upozillaCode,
+  /*  public long insertIntoDDR_RegN_FFATable(String countryCode, String districtCode, String upozillaCode,
                                             String unitCode, String villageCode, String houseHoldID,
                                             String houseHoldMemberId, String orphanChildren, String childHeaded,
                                             String elderlyHeaded, String chronicallyIll, String cropFailure,
@@ -6510,7 +6519,131 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_DATE, entryDate);
         long id = db.insert(REG_N_FFA_TABLE, null, values);
         return id;
+
+
+        + SQLiteHandler.COUNTRY_CODE_COL + " VARCHAR(4) "
+                + " , " + SQLiteHandler.DISTRICT_CODE_COL + " VARCHAR(4) "
+                + " , " + SQLiteHandler.UPCODE_COL + " VARCHAR(2) "
+                + " , " + SQLiteHandler.UCODE_COL + " VARCHAR(2) "
+                + " , " + SQLiteHandler.VCODE_COL + " VARCHAR(2) "
+                + " , " + SQLiteHandler.HHID_COL + " VARCHAR(5) "
+                + " , " + SQLiteHandler.HH_MEM_ID+" VARCHAR(2) "
+                + " , " + SQLiteHandler.ORPHAN_CHILDREN_COL+" VARCHAR(1) "
+                + " , " + SQLiteHandler.CHILD_HEADED_COL+" VARCHAR(1) "
+                + " , " + SQLiteHandler.ELDERLY_HEADED_COL+" VARCHAR(1) "
+                + " , " + SQLiteHandler.CHRONICALLY_ILL_COL +" VARCHAR(1) "
+                + " , " + SQLiteHandler.CROP_FAILURE_COL + " VARCHAR(1) "
+                +"  , " + SQLiteHandler.CHILDREN_REC_SUPP_FEED_N_COL +" VARCHAR(1) "
+                +"  , " + SQLiteHandler.WILLINGNESS_COL+ " VARCHAR(1) "
+    }*/
+
+
+    public void editIntoDDR_RegN_FFATable(String cCode, String districtCode, String upozillaCode,
+                                          String unitCode, String villageCode, String houseHoldID,
+                                          String houseHoldMemberId, String orphanChildren, String childHeaded,
+                                          String elderlyHeaded, String chronicallyIll, String femaleHeaded, String cropFailure,
+                                          String childrenRecSuppFeedN, String willingness, String entryBy, String entryDate) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        String where = "" + COUNTRY_CODE_COL + " = '" + cCode + "' "
+                + " AND " + DISTRICT_CODE_COL + " = '" + districtCode + "' "
+                + " AND " + UPCODE_COL + " = '" + upozillaCode + "' "
+                + " AND " + UCODE_COL + " = '" + unitCode + "' "
+                + " AND " + VCODE_COL + " = '" + villageCode + "' "
+                + " AND " + HHID_COL + " = '" + houseHoldID + "' "
+                + " AND " + HH_MEM_ID + " = '" + houseHoldMemberId + "' ";
+
+
+        values.put(ORPHAN_CHILDREN_COL, orphanChildren);
+        values.put(CHILD_HEADED_COL, childHeaded);
+        values.put(ELDERLY_HEADED_COL, elderlyHeaded);
+        values.put(CHRONICALLY_ILL_COL, chronicallyIll);
+        values.put(FEMALE_HEADED_COL, femaleHeaded);
+        values.put(CROP_FAILURE_COL, cropFailure);
+        values.put(CHILDREN_REC_SUPP_FEED_N_COL, childrenRecSuppFeedN);
+        values.put(WILLINGNESS_COL, willingness);
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
+        db.update(REG_N_FFA_TABLE, values, where, null);
+
     }
+
+
+    // todo facthig data
+    public void insertIntoDDR_RegN_FFATable(String countryCode, String districtCode, String upozillaCode,
+                                            String unitCode, String villageCode, String houseHoldID,
+                                            String houseHoldMemberId, String orphanChildren, String childHeaded,
+                                            String elderlyHeaded, String chronicallyIll, String femaleHeaded, String cropFailure,
+                                            String childrenRecSuppFeedN, String willingness, String entryBy, String entryDate) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COUNTRY_CODE_COL, countryCode);
+        values.put(DISTRICT_CODE_COL, districtCode);
+        values.put(UPCODE_COL, upozillaCode);
+        values.put(UCODE_COL, unitCode);
+        values.put(VCODE_COL, villageCode);
+        values.put(HHID_COL, houseHoldID);
+        values.put(HH_MEM_ID, houseHoldMemberId);
+        values.put(ORPHAN_CHILDREN_COL, orphanChildren);
+        values.put(CHILD_HEADED_COL, childHeaded);
+        values.put(ELDERLY_HEADED_COL, elderlyHeaded);
+        values.put(CHRONICALLY_ILL_COL, chronicallyIll);
+        values.put(FEMALE_HEADED_COL, femaleHeaded);
+        values.put(CROP_FAILURE_COL, cropFailure);
+        values.put(CHILDREN_REC_SUPP_FEED_N_COL, childrenRecSuppFeedN);
+        values.put(WILLINGNESS_COL, willingness);
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
+        db.insert(REG_N_FFA_TABLE, null, values);
+
+    }
+
+
+    public AssignDDR_FFA_DataModel getAssignDataIfExitsInRegNFFA_table(String cCode, String distCode, String upCode, String unCode, String vCode, String hhID, String mmId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+
+        String selectQuery = SQLiteQuery.getAssignDataIfExitsInRegNFFA_table_sql(cCode, distCode, upCode, unCode, vCode, hhID, mmId);
+
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        AssignDDR_FFA_DataModel ffaData = new AssignDDR_FFA_DataModel();
+// default value
+        ffaData.setOrphanChildRb1("N");
+        ffaData.setElderlyHeadedRb2("N");
+        ffaData.setChronicallyIllRb3("N");
+        ffaData.setFemaleHeadedRb4("N");
+        ffaData.setCropFailureRb5("N");
+        ffaData.setChildrenRecSuppFeedNRb6("N");
+        ffaData.setWillingnessRb7("N");
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+
+
+                ffaData.setOrphanChildRb1(cursor.getString(cursor.getColumnIndex(CHILD_HEADED_COL)));
+                ffaData.setElderlyHeadedRb2(cursor.getString(cursor.getColumnIndex(ELDERLY_HEADED_COL)));
+                ffaData.setChronicallyIllRb3(cursor.getString(cursor.getColumnIndex(CHRONICALLY_ILL_COL)));
+                ffaData.setFemaleHeadedRb4(cursor.getString(cursor.getColumnIndex(FEMALE_HEADED_COL)));
+                ffaData.setCropFailureRb5(cursor.getString(cursor.getColumnIndex(CROP_FAILURE_COL)));
+                ffaData.setChildrenRecSuppFeedNRb6(cursor.getString(cursor.getColumnIndex(CHILDREN_REC_SUPP_FEED_N_COL)));
+                ffaData.setWillingnessRb7(cursor.getString(cursor.getColumnIndex(WILLINGNESS_COL)));
+
+                Log.d("FFA-SQL", "agr_dataModel.=" + ffaData.getOrphanChildRb1()
+                        + ffaData.getElderlyHeadedRb2() + ffaData.getChronicallyIllRb3()
+                        + ffaData.getFemaleHeadedRb4() + ffaData.getCropFailureRb5()
+                        + ffaData.getChildrenRecSuppFeedNRb6() + ffaData.getWillingnessRb7()
+                );
+
+
+            }
+            cursor.close();
+        }
+        db.close();
+        return ffaData;
+    }
+
 
     public long insertIntoDDR_RegN_VUL(String countryCode, String districtCode, String upozillaCode,
                                        String unitCode, String villageCode, String houseHoldID,
@@ -9523,19 +9656,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
 
     /**
-     * @author: by Faisal Mohammad
-     * @date: 2015-11-17
-     * @discription: update the regestration value  RegN assign Program Service
+     *  by Faisal Mohammad
+     * @since : 2015-11-17
+     *  update the regestration value  RegN assign Program Service
      * into database For Graduation
-     * PROBLEM: -
-     * @remark-
+     *
+     *
      */
 
 
-    public String getRegDateFromRegNAssignProgSrv(
-            String cCode, String distCode, String upCode, String unCode,
-            String vCode, String hhId, String mmId,
-            String progCode, String srvCode, String donorCode, String awardCode) {
+    public String getRegDateFromRegNAssignProgSrv(String cCode, String distCode, String upCode, String unCode,
+                                                  String vCode, String hhId, String mmId, String donorCode, String awardCode, String progCode, String srvCode) {
 
 
         SQLiteDatabase db = this.getReadableDatabase();

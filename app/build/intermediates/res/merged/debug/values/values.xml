@@ -523,6 +523,13 @@
     <string name="ChFhEhDh">Child-Headed or Female Headed or Elderly Headed or Disabled Headed Household</string>
     <string name="Page_title_GPS">Point Attributes</string>
     <string name="Page_title_SearchLocation">Location Search</string>
+    <string name="_1_child_headed_households_orphan_headed_households_or_where_the_parent_or_grandparent_is_incapable_of_undertaking_the_usual_head_of_household_roles">1. Child-headed households (orphan-headed households or where the parent or grandparent is incapable of undertaking the usual head of household roles)</string>
+    <string name="_2_elderly_headed_households_more_than_60_years_old_with_no_other_able_bodied_adult_household_members">2. Elderly-headed households (more than 60 years old) with no other able-bodied adult household members.</string>
+    <string name="_3_the_most_food_insecure_households_with_chronically_ill_hiv_or_aids_affected_members">3. The most food insecure households with chronically ill/HIV or AIDS affected members</string>
+    <string name="_4_female_headed_households">4. Female-headed households</string>
+    <string name="_5_households_with_two_or_more_years_of_successive_crop_failure">5. Households with two or more years of successive crop failure</string>
+    <string name="_6_households_with_children_receiving_supplementary_or_therapeutic_feeding">6. Households with children receiving supplementary or therapeutic feeding</string>
+    <string name="_7_willingness">7. Willingness</string>
     <string name="a">A.Core Criteria: HHs with Pregnant Woman; Secondary Criteria: HH also has at least one Lactating Woman or CU2</string>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>

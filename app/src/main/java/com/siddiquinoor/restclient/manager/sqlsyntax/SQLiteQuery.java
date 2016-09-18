@@ -1426,7 +1426,7 @@ public class SQLiteQuery {
                 + " AND " + SQLiteHandler.HHID_COL + " = '" + houseHoldId + "' "
                 + " AND " + SQLiteHandler.HH_MEM_ID + " = '" + memberID + "' ";
     }*/
-    public static String checkDataExitsQueryInRegN_Agr_TableAssignForMalwai(String countryCode, String districtCode, String upzellaCode, String unitCode, String villageCode, String houseHoldId, String memberID) {
+    public static String checkDataExitsQueryInRegN_ARG_TableSQL(String countryCode, String districtCode, String upzellaCode, String unitCode, String villageCode, String houseHoldId, String memberID) {
         return "SELECT * FROM " + SQLiteHandler.REG_N_AGR_TABLE
                 + " WHERE " + SQLiteHandler.COUNTRY_CODE_COL + " = '" + countryCode + "' "
                 + " AND " + SQLiteHandler.DISTRICT_CODE_COL + " = '" + districtCode + "' "
@@ -1436,7 +1436,43 @@ public class SQLiteQuery {
                 + " AND " + SQLiteHandler.HHID_COL + " = '" + houseHoldId + "' "
                 + " AND " + SQLiteHandler.HH_MEM_ID + " = '" + memberID + "' ";
     }
+
+
+    public static String checkDataExitsQueryInRegN_FFA_TableSQL(String countryCode, String districtCode, String upzellaCode, String unitCode, String villageCode, String houseHoldId, String memberID) {
+        return "SELECT * FROM " + SQLiteHandler.REG_N_FFA_TABLE
+                + " WHERE " + SQLiteHandler.COUNTRY_CODE_COL + " = '" + countryCode + "' "
+                + " AND " + SQLiteHandler.DISTRICT_CODE_COL + " = '" + districtCode + "' "
+                + " AND " + SQLiteHandler.UPCODE_COL + " = '" + upzellaCode + "' "
+                + " AND " + SQLiteHandler.UCODE_COL + " = '" + unitCode + "'"
+                + " AND " + SQLiteHandler.VCODE_COL + " = '" + villageCode + "' "
+                + " AND " + SQLiteHandler.HHID_COL + " = '" + houseHoldId + "' "
+                + " AND " + SQLiteHandler.HH_MEM_ID + " = '" + memberID + "' ";
+    }
 // havet use it
+
+
+    public static String getAssignDataIfExitsInRegNFFA_table_sql(String countryCode, String districtCode, String upzellaCode, String unitCode, String villageCode, String houseHoldId, String memberID){
+        return  " SELECT " + SQLiteHandler.CHILD_HEADED_COL + " , "
+                + SQLiteHandler.ELDERLY_HEADED_COL + " , "
+                + SQLiteHandler.CHRONICALLY_ILL_COL + " , "
+
+                + SQLiteHandler.FEMALE_HEADED_COL + " , "
+
+                + SQLiteHandler.CROP_FAILURE_COL + " , "
+                + SQLiteHandler.CHILDREN_REC_SUPP_FEED_N_COL + " , "
+
+                + SQLiteHandler.WILLINGNESS_COL + "  "
+
+                + " FROM " + SQLiteHandler.REG_N_FFA_TABLE
+
+                + " WHERE "+ SQLiteHandler.COUNTRY_CODE_COL + " = '" + countryCode + "' "
+                + " AND " + SQLiteHandler.DISTRICT_CODE_COL + " = '" + districtCode + "' "
+                + " AND " + SQLiteHandler.UPCODE_COL + " = '" + upzellaCode + "' "
+                + " AND " + SQLiteHandler.UCODE_COL + " = '" + unitCode + "'"
+                + " AND " + SQLiteHandler.VCODE_COL + " = '" + villageCode + "' "
+                + " AND " + SQLiteHandler.HHID_COL + " = '" + houseHoldId + "' "
+                + " AND " + SQLiteHandler.HH_MEM_ID + " = '" + memberID + "' ";
+    }
 
     /**
      * AGR Table Check

@@ -157,12 +157,12 @@ public final class R {
 		public static final int gtm_analytics = 0x7f070000;
 	}
 	public static final class string {
-		public static final int accept = 0x7f08006d;
-		public static final int auth_google_play_services_client_facebook_display_name = 0x7f080077;
-		public static final int auth_google_play_services_client_google_display_name = 0x7f080078;
-		public static final int cast_notification_connected_message = 0x7f08009d;
-		public static final int cast_notification_connecting_message = 0x7f08009e;
-		public static final int cast_notification_disconnect = 0x7f08009f;
+		public static final int accept = 0x7f080074;
+		public static final int auth_google_play_services_client_facebook_display_name = 0x7f08007e;
+		public static final int auth_google_play_services_client_google_display_name = 0x7f08007f;
+		public static final int cast_notification_connected_message = 0x7f0800a4;
+		public static final int cast_notification_connecting_message = 0x7f0800a5;
+		public static final int cast_notification_disconnect = 0x7f0800a6;
 		public static final int common_android_wear_notification_needs_update_text = 0x7f08000d;
 		public static final int common_android_wear_update_text = 0x7f08000e;
 		public static final int common_android_wear_update_title = 0x7f08000f;
@@ -193,13 +193,13 @@ public final class R {
 		public static final int common_google_play_services_updating_text = 0x7f080028;
 		public static final int common_google_play_services_updating_title = 0x7f080029;
 		public static final int common_open_on_phone = 0x7f08002a;
-		public static final int common_signin_button_text = 0x7f0800cd;
-		public static final int common_signin_button_text_long = 0x7f0800ce;
-		public static final int create_calendar_message = 0x7f0800d2;
-		public static final int create_calendar_title = 0x7f0800d3;
-		public static final int decline = 0x7f0800d9;
-		public static final int store_picture_message = 0x7f080165;
-		public static final int store_picture_title = 0x7f080166;
+		public static final int common_signin_button_text = 0x7f0800d4;
+		public static final int common_signin_button_text_long = 0x7f0800d5;
+		public static final int create_calendar_message = 0x7f0800d9;
+		public static final int create_calendar_title = 0x7f0800da;
+		public static final int decline = 0x7f0800e0;
+		public static final int store_picture_message = 0x7f08016c;
+		public static final int store_picture_title = 0x7f08016d;
 		public static final int wallet_buy_button_place_holder = 0x7f080031;
 	}
 	public static final class style {

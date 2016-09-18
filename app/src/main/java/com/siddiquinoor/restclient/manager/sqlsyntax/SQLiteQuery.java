@@ -585,7 +585,7 @@ public class SQLiteQuery {
                 + " AND " + SQLiteHandler.SERVICE_CODE_COL + " = '" + srvCode + "'"
                 + " AND " + SQLiteHandler.GRD_CODE_COL + " = " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.GRD_CODE_COL
                 + " ) AS GRDTitle "
-                + " , "  + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.DISTRICT_CODE_COL +
+                + " , " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.DISTRICT_CODE_COL +
                 " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.UPCODE_COL +
                 " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.UCODE_COL +
                 "  || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.VCODE_COL
@@ -626,7 +626,7 @@ public class SQLiteQuery {
                 + " , " + SQLiteHandler.ENTRY_DATE
 
                 //  + REG_DATE_COL + " , " if it need latter
-                + " , "+ SQLiteHandler.BIRTH_YEAR_COL
+                + " , " + SQLiteHandler.BIRTH_YEAR_COL
                 + " , " + SQLiteHandler.MARITAL_STATUS_COL
                 + " , " + SQLiteHandler.CONTACT_NO_COL
                 + " , " + SQLiteHandler.MEMBER_OTHER_ID_COL
@@ -1451,8 +1451,8 @@ public class SQLiteQuery {
 // havet use it
 
 
-    public static String getAssignDataIfExitsInRegNFFA_table_sql(String countryCode, String districtCode, String upzellaCode, String unitCode, String villageCode, String houseHoldId, String memberID){
-        return  " SELECT " + SQLiteHandler.CHILD_HEADED_COL + " , "
+    public static String getAssignDataIfExitsInRegNFFA_table_sql(String countryCode, String districtCode, String upzellaCode, String unitCode, String villageCode, String houseHoldId, String memberID) {
+        return " SELECT " + SQLiteHandler.CHILD_HEADED_COL + " , "
                 + SQLiteHandler.ELDERLY_HEADED_COL + " , "
                 + SQLiteHandler.CHRONICALLY_ILL_COL + " , "
 
@@ -1465,7 +1465,7 @@ public class SQLiteQuery {
 
                 + " FROM " + SQLiteHandler.REG_N_FFA_TABLE
 
-                + " WHERE "+ SQLiteHandler.COUNTRY_CODE_COL + " = '" + countryCode + "' "
+                + " WHERE " + SQLiteHandler.COUNTRY_CODE_COL + " = '" + countryCode + "' "
                 + " AND " + SQLiteHandler.DISTRICT_CODE_COL + " = '" + districtCode + "' "
                 + " AND " + SQLiteHandler.UPCODE_COL + " = '" + upzellaCode + "' "
                 + " AND " + SQLiteHandler.UCODE_COL + " = '" + unitCode + "'"
@@ -2480,11 +2480,19 @@ public class SQLiteQuery {
                 " , cg." + SQLiteHandler.GROUP_NAME_COL +
                 " , srv." + SQLiteHandler.SERVICE_SHORT_NAME_COL +
 
-                " , ( select Count(*) from "+SQLiteHandler.REG_N_MEM_PROG_GRP_TABLE+" )  AS c " +
+                " , ( select Count(*) from " + SQLiteHandler.REG_N_MEM_PROG_GRP_TABLE + " AS regNgrp "
+                + " WHERE  regNgrp." + SQLiteHandler.COUNTRY_CODE_COL + " = cg." + SQLiteHandler.COUNTRY_CODE_COL
+                + " AND  " + "regNgrp." + SQLiteHandler.DONOR_CODE_COL + " = cg." + SQLiteHandler.DONOR_CODE_COL
+                + " AND  " + "regNgrp." + SQLiteHandler.AWARD_CODE_COL + " = cg." + SQLiteHandler.AWARD_CODE_COL
+                + " AND regNgrp." + SQLiteHandler.PROGRAM_CODE_COL + " = cg." + SQLiteHandler.PROGRAM_CODE_COL
+                + " AND  " + "regNgrp." + SQLiteHandler.GROUP_CODE_COL + " = cg." + SQLiteHandler.GROUP_CODE_COL
 
-                " FROM " +  SQLiteHandler.COMMUNITY_GROUP_TABLE + "  AS cg " +
 
-                " LEFT JOIN " +SQLiteHandler.REG_N_MEM_PROG_GRP_TABLE + " AS regG " +
+                + " )  AS c " +
+
+                " FROM " + SQLiteHandler.COMMUNITY_GROUP_TABLE + "  AS cg " +
+
+                " LEFT JOIN " + SQLiteHandler.REG_N_MEM_PROG_GRP_TABLE + " AS regG " +
                 " ON regG." + SQLiteHandler.COUNTRY_CODE_COL + " = cg." + SQLiteHandler.COUNTRY_CODE_COL + " " +
                 " AND regG." + SQLiteHandler.DONOR_CODE_COL + " = cg." + SQLiteHandler.DONOR_CODE_COL +
                 " AND regG." + SQLiteHandler.AWARD_CODE_COL + " = cg." + SQLiteHandler.AWARD_CODE_COL +

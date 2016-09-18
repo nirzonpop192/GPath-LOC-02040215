@@ -356,7 +356,7 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                Log.d("REFAT---FFA", model.getOrphanChildRb1() + "\n" + model.getChildHeadedRb1() + "\n" + model.getElderlyHeadedRb2() + "\n" + model.getChronicallyIllRb3() + "\n" + model.getFemaleHeadedRb4() + "\n" + model.getCropFailureRb5() + "\n" + model.getChildrenRecSuppFeedNRb6() + "\n");
+
                 saveMethod();
 
             }

@@ -226,7 +226,7 @@
                     />
 
                 <EditText
-               
+
                     android:inputType="numberDecimal"
                     android:id="@+id/edt_as_agr_mlwai_landSize"
                     style="@style/text_view"

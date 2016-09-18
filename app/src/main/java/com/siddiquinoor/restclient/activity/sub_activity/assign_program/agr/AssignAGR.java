@@ -1352,15 +1352,15 @@ public class AssignAGR extends BaseActivity {
         Intent iAssign = new Intent(mContext, AssignActivity.class);
         finish();
 
-        iAssign.putExtra(KEY.COUNTRY_ID, assignDataModel.getCountryCode());
+        iAssign.putExtra(KEY.COUNTRY_ID, temAssignMemData.getCountryCode());
         iAssign.putExtra(AssignActivity.SUB_ASSIGN_DIR, true);
-        iAssign.putExtra(AssignActivity.ASSIGN_AWARD_CODE, assignDataModel.getAward_code());
-        iAssign.putExtra(AssignActivity.ASSIGN_AWARD_STR, assignDataModel.getTemAwardString());
-        iAssign.putExtra(AssignActivity.ASSIGN_PROGRAM_CODE, assignDataModel.getProgram_code());
-        iAssign.putExtra(AssignActivity.ASSIGN_PROGRAM_STR, assignDataModel.getTemProgramString());
-        iAssign.putExtra(AssignActivity.ASSIGN_DONOR_CODE, assignDataModel.getDonor_code());
-        iAssign.putExtra(AssignActivity.ASSIGN_CRITERIA_CODE, assignDataModel.getService_code());
-        iAssign.putExtra(AssignActivity.ASSIGN_CRITERIA_STR, assignDataModel.getTemCriteriaString());
+        iAssign.putExtra(AssignActivity.ASSIGN_AWARD_CODE, temAssignMemData.getAward_code());
+        iAssign.putExtra(AssignActivity.ASSIGN_AWARD_STR, temAssignMemData.getTemAwardString());
+        iAssign.putExtra(AssignActivity.ASSIGN_PROGRAM_CODE, temAssignMemData.getProgram_code());
+        iAssign.putExtra(AssignActivity.ASSIGN_PROGRAM_STR, temAssignMemData.getTemProgramString());
+        iAssign.putExtra(AssignActivity.ASSIGN_DONOR_CODE, temAssignMemData.getDonor_code());
+        iAssign.putExtra(AssignActivity.ASSIGN_CRITERIA_CODE, temAssignMemData.getService_code());
+        iAssign.putExtra(AssignActivity.ASSIGN_CRITERIA_STR, temAssignMemData.getTemCriteriaString());
         iAssign.putExtra(KEY.MEMBER_ID, memberId15D);
 
 

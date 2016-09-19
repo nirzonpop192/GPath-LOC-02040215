@@ -117,7 +117,7 @@ public class MemberSearchAdapter extends BaseAdapter {
                 Intent intent= new Intent(activity, GraduationActivity.class);
                 intent.putExtra(KEY.COUNTRY_ID,memData.getCountryCode());
                 intent.putExtra(KEY.MEMBER_ID,memData.getNewId());
-                intent.putExtra(KEY.DIR_CLASS_NAME_KEY,"ME");
+                intent.putExtra(KEY.DIR_CLASS_NAME_KEY,"MemberSearchPage");
                 activity.finish();
                 activity.startActivity(intent);
 

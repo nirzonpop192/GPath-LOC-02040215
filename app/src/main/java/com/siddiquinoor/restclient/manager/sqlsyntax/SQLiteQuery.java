@@ -556,7 +556,7 @@ public class SQLiteQuery {
     }
 
 
-    public static String getMemberGraduationStatusList_sql(String cCode, String donorCode, String awardCode, String programCode, String srvCode, String memCode) {
+    public static String getMemberGraduationStatusList_sql(String cCode, String donorCode, String awardCode, String programCode, String srvCode, String memberId) {
         String getMemberName;
         if (cCode.equals("0004")) {
             getMemberName = SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.MEM_NAME_FIRST_COL +
@@ -569,7 +569,7 @@ public class SQLiteQuery {
 
         return "SELECT " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.HHID_COL +
                 " , " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.HH_MEM_ID +
-//                " , " +SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.MEM_NAME_COL +
+
                 " , " + getMemberName + " AS memName " +
                 " , " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL +
                 " , " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.DISTRICT_CODE_COL +
@@ -585,12 +585,12 @@ public class SQLiteQuery {
                 + " AND " + SQLiteHandler.SERVICE_CODE_COL + " = '" + srvCode + "'"
                 + " AND " + SQLiteHandler.GRD_CODE_COL + " = " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.GRD_CODE_COL
                 + " ) AS GRDTitle "
-                + " , " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.DISTRICT_CODE_COL +
-                " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.UPCODE_COL +
-                " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.UCODE_COL +
-                "  || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.VCODE_COL
-                + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.HHID_COL +
-                " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.HH_MEM_ID + " AS nMemId "
+                + " , " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.DISTRICT_CODE_COL
+                + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.UPCODE_COL
+                + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.UCODE_COL
+                + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.VCODE_COL
+                + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.HHID_COL
+                + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.HH_MEM_ID + " AS nMemId "
 //                "
                 + " FROM " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE
                 + " INNER JOIN " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + " ON "
@@ -613,7 +613,12 @@ public class SQLiteQuery {
                 + " AND " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.SERVICE_CODE_COL + " = '" + srvCode + "'"
                 + " AND " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + " = '" + donorCode + "'"
                 + " AND " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + " = '" + awardCode + "'"
-                + " AND " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.HH_MEM_ID + " LIKE  '%" + memCode + "%' "
+                + " AND " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.DISTRICT_CODE_COL
+                + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.UPCODE_COL
+                + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.UCODE_COL
+                + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.VCODE_COL
+                + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.HHID_COL
+                + " || '' || " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + "." + SQLiteHandler.HH_MEM_ID + " LIKE  '%" + memberId + "%' "
                 + " GROUP BY " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.MEM_NAME_COL
                 + " ORDER BY  " + SQLiteHandler.REGISTRATION_MEMBER_TABLE + "." + SQLiteHandler.MEM_NAME_COL;
     }

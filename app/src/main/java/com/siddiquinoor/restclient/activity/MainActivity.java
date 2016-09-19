@@ -666,11 +666,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
 
             case R.id.btnGraduation:
-                Intent iGraduation = new Intent(getApplicationContext(), GraduationActivity.class);
-                iGraduation.putExtra(KEY.COUNTRY_ID, idCountry);
-                iGraduation.putExtra(KEY.STR_COUNTRY, strCountry);
-                iGraduation.putExtra(KEY.DIR_CLASS_NAME_KEY, "MainActivity");
-                startActivity(iGraduation);
+                /**
+                 *  when user press the assign page it will take to the member page
+                 */
+
+                Intent iMemSearchPage_1 = new Intent(getApplicationContext(), MemberSearchPage.class);
+                iMemSearchPage_1.putExtra(KEY.COUNTRY_ID, idCountry);
+                finish();
+                startActivity(iMemSearchPage_1);
+
                 break;
 
             case R.id.btnAssinge:
@@ -678,12 +682,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                  *  when user press the assign page it will take to the member page
                  */
 
-//                Intent iAssign = new Intent(getApplicationContext(), AssignActivity.class); // go to the assign page
-                Intent iAssign = new Intent(getApplicationContext(), MemberSearchPage.class);
-                iAssign.putExtra(KEY.COUNTRY_ID, idCountry);
-                iAssign.putExtra(KEY.STR_COUNTRY, strCountry);
-                iAssign.putExtra(OldAssignActivity.SUB_ASSIGN_DIR, false);
-                startActivity(iAssign);
+
+                Intent iMemSearchPage = new Intent(getApplicationContext(), MemberSearchPage.class);
+                iMemSearchPage.putExtra(KEY.COUNTRY_ID, idCountry);
+                iMemSearchPage.putExtra(KEY.STR_COUNTRY, strCountry);
+
+                /**
+                 * rechek sub assigne page involed  or not
+                 */
+                iMemSearchPage.putExtra(OldAssignActivity.SUB_ASSIGN_DIR, false);
+                finish();
+                startActivity(iMemSearchPage);
                 break;
 
         }
@@ -1608,10 +1617,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                         db.insertAdmCountryProgram(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, AdmSrvCode, FoodFlag, NFoodFlag, CashFlag, VOFlag, DefaultFoodDays, DefaultNFoodDays, DefaultCashDays, DefaultVODays, SrvSpecific);
 
-                        Log.d(TAG, "In adm_country_program Table flag FoodFlag :" + FoodFlag + "NFoodFlag : " +
-                                NFoodFlag + " CashFlag :" + CashFlag + " VOFlag : " + VOFlag
-                                + " SrvSpecific :" + SrvSpecific
-                        );
+//                        Log.d(TAG, "In adm_country_program Table flag FoodFlag :" + FoodFlag + "NFoodFlag : " + NFoodFlag + " CashFlag :" + CashFlag + " VOFlag : " + VOFlag + " SrvSpecific :" + SrvSpecific);
 
 
                     }

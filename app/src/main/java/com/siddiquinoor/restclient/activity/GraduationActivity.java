@@ -81,22 +81,28 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
         Intent intent = getIntent();
 
         String dir = intent.getStringExtra(KEY.DIR_CLASS_NAME_KEY);
-        if (dir.equals("MainActivity")) {
+        if (dir.equals("MemberSearchPage")) {
             idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
-            strCounty = intent.getStringExtra(KEY.STR_COUNTRY);
+            String memberId = intent.getStringExtra(KEY.MEMBER_ID);
+            if (memberId.length() > 5) {
+                edt_searchId.setText(memberId);
+                loadAward(idCountry, memberId);
+            }
+
+
         } else {
             idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
+            strCounty = intent.getStringExtra(KEY.STR_COUNTRY);
+
+            loadAward(idCountry, "");
 
         }
 
 
         Log.d(TAG, "id Country : id " + idCountry);
 
-        loadAward(idCountry);
+//        loadAward(idCountry);
 
-        edt_searchId.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
-        imm.showSoftInput(edt_searchId, InputMethodManager.SHOW_IMPLICIT);
 
         setAllListener();
 
@@ -132,7 +138,6 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
     }
 
     private void viewReference() {
-
         spAward = (Spinner) findViewById(R.id.sp_Award_Graduation);
         spProgram = (Spinner) findViewById(R.id.sp_Program_Graduation);
         spCriteria = (Spinner) findViewById(R.id.sp_Criteria_Graduation);
@@ -148,47 +153,11 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
 
     }
 
-    /**
-     * calling getWidth() and getHeight() too early:
-     * When  the UI has not been sized and laid out on the screen yet..
-     *
-     * @param hasFocus the value will be true when UI is focus
-     */
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        setUpSummaryButton();
-        setUpHomeButton();
-    }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private void setUpSummaryButton() {
-        btnSummary.setText("");
-        Drawable summeryImage = getResources().getDrawable(R.drawable.summession_b);
-        btnSummary.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
-        setPaddingButton(mContext, summeryImage, btnSummary);
-    }
-
-    /**
-     * Icon set by the method
-     */
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private void setUpHomeButton() {
-
-        btnHome.setText("");
-        Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
-        btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        setPaddingButton(mContext, imageHome, btnHome);
-
-
-    }
-
 
     /**
      * LOAD :: Award
      */
-    private void loadAward(final String cCode) {
+    private void loadAward(final String cCode, final String memId) {
 
         int position = 0;
         String criteria = " WHERE " + SQLiteHandler.ADM_AWARD_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "'";
@@ -224,7 +193,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
                 if (idAward.length() > 2) {
                     idDonor = idAward.substring(0, 2);
                     idAward = idAward.substring(2);
-                    loadProgram(idAward, idDonor, cCode);
+                    loadProgram(cCode, idDonor, idAward, memId);
                 }
                 Log.d(TAG, "idAward : " + idAward.substring(2) + " donor id :" + idAward.substring(0, 2));
 
@@ -241,13 +210,31 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
     /**
      * LOAD :: Program
      */
-    private void loadProgram(final String awardCode, final String donorCode, final String idcCode) {
+    private void loadProgram(final String idcCode, final String donorCode, final String awardCode, final String memId) {
 
         int position = 0;
-        String criteria = " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
-                + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'";
+        String criteria = "SELECT " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL
+                + " , " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_SHORT_NAME_COL
+                + " FROM " + SQLiteHandler.PROGRAM_MASTER_TABLE
+                + " INNER JOIN " + SQLiteHandler.ADM_AWARD_TABLE
+                + " ON " + SQLiteHandler.ADM_AWARD_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + " = " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL
+                + " AND " + SQLiteHandler.ADM_AWARD_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + " = " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL
+                + " INNER JOIN " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + " AS regAss "
+                + " ON regAss." + SQLiteHandler.PROGRAM_CODE_COL + " = " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL
+                + " WHERE " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
+                + " AND " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'"
+                + " AND regAss." + SQLiteHandler.DISTRICT_CODE_COL
+                + " || '' || regAss." + SQLiteHandler.UPCODE_COL
+                + " || '' || regAss." + SQLiteHandler.UCODE_COL
+                + " || '' || regAss." + SQLiteHandler.VCODE_COL
+                + " || '' || regAss." + SQLiteHandler.HHID_COL
+                + " || '' || regAss." + SQLiteHandler.HH_MEM_ID
+
+                + " = '" + memId + "'";
+
+
         // Spinner Drop down elements for District
-        List<SpinnerHelper> listProgram = sqlH.getListAndID(SQLiteHandler.COUNTRY_PROGRAM_TABLE, criteria, null, false);
+        List<SpinnerHelper> listProgram = sqlH.getListAndID(SQLiteHandler.CUSTOM_QUERY, criteria, null, false);
 
         // Creating adapter for spinner
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listProgram);
@@ -328,11 +315,15 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
 
                 if (Integer.parseInt(idCriteria) > 0) {
                     idService = idCriteria;
-                    loadGraduationGrid(cCode, donorCode, awardCode, programCode, idService, "");
+                    /**
+                     * safety Block
+                     */
+                    if (edt_searchId.getText().toString().length() > 5)
+                        loadGraduationGrid(cCode, donorCode, awardCode, programCode, idService, edt_searchId.getText().toString());
+                    else
+                        loadGraduationGrid(cCode, donorCode, awardCode, programCode, idService, "");
                 }
 
-
-                Log.d(TAG, "load idCriteria data " + idCriteria);
 
             }
 
@@ -361,8 +352,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
         Log.d(TAG, "In loadGraduationGrid List ");
         // use variable to like operation
 
-        ArrayList<GraduationGridDataModel> graduationList =
-                sqlH.getMemberGraduationStatusList(countryCode, donorCode, awardCode, programCode, serviceCode, memid);
+        ArrayList<GraduationGridDataModel> graduationList = sqlH.getMemberGraduationStatusList(countryCode, donorCode, awardCode, programCode, serviceCode, memid);
 
         adapter = new GraduationGridAdapter(graduationList, this, strAward, strProgram, strCriteria, awardCode, programCode, donorCode, serviceCode);
         adapter.notifyDataSetChanged();
@@ -383,6 +373,39 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
+    }
+
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        setUpSummaryButton();
+        setUpHomeButton();
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setUpSummaryButton() {
+        btnSummary.setText("");
+        Drawable summeryImage = getResources().getDrawable(R.drawable.summession_b);
+        btnSummary.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
+        setPaddingButton(mContext, summeryImage, btnSummary);
+    }
+
+    /**
+     * Icon set by the method
+     */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setUpHomeButton() {
+        btnHome.setText("");
+        Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
+        btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
+        setPaddingButton(mContext, imageHome, btnHome);
     }
 
 

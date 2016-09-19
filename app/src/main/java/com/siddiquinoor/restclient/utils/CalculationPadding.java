@@ -62,7 +62,7 @@ public class CalculationPadding {
          */
         p += 20;
 
-        Log.i(TAG, "padding :" + p);
+
 
         return p;
     }

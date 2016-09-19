@@ -20,9 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.siddiquinoor.restclient.R;
-import com.siddiquinoor.restclient.activity.AllSummaryActivity;
 import com.siddiquinoor.restclient.activity.AssignActivity;
-import com.siddiquinoor.restclient.activity.MainActivity;
 import com.siddiquinoor.restclient.data_model.AssignDDR_FFA_DataModel;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
@@ -47,10 +45,10 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
     private Spinner spGroupCategories, spGroup, spDisable, spActive;
     private String idGroupCat, idGroup, idActive;
     private String strGroupCat, strGroup;
-    RadioGroup radioGroup_mal_DDR;
-    RadioButton rb_1, rb_2, rb_3, rb_4, rb_5, rb_6, rb_7;
+    private RadioGroup radioGroup_mal_DDR;
+    private RadioButton rb_1, rb_2, rb_3, rb_4, rb_5, rb_6, rb_7;
     int position;
-    Context mContext = AssignForDDRMalwaiFFA.this;
+    private final Context mContext = AssignForDDRMalwaiFFA.this;
 
     private String memberId15D;
 
@@ -58,20 +56,9 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
     private static final String NO = "N";
     private String idCountry;
 
-    // private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
     private Calendar calendar = Calendar.getInstance();
     private SimpleDateFormat formatUSA = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
-
-/*    public String getStrRegDate() {
-        return strRegDate;
-    }
-
-
- //   private String strRegDate;
-
-    public void setStrRegDate(String strRegDate) {
-        this.strRegDate = strRegDate;
-    }*/
 
 
     private AssignDDR_FFA_DataModel model = new AssignDDR_FFA_DataModel();
@@ -79,14 +66,13 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
 
     private static final String TAG = AssignForDDRMalwaiFFA.class.getSimpleName();
 
-    Button btnSave, btnSummary, btnHome, btnBackToAssign;
-    TextView label_disable;
+    private Button btnSave, btnSummary, btnHome, btnBackToAssign;
+    private TextView label_disable;
 
-    AssignDataModel assignMem = new AssignDataModel();
-    SQLiteHandler sqlH;
-    String entryBy;
-    String entryDate;
-    // AssignDataModel assignDataModel;
+    private AssignDataModel assignMem = new AssignDataModel();
+    private SQLiteHandler sqlH;
+
+
 
     private ADNotificationManager errorDialog;
 
@@ -95,29 +81,35 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assign_for_ddr_malwai);
         initi();
-
-
-        disableControll();
-        getIntenValueForRegnFFA();
-
-
+        disableControl();
+        getIntentValueForRegnFFA();
         checkRadioButtonValue();
-
-        Log.d("REFAT---FFA1", model.getOrphanChildRb1() + "\n" + model.getChildHeadedRb1() + "\n" + model.getElderlyHeadedRb2() + "\n" + model.getChronicallyIllRb3() + "\n" + model.getFemaleHeadedRb4() + "\n" + model.getCropFailureRb5() + "\n" + model.getChildrenRecSuppFeedNRb6() + "\n");
-
 
         /**
          * set Page Title
          */
         tv_PageTitle.setText("FFA");
 
-
         buttonActionListener();
-//        dateProcessing();
+
         /**
          * resorting the the save data to view
          */
+        resortingMemberData();
 
+
+        loadGroupCategory(assignMem.getCountryCode(), assignMem.getDonor_code(), assignMem.getAward_code(), assignMem.getProgram_code());
+    }
+
+
+    /**
+     * LOAD:: data
+     * Resorting::
+     */
+    private void resortingMemberData() {
+        /**
+         * Search in RegNAssProgSrv
+         */
         if (sqlH.ifExistsInRegNAssProgSrv(assignMem)) {
             String regDate = sqlH.getRegDateFromRegNAssignProgSrv(assignMem.getCountryCode(), assignMem.getDistrictCode(), assignMem.getUpazillaCode(), assignMem.getUnitCode(), assignMem.getVillageCode(), assignMem.getHh_id(), assignMem.getMemId(), assignMem.getDonor_code(), assignMem.getAward_code(), assignMem.getProgram_code(), assignMem.getService_code());
             tvRegDate.setText(regDate);
@@ -141,28 +133,21 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
             } else if (data.getWillingnessRb7().equals("Y")) {
                 rb_7.setChecked(true);
             }
-
             idGroupCat = assignMem.getGroupCatCode();
             strGroupCat = assignMem.getGroupCatName();
             idGroup = assignMem.getGroupCode();
             strGroup = assignMem.getGroupName();
             idActive = assignMem.getActiveCode();
-
-
         }
-
-        loadGroupCategory(assignMem.getCountryCode(), assignMem.getDonor_code(), assignMem.getAward_code(), assignMem.getProgram_code());
     }
 
     private void initi() {
         viewReference();
-
         sqlH = new SQLiteHandler(this);
         errorDialog = new ADNotificationManager();
-//        assignDataModel = new AssignDataModel();
     }
 
-    private void disableControll() {
+    private void disableControl() {
         spDisable.setVisibility(View.GONE);
         label_disable.setVisibility(View.GONE);
     }
@@ -179,6 +164,7 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         tv_HHName = (TextView) findViewById(R.id.txt_assign_mal_HHName_ddr);
         tv_Criteria = (TextView) findViewById(R.id.txt_assign_mal_Criteria_ddr);
         tvRegDate = (TextView) findViewById(R.id.txt_assign_mal_Reg_Date_ddr);
+        tv_PageTitle = (TextView) findViewById(R.id.tv_ass_page2Title);
 
         //Spinner
 
@@ -186,16 +172,13 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         spGroup = (Spinner) findViewById(R.id.sp_ass_GroupCode_mal_ddr);
         spActive = (Spinner) findViewById(R.id.sp_ass_Active_mal_ddr);
         spDisable = (Spinner) findViewById(R.id.sp_ass_disable_mal_ddr);
-
-
-        // sp_disable.setVisibility(View.GONE);
-
-        //Radio Group
-
+        /**
+         * Radio Group
+         */
         radioGroup_mal_DDR = (RadioGroup) findViewById(R.id.radio_grp_mal_ddr);
-
-        //radio Button
-
+        /**
+         * radio Button
+         */
         rb_1 = (RadioButton) findViewById(R.id.rb_ass_mal_ddr_1);
         rb_2 = (RadioButton) findViewById(R.id.rb_ass_mal_ddr_2);
         rb_3 = (RadioButton) findViewById(R.id.rb_ass_mal_ddr_3);
@@ -213,11 +196,13 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
 
         label_disable = (TextView) findViewById(R.id.lbl_disable);
 
-        tv_PageTitle = (TextView) findViewById(R.id.tv_ass_page2Title);
+
     }
 
-
-    private void getIntenValueForRegnFFA() {
+    /**
+     * get value which pass by intent
+     */
+    private void getIntentValueForRegnFFA() {
         Intent intent;
         intent = getIntent();
 
@@ -227,24 +212,14 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         tv_MemberName.setText(assignMem.getHh_mm_name());
         tv_HHName.setText(assignMem.getHh_name());
         tv_Criteria.setText(assignMem.getTemCriteriaString());
-        //tvRegDate.setText();
         idCountry = assignMem.getCountryCode();
-
-/*
-        entryBy = getStaffID();
-        entryDate = "";
-        try {
-            entryDate = getDateTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
-
-
     }
 
 
+    /**
+     * set the Radio button Listener
+     */
     private void checkRadioButtonValue() {
-
         rb_1.setChecked(false);
         rb_2.setChecked(false);
         rb_3.setChecked(false);
@@ -261,7 +236,6 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         model.setChildrenRecSuppFeedNRb6(NO);
         model.setWillingnessRb7(NO);
 
-
         radioGroup_mal_DDR.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -269,7 +243,6 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
                 switch (position) {
                     case 0:
                         rb_1.setChecked(true);
-
                         model.setChildHeadedRb1(YES);
                         model.setElderlyHeadedRb2(NO);
                         model.setChronicallyIllRb3(NO);
@@ -341,8 +314,6 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
                 }
             }
         });
-
-
     }
 
     private void buttonActionListener() {
@@ -355,26 +326,21 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 saveMethod();
-
             }
         });
 
         btnSummary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSummaryPage();
+                goToSummaryActivity(AssignForDDRMalwaiFFA.this, assignMem.getCountryCode());
             }
         });
 
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                Intent i = new Intent(AssignForDDRMalwaiFFA.this, MainActivity.class);
-                startActivity(i);
+                goToMainActivity(AssignForDDRMalwaiFFA.this);
 
             }
         });
@@ -387,14 +353,6 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         });
     }
 
-    private void goToSummaryPage() {
-
-        Intent iAssignSummary = new Intent(mContext, AllSummaryActivity.class);
-        iAssignSummary.putExtra(KEY.COUNTRY_ID, assignMem.getCountryCode());
-        finish();
-
-        startActivity(iAssignSummary);
-    }
 
     private void gotoAssignBeneficiaryPage() {
 
@@ -421,12 +379,10 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
 
     private void saveMethod() {
 
-
         if (sqlH.get_ProgramMultipleSrv(assignMem.getDonor_code(), assignMem.getAward_code(), assignMem.getProgram_code()).equals("N")
                 && sqlH.get_MemOthCriteriaLive(assignMem.getCountryCode(), assignMem.getDistrictCode(), assignMem.getUpazillaCode(), assignMem.getUnitCode(), assignMem.getVillageCode(), assignMem.getHh_id(), assignMem.getMemId(), assignMem.getDonor_code(), assignMem.getAward_code(), assignMem.getProgram_code(), assignMem.getService_code())) {
             errorDialog.showErrorDialog(mContext, "Member remains active in other criteria. Save attempt denied.");
         } else {
-
 
             String regDate = tvRegDate.getText().toString();
 
@@ -464,8 +420,10 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
                 assignMem.setRegNDate(regDate);
                 assignMem.setGrdCode(sqlH.getGRDDefaultActiveReason(assignMem.getProgram_code(), assignMem.getService_code()));
                 assignMem.setGrdDate(UtilClass.calculateGRDDate(assignMem.getCountryCode(), assignMem.getDonor_code(), assignMem.getAward_code(), sqlH));
-//                saveDataForSqlServer();
 
+/**
+ * setter for syntax generator
+ */
 
                 SQLServerSyntaxGenerator sqlServer = new SQLServerSyntaxGenerator();
 
@@ -505,9 +463,9 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
                 sqlServer.setActive(idActive);
 
 
-                /**
-                 * RegNAssProgSrv
-                 */
+/**
+ * RegNAssProgSrv
+ */
                 if (sqlH.ifExistsInRegNAssProgSrv(assignMem)) {
 
 
@@ -573,8 +531,6 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
                 Toast.makeText(mContext, "Saved Successfully", Toast.LENGTH_SHORT).show();
 
 
-//                sqlH.insertIntoUploadTable(sqlServer.insertInToRegNMemProgGrp());
-//                sqlH.insertIntoUploadTable(sqlServer.sqlSpRegNMemAwardProgCombN_Save());
             }
 
 
@@ -583,7 +539,6 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
     }
 
     public void updateRegDate() {
-//        setStrRegDate(format.format(calendar.getTime()));
         tvRegDate.setText(formatUSA.format(calendar.getTime()));
     }
 
@@ -619,9 +574,12 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         setUpGoToAssgnButton();
     }
 
+    /**
+     * Icon setup::
+     */
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpHomeButton() {
-
         btnHome.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
@@ -633,7 +591,6 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         btnSummary.setText("");
         Drawable summeryImage = getResources().getDrawable(R.drawable.summession_b);
         btnSummary.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
-
         setPaddingButton(mContext, summeryImage, btnSummary);
     }
 
@@ -642,9 +599,7 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         btnSave.setText("");
         Drawable saveImage = getResources().getDrawable(R.drawable.save_b);
         btnSave.setCompoundDrawablesRelativeWithIntrinsicBounds(saveImage, null, null, null);
-
         setPaddingButton(mContext, saveImage, btnSave);
-
     }
 
 
@@ -653,7 +608,6 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         btnBackToAssign.setText("");
         Drawable backImage = getResources().getDrawable(R.drawable.goto_back);
         btnBackToAssign.setCompoundDrawablesRelativeWithIntrinsicBounds(backImage, null, null, null);
-
         setPaddingButton(mContext, backImage, btnBackToAssign);
 
     }
@@ -661,10 +615,7 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
     /***
      * Spinner load
      */
-
-
-    private void loadGroupCategory(final String cCode, final String donorCode, final String awardCode,
-                                   final String progCode) {
+    private void loadGroupCategory(final String cCode, final String donorCode, final String awardCode, final String progCode) {
 
         int position = 0;
         String criteria = " WHERE " + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "' "
@@ -705,7 +656,6 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
                 if (idGroupCat.length() > 2)
                     loadGroup(cCode, donorCode, awardCode, progCode, idGroupCat);
 
-                Log.d(TAG, "Group Category ,idGroupCat:" + idGroupCat + " strGroupCat : " + strGroupCat);
 
             }
 
@@ -717,17 +667,14 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
 
     } // end Load Spinner
 
-    private void loadGroup(final String cCode, final String donorCode, final String awardCode
-            , final String progCode, final String grpCateCode) {
+    private void loadGroup(final String cCode, final String donorCode, final String awardCode, final String progCode, final String grpCateCode) {
 
         int position = 0;
         String criteria = " WHERE " + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "' "
                 + " AND " + SQLiteHandler.DONOR_CODE_COL + " = '" + donorCode + "' "
                 + " AND " + SQLiteHandler.AWARD_CODE_COL + " = '" + awardCode + "' "
                 + " AND " + SQLiteHandler.PROGRAM_CODE_COL + " = '" + progCode + "' "
-                + " AND " + SQLiteHandler.GROUP_CAT_CODE_COL + " = '" + grpCateCode + "' "
-                //    + " AND " + SQLiteHandler.SERVICE_CENTER_CODE_COL + " = '" + idSrvCenter + "' "
-                ;
+                + " AND " + SQLiteHandler.GROUP_CAT_CODE_COL + " = '" + grpCateCode + "' ";
 
 
         // Spinner Drop down elements for District
@@ -740,7 +687,6 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
         // attaching data adapter to spinner
         spGroup.setAdapter(dataAdapter);
 
-
         if (idGroup != null) {
             for (int i = 0; i < spGroup.getCount(); i++) {
                 String groupCategory = spGroup.getItemAtPosition(i).toString();
@@ -751,42 +697,32 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
             spGroup.setSelection(position);
         }
 
-
         spGroup.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 strGroup = ((SpinnerHelper) spGroup.getSelectedItem()).getValue();
                 idGroup = ((SpinnerHelper) spGroup.getSelectedItem()).getId();
-                Log.d("HEO", "Group  ,idGroup:" + idGroup + " strGroup : " + strGroup);
+
                 if (idGroup.length() > 2) {
-
-
                     loadActiveStatus();
-
                 }
-
-
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
     } // end Load Spinner
 
     /**
-     * ** LOAD: Active Status
+     * LOAD:: Active Status
      */
     private void loadActiveStatus() {
 
-        ArrayAdapter<CharSequence> adptMartial = ArrayAdapter.createFromResource(
-                this, R.array.arrActive, R.layout.spinner_layout);
-
+        ArrayAdapter<CharSequence> adptMartial = ArrayAdapter.createFromResource(this, R.array.arrActive, R.layout.spinner_layout);
         adptMartial.setDropDownViewResource(R.layout.spinner_layout);
         spActive.setAdapter(adptMartial);
-
 
         spActive.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -803,7 +739,6 @@ public class AssignForDDRMalwaiFFA extends BaseActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
     }

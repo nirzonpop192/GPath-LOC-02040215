@@ -345,14 +345,15 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
     } // end Load Spinner
 
     /**
+     * LOAD :: Grid
      * This method load the list of GraduatedPeople
      *
-     * @param countryCode
-     * @param donorCode
-     * @param awardCode
-     * @param programCode
-     * @param serviceCode
-     * @param memid
+     * @param countryCode Country Code
+     * @param donorCode   Donor Code
+     * @param awardCode   Award Code
+     * @param programCode Program Code
+     * @param serviceCode Service Code
+     * @param memid       Member id
      */
 
     public void loadGraduationGrid(String countryCode, String donorCode, String awardCode, String programCode,

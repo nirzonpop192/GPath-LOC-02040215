@@ -21,7 +21,8 @@ import java.util.ArrayList;
 /**
  * Created by Faisal
  * This Adapter Class is used for navigation through all model
- * @since  8/4/2016.
+ *
+ * @since 8/4/2016.
  */
 public class MemberSearchAdapter extends BaseAdapter {
 
@@ -29,11 +30,15 @@ public class MemberSearchAdapter extends BaseAdapter {
     private Activity activity;
 
     private LayoutInflater inflater;
-    ArrayList<AssignDataModel> assignData = new ArrayList<AssignDataModel>();
+    private ArrayList<AssignDataModel> memberData = new ArrayList<AssignDataModel>();
 
-    public MemberSearchAdapter(Activity activity, ArrayList<AssignDataModel> assignData) {
+    private String vCode,vName;
+
+    public MemberSearchAdapter(Activity activity, ArrayList<AssignDataModel> memberData, String vCode, String vName) {
         this.activity = activity;
-        this.assignData = assignData;
+        this.memberData = memberData;
+        this.vCode = vCode;
+        this.vName = vName;
     }
 
     public MemberSearchAdapter() {
@@ -42,12 +47,12 @@ public class MemberSearchAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-         return assignData.size();
+        return memberData.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return assignData.get(position);
+        return memberData.get(position);
     }
 
     @Override
@@ -58,7 +63,7 @@ public class MemberSearchAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
-        final AssignDataModel memData = assignData.get(position);
+        final AssignDataModel memData = memberData.get(position);
 
         if (inflater == null)
             inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -102,9 +107,11 @@ public class MemberSearchAdapter extends BaseAdapter {
             public void onClick(View v) {
 
 
-                Intent intent= new Intent(activity, AssignActivity.class);
-                intent.putExtra(KEY.COUNTRY_ID,memData.getCountryCode());
-                intent.putExtra(KEY.MEMBER_ID,memData.getNewId());
+                Intent intent = new Intent(activity, AssignActivity.class);
+                intent.putExtra(KEY.COUNTRY_ID, memData.getCountryCode());
+                intent.putExtra(KEY.MEMBER_ID, memData.getNewId());
+                intent.putExtra(KEY.VILLAGE_CODE, vCode);
+                intent.putExtra(KEY.VILLAGE_NAME, vName);
                 activity.finish();
                 activity.startActivity(intent);
 
@@ -114,10 +121,12 @@ public class MemberSearchAdapter extends BaseAdapter {
         holder.imgGoToGraduation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(activity, GraduationActivity.class);
-                intent.putExtra(KEY.COUNTRY_ID,memData.getCountryCode());
-                intent.putExtra(KEY.MEMBER_ID,memData.getNewId());
-                intent.putExtra(KEY.DIR_CLASS_NAME_KEY,"MemberSearchPage");
+                Intent intent = new Intent(activity, GraduationActivity.class);
+                intent.putExtra(KEY.COUNTRY_ID, memData.getCountryCode());
+                intent.putExtra(KEY.MEMBER_ID, memData.getNewId());
+                intent.putExtra(KEY.DIR_CLASS_NAME_KEY, "MemberSearchPage");
+                intent.putExtra(KEY.VILLAGE_CODE, vCode);
+                intent.putExtra(KEY.VILLAGE_NAME, vName);
                 activity.finish();
                 activity.startActivity(intent);
 
@@ -157,6 +166,6 @@ public class MemberSearchAdapter extends BaseAdapter {
         holder.tv_mmName.setTextColor(color);
         holder.tv_LayR4Name.setTextColor(color);
         holder.tv_AddressName.setTextColor(color);
-       // holder.tv_age.setTextColor(color);
+        // holder.tv_age.setTextColor(color);
     }
 }

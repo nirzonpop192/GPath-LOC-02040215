@@ -66,8 +66,18 @@ public class MemberSearchPage extends BaseActivity {
         initialize();
 
         Intent intent = getIntent();
-        idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
-        loadLayRList(idCountry);
+        String dir = intent.getStringExtra(KEY.DIR_CLASS_NAME_KEY);
+        if (dir.equals("MainActivity")) {
+            idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
+            loadLayRList(idCountry);
+        }else {
+
+            idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
+            idVillage= intent.getStringExtra(KEY.VILLAGE_CODE);
+            strVillage= intent.getStringExtra(KEY.VILLAGE_NAME);
+            loadLayRList(idCountry);
+        }
+
 
         setListener();
 
@@ -88,7 +98,7 @@ public class MemberSearchPage extends BaseActivity {
                 String idMember = edt_memberId.getText().toString();
                 if (idMember.length() > 0) {
 
-                    LoadListView loading = new LoadListView(idCountry, idDistrictC, idUpazilaC, idUnitC, idVillageC, idMember);
+                    LoadListView loading = new LoadListView(idCountry, idDistrictC, idUpazilaC, idUnitC, idVillageC, idMember,strVillage);
                     loading.execute();
                 }
             }
@@ -203,7 +213,7 @@ public class MemberSearchPage extends BaseActivity {
                     idVillageC = idVillage.substring(10);
 
 
-                    LoadListView loading = new LoadListView(countryCode, idDistrictC, idUpazilaC, idUnitC, idVillageC, "");
+                    LoadListView loading = new LoadListView(countryCode, idDistrictC, idUpazilaC, idUnitC, idVillageC, "",strVillage);
                     loading.execute();
 
 
@@ -237,9 +247,10 @@ public class MemberSearchPage extends BaseActivity {
         private String temUnitCode;
         private String temVillageCode;
         private String memId;
+        private String temVillageName;
 
 
-        public LoadListView(final String temCCode, final String temDistCode, final String temUpazilaCode, final String temUnitCode, final String temVillageCode, final String memId) {
+        public LoadListView(final String temCCode, final String temDistCode, final String temUpazilaCode, final String temUnitCode, final String temVillageCode, final String memId,final String temVillageName) {
 
             this.temCCode = temCCode;
             this.temDistCode = temDistCode;
@@ -247,6 +258,7 @@ public class MemberSearchPage extends BaseActivity {
             this.temUnitCode = temUnitCode;
             this.temVillageCode = temVillageCode;
             this.memId = memId;
+            this.temVillageName = temVillageName;
 
         }
 
@@ -254,7 +266,7 @@ public class MemberSearchPage extends BaseActivity {
         protected String doInBackground(Void... params) {
 
 
-            loadAssignedListData(temCCode, temDistCode, temUpazilaCode, temUnitCode, temVillageCode, memId);
+            loadAssignedListData(temCCode, temDistCode, temUpazilaCode, temUnitCode, temVillageCode, memId,temVillageName);
 
 
             return "successes";
@@ -320,7 +332,7 @@ public class MemberSearchPage extends BaseActivity {
      * @param memId  15 digit member id
      */
 
-    private void loadAssignedListData(final String cCode, final String dCode, final String upCode, final String uCode, final String vCode, final String memId) { // mwmSId = memeber searchin variable
+    private void loadAssignedListData(final String cCode, final String dCode, final String upCode, final String uCode, final String vCode, final String memId,final String vName) {
 
         List<AssignDataModel> memberList = sqlH.getMemberList(cCode, dCode, upCode, uCode, vCode, memId);
 
@@ -338,7 +350,7 @@ public class MemberSearchPage extends BaseActivity {
 /**
  * Assign the Adapter in list
  */
-            adapter = new MemberSearchAdapter((Activity) MemberSearchPage.this, assignedArray);
+            adapter = new MemberSearchAdapter((Activity) MemberSearchPage.this, assignedArray,vCode,vName);
         }
     }
 

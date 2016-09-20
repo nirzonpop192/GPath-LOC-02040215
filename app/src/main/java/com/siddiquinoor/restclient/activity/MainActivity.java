@@ -672,6 +672,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 Intent iMemSearchPage_1 = new Intent(getApplicationContext(), MemberSearchPage.class);
                 iMemSearchPage_1.putExtra(KEY.COUNTRY_ID, idCountry);
+                iMemSearchPage_1.putExtra(KEY.DIR_CLASS_NAME_KEY, "MainActivity");
                 finish();
                 startActivity(iMemSearchPage_1);
 
@@ -686,11 +687,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Intent iMemSearchPage = new Intent(getApplicationContext(), MemberSearchPage.class);
                 iMemSearchPage.putExtra(KEY.COUNTRY_ID, idCountry);
                 iMemSearchPage.putExtra(KEY.STR_COUNTRY, strCountry);
+                iMemSearchPage.putExtra(KEY.DIR_CLASS_NAME_KEY, "MainActivity");
 
                 /**
                  * rechek sub assigne page involed  or not
                  */
-                iMemSearchPage.putExtra(OldAssignActivity.SUB_ASSIGN_DIR, false);
+//                iMemSearchPage.putExtra(OldAssignActivity.SUB_ASSIGN_DIR, false);
                 finish();
                 startActivity(iMemSearchPage);
                 break;

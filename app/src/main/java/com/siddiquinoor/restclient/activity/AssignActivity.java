@@ -159,6 +159,11 @@ public class AssignActivity extends BaseActivity {
     private static final String FFA = "02";
 
     private String memberId15D;
+    /**
+     * help to restore village Sate in MemberSearch page
+     */
+    private String tempSpinVillageName;
+    private String tempSpinVillageCode;
 
 
     @Override
@@ -221,6 +226,9 @@ public class AssignActivity extends BaseActivity {
 
         } else {
             idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
+
+            tempSpinVillageName = intent.getStringExtra(KEY.VILLAGE_NAME);
+            tempSpinVillageCode = intent.getStringExtra(KEY.VILLAGE_CODE);
             loadAward(idCountry);
             memberId15D = intent.getStringExtra(KEY.MEMBER_ID);
             edt_mmSearch.setText(memberId15D);
@@ -332,6 +340,9 @@ public class AssignActivity extends BaseActivity {
 
                 Intent iMemSearch = new Intent(getApplicationContext(), MemberSearchPage.class);
                 iMemSearch.putExtra(KEY.COUNTRY_ID, idCountry);
+                iMemSearch.putExtra(KEY.DIR_CLASS_NAME_KEY, "AssignActivity");
+                iMemSearch.putExtra(KEY.VILLAGE_NAME, tempSpinVillageName);
+                iMemSearch.putExtra(KEY.VILLAGE_CODE,tempSpinVillageCode );
                 finish();
                 startActivity(iMemSearch);
             }

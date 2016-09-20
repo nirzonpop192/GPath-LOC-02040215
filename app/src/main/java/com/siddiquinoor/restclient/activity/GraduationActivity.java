@@ -71,6 +71,11 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
     private Button btnBackMemberSearch;
 
     private GraduationGridAdapter adapter;
+    /**
+     * help to restore village Sate in MemberSearch page
+     */
+    private String tempSpinVillageName;
+    private String tempSpinVillageCode;
 
 
     @Override
@@ -84,9 +89,15 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
 
         Intent intent = getIntent();
 
+
+
         String dir = intent.getStringExtra(KEY.DIR_CLASS_NAME_KEY);
         if (dir.equals("MemberSearchPage")) {
             idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
+
+            tempSpinVillageName = intent.getStringExtra(KEY.VILLAGE_NAME);
+            tempSpinVillageCode = intent.getStringExtra(KEY.VILLAGE_CODE);
+
             String memberId = intent.getStringExtra(KEY.MEMBER_ID);
             if (memberId.length() > 5) {
                 edt_searchId.setText(memberId);
@@ -155,6 +166,10 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
 
                 Intent iMemSearch = new Intent(getApplicationContext(), MemberSearchPage.class);
                 iMemSearch.putExtra(KEY.COUNTRY_ID, idCountry);
+                iMemSearch.putExtra(KEY.DIR_CLASS_NAME_KEY, "GraduationActivity");
+                iMemSearch.putExtra(KEY.VILLAGE_NAME, tempSpinVillageName);
+                iMemSearch.putExtra(KEY.VILLAGE_CODE,tempSpinVillageCode );
+
                 finish();
                 startActivity(iMemSearch);
 //                goToSummaryActivity((Activity) mContext, idCountry);
@@ -445,9 +460,6 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
         setPaddingButton(mContext, imageHome, btnHome);
     }
-
-
-
 
 
 }

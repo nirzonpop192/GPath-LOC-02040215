@@ -93,7 +93,7 @@ public class SumSrvOrDistAttendance extends BaseActivity {
             strAward = intent.getStringExtra(KEY.AWARD_NAME);
             idProgram = intent.getStringExtra(KEY.PROGRAM_CODE);
             strProgram = intent.getStringExtra(KEY.PROGRAM_NAME);
-            idCriteria = intent.getStringExtra(KEY.CRITERIA_ID);
+            idCriteria = intent.getStringExtra(KEY.CRITERIA_CODE);
             strCriteria = intent.getStringExtra(KEY.CRITERIA_NAME);
             idSrvMonth_Code = intent.getStringExtra(KEY.SERVICE_MONTH_CODE);
             holderMonth_str = intent.getStringExtra(KEY.SERVICE_MONTH_NAME);

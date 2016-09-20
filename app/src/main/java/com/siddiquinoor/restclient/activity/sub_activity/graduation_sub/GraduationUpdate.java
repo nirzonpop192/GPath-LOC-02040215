@@ -1,8 +1,12 @@
 package com.siddiquinoor.restclient.activity.sub_activity.graduation_sub;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,11 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.siddiquinoor.restclient.activity.GraduationActivity;
-import com.siddiquinoor.restclient.activity.MainActivity;
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 import com.siddiquinoor.restclient.manager.sqlsyntax.SQLServerSyntaxGenerator;
+import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.views.adapters.GraduationGridDataModel;
 import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
 import com.siddiquinoor.restclient.views.notifications.ADNotificationManager;
@@ -31,42 +35,44 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class GraduationUpdate extends BaseActivity implements View.OnClickListener {
+public class GraduationUpdate extends BaseActivity {
 
     private final String TAG = GraduationUpdate.class.getName();
 
-
-    private View removeBtn;// the remove
     private GraduationGridDataModel mGraduation;
-    private TextView tv_award,tv_program;
 
-    private TextView tv_criteria;
-    private TextView tv_village;
-    private TextView tv_hhId;
-    private TextView tv_memberId;
-    private TextView tv_memberName;
-    private TextView tv_grdDate;
-  //  private String srtGrdDate;
+    /**
+     * TextView
+     */
+    private TextView tv_award, tv_program, tv_criteria, tv_village, tv_memberId, tv_memberName, tv_grdDate;
+
+
     private Spinner sp_grdReason;
     private SQLiteHandler sqlH;
     private Context mContext;
     private String idGRD;
     private String strGRDTitle;//Reason
 
-    private Button btn_Save;// save Graduation
-    private Button btn_Search;// save Graduation
-    private Button btn_Delete;// save Graduation
+    /**
+     * Button
+     */
+    private Button btnSave, btnDelete, btnHome, btnBackToGraduation;
+
 
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-  //  private SimpleDateFormat format_US = new SimpleDateFormat("MM-yyyy-dd", Locale.ENGLISH);
+
     private Calendar calendar = Calendar.getInstance();
-    private Button btn_home;
+
     private String EntryBy;
     private String EntryDate;
+    /**
+     * Dialog
+     */
     private ADNotificationManager dialog;
 
     private String srtGrdDate;
     private SimpleDateFormat formatUSA = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
+    private String memberId15Digit;
 
 
     public String getSrtGrdDate() {
@@ -82,161 +88,156 @@ public class GraduationUpdate extends BaseActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graduation_update);
-        mContext = GraduationUpdate.this;
-        dialog=new ADNotificationManager();
-        viewReference();
+
+        init();
+
+
+        setAllViewListener();
+
+
         Intent intent = getIntent();
-        mGraduation = intent.getExtras().getParcelable("GraduationDetails");//getParcelableExtra("GraduationDetails");
+        mGraduation = intent.getExtras().getParcelable(KEY.GRADUATION_DETAILS_DATA_OBJECT_KEY);
+        set15DigitId();
 
         setAllTextToTextView(mGraduation);
         loadReason(mGraduation.getCountryCode(), mGraduation.getProgram_code(), mGraduation.getService_code());
 
 
+    }
+
+    private void set15DigitId() {
+        if (mGraduation != null) {
+            memberId15Digit = mGraduation.getDistrictCode() + mGraduation.getUpazillaCode()
+                    + mGraduation.getUnitCode() + mGraduation.getVillageCode() +
+                    mGraduation.getHh_id() + mGraduation.getMember_Id();
+        }
 
     }
 
-    private void setAllTextToTextView( GraduationGridDataModel data) {
+    private void init() {
+        mContext = GraduationUpdate.this;
+        dialog = new ADNotificationManager();
+        sqlH = new SQLiteHandler(mContext);
+        viewReference();
+    }
+
+    private void setAllViewListener() {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                memberGraduationDelete();
+            }
+        });
+
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMainActivity((Activity) mContext);
+            }
+        });
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveMemberGraduationData();
+            }
+        });
+
+        tv_grdDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setGraduationDate();
+            }
+        });
+
+        btnBackToGraduation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToGraduationPage();
+
+            }
+        });
+    }
+
+    private void backToGraduationPage() {
+
+        finish();
+        Intent iGraduation = new Intent(mContext, GraduationActivity.class);
+
+        iGraduation.putExtra(KEY.COUNTRY_ID, mGraduation.getCountryCode());
+
+        iGraduation.putExtra(KEY.MEMBER_ID, memberId15Digit);
+        iGraduation.putExtra(KEY.DIR_CLASS_NAME_KEY, "GraduationUpdate");
+        /**
+         * For Spinner sate restore
+         */
+
+        iGraduation.putExtra(KEY.AWARD_CODE, mGraduation.getAward_code());
+        iGraduation.putExtra(KEY.AWARD_NAME, mGraduation.getAward_name());
+        iGraduation.putExtra(KEY.PROGRAM_CODE, mGraduation.getProgram_code());
+        iGraduation.putExtra(KEY.PROGRAM_NAME, mGraduation.getProgram_name());
+        iGraduation.putExtra(KEY.CRITERIA_CODE, mGraduation.getService_code());// Criteria Code = service Code
+        iGraduation.putExtra(KEY.CRITERIA_NAME, mGraduation.getCriteria_name());
+
+        startActivity(iGraduation);
+    }
+
+    private void setAllTextToTextView(GraduationGridDataModel data) {
         tv_award.setText(data.getAward_name());
         tv_program.setText(data.getProgram_name());
         tv_criteria.setText(data.getCriteria_name());
         tv_village.setText(data.getVillageName());
-        tv_hhId.setText(data.getHh_id());
-        tv_memberId.setText(data.getMember_Id());
+
+
+        tv_memberId.setText(memberId15Digit);
         tv_memberName.setText(data.getMember_name());
         tv_grdDate.setText(data.getGraduationDate());
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_gradu_GRDDate:
-                setGraduationDate();
-                break;
-
-            case R.id.btn_Graduation_Save:
-                boolean invalid = false;
-
+    private void memberGraduationDelete() {
+        String grdMemberReason = sqlH.getGrdCodeForMember_RegNAssProgSrv(mGraduation.getCountryCode(),
+                mGraduation.getDistrictCode(), mGraduation.getUpazillaCode(),
+                mGraduation.getUnitCode(), mGraduation.getVillageCode(), mGraduation.getHh_id(),
+                mGraduation.getMember_Id(), mGraduation.getProgram_code(),
+                mGraduation.getService_code(), mGraduation.getDonor_code(), mGraduation.getAward_code());
+        String grdDefaultExitReason = sqlH.getGRDDefaultExitReason(mGraduation.getProgram_code(),
+                mGraduation.getService_code());
+        if (grdMemberReason.equals("") || grdDefaultExitReason.equals("")) {
+            Log.d(TAG, "grdMemberReason =" + grdMemberReason + " , grdDefaultExitReason = " + grdDefaultExitReason);
+        } else {
+            // If the grdCode is equal to Exit then
+            if (grdMemberReason.equals(grdDefaultExitReason)) {
+                Toast.makeText(mContext, "You are not able to Delete this member", Toast.LENGTH_SHORT).show();
+            } else {
                 try {
                     EntryBy = getStaffID();
                     EntryDate = getDateTime();
-                    HashMap<String, String> dateRange = sqlH.getDateRange(mGraduation.getCountryCode());
-                    String start_date = dateRange.get("sdate");
-                    String end_date = dateRange.get("edate");
-                    Log.d(TAG, " start_date :" + start_date + " end_date " + end_date);
-                    if (tv_grdDate != null && start_date != null && end_date != null) {
-                        if (!getValidDateRange(getSrtGrdDate(), start_date, end_date)) {
-                            invalid = true;
-                            Log.d(TAG, " invalid " + invalid+" cause grd date ");
-                            dialog.showInvalidDialog(mContext, "Date", "Invalid date specified");
-                          //  Toast.makeText(mContext, "Registration date is not a valid date! Please select a valid date within the range!!", Toast.LENGTH_LONG).show();
+                    sqlH.editMemberDataIn_RegNAsgProgSrv(null,
+                            null,
+                            EntryBy, EntryDate, mGraduation.getCountryCode(),
+                            mGraduation.getDistrictCode(), mGraduation.getUpazillaCode(),
+                            mGraduation.getUnitCode(), mGraduation.getVillageCode(), mGraduation.getHh_id(),
+                            mGraduation.getMember_Id(), mGraduation.getProgram_code(),
+                            mGraduation.getService_code(), mGraduation.getDonor_code(), mGraduation.getAward_code());
 
-                        } else if(Integer.parseInt(idGRD)<0){
-                            invalid = true;
-                            Log.d(TAG, " invalid " + invalid);
-                            Toast.makeText(mContext, "the reason is not Selected ! Please select Reason!!", Toast.LENGTH_LONG).show();
-                        }
-                        else if (invalid == false) {
-                            Log.d(TAG, " invalid " + invalid);
+                    SQLServerSyntaxGenerator graduationQuery = new SQLServerSyntaxGenerator();
+                    graduationQuery.setAdmCountryCode(mGraduation.getCountryCode());
+                    graduationQuery.setLayR1ListCode(mGraduation.getDistrictCode());
+                    graduationQuery.setLayR2ListCode(mGraduation.getUpazillaCode());
+                    graduationQuery.setLayR3ListCode(mGraduation.getUnitCode());
+                    graduationQuery.setLayR4ListCode(mGraduation.getVillageCode());
+                    graduationQuery.setAdmAwardCode(mGraduation.getAward_code());
+                    graduationQuery.setAdmDonorCode(mGraduation.getDonor_code());
+                    graduationQuery.setHHID(mGraduation.getHh_id());
+                    graduationQuery.setMemID(mGraduation.getMember_Id());
+                    graduationQuery.setProgCode(mGraduation.getProgram_code());
+                    graduationQuery.setSrvCode(mGraduation.getService_code());
+                    graduationQuery.setEntryBy(EntryBy);
+                    graduationQuery.setEntryDate(EntryDate);
 
-                            if(sqlH.ifExistsInRegNAssProgSrv(mGraduation)){
-                                /** the update operation  for local database*/
-                                sqlH.editMemberDataIn_RegNAsgProgSrv(getSrtGrdDate(), idGRD, EntryBy, EntryDate, mGraduation.getCountryCode(), mGraduation.getDistrictCode(), mGraduation.getUpazillaCode(),
-                                        mGraduation.getUnitCode(), mGraduation.getVillageCode(), mGraduation.getHh_id(),
-                                        mGraduation.getMember_Id(), mGraduation.getProgram_code(),
-                                        mGraduation.getService_code(), mGraduation.getDonor_code(), mGraduation.getAward_code());
-                                /** the update operation  for SQL Server or Web database*/
-                                SQLServerSyntaxGenerator graduationQuery= new SQLServerSyntaxGenerator();
-                                graduationQuery.setAdmCountryCode(mGraduation.getCountryCode());
-                                graduationQuery.setLayR1ListCode(mGraduation.getDistrictCode());
-                                graduationQuery.setLayR2ListCode(mGraduation.getUpazillaCode());
-                                graduationQuery.setLayR3ListCode(mGraduation.getUnitCode());
-                                graduationQuery.setLayR4ListCode(mGraduation.getVillageCode());
-                                graduationQuery.setAdmAwardCode(mGraduation.getAward_code());
-                                graduationQuery.setAdmDonorCode(mGraduation.getDonor_code());
-                                graduationQuery.setHHID(mGraduation.getHh_id());
-                                graduationQuery.setMemID(mGraduation.getMember_Id());
-                                graduationQuery.setProgCode(mGraduation.getProgram_code());
-                                graduationQuery.setSrvCode(mGraduation.getService_code());
-                                graduationQuery.setGRDCode(idGRD);
-                                graduationQuery.setGRDDate(getSrtGrdDate());
-
-                                graduationQuery.setEntryBy(EntryBy);
-                                graduationQuery.setEntryDate(EntryDate);
-                                sqlH.insertIntoUploadTable(graduationQuery.updateGraduation());
-
-                                Toast.makeText(mContext, "The data is saved", Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(mContext, "This data is not exit in RegNAssSrvProg!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                    } else {
-                        Toast.makeText(mContext, "No valid date range found!", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (ParseException pe) {
-                    pe.printStackTrace();
-                    Toast.makeText(mContext, "Wrong Date Format, parse error!", Toast.LENGTH_SHORT).show();
-                }
-                break;
-
-            case R.id.btn_Graduation_Search:
-                finish();
-                Intent ibackToGraduation = new Intent(mContext, GraduationActivity.class);
-                ibackToGraduation.putExtra("ID_COUNTRY", mGraduation.getCountryCode());
-                startActivity(ibackToGraduation);
-                break;
-            case R.id.btnHomeFooter:
-                Intent iHome = new Intent(mContext, MainActivity.class);
-                startActivity(iHome);
-
-                break;
-            /* delete operation */
-            case R.id.btn_Graduation_Delete:
-               String grdMemberReason=sqlH.getGrdCodeForMember_RegNAssProgSrv(mGraduation.getCountryCode(),
-                       mGraduation.getDistrictCode(), mGraduation.getUpazillaCode(),
-                       mGraduation.getUnitCode(), mGraduation.getVillageCode(), mGraduation.getHh_id(),
-                       mGraduation.getMember_Id(), mGraduation.getProgram_code(),
-                       mGraduation.getService_code(), mGraduation.getDonor_code(), mGraduation.getAward_code());
-                String grdDefaultExitReason=sqlH.getGRDDefaultExitReason(mGraduation.getProgram_code(),
-                        mGraduation.getService_code());
-                if (grdMemberReason.equals("")||grdDefaultExitReason.equals("")){
-                    Log.d(TAG,"grdMemberReason ="+grdMemberReason+" , grdDefaultExitReason = "+grdDefaultExitReason);
-                }
-                else {
-                    // If the grdCode is equal to Exit then
-                    if (grdMemberReason.equals(grdDefaultExitReason)){
-                        Toast.makeText(mContext,"You are not able to Delete this member",Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        try {
-                            EntryBy = getStaffID();
-                            EntryDate = getDateTime();
-                            sqlH.editMemberDataIn_RegNAsgProgSrv(null,
-                                    null,
-                                    EntryBy, EntryDate, mGraduation.getCountryCode(),
-                                    mGraduation.getDistrictCode(), mGraduation.getUpazillaCode(),
-                                    mGraduation.getUnitCode(), mGraduation.getVillageCode(), mGraduation.getHh_id(),
-                                    mGraduation.getMember_Id(), mGraduation.getProgram_code(),
-                                    mGraduation.getService_code(), mGraduation.getDonor_code(), mGraduation.getAward_code());
-
-                            SQLServerSyntaxGenerator graduationQuery= new SQLServerSyntaxGenerator();
-                            graduationQuery.setAdmCountryCode(mGraduation.getCountryCode());
-                            graduationQuery.setLayR1ListCode(mGraduation.getDistrictCode());
-                            graduationQuery.setLayR2ListCode(mGraduation.getUpazillaCode());
-                            graduationQuery.setLayR3ListCode(mGraduation.getUnitCode());
-                            graduationQuery.setLayR4ListCode(mGraduation.getVillageCode());
-                            graduationQuery.setAdmAwardCode(mGraduation.getAward_code());
-                            graduationQuery.setAdmDonorCode(mGraduation.getDonor_code());
-                            graduationQuery.setHHID(mGraduation.getHh_id());
-                            graduationQuery.setMemID(mGraduation.getMember_Id());
-                            graduationQuery.setProgCode(mGraduation.getProgram_code());
-                            graduationQuery.setSrvCode(mGraduation.getService_code());
-                            graduationQuery.setEntryBy(EntryBy);
-                            graduationQuery.setEntryDate(EntryDate);
-
-                            sqlH.insertIntoUploadTable(graduationQuery.updateGraduation());
-                            //Toast.makeText(mContext, "The data is delete", Toast.LENGTH_SHORT).show();
+                    sqlH.insertIntoUploadTable(graduationQuery.updateGraduation());
+                    //Toast.makeText(mContext, "The data is delete", Toast.LENGTH_SHORT).show();
                          /*  GraduationDateCode dateCode= sqlH.getGRDPeopleDetial(mGraduation.getCountryCode(),
                                     mGraduation.getDistrictCode(), mGraduation.getUpazillaCode(),
                                     mGraduation.getUnitCode(), mGraduation.getVillageCode(), mGraduation.getHh_id(),
@@ -245,47 +246,110 @@ public class GraduationUpdate extends BaseActivity implements View.OnClickListen
                             tv_grdDate.setText(dateCode.getGrdDate());
                             idGRD=dateCode.getGrdCode();*/
 
-                            tv_grdDate.setText("");
+                    tv_grdDate.setText("");
 
-                            loadReason(mGraduation.getCountryCode(), mGraduation.getProgram_code(), mGraduation.getService_code());
-                            Toast.makeText(mContext, "The data is delete", Toast.LENGTH_SHORT).show();
-                        }catch (ParseException pe) {
-                            pe.printStackTrace();
-                            Toast.makeText(mContext, "Wrong Date Format, parse error!", Toast.LENGTH_SHORT).show();
-                        }
+                    loadReason(mGraduation.getCountryCode(), mGraduation.getProgram_code(), mGraduation.getService_code());
+                    Toast.makeText(mContext, "The data is delete", Toast.LENGTH_SHORT).show();
+                } catch (ParseException pe) {
+                    pe.printStackTrace();
+                    Toast.makeText(mContext, "Wrong Date Format, parse error!", Toast.LENGTH_SHORT).show();
+                }
 
+            }
+        }
+    }
+
+    private void saveMemberGraduationData() {
+        boolean invalid = false;
+
+        try {
+            EntryBy = getStaffID();
+            EntryDate = getDateTime();
+            HashMap<String, String> dateRange = sqlH.getDateRange(mGraduation.getCountryCode());
+            String start_date = dateRange.get("sdate");
+            String end_date = dateRange.get("edate");
+            Log.d(TAG, " start_date :" + start_date + " end_date " + end_date);
+            if (tv_grdDate != null && start_date != null && end_date != null) {
+                if (!getValidDateRange(getSrtGrdDate(), start_date, end_date)) {
+                    invalid = true;
+                    Log.d(TAG, " invalid " + invalid + " cause grd date ");
+                    dialog.showInvalidDialog(mContext, "Date", "Invalid date specified");
+                    //  Toast.makeText(mContext, "Registration date is not a valid date! Please select a valid date within the range!!", Toast.LENGTH_LONG).show();
+
+                } else if (Integer.parseInt(idGRD) < 0) {
+                    invalid = true;
+                    Log.d(TAG, " invalid " + invalid);
+                    Toast.makeText(mContext, "the reason is not Selected ! Please select Reason!!", Toast.LENGTH_LONG).show();
+                } else if (invalid == false) {
+                    Log.d(TAG, " invalid " + invalid);
+
+                    if (sqlH.ifExistsInRegNAssProgSrv(mGraduation)) {
+                        /** the update operation  for local database*/
+                        sqlH.editMemberDataIn_RegNAsgProgSrv(getSrtGrdDate(), idGRD, EntryBy, EntryDate, mGraduation.getCountryCode(), mGraduation.getDistrictCode(), mGraduation.getUpazillaCode(),
+                                mGraduation.getUnitCode(), mGraduation.getVillageCode(), mGraduation.getHh_id(),
+                                mGraduation.getMember_Id(), mGraduation.getProgram_code(),
+                                mGraduation.getService_code(), mGraduation.getDonor_code(), mGraduation.getAward_code());
+                        /**
+                         * the update operation  for SQL Server or Web database
+                         * */
+                        SQLServerSyntaxGenerator graduationQuery = new SQLServerSyntaxGenerator();
+                        graduationQuery.setAdmCountryCode(mGraduation.getCountryCode());
+                        graduationQuery.setLayR1ListCode(mGraduation.getDistrictCode());
+                        graduationQuery.setLayR2ListCode(mGraduation.getUpazillaCode());
+                        graduationQuery.setLayR3ListCode(mGraduation.getUnitCode());
+                        graduationQuery.setLayR4ListCode(mGraduation.getVillageCode());
+                        graduationQuery.setAdmAwardCode(mGraduation.getAward_code());
+                        graduationQuery.setAdmDonorCode(mGraduation.getDonor_code());
+                        graduationQuery.setHHID(mGraduation.getHh_id());
+                        graduationQuery.setMemID(mGraduation.getMember_Id());
+                        graduationQuery.setProgCode(mGraduation.getProgram_code());
+                        graduationQuery.setSrvCode(mGraduation.getService_code());
+                        graduationQuery.setGRDCode(idGRD);
+                        graduationQuery.setGRDDate(getSrtGrdDate());
+
+                        graduationQuery.setEntryBy(EntryBy);
+                        graduationQuery.setEntryDate(EntryDate);
+                        sqlH.insertIntoUploadTable(graduationQuery.updateGraduation());
+
+                        Toast.makeText(mContext, "The data is saved", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(mContext, "This data is not exit in RegNAssSrvProg!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
-                break;
+            } else {
+                Toast.makeText(mContext, "No valid date range found!", Toast.LENGTH_SHORT).show();
+            }
+        } catch (ParseException pe) {
+            pe.printStackTrace();
+            Toast.makeText(mContext, "Wrong Date Format, parse error!", Toast.LENGTH_SHORT).show();
         }
     }
 
 
     private void viewReference() {
+        /**
+         * Text View
+         */
+
         tv_award = (TextView) findViewById(R.id.tv_gradu_award);
         tv_program = (TextView) findViewById(R.id.tv_gradu_Program);
         tv_criteria = (TextView) findViewById(R.id.tv_gradu_Criteria);
         tv_village = (TextView) findViewById(R.id.tv_gradu_Village);
-        tv_hhId = (TextView) findViewById(R.id.tv_gradu_hhID);
+
         tv_memberId = (TextView) findViewById(R.id.tv_gradu_MemberID);
         tv_memberName = (TextView) findViewById(R.id.tv_gradu_MemberName);
         tv_grdDate = (TextView) findViewById(R.id.tv_gradu_GRDDate);
-        tv_grdDate.setOnClickListener(this);
+
         sp_grdReason = (Spinner) findViewById(R.id.spGraduationReason);
-        removeBtn = findViewById(R.id.btnRegisterFooter);
-        removeBtn.setVisibility(View.GONE);
-        sqlH = new SQLiteHandler(mContext);
-        btn_Save = (Button) findViewById(R.id.btn_Graduation_Save);
-        btn_Save.setOnClickListener(this);
 
-        btn_Search = (Button) findViewById(R.id.btn_Graduation_Search);
-        btn_Search.setOnClickListener(this);
+        btnBackToGraduation = (Button) findViewById(R.id.btnRegisterFooter);
 
-        btn_home = (Button) findViewById(R.id.btnHomeFooter);
-        btn_home.setOnClickListener(this);
-        btn_Delete=(Button) findViewById(R.id.btn_Graduation_Delete);
-        btn_Delete.setOnClickListener(this);
+
+        btnSave = (Button) findViewById(R.id.btn_Graduation_Save);
+
+        btnHome = (Button) findViewById(R.id.btnHomeFooter);
+        btnDelete = (Button) findViewById(R.id.btn_Graduation_Delete);
 
 
     }
@@ -325,11 +389,11 @@ public class GraduationUpdate extends BaseActivity implements View.OnClickListen
         sp_grdReason.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //strDistrict =  ( (SpinnerHelper) sp_grdReason.getSelectedItem () ).getId();
+
                 strGRDTitle = ((SpinnerHelper) sp_grdReason.getSelectedItem()).getValue();
                 idGRD = ((SpinnerHelper) sp_grdReason.getSelectedItem()).getId();
 
-                //loadUpazilla(idCountry);
+
             }
 
             @Override
@@ -362,12 +426,63 @@ public class GraduationUpdate extends BaseActivity implements View.OnClickListen
     public void updateRegDate() {
 
 
-           /* srtGrdDate=format.format(calendar.getTime());
-
-            tv_grdDate.setText(srtGrdDate);*/
         setSrtGrdDate(format.format(calendar.getTime()));
         tv_grdDate.setText(formatUSA.format(calendar.getTime()));
     }
+
+
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        setUpBackButton();
+        setUpHomeButton();
+        setUpSaveButton();
+        setUpDeleteButton();
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setUpBackButton() {
+        btnBackToGraduation.setText("");
+        Drawable backImage = getResources().getDrawable(R.drawable.goto_back);
+        btnBackToGraduation.setCompoundDrawablesRelativeWithIntrinsicBounds(backImage, null, null, null);
+        setPaddingButton(mContext, backImage, btnBackToGraduation);
+    }
+
+    /**
+     * Icon set by the method
+     */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setUpHomeButton() {
+        btnHome.setText("");
+        Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
+        btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
+        setPaddingButton(mContext, imageHome, btnHome);
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setUpSaveButton() {
+        btnSave.setText("");
+        Drawable imageSave = getResources().getDrawable(R.drawable.save_b);
+        btnSave.setCompoundDrawablesRelativeWithIntrinsicBounds(imageSave, null, null, null);
+        setPaddingButton(mContext, imageSave, btnSave);
+    }
+
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setUpDeleteButton() {
+        btnDelete.setText("");
+        Drawable imageDelete = getResources().getDrawable(R.drawable.delete);
+        btnDelete.setCompoundDrawablesRelativeWithIntrinsicBounds(imageDelete, null, null, null);
+        setPaddingButton(mContext, imageDelete, btnDelete);
+    }
+
 
     /**
      * to off Back press button
@@ -375,6 +490,5 @@ public class GraduationUpdate extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onBackPressed() {
-        // super.onBackPressed();
     }
 }

@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,7 +26,6 @@ import android.widget.Spinner;
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
-import com.siddiquinoor.restclient.utils.CalculationPadding;
 import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.views.adapters.GraduationGridAdapter;
 import com.siddiquinoor.restclient.views.adapters.GraduationGridDataModel;
@@ -45,7 +43,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
      * For spinner
      */
 
-    private String idCountry, idDonor,idAward, idProgram, idCriteria, idService;
+    private String idCountry, idDonor, idAward, idProgram, idCriteria, idService;
 
     /**
      * string value (Country, Program,Award, Criteria)
@@ -70,10 +68,9 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
     private ListView lv_garduation;
     private EditText edt_searchId;
     private Button btnHome;
-    private Button btnSummary;
+    private Button btnBackMemberSearch;
 
     private GraduationGridAdapter adapter;
-
 
 
     @Override
@@ -97,9 +94,33 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
             }
 
 
-        } else {
+        } else if (dir.equals("GraduationUpdate")) {
+
+
+            idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
+            String memberId = intent.getStringExtra(KEY.MEMBER_ID);
+            if (memberId.length() > 5) {
+                edt_searchId.setText(memberId);
+
+
+                idAward = intent.getStringExtra(KEY.AWARD_CODE);
+                strAward = intent.getStringExtra(KEY.AWARD_NAME);
+                idProgram = intent.getStringExtra(KEY.PROGRAM_CODE);
+                strProgram = intent.getStringExtra(KEY.PROGRAM_NAME);
+                idCriteria = intent.getStringExtra(KEY.CRITERIA_CODE);
+                strCriteria = intent.getStringExtra(KEY.CRITERIA_NAME);
+
+                loadAward(idCountry, memberId);
+            }
+
+        }
+        /**
+         * for safety purpose
+         */
+        else {
             idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
             strCounty = intent.getStringExtra(KEY.STR_COUNTRY);
+
 
             loadAward(idCountry, "");
 
@@ -107,8 +128,6 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
 
 
         Log.d(TAG, "id Country : id " + idCountry);
-
-
 
 
         setAllListener();
@@ -130,10 +149,15 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
                 goToMainActivity((Activity) mContext);
             }
         });
-        btnSummary.setOnClickListener(new View.OnClickListener() {
+        btnBackMemberSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToSummaryActivity((Activity) mContext, idCountry);
+
+                Intent iMemSearch = new Intent(getApplicationContext(), MemberSearchPage.class);
+                iMemSearch.putExtra(KEY.COUNTRY_ID, idCountry);
+                finish();
+                startActivity(iMemSearch);
+//                goToSummaryActivity((Activity) mContext, idCountry);
             }
         });
     }
@@ -150,7 +174,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
          */
 
         btnHome = (Button) findViewById(R.id.btnHomeFooter);
-        btnSummary = (Button) findViewById(R.id.btnRegisterFooter);
+        btnBackMemberSearch = (Button) findViewById(R.id.btnRegisterFooter);
 
 
         lv_garduation = (ListView) findViewById(R.id.lv_graduationList);
@@ -266,7 +290,6 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
                 idProgram = ((SpinnerHelper) spProgram.getSelectedItem()).getId();
 
 
-
                 loadCriteria(idcCode, donorCode, awardCode, idProgram, memId);
 
             }
@@ -374,7 +397,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
         lv_garduation.setAdapter(adapter);
         lv_garduation.setOnItemClickListener(this);
         lv_garduation.setFocusableInTouchMode(true);
-        //hidePDialog();
+
     }
 
     @Override
@@ -387,7 +410,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
      */
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
+
     }
 
     /**
@@ -400,16 +423,16 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        setUpSummaryButton();
+        setUpMemberSearchButton();
         setUpHomeButton();
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private void setUpSummaryButton() {
-        btnSummary.setText("");
-        Drawable summeryImage = getResources().getDrawable(R.drawable.summession_b);
-        btnSummary.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
-        setPaddingButton(mContext, summeryImage, btnSummary);
+    private void setUpMemberSearchButton() {
+        btnBackMemberSearch.setText("");
+        Drawable summeryImage = getResources().getDrawable(R.drawable.goto_back);
+        btnBackMemberSearch.setCompoundDrawablesRelativeWithIntrinsicBounds(summeryImage, null, null, null);
+        setPaddingButton(mContext, summeryImage, btnBackMemberSearch);
     }
 
     /**
@@ -422,6 +445,9 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
         setPaddingButton(mContext, imageHome, btnHome);
     }
+
+
+
 
 
 }

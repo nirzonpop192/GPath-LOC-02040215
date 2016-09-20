@@ -145,7 +145,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
 
             idDonor = intent.getStringExtra(KEY.DONOR_CODE);
             strCriteria = intent.getStringExtra(KEY.CRITERIA_NAME);
-            idCriteria = intent.getStringExtra(KEY.CRITERIA_ID);
+            idCriteria = intent.getStringExtra(KEY.CRITERIA_CODE);
             idSrvCenter = intent.getStringExtra(KEY.SERVICE_CENTER_CODE);
             strServiceCenter = intent.getStringExtra(KEY.SERVICE_CENTER_NAME);
             String srDate = intent.getStringExtra(KEY.SERVICE_DATE);
@@ -183,7 +183,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
 
             idDonor = intent.getStringExtra(KEY.DONOR_CODE);
             strCriteria = intent.getStringExtra(KEY.CRITERIA_NAME);
-            idCriteria = intent.getStringExtra(KEY.CRITERIA_ID);
+            idCriteria = intent.getStringExtra(KEY.CRITERIA_CODE);
             idSrvCenter = intent.getStringExtra(KEY.SERVICE_CENTER_CODE);
             strServiceCenter = intent.getStringExtra(KEY.SERVICE_CENTER_NAME);
             String srDate = intent.getStringExtra(KEY.SERVICE_DATE);
@@ -229,7 +229,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
 
             idDonor = intent.getStringExtra(KEY.DONOR_CODE);
             strCriteria = intent.getStringExtra(KEY.CRITERIA_NAME);
-            idCriteria = intent.getStringExtra(KEY.CRITERIA_ID);
+            idCriteria = intent.getStringExtra(KEY.CRITERIA_CODE);
             idSrvCenter = intent.getStringExtra(KEY.SERVICE_CENTER_CODE);
             strServiceCenter = intent.getStringExtra(KEY.SERVICE_CENTER_NAME);
             String srDate = intent.getStringExtra(KEY.SERVICE_DATE);

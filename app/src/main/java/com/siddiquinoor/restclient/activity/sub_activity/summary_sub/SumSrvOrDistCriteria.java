@@ -253,7 +253,7 @@ public class SumSrvOrDistCriteria extends BaseActivity implements AdapterView.On
         iServSummaryCri.putExtra(KEY.AWARD_NAME, strAward);
         iServSummaryCri.putExtra(KEY.PROGRAM_CODE, idProgram);
         iServSummaryCri.putExtra(KEY.PROGRAM_NAME, strProgram);
-        iServSummaryCri.putExtra(KEY.CRITERIA_ID, criteriaS.getCriteria_id());
+        iServSummaryCri.putExtra(KEY.CRITERIA_CODE, criteriaS.getCriteria_id());
         iServSummaryCri.putExtra(KEY.CRITERIA_NAME, criteriaS.getCriteria_name());
         iServSummaryCri.putExtra(KEY.SERVICE_MONTH_CODE, idOpMonthCode);
         iServSummaryCri.putExtra(KEY.SERVICE_MONTH_NAME, strMonth);

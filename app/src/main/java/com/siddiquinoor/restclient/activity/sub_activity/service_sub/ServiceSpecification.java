@@ -765,7 +765,7 @@ public class ServiceSpecification extends BaseActivity {
                 iService.putExtra(KEY.AWARD_NAME, srvData.getAwardName());
                 iService.putExtra(KEY.DONOR_CODE, srvData.getDonor_code());
                 iService.putExtra(KEY.CRITERIA_NAME, srvData.getCriteriaName());
-                iService.putExtra(KEY.CRITERIA_ID, srvData.getCriteriaId());
+                iService.putExtra(KEY.CRITERIA_CODE, srvData.getCriteriaId());
                 iService.putExtra(KEY.SERVICE_CENTER_CODE, srvData.getServiceCenterCode());
                 iService.putExtra(KEY.SERVICE_CENTER_NAME, srvData.getTemServiceCenterName());
                 iService.putExtra(KEY.SERVICE_DATE, srvData.getTemServiceDate());

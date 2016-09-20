@@ -17,7 +17,7 @@ public class KEY {
     public static final String SERVICE_NAME = "SERVICE_STR";
 
     public static final String CRITERIA_NAME = "CRITERIA_STR";
-    public static final String CRITERIA_ID = "CRITERIA_ID";
+    public static final String CRITERIA_CODE = "CRITERIA_CODE";
     public static final String SERVICE_CENTER_CODE = "SERVICE_CENTER_CODE";
     public static final String SERVICE_CENTER_NAME = "SERVICE_CENTER_NAME";
     public static final String SERVICE_DATE = "SERVICE_DATE";
@@ -147,6 +147,7 @@ public class KEY {
     public static final String GPS_DATA_OBJECT_KEY = "GpsDataObject";
     public static final String ASSIGN_DATA_OBJECT_KEY = "AssignDataObject";
     public static final String COMMUNITY_GRP_DATA_OBJECT_KEY = "CummGrpDataObject";
+    public static final String GRADUATION_DETAILS_DATA_OBJECT_KEY = "GraduationDetails";
 
     public static final String GROUP_CODE = "groupCode";
     public static final String GROUP_NAME = "groupName";

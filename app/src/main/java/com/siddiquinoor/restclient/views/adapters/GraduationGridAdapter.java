@@ -14,12 +14,12 @@ import android.widget.TextView;
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.activity.sub_activity.graduation_sub.GraduationUpdate;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
+import com.siddiquinoor.restclient.utils.KEY;
 
 import java.util.ArrayList;
 
 /**
  * Created by Faisal  on 9/30/2015.
- *
  */
 public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClickListener {
     private Activity activity;
@@ -27,7 +27,7 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
     private LayoutInflater inflater;
     ArrayList<GraduationGridDataModel> graduationData = new ArrayList<GraduationGridDataModel>();
     private SQLiteHandler sqlH = null;
-    private final String TAG=AssignDataModelAdapter.class.getName();
+    private final String TAG = AssignDataModelAdapter.class.getName();
     private String awardName;
     private String proName;
     private String criteriaName;
@@ -39,22 +39,20 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
     ViewHolder holder;
 
 
-
     public GraduationGridAdapter(ArrayList<GraduationGridDataModel> graduationData, Activity activity,
-                                 String awardName ,
-                                 String proName, String criteriaName ,String awardCode,
-                                 String programCode, String donorCode ,String serviceCode
-                                 ) {
+                                 String awardName, String proName, String criteriaName, String awardCode,
+                                 String programCode, String donorCode, String serviceCode
+    ) {
         this.graduationData = graduationData;
         this.activity = activity;
-        this.awardName=awardName;
-        this.proName=proName;
-        this.criteriaName=criteriaName;
+        this.awardName = awardName;
+        this.proName = proName;
+        this.criteriaName = criteriaName;
 
         this.awardCode = awardCode;
-        this.programCode=programCode;
-        this.donorCode=donorCode;
-        this.serviceCode=serviceCode;
+        this.programCode = programCode;
+        this.donorCode = donorCode;
+        this.serviceCode = serviceCode;
     }
 
     @Override
@@ -81,31 +79,25 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
         if (inflater == null)
             inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        if (convertView == null)
-        {
+        if (convertView == null) {
             row = inflater.inflate(R.layout.list_row_graduation, null);
 
             holder = new ViewHolder();
 
 
-            holder.tv_memberId = (TextView)row.findViewById(R.id.tv_raw_gra_idMem);
-            holder.tv_memberName = (TextView)row.findViewById(R.id.tv_raw_gra_memberName);
-            holder.tv_reason = (TextView)row.findViewById(R.id.tv_raw_gra_Reason);
-            holder.tv_grdDate = (TextView)row.findViewById(R.id.tv_raw_gra_grdDate);
-            holder.imgEdit = (ImageButton)row.findViewById(R.id.edit_graduation_holder);
+            holder.tv_memberId = (TextView) row.findViewById(R.id.tv_raw_gra_idMem);
+            holder.tv_memberName = (TextView) row.findViewById(R.id.tv_raw_gra_memberName);
+            holder.tv_reason = (TextView) row.findViewById(R.id.tv_raw_gra_Reason);
+            holder.tv_grdDate = (TextView) row.findViewById(R.id.tv_raw_gra_grdDate);
+            holder.imgEdit = (ImageButton) row.findViewById(R.id.edit_graduation_holder);
 
             row.setTag(holder);
-        } else
-        {
-            holder = (ViewHolder)row.getTag();
+        } else {
+            holder = (ViewHolder) row.getTag();
         }
 
 
-
-         GraduationGridDataModel mGraduation = graduationData.get(position);
-
-
-
+        GraduationGridDataModel mGraduation = graduationData.get(position);
 
 
         holder.tv_memberId.setText(mGraduation.getnMemId());
@@ -117,7 +109,7 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
         holder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GraduationGridDataModel mgrad=graduationData.get(position);
+                GraduationGridDataModel mgrad = graduationData.get(position);
                 mgrad.setAward_code(awardCode);
                 mgrad.setProgram_code(programCode);
                 mgrad.setService_code(serviceCode);
@@ -125,12 +117,12 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
                 mgrad.setAward_name(awardName);
                 mgrad.setProgram_name(proName);
                 mgrad.setCriteria_name(criteriaName);
-               // mgrad.setCriteria_name(criteriaName);
 
 
-              final  GraduationGridDataModel grad=mgrad;
-                Intent igradUpdate=new Intent(activity, GraduationUpdate.class);
-                igradUpdate.putExtra("GraduationDetails",grad);
+                final GraduationGridDataModel grad = mgrad;
+                Intent igradUpdate = new Intent(activity, GraduationUpdate.class);
+                igradUpdate.putExtra(KEY.GRADUATION_DETAILS_DATA_OBJECT_KEY, grad);
+                activity.finish();
                 activity.startActivity(igradUpdate);
             }
         });
@@ -145,7 +137,8 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
 
         return row;
     }
-    private  class ViewHolder{
+
+    private class ViewHolder {
 
         TextView tv_memberId;
         TextView tv_memberName;
@@ -165,7 +158,6 @@ public class GraduationGridAdapter extends BaseAdapter {//implements View.OnClic
         holder.tv_memberName.setTextColor(color);
         holder.tv_reason.setTextColor(color);
         holder.tv_grdDate.setTextColor(color);
-
 
 
     }

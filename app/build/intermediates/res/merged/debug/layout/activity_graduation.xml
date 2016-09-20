@@ -27,111 +27,73 @@
 
     </RelativeLayout>
 
+
     <LinearLayout
         android:id="@+id/ll_details"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/page_title"
-        android:orientation="vertical"
+
+        android:orientation="horizontal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
-
+        <!-- For label -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <!-- For label -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".3"
-                android:orientation="vertical">
+            android:layout_weight=".3"
+            android:orientation="vertical">
 
-                <TextView
+            <TextView
+                style="@style/txt_label"
+                android:text="Id" />
 
+            <TextView
+                android:id="@+id/tv_awardLable"
+                style="@style/txt_label"
+                android:text="@string/award_label" />
 
-                    style="@style/txt_label"
+            <TextView
+                style="@style/txt_label"
+                android:text="@string/program_label" />
 
-                    android:text="Id" />
-
-                <TextView
-                    android:id="@+id/tv_awardLable"
-                    style="@style/txt_label"
-
-                    android:text="@string/award_label" />
-
-                <TextView
-                    style="@style/txt_label"
-                    android:text="@string/program_label"
-
-                    />
-
-                <TextView
-                    style="@style/txt_label"
-                    android:text="@string/criteria_label"
-
-                    />
-            </LinearLayout>
-            <!-- For combox -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".7"
-                android:orientation="vertical">
-
-                <EditText
-
-                    android:id="@+id/edt_searchId"
-                    style="@style/edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-
-
-                    android:hint="@string/search_id"
-                    android:inputType="number"
-                    android:padding="10dp"
-
-                    />
-
-                <Spinner
-                    android:id="@+id/sp_Award_Graduation"
-                    style="@style/spinner_style" />
-
-                <Spinner
-                    android:id="@+id/sp_Program_Graduation"
-                    style="@style/spinner_style" />
-
-                <Spinner
-                    android:id="@+id/sp_Criteria_Graduation"
-                    style="@style/spinner_style" />
-
-            </LinearLayout>
+            <TextView
+                style="@style/txt_label"
+                android:text="@string/criteria_label" />
         </LinearLayout>
-
-
-      <!--  &lt;!&ndash; search id field &ndash;&gt;
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <!-- For combox -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            android:layout_weight=".7"
+            android:orientation="vertical">
 
+            <EditText
 
-            <Button
-                android:id="@+id/btn_Graduation_SearchID"
-                android:layout_width="wrap_content"
-
+                android:id="@+id/edt_searchId"
+                style="@style/edit_text"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:drawableLeft="@drawable/search_20_20"
-                android:padding="5dp"
-                android:text="@string/lbl_search_btn" />
+                android:hint="@string/search_id"
+                android:inputType="number"
+                android:padding="10dp" />
 
+            <Spinner
+                android:id="@+id/sp_Award_Graduation"
+                style="@style/spinner_style" />
 
-        </RelativeLayout>-->
+            <Spinner
+                android:id="@+id/sp_Program_Graduation"
+                style="@style/spinner_style" />
 
+            <Spinner
+                android:id="@+id/sp_Criteria_Graduation"
+                style="@style/spinner_style" />
+
+        </LinearLayout>
     </LinearLayout>
+
+
     <!-- title of list view  -->
     <RelativeLayout
         android:id="@+id/table_title"
@@ -233,9 +195,6 @@
         android:layout_alignParentStart="true"
         android:layout_below="@id/table_title"
         android:layout_centerVertical="true" />
-
-
-    <!-- Search Button -->
 
 
     <include

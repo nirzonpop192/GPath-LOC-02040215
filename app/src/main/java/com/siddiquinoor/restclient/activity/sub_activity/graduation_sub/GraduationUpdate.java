@@ -369,6 +369,10 @@ public class GraduationUpdate extends BaseActivity implements View.OnClickListen
         tv_grdDate.setText(formatUSA.format(calendar.getTime()));
     }
 
+    /**
+     * to off Back press button
+     */
+
     @Override
     public void onBackPressed() {
         // super.onBackPressed();

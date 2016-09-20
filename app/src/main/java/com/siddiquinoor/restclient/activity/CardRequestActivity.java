@@ -558,7 +558,7 @@ public class CardRequestActivity extends BaseActivity  implements View.OnClickLi
                 Log.d(TAG, "Card Report data: " + idCardType +" CardType : "+strCardType);
                 // loadDistributionListView(idcCode,donorId,idSpAward,idCriteria.substring(0,3),idCriteria.substring(3));
                 //  }
-                //  loadProgram(idSpAward);
+
                 //   loadCriteria(idSpAward, donorId, idProgram, idcCode);
                 // Log.d(TAG, "idCriteria : " + idProgram);
                 //Log.d(TAG, "ID is: " + idDist);

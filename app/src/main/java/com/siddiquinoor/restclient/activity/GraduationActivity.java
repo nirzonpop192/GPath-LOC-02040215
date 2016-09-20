@@ -40,33 +40,40 @@ import java.util.List;
 public class GraduationActivity extends BaseActivity implements AdapterView.OnItemClickListener {
 
     private final String TAG = GraduationActivity.class.getName();
+    /**
+     * code id(Country, Donor , Program,Award, Criteria)
+     * For spinner
+     */
 
-    private String idCountry;
-    private String strCounty;
-    private String idAward;
-    private String strAward;
+    private String idCountry, idDonor,idAward, idProgram, idCriteria, idService;
 
-    private String idProgram;
-    private String strProgram;
-    private String idCriteria;
-    private String idService;
-    private String strCriteria;
+    /**
+     * string value (Country, Program,Award, Criteria)
+     * For spinner
+     */
+    private String strCounty, strAward, strProgram, strCriteria;
 
-    private Spinner spAward;
-    private Spinner spProgram;
-    private Spinner spCriteria;
+    /**
+     * spinner
+     */
+
+    private Spinner spAward, spProgram, spCriteria;
+
 
     private Context mContext;
     private SQLiteHandler sqlH;
+
+    /**
+     * Class View
+     */
+
     private ListView lv_garduation;
     private EditText edt_searchId;
-    private Button btnSearchId;
-
-
     private Button btnHome;
     private Button btnSummary;
+
     private GraduationGridAdapter adapter;
-    private String idDonor;
+
 
 
     @Override
@@ -101,7 +108,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
 
         Log.d(TAG, "id Country : id " + idCountry);
 
-//        loadAward(idCountry);
+
 
 
         setAllListener();
@@ -116,13 +123,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
 
 
     private void setAllListener() {
-        btnSearchId.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String memberId = edt_searchId.getText().toString();
-                loadGraduationGrid(idCountry, idDonor, idAward, idProgram, idService, memberId);
-            }
-        });
+
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,18 +139,23 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
     }
 
     private void viewReference() {
+        /**
+         * spinner
+         */
         spAward = (Spinner) findViewById(R.id.sp_Award_Graduation);
         spProgram = (Spinner) findViewById(R.id.sp_Program_Graduation);
         spCriteria = (Spinner) findViewById(R.id.sp_Criteria_Graduation);
+        /**
+         * button
+         */
 
         btnHome = (Button) findViewById(R.id.btnHomeFooter);
-
         btnSummary = (Button) findViewById(R.id.btnRegisterFooter);
 
 
         lv_garduation = (ListView) findViewById(R.id.lv_graduationList);
         edt_searchId = (EditText) findViewById(R.id.edt_searchId);
-        btnSearchId = (Button) findViewById(R.id.btn_Graduation_SearchID);
+
 
     }
 
@@ -228,9 +234,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
                 + " || '' || regAss." + SQLiteHandler.UCODE_COL
                 + " || '' || regAss." + SQLiteHandler.VCODE_COL
                 + " || '' || regAss." + SQLiteHandler.HHID_COL
-                + " || '' || regAss." + SQLiteHandler.HH_MEM_ID
-
-                + " = '" + memId + "'";
+                + " || '' || regAss." + SQLiteHandler.HH_MEM_ID + " = '" + memId + "'";
 
 
         // Spinner Drop down elements for District
@@ -261,9 +265,9 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
                 strProgram = ((SpinnerHelper) spProgram.getSelectedItem()).getValue();
                 idProgram = ((SpinnerHelper) spProgram.getSelectedItem()).getId();
 
-                Log.d(TAG, "load Prog data " + idProgram);
 
-                loadCriteria(awardCode, donorCode, idProgram, idcCode);
+
+                loadCriteria(idcCode, donorCode, awardCode, idProgram, memId);
 
             }
 
@@ -279,12 +283,23 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
     /**
      * LOAD :: Criteria
      */
-    private void loadCriteria(final String awardCode, final String donorCode, final String programCode, final String cCode) {
+    private void loadCriteria(final String cCode, final String donorCode, final String awardCode, final String programCode, final String memId) {
 
         int position = 0;
-        String criteria = " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
-                + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'"
-                + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL + "='" + programCode + "'";
+        String criteria =
+                " INNER JOIN " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + " AS regAss "
+                        + " ON regAss." + SQLiteHandler.PROGRAM_CODE_COL + " = " + SQLiteHandler.SERVICE_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL
+                        + " AND regAss." + SQLiteHandler.SERVICE_CODE_COL + " = " + SQLiteHandler.SERVICE_MASTER_TABLE + "." + SQLiteHandler.SERVICE_CODE_COL
+                        +
+                        " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
+                        + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'"
+                        + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL + "='" + programCode + "'"
+                        + " AND regAss." + SQLiteHandler.DISTRICT_CODE_COL
+                        + " || '' || regAss." + SQLiteHandler.UPCODE_COL
+                        + " || '' || regAss." + SQLiteHandler.UCODE_COL
+                        + " || '' || regAss." + SQLiteHandler.VCODE_COL
+                        + " || '' || regAss." + SQLiteHandler.HHID_COL
+                        + " || '' || regAss." + SQLiteHandler.HH_MEM_ID + " = '" + memId + "'";
         // Spinner Drop down elements for District
         List<SpinnerHelper> listCriteria = sqlH.getListAndID(SQLiteHandler.SERVICE_MASTER_TABLE, criteria, null, false);
 

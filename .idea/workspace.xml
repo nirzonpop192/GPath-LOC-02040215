@@ -7,7 +7,7 @@
           <device id="Nexus 7 2013" />
           <device id="Nexus 10" />
         </devices>
-        <target>android-23</target>
+        <target>android-19</target>
       </config>
     </shared>
     <layouts>
@@ -50,6 +50,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation_update.xml">
         <config>
           <theme>@style/AppTheme</theme>
         </config>
@@ -98,37 +103,107 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbfa6c68-24f6-4379-bbc2-497898403be8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/appcompat/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/mediarouter/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/android/support/v7/mediarouter/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/google/zxing/client/android/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/google/zxing/client/android/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$integer.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$integer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$layout.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$menu.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$mipmap.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$mipmap.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$raw.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$raw.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$string.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$style.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$styleable.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$styleable.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/R$xml.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AllSummaryActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AllSummaryActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/CardRequestActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/CardRequestActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/DistributionActivity$DistributionDataListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/DistributionActivity$DistributionDataListAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/DistributionActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/DistributionActivity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GroupSearchPage.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GroupSearchPage.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_All_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_All_DataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_RegNAssProgSrvDataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_RegNAssProgSrvDataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_HouseH_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_HouseH_DataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_DataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_Prog_Grp_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_Prog_Grp_DataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Service_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Service_DataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$MainTask.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$MainTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/OldAssignActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/OldAssignActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/Register.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/Register.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/RegisterLiberia.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/RegisterLiberia.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/ServiceActivity$ServiceDataListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/ServiceActivity$ServiceDataListAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/ServiceActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/ServiceActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/agr/AssignAGR.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/ddr/AssignForDDRMalwaiFFA.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/ddr/AssignForDDRMalwaiFFA.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/controller/AppConfig.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/controller/AppConfig.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/SyncDatabase.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/SyncDatabase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/ddr/AssignForDDRMalwaiVUL.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/ddr/AssignForDDRMalwaiVUL.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/mchn/AssignCA2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/mchn/AssignCA2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/mchn/AssignCU2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/mchn/AssignCU2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/mchn/AssignLM.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/mchn/AssignLM.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/mchn/AssignPW.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/mchn/AssignPW.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/peer/AssignForLiberiaAIV.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/peer/AssignForLiberiaAIV.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/peer/AssignForLiberiaCFW.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/peer/AssignForLiberiaCFW.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/peer/AssignForLiberiaUCT.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/assign_program/peer/AssignForLiberiaUCT.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/commu_group_sub/CommunityGrpDetails.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/commu_group_sub/CommunityGrpDetails.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/dist_sub/DistrubutionVoucherActivity$DistExtVoucherAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/dist_sub/DistrubutionVoucherActivity$DistExtVoucherAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/dist_sub/DistrubutionVoucherActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/dist_sub/DistrubutionVoucherActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/gps_sub/SearchLocation.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/gps_sub/SearchLocation.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/graduation_sub/GraduationUpdate.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/graduation_sub/GraduationUpdate.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/register_sub/RegisterMember.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/register_sub/RegisterMember.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/register_sub/RegisterMemberLiberia.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/register_sub/RegisterMemberLiberia.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/service_sub/ServiceRecord.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/service_sub/ServiceRecord.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/service_sub/ServiceSpecification.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/service_sub/ServiceSpecification.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/service_sub/ServiceVoucherDetails$VoucherChartAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/service_sub/ServiceVoucherDetails$VoucherChartAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/service_sub/ServiceVoucherDetails.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/service_sub/ServiceVoucherDetails.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/RegisterRecordView.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/RegisterRecordView.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/ServiceSummaryMenu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/ServiceSummaryMenu.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SumSrvOrDistAttendance.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SumSrvOrDistAttendance.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SumSrvOrDistCriteria.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SumSrvOrDistCriteria.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/Summary.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/Summary.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SummaryAssignBaseCriteria.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SummaryAssignBaseCriteria.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SummaryAssignCriteria.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SummaryAssignCriteria.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SummaryServiceOrDistributionItemize.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SummaryServiceOrDistributionItemize.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SummaryServiceOrDistributionItemizeAttendance$SummaryItemizeAttendance.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SummaryServiceOrDistributionItemizeAttendance$SummaryItemizeAttendance.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SummaryServiceOrDistributionItemizeAttendance.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SummaryServiceOrDistributionItemizeAttendance.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/ViewRecordDetail.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/ViewRecordDetail.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/fragments/BaseActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/fragments/BaseActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/garbage/AssignForLiberia.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/garbage/AssignForLiberia.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/AssignDataModelAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/AssignDataModelAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/CommunityGroupAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/CommunityGroupAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/DistributionSummaryCriteriaListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/DistributionSummaryCriteriaListAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/GraduationGridAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/GraduationGridAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/ListAdapterHelper.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/ListAdapterHelper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/MemberListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/MemberListAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SearchLocationAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SearchLocationAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/ServiceRecordListDataModleAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/ServiceRecordListDataModleAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SummaryAssignListModelAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SummaryAssignListModelAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SummaryCriteriaListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SummaryCriteriaListAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SummaryDistributionListAttendanceAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SummaryDistributionListAttendanceAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SummaryListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SummaryListAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SummaryServiceListAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/SummaryServiceListAdapter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/notifications/ADNotificationManager.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/notifications/ADNotificationManager.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/osmdroid/bonuspack/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/osmdroid/bonuspack/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/osmdroid/library/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/org/osmdroid/library/R$id.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/mediarouter/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/mediarouter/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/zxing/client/android/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/google/zxing/client/android/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/siddiquinoor/restclient/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/siddiquinoor/restclient/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/org/osmdroid/bonuspack/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/org/osmdroid/bonuspack/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/org/osmdroid/library/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/org/osmdroid/library/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/layout.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/layout.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_graduation.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_graduation.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/CardRequestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/CardRequestActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GraduationActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GraduationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/graduation_sub/GraduationUpdate.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/graduation_sub/GraduationUpdate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -147,32 +222,108 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GraduationActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GraduationActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GraduationActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.638756">
-              <caret line="103" column="6" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="267" column="0" selection-start-line="267" selection-start-column="0" selection-end-line="267" selection-end-column="0" />
+              <folding>
+                <element signature="e#3262#3433#0" expanded="true" />
+                <element signature="e#3432#3433#0" expanded="true" />
+                <element signature="e#3474#3659#0" expanded="true" />
+                <element signature="e#3658#3659#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GraduationUpdate.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/graduation_sub/GraduationUpdate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="8.211091">
+              <caret line="303" column="0" selection-start-line="303" selection-start-column="0" selection-end-line="303" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MemberSearchPage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MemberSearchPage.java">
+      <file leaf-file-name="activity_graduation_update.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation_update.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.5454545">
+              <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_graduation.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.7636366">
+              <caret line="131" column="28" selection-start-line="111" selection-start-column="6" selection-end-line="131" selection-end-column="28" />
+              <folding>
+                <element signature="e#2681#2700#0" expanded="true" />
+                <element signature="e#6920#7087#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_assign.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_assign.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.4727273">
+              <caret line="20" column="43" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServiceActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/ServiceActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="48" column="22" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="22" />
-              <folding />
+              <caret line="1350" column="52" selection-start-line="1350" selection-start-column="52" selection-end-line="1350" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#16202#16203#0" expanded="false" />
+                <element signature="e#16252#16253#0" expanded="false" />
+                <element signature="e#40566#40567#0" expanded="false" />
+                <element signature="e#40635#40636#0" expanded="false" />
+                <element signature="method#loadAward#0;class#ServiceActivity#0" expanded="false" />
+                <element signature="method#loadServiceCenter#0;class#ServiceActivity#0" expanded="false" />
+                <element signature="method#loadServiceMonth#0;class#ServiceActivity#0" expanded="false" />
+                <element signature="e#71410#71411#0" expanded="false" />
+                <element signature="e#71467#71468#0" expanded="false" />
+                <element signature="e#71533#71534#0" expanded="false" />
+                <element signature="e#71572#71573#0" expanded="false" />
+                <element signature="e#81860#81861#0" expanded="false" />
+                <element signature="e#81906#81907#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MemberSearchAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.java">
+      <file leaf-file-name="CardRequestActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/CardRequestActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="118" column="45" selection-start-line="118" selection-start-column="32" selection-end-line="118" selection-end-column="45" />
-              <folding />
+              <caret line="414" column="54" selection-start-line="414" selection-start-column="54" selection-end-line="414" selection-end-column="54" />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#14002#14003#0" expanded="false" />
+                <element signature="e#14076#14077#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -182,7 +333,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="639" column="74" selection-start-line="639" selection-start-column="74" selection-end-line="639" selection-end-column="74" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#12428#12429#0" expanded="false" />
+                <element signature="e#12490#12491#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -193,23 +348,13 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="672" column="70" selection-start-line="672" selection-start-column="70" selection-end-line="672" selection-end-column="70" />
               <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#22959#22960#0" expanded="false" />
+                <element signature="e#23003#23004#0" expanded="false" />
+                <element signature="e#36407#36408#0" expanded="false" />
+                <element signature="e#36444#36445#0" expanded="false" />
                 <element signature="class#Inject_Reg_Member_Prog_Grp_DataIntoSQLite#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#doInBackground#0;class#Inject_All_DataIntoSQLite#0;class#MainActivity#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_graduation.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml">
-          <provider selected="true" editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-38.346153">
-              <caret line="171" column="28" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
-              <folding>
-                <element signature="e#7607#7774#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -218,26 +363,16 @@
       <file leaf-file-name="SQLiteHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="129" column="34" selection-start-line="129" selection-start-column="34" selection-end-line="129" selection-end-column="34" />
+            <state vertical-scroll-proportion="-5.965517">
+              <caret line="2990" column="0" selection-start-line="2990" selection-start-column="0" selection-end-line="2990" selection-end-column="0" />
               <folding>
                 <element signature="method#editRegistrationRecordForLiberia#0;class#SQLiteHandler#0" expanded="false" />
                 <element signature="method#addHHRegForLiberia#0;class#SQLiteHandler#0" expanded="false" />
                 <element signature="method#uploadIntoServiceSpecificTable#0;class#SQLiteHandler#0" expanded="false" />
-                <element signature="e#130685#130710#0" expanded="true" />
                 <element signature="docComment;method#getProgramGraduationDateOfMember#0;class#SQLiteHandler#0" expanded="false" />
                 <element signature="method#getVillageName#0;class#SQLiteHandler#0" expanded="false" />
+                <element signature="e#380272#380287#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SQLiteQuery.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="558" column="44" selection-start-line="558" selection-start-column="44" selection-end-line="558" selection-end-column="44" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -2149,8 +2284,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/list_row_summary_service_c.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/SummaryAssignCriteria.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_service.xml" />
@@ -2175,7 +2308,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/GraduationGridDataModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_row_graduation.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/GraduationGridAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/data_model/Lup_gpsListDataModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/data_model/GPS_LocationAttributeDataModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/gps_sub/PointAttributes.java" />
@@ -2199,7 +2331,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/CardRequestActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GraduationActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/graduation_sub/GraduationUpdate.java" />
       </list>
     </option>
   </component>
@@ -2234,9 +2369,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2254,6 +2387,38 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GPath-LOC-02040215" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GPath-LOC-02040215" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2271,28 +2436,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="restclient" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="parse" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2335,7 +2478,7 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="fragments" />
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2413,107 +2556,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gps_sub" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sub_activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="commu_group_sub" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sub_activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assign_program" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sub_activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assign_program" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ddr" />
+              <option name="myItemId" value="graduation_sub" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2923,7 +2974,13 @@
       <option name="project" value="LOCAL" />
       <updated>1474273983230</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Graduation Program(Spinner ) list of program will show only which  programs are already assigned in RegNAssProgSrv Table for specific member">
+      <created>1474285806059</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1474285806059</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -2937,18 +2994,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Documentation" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11584327" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="92" y="92" width="1176" height="544" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2530395" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2218845" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24020442" sideWeight="0.4969605" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16865417" sideWeight="0.4969605" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41226575" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5008518" sideWeight="0.50303954" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2965,7 +3022,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17717206" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -3000,7 +3057,8 @@
     <MESSAGE value="AGR 's grd code fix" />
     <MESSAGE value="UAT-31" />
     <MESSAGE value="Code Refresh" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code Refresh" />
+    <MESSAGE value="Graduation Program(Spinner ) list of program will show only which  programs are already assigned in RegNAssProgSrv Table for specific member" />
+    <option name="LAST_COMMIT_MESSAGE" value="Graduation Program(Spinner ) list of program will show only which  programs are already assigned in RegNAssProgSrv Table for specific member" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3186,18 +3244,6 @@
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GraduationActivity.java</url>
-          <line>356</line>
-          <properties />
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GraduationActivity.java</url>
-          <line>354</line>
-          <properties />
-          <option name="timeStamp" value="59" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/gps_sub/PointAttributes.java</url>
           <line>341</line>
           <properties />
@@ -3269,148 +3315,38 @@
           <properties />
           <option name="timeStamp" value="79" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/graduation_sub/GraduationUpdate.java</url>
+          <line>303</line>
+          <properties />
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/graduation_sub/GraduationUpdate.java</url>
+          <line>298</line>
+          <properties />
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java</url>
+          <line>8552</line>
+          <properties />
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="80" />
+      <option name="time" value="84" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/GraduationGridDataModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
-          <folding>
-            <element signature="e#1702#1703#0" expanded="false" />
-            <element signature="e#1726#1727#0" expanded="false" />
-            <element signature="e#2637#2638#0" expanded="false" />
-            <element signature="e#2671#2672#0" expanded="false" />
-            <element signature="e#3651#3652#0" expanded="false" />
-            <element signature="e#3680#3681#0" expanded="false" />
-            <element signature="e#3724#3725#0" expanded="false" />
-            <element signature="e#3760#3761#0" expanded="false" />
-            <element signature="e#3792#3793#0" expanded="false" />
-            <element signature="e#3820#3821#0" expanded="false" />
-            <element signature="e#3862#3863#0" expanded="false" />
-            <element signature="e#3896#3897#0" expanded="false" />
-            <element signature="e#3932#3933#0" expanded="false" />
-            <element signature="e#3964#3965#0" expanded="false" />
-            <element signature="e#4014#4015#0" expanded="false" />
-            <element signature="e#4056#4057#0" expanded="false" />
-            <element signature="e#4094#4095#0" expanded="false" />
-            <element signature="e#4128#4129#0" expanded="false" />
-            <element signature="e#4182#4183#0" expanded="false" />
-            <element signature="e#4228#4229#0" expanded="false" />
-            <element signature="e#4265#4266#0" expanded="false" />
-            <element signature="e#4298#4299#0" expanded="false" />
-            <element signature="e#4350#4351#0" expanded="false" />
-            <element signature="e#4394#4395#0" expanded="false" />
-            <element signature="e#4431#4432#0" expanded="false" />
-            <element signature="e#4464#4465#0" expanded="false" />
-            <element signature="e#4516#4517#0" expanded="false" />
-            <element signature="e#4560#4561#0" expanded="false" />
-            <element signature="e#4597#4598#0" expanded="false" />
-            <element signature="e#4630#4631#0" expanded="false" />
-            <element signature="e#4682#4683#0" expanded="false" />
-            <element signature="e#4726#4727#0" expanded="false" />
-            <element signature="e#4764#4765#0" expanded="false" />
-            <element signature="e#4798#4799#0" expanded="false" />
-            <element signature="e#4852#4853#0" expanded="false" />
-            <element signature="e#4898#4899#0" expanded="false" />
-            <element signature="e#4937#4938#0" expanded="false" />
-            <element signature="e#4972#4973#0" expanded="false" />
-            <element signature="e#5028#5029#0" expanded="false" />
-            <element signature="e#5076#5077#0" expanded="false" />
-            <element signature="e#5115#5116#0" expanded="false" />
-            <element signature="e#5150#5151#0" expanded="false" />
-            <element signature="e#5206#5207#0" expanded="false" />
-            <element signature="e#5254#5255#0" expanded="false" />
-            <element signature="e#5289#5290#0" expanded="false" />
-            <element signature="e#5320#5321#0" expanded="false" />
-            <element signature="e#5368#5369#0" expanded="false" />
-            <element signature="e#5408#5409#0" expanded="false" />
-            <element signature="e#5446#5447#0" expanded="false" />
-            <element signature="e#5480#5481#0" expanded="false" />
-            <element signature="e#5534#5535#0" expanded="false" />
-            <element signature="e#5580#5581#0" expanded="false" />
-            <element signature="e#5619#5620#0" expanded="false" />
-            <element signature="e#5654#5655#0" expanded="false" />
-            <element signature="e#5710#5711#0" expanded="false" />
-            <element signature="e#5758#5759#0" expanded="false" />
-            <element signature="e#5797#5798#0" expanded="false" />
-            <element signature="e#5832#5833#0" expanded="false" />
-            <element signature="e#5888#5889#0" expanded="false" />
-            <element signature="e#5936#5937#0" expanded="false" />
-            <element signature="e#5975#5976#0" expanded="false" />
-            <element signature="e#6010#6011#0" expanded="false" />
-            <element signature="e#6066#6067#0" expanded="false" />
-            <element signature="e#6114#6115#0" expanded="false" />
-            <element signature="e#6155#6156#0" expanded="false" />
-            <element signature="e#6192#6193#0" expanded="false" />
-            <element signature="e#6252#6253#0" expanded="false" />
-            <element signature="e#6304#6305#0" expanded="false" />
-            <element signature="e#6346#6347#0" expanded="false" />
-            <element signature="e#6384#6385#0" expanded="false" />
-            <element signature="e#6540#6541#0" expanded="false" />
-            <element signature="e#6576#6577#0" expanded="false" />
-            <element signature="e#6634#6635#0" expanded="false" />
-            <element signature="e#6684#6685#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/DistributionActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="346" column="94" selection-start-line="346" selection-start-column="94" selection-end-line="346" selection-end-column="94" />
-          <folding>
-            <element signature="e#13996#14058#0" expanded="false" />
-            <element signature="e#14838#14900#0" expanded="false" />
-            <element signature="method#onActivityResult#0;class#DistributionActivity#0" expanded="false" />
-            <element signature="method#loadAward#0;class#DistributionActivity#0" expanded="false" />
-            <element signature="method#loadProgram#0;class#DistributionActivity#0" expanded="false" />
-            <element signature="method#loadFDP#0;class#DistributionActivity#0" expanded="false" />
-            <element signature="method#loadDistributionType#0;class#DistributionActivity#0" expanded="false" />
-            <element signature="method#loadServiceMonth#0;class#DistributionActivity#0" expanded="false" />
-            <element signature="method#loadDistributionMonth#0;class#DistributionActivity#0" expanded="false" />
-            <element signature="method#loadLayR2List#0;class#DistributionActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/MemberListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.146694">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/CommunityGroupAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="137" column="5" selection-start-line="127" selection-start-column="2" selection-end-line="137" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/GraduationGridAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1992#1993#0" expanded="false" />
-            <element signature="e#2036#2037#0" expanded="false" />
-            <element signature="e#2093#2094#0" expanded="false" />
-            <element signature="e#2144#2145#0" expanded="false" />
-            <element signature="e#2201#2202#0" expanded="false" />
-            <element signature="e#2232#2233#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_row_graduation.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23776224">
           <caret line="6" column="41" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="41" />
@@ -3421,6 +3357,9 @@
             <element signature="e#2148#2184#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/CommunityGroupDataModel.java">
@@ -3493,32 +3432,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/register.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="298" column="36" selection-start-line="298" selection-start-column="36" selection-end-line="298" selection-end-column="36" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
     <entry file="file://G:/Android/sdk/sources/android-21/android/database/Cursor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/CardRequestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#14002#14003#0" expanded="false" />
-            <element signature="e#14076#14077#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3542,7 +3469,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3563,9 +3489,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_assign_for_ddr_malwai.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.8363636">
           <caret line="20" column="46" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="46" />
@@ -3583,6 +3506,9 @@
           </folding>
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/Schema.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -3596,7 +3522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="36" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3619,14 +3544,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_assign_for_malwai_agr.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.0545454">
           <caret line="228" column="0" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/IdListInGroupSummary.java">
@@ -3649,610 +3574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2148" column="27" selection-start-line="2148" selection-start-column="27" selection-end-line="2148" selection-end-column="27" />
-          <folding>
-            <element signature="e#825#826#0" expanded="false" />
-            <element signature="e#855#856#0" expanded="false" />
-            <element signature="e#1017#1018#0" expanded="false" />
-            <element signature="e#1047#1048#0" expanded="false" />
-            <element signature="e#1244#1245#0" expanded="false" />
-            <element signature="e#1279#1280#0" expanded="false" />
-            <element signature="e#1471#1472#0" expanded="false" />
-            <element signature="e#1506#1507#0" expanded="false" />
-            <element signature="e#1694#1695#0" expanded="false" />
-            <element signature="e#1725#1726#0" expanded="false" />
-            <element signature="e#1888#1889#0" expanded="false" />
-            <element signature="e#1918#1919#0" expanded="false" />
-            <element signature="e#2074#2075#0" expanded="false" />
-            <element signature="e#2103#2104#0" expanded="false" />
-            <element signature="e#2258#2259#0" expanded="false" />
-            <element signature="e#2292#2293#0" expanded="false" />
-            <element signature="e#2480#2481#0" expanded="false" />
-            <element signature="e#2516#2517#0" expanded="false" />
-            <element signature="e#2715#2716#0" expanded="false" />
-            <element signature="e#2751#2752#0" expanded="false" />
-            <element signature="e#2950#2951#0" expanded="false" />
-            <element signature="e#2986#2987#0" expanded="false" />
-            <element signature="e#3185#3186#0" expanded="false" />
-            <element signature="e#3221#3222#0" expanded="false" />
-            <element signature="e#3411#3412#0" expanded="false" />
-            <element signature="e#3438#3439#0" expanded="false" />
-            <element signature="e#3583#3584#0" expanded="false" />
-            <element signature="e#3614#3615#0" expanded="false" />
-            <element signature="e#3776#3777#0" expanded="false" />
-            <element signature="e#3804#3805#0" expanded="false" />
-            <element signature="e#3957#3958#0" expanded="false" />
-            <element signature="e#3994#3995#0" expanded="false" />
-            <element signature="e#4199#4200#0" expanded="false" />
-            <element signature="e#4229#4230#0" expanded="false" />
-            <element signature="e#5669#5670#0" expanded="false" />
-            <element signature="e#5697#5698#0" expanded="false" />
-            <element signature="e#5848#5849#0" expanded="false" />
-            <element signature="e#5884#5885#0" expanded="false" />
-            <element signature="e#6075#6076#0" expanded="false" />
-            <element signature="e#6103#6104#0" expanded="false" />
-            <element signature="e#6250#6251#0" expanded="false" />
-            <element signature="e#6282#6283#0" expanded="false" />
-            <element signature="e#9157#9158#0" expanded="false" />
-            <element signature="e#9189#9190#0" expanded="false" />
-            <element signature="e#9364#9365#0" expanded="false" />
-            <element signature="e#9395#9396#0" expanded="false" />
-            <element signature="e#9567#9568#0" expanded="false" />
-            <element signature="e#9601#9602#0" expanded="false" />
-            <element signature="e#9792#9793#0" expanded="false" />
-            <element signature="e#9827#9828#0" expanded="false" />
-            <element signature="e#10022#10023#0" expanded="false" />
-            <element signature="e#10055#10056#0" expanded="false" />
-            <element signature="e#10238#10239#0" expanded="false" />
-            <element signature="e#10270#10271#0" expanded="false" />
-            <element signature="e#10445#10446#0" expanded="false" />
-            <element signature="e#10476#10477#0" expanded="false" />
-            <element signature="e#10646#10647#0" expanded="false" />
-            <element signature="e#10678#10679#0" expanded="false" />
-            <element signature="e#10854#10855#0" expanded="false" />
-            <element signature="e#10886#10887#0" expanded="false" />
-            <element signature="e#11064#11065#0" expanded="false" />
-            <element signature="e#11098#11099#0" expanded="false" />
-            <element signature="e#11290#11291#0" expanded="false" />
-            <element signature="e#11326#11327#0" expanded="false" />
-            <element signature="e#11528#11529#0" expanded="false" />
-            <element signature="e#11562#11563#0" expanded="false" />
-            <element signature="e#11750#11751#0" expanded="false" />
-            <element signature="e#11782#11783#0" expanded="false" />
-            <element signature="e#11955#11956#0" expanded="false" />
-            <element signature="e#11987#11988#0" expanded="false" />
-            <element signature="e#12162#12163#0" expanded="false" />
-            <element signature="e#12196#12197#0" expanded="false" />
-            <element signature="e#12382#12383#0" expanded="false" />
-            <element signature="e#12415#12416#0" expanded="false" />
-            <element signature="e#12596#12597#0" expanded="false" />
-            <element signature="e#12630#12631#0" expanded="false" />
-            <element signature="e#12817#12818#0" expanded="false" />
-            <element signature="e#12851#12852#0" expanded="false" />
-            <element signature="e#13039#13040#0" expanded="false" />
-            <element signature="e#13074#13075#0" expanded="false" />
-            <element signature="e#13268#13269#0" expanded="false" />
-            <element signature="e#13303#13304#0" expanded="false" />
-            <element signature="e#13501#13502#0" expanded="false" />
-            <element signature="e#13540#13541#0" expanded="false" />
-            <element signature="e#13762#13763#0" expanded="false" />
-            <element signature="e#13801#13802#0" expanded="false" />
-            <element signature="e#14021#14022#0" expanded="false" />
-            <element signature="e#14058#14059#0" expanded="false" />
-            <element signature="e#14266#14267#0" expanded="false" />
-            <element signature="e#14303#14304#0" expanded="false" />
-            <element signature="e#14507#14508#0" expanded="false" />
-            <element signature="e#14540#14541#0" expanded="false" />
-            <element signature="e#14720#14721#0" expanded="false" />
-            <element signature="e#14753#14754#0" expanded="false" />
-            <element signature="e#14928#14929#0" expanded="false" />
-            <element signature="e#14956#14957#0" expanded="false" />
-            <element signature="e#15112#15113#0" expanded="false" />
-            <element signature="e#15151#15152#0" expanded="false" />
-            <element signature="e#15386#15387#0" expanded="false" />
-            <element signature="e#15438#15439#0" expanded="false" />
-            <element signature="e#15749#15750#0" expanded="false" />
-            <element signature="e#15796#15797#0" expanded="false" />
-            <element signature="e#16085#16086#0" expanded="false" />
-            <element signature="e#16140#16141#0" expanded="false" />
-            <element signature="e#16971#16972#0" expanded="false" />
-            <element signature="e#17008#17009#0" expanded="false" />
-            <element signature="e#17216#17217#0" expanded="false" />
-            <element signature="e#17253#17254#0" expanded="false" />
-            <element signature="e#17461#17462#0" expanded="false" />
-            <element signature="e#17498#17499#0" expanded="false" />
-            <element signature="e#17706#17707#0" expanded="false" />
-            <element signature="e#17743#17744#0" expanded="false" />
-            <element signature="e#17955#17956#0" expanded="false" />
-            <element signature="e#17996#17997#0" expanded="false" />
-            <element signature="e#18232#18233#0" expanded="false" />
-            <element signature="e#18273#18274#0" expanded="false" />
-            <element signature="e#18509#18510#0" expanded="false" />
-            <element signature="e#18550#18551#0" expanded="false" />
-            <element signature="e#18786#18787#0" expanded="false" />
-            <element signature="e#18827#18828#0" expanded="false" />
-            <element signature="e#19060#19061#0" expanded="false" />
-            <element signature="e#19098#19099#0" expanded="false" />
-            <element signature="e#19313#19314#0" expanded="false" />
-            <element signature="e#19351#19352#0" expanded="false" />
-            <element signature="e#19566#19567#0" expanded="false" />
-            <element signature="e#19604#19605#0" expanded="false" />
-            <element signature="e#19819#19820#0" expanded="false" />
-            <element signature="e#19857#19858#0" expanded="false" />
-            <element signature="e#20070#20071#0" expanded="false" />
-            <element signature="e#20106#20107#0" expanded="false" />
-            <element signature="e#20307#20308#0" expanded="false" />
-            <element signature="e#20343#20344#0" expanded="false" />
-            <element signature="e#20544#20545#0" expanded="false" />
-            <element signature="e#20580#20581#0" expanded="false" />
-            <element signature="e#20781#20782#0" expanded="false" />
-            <element signature="e#20817#20818#0" expanded="false" />
-            <element signature="e#21024#21025#0" expanded="false" />
-            <element signature="e#21066#21067#0" expanded="false" />
-            <element signature="e#21308#21309#0" expanded="false" />
-            <element signature="e#21349#21350#0" expanded="false" />
-            <element signature="e#21586#21587#0" expanded="false" />
-            <element signature="e#21628#21629#0" expanded="false" />
-            <element signature="e#21870#21871#0" expanded="false" />
-            <element signature="e#21911#21912#0" expanded="false" />
-            <element signature="e#22151#22152#0" expanded="false" />
-            <element signature="e#22196#22197#0" expanded="false" />
-            <element signature="e#22459#22460#0" expanded="false" />
-            <element signature="e#22503#22504#0" expanded="false" />
-            <element signature="e#22761#22762#0" expanded="false" />
-            <element signature="e#22806#22807#0" expanded="false" />
-            <element signature="e#23069#23070#0" expanded="false" />
-            <element signature="e#23113#23114#0" expanded="false" />
-            <element signature="e#23366#23367#0" expanded="false" />
-            <element signature="e#23406#23407#0" expanded="false" />
-            <element signature="e#23634#23635#0" expanded="false" />
-            <element signature="e#23673#23674#0" expanded="false" />
-            <element signature="e#23896#23897#0" expanded="false" />
-            <element signature="e#23936#23937#0" expanded="false" />
-            <element signature="e#24164#24165#0" expanded="false" />
-            <element signature="e#24203#24204#0" expanded="false" />
-            <element signature="e#24421#24422#0" expanded="false" />
-            <element signature="e#24456#24457#0" expanded="false" />
-            <element signature="e#24650#24651#0" expanded="false" />
-            <element signature="e#24685#24686#0" expanded="false" />
-            <element signature="e#24884#24885#0" expanded="false" />
-            <element signature="e#24924#24925#0" expanded="false" />
-            <element signature="e#25153#25154#0" expanded="false" />
-            <element signature="e#25193#25194#0" expanded="false" />
-            <element signature="e#25426#25427#0" expanded="false" />
-            <element signature="e#25470#25471#0" expanded="false" />
-            <element signature="e#25727#25728#0" expanded="false" />
-            <element signature="e#25771#25772#0" expanded="false" />
-            <element signature="e#26025#26026#0" expanded="false" />
-            <element signature="e#26066#26067#0" expanded="false" />
-            <element signature="e#26302#26303#0" expanded="false" />
-            <element signature="e#26343#26344#0" expanded="false" />
-            <element signature="e#26580#26581#0" expanded="false" />
-            <element signature="e#26622#26623#0" expanded="false" />
-            <element signature="e#26865#26866#0" expanded="false" />
-            <element signature="e#26907#26908#0" expanded="false" />
-            <element signature="e#27146#27147#0" expanded="false" />
-            <element signature="e#27184#27185#0" expanded="false" />
-            <element signature="e#27399#27400#0" expanded="false" />
-            <element signature="e#27437#27438#0" expanded="false" />
-            <element signature="e#27753#27754#0" expanded="false" />
-            <element signature="e#27786#27787#0" expanded="false" />
-            <element signature="e#27963#27964#0" expanded="false" />
-            <element signature="e#27995#27996#0" expanded="false" />
-            <element signature="e#28231#28232#0" expanded="false" />
-            <element signature="e#28263#28264#0" expanded="false" />
-            <element signature="e#28437#28438#0" expanded="false" />
-            <element signature="e#28467#28468#0" expanded="false" />
-            <element signature="e#28718#28719#0" expanded="false" />
-            <element signature="e#28746#28747#0" expanded="false" />
-            <element signature="e#28898#28899#0" expanded="false" />
-            <element signature="e#28930#28931#0" expanded="false" />
-            <element signature="e#29198#29199#0" expanded="false" />
-            <element signature="e#29227#29228#0" expanded="false" />
-            <element signature="e#29386#29387#0" expanded="false" />
-            <element signature="e#29419#29420#0" expanded="false" />
-            <element signature="e#29598#29599#0" expanded="false" />
-            <element signature="e#29627#29628#0" expanded="false" />
-            <element signature="e#29786#29787#0" expanded="false" />
-            <element signature="e#29819#29820#0" expanded="false" />
-            <element signature="e#31715#31716#0" expanded="false" />
-            <element signature="e#31747#31748#0" expanded="false" />
-            <element signature="e#31922#31923#0" expanded="false" />
-            <element signature="e#31953#31954#0" expanded="false" />
-            <element signature="e#32126#32127#0" expanded="false" />
-            <element signature="e#32161#32162#0" expanded="false" />
-            <element signature="e#32356#32357#0" expanded="false" />
-            <element signature="e#32388#32389#0" expanded="false" />
-            <element signature="e#32565#32566#0" expanded="false" />
-            <element signature="e#32598#32599#0" expanded="false" />
-            <element signature="e#32780#32781#0" expanded="false" />
-            <element signature="e#32812#32813#0" expanded="false" />
-            <element signature="e#32989#32990#0" expanded="false" />
-            <element signature="e#33022#33023#0" expanded="false" />
-            <element signature="e#33203#33204#0" expanded="false" />
-            <element signature="e#33234#33235#0" expanded="false" />
-            <element signature="e#33406#33407#0" expanded="false" />
-            <element signature="e#33440#33441#0" expanded="false" />
-            <element signature="e#33634#33635#0" expanded="false" />
-            <element signature="e#33672#33673#0" expanded="false" />
-            <element signature="e#33886#33887#0" expanded="false" />
-            <element signature="e#33920#33921#0" expanded="false" />
-            <element signature="e#34111#34112#0" expanded="false" />
-            <element signature="e#34146#34147#0" expanded="false" />
-            <element signature="e#34346#34347#0" expanded="false" />
-            <element signature="e#34384#34385#0" expanded="false" />
-            <element signature="e#34603#34604#0" expanded="false" />
-            <element signature="e#34642#34643#0" expanded="false" />
-            <element signature="e#34865#34866#0" expanded="false" />
-            <element signature="e#34902#34903#0" expanded="false" />
-            <element signature="e#35106#35107#0" expanded="false" />
-            <element signature="e#35136#35137#0" expanded="false" />
-            <element signature="e#35348#35349#0" expanded="false" />
-            <element signature="e#35380#35381#0" expanded="false" />
-            <element signature="e#35554#35555#0" expanded="false" />
-            <element signature="e#35584#35585#0" expanded="false" />
-            <element signature="e#35760#35761#0" expanded="false" />
-            <element signature="e#35804#35805#0" expanded="false" />
-            <element signature="e#36065#36066#0" expanded="false" />
-            <element signature="e#36110#36111#0" expanded="false" />
-            <element signature="e#36375#36376#0" expanded="false" />
-            <element signature="e#36418#36419#0" expanded="false" />
-            <element signature="e#36676#36677#0" expanded="false" />
-            <element signature="e#36724#36725#0" expanded="false" />
-            <element signature="e#37008#37009#0" expanded="false" />
-            <element signature="e#37052#37053#0" expanded="false" />
-            <element signature="e#37313#37314#0" expanded="false" />
-            <element signature="e#37358#37359#0" expanded="false" />
-            <element signature="e#37623#37624#0" expanded="false" />
-            <element signature="e#37666#37667#0" expanded="false" />
-            <element signature="e#37924#37925#0" expanded="false" />
-            <element signature="e#37972#37973#0" expanded="false" />
-            <element signature="e#38254#38255#0" expanded="false" />
-            <element signature="e#38296#38297#0" expanded="false" />
-            <element signature="e#38541#38542#0" expanded="false" />
-            <element signature="e#38582#38583#0" expanded="false" />
-            <element signature="e#38822#38823#0" expanded="false" />
-            <element signature="e#38864#38865#0" expanded="false" />
-            <element signature="e#39108#39109#0" expanded="false" />
-            <element signature="e#39148#39149#0" expanded="false" />
-            <element signature="e#39380#39381#0" expanded="false" />
-            <element signature="e#39420#39421#0" expanded="false" />
-            <element signature="e#39648#39649#0" expanded="false" />
-            <element signature="e#39684#39685#0" expanded="false" />
-            <element signature="e#39951#39952#0" expanded="false" />
-            <element signature="e#39989#39990#0" expanded="false" />
-            <element signature="e#40205#40206#0" expanded="false" />
-            <element signature="e#40241#40242#0" expanded="false" />
-            <element signature="e#40453#40454#0" expanded="false" />
-            <element signature="e#40497#40498#0" expanded="false" />
-            <element signature="e#40758#40759#0" expanded="false" />
-            <element signature="e#40803#40804#0" expanded="false" />
-            <element signature="e#41068#41069#0" expanded="false" />
-            <element signature="e#41111#41112#0" expanded="false" />
-            <element signature="e#41369#41370#0" expanded="false" />
-            <element signature="e#41417#41418#0" expanded="false" />
-            <element signature="e#41701#41702#0" expanded="false" />
-            <element signature="e#41745#41746#0" expanded="false" />
-            <element signature="e#42006#42007#0" expanded="false" />
-            <element signature="e#42051#42052#0" expanded="false" />
-            <element signature="e#42316#42317#0" expanded="false" />
-            <element signature="e#42359#42360#0" expanded="false" />
-            <element signature="e#42617#42618#0" expanded="false" />
-            <element signature="e#42665#42666#0" expanded="false" />
-            <element signature="e#43249#43250#0" expanded="false" />
-            <element signature="e#43279#43280#0" expanded="false" />
-            <element signature="e#43444#43445#0" expanded="false" />
-            <element signature="e#43477#43478#0" expanded="false" />
-            <element signature="e#43662#43663#0" expanded="false" />
-            <element signature="e#43697#43698#0" expanded="false" />
-            <element signature="e#44063#44064#0" expanded="false" />
-            <element signature="e#44090#44091#0" expanded="false" />
-            <element signature="e#44235#44236#0" expanded="false" />
-            <element signature="e#44262#44263#0" expanded="false" />
-            <element signature="e#44413#44414#0" expanded="false" />
-            <element signature="e#44448#44449#0" expanded="false" />
-            <element signature="e#44504#44505#0" expanded="false" />
-            <element signature="e#44547#44548#0" expanded="false" />
-            <element signature="e#46097#46098#0" expanded="false" />
-            <element signature="e#46122#46123#0" expanded="false" />
-            <element signature="e#48385#48386#0" expanded="false" />
-            <element signature="e#48429#48430#0" expanded="false" />
-            <element signature="e#48689#48690#0" expanded="false" />
-            <element signature="e#48733#48734#0" expanded="false" />
-            <element signature="e#48993#48994#0" expanded="false" />
-            <element signature="e#49037#49038#0" expanded="false" />
-            <element signature="e#49297#49298#0" expanded="false" />
-            <element signature="e#49341#49342#0" expanded="false" />
-            <element signature="e#63842#63843#0" expanded="false" />
-            <element signature="e#63882#63883#0" expanded="false" />
-            <element signature="e#64124#64125#0" expanded="false" />
-            <element signature="e#64152#64153#0" expanded="false" />
-            <element signature="e#86247#86248#0" expanded="false" />
-            <element signature="e#86281#86282#0" expanded="false" />
-            <element signature="e#86470#86471#0" expanded="false" />
-            <element signature="e#86503#86504#0" expanded="false" />
-            <element signature="e#86683#86684#0" expanded="false" />
-            <element signature="e#86713#86714#0" expanded="false" />
-            <element signature="e#86876#86877#0" expanded="false" />
-            <element signature="e#86907#86908#0" expanded="false" />
-            <element signature="e#87080#87081#0" expanded="false" />
-            <element signature="e#87115#87116#0" expanded="false" />
-            <element signature="e#87312#87313#0" expanded="false" />
-            <element signature="e#87347#87348#0" expanded="false" />
-            <element signature="e#87541#87542#0" expanded="false" />
-            <element signature="e#87573#87574#0" expanded="false" />
-            <element signature="e#87751#87752#0" expanded="false" />
-            <element signature="e#87785#87786#0" expanded="false" />
-            <element signature="e#87976#87977#0" expanded="false" />
-            <element signature="e#88011#88012#0" expanded="false" />
-            <element signature="e#88205#88206#0" expanded="false" />
-            <element signature="e#88237#88238#0" expanded="false" />
-            <element signature="e#95280#95281#0" expanded="false" />
-            <element signature="e#95312#95313#0" expanded="false" />
-            <element signature="e#95488#95489#0" expanded="false" />
-            <element signature="e#95520#95521#0" expanded="false" />
-            <element signature="e#95696#95697#0" expanded="false" />
-            <element signature="e#95728#95729#0" expanded="false" />
-            <element signature="e#95904#95905#0" expanded="false" />
-            <element signature="e#95936#95937#0" expanded="false" />
-            <element signature="e#96112#96113#0" expanded="false" />
-            <element signature="e#96144#96145#0" expanded="false" />
-            <element signature="e#96320#96321#0" expanded="false" />
-            <element signature="e#96352#96353#0" expanded="false" />
-            <element signature="e#96528#96529#0" expanded="false" />
-            <element signature="e#96560#96561#0" expanded="false" />
-            <element signature="e#96736#96737#0" expanded="false" />
-            <element signature="e#96768#96769#0" expanded="false" />
-            <element signature="e#96944#96945#0" expanded="false" />
-            <element signature="e#96976#96977#0" expanded="false" />
-            <element signature="e#97152#97153#0" expanded="false" />
-            <element signature="e#97184#97185#0" expanded="false" />
-            <element signature="e#101151#101152#0" expanded="false" />
-            <element signature="e#101184#101185#0" expanded="false" />
-            <element signature="e#101354#101355#0" expanded="false" />
-            <element signature="e#101379#101380#0" expanded="false" />
-            <element signature="e#101512#101513#0" expanded="false" />
-            <element signature="e#101542#101543#0" expanded="false" />
-            <element signature="e#101774#101775#0" expanded="false" />
-            <element signature="e#101811#101812#0" expanded="false" />
-            <element signature="e#102011#102012#0" expanded="false" />
-            <element signature="e#102042#102043#0" expanded="false" />
-            <element signature="e#104387#104388#0" expanded="false" />
-            <element signature="e#104423#104424#0" expanded="false" />
-            <element signature="e#104623#104624#0" expanded="false" />
-            <element signature="e#104654#104655#0" expanded="false" />
-            <element signature="e#104823#104824#0" expanded="false" />
-            <element signature="e#104857#104858#0" expanded="false" />
-            <element signature="e#105053#105054#0" expanded="false" />
-            <element signature="e#105093#105094#0" expanded="false" />
-            <element signature="e#105320#105321#0" expanded="false" />
-            <element signature="e#105355#105356#0" expanded="false" />
-            <element signature="e#105563#105564#0" expanded="false" />
-            <element signature="e#105608#105609#0" expanded="false" />
-            <element signature="e#105858#105859#0" expanded="false" />
-            <element signature="e#105890#105891#0" expanded="false" />
-            <element signature="e#106123#106124#0" expanded="false" />
-            <element signature="e#106153#106154#0" expanded="false" />
-            <element signature="e#106317#106318#0" expanded="false" />
-            <element signature="e#106349#106350#0" expanded="false" />
-            <element signature="e#106521#106522#0" expanded="false" />
-            <element signature="e#106549#106550#0" expanded="false" />
-            <element signature="e#106700#106701#0" expanded="false" />
-            <element signature="e#106731#106732#0" expanded="false" />
-            <element signature="e#106895#106896#0" expanded="false" />
-            <element signature="e#106924#106925#0" expanded="false" />
-            <element signature="e#107035#107036#0" expanded="false" />
-            <element signature="e#107067#107068#0" expanded="false" />
-            <element signature="e#107114#107115#0" expanded="false" />
-            <element signature="e#107156#107157#0" expanded="false" />
-            <element signature="e#107188#107189#0" expanded="false" />
-            <element signature="e#107219#107220#0" expanded="false" />
-            <element signature="e#107264#107265#0" expanded="false" />
-            <element signature="e#107304#107305#0" expanded="false" />
-            <element signature="e#107335#107336#0" expanded="false" />
-            <element signature="e#107365#107366#0" expanded="false" />
-            <element signature="e#107408#107409#0" expanded="false" />
-            <element signature="e#107446#107447#0" expanded="false" />
-            <element signature="e#110280#110281#0" expanded="false" />
-            <element signature="e#110313#110314#0" expanded="false" />
-            <element signature="e#113032#113033#0" expanded="false" />
-            <element signature="e#113064#113065#0" expanded="false" />
-            <element signature="e#113242#113243#0" expanded="false" />
-            <element signature="e#113276#113277#0" expanded="false" />
-            <element signature="e#113464#113465#0" expanded="false" />
-            <element signature="e#113496#113497#0" expanded="false" />
-            <element signature="e#121493#121494#0" expanded="false" />
-            <element signature="e#121529#121530#0" expanded="false" />
-            <element signature="e#121730#121731#0" expanded="false" />
-            <element signature="e#121767#121768#0" expanded="false" />
-            <element signature="e#121997#121998#0" expanded="false" />
-            <element signature="e#122028#122029#0" expanded="false" />
-            <element signature="e#125554#125555#0" expanded="false" />
-            <element signature="e#125587#125588#0" expanded="false" />
-            <element signature="e#125767#125768#0" expanded="false" />
-            <element signature="e#125802#125803#0" expanded="false" />
-            <element signature="e#125999#126000#0" expanded="false" />
-            <element signature="e#126034#126035#0" expanded="false" />
-            <element signature="e#126227#126228#0" expanded="false" />
-            <element signature="e#126263#126264#0" expanded="false" />
-            <element signature="e#126460#126461#0" expanded="false" />
-            <element signature="e#126494#126495#0" expanded="false" />
-            <element signature="e#126983#126984#0" expanded="false" />
-            <element signature="e#127021#127022#0" expanded="false" />
-            <element signature="e#127226#127227#0" expanded="false" />
-            <element signature="e#127256#127257#0" expanded="false" />
-            <element signature="e#127612#127613#0" expanded="false" />
-            <element signature="e#127643#127644#0" expanded="false" />
-            <element signature="e#127815#127816#0" expanded="false" />
-            <element signature="e#127849#127850#0" expanded="false" />
-            <element signature="e#128039#128040#0" expanded="false" />
-            <element signature="e#128073#128074#0" expanded="false" />
-            <element signature="e#128263#128264#0" expanded="false" />
-            <element signature="e#128297#128298#0" expanded="false" />
-            <element signature="e#128491#128492#0" expanded="false" />
-            <element signature="e#128529#128530#0" expanded="false" />
-            <element signature="e#128742#128743#0" expanded="false" />
-            <element signature="e#128780#128781#0" expanded="false" />
-            <element signature="e#128993#128994#0" expanded="false" />
-            <element signature="e#129031#129032#0" expanded="false" />
-            <element signature="e#129246#129247#0" expanded="false" />
-            <element signature="e#129286#129287#0" expanded="false" />
-            <element signature="e#129513#129514#0" expanded="false" />
-            <element signature="e#129553#129554#0" expanded="false" />
-            <element signature="e#129780#129781#0" expanded="false" />
-            <element signature="e#129820#129821#0" expanded="false" />
-            <element signature="e#130047#130048#0" expanded="false" />
-            <element signature="e#130087#130088#0" expanded="false" />
-            <element signature="e#130315#130316#0" expanded="false" />
-            <element signature="e#130356#130357#0" expanded="false" />
-            <element signature="e#130590#130591#0" expanded="false" />
-            <element signature="e#130631#130632#0" expanded="false" />
-            <element signature="e#130865#130866#0" expanded="false" />
-            <element signature="e#130906#130907#0" expanded="false" />
-            <element signature="e#131416#131417#0" expanded="false" />
-            <element signature="e#131457#131458#0" expanded="false" />
-            <element signature="e#131690#131691#0" expanded="false" />
-            <element signature="e#131730#131731#0" expanded="false" />
-            <element signature="e#131957#131958#0" expanded="false" />
-            <element signature="e#131997#131998#0" expanded="false" />
-            <element signature="e#132224#132225#0" expanded="false" />
-            <element signature="e#132264#132265#0" expanded="false" />
-            <element signature="e#132492#132493#0" expanded="false" />
-            <element signature="e#132533#132534#0" expanded="false" />
-            <element signature="e#132767#132768#0" expanded="false" />
-            <element signature="e#132808#132809#0" expanded="false" />
-            <element signature="e#133042#133043#0" expanded="false" />
-            <element signature="e#133083#133084#0" expanded="false" />
-            <element signature="e#133316#133317#0" expanded="false" />
-            <element signature="e#133356#133357#0" expanded="false" />
-            <element signature="e#133844#133845#0" expanded="false" />
-            <element signature="e#133885#133886#0" expanded="false" />
-            <element signature="e#134124#134125#0" expanded="false" />
-            <element signature="e#134170#134171#0" expanded="false" />
-            <element signature="e#134440#134441#0" expanded="false" />
-            <element signature="e#134487#134488#0" expanded="false" />
-            <element signature="e#134752#134753#0" expanded="false" />
-            <element signature="e#134788#134789#0" expanded="false" />
-            <element signature="e#134988#134989#0" expanded="false" />
-            <element signature="e#135025#135026#0" expanded="false" />
-            <element signature="e#135234#135235#0" expanded="false" />
-            <element signature="e#135269#135270#0" expanded="false" />
-            <element signature="e#135471#135472#0" expanded="false" />
-            <element signature="e#135511#135512#0" expanded="false" />
-            <element signature="e#135744#135745#0" expanded="false" />
-            <element signature="e#135785#135786#0" expanded="false" />
-            <element signature="e#136022#136023#0" expanded="false" />
-            <element signature="e#136061#136062#0" expanded="false" />
-            <element signature="e#136284#136285#0" expanded="false" />
-            <element signature="e#136321#136322#0" expanded="false" />
-            <element signature="e#136532#136533#0" expanded="false" />
-            <element signature="e#136569#136570#0" expanded="false" />
-            <element signature="e#136776#136777#0" expanded="false" />
-            <element signature="e#136814#136815#0" expanded="false" />
-            <element signature="e#137023#137024#0" expanded="false" />
-            <element signature="e#137057#137058#0" expanded="false" />
-            <element signature="e#137250#137251#0" expanded="false" />
-            <element signature="e#137292#137293#0" expanded="false" />
-            <element signature="e#137524#137525#0" expanded="false" />
-            <element signature="e#137557#137558#0" expanded="false" />
-            <element signature="e#137733#137734#0" expanded="false" />
-            <element signature="e#137764#137765#0" expanded="false" />
-            <element signature="e#137932#137933#0" expanded="false" />
-            <element signature="e#137967#137968#0" expanded="false" />
-            <element signature="e#138159#138160#0" expanded="false" />
-            <element signature="e#138194#138195#0" expanded="false" />
-            <element signature="e#138384#138385#0" expanded="false" />
-            <element signature="e#138417#138418#0" expanded="false" />
-            <element signature="e#138595#138596#0" expanded="false" />
-            <element signature="e#138628#138629#0" expanded="false" />
-            <element signature="e#138816#138817#0" expanded="false" />
-            <element signature="e#138859#138860#0" expanded="false" />
-            <element signature="e#139114#139115#0" expanded="false" />
-            <element signature="e#139159#139160#0" expanded="false" />
-            <element signature="e#139418#139419#0" expanded="false" />
-            <element signature="e#139455#139456#0" expanded="false" />
-            <element signature="e#139666#139667#0" expanded="false" />
-            <element signature="e#139703#139704#0" expanded="false" />
-            <element signature="e#139923#139924#0" expanded="false" />
-            <element signature="e#139969#139970#0" expanded="false" />
-            <element signature="e#140238#140239#0" expanded="false" />
-            <element signature="e#140279#140280#0" expanded="false" />
-            <element signature="e#140508#140509#0" expanded="false" />
-            <element signature="e#140539#140540#0" expanded="false" />
-            <element signature="e#140705#140706#0" expanded="false" />
-            <element signature="e#140738#140739#0" expanded="false" />
-            <element signature="e#140913#140914#0" expanded="false" />
-            <element signature="e#140943#140944#0" expanded="false" />
-            <element signature="e#141103#141104#0" expanded="false" />
-            <element signature="e#141136#141137#0" expanded="false" />
-            <element signature="e#141312#141313#0" expanded="false" />
-            <element signature="e#141343#141344#0" expanded="false" />
-            <element signature="e#157361#157362#0" expanded="false" />
-            <element signature="e#157395#157396#0" expanded="false" />
-            <element signature="e#157583#157584#0" expanded="false" />
-            <element signature="e#157615#157616#0" expanded="false" />
-            <element signature="e#157789#157790#0" expanded="false" />
-            <element signature="e#157819#157820#0" expanded="false" />
-            <element signature="e#157982#157983#0" expanded="false" />
-            <element signature="e#158013#158014#0" expanded="false" />
-            <element signature="e#159718#159719#0" expanded="false" />
-            <element signature="e#159747#159748#0" expanded="false" />
-            <element signature="e#162235#162236#0" expanded="false" />
-            <element signature="e#162274#162275#0" expanded="false" />
-            <element signature="e#162522#162523#0" expanded="false" />
-            <element signature="e#162554#162555#0" expanded="false" />
-            <element signature="e#162767#162768#0" expanded="false" />
-            <element signature="e#162813#162814#0" expanded="false" />
-            <element signature="e#163121#163122#0" expanded="false" />
-            <element signature="e#163164#163165#0" expanded="false" />
-            <element signature="e#163442#163443#0" expanded="false" />
-            <element signature="e#163476#163477#0" expanded="false" />
-            <element signature="e#163698#163699#0" expanded="false" />
-            <element signature="e#163739#163740#0" expanded="false" />
-            <element signature="e#164017#164018#0" expanded="false" />
-            <element signature="e#164065#164066#0" expanded="false" />
-            <element signature="e#164377#164378#0" expanded="false" />
-            <element signature="e#164413#164414#0" expanded="false" />
-            <element signature="e#164642#164643#0" expanded="false" />
-            <element signature="e#164676#164677#0" expanded="false" />
-            <element signature="e#164886#164887#0" expanded="false" />
-            <element signature="e#164915#164916#0" expanded="false" />
-            <element signature="e#164959#164960#0" expanded="false" />
-            <element signature="e#164995#164996#0" expanded="false" />
-            <element signature="e#165051#165052#0" expanded="false" />
-            <element signature="e#165083#165084#0" expanded="false" />
-            <element signature="e#165280#165281#0" expanded="false" />
-            <element signature="e#165315#165316#0" expanded="false" />
-            <element signature="e#167466#167467#0" expanded="false" />
-            <element signature="e#167496#167497#0" expanded="false" />
-            <element signature="e#167656#167657#0" expanded="false" />
-            <element signature="e#167689#167690#0" expanded="false" />
-            <element signature="e#169550#169551#0" expanded="false" />
-            <element signature="e#169584#169585#0" expanded="false" />
-            <element signature="e#169809#169810#0" expanded="false" />
-            <element signature="e#169845#169846#0" expanded="false" />
-            <element signature="e#170093#170094#0" expanded="false" />
-            <element signature="e#170138#170139#0" expanded="false" />
-            <element signature="e#170442#170443#0" expanded="false" />
-            <element signature="e#170485#170486#0" expanded="false" />
-            <element signature="e#170760#170761#0" expanded="false" />
-            <element signature="e#170788#170789#0" expanded="false" />
-            <element signature="e#170966#170967#0" expanded="false" />
-            <element signature="e#171002#171003#0" expanded="false" />
-            <element signature="e#176995#176996#0" expanded="false" />
-            <element signature="e#177034#177035#0" expanded="false" />
-            <element signature="e#177248#177249#0" expanded="false" />
-            <element signature="e#177282#177283#0" expanded="false" />
-            <element signature="e#177468#177469#0" expanded="false" />
-            <element signature="e#177504#177505#0" expanded="false" />
-            <element signature="e#177703#177704#0" expanded="false" />
-            <element signature="e#177740#177741#0" expanded="false" />
-            <element signature="e#177943#177944#0" expanded="false" />
-            <element signature="e#177978#177979#0" expanded="false" />
-            <element signature="e#178168#178169#0" expanded="false" />
-            <element signature="e#178202#178203#0" expanded="false" />
-            <element signature="e#178395#178396#0" expanded="false" />
-            <element signature="e#178438#178439#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4309,7 +3630,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="3" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4350,7 +3670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="489" column="48" selection-start-line="489" selection-start-column="48" selection-end-line="489" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4358,7 +3677,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4367,32 +3685,19 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="241" column="16" selection-start-line="241" selection-start-column="16" selection-end-line="241" selection-end-column="16" />
           <folding>
-            <element signature="e#12965#13111#0" expanded="true" />
-            <element signature="e#13110#13111#0" expanded="true" />
-            <element signature="e#13153#13362#0" expanded="true" />
-            <element signature="e#13361#13362#0" expanded="true" />
+            <element signature="e#12965#13111#0" expanded="false" />
+            <element signature="e#13110#13111#0" expanded="false" />
+            <element signature="e#13153#13362#0" expanded="false" />
+            <element signature="e#13361#13362#0" expanded="false" />
             <element signature="method#saveMethod#0;class#AssignForDDRMalwaiFFA#0" expanded="false" />
-            <element signature="e#22746#22747#0" expanded="true" />
-            <element signature="e#22817#22818#0" expanded="true" />
+            <element signature="e#22746#22747#0" expanded="false" />
+            <element signature="e#22817#22818#0" expanded="false" />
             <element signature="method#setUpHomeButton#0;class#AssignForDDRMalwaiFFA#0" expanded="false" />
             <element signature="method#setUpSummaryButton#0;class#AssignForDDRMalwaiFFA#0" expanded="false" />
             <element signature="method#setUpSaveButton#0;class#AssignForDDRMalwaiFFA#0" expanded="false" />
             <element signature="method#setUpGoToAssgnButton#0;class#AssignForDDRMalwaiFFA#0" expanded="false" />
             <element signature="method#loadGroupCategory#0;class#AssignForDDRMalwaiFFA#0" expanded="false" />
             <element signature="method#loadGroup#0;class#AssignForDDRMalwaiFFA#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-38.346153">
-          <caret line="171" column="28" selection-start-line="171" selection-start-column="28" selection-end-line="171" selection-end-column="28" />
-          <folding>
-            <element signature="e#7607#7774#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4421,44 +3726,137 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/AssignActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="639" column="74" selection-start-line="639" selection-start-column="74" selection-end-line="639" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#12428#12429#0" expanded="false" />
+            <element signature="e#12490#12491#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/ServiceActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1350" column="52" selection-start-line="1350" selection-start-column="52" selection-end-line="1350" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#16202#16203#0" expanded="false" />
+            <element signature="e#16252#16253#0" expanded="false" />
+            <element signature="e#40566#40567#0" expanded="false" />
+            <element signature="e#40635#40636#0" expanded="false" />
+            <element signature="method#loadAward#0;class#ServiceActivity#0" expanded="false" />
+            <element signature="method#loadServiceCenter#0;class#ServiceActivity#0" expanded="false" />
+            <element signature="method#loadServiceMonth#0;class#ServiceActivity#0" expanded="false" />
+            <element signature="e#71410#71411#0" expanded="false" />
+            <element signature="e#71467#71468#0" expanded="false" />
+            <element signature="e#71533#71534#0" expanded="false" />
+            <element signature="e#71572#71573#0" expanded="false" />
+            <element signature="e#81860#81861#0" expanded="false" />
+            <element signature="e#81906#81907#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/CardRequestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="414" column="54" selection-start-line="414" selection-start-column="54" selection-end-line="414" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#14002#14003#0" expanded="false" />
+            <element signature="e#14076#14077#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="672" column="70" selection-start-line="672" selection-start-column="70" selection-end-line="672" selection-end-column="70" />
           <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#22959#22960#0" expanded="false" />
+            <element signature="e#23003#23004#0" expanded="false" />
+            <element signature="e#36407#36408#0" expanded="false" />
+            <element signature="e#36444#36445#0" expanded="false" />
             <element signature="class#Inject_Reg_Member_Prog_Grp_DataIntoSQLite#0;class#MainActivity#0" expanded="false" />
             <element signature="method#doInBackground#0;class#Inject_All_DataIntoSQLite#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation_update.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="129" column="34" selection-start-line="129" selection-start-column="34" selection-end-line="129" selection-end-column="34" />
+        <state vertical-scroll-proportion="-1.5454545">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_assign.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.4727273">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.7636366">
+          <caret line="131" column="28" selection-start-line="111" selection-start-column="6" selection-end-line="131" selection-end-column="28" />
           <folding>
-            <element signature="method#editRegistrationRecordForLiberia#0;class#SQLiteHandler#0" expanded="false" />
-            <element signature="method#addHHRegForLiberia#0;class#SQLiteHandler#0" expanded="false" />
-            <element signature="method#uploadIntoServiceSpecificTable#0;class#SQLiteHandler#0" expanded="false" />
-            <element signature="e#130685#130710#0" expanded="true" />
-            <element signature="docComment;method#getProgramGraduationDateOfMember#0;class#SQLiteHandler#0" expanded="false" />
-            <element signature="method#getVillageName#0;class#SQLiteHandler#0" expanded="false" />
+            <element signature="e#2681#2700#0" expanded="true" />
+            <element signature="e#6920#7087#0" expanded="false" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/AssignActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="639" column="74" selection-start-line="639" selection-start-column="74" selection-end-line="639" selection-end-column="74" />
-          <folding />
-        </state>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GraduationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.638756">
-          <caret line="103" column="6" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="267" column="0" selection-start-line="267" selection-start-column="0" selection-end-line="267" selection-end-column="0" />
+          <folding>
+            <element signature="e#3262#3433#0" expanded="true" />
+            <element signature="e#3432#3433#0" expanded="true" />
+            <element signature="e#3474#3659#0" expanded="true" />
+            <element signature="e#3658#3659#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.965517">
+          <caret line="2990" column="0" selection-start-line="2990" selection-start-column="0" selection-end-line="2990" selection-end-column="0" />
+          <folding>
+            <element signature="method#editRegistrationRecordForLiberia#0;class#SQLiteHandler#0" expanded="false" />
+            <element signature="method#addHHRegForLiberia#0;class#SQLiteHandler#0" expanded="false" />
+            <element signature="method#uploadIntoServiceSpecificTable#0;class#SQLiteHandler#0" expanded="false" />
+            <element signature="docComment;method#getProgramGraduationDateOfMember#0;class#SQLiteHandler#0" expanded="false" />
+            <element signature="method#getVillageName#0;class#SQLiteHandler#0" expanded="false" />
+            <element signature="e#380272#380287#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/graduation_sub/GraduationUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.211091">
+          <caret line="303" column="0" selection-start-line="303" selection-start-column="0" selection-end-line="303" selection-end-column="0" />
           <folding />
         </state>
       </provider>

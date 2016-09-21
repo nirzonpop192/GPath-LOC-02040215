@@ -103,44 +103,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbfa6c68-24f6-4379-bbc2-497898403be8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$7.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/AssignActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/GraduationActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_All_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_All_DataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_RegNAssProgSrvDataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_RegNAssProgSrvDataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_HouseH_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_HouseH_DataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_DataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_Prog_Grp_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_Prog_Grp_DataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Service_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Service_DataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$MainTask.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$MainTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage$LoadListView$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage$LoadListView$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage$LoadListView.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage$LoadListView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MemberSearchPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter$ViewHolder.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter$ViewHolder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/AssignActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/AssignActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GraduationActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GraduationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MemberSearchPage.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MemberSearchPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -164,75 +129,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="169" column="7" selection-start-line="169" selection-start-column="7" selection-end-line="170" selection-end-column="75" />
-              <folding>
-                <element signature="e#4280#4451#0" expanded="true" />
-                <element signature="e#4450#4451#0" expanded="true" />
-                <element signature="e#4501#5155#0" expanded="true" />
-                <element signature="e#5154#5155#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KEY.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/utils/KEY.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GraduationUpdate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/graduation_sub/GraduationUpdate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="446" column="25" selection-start-line="446" selection-start-column="25" selection-end-line="446" selection-end-column="25" />
-              <folding>
-                <element signature="e#3678#3836#0" expanded="true" />
-                <element signature="e#3835#3836#0" expanded="true" />
-                <element signature="e#3875#4046#0" expanded="true" />
-                <element signature="e#4045#4046#0" expanded="true" />
-                <element signature="e#4085#4245#0" expanded="true" />
-                <element signature="e#4244#4245#0" expanded="true" />
-                <element signature="e#4287#4440#0" expanded="true" />
-                <element signature="e#4439#4440#0" expanded="true" />
-                <element signature="e#4491#4648#0" expanded="true" />
-                <element signature="e#4647#4648#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_graduation_update.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation_update.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.818182">
-              <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
-              <folding>
-                <element signature="e#755#788#0" expanded="true" />
-                <element signature="e#1439#1460#0" expanded="true" />
-                <element signature="e#1557#1580#0" expanded="true" />
-                <element signature="e#2698#2719#0" expanded="true" />
-                <element signature="e#2926#2949#0" expanded="true" />
-                <element signature="e#5066#5092#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.1509433">
-              <caret line="485" column="31" selection-start-line="485" selection-start-column="18" selection-end-line="485" selection-end-column="31" />
-              <folding>
-                <element signature="e#22898#23037#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -247,11 +144,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MemberSearchAdapter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MemberSearchAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.6783626">
+            <state vertical-scroll-proportion="0.0">
               <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GroupSearchPage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GroupSearchPage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="230" column="67" selection-start-line="230" selection-start-column="6" selection-end-line="230" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OldAssignActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/OldAssignActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MapActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MapActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="672" column="0" selection-start-line="672" selection-start-column="0" selection-end-line="672" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -259,20 +186,16 @@
       </file>
       <file leaf-file-name="activity_graduation.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.9818182">
+            <state vertical-scroll-proportion="0.0">
               <caret line="43" column="37" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="37" />
               <folding>
-                <element signature="e#1595#1616#0" expanded="true" />
-                <element signature="e#1713#1736#0" expanded="true" />
-                <element signature="e#1833#1857#0" expanded="true" />
-                <element signature="e#2344#2363#0" expanded="true" />
                 <element signature="e#5761#5928#0" expanded="false" />
               </folding>
             </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -289,17 +212,22 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="LoginActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="2.202429">
+              <caret line="1516" column="34" selection-start-line="1516" selection-start-column="34" selection-end-line="1516" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="AssignActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/AssignActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="335" column="8" selection-start-line="335" selection-start-column="8" selection-end-line="335" selection-end-column="8" />
-              <folding>
-                <element signature="e#11151#11213#0" expanded="true" />
-                <element signature="e#11935#11997#0" expanded="true" />
-                <element signature="e#12162#12741#0" expanded="true" />
-                <element signature="e#12740#12741#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -2296,7 +2224,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2314,56 +2241,6 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2381,72 +2258,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="restclient" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2523,14 +2334,45 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="graduation_sub" />
+              <option name="myItemId" value="gps_sub" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GPath-LOC-02040215" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="restclient" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sub_activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dist_sub" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -2959,7 +2801,13 @@
       <option name="project" value="LOCAL" />
       <updated>1474371914946</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Member Page navigation">
+      <created>1474375035824</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1474375035824</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -2973,17 +2821,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Documentation" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11584327" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="92" y="92" width="1176" height="544" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2218845" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.560477" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36967632" sideWeight="0.4969605" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11073254" sideWeight="0.4969605" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879046" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2996,12 +2841,15 @@
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2725724" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31914893" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31914893" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28960818" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11584327" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="92" y="92" width="1176" height="544" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2218845" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.560477" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -3039,7 +2887,8 @@
     <MESSAGE value="Graduation Program(Spinner ) list of program will show only which  programs are already assigned in RegNAssProgSrv Table for specific member" />
     <MESSAGE value="Graduation" />
     <MESSAGE value="Graduation Update Activity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Graduation Update Activity" />
+    <MESSAGE value="Member Page navigation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Member Page navigation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3326,14 +3175,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/CommunityGroupDataModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/data_model/GPS_SubGroupAttributeDataModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3351,14 +3192,6 @@
     <entry file="file://$PROJECT_DIR$/device-2016-09-09-135228.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MapActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="672" column="0" selection-start-line="672" selection-start-column="0" selection-end-line="672" selection-end-column="0" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/data_model/GPS_LocationDataModel.java">
@@ -3396,14 +3229,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/register.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="298" column="36" selection-start-line="298" selection-start-column="36" selection-end-line="298" selection-end-column="36" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://G:/Android/sdk/sources/android-21/android/database/Cursor.java">
@@ -3436,14 +3269,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GroupSearchPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="230" column="67" selection-start-line="230" selection-start-column="6" selection-end-line="230" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/utils/UtilClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3453,6 +3278,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_assign_for_ddr_malwai.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.8363636">
           <caret line="20" column="46" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="46" />
@@ -3470,15 +3298,11 @@
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/Schema.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1482" column="68" selection-start-line="1466" selection-start-column="14" selection-end-line="1482" selection-end-column="68" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3493,7 +3317,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="119" column="8" selection-start-line="119" selection-start-column="8" selection-end-line="123" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3508,14 +3331,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_assign_for_malwai_agr.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.0545454">
           <caret line="228" column="0" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/summary_sub/IdListInGroupSummary.java">
@@ -3607,14 +3430,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1516" column="34" selection-start-line="1516" selection-start-column="34" selection-end-line="1516" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://G:/Android/sdk/platforms/android-24/data/res/drawable-ldpi/ic_dialog_alert.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -3660,7 +3475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="558" column="44" selection-start-line="558" selection-start-column="44" selection-end-line="558" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3691,23 +3505,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="414" column="54" selection-start-line="414" selection-start-column="54" selection-end-line="414" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#14002#14003#0" expanded="false" />
-            <element signature="e#14076#14077#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_assign.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.4727273">
           <caret line="20" column="43" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="43" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java">
@@ -3727,29 +3536,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.1509433">
+        <state vertical-scroll-proportion="0.0">
           <caret line="485" column="31" selection-start-line="485" selection-start-column="18" selection-end-line="485" selection-end-column="31" />
           <folding>
             <element signature="e#22898#23037#0" expanded="false" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9818182">
-          <caret line="43" column="37" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="37" />
-          <folding>
-            <element signature="e#1595#1616#0" expanded="true" />
-            <element signature="e#1713#1736#0" expanded="true" />
-            <element signature="e#1833#1857#0" expanded="true" />
-            <element signature="e#2344#2363#0" expanded="true" />
-            <element signature="e#5761#5928#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/utils/KEY.java">
@@ -3761,28 +3553,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation_update.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.818182">
-          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
-          <folding>
-            <element signature="e#755#788#0" expanded="true" />
-            <element signature="e#1439#1460#0" expanded="true" />
-            <element signature="e#1557#1580#0" expanded="true" />
-            <element signature="e#2698#2719#0" expanded="true" />
-            <element signature="e#2926#2949#0" expanded="true" />
-            <element signature="e#5066#5092#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
       <provider editor-type-id="android-designer">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/GraduationGridAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.9125965">
           <caret line="41" column="102" selection-start-line="41" selection-start-column="102" selection-end-line="41" selection-end-column="102" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3790,18 +3574,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="446" column="25" selection-start-line="446" selection-start-column="25" selection-end-line="446" selection-end-column="25" />
-          <folding>
-            <element signature="e#3678#3836#0" expanded="true" />
-            <element signature="e#3835#3836#0" expanded="true" />
-            <element signature="e#3875#4046#0" expanded="true" />
-            <element signature="e#4045#4046#0" expanded="true" />
-            <element signature="e#4085#4245#0" expanded="true" />
-            <element signature="e#4244#4245#0" expanded="true" />
-            <element signature="e#4287#4440#0" expanded="true" />
-            <element signature="e#4439#4440#0" expanded="true" />
-            <element signature="e#4491#4648#0" expanded="true" />
-            <element signature="e#4647#4648#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3817,12 +3590,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="169" column="7" selection-start-line="169" selection-start-column="7" selection-end-line="170" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_graduation.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="37" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="37" />
           <folding>
-            <element signature="e#4280#4451#0" expanded="true" />
-            <element signature="e#4450#4451#0" expanded="true" />
-            <element signature="e#4501#5155#0" expanded="true" />
-            <element signature="e#5154#5155#0" expanded="true" />
+            <element signature="e#5761#5928#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/AssignActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="335" column="8" selection-start-line="335" selection-start-column="8" selection-end-line="335" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/GroupSearchPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="230" column="67" selection-start-line="230" selection-start-column="6" selection-end-line="230" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/OldAssignActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MapActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="672" column="0" selection-start-line="672" selection-start-column="0" selection-end-line="672" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3837,23 +3658,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/AssignActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="335" column="8" selection-start-line="335" selection-start-column="8" selection-end-line="335" selection-end-column="8" />
-          <folding>
-            <element signature="e#11151#11213#0" expanded="true" />
-            <element signature="e#11935#11997#0" expanded="true" />
-            <element signature="e#12162#12741#0" expanded="true" />
-            <element signature="e#12740#12741#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/views/adapters/MemberSearchAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.6783626">
-          <caret line="113" column="57" selection-start-line="113" selection-start-column="57" selection-end-line="113" selection-end-column="57" />
+        <state vertical-scroll-proportion="2.202429">
+          <caret line="1516" column="34" selection-start-line="1516" selection-start-column="34" selection-end-line="1516" selection-end-column="34" />
           <folding />
         </state>
       </provider>

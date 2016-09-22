@@ -26,6 +26,7 @@ import android.widget.Spinner;
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
+import com.siddiquinoor.restclient.manager.sqlsyntax.SQLiteQuery;
 import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.views.adapters.GraduationGridAdapter;
 import com.siddiquinoor.restclient.views.adapters.GraduationGridDataModel;
@@ -88,7 +89,6 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
 
 
         Intent intent = getIntent();
-
 
 
         String dir = intent.getStringExtra(KEY.DIR_CLASS_NAME_KEY);
@@ -168,7 +168,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
                 iMemSearch.putExtra(KEY.COUNTRY_ID, idCountry);
                 iMemSearch.putExtra(KEY.DIR_CLASS_NAME_KEY, "GraduationActivity");
                 iMemSearch.putExtra(KEY.VILLAGE_NAME, tempSpinVillageName);
-                iMemSearch.putExtra(KEY.VILLAGE_CODE,tempSpinVillageCode );
+                iMemSearch.putExtra(KEY.VILLAGE_CODE, tempSpinVillageCode);
 
                 finish();
                 startActivity(iMemSearch);
@@ -258,22 +258,7 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
     private void loadProgram(final String idcCode, final String donorCode, final String awardCode, final String memId) {
 
         int position = 0;
-        String criteria = "SELECT " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL
-                + " , " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_SHORT_NAME_COL
-                + " FROM " + SQLiteHandler.PROGRAM_MASTER_TABLE
-                + " INNER JOIN " + SQLiteHandler.ADM_AWARD_TABLE
-                + " ON " + SQLiteHandler.ADM_AWARD_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + " = " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL
-                + " AND " + SQLiteHandler.ADM_AWARD_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + " = " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL
-                + " INNER JOIN " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + " AS regAss "
-                + " ON regAss." + SQLiteHandler.PROGRAM_CODE_COL + " = " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL
-                + " WHERE " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
-                + " AND " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'"
-                + " AND regAss." + SQLiteHandler.DISTRICT_CODE_COL
-                + " || '' || regAss." + SQLiteHandler.UPCODE_COL
-                + " || '' || regAss." + SQLiteHandler.UCODE_COL
-                + " || '' || regAss." + SQLiteHandler.VCODE_COL
-                + " || '' || regAss." + SQLiteHandler.HHID_COL
-                + " || '' || regAss." + SQLiteHandler.HH_MEM_ID + " = '" + memId + "'";
+        String criteria = SQLiteQuery.loadProgramWhereMemberAreAssigned_sql(idcCode, donorCode, awardCode, memId);
 
 
         // Spinner Drop down elements for District

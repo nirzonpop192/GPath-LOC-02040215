@@ -2588,4 +2588,23 @@ public class SQLiteQuery {
                 " AND regG." + SQLiteHandler.GROUP_CODE_COL + " = '" + grpCode + "' ";
 
     }
+    public static String loadProgramWhereMemberAreAssigned_sql(final String idcCode, final String donorCode, final String awardCode, final String memId){
+        return "SELECT " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL
+                + " , " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_SHORT_NAME_COL
+                + " FROM " + SQLiteHandler.PROGRAM_MASTER_TABLE
+                + " INNER JOIN " + SQLiteHandler.ADM_AWARD_TABLE
+                + " ON " + SQLiteHandler.ADM_AWARD_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + " = " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL
+                + " AND " + SQLiteHandler.ADM_AWARD_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + " = " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL
+                + " INNER JOIN " + SQLiteHandler.REG_N_ASSIGN_PROG_SRV_TABLE + " AS regAss "
+                + " ON regAss." + SQLiteHandler.PROGRAM_CODE_COL + " = " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL
+                + " WHERE " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
+                + " AND " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'"
+                + " AND regAss." + SQLiteHandler.DISTRICT_CODE_COL
+                + " || '' || regAss." + SQLiteHandler.UPCODE_COL
+                + " || '' || regAss." + SQLiteHandler.UCODE_COL
+                + " || '' || regAss." + SQLiteHandler.VCODE_COL
+                + " || '' || regAss." + SQLiteHandler.HHID_COL
+                + " || '' || regAss." + SQLiteHandler.HH_MEM_ID + " = '" + memId + "'";
+
+    }
 }//end of class

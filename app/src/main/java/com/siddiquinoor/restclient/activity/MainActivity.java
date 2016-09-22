@@ -1447,7 +1447,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         db.addGpsSubGroup(GrpCode, SubGrpCode, SubGrpName, Description);
 
 
-                        // Log.d(TAG, "In Sub Group Table: GroupCode : " + GrpCode + " SubGroupCode : " + SubGrpCode +" SubGrpName : " + SubGrpName + " Description : " + Description  );
+
                     }
                 }
                 publishProgress(++progressIncremental);
@@ -1619,7 +1619,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                         db.insertAdmCountryProgram(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, AdmSrvCode, FoodFlag, NFoodFlag, CashFlag, VOFlag, DefaultFoodDays, DefaultNFoodDays, DefaultCashDays, DefaultVODays, SrvSpecific);
 
-//                        Log.d(TAG, "In adm_country_program Table flag FoodFlag :" + FoodFlag + "NFoodFlag : " + NFoodFlag + " CashFlag :" + CashFlag + " VOFlag : " + VOFlag + " SrvSpecific :" + SrvSpecific);
+
 
 
                     }
@@ -1743,7 +1743,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         String GeoLayRName = layer_label.getString(GEO_LAY_R_NAME);
                         db.addLayerLabel(AdmCountryCode, GeoLayRCode, GeoLayRName);
 
-//                        Log.d(TAG, "Country Code : " + AdmCountryCode + " Layer code: " + GeoLayRCode + " Layer hhName: " + GeoLayRName);
+
                     }
                 }
                 publishProgress(++progressIncremental);
@@ -1762,7 +1762,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                         db.addDistrict(AdmCountryCode, GeoLayRCode, LayRListCode, LayRListName);
 
-                        //  Log.d(TAG, "AdmCountryCode : " + AdmCountryCode + " LayRListCode : " + LayRListCode + " LayRListName : " + LayRListName);
+
                     }
                 }
                 publishProgress(++progressIncremental);

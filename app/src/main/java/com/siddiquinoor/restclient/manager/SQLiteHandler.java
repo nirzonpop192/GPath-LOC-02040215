@@ -175,6 +175,23 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String PROGRAM_ORGANIZATION_ROLE_TABLE = "ProgOrgNRole";
     public static final String PROGRAM_ORGANIZATION_NAME_TABLE = "ProgOrgN";
 
+    public static final String DT_A_TABLE = "DTATable";
+    public static final String DT_BASIC_TABLE = "DTBasic";
+    public static final String DT_BASIC_COL = "DTBasic";
+    public static final String DTQ_CODE_COL = "DTQCode";
+    public static final String DTA_CODE_COL = "DTACode";
+    public static final String DTA_LABEL_COL = "DTALabel";
+    public static final String DTA_VALUE_COL = "DTAValue";
+    public static final String DT_SEQ_COL = "DTSeq";
+    public static final String DTA_SHORT_COL = "DTAShort";
+    public static final String DT_SCORE_CODE_COL = "DTScoreCode";
+    public static final String DTSKIP_DTQ_CODE_COL = "DTSkipDTQCode";
+    public static final String DTA_COMPARE_CODE_COL = "DTACompareCode";
+    public static final String SHOW_HIDE_COL = "ShowHide";
+    public static final String MAX_VALUE_COL = "MaxValue";
+    public static final String MIN_VALUE_COL = "MinValue";
+    public static final String MARK_ON_GRID_COL = "MarkOnGrid";
+
     public static final String LAND_SIZE_UNDER_IRRIGATION_COL = "LandSizeUnderIrrigation";
     public static final String IRRIGATION_SYSTEM_USED_COL = "IrrigationSystemUsed";
     public static final String FUND_SUPPORT_COL = "FundSupport";

@@ -2662,6 +2662,21 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
+    public String getMemberRegNDate(GraduationGridDataModel dtata) {
+        AssignDataModel assignedMem = new AssignDataModel();
+        assignedMem.setC_code(dtata.getCountryCode());
+        assignedMem.setDistrictCode(dtata.getDistrictCode());
+        assignedMem.setUpazillaCode(dtata.getUpazillaCode());
+        assignedMem.setUnitCode(dtata.getUnitCode());
+        assignedMem.setVillageCode(dtata.getVillageCode());
+        assignedMem.setHh_id(dtata.getHh_id());
+        assignedMem.setMemId(dtata.getMember_Id());
+        assignedMem.setProgram_code(dtata.getProgram_code());
+        assignedMem.setService_code(dtata.getService_code());
+        return getMemberRegNDate(assignedMem);
+    }
+
+
     /**
      * @param assignedMem
      * @return
@@ -6804,6 +6819,39 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         }
         return srvSpeceficFlag;
 
+    }
+
+    public String getMinDate(String cCode){
+        return getDate(cCode,"Min");
+    }
+    public String getMaxDate(String cCode){
+        return getDate(cCode,"Max");
+    }
+
+    public String getDate(String cCode, String MinOrMax) {
+        String date = "";
+        String sql = "";
+        // query to get the start date of the registration process.
+        if (MinOrMax.equals("Min")) {
+            sql = "SELECT MIN " + "(" + START_DATE + ")" + " FROM " + OP_MONTH_TABLE + " WHERE " + COUNTRY_CODE_COL
+                    + " = '" + cCode + "'" + " AND " + STATUS + "= 'A'";
+        } else {
+            sql = "SELECT MAX " + "(" + END_DATE + ")" + " FROM " + OP_MONTH_TABLE + " WHERE " + COUNTRY_CODE_COL
+                    + " = '" + cCode + "'" + " AND " + STATUS + "= 'A'";
+        }
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                date = cursor.getString(0);     // Start Date
+            }
+            cursor.close();
+            db.close();
+        }
+
+
+        return date;
     }
 
 

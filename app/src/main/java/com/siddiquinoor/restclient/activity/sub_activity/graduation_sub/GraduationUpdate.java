@@ -28,9 +28,11 @@ import com.siddiquinoor.restclient.views.adapters.GraduationGridDataModel;
 import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
 import com.siddiquinoor.restclient.views.notifications.ADNotificationManager;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -139,7 +141,46 @@ public class GraduationUpdate extends BaseActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveMemberGraduationData();
+                String  graduation_date,registration_date, end_date,start_date;
+                start_date = sqlH.getMinDate(mGraduation.getCountryCode());
+                end_date = sqlH.getMaxDate(mGraduation.getCountryCode());
+                registration_date = sqlH.getMemberRegNDate(mGraduation);
+                graduation_date = tv_grdDate.getText().toString();
+
+                DateFormat inputFormat = new SimpleDateFormat("mm-dd-yyyy",Locale.ENGLISH);
+                DateFormat outputFormat = new SimpleDateFormat("yyyy-mm-dd",Locale.ENGLISH);
+                String inputDateStr = graduation_date;
+                Date date = null;
+                try {
+                    date = inputFormat.parse(inputDateStr);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                String outputDateStr = outputFormat.format(date);
+
+                if (outputDateStr.length() > 0 ){
+                    if (Integer.parseInt(idGRD)<0 || !strGRDTitle.equals("Select Reason")){
+
+                        if ( start_date != null && end_date != null){
+                            Log.e("Shuvo","Graduation date:"+ outputDateStr+ " Start date: "+ start_date+ " end date : "+
+                            end_date+ " Registration date: "+ registration_date);
+                            try {
+                                Boolean ok = isValidDateForGraduation(outputDateStr,start_date,end_date,registration_date);
+                                if (ok){
+                                    saveMemberGraduationData();
+                                }else
+                                    Toast.makeText(GraduationUpdate.this, "Check graduation date.", Toast.LENGTH_SHORT).show();
+
+                            } catch (ParseException e) {
+                                Toast.makeText(GraduationUpdate.this, "Wrong Date Format, parse error!", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else Toast.makeText(GraduationUpdate.this, "No valid date range found!", Toast.LENGTH_SHORT).show();
+
+                    }else Toast.makeText(GraduationUpdate.this, "Please enter a reason.", Toast.LENGTH_SHORT).show();
+
+                }else Toast.makeText(GraduationUpdate.this, "Please Enter Graduation date.", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -157,6 +198,31 @@ public class GraduationUpdate extends BaseActivity {
 
             }
         });
+    }
+
+    private boolean isValidDateForGraduation(String grdDate,String sDate, String eDate, String regDate) throws ParseException {
+
+        String curr_date;
+        if (isTheDateValidFormat(grdDate)) {
+            curr_date = grdDate;
+        } else {
+            curr_date = grdDate + " 00:00:00.000";
+        }
+
+        Log.e("ShuvoCurr",curr_date);
+
+        Date newDate = format.parse(curr_date);
+        Log.e("ShuvoNew", String.valueOf(newDate.getTime()));
+
+        Date startDate = format.parse(String.valueOf(sDate));
+        Log.e("ShuvoNew", String.valueOf(startDate));
+        Date endDate = format.parse(String.valueOf(eDate));
+        Date registrationDate = format.parse(regDate);
+
+        // return newDate.after(startDate)&& newDate.before(endDate) && newDate.after(registrationDate);
+        return newDate.getTime() >= startDate.getTime() && newDate.getTime() <= endDate.getTime()&&
+                newDate.getTime() > registrationDate.getTime();
+
     }
 
     private void backToGraduationPage() {
@@ -259,7 +325,36 @@ public class GraduationUpdate extends BaseActivity {
         }
     }
 
-    private void saveMemberGraduationData() {
+    private void saveMemberGraduationData(){
+        if (sqlH.ifExistsInRegNAssProgSrv(mGraduation)){
+            sqlH.editMemberDataIn_RegNAsgProgSrv(getSrtGrdDate(), idGRD, EntryBy, EntryDate, mGraduation.getCountryCode(), mGraduation.getDistrictCode(), mGraduation.getUpazillaCode(),
+                    mGraduation.getUnitCode(), mGraduation.getVillageCode(), mGraduation.getHh_id(),
+                    mGraduation.getMember_Id(), mGraduation.getProgram_code(),
+                    mGraduation.getService_code(), mGraduation.getDonor_code(), mGraduation.getAward_code());
+
+            SQLServerSyntaxGenerator graduationQuery= new SQLServerSyntaxGenerator();
+            graduationQuery.setAdmCountryCode(mGraduation.getCountryCode());
+            graduationQuery.setLayR1ListCode(mGraduation.getDistrictCode());
+            graduationQuery.setLayR2ListCode(mGraduation.getUpazillaCode());
+            graduationQuery.setLayR3ListCode(mGraduation.getUnitCode());
+            graduationQuery.setLayR4ListCode(mGraduation.getVillageCode());
+            graduationQuery.setAdmAwardCode(mGraduation.getAward_code());
+            graduationQuery.setAdmDonorCode(mGraduation.getDonor_code());
+            graduationQuery.setHHID(mGraduation.getHh_id());
+            graduationQuery.setMemID(mGraduation.getMember_Id());
+            graduationQuery.setProgCode(mGraduation.getProgram_code());
+            graduationQuery.setSrvCode(mGraduation.getService_code());
+            graduationQuery.setGRDCode(idGRD);
+            graduationQuery.setGRDDate(getSrtGrdDate());
+
+            graduationQuery.setEntryBy(EntryBy);
+            graduationQuery.setEntryDate(EntryDate);
+            sqlH.insertIntoUploadTable(graduationQuery.updateGraduation());
+
+            Toast.makeText(mContext, "The data is saved", Toast.LENGTH_SHORT).show();
+        }
+
+    } /*{
         boolean invalid = false;
 
         try {
@@ -284,14 +379,14 @@ public class GraduationUpdate extends BaseActivity {
                     Log.d(TAG, " invalid " + invalid);
 
                     if (sqlH.ifExistsInRegNAssProgSrv(mGraduation)) {
-                        /** the update operation  for local database*/
+                        *//** the update operation  for local database*//*
                         sqlH.editMemberDataIn_RegNAsgProgSrv(getSrtGrdDate(), idGRD, EntryBy, EntryDate, mGraduation.getCountryCode(), mGraduation.getDistrictCode(), mGraduation.getUpazillaCode(),
                                 mGraduation.getUnitCode(), mGraduation.getVillageCode(), mGraduation.getHh_id(),
                                 mGraduation.getMember_Id(), mGraduation.getProgram_code(),
                                 mGraduation.getService_code(), mGraduation.getDonor_code(), mGraduation.getAward_code());
-                        /**
+                        *//**
                          * the update operation  for SQL Server or Web database
-                         * */
+                         * *//*
                         SQLServerSyntaxGenerator graduationQuery = new SQLServerSyntaxGenerator();
                         graduationQuery.setAdmCountryCode(mGraduation.getCountryCode());
                         graduationQuery.setLayR1ListCode(mGraduation.getDistrictCode());
@@ -324,7 +419,7 @@ public class GraduationUpdate extends BaseActivity {
             pe.printStackTrace();
             Toast.makeText(mContext, "Wrong Date Format, parse error!", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
 
     private void viewReference() {

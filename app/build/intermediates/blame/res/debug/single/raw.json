@@ -1,10 +1,10 @@
 [
     {
-        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\raw\\gtm_analytics",
-        "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-analytics\\8.1.0\\res\\raw\\gtm_analytics"
+        "merged": "G:\\TD&shuvo\\Td_project\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\raw\\gtm_analytics",
+        "source": "G:\\TD&shuvo\\Td_project\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-analytics\\8.1.0\\res\\raw\\gtm_analytics"
     },
     {
-        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zxing_beep.ogg",
-        "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.journeyapps\\zxing-android-embedded\\2.3.0\\res\\raw\\zxing_beep.ogg"
+        "merged": "G:\\TD&shuvo\\Td_project\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\raw\\zxing_beep.ogg",
+        "source": "G:\\TD&shuvo\\Td_project\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.journeyapps\\zxing-android-embedded\\2.3.0\\res\\raw\\zxing_beep.ogg"
     }
 ]

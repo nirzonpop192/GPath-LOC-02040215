@@ -9,18 +9,7 @@ import com.siddiquinoor.restclient.manager.SQLiteHandler;
 public class Schema {
 
     private static final String CREATE_TABLE_IF_NOT_EXISTS = "CREATE TABLE IF NOT EXISTS ";
-    public static final String DT_TITLE_COL = "DTTitle";
-    public static final String DT_SUB_TITLE_COL = "DTSubTitle";
-    public static final String DT_DESCRIPTION_COL = "DTDescription";
-    public static final String DT_AUTO_SCROLL_COL = "DTAutoScroll";
-    public static final String DTAUTO_SCROLL_TEXT = "DTAutoScrollText";
-    public static final String DT_ACTIVE_COL = "DTActive";
-    public static final String DT_CATEGORY_COL = "DTCategory";
-    public static final String DT_GEO_LIST_LEVEL_COL = "DTGeoListLevel";
-    public static final String DT_OP_MODE_COL = "DTOPMode";
-    public static final String CATEGORY_NAME_COL = "CategoryName";
-    public static final String FREQUENCY_COL = "Frequency";
-    public static final String ADM_COUNTRY_CODE_COL = "AdmCountryCode";
+
 
 
     /**
@@ -1618,15 +1607,15 @@ public class Schema {
     public static String createTableDTBasic() {
         return CREATE_TABLE_IF_NOT_EXISTS + "   " + SQLiteHandler.DT_BASIC_TABLE + "  (   " +
                 "   " + SQLiteHandler.DT_BASIC_COL + "   TEXT NOT NULL,   " +
-                "   " + DT_TITLE_COL + "   TEXT,   " +
-                "   " + DT_SUB_TITLE_COL + "   TEXT,   " +
-                "   " + DT_DESCRIPTION_COL + "   TEXT,   " +
-                "   " + DT_AUTO_SCROLL_COL + "   TEXT,   " +
-                "   " + DTAUTO_SCROLL_TEXT + "   TEXT,   " +
-                "   " + DT_ACTIVE_COL + "   TEXT,   " +
-                "   " + DT_CATEGORY_COL + "   TEXT,   " +
-                "   " + DT_GEO_LIST_LEVEL_COL + "   TEXT,   " +
-                "   " + DT_OP_MODE_COL + "   TEXT,   " +
+                "   " + SQLiteHandler.DT_TITLE_COL + "   TEXT,   " +
+                "   " + SQLiteHandler.DT_SUB_TITLE_COL + "   TEXT,   " +
+                "   " + SQLiteHandler.DT_DESCRIPTION_COL + "   TEXT,   " +
+                "   " + SQLiteHandler.DT_AUTO_SCROLL_COL + "   TEXT,   " +
+                "   " + SQLiteHandler.DTAUTO_SCROLL_TEXT + "   TEXT,   " +
+                "   " + SQLiteHandler.DT_ACTIVE_COL + "   TEXT,   " +
+                "   " + SQLiteHandler.DT_CATEGORY_COL + "   TEXT,   " +
+                "   " + SQLiteHandler.DT_GEO_LIST_LEVEL_COL + "   TEXT,   " +
+                "   " + SQLiteHandler.DT_OP_MODE_COL + "   TEXT,   " +
                 "   " + SQLiteHandler.ENTRY_BY + "    TEXT,   " +
                 "  " + SQLiteHandler.ENTRY_DATE + "    TEXT,   " +
                 "  PRIMARY KEY(" + SQLiteHandler.DT_BASIC_COL + ")   " +
@@ -1634,113 +1623,115 @@ public class Schema {
     }
 
     public static String createTableDTCategory() {
-        return "CREATE TABLE   DTCategory " + "   (    " +
-                "    " + DT_CATEGORY_COL + "    TEXT NOT NULL,    " +
-                "    " + CATEGORY_NAME_COL + "    TEXT,    " +
-                "    " + FREQUENCY_COL + "    TEXT,    " +
+        return "CREATE TABLE   " + SQLiteHandler.DT_CATEGORY_TABLE + " " + "   (    " +
+                "    " + SQLiteHandler.DT_CATEGORY_COL + "    TEXT NOT NULL,    " +
+                "    " + SQLiteHandler.CATEGORY_NAME_COL + "    TEXT,    " +
+                "    " + SQLiteHandler.FREQUENCY_COL + "    TEXT,    " +
                 "   " + SQLiteHandler.ENTRY_BY + "    TEXT,    " +
                 "   " + SQLiteHandler.ENTRY_DATE + "    TEXT,    " +
-                "  PRIMARY KEY(" + DT_CATEGORY_COL + ")    " +
+                "  PRIMARY KEY(" + SQLiteHandler.DT_CATEGORY_COL + ")    " +
                 ")";
     }
 
     public static String createTableDTCountryProgram() {
-        return "CREATE TABLE   DTCountryProgram   (  " +
-                "    " + ADM_COUNTRY_CODE_COL + "    TEXT NOT NULL,  " +
-                "    AdmDonorCode    TEXT NOT NULL,  " +
-                "    AdmAwardCode    TEXT NOT NULL,  " +
-                "    AdmProgCode    TEXT NOT NULL,  " +
-                "    ProgActivityCode    TEXT NOT NULL,  " +
-                "    ProgActivityTitle    TEXT,  " +
-                "    DTBasic    TEXT NOT NULL,  " +
-                "    RefIdentifier    TEXT,  " +
-                "    Status    TEXT,  " +
-                "    Rpt" + FREQUENCY_COL + "    TEXT,  " +
+        return "CREATE TABLE   " + SQLiteHandler.DT_COUNTRY_PROGRAM_TABLE + "   (  " +
+                "    " + SQLiteHandler.COUNTRY_CODE_COL + "    TEXT NOT NULL,  " +
+                "    " + SQLiteHandler.DONOR_CODE_COL + "    TEXT NOT NULL,  " +
+                "    " + SQLiteHandler.AWARD_CODE_COL + "    TEXT NOT NULL,  " +
+                "    " + SQLiteHandler.PROGRAM_CODE_COL + "    TEXT NOT NULL,  " +
+                "    " + SQLiteHandler.PROG_ACTIVITY_CODE_COL + "    TEXT NOT NULL,  " +
+                "    " + SQLiteHandler.PROG_ACTIVITY_TITLE_COL + "    TEXT,  " +
+                "    " + SQLiteHandler.DT_BASIC_COL + "    TEXT NOT NULL,  " +
+                "    " + SQLiteHandler.REF_IDENTIFIER_COL + "    TEXT,  " +
+                "    " + SQLiteHandler.STATUS + "    TEXT,  " +
+                "    " + SQLiteHandler.RPT_FREQUENCY_COL + "    TEXT,  " +
                 "   " + SQLiteHandler.ENTRY_BY + "    TEXT,  " +
                 "   " + SQLiteHandler.ENTRY_DATE + "    TEXT,  " +
-                "  PRIMARY KEY(" + ADM_COUNTRY_CODE_COL + ",AdmDonorCode,AdmAwardCode,AdmProgCode,ProgActivityCode)  " +
+                "  PRIMARY KEY(" + SQLiteHandler.COUNTRY_CODE_COL + ","
+                + SQLiteHandler.DONOR_CODE_COL + " ," + SQLiteHandler.AWARD_CODE_COL + " ," + SQLiteHandler.PROGRAM_CODE_COL + " ," + SQLiteHandler.PROG_ACTIVITY_CODE_COL + ")  " +
                 ")";
     }
 
     public static String createTableDTGeoListLevel() {
-        return "CREATE TABLE    DTGeoListLevel " + "    (   " +
-                "      GeoLevel      TEXT NOT NULL,   " +
-                "      GeoLevelName      TEXT,   " +
-                "      ListUDFName      TEXT,   " +
+        return "CREATE TABLE    " + " " + SQLiteHandler.DTGEO_LIST_LEVEL_TABLE + " " + "    (   " +
+                "      " + SQLiteHandler.GEO_LEVEL_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.GEO_LEVEL_NAME_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.LIST_UDF_NAME_COL + "      TEXT,   " +
                 "     " + SQLiteHandler.ENTRY_BY + "      TEXT,   " +
                 "     " + SQLiteHandler.ENTRY_DATE + "      TEXT,   " +
-                "   PRIMARY KEY(GeoLevel)   " +
+                "   PRIMARY KEY( " + SQLiteHandler.GEO_LEVEL_COL + ")   " +
                 ")";
     }
 
     public static String createTableDTQResMode() {
-        return "CREATE TABLE    DTQResMode    (   " +
-                "      QResMode      TEXT NOT NULL,   " +
-                "      QResLupText      TEXT,   " +
-                "      DataType      TEXT,   " +
-                "      LookUpUDFName      TEXT,   " +
-                "      ResponseValueControl      TEXT,   " +
-                "   PRIMARY KEY(QResMode)   " +
+        return "CREATE TABLE    "   + SQLiteHandler.DTQRES_MODE_TABLE + "   (   " +
+                "      " + SQLiteHandler.QRES_MODE_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.QRES_LUP_TEXT_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.DATA_TYPE_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.LOOK_UP_UDF_NAME_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.RESPONSE_VALUE_CONTROL_COL + "      TEXT,   " +
+                "   PRIMARY KEY(" + SQLiteHandler.QRES_MODE_COL + ")   " +
                 ")";
     }
 
     public static String createTableDTQTable() {
-        return "CREATE TABLE    DTQTable    (   " +
-                "      DTBasic      TEXT NOT NULL,   " +
-                "      DTQCode      TEXT NOT NULL,   " +
-                "      QText      TEXT,   " +
-                "      QResMode      TEXT,   " +
-                "      QSeq      INTEGER,   " +
-                "      AllowNull      TEXT,   " +
-                "   PRIMARY KEY(DTBasic,DTQCode)   " +
+        return "CREATE TABLE    " + SQLiteHandler.DTQ_TABLE + "    (   " +
+                "      " + SQLiteHandler.DT_BASIC_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.DTQ_CODE_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.QTEXT_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.QRES_MODE_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.QSEQ_SCOL + "      INTEGER,   " +
+                "      " + SQLiteHandler.ALLOW_NULL_COL + "      TEXT,   " +
+                "   PRIMARY KEY(" + SQLiteHandler.DT_BASIC_COL + " ," + SQLiteHandler.DTQ_CODE_COL + " )   " +
                 ")";
     }
 
     public static String createTableDTResponseTable() {
-        return "CREATE TABLE    DTResponseTable    (   " +
-                "      DTBasic      TEXT NOT NULL,   " +
-                "      " + ADM_COUNTRY_CODE_COL + "      TEXT NOT NULL,   " +
-                "      AdmDonorCode      TEXT NOT NULL,   " +
-                "      AdmAwardCode      TEXT NOT NULL,   " +
-                "      AdmProgCode      TEXT NOT NULL,   " +
-                "      DTEnuID      TEXT NOT NULL,   " +
-                "      DTQCode      TEXT NOT NULL,   " +
-                "      DTACode      TEXT NOT NULL,   " +
-                "      DTRSeq      INTEGER NOT NULL,   " +
-                "      DTAValue      BLOB,   " +
-                "      ProgActivityCode      TEXT,   " +
-                "      DTTimeString      TEXT,   " +
-                "      OpMode      TEXT,   " +
-                "      OpMonthCode      TEXT,   " +
-                "      DataType      TEXT,   " +
-                "   PRIMARY KEY(DTBasic," + ADM_COUNTRY_CODE_COL + ",AdmDonorCode,AdmAwardCode,AdmProgCode,DTEnuID,DTQCode,DTACode,DTRSeq)   " +
+        return "CREATE TABLE    " + SQLiteHandler.DT_RESPONSE_TABLE_COL + "    (   " +
+                "      " + SQLiteHandler.DT_BASIC_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.COUNTRY_CODE_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.DONOR_CODE_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.AWARD_CODE_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.PROGRAM_CODE_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.DT_ENU_ID_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.DTQ_CODE_COL + "      TEXT NOT NULL,   " +
+                "     " + SQLiteHandler.DTA_CODE_COL + "       TEXT NOT NULL,   " +
+                "     " + SQLiteHandler.DT_RSEQ_COL + "      INTEGER NOT NULL,   " +
+                "      " + SQLiteHandler.DTA_VALUE_COL + "      BLOB,   " +
+                "      " + SQLiteHandler.PROG_ACTIVITY_CODE_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.DTTIME_STRING_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.OP_MODE_COL + "      TEXT,   " +
+                "     " + SQLiteHandler.OP_MONTH_CODE_COL + "       TEXT,   " +
+                "     " + SQLiteHandler.DATA_TYPE_COL + "       TEXT,   " +
+                "   PRIMARY KEY(" + SQLiteHandler.DT_BASIC_COL + "," + SQLiteHandler.COUNTRY_CODE_COL + ", " + SQLiteHandler.DONOR_CODE_COL + " ," + SQLiteHandler.AWARD_CODE_COL + " ," + SQLiteHandler.PROGRAM_CODE_COL
+                + "," + SQLiteHandler.DT_ENU_ID_COL + "," + SQLiteHandler.DTQ_CODE_COL + "," + SQLiteHandler.DTA_CODE_COL + " ," + SQLiteHandler.DT_RSEQ_COL + ")   " +
                 ")";
     }
 
     public static String createTableDTTableDefinition() {
-        return "CREATE TABLE    DTTableDefinition    (   " +
-                "      TableName      TEXT NOT NULL,   " +
-                "      FieldName      TEXT NOT NULL,   " +
-                "      FieldDefinition      TEXT,   " +
-                "      FieldShortName      TEXT,   " +
-                "      ValueUDF      TEXT,   " +
-                "      LUPTableName      TEXT,   " +
-                "      AdminOnly      TEXT,   " +
+        return "CREATE TABLE    " + SQLiteHandler.DT_TABLE_DEFINITION_TABLE + "    (   " +
+                "      " + SQLiteHandler.TABLE_NAME_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.FIELD_NAME_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.FIELD_DEFINITION_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.FIELD_SHORT_NAME_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.VALUE_UDF_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.LUPTABLE_NAME_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.ADMIN_ONLY_COL + "      TEXT,   " +
                 "      " + SQLiteHandler.ENTRY_BY + "      TEXT,   " +
                 "      " + SQLiteHandler.ENTRY_DATE + "      TEXT,   " +
-                "   PRIMARY KEY(TableName,FieldName)   " +
+                "   PRIMARY KEY(" + SQLiteHandler.TABLE_NAME_COL + "," + SQLiteHandler.FIELD_NAME_COL + ")   " +
                 ")";
     }
 
-    public static String createTale() {
-        return "CREATE TABLE    DTTableListCategory    (   " +
-                "      TableName      TEXT NOT NULL,   " +
-                "      TableGroupCode      TEXT,   " +
-                "      UseAdminOnly      TEXT,   " +
-                "      UseReport      TEXT,   " +
-                "      UseTransaction      TEXT,   " +
-                "      UseLUP      TEXT,   " +
-                "   PRIMARY KEY(TableName)   " +
+    public static String createTaleDTTableListCategory() {
+        return "CREATE TABLE    " + SQLiteHandler.DTTABLE_LIST_CATEGORY_TABLE + "    (   " +
+                "      " + SQLiteHandler.TABLE_NAME_COL + "      TEXT NOT NULL,   " +
+                "      " + SQLiteHandler.TABLE_GROUP_CODE_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.USE_ADMIN_ONLY_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.USE_REPORT_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.USE_TRANSACTION_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.USE_LUP_COL + "      TEXT,   " +
+                "   PRIMARY KEY(" + SQLiteHandler.TABLE_NAME_COL + ")   " +
                 ")";
     }
 }

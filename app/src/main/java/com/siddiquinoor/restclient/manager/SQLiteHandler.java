@@ -157,7 +157,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String LUP_COMMUNITY_LOAN_SOURCE_TABLE = "LUP_CommnityLoanSource";
     public static final String REG_N_MEM_PROG_GRP_TABLE = "RegNMemProgGrp";
     public static final String COMMUNITY_GROUP_CATEGORY_TABLE = "CommunityGroupCategory";
-
+    public static final String DTQRES_MODE_TABLE = "DTQResMode";
     public static final String GPS_LOCATION_CONTENT_TABLE = "GPSLocationContent";
 
 
@@ -171,9 +171,18 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String DIST_N_PLAN_BASIC_TABLE = "DistNPlanBasic";
     public static final String LUP_REGN_ADDRESS_LOOKUP_TABLE = "LUP_RegNAddLookup";
     public static final String COMMUNITY_GRP_DETAIL_TABLE = "CommunityGrpDetail";
-
+    public static final String DTGEO_LIST_LEVEL_TABLE = "DTGeoListLevel";
     public static final String PROGRAM_ORGANIZATION_ROLE_TABLE = "ProgOrgNRole";
     public static final String PROGRAM_ORGANIZATION_NAME_TABLE = "ProgOrgN";
+
+    public static final String DT_RESPONSE_TABLE_COL = "DTResponseTable";
+    public static final String DT_CATEGORY_TABLE = "DTCategory";
+    public static final String DT_COUNTRY_PROGRAM_TABLE = "DTCountryProgram";
+    public static final String DTGEO_LIST_LEVEL_COL = "DTGeoListLevel";
+    public static final String DTQRES_MODE_COL = "DTQResMode";
+    public static final String DTQ_TABLE = "DTQTable";
+    public static final String DT_TABLE_DEFINITION_TABLE = "DTTableDefinition";
+    public static final String DTTABLE_LIST_CATEGORY_TABLE = "DTTableListCategory";
 
     public static final String DT_A_TABLE = "DTATable";
     public static final String DT_BASIC_TABLE = "DTBasic";
@@ -181,12 +190,59 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String DTQ_CODE_COL = "DTQCode";
     public static final String DTA_CODE_COL = "DTACode";
     public static final String DTA_LABEL_COL = "DTALabel";
-    public static final String DTA_VALUE_COL = "DTAValue";
+
     public static final String DT_SEQ_COL = "DTSeq";
     public static final String DTA_SHORT_COL = "DTAShort";
     public static final String DT_SCORE_CODE_COL = "DTScoreCode";
     public static final String DTSKIP_DTQ_CODE_COL = "DTSkipDTQCode";
     public static final String DTA_COMPARE_CODE_COL = "DTACompareCode";
+    public static final String DT_TITLE_COL = "DTTitle";
+    public static final String DT_SUB_TITLE_COL = "DTSubTitle";
+    public static final String DT_DESCRIPTION_COL = "DTDescription";
+    public static final String DT_AUTO_SCROLL_COL = "DTAutoScroll";
+    public static final String DTAUTO_SCROLL_TEXT = "DTAutoScrollText";
+    public static final String DT_ACTIVE_COL = "DTActive";
+    public static final String DT_CATEGORY_COL = "DTCategory";
+    public static final String DT_GEO_LIST_LEVEL_COL = "DTGeoListLevel";
+    public static final String DT_OP_MODE_COL = "DTOPMode";
+
+    public static final String FREQUENCY_COL = "Frequency";
+    public static final String PROG_ACTIVITY_CODE_COL = "ProgActivityCode";
+    public static final String PROG_ACTIVITY_TITLE_COL = "ProgActivityTitle";
+    public static final String REF_IDENTIFIER_COL = "RefIdentifier";
+    public static final String RPT_FREQUENCY_COL = "RptFrequency";
+    public static final String GEO_LEVEL_COL = "GeoLevel";
+    public static final String GEO_LEVEL_NAME_COL = "GeoLevelName";
+    public static final String LIST_UDF_NAME_COL = "ListUDFName";
+    public static final String QRES_MODE_COL = "QResMode";
+    public static final String QRES_LUP_TEXT_COL = "QResLupText";
+    public static final String LOOK_UP_UDF_NAME_COL = "LookUpUDFName";
+    public static final String RESPONSE_VALUE_CONTROL_COL = "ResponseValueControl";
+    public static final String QTEXT_COL = "QText";
+    public static final String ALLOW_NULL_COL = "AllowNull";
+    public static final String QSEQ_SCOL = "QSeq";
+    public static final String DT_ENU_ID_COL = "DTEnuID";
+    public static final String OP_MODE_COL = "OpMode";
+    public static final String DTTIME_STRING_COL = "DTTimeString";
+    public static final String DT_RSEQ_COL = "DTRSeq";
+    public static final String DTA_VALUE_COL = "DTAValue";
+    public static final String TABLE_NAME_COL = "TableName";
+    public static final String FIELD_NAME_COL = "FieldName";
+    public static final String FIELD_DEFINITION_COL = "FieldDefinition";
+    public static final String FIELD_SHORT_NAME_COL = "FieldShortName";
+    public static final String VALUE_UDF_COL = "ValueUDF";
+    public static final String LUPTABLE_NAME_COL = "LUPTableName";
+    public static final String ADMIN_ONLY_COL = "AdminOnly";
+    public static final String TABLE_GROUP_CODE_COL = "TableGroupCode";
+    public static final String USE_ADMIN_ONLY_COL = "UseAdminOnly";
+    public static final String USE_REPORT_COL = "UseReport";
+    public static final String USE_TRANSACTION_COL = "UseTransaction";
+    public static final String USE_LUP_COL = "UseLUP";
+
+
+
+
+
     public static final String SHOW_HIDE_COL = "ShowHide";
     public static final String MAX_VALUE_COL = "MaxValue";
     public static final String MIN_VALUE_COL = "MinValue";
@@ -1032,6 +1088,18 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.execSQL(Schema.sqlCreateLUP_GpsList());
 
 
+        db.execSQL(Schema.createTableDTATable());
+        db.execSQL(Schema.createTableDTBasic());
+        db.execSQL(Schema.createTableDTCategory());
+        db.execSQL(Schema.createTableDTCountryProgram());
+        db.execSQL(Schema.createTableDTGeoListLevel());
+        db.execSQL(Schema.createTableDTQResMode());
+        db.execSQL(Schema.createTableDTQTable());
+        db.execSQL(Schema.createTableDTResponseTable());
+        db.execSQL(Schema.createTableDTTableDefinition());
+        db.execSQL(Schema.createTaleDTTableListCategory());
+
+
         Log.d(TAG, "  Create All Table ");
 
         //db.close();
@@ -1123,6 +1191,19 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.execSQL(DROP_TABLE_IF_EXISTS + STAFF_MASTER_TABLE);
 
             db.execSQL(DROP_TABLE_IF_EXISTS + LUP_GPS_LIST_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DT_A_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DT_BASIC_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DT_CATEGORY_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DT_COUNTRY_PROGRAM_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DTGEO_LIST_LEVEL_COL);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DTGEO_LIST_LEVEL_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DTQRES_MODE_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DTQ_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DT_RESPONSE_TABLE_COL);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DT_TABLE_DEFINITION_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DTTABLE_LIST_CATEGORY_TABLE);
+
+
 
 
             Log.d(TAG, "All table Dropped.");
@@ -1280,6 +1361,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.delete(PROGRAM_ORGANIZATION_ROLE_TABLE, null, null);
             db.delete(STAFF_MASTER_TABLE, null, null);
             db.delete(LUP_GPS_LIST_TABLE, null, null);
+
+            db.delete(DT_A_TABLE, null, null);
+            db.delete(DT_BASIC_TABLE, null, null);
+            db.delete(DT_CATEGORY_TABLE, null, null);
+            db.delete(DT_COUNTRY_PROGRAM_TABLE, null, null);
+            db.delete(DTGEO_LIST_LEVEL_TABLE, null, null);
+            db.delete(DTQRES_MODE_TABLE, null, null);
+            db.delete(DTQ_TABLE, null, null);
+            db.delete(DT_RESPONSE_TABLE_COL, null, null);
+            db.delete(DT_TABLE_DEFINITION_TABLE, null, null);
+            db.delete(DTTABLE_LIST_CATEGORY_TABLE, null, null);
 
 
             Log.d(TAG, "All User data Deleted.");

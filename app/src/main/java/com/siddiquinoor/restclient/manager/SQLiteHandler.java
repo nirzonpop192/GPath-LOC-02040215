@@ -11138,7 +11138,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         long id = db.insert(LOGIN_TABLE, null, values);
         db.close(); // Closing database connection
 
-        Log.d(TAG, "New user inserted into User Login: " + id);
+        Log.d("MOR_12", "New user inserted into User Login: " + id);
     }
 
     /**

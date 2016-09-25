@@ -63,6 +63,7 @@ public class LoginActivity extends BaseActivity {
     public static final String REG_MEMBER_DATA = "reg_member_data";
     public static final String REG_MEMBER_PROG_GROUP_DATA = "reg_member_prog_grp_data";
     public static final String SERVICE_DATA = "service_data";
+    public static final String ALL_DATA = "all_data";
 
     // Login Button
     private Button btnLogin;
@@ -1577,11 +1578,11 @@ public class LoginActivity extends BaseActivity {
                  *
                  */
                 AppController.getInstance().getRequestQueue().getCache().clear();
-                writeJSONToTextFile(response, "all_data");
+                writeJSONToTextFile(response, ALL_DATA);
 
                 Log.d("DIM", " After checkLogin data in txt \n" + selectedVilJArry + "\n stape:1 ");
 
-                //  hideDialog();
+
 
 
                 // DOING STRING OPERATION TO AVOID ALLOCATE CACHE MEMORY
@@ -1662,7 +1663,7 @@ public class LoginActivity extends BaseActivity {
                 writeJSONToTextFile(response, REG_HOUSE_HOLD_DATA);
 
                 Log.d("DIM", " After RegN HouseHold data in txt  stape:2");
-                //  hideDialog();
+
 
 
                 // DOING STRING OPERATION TO AVOID ALLOCATE CACHE MEMORY

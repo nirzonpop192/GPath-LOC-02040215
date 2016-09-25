@@ -1734,4 +1734,7 @@ public class Schema {
                 "   PRIMARY KEY(" + SQLiteHandler.TABLE_NAME_COL + ")   " +
                 ")";
     }
+
+
+
 }

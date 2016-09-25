@@ -42,6 +42,7 @@ import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
 import com.siddiquinoor.restclient.views.notifications.AlertDialogManager;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -1330,26 +1331,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
              * Read JSON DATA  from the text file
              * */
             String retreiveData = readDataFromFile("all_data");
+
             try {
 
 
                 int size;
-                //  try {
+
                 /**
                  * The total string Convert into JSON object
                  * */
 
                 JSONObject jObj = new JSONObject(retreiveData);
-                db.deleteUsers();
-
-                // User successfully Verified // May apply isNull()
-                // Now store user's info into local database
-
 
                 String user_id = jObj.getString(USR_ID);
-
                 JSONObject user = jObj.getJSONObject(USER_JSON_A);
-
                 String country_code = user.getString(ADM_COUNTRY_CODE);
                 String login_name = user.getString(USR_LOG_IN_NAME);
                 String login_pw = user.getString(USR_LOG_IN_PW);
@@ -1363,14 +1358,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 setUserName(first_name); // Setting User hhName into session
                 setStaffID(user_id); // Setting Staff ID to use when sync data
-                //   setUserID(user_name);
-                // setUserPassword(password);
+
 
                 setUserCountryCode(country_code); // Setting Country code
 
-                // Inserting row in users table
+
 
                 db.addUser(user_id, country_code, login_name, login_pw, first_name, last_name, email, email_verification, user_status, entry_by, entry_date);
+//                Log.d("MOR_12",user_id +  country_code +  login_name +  login_pw +  first_name +  last_name +  email +  email_verification +  user_status +  entry_by +  entry_date);
+
+
+
+
+
 
                 publishProgress(++progressIncremental);
                 // Adding data into Country Table
@@ -1395,7 +1395,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (!jObj.isNull(VALID_DATES_JSON_A)) {
                     JSONArray valid_dates = jObj.getJSONArray(VALID_DATES_JSON_A);
                     size = valid_dates.length();
-                    // lunchBarDialog("valid_dates",size);
+
                     for (int i = 0; i < size; i++) {
                         JSONObject valid_date = valid_dates.getJSONObject(i);
                         String AdmCountryCode = valid_date.getString(ADM_COUNTRY_CODE);
@@ -2046,6 +2046,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
                         //data.setDistStatus(distribution_ext_tableData.getString(DIST_STATUS);
+                        // // TODO: 9/25/2016  create Method for download online
 
                         db.addInDistributionExtendedTable(AdmCountryCode, AdmDonorCode, AdmAwardCode,
                                 LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, ProgCode,

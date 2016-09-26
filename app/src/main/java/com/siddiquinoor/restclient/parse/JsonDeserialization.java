@@ -1119,7 +1119,7 @@ public class JsonDeserialization {
 
     }
 
-    public static void reg_N_FFAPerser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+    public static void reg_N_FFAParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
         int size;
 
         String CountryCode;
@@ -1176,5 +1176,421 @@ public class JsonDeserialization {
     public static void staff_master_DataParser(JSONArray reg_m_assign_prog_srvs, SQLiteHandler sqlH) {
 
     }
+
+
+    public static void DTAnswerParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+        String DTBasic;
+        String DTQCode;
+        String DTACode;
+        String DTALabel;
+        String DTAValue;
+        String DTSeq;
+        String DTAShort;
+        String DTScoreCode;
+        String DTSkipDTQCode;
+        String DTACompareCode;
+        String ShowHide;
+        String MaxValue;
+        String MinValue;
+        String DataType;
+        String MarkOnGrid;
+
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                DTBasic = jsonObject.getString("DTBasic");
+                DTQCode = jsonObject.getString("DTQCode");
+                DTACode = jsonObject.getString("DTACode");
+                DTALabel = jsonObject.getString("DTALabel");
+                DTAValue = jsonObject.getString("DTAValue");
+                DTSeq = jsonObject.getString("DTSeq");
+                DTAShort = jsonObject.getString("DTAShort");
+                DTScoreCode = jsonObject.getString("DTScoreCode");
+                DTSkipDTQCode = jsonObject.getString("DTSkipDTQCode");
+                DTACompareCode = jsonObject.getString("DTACompareCode");
+                ShowHide = jsonObject.getString("ShowHide");
+                MaxValue = jsonObject.getString("MaxValue");
+                MinValue = jsonObject.getString("MinValue");
+                DataType = jsonObject.getString("DataType");
+                MarkOnGrid = jsonObject.getString("MarkOnGrid");
+
+                sqlH.addIntoDTATable(DTBasic, DTQCode, DTACode, DTALabel, DTAValue, Long.parseLong(DTSeq), DTAShort, DTScoreCode, DTSkipDTQCode, DTACompareCode, ShowHide
+                        , Long.parseLong(MaxValue), Long.parseLong(MinValue), DataType, MarkOnGrid, "", "");
+
+                Log.d(TAG, "DT Ans Table");
+
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+
+
+        }
+
+    }
+
+
+    public static void DTBasicParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+        String DTBasic;
+        String DTTitle;
+        String DTSubTitle;
+        String DTDescription;
+        String DTAutoScroll;
+        String DTAutoScrollText;
+        String DTActive;
+        String DTCategory;
+        String DTGeoListLevel;
+        String DTOPMode;
+
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                DTBasic = jsonObject.getString("DTBasic");
+                DTTitle = jsonObject.getString("DTTitle");
+                DTSubTitle = jsonObject.getString("DTSubTitle");
+                DTDescription = jsonObject.getString("DTDescription");
+                DTAutoScroll = jsonObject.getString("DTAutoScroll");
+                DTAutoScrollText = jsonObject.getString("DTAutoScrollText");
+                DTActive = jsonObject.getString("DTActive");
+                DTCategory = jsonObject.getString("DTCategory");
+                DTGeoListLevel = jsonObject.getString("DTGeoListLevel");
+                DTOPMode = jsonObject.getString("DTOPMode");
+
+                sqlH.addIntoDTBasic(DTBasic, DTTitle, DTSubTitle, DTDescription, DTAutoScroll, DTAutoScrollText, DTActive, DTCategory, DTGeoListLevel, DTOPMode, "", "");
+
+                Log.d(TAG, " DTBasic Table");
+
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+
+    public static void DTCategoryParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+
+        String CategoryName;
+        String Frequency;
+
+        String DTCategory;
+
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                DTCategory = jsonObject.getString("DTCategory");
+                CategoryName = jsonObject.getString("CategoryName");
+                Frequency = jsonObject.getString("Frequency");
+
+
+                sqlH.addIntoDTCategory(DTCategory, CategoryName, Frequency, "", "");
+
+                Log.d(TAG, " DTCategory Table");
+
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+
+    public static void DTCountryProgramParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+        String AdmCountryCode;
+        String AdmDonorCode;
+        String AdmAwardCode;
+        String AdmProgCode;
+        String ProgActivityCode;
+        String ProgActivityTitle;
+        String DTBasic;
+        String RefIdentifier;
+        String Status;
+        String RptFrequency;
+
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                AdmCountryCode = jsonObject.getString("AdmCountryCode");
+                AdmDonorCode = jsonObject.getString("AdmDonorCode");
+                AdmAwardCode = jsonObject.getString("AdmAwardCode");
+                AdmProgCode = jsonObject.getString("AdmProgCode");
+                ProgActivityCode = jsonObject.getString("ProgActivityCode");
+                ProgActivityTitle = jsonObject.getString("ProgActivityTitle");
+                DTBasic = jsonObject.getString("DTBasic");
+                RefIdentifier = jsonObject.getString("RefIdentifier");
+                Status = jsonObject.getString("Status");
+                RptFrequency = jsonObject.getString("RptFrequency");
+
+
+                sqlH.addIntoDTCountryProgram(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, ProgActivityCode, ProgActivityTitle, DTBasic, RefIdentifier, Status, RptFrequency, "", "");
+
+                Log.d(TAG, "D_T_CountryProgram");
+
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+
+
+        }
+
+    }
+    public static void DTTableListCategoryParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+        String TableName;
+        String TableGroupCode;
+        String UseAdminOnly;
+        String UseReport;
+        String UseTransaction;
+        String UseLUP;
+
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                TableName = jsonObject.getString("TableName");
+                TableGroupCode = jsonObject.getString("TableGroupCode");
+                UseAdminOnly = jsonObject.getString("UseAdminOnly");
+                UseReport = jsonObject.getString("UseReport");
+                UseTransaction = jsonObject.getString("UseTransaction");
+                UseLUP = jsonObject.getString("UseLUP");
+
+                sqlH.addIntoDTTableListCategory(TableName,TableGroupCode,UseAdminOnly,UseReport,UseTransaction,UseLUP);
+
+                Log.d(TAG,"DT Ans Table");
+
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+
+
+            // Log.d(TAG, "Country Code : " + AdmCountryCode + " Country hhName : " + AdmCountryName);
+        }
+
+    }
+    public static void DTTableDefinitionParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+        String TableName;
+        String FieldName;
+        String FieldDefinition;
+        String FieldShortName;
+        String ValueUDF;
+        String LUPTableName;
+        String AdminOnly;
+
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                TableName = jsonObject.getString("TableName");
+                FieldName = jsonObject.getString("FieldName");
+                FieldDefinition = jsonObject.getString("FieldDefinition");
+                FieldShortName = jsonObject.getString("FieldShortName");
+                ValueUDF = jsonObject.getString("ValueUDF");
+                LUPTableName = jsonObject.getString("LUPTableName");
+                AdminOnly = jsonObject.getString("AdminOnly");
+
+                sqlH.addIntoDTTableDefinition(TableName,FieldName,FieldDefinition,FieldShortName,ValueUDF,LUPTableName,AdminOnly, "", "");
+
+                Log.d(TAG,"DT Ans Table");
+
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+
+
+            // Log.d(TAG, "Country Code : " + AdmCountryCode + " Country hhName : " + AdmCountryName);
+        }
+
+    }
+    public static void DTResponseTableParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+        String DTBasic;
+        String AdmCountryCode;
+        String AdmDonorCode;
+        String AdmAwardCode;
+        String AdmProgCode;
+        String DTEnuID;
+        String DTQCode;
+        String DTACode;
+        String DTRSeq;
+        String DTAValue;
+        String ProgActivityCode;
+        String DTTimeString;
+        String OpMode;
+        String OpMonthCode;
+        String DataType;
+
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                DTBasic = jsonObject.getString("DTBasic");
+                AdmCountryCode = jsonObject.getString("AdmCountryCode");
+                AdmDonorCode = jsonObject.getString("AdmDonorCode");
+                AdmAwardCode = jsonObject.getString("AdmAwardCode");
+                AdmProgCode = jsonObject.getString("AdmProgCode");
+                DTEnuID = jsonObject.getString("DTEnuID");
+                DTQCode = jsonObject.getString("DTQCode");
+                DTACode = jsonObject.getString("DTACode");
+                DTRSeq = jsonObject.getString("DTRSeq");
+                DTAValue = jsonObject.getString("DTAValue");
+                ProgActivityCode = jsonObject.getString("ProgActivityCode");
+                DTTimeString = jsonObject.getString("DTTimeString");
+                OpMode = jsonObject.getString("OpMode");
+                OpMonthCode = jsonObject.getString("OpMonthCode");
+                DataType = jsonObject.getString("DataType");
+
+                sqlH.addIntoDTResponseTable(DTBasic,AdmCountryCode,AdmDonorCode,AdmAwardCode,AdmProgCode,DTEnuID,DTQCode,DTACode,
+                        DTRSeq,DTAValue,ProgActivityCode,DTTimeString,OpMode,OpMonthCode,DataType);
+
+                Log.d(TAG,"DT Ans Table");
+
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+
+
+            // Log.d(TAG, "Country Code : " + AdmCountryCode + " Country hhName : " + AdmCountryName);
+        }
+
+    }
+    public static void DTQResModeParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+        String QResMode;
+        String QResLupText;
+        String DataType;
+        String LookUpUDFName;
+        String ResponseValueControl;
+
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                QResMode = jsonObject.getString("QResMode");
+                QResLupText = jsonObject.getString("QResLupText");
+                DataType = jsonObject.getString("DataType");
+                LookUpUDFName = jsonObject.getString("LookUpUDFName");
+                ResponseValueControl = jsonObject.getString("ResponseValueControl");
+
+                sqlH.addIntoDTQResMode(QResMode,QResLupText, DataType,LookUpUDFName,ResponseValueControl);
+
+                Log.d(TAG,"DT Ans Table");
+
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+
+
+
+        }
+
+    }
+    public static void DTQTableParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+        String DTBasic;
+        String DTQCode;
+        String QText;
+        String QResMode;
+        String QSeq;
+        String AllowNull;
+
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                DTBasic = jsonObject.getString("DTBasic");
+                DTQCode = jsonObject.getString("DTQCode");
+                QText = jsonObject.getString("QText");
+                QResMode = jsonObject.getString("QResMode");
+                QSeq = jsonObject.getString("QSeq");
+                AllowNull = jsonObject.getString("AllowNull");
+
+                sqlH.addIntoDTQTable(DTBasic,DTQCode,QText,QResMode,QSeq,AllowNull);
+
+                Log.d(TAG,"DT Ans Table");
+
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+
+
+
+        }
+
+    }
+    public static void DTGeoListLevelParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+        String GeoLevel;
+        String GeoLevelName;
+        String ListUDFName;
+
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                GeoLevel = jsonObject.getString("GeoLevel");
+                GeoLevelName = jsonObject.getString("GeoLevelName");
+                ListUDFName = jsonObject.getString("ListUDFName");
+                sqlH.addIntoDTGeoListLevel(GeoLevel,GeoLevelName,ListUDFName,"","");
+
+                Log.d(TAG,"DT Ans Table");
+
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+
+
+
+        }
+
+    }
+
 
 }// end of the class

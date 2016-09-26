@@ -236,7 +236,7 @@
 
 
                     <Button
-                        android:id="@+id/btnDynamicTable"
+                        android:id="@+id/btnDynamicData"
                         style="@style/btn_main_page"
                         android:layout_marginBottom="5dp"
                         android:layout_marginEnd="4dp"
@@ -246,7 +246,7 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="15dp"
                         android:paddingStart="15dp"
-                        android:text="  Dynamic Table" />
+                        android:text="  Dynamic Data" />
                 </LinearLayout>
 
 

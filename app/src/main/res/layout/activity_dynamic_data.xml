@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.siddiquinoor.restclient.activity.DynamicData">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header" />
+
+    <RelativeLayout
+        android:id="@+id/page_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header">
+
+        <TextView
+            android:id="@+id/tv_ass_page2Title"
+            style="@style/page_title_style"
+            android:text="Dynamic Table" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/table_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/page_title"
+        android:background="@color/title_bg_col"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/text_dy_table_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="Table Name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/abc_text_size_menu_material" />
+
+        <TextView
+            android:id="@+id/text_dy_award"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_horizontal"
+
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Award"
+            android:textColor="@color/white"
+            android:textSize="@dimen/abc_text_size_menu_material" />
+
+        <TextView
+            android:id="@+id/text_dy_program"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_horizontal"
+
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Program"
+            android:textColor="@color/white"
+            android:textSize="@dimen/abc_text_size_menu_material" />
+
+
+        <TextView
+            android:id="@+id/text_dy_activity_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Activity Title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/abc_text_size_menu_material" />
+
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/lvDynamicTableIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footer"
+        android:layout_below="@+id/table_title" />
+
+    <include
+        android:id="@id/footer"
+        layout="@layout/footer" />
+
+
+</RelativeLayout>

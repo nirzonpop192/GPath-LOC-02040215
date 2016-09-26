@@ -42,7 +42,6 @@ import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
 import com.siddiquinoor.restclient.views.notifications.AlertDialogManager;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -376,6 +375,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView txtName;
     private TextView txtEmail;
     private Button btnLogout;
+    private Button btnDynamicData;
 
     private Button btnNewReg;
     private Button btnSummaryRep;
@@ -488,9 +488,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 btnNewReg.setEnabled(true);
                 btnAssign.setEnabled(true);
                 //   btnService.setEnabled(true);
-                btnCardRequest.setEnabled(true);
+//                btnCardRequest.setEnabled(true);
                 btnGraduation.setEnabled(true);
                 btnGroup.setEnabled(true);
+                btnDynamicData.setEnabled(true);
 
 
                 break;
@@ -517,6 +518,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnGraduation.setOnClickListener(this);
         btnAssign.setOnClickListener(this);
         btnGroup.setOnClickListener(this);
+        btnDynamicData.setOnClickListener(this);
 
     }
 
@@ -534,6 +536,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnGraduation.setEnabled(false);
         btnAssign.setEnabled(false);
         btnGroup.setEnabled(false);
+        btnDynamicData.setEnabled(false);
 
     }
 
@@ -559,6 +562,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnDistribution = (Button) findViewById(R.id.btnDistribution);
         textLastSync = (TextView) findViewById(R.id.tv_last_sync);
         btnGroup = (Button) findViewById(R.id.btnGroup);
+        btnDynamicData = (Button) findViewById(R.id.btnDynamicData);
 
 
         if (db.selectUploadSyntextRowCount() > 0) {
@@ -690,14 +694,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 iMemSearchPage.putExtra(KEY.STR_COUNTRY, strCountry);
                 iMemSearchPage.putExtra(KEY.DIR_CLASS_NAME_KEY, "MainActivity");
 
-                /**
-                 * rechek sub assigne page involed  or not
-                 */
-//                iMemSearchPage.putExtra(OldAssignActivity.SUB_ASSIGN_DIR, false);
+
                 finish();
                 startActivity(iMemSearchPage);
                 break;
-
+            case R.id.btnDynamicData:
+                Intent iDynamicData = new Intent(getApplicationContext(), DynamicData.class);
+                iDynamicData.putExtra(KEY.COUNTRY_ID, idCountry);
+                finish();
+                startActivity(iDynamicData);
+                break;
         }
 
     }
@@ -817,14 +823,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            new Inject_DynamicTableIntoSQLite().execute();
 
-            hideDialog();
-
-
-            loadCountry();
-
-            // set the user name
-            txtName.setText(getUserName());
         }
 
         @Override
@@ -1137,7 +1137,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (!jObj.isNull("reg_n_ffa")) {
 
 
-                    JsonDeserialization.reg_N_FFAPerser(jObj.getJSONArray("reg_n_ffa"), db);
+                    JsonDeserialization.reg_N_FFAParser(jObj.getJSONArray("reg_n_ffa"), db);
 
                 }
 
@@ -1149,6 +1149,109 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         }
     }
+
+
+    private class Inject_DynamicTableIntoSQLite extends AsyncTask<Void, Integer, Void> {
+
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            hideDialog();
+
+
+            loadCountry();
+
+            // set the user name
+            txtName.setText(getUserName());
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+
+            /**
+             * Read JSON DATA  from the text file
+             * */
+            String retrieveData = readDataFromFile(LoginActivity.DYNAMIC_TABLE);
+
+            try {
+
+
+                /**
+                 * The total string Convert into JSON object
+                 * */
+
+                JSONObject jObj = new JSONObject(retrieveData);
+
+
+                publishProgress(++progressIncremental);
+
+                if (!jObj.isNull("D_T_answer")) {
+
+                    JsonDeserialization.DTAnswerParser(jObj.getJSONArray("D_T_answer"), db);
+                }
+
+                if (!jObj.isNull("D_T_basic")) {
+
+                    JsonDeserialization.DTBasicParser(jObj.getJSONArray("D_T_basic"), db);
+                }
+
+                if (!jObj.isNull("D_T_category")) {
+
+                    JsonDeserialization.DTCategoryParser(jObj.getJSONArray("D_T_category"), db);
+                }
+
+                if (!jObj.isNull("D_T_CountryProgram")) {
+
+                    JsonDeserialization.DTCountryProgramParser(jObj.getJSONArray("D_T_CountryProgram"), db);
+                }
+
+
+                if (!jObj.isNull("D_T_GeoListLevel")) {
+
+                    JsonDeserialization.DTGeoListLevelParser(jObj.getJSONArray("D_T_GeoListLevel"), db);
+                }
+
+
+                if (!jObj.isNull("D_T_QTable")) {
+
+                    JsonDeserialization.DTQTableParser(jObj.getJSONArray("D_T_QTable"), db);
+                }
+
+                if (!jObj.isNull("D_T_QResMode")) {
+
+                    JsonDeserialization.DTQResModeParser(jObj.getJSONArray("D_T_QResMode"), db);
+                }
+
+                if (!jObj.isNull("D_T_ResponseTable")) {
+
+                    JsonDeserialization.DTResponseTableParser(jObj.getJSONArray("D_T_ResponseTable"), db);
+                }
+
+                if (!jObj.isNull("D_T_TableDefinition")) {
+
+                    JsonDeserialization.DTTableDefinitionParser(jObj.getJSONArray("D_T_TableDefinition"), db);
+                }
+
+                if (!jObj.isNull("D_T_TableListCategory")) {
+
+                    JsonDeserialization.DTTableListCategoryParser(jObj.getJSONArray("D_T_TableListCategory"), db);
+                }
+
+
+            } catch (Exception e) {
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            progressDialog.setProgress(values[0]);
+        }
+    }
+
 
     private class Inject_Reg_HouseH_DataIntoSQLite extends AsyncTask<Void, Integer, Void> {
 
@@ -1330,7 +1433,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             /**
              * Read JSON DATA  from the text file
              * */
-            String retreiveData = readDataFromFile("all_data");
+            String retrieveData = readDataFromFile(LoginActivity.ALL_DATA);
 
             try {
 
@@ -1341,7 +1444,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                  * The total string Convert into JSON object
                  * */
 
-                JSONObject jObj = new JSONObject(retreiveData);
+                JSONObject jObj = new JSONObject(retrieveData);
 
                 String user_id = jObj.getString(USR_ID);
                 JSONObject user = jObj.getJSONObject(USER_JSON_A);
@@ -1363,13 +1466,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 setUserCountryCode(country_code); // Setting Country code
 
 
-
                 db.addUser(user_id, country_code, login_name, login_pw, first_name, last_name, email, email_verification, user_status, entry_by, entry_date);
 //                Log.d("MOR_12",user_id +  country_code +  login_name +  login_pw +  first_name +  last_name +  email +  email_verification +  user_status +  entry_by +  entry_date);
-
-
-
-
 
 
                 publishProgress(++progressIncremental);
@@ -1445,7 +1543,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         String SubGrpName = gps_subgroup.getString(SUB_GRP_NAME);
                         String Description = gps_subgroup.getString(DESCRIPTION);
                         db.addGpsSubGroup(GrpCode, SubGrpCode, SubGrpName, Description);
-
 
 
                     }
@@ -1618,8 +1715,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
                         db.insertAdmCountryProgram(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, AdmSrvCode, FoodFlag, NFoodFlag, CashFlag, VOFlag, DefaultFoodDays, DefaultNFoodDays, DefaultCashDays, DefaultVODays, SrvSpecific);
-
-
 
 
                     }

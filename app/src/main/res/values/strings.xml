@@ -183,7 +183,7 @@
     <string name="srv_summary_TitleLable">Service Summary </string>
     <string name="tv_criteria">Criteria</string>
     <!-- LOG IN SCREEN -->
-    <string name="log_in_version_lable">GPath-UAT-02040231</string>
+    <string name="log_in_version_lable">GPath-LOC-02040231</string>
     <!-- VERSION -->
 
 
@@ -562,7 +562,7 @@ Otherwise, initiate to sync and login again.</string>
     <!-- ID List in Group   Summary page resource-->
     <string name="title_id_list_in_grp_summary">ID List in Group </string>
 
-  <!--ASSIGN DDR PROGRAM FFA -->
+    <!--ASSIGN DDR PROGRAM FFA -->
     <string name="_1_child_headed_households_orphan_headed_households_or_where_the_parent_or_grandparent_is_incapable_of_undertaking_the_usual_head_of_household_roles">1. Child-headed households (orphan-headed households or where the parent or grandparent is incapable of undertaking the usual head of household roles)</string>
     <string name="_2_elderly_headed_households_more_than_60_years_old_with_no_other_able_bodied_adult_household_members">2. Elderly-headed households (more than 60 years old) with no other able-bodied adult household members.</string>
     <string name="_3_the_most_food_insecure_households_with_chronically_ill_hiv_or_aids_affected_members">3. The most food insecure households with chronically ill/HIV or AIDS affected members</string>

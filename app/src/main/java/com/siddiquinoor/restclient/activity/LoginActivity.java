@@ -64,6 +64,7 @@ public class LoginActivity extends BaseActivity {
     public static final String REG_MEMBER_PROG_GROUP_DATA = "reg_member_prog_grp_data";
     public static final String SERVICE_DATA = "service_data";
     public static final String ALL_DATA = "all_data";
+    public static final String DYNAMIC_TABLE = "dynamic_table";
 
     // Login Button
     private Button btnLogin;
@@ -1580,10 +1581,6 @@ public class LoginActivity extends BaseActivity {
                 AppController.getInstance().getRequestQueue().getCache().clear();
                 writeJSONToTextFile(response, ALL_DATA);
 
-                Log.d("DIM", " After checkLogin data in txt \n" + selectedVilJArry + "\n stape:1 ");
-
-
-
 
                 // DOING STRING OPERATION TO AVOID ALLOCATE CACHE MEMORY
 
@@ -1665,7 +1662,6 @@ public class LoginActivity extends BaseActivity {
                 Log.d("DIM", " After RegN HouseHold data in txt  stape:2");
 
 
-
                 // DOING STRING OPERATION TO AVOID ALLOCATE CACHE MEMORY
 
                 String errorResult = response.substring(9, 14);
@@ -1682,7 +1678,7 @@ public class LoginActivity extends BaseActivity {
                     String errorMsg = response.substring(response.indexOf("error_msg") + 11);
                     Toast.makeText(getApplicationContext(),
                             errorMsg, Toast.LENGTH_LONG).show();
-                    // hideDialog();
+
                 }
 
 
@@ -1748,8 +1744,11 @@ public class LoginActivity extends BaseActivity {
 
                 String errorResult = response.substring(9, 14);
 
+/**
+ * if Json string get false than it return false
+ */
+                boolean error = !errorResult.equals("false");
 
-                boolean error = errorResult.equals("false") ? false : true;
 
                 if (!error) {
 
@@ -1760,7 +1759,7 @@ public class LoginActivity extends BaseActivity {
                     String errorMsg = response.substring(response.indexOf("error_msg") + 11);
                     Toast.makeText(getApplicationContext(),
                             errorMsg, Toast.LENGTH_LONG).show();
-                    // hideDialog();
+
                 }
 
 
@@ -1970,7 +1969,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onResponse(String response) {
                 /***
-                 * @deis: IN THIS STRING RESPONSE WRITE THE JSON DATA
+                 *  IN THIS STRING RESPONSE WRITE THE JSON DATA
                  *
                  */
                 AppController.getInstance().getRequestQueue().getCache().clear();
@@ -1978,23 +1977,129 @@ public class LoginActivity extends BaseActivity {
 
                 Log.d("DIM", " After Load Assign Program Service in txt last stap :6");
 
-                Log.d("Mor", response);
+
                 hideDialog();
 
 
-                // DOING STRING OPERATION TO AVOID ALLOCATE CACHE MEMORY
+                /**
+                 *  DOING STRING OPERATION TO AVOID ALLOCATE CACHE MEMORY
+                 */
 
                 String errorResult = response.substring(9, 14);
 
+/**
+ * If Json String  get False than it return false
+ */
+                boolean error = !errorResult.equals("false");
 
-                boolean error = errorResult.equals("false") ? false : true;
+                if (!error) {
+
+                    downLoadDynamicData(user_Name,pass_word,selectedVilJArry,operationMode);
+      /*              *//**
+                     * IF GET NO ERROR  THAN GOTO THE MAIN ACTIVITY
+                     *//*
+
+                    setLogin(true);        // login success
+                    // Launch main activity
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    setUserID(user_Name);
+                    setUserPassword(pass_word);
+                    editor.putBoolean(IS_APP_FIRST_RUN, true);
+                    editor.commit();
+
+                    startActivity(intent);*/
+                } else {
+                    // Error in login. Invalid UserName or Password
+                    String errorMsg = response.substring(response.indexOf("error_msg") + 11);
+                    Toast.makeText(getApplicationContext(),
+                            errorMsg, Toast.LENGTH_LONG).show();
+
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error + " Stack Tracr = " + error.getStackTrace() + " Detail = " + error.getMessage());
+                // hide the mdialog
+                hideDialog();
+                showAlert("Failed to retrieve data\r\nPlease try again checking your internet connectivity, Username and Password.");
+
+
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("key", "PhEUT5R251");
+                params.put("task", "is_down_load_reg_assn_prog");
+                params.put("user_name", user_Name);
+                params.put("password", pass_word);
+                params.put("lay_r_code_j", selectedVilJArry.toString());
+                params.put("operation_mode", operationMode);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+
+    /**
+     * function to verify login details download RegN AssProgSrv in mysql db
+     */
+    public void downLoadDynamicData(final String user_Name, final String pass_word, final JSONArray selectedVilJArry, final String operationMode) {
+        // Tag used to cancel the request
+        String tag_string_req = "req_ass_prog";
+//        Log.d("MOR", "Before Response Calling ");
+
+        StringRequest strReq = new StringRequest(Method.POST,
+                AppConfig.API_LINK, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                /***
+                 *  IN THIS STRING RESPONSE WRITE THE JSON DATA
+                 *
+                 */
+                AppController.getInstance().getRequestQueue().getCache().clear();
+                writeJSONToTextFile(response, DYNAMIC_TABLE);
+
+                Log.d("DIM", " After Loading Dynamic Table in txt last stap :7");
+
+
+                hideDialog();
+
+
+                /**
+                 *  DOING STRING OPERATION TO AVOID ALLOCATE CACHE MEMORY
+                 */
+
+                String errorResult = response.substring(9, 14);
+
+/**
+ * If Json String  get False than it return false
+ */
+                boolean error = !errorResult.equals("false");
 
                 if (!error) {
 
 
-                    // @dec: IF GET NO ERROR  THAN GOTO THE MAIN ACTIVITY
+                    /**
+                     * IF GET NO ERROR  THAN GOTO THE MAIN ACTIVITY
+                     */
+
                     setLogin(true);        // login success
-                    // Launch main activity
+                    /**
+                     *  Launch main activity
+                     */
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     setUserID(user_Name);
                     setUserPassword(pass_word);
@@ -2030,7 +2135,7 @@ public class LoginActivity extends BaseActivity {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("key", "PhEUT5R251");
-                params.put("task", "is_down_load_reg_assn_prog");
+                params.put("task", "is_down_load_dynamic_table");
                 params.put("user_name", user_Name);
                 params.put("password", pass_word);
                 params.put("lay_r_code_j", selectedVilJArry.toString());

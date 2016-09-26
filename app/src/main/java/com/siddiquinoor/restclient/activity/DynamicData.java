@@ -16,19 +16,32 @@ import android.widget.Spinner;
 
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
+import com.siddiquinoor.restclient.manager.SQLiteHandler;
+import com.siddiquinoor.restclient.utils.KEY;
+import com.siddiquinoor.restclient.views.adapters.AssignDataModel;
+import com.siddiquinoor.restclient.views.adapters.DynamicDataIndexAdpater;
+import com.siddiquinoor.restclient.views.adapters.DynamicDataIndexDataModel;
+import com.siddiquinoor.restclient.views.adapters.MemberSearchAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DynamicData extends BaseActivity {
 
     private ListView lvDynamicTableIndex;
     private Button btnHome;
     private final  Context mContext=DynamicData.this;
+    private SQLiteHandler sqlH;
+    private ArrayList<DynamicDataIndexDataModel> dataArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dynamic_data);
         inti();
-
+        Intent intent = getIntent();
+        String idCountry=intent.getStringExtra(KEY.COUNTRY_ID);
+        loadDynamicIndex(idCountry);
         setListener();
 
     }
@@ -46,6 +59,7 @@ public class DynamicData extends BaseActivity {
 
     private void inti() {
         viewReference();
+        sqlH= new SQLiteHandler(mContext);
     }
 
     private void viewReference() {
@@ -83,4 +97,31 @@ public class DynamicData extends BaseActivity {
         super.onWindowFocusChanged(hasFocus);
         addIconHomeButton();
     }
+
+   private void loadDynamicIndex(String cCode){
+
+       List<DynamicDataIndexDataModel> dataList = sqlH.getDynamicTableIndexList(cCode);
+       DynamicDataIndexAdpater adapter=null;
+
+      dataArray = new ArrayList<DynamicDataIndexDataModel>();
+       if (dataList.size() != 0) {
+
+           dataArray.clear();
+
+           for (DynamicDataIndexDataModel data : dataList) {
+               // add contacts data in arrayList
+               dataArray.add(data);
+           }
+
+/**
+ * Assign the Adapter in list
+ */
+            adapter = new DynamicDataIndexAdpater((Activity) mContext, dataArray);
+           adapter.notifyDataSetChanged();
+
+           lvDynamicTableIndex.setAdapter(adapter);
+
+       }
+
+   }
 }

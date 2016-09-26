@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+        android:layout_toLeftOf="@+id/groupSear_tv_CateName"
+        android:layout_toStartOf="@+id/groupSear_tv_CateName"
         android:gravity="center_vertical"
         android:hint="MILA"
         android:paddingTop="2dp"
-        android:textSize="15sp"
-        android:layout_toLeftOf="@+id/groupSear_tv_CateName"
-        android:layout_toStartOf="@+id/groupSear_tv_CateName" />
+        android:textSize="15sp" />
 
 
     <TextView
@@ -34,17 +34,6 @@
         android:textSize="14sp" />
 
 
-    <ImageButton
-        android:layout_marginRight="10dp"
-
-        android:id="@+id/ibtn_group_sear_edit"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/ic_action_edit" />
-
     <TextView
         android:id="@+id/groupSear_tv_CateName"
         android:layout_width="wrap_content"
@@ -56,6 +45,17 @@
 
         android:gravity="center"
         android:text="er" />
+
+    <ImageButton
+        android:id="@+id/ibtn_group_sear_edit"
+
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_action_edit" />
 
 
 </RelativeLayout>

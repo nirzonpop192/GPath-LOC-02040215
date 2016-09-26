@@ -43,6 +43,7 @@ import com.siddiquinoor.restclient.views.adapters.AssignDataModel;
 import com.siddiquinoor.restclient.views.adapters.CommunityGroupDataModel;
 import com.siddiquinoor.restclient.views.adapters.DistributionGridDataModel;
 import com.siddiquinoor.restclient.views.adapters.DistributionSaveDataModel;
+import com.siddiquinoor.restclient.views.adapters.DynamicDataIndexDataModel;
 import com.siddiquinoor.restclient.views.adapters.GraduationGridDataModel;
 import com.siddiquinoor.restclient.views.adapters.ListDataModel;
 import com.siddiquinoor.restclient.views.adapters.GPSLocationLatLong;
@@ -238,9 +239,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String USE_REPORT_COL = "UseReport";
     public static final String USE_TRANSACTION_COL = "UseTransaction";
     public static final String USE_LUP_COL = "UseLUP";
-
-
-
 
 
     public static final String SHOW_HIDE_COL = "ShowHide";
@@ -1202,8 +1200,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.execSQL(DROP_TABLE_IF_EXISTS + DT_RESPONSE_TABLE_COL);
             db.execSQL(DROP_TABLE_IF_EXISTS + DT_TABLE_DEFINITION_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + DTTABLE_LIST_CATEGORY_TABLE);
-
-
 
 
             Log.d(TAG, "All table Dropped.");
@@ -5516,6 +5512,62 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
+    public ArrayList<DynamicDataIndexDataModel> getDynamicTableIndexList(final String cCode) {
+
+        ArrayList<DynamicDataIndexDataModel> list = new ArrayList<DynamicDataIndexDataModel>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT dtB." + DT_TITLE_COL + "  " +
+                " ,dtCPgr." + DT_BASIC_COL + " AS dtBasicCode  " +
+                " ,donor." + DONOR_NAME_COL + " || '-' || award." + AWARD_S_NAME_COL + " AS awardName  " +
+                " ,dtCPgr." + DONOR_CODE_COL + " || '' || dtCPgr." + AWARD_CODE_COL + " AS awardCode  " +
+                " ,prg." + PROGRAM_SHORT_NAME_COL + "  " +
+                " ,dtCPgr." + PROGRAM_CODE_COL + "  " +
+                " ,dtCPgr." + PROG_ACTIVITY_TITLE_COL
+                + "  from " + DT_COUNTRY_PROGRAM_TABLE + " AS dtCPgr  " +
+                " LEFT JOIN " + DT_BASIC_TABLE + "  as dtB  " +
+                " ON dtB." + DT_BASIC_COL + " = dtCpgr." + DT_BASIC_COL + "   " +
+                " LEFT JOIN " + ADM_AWARD_TABLE + " as award  " +
+                " ON award." + COUNTRY_CODE_COL + " = dtCpgr." + COUNTRY_CODE_COL + "  " +
+                " AND award." + DONOR_CODE_COL + " = dtCpgr." + DONOR_CODE_COL + "  " +
+                " AND award." + AWARD_CODE_COL + "= dtCpgr." + AWARD_CODE_COL + "  " +
+                " LEFT JOIN " + ADM_DONOR_TABLE + " AS donor  " +
+                " ON donor." + DONOR_CODE_COL + " = dtCpgr." + DONOR_CODE_COL + "  " +
+                " LEFT JOIN " + PROGRAM_MASTER_TABLE + " AS prg  " +
+                " ON prg." + DONOR_CODE_COL + " = dtCpgr." + DONOR_CODE_COL + "  " +
+                " AND prg." + AWARD_CODE_COL + " = dtCpgr." + AWARD_CODE_COL + "  " +
+                " AND prg." + PROGRAM_CODE_COL + " = dtCpgr." + PROGRAM_CODE_COL + "  " +
+                " WHERE dtCPgr." + COUNTRY_CODE_COL + " = '" + cCode + "' ";
+
+
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                DynamicDataIndexDataModel data = new DynamicDataIndexDataModel();
+                data.setDtTittle(cursor.getString(0));
+                data.setDtBasicCode(cursor.getString(1));
+                data.setAwardName(cursor.getString(2));
+                data.setAwardCode(cursor.getString(3));
+                data.setProgramName(cursor.getString(4));
+                data.setProgramCode(cursor.getString(5));
+
+                data.setPrgActivityTitle(cursor.getString(6));
+
+
+                list.add(data);
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return list;
+
+
+    }
+
+
     public ArrayList<CommunityGroupDataModel> getCommunityGroupList(final String cCode, final String donorCode, final String awardCode, final String progCode, final String groupName) {
 
         ArrayList<CommunityGroupDataModel> listgroup = new ArrayList<CommunityGroupDataModel>();
@@ -6821,11 +6873,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
-    public String getMinDate(String cCode){
-        return getDate(cCode,"Min");
+    public String getMinDate(String cCode) {
+        return getDate(cCode, "Min");
     }
-    public String getMaxDate(String cCode){
-        return getDate(cCode,"Max");
+
+    public String getMaxDate(String cCode) {
+        return getDate(cCode, "Max");
     }
 
     public String getDate(String cCode, String MinOrMax) {
@@ -9814,12 +9867,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
 
     /**
-     *  by Faisal Mohammad
+     * by Faisal Mohammad
+     *
      * @since : 2015-11-17
-     *  update the regestration value  RegN assign Program Service
+     * update the regestration value  RegN assign Program Service
      * into database For Graduation
-     *
-     *
      */
 
 
@@ -11746,172 +11798,172 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_BY, entryBy);
         values.put(ENTRY_DATE, entryDate);
 
-        long id = db.insert(DT_A_TABLE,null,values);
+        long id = db.insert(DT_A_TABLE, null, values);
         db.close();
     }
 
     public void addIntoDTBasic(String dtBasic, String dtTitle, String dtSubTitle, String dtDescription, String dtAutoScroll,
                                String dtAutoScrollText, String dtActive, String dtCategory, String dtGeoListLevel,
-                               String dtOpMode, String entryBy, String entryDate){
+                               String dtOpMode, String entryBy, String entryDate) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(DT_BASIC_COL,dtBasic);
-        values.put(DT_TITLE_COL,dtTitle);
-        values.put(DT_SUB_TITLE_COL,dtSubTitle);
-        values.put(DT_DESCRIPTION_COL,dtDescription);
-        values.put(DT_AUTO_SCROLL_COL,dtAutoScroll);
-        values.put(DTAUTO_SCROLL_TEXT,dtAutoScrollText);
-        values.put(DT_ACTIVE_COL,dtActive);
-        values.put(DT_CATEGORY_COL,dtCategory);
-        values.put(DT_GEO_LIST_LEVEL_COL,dtGeoListLevel);
-        values.put(DT_OP_MODE_COL,dtOpMode);
-        values.put(ENTRY_BY,entryBy);
-        values.put(ENTRY_DATE,entryDate);
+        values.put(DT_BASIC_COL, dtBasic);
+        values.put(DT_TITLE_COL, dtTitle);
+        values.put(DT_SUB_TITLE_COL, dtSubTitle);
+        values.put(DT_DESCRIPTION_COL, dtDescription);
+        values.put(DT_AUTO_SCROLL_COL, dtAutoScroll);
+        values.put(DTAUTO_SCROLL_TEXT, dtAutoScrollText);
+        values.put(DT_ACTIVE_COL, dtActive);
+        values.put(DT_CATEGORY_COL, dtCategory);
+        values.put(DT_GEO_LIST_LEVEL_COL, dtGeoListLevel);
+        values.put(DT_OP_MODE_COL, dtOpMode);
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
 
-        long id = db.insert(DT_BASIC_TABLE,null,values);
+        long id = db.insert(DT_BASIC_TABLE, null, values);
         db.close();
     }
 
     public void addIntoDTCategory(String dtCategory, String categoryName, String frequency, String entryBy,
-                                  String entryDate){
+                                  String entryDate) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(DT_CATEGORY_COL,dtCategory);
-        values.put(CATEGORY_NAME_COL,categoryName);
-        values.put(FREQUENCY_COL,frequency);
-        values.put(ENTRY_BY,entryBy);
-        values.put(ENTRY_DATE,entryDate);
+        values.put(DT_CATEGORY_COL, dtCategory);
+        values.put(CATEGORY_NAME_COL, categoryName);
+        values.put(FREQUENCY_COL, frequency);
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
 
-        long id = db.insert(DT_CATEGORY_TABLE,null,values);
+        long id = db.insert(DT_CATEGORY_TABLE, null, values);
         db.close();
     }
 
     public void addIntoDTCountryProgram(String countryCode, String donorCode, String awardCode, String programCode,
                                         String progActivityCode, String progActivityTitle, String dtBasic, String refIdentifier,
-                                        String status, String rftFrequency, String entryBy, String entryDate){
+                                        String status, String rftFrequency, String entryBy, String entryDate) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(COUNTRY_CODE_COL,countryCode);
-        values.put(DONOR_CODE_COL,donorCode);
-        values.put(AWARD_CODE_COL,awardCode);
-        values.put(PROGRAM_CODE_COL,programCode);
-        values.put(PROG_ACTIVITY_CODE_COL,progActivityCode);
-        values.put(PROG_ACTIVITY_TITLE_COL,progActivityTitle);
-        values.put(DT_BASIC_COL,dtBasic);
-        values.put(REF_IDENTIFIER_COL,refIdentifier);
-        values.put(STATUS,status);
-        values.put(RPT_FREQUENCY_COL,rftFrequency);
-        values.put(ENTRY_BY,entryBy);
-        values.put(ENTRY_DATE,entryDate);
+        values.put(COUNTRY_CODE_COL, countryCode);
+        values.put(DONOR_CODE_COL, donorCode);
+        values.put(AWARD_CODE_COL, awardCode);
+        values.put(PROGRAM_CODE_COL, programCode);
+        values.put(PROG_ACTIVITY_CODE_COL, progActivityCode);
+        values.put(PROG_ACTIVITY_TITLE_COL, progActivityTitle);
+        values.put(DT_BASIC_COL, dtBasic);
+        values.put(REF_IDENTIFIER_COL, refIdentifier);
+        values.put(STATUS, status);
+        values.put(RPT_FREQUENCY_COL, rftFrequency);
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
 
-        long id = db.insert(DT_COUNTRY_PROGRAM_TABLE,null,values);
+        long id = db.insert(DT_COUNTRY_PROGRAM_TABLE, null, values);
         db.close();
     }
 
-    public void addIntoDTGeoListLevel(String geoLevel, String geoLevelName, String listUDFName, String entryBy, String entryDate){
+    public void addIntoDTGeoListLevel(String geoLevel, String geoLevelName, String listUDFName, String entryBy, String entryDate) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(GEO_LEVEL_COL,geoLevel);
-        values.put(GEO_LEVEL_NAME_COL,geoLevelName);
-        values.put(LIST_UDF_NAME_COL,listUDFName);
-        values.put(ENTRY_BY,entryBy);
-        values.put(ENTRY_DATE,entryDate);
+        values.put(GEO_LEVEL_COL, geoLevel);
+        values.put(GEO_LEVEL_NAME_COL, geoLevelName);
+        values.put(LIST_UDF_NAME_COL, listUDFName);
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
 
-        long id = db.insert(DTGEO_LIST_LEVEL_TABLE,null,values);
+        long id = db.insert(DTGEO_LIST_LEVEL_TABLE, null, values);
         db.close();
     }
 
-    public void addIntoDTQResMode(String qResMode, String qResLupText, String dataType, String lookUpUDFName, String responseValueControl){
+    public void addIntoDTQResMode(String qResMode, String qResLupText, String dataType, String lookUpUDFName, String responseValueControl) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(QRES_MODE_COL,qResMode);
-        values.put(QRES_LUP_TEXT_COL,qResLupText);
-        values.put(DATA_TYPE_COL,dataType);
-        values.put(LOOK_UP_UDF_NAME_COL,lookUpUDFName);
-        values.put(RESPONSE_VALUE_CONTROL_COL,responseValueControl);
+        values.put(QRES_MODE_COL, qResMode);
+        values.put(QRES_LUP_TEXT_COL, qResLupText);
+        values.put(DATA_TYPE_COL, dataType);
+        values.put(LOOK_UP_UDF_NAME_COL, lookUpUDFName);
+        values.put(RESPONSE_VALUE_CONTROL_COL, responseValueControl);
 
-        long id = db.insert(DTQRES_MODE_TABLE,null,values);
+        long id = db.insert(DTQRES_MODE_TABLE, null, values);
         db.close();
     }
 
-    public void addIntoDTQTable(String dtBasic, String dtqCode, String qText, String qResMode, String qSeq, String allowNull){
+    public void addIntoDTQTable(String dtBasic, String dtqCode, String qText, String qResMode, String qSeq, String allowNull) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(DT_BASIC_COL,dtBasic);
-        values.put(DTQ_CODE_COL,dtqCode);
-        values.put(QTEXT_COL,qText);
-        values.put(QRES_MODE_COL,qResMode);
-        values.put(QSEQ_SCOL,qSeq);
-        values.put(ALLOW_NULL_COL,allowNull);
+        values.put(DT_BASIC_COL, dtBasic);
+        values.put(DTQ_CODE_COL, dtqCode);
+        values.put(QTEXT_COL, qText);
+        values.put(QRES_MODE_COL, qResMode);
+        values.put(QSEQ_SCOL, qSeq);
+        values.put(ALLOW_NULL_COL, allowNull);
 
-        long id = db.insert(DTQ_TABLE,null,values);
+        long id = db.insert(DTQ_TABLE, null, values);
         db.close();
     }
 
     public void addIntoDTResponseTable(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,
                                        String dtEnuId, String dtqCode, String dtaCode, String dtrSeq, String dtaValue,
-                                       String progActivityCode, String dttTimeString, String opMode, String opMonthCode, String dataType){
+                                       String progActivityCode, String dttTimeString, String opMode, String opMonthCode, String dataType) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(DT_BASIC_COL,dtBasic);
-        values.put(COUNTRY_CODE_COL,countryCode);
-        values.put(DONOR_CODE_COL,donorCode);
-        values.put(AWARD_CODE_COL,awardCode);
-        values.put(PROGRAM_CODE_COL,programCode);
-        values.put(DT_ENU_ID_COL,dtEnuId);
-        values.put(DTQ_CODE_COL,dtqCode);
-        values.put(DTA_CODE_COL,dtaCode);
-        values.put(DT_RSEQ_COL,dtrSeq);
-        values.put(DTA_VALUE_COL,dtaValue);
-        values.put(PROG_ACTIVITY_CODE_COL,progActivityCode);
-        values.put(DTTIME_STRING_COL,dttTimeString);
-        values.put(OP_MODE_COL,opMode);
-        values.put(OP_MONTH_CODE_COL,opMonthCode);
-        values.put(DATA_TYPE_COL,dataType);
+        values.put(DT_BASIC_COL, dtBasic);
+        values.put(COUNTRY_CODE_COL, countryCode);
+        values.put(DONOR_CODE_COL, donorCode);
+        values.put(AWARD_CODE_COL, awardCode);
+        values.put(PROGRAM_CODE_COL, programCode);
+        values.put(DT_ENU_ID_COL, dtEnuId);
+        values.put(DTQ_CODE_COL, dtqCode);
+        values.put(DTA_CODE_COL, dtaCode);
+        values.put(DT_RSEQ_COL, dtrSeq);
+        values.put(DTA_VALUE_COL, dtaValue);
+        values.put(PROG_ACTIVITY_CODE_COL, progActivityCode);
+        values.put(DTTIME_STRING_COL, dttTimeString);
+        values.put(OP_MODE_COL, opMode);
+        values.put(OP_MONTH_CODE_COL, opMonthCode);
+        values.put(DATA_TYPE_COL, dataType);
 
-        long id = db.insert(DT_RESPONSE_TABLE_COL,null,values);
+        long id = db.insert(DT_RESPONSE_TABLE_COL, null, values);
         db.close();
     }
 
     public void addIntoDTTableDefinition(String tableName, String fieldName, String fieldDefinition, String fieldShortName,
-                                         String valueUdf, String lupTableName, String adminOnly, String entryBy, String entryDate){
+                                         String valueUdf, String lupTableName, String adminOnly, String entryBy, String entryDate) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(TABLE_NAME_COL,tableName);
-        values.put(FIELD_NAME_COL,fieldName);
-        values.put(FIELD_DEFINITION_COL,fieldDefinition);
-        values.put(FIELD_SHORT_NAME_COL,fieldShortName);
-        values.put(VALUE_UDF_COL,valueUdf);
-        values.put(LUPTABLE_NAME_COL,lupTableName);
-        values.put(ADMIN_ONLY_COL,adminOnly);
-        values.put(ENTRY_BY,entryBy);
-        values.put(ENTRY_DATE,entryDate);
+        values.put(TABLE_NAME_COL, tableName);
+        values.put(FIELD_NAME_COL, fieldName);
+        values.put(FIELD_DEFINITION_COL, fieldDefinition);
+        values.put(FIELD_SHORT_NAME_COL, fieldShortName);
+        values.put(VALUE_UDF_COL, valueUdf);
+        values.put(LUPTABLE_NAME_COL, lupTableName);
+        values.put(ADMIN_ONLY_COL, adminOnly);
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
 
-        long id = db.insert(DT_TABLE_DEFINITION_TABLE,null,values);
+        long id = db.insert(DT_TABLE_DEFINITION_TABLE, null, values);
         db.close();
     }
 
     public void addIntoDTTableListCategory(String tableName, String tableGroupCode, String useAdminOnly, String useReport,
-                                           String useTransection, String useLup){
+                                           String useTransection, String useLup) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(TABLE_NAME_COL,tableName);
-        values.put(TABLE_GROUP_CODE_COL,tableGroupCode);
-        values.put(USE_ADMIN_ONLY_COL,useAdminOnly);
-        values.put(USE_REPORT_COL,useReport);
-        values.put(USE_TRANSACTION_COL,useTransection);
-        values.put(USE_LUP_COL,useLup);
+        values.put(TABLE_NAME_COL, tableName);
+        values.put(TABLE_GROUP_CODE_COL, tableGroupCode);
+        values.put(USE_ADMIN_ONLY_COL, useAdminOnly);
+        values.put(USE_REPORT_COL, useReport);
+        values.put(USE_TRANSACTION_COL, useTransection);
+        values.put(USE_LUP_COL, useLup);
 
-        long id = db.insert(DTTABLE_LIST_CATEGORY_TABLE,null,values);
+        long id = db.insert(DTTABLE_LIST_CATEGORY_TABLE, null, values);
         db.close();
     }
 

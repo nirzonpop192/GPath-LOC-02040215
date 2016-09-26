@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class DistributionSummaryCriteriaListAdapter extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
-    ArrayList<SummaryCriteriaModel> criteriaData = new ArrayList<SummaryCriteriaModel>();
+    private ArrayList<SummaryCriteriaModel> criteriaData = new ArrayList<SummaryCriteriaModel>();
     ViewHolder holder;
     /*private String countryId;
     private String donorId;

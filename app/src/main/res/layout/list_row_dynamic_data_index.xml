@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+
+    <TextView
+        android:id="@+id/dt_index_row_tv_dtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignTop="@+id/dt_index_row_tv_ProgramName"
+        android:layout_toLeftOf="@+id/dt_index_row_tv_AwardName"
+        android:layout_toStartOf="@+id/dt_index_row_tv_AwardName"
+        android:gravity="center_vertical"
+        android:hint="DTTitle"
+        android:paddingTop="2dp"
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:id="@+id/dt_index_row_tv_ActivityTitle"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+
+        android:layout_toLeftOf="@+id/dt_index_row_ibtn_go"
+        android:layout_toStartOf="@+id/dt_index_row_ibtn_go"
+        android:gravity="center"
+
+        android:hint="Name"
+        android:paddingRight="5dp"
+        android:text="ActivityTitle"
+        android:textSize="14sp" />
+
+
+    <TextView
+        android:id="@+id/dt_index_row_tv_ProgramName"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/dt_index_row_tv_ActivityTitle"
+
+        android:layout_alignTop="@+id/dt_index_row_tv_ActivityTitle"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_toLeftOf="@+id/dt_index_row_tv_ActivityTitle"
+        android:layout_toStartOf="@+id/dt_index_row_tv_ActivityTitle"
+        android:gravity="center"
+        android:text="Program Name" />
+
+    <ImageButton
+        android:id="@+id/dt_index_row_ibtn_go"
+
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+
+        android:src="@drawable/goto_b" />
+
+    <TextView
+        android:id="@+id/dt_index_row_tv_AwardName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Award Name"
+        android:layout_alignTop="@+id/dt_index_row_tv_dtTitle"
+        android:layout_toLeftOf="@+id/dt_index_row_tv_ProgramName"
+        android:layout_toStartOf="@+id/dt_index_row_tv_ProgramName" />
+
+</RelativeLayout>

@@ -1219,8 +1219,12 @@ public class JsonDeserialization {
                 DataType = jsonObject.getString("DataType");
                 MarkOnGrid = jsonObject.getString("MarkOnGrid");
 
-                sqlH.addIntoDTATable(DTBasic, DTQCode, DTACode, DTALabel, DTAValue, Long.parseLong(DTSeq), DTAShort, DTScoreCode, DTSkipDTQCode, DTACompareCode, ShowHide
-                        , Long.parseLong(MaxValue), Long.parseLong(MinValue), DataType, MarkOnGrid, "", "");
+
+
+
+
+                sqlH.addIntoDTATable(DTBasic, DTQCode, DTACode, DTALabel, DTAValue, StringToLongNullCheck(DTSeq), DTAShort, DTScoreCode, DTSkipDTQCode, DTACompareCode, ShowHide
+                        , StringToLongNullCheck(MaxValue) , StringToLongNullCheck(MinValue), DataType, MarkOnGrid, "", "");
 
                 Log.d(TAG, "DT Ans Table");
 
@@ -1232,6 +1236,20 @@ public class JsonDeserialization {
 
         }
 
+    }
+
+    private static long StringToLongNullCheck( String string){
+
+        long lgMaxValue = -1;
+        if (string != null) {
+            if (string.equals("null")) {
+                lgMaxValue = 0;
+            } else {
+                lgMaxValue = Long.parseLong(string);
+            }
+        }
+
+        return lgMaxValue;
     }
 
 
@@ -1357,6 +1375,7 @@ public class JsonDeserialization {
         }
 
     }
+
     public static void DTTableListCategoryParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
 
         int size = jsonArrayData.length();
@@ -1380,9 +1399,9 @@ public class JsonDeserialization {
                 UseTransaction = jsonObject.getString("UseTransaction");
                 UseLUP = jsonObject.getString("UseLUP");
 
-                sqlH.addIntoDTTableListCategory(TableName,TableGroupCode,UseAdminOnly,UseReport,UseTransaction,UseLUP);
+                sqlH.addIntoDTTableListCategory(TableName, TableGroupCode, UseAdminOnly, UseReport, UseTransaction, UseLUP);
 
-                Log.d(TAG,"DT Ans Table");
+                Log.d(TAG, "DT Ans Table");
 
             } catch (Exception e) {
                 Log.e(TAG, "Exception : " + e);
@@ -1394,6 +1413,7 @@ public class JsonDeserialization {
         }
 
     }
+
     public static void DTTableDefinitionParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
 
         int size = jsonArrayData.length();
@@ -1419,9 +1439,9 @@ public class JsonDeserialization {
                 LUPTableName = jsonObject.getString("LUPTableName");
                 AdminOnly = jsonObject.getString("AdminOnly");
 
-                sqlH.addIntoDTTableDefinition(TableName,FieldName,FieldDefinition,FieldShortName,ValueUDF,LUPTableName,AdminOnly, "", "");
+                sqlH.addIntoDTTableDefinition(TableName, FieldName, FieldDefinition, FieldShortName, ValueUDF, LUPTableName, AdminOnly, "", "");
 
-                Log.d(TAG,"DT Ans Table");
+                Log.d(TAG, "DT Ans Table");
 
             } catch (Exception e) {
                 Log.e(TAG, "Exception : " + e);
@@ -1433,6 +1453,7 @@ public class JsonDeserialization {
         }
 
     }
+
     public static void DTResponseTableParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
 
         int size = jsonArrayData.length();
@@ -1474,10 +1495,10 @@ public class JsonDeserialization {
                 OpMonthCode = jsonObject.getString("OpMonthCode");
                 DataType = jsonObject.getString("DataType");
 
-                sqlH.addIntoDTResponseTable(DTBasic,AdmCountryCode,AdmDonorCode,AdmAwardCode,AdmProgCode,DTEnuID,DTQCode,DTACode,
-                        DTRSeq,DTAValue,ProgActivityCode,DTTimeString,OpMode,OpMonthCode,DataType);
+                sqlH.addIntoDTResponseTable(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode,
+                        DTRSeq, DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
 
-                Log.d(TAG,"DT Ans Table");
+                Log.d(TAG, "DT Ans Table");
 
             } catch (Exception e) {
                 Log.e(TAG, "Exception : " + e);
@@ -1489,6 +1510,7 @@ public class JsonDeserialization {
         }
 
     }
+
     public static void DTQResModeParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
 
         int size = jsonArrayData.length();
@@ -1510,9 +1532,9 @@ public class JsonDeserialization {
                 LookUpUDFName = jsonObject.getString("LookUpUDFName");
                 ResponseValueControl = jsonObject.getString("ResponseValueControl");
 
-                sqlH.addIntoDTQResMode(QResMode,QResLupText, DataType,LookUpUDFName,ResponseValueControl);
+                sqlH.addIntoDTQResMode(QResMode, QResLupText, DataType, LookUpUDFName, ResponseValueControl);
 
-                Log.d(TAG,"DT Ans Table");
+                Log.d(TAG, "DT Ans Table");
 
             } catch (Exception e) {
                 Log.e(TAG, "Exception : " + e);
@@ -1520,10 +1542,10 @@ public class JsonDeserialization {
             }
 
 
-
         }
 
     }
+
     public static void DTQTableParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
 
         int size = jsonArrayData.length();
@@ -1547,9 +1569,9 @@ public class JsonDeserialization {
                 QSeq = jsonObject.getString("QSeq");
                 AllowNull = jsonObject.getString("AllowNull");
 
-                sqlH.addIntoDTQTable(DTBasic,DTQCode,QText,QResMode,QSeq,AllowNull);
+                sqlH.addIntoDTQTable(DTBasic, DTQCode, QText, QResMode, QSeq, AllowNull);
 
-                Log.d(TAG,"DT Ans Table");
+                Log.d(TAG, "DT Ans Table");
 
             } catch (Exception e) {
                 Log.e(TAG, "Exception : " + e);
@@ -1557,10 +1579,10 @@ public class JsonDeserialization {
             }
 
 
-
         }
 
     }
+
     public static void DTGeoListLevelParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
 
         int size = jsonArrayData.length();
@@ -1577,15 +1599,14 @@ public class JsonDeserialization {
                 GeoLevel = jsonObject.getString("GeoLevel");
                 GeoLevelName = jsonObject.getString("GeoLevelName");
                 ListUDFName = jsonObject.getString("ListUDFName");
-                sqlH.addIntoDTGeoListLevel(GeoLevel,GeoLevelName,ListUDFName,"","");
+                sqlH.addIntoDTGeoListLevel(GeoLevel, GeoLevelName, ListUDFName, "", "");
 
-                Log.d(TAG,"DT Ans Table");
+                Log.d(TAG, "DT Ans Table");
 
             } catch (Exception e) {
                 Log.e(TAG, "Exception : " + e);
                 e.printStackTrace();
             }
-
 
 
         }

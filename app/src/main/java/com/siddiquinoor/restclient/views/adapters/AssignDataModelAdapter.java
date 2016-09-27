@@ -62,12 +62,12 @@ public class AssignDataModelAdapter extends BaseAdapter {
     private static final String OFDA = "02";
 
     // award code name
-   private static final String NJIRA = "01";
-   private static final String PEER = "10";
-   private static final String LAUNC = "09";
-   private static final String EC3P = "06";
-   private static final String EBOLA = "07";
-   private static final String RAPID = "08";
+    private static final String NJIRA = "01";
+    private static final String PEER = "10";
+    private static final String LAUNC = "09";
+    private static final String EC3P = "06";
+    private static final String EBOLA = "07";
+    private static final String RAPID = "08";
 
     // program code name
     private static final String MCHN = "001";
@@ -188,7 +188,7 @@ public class AssignDataModelAdapter extends BaseAdapter {
 
             holder.tv_mmName = (TextView) row.findViewById(R.id.as_row_mm_name);
             holder.tv_assign = (TextView) row.findViewById(R.id.as_row_tv_assignView);
-       //     holder.imgEdit = (ImageView) row.findViewById(R.id.mem_ibtn_toAssigne);
+            //     holder.imgEdit = (ImageView) row.findViewById(R.id.mem_ibtn_toAssigne);
 
             row.setTag(holder);
         } else {
@@ -209,11 +209,9 @@ public class AssignDataModelAdapter extends BaseAdapter {
         holder.tv_assign.setText(memData.getAssignYN());
 
 
-
-
-     /**
-      * donot delte the code
-      * *//*
+        /**
+         * donot delte the code
+         * *//*
       * holder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -409,7 +407,9 @@ public class AssignDataModelAdapter extends BaseAdapter {
 
             }
         });*/
-        // Change the color of background & text color Dynamically in list view
+        /**
+         *  Change the color of background & text color Dynamically in list view
+         */
         if (position % 2 == 0) {
             row.setBackgroundColor(Color.WHITE);
             changeTextColor(activity.getResources().getColor(R.color.blue));
@@ -426,7 +426,7 @@ public class AssignDataModelAdapter extends BaseAdapter {
         TextView memberId;
         TextView tv_mmName;
         TextView tv_assign;
-      //  ImageView imgEdit;
+        //  ImageView imgEdit;
 
 
     }

@@ -70,11 +70,11 @@ public class MemberSearchPage extends BaseActivity {
         if (dir.equals("MainActivity")) {
             idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
             loadLayRList(idCountry);
-        }else {
+        } else {
 
             idCountry = intent.getStringExtra(KEY.COUNTRY_ID);
-            idVillage= intent.getStringExtra(KEY.VILLAGE_CODE);
-            strVillage= intent.getStringExtra(KEY.VILLAGE_NAME);
+            idVillage = intent.getStringExtra(KEY.VILLAGE_CODE);
+            strVillage = intent.getStringExtra(KEY.VILLAGE_NAME);
             loadLayRList(idCountry);
         }
 
@@ -98,7 +98,7 @@ public class MemberSearchPage extends BaseActivity {
                 String idMember = edt_memberId.getText().toString();
                 if (idMember.length() > 0) {
 
-                    LoadListView loading = new LoadListView(idCountry, idDistrictC, idUpazilaC, idUnitC, idVillageC, idMember,strVillage);
+                    LoadListView loading = new LoadListView(idCountry, idDistrictC, idUpazilaC, idUnitC, idVillageC, idMember, strVillage);
                     loading.execute();
                 }
             }
@@ -213,7 +213,7 @@ public class MemberSearchPage extends BaseActivity {
                     idVillageC = idVillage.substring(10);
 
 
-                    LoadListView loading = new LoadListView(countryCode, idDistrictC, idUpazilaC, idUnitC, idVillageC, "",strVillage);
+                    LoadListView loading = new LoadListView(countryCode, idDistrictC, idUpazilaC, idUnitC, idVillageC, "", strVillage);
                     loading.execute();
 
 
@@ -250,7 +250,7 @@ public class MemberSearchPage extends BaseActivity {
         private String temVillageName;
 
 
-        public LoadListView(final String temCCode, final String temDistCode, final String temUpazilaCode, final String temUnitCode, final String temVillageCode, final String memId,final String temVillageName) {
+        public LoadListView(final String temCCode, final String temDistCode, final String temUpazilaCode, final String temUnitCode, final String temVillageCode, final String memId, final String temVillageName) {
 
             this.temCCode = temCCode;
             this.temDistCode = temDistCode;
@@ -266,7 +266,7 @@ public class MemberSearchPage extends BaseActivity {
         protected String doInBackground(Void... params) {
 
 
-            loadAssignedListData(temCCode, temDistCode, temUpazilaCode, temUnitCode, temVillageCode, memId,temVillageName);
+            loadAssignedListData(temCCode, temDistCode, temUpazilaCode, temUnitCode, temVillageCode, memId, temVillageName);
 
 
             return "successes";
@@ -287,12 +287,13 @@ public class MemberSearchPage extends BaseActivity {
 
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            pDialog.dismiss();
-            if (adapter != null) {
+            if (pDialog.isShowing())
+                pDialog.dismiss();
 
+
+            if (adapter != null) {
                 adapter.notifyDataSetChanged();
                 listOfMember.setAdapter(adapter);
-
                 listOfMember.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -332,7 +333,7 @@ public class MemberSearchPage extends BaseActivity {
      * @param memId  15 digit member id
      */
 
-    private void loadAssignedListData(final String cCode, final String dCode, final String upCode, final String uCode, final String vCode, final String memId,final String vName) {
+    private void loadAssignedListData(final String cCode, final String dCode, final String upCode, final String uCode, final String vCode, final String memId, final String vName) {
 
         List<AssignDataModel> memberList = sqlH.getMemberList(cCode, dCode, upCode, uCode, vCode, memId);
 
@@ -350,7 +351,7 @@ public class MemberSearchPage extends BaseActivity {
 /**
  * Assign the Adapter in list
  */
-            adapter = new MemberSearchAdapter((Activity) MemberSearchPage.this, assignedArray,vCode,vName);
+            adapter = new MemberSearchAdapter((Activity) MemberSearchPage.this, assignedArray, vCode, vName);
         }
     }
 

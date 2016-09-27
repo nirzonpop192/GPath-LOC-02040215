@@ -5512,7 +5512,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<DynamicDataIndexDataModel> getDynamicTableIndexList(final String cCode) {
+    public ArrayList<DynamicDataIndexDataModel> getDynamicTableIndexList(final String cCode, String dtTitleSearch) {
 
         ArrayList<DynamicDataIndexDataModel> list = new ArrayList<DynamicDataIndexDataModel>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -5523,7 +5523,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 " ,prg." + PROGRAM_SHORT_NAME_COL + "  " +
                 " ,dtCPgr." + PROGRAM_CODE_COL + "  " +
                 " ,dtCPgr." + PROG_ACTIVITY_TITLE_COL
-                + "  from " + DT_COUNTRY_PROGRAM_TABLE + " AS dtCPgr  " +
+
+                + "  FROM " + DT_COUNTRY_PROGRAM_TABLE + " AS dtCPgr  " +
                 " LEFT JOIN " + DT_BASIC_TABLE + "  as dtB  " +
                 " ON dtB." + DT_BASIC_COL + " = dtCpgr." + DT_BASIC_COL + "   " +
                 " LEFT JOIN " + ADM_AWARD_TABLE + " as award  " +
@@ -5536,7 +5537,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 " ON prg." + DONOR_CODE_COL + " = dtCpgr." + DONOR_CODE_COL + "  " +
                 " AND prg." + AWARD_CODE_COL + " = dtCpgr." + AWARD_CODE_COL + "  " +
                 " AND prg." + PROGRAM_CODE_COL + " = dtCpgr." + PROGRAM_CODE_COL + "  " +
-                " WHERE dtCPgr." + COUNTRY_CODE_COL + " = '" + cCode + "' ";
+                " WHERE dtCPgr." + COUNTRY_CODE_COL + " = '" + cCode + "' "
+                + " AND dtB." + DT_TITLE_COL + " LIKE '%" + dtTitleSearch + "%'";
 
 
         Cursor cursor = db.rawQuery(sql, null);

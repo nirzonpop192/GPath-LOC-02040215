@@ -320,7 +320,10 @@
             android:name=".activity.sub_activity.summary_sub.IdListInGroupSummary"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name=".activity.DynamicData"></activity>
+        <activity
+            android:name=".activity.DynamicData"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
     </application>
 
 </manifest>

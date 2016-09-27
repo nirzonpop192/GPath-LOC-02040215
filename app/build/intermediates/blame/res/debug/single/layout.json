@@ -4,12 +4,12 @@
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\layout\\list_row_summary_id_listed_in_group.xml"
     },
     {
-        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_service_voucher_details.xml",
-        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\layout\\activity_service_voucher_details.xml"
-    },
-    {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_row_dynamic_data_index.xml",
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\layout\\list_row_dynamic_data_index.xml"
+    },
+    {
+        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_service_voucher_details.xml",
+        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\layout\\activity_service_voucher_details.xml"
     },
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_row.xml",

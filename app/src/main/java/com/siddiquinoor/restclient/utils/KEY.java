@@ -148,6 +148,7 @@ public class KEY {
     public static final String ASSIGN_DATA_OBJECT_KEY = "AssignDataObject";
     public static final String COMMUNITY_GRP_DATA_OBJECT_KEY = "CummGrpDataObject";
     public static final String GRADUATION_DETAILS_DATA_OBJECT_KEY = "GraduationDetails";
+    public static final String DYNAMIC_INDEX_DATA_OBJECT_KEY = "DynamicDataObject";
 
     public static final String GROUP_CODE = "groupCode";
     public static final String GROUP_NAME = "groupName";

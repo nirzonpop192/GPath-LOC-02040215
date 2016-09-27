@@ -2,6 +2,7 @@ package com.siddiquinoor.restclient.views.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.siddiquinoor.restclient.R;
+import com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DTResponseActivity;
+import com.siddiquinoor.restclient.utils.KEY;
 
 import java.util.ArrayList;
 
@@ -84,7 +87,11 @@ public class DynamicDataIndexAdapter extends BaseAdapter {
         holder.iv_Go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-// // TODO: 9/27/2016
+
+
+                Intent intent = new Intent(activity.getApplicationContext(), DTResponseActivity.class);
+                intent.putExtra(KEY.DYNAMIC_INDEX_DATA_OBJECT_KEY,data);
+                activity.startActivity(intent);
             }
         });
 

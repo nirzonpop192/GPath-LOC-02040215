@@ -44,6 +44,7 @@ import com.siddiquinoor.restclient.views.adapters.CommunityGroupDataModel;
 import com.siddiquinoor.restclient.views.adapters.DistributionGridDataModel;
 import com.siddiquinoor.restclient.views.adapters.DistributionSaveDataModel;
 import com.siddiquinoor.restclient.views.adapters.DynamicDataIndexDataModel;
+import com.siddiquinoor.restclient.views.adapters.DynamicTableQuesDataModel;
 import com.siddiquinoor.restclient.views.adapters.GraduationGridDataModel;
 import com.siddiquinoor.restclient.views.adapters.ListDataModel;
 import com.siddiquinoor.restclient.views.adapters.GPSLocationLatLong;
@@ -5497,7 +5498,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 assignPerson.setHh_name(cursor.getString(cursor.getColumnIndex(PNAME_COL)));/** house hold name */
 
 
-                //   Log.d(TAG, " " + cursor.getString(1) + " , " + cursor.getString(2) + " , " + cursor.getString(14) + " , " + cursor.getString(15));
                 listAsignPeople.add(assignPerson);
 
             } while (cursor.moveToNext());
@@ -5511,6 +5511,35 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
+    public ArrayList<DynamicTableQuesDataModel> getDynamicQuesionList(String dtBasicCode) {
+        ArrayList<DynamicTableQuesDataModel> list = new ArrayList<DynamicTableQuesDataModel>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT * FROM " + DTQ_TABLE +
+                " WHERE " + DT_BASIC_COL + "= '" + dtBasicCode + "'";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                DynamicTableQuesDataModel data = new DynamicTableQuesDataModel();
+
+                data.setDtBasicCode(cursor.getString(0));
+                data.setDtQCode(cursor.getString(1));
+                data.setqText(cursor.getString(2));
+                data.setqResModeCode(cursor.getString(3));
+                data.setqSeq(cursor.getString(4));
+                data.setAllowNullFlag(cursor.getString(5));
+
+                list.add(data);
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return list;
+
+    }
 
     public ArrayList<DynamicDataIndexDataModel> getDynamicTableIndexList(final String cCode, String dtTitleSearch) {
 
@@ -5522,18 +5551,22 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 " ,dtCPgr." + DONOR_CODE_COL + " || '' || dtCPgr." + AWARD_CODE_COL + " AS awardCode  " +
                 " ,prg." + PROGRAM_SHORT_NAME_COL + "  " +
                 " ,dtCPgr." + PROGRAM_CODE_COL + "  " +
-                " ,dtCPgr." + PROG_ACTIVITY_TITLE_COL
-
-                + "  FROM " + DT_COUNTRY_PROGRAM_TABLE + " AS dtCPgr  " +
+                " ,dtCPgr." + PROG_ACTIVITY_TITLE_COL +
+                " ,dtCPgr." + COUNTRY_CODE_COL
+                + "  FROM " +
+                DT_COUNTRY_PROGRAM_TABLE + " AS dtCPgr  " +
                 " LEFT JOIN " + DT_BASIC_TABLE + "  as dtB  " +
                 " ON dtB." + DT_BASIC_COL + " = dtCpgr." + DT_BASIC_COL + "   " +
-                " LEFT JOIN " + ADM_AWARD_TABLE + " as award  " +
+                " LEFT JOIN " +
+                ADM_AWARD_TABLE + " as award  " +
                 " ON award." + COUNTRY_CODE_COL + " = dtCpgr." + COUNTRY_CODE_COL + "  " +
                 " AND award." + DONOR_CODE_COL + " = dtCpgr." + DONOR_CODE_COL + "  " +
                 " AND award." + AWARD_CODE_COL + "= dtCpgr." + AWARD_CODE_COL + "  " +
-                " LEFT JOIN " + ADM_DONOR_TABLE + " AS donor  " +
+                " LEFT JOIN " +
+                ADM_DONOR_TABLE + " AS donor  " +
                 " ON donor." + DONOR_CODE_COL + " = dtCpgr." + DONOR_CODE_COL + "  " +
-                " LEFT JOIN " + PROGRAM_MASTER_TABLE + " AS prg  " +
+                " LEFT JOIN " +
+                PROGRAM_MASTER_TABLE + " AS prg  " +
                 " ON prg." + DONOR_CODE_COL + " = dtCpgr." + DONOR_CODE_COL + "  " +
                 " AND prg." + AWARD_CODE_COL + " = dtCpgr." + AWARD_CODE_COL + "  " +
                 " AND prg." + PROGRAM_CODE_COL + " = dtCpgr." + PROGRAM_CODE_COL + "  " +
@@ -5554,6 +5587,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 data.setProgramCode(cursor.getString(5));
 
                 data.setPrgActivityTitle(cursor.getString(6));
+                data.setcCode(cursor.getString(7));
 
 
                 list.add(data);

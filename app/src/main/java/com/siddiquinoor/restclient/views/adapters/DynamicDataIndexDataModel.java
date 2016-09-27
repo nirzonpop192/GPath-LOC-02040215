@@ -14,6 +14,7 @@ public class DynamicDataIndexDataModel implements Parcelable {
     private String programCode;
     private String programName;
     private String prgActivityTitle;
+    private String cCode;
 
     public DynamicDataIndexDataModel() {
     }
@@ -41,6 +42,7 @@ public class DynamicDataIndexDataModel implements Parcelable {
         programCode = in.readString();
         programName = in.readString();
         prgActivityTitle = in.readString();
+        cCode = in.readString();
 
     }
 
@@ -53,8 +55,16 @@ public class DynamicDataIndexDataModel implements Parcelable {
         dest.writeString(programCode);
         dest.writeString(programName);
         dest.writeString(prgActivityTitle);
+        dest.writeString(cCode);
     }
 
+    public String getcCode() {
+        return cCode;
+    }
+
+    public void setcCode(String cCode) {
+        this.cCode = cCode;
+    }
 
     @Override
     public int describeContents() {

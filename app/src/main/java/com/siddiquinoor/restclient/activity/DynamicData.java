@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,7 +66,7 @@ public class DynamicData extends BaseActivity {
 
                 if (edtDTSearch.getText().toString().length() > 0) {
                     new LoadList(idCountry, edtDTSearch.getText().toString()).execute();
-                    Log.d("MOR", "string :" + edtDTSearch.getText().toString() + "  length :" + edtDTSearch.getText().toString().length());
+
                 }
 
             }

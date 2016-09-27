@@ -46,7 +46,6 @@ import java.util.List;
 public class AssignActivity extends BaseActivity {
 
 
-
     private static final String TAG = OldAssignActivity.class.getName();
     AlertDialog goToDialog;
     Intent intent;
@@ -272,7 +271,6 @@ public class AssignActivity extends BaseActivity {
         btnMemberSearchPage = (Button) findViewById(R.id.btnRegisterFooter);
 
 
-
     }
 
 
@@ -296,14 +294,14 @@ public class AssignActivity extends BaseActivity {
         Drawable backImage = getResources().getDrawable(R.drawable.goto_back);
         btnMemberSearchPage.setCompoundDrawablesRelativeWithIntrinsicBounds(backImage, null, null, null);
 
-        int leftPadd, rightPadd,topPadd,bottomPadd;
+        int leftPadd, rightPadd, topPadd, bottomPadd;
         CalculationPadding calPadd = new CalculationPadding();
 
         leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, backImage, btnMemberSearchPage);
         /**
          * set the value in resource
          */
-        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
+        topPadd = bottomPadd = getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
 
         btnMemberSearchPage.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
     }
@@ -317,7 +315,7 @@ public class AssignActivity extends BaseActivity {
         Drawable imageGoto = getResources().getDrawable(R.drawable.goto_b);
         btnGoTo.setCompoundDrawablesRelativeWithIntrinsicBounds(imageGoto, null, null, null);
 
-        int leftPadd, rightPadd,topPadd,bottomPadd;
+        int leftPadd, rightPadd, topPadd, bottomPadd;
         CalculationPadding calPadd = new CalculationPadding();
 
         leftPadd = rightPadd = calPadd.calculateViewPadding(mContext, imageGoto, btnGoTo);
@@ -325,7 +323,7 @@ public class AssignActivity extends BaseActivity {
         /**
          * set the value in resource
          */
-        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
+        topPadd = bottomPadd = getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
 
         btnGoTo.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
     }
@@ -342,7 +340,7 @@ public class AssignActivity extends BaseActivity {
                 iMemSearch.putExtra(KEY.COUNTRY_ID, idCountry);
                 iMemSearch.putExtra(KEY.DIR_CLASS_NAME_KEY, "AssignActivity");
                 iMemSearch.putExtra(KEY.VILLAGE_NAME, tempSpinVillageName);
-                iMemSearch.putExtra(KEY.VILLAGE_CODE,tempSpinVillageCode );
+                iMemSearch.putExtra(KEY.VILLAGE_CODE, tempSpinVillageCode);
                 finish();
                 startActivity(iMemSearch);
             }
@@ -589,14 +587,14 @@ public class AssignActivity extends BaseActivity {
 
         int position = 0;
         String criteria = " WHERE " + SQLiteHandler.ADM_AWARD_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + idCountry + "'";
-        // Spinner Drop down elements for District
+
         List<SpinnerHelper> listAward = sqlH.getListAndID(SQLiteHandler.ADM_AWARD_TABLE, criteria, null, false);
 
-        // Creating adapter for spinner
+
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listAward);
-        // Drop down layout style
+
         dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
-        // attaching data adapter to spinner
+
         spAward.setAdapter(dataAdapter);
 
 
@@ -617,13 +615,12 @@ public class AssignActivity extends BaseActivity {
                 strAward = ((SpinnerHelper) spAward.getSelectedItem()).getValue();
                 String awardCode = ((SpinnerHelper) spAward.getSelectedItem()).getId();
 
-                // String donorId=idAward.substring(0,1)
-                //     if (!mredirection){
+
                 if (awardCode.length() > 2) {
                     idDonor = awardCode.substring(0, 2);
                     idAward = awardCode.substring(2);
                     loadProgram(idCountry, idAward, idDonor);
-                    Log.d(TAG, "idAward : " + idAward + " donor id :" + idAward.substring(0, 2));
+
                 }
 
 
@@ -675,7 +672,6 @@ public class AssignActivity extends BaseActivity {
                 strProgram = ((SpinnerHelper) spProgram.getSelectedItem()).getValue();
                 idProgram = ((SpinnerHelper) spProgram.getSelectedItem()).getId();
 
-                Log.d(TAG, "idProgram: " + idProgram + "strProgram: " + strProgram);
 
                 loadCriteria(awardCode, donorCode, idProgram, cCode);
 
@@ -702,11 +698,9 @@ public class AssignActivity extends BaseActivity {
         // Spinner Drop down elements for District
         List<SpinnerHelper> listCriteria = sqlH.getListAndID(SQLiteHandler.SERVICE_MASTER_TABLE, criteria, null, false);
 
-        // Creating adapter for spinner
+
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listCriteria);
-        // Drop down layout style
         dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
-        // attaching data adapter to spinner
         spCriteria.setAdapter(dataAdapter);
 
 

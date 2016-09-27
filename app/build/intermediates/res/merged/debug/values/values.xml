@@ -693,6 +693,7 @@
     <string name="decline">Decline</string>
     <string name="delete">DELETE</string>
     <string name="dob_date">DOB Date</string>
+    <string name="dt_response_title">Response</string>
     <string name="e">E.Core Criteria: HHs with PLW or CU2; Secondary Criteria: HH has a total of 4 or more children below 12 years of age</string>
     <string name="error.message.call">Call failed</string>
     <string name="error.message.map">Map loading failed</string>

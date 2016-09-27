@@ -570,4 +570,6 @@ Otherwise, initiate to sync and login again.</string>
     <string name="_5_households_with_two_or_more_years_of_successive_crop_failure">5. Households with two or more years of successive crop failure</string>
     <string name="_6_households_with_children_receiving_supplementary_or_therapeutic_feeding">6. Households with children receiving supplementary or therapeutic feeding</string>
     <string name="_7_willingness">7. Willingness</string>
+<!--    Response-->
+    <string name="dt_response_title">Response</string>
 </resources>

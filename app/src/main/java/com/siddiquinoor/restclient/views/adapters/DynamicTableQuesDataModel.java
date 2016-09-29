@@ -14,6 +14,7 @@ public class DynamicTableQuesDataModel implements Parcelable {
     private String qSeq;
     private String allowNullFlag;
 
+    // to pass the class object
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
         @Override
         public DynamicTableQuesDataModel createFromParcel(Parcel in) {
@@ -36,8 +37,6 @@ public class DynamicTableQuesDataModel implements Parcelable {
     private void readFromParcel(Parcel in) {
 
         dtBasicCode = in.readString();
-
-
         dtQCode = in.readString();
         qText = in.readString();
         qResModeCode = in.readString();
@@ -56,8 +55,6 @@ public class DynamicTableQuesDataModel implements Parcelable {
         dest.writeString(qResModeCode);
         dest.writeString(qSeq);
         dest.writeString(allowNullFlag);
-
-
     }
 
     @Override

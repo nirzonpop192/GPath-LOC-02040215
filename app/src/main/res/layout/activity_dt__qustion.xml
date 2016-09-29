@@ -17,9 +17,7 @@
 
 
         <TextView
-
             style="@style/page_title_style"
-
             android:text="@string/dt_response_title" />
 
 
@@ -36,4 +34,28 @@
     <include
         android:id="@+id/footer"
         layout="@layout/footer"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_DtQuestion"
+        android:layout_above="@+id/footer">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="New Text"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:id="@+id/tv_dtTimePicker" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="New Text"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:id="@+id/edt" />
+    </LinearLayout>
 </RelativeLayout>

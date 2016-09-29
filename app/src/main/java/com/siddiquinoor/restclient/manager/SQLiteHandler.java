@@ -22,6 +22,7 @@ import android.widget.ImageView;
 
 import com.siddiquinoor.restclient.data_model.AGR_DataModel;
 import com.siddiquinoor.restclient.data_model.AssignDDR_FFA_DataModel;
+import com.siddiquinoor.restclient.data_model.DTQResponseModeDataModel;
 import com.siddiquinoor.restclient.data_model.FDPItem;
 import com.siddiquinoor.restclient.data_model.GPS_LocationAttributeDataModel;
 import com.siddiquinoor.restclient.data_model.GPS_LocationDataModel;
@@ -5535,6 +5536,32 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.close();
         }
         return singleQus;
+    }
+
+    public DTQResponseModeDataModel getAnswerResponse(String qResponseMode){
+        DTQResponseModeDataModel responseMode =new DTQResponseModeDataModel();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT * FROM " + DTQRES_MODE_TABLE +
+                " WHERE " + QRES_MODE_COL + "= '" + qResponseMode+ "'" ;
+
+        //String qResMode,qResLupText, qDataType, qLookUpUdfName, qResponseValuseControl;
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor!= null){
+            if(cursor.moveToFirst()){
+
+                responseMode.setDtQResMode(cursor.getString(0));
+                responseMode.setDtQResLupText(cursor.getString(1));
+                responseMode.setDtDataType(cursor.getString(2));
+                responseMode.setDtLookUpUDFName(cursor.getString(3));
+                responseMode.setDtResponseValueControl(cursor.getString(4));
+
+            }
+            cursor.close();
+            db.close();
+        }
+        Log.d("responseTest",responseMode.getDtResponseValueControl()+"");
+        return responseMode;
     }
 
     public ArrayList<DynamicTableQuesDataModel> getDynamicQuestionList(String dtBasicCode) {

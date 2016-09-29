@@ -462,6 +462,7 @@
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
+    <dimen name="dt_index_txt_size_22">22sp</dimen>
     <dimen name="font_large">18sp</dimen>
     <dimen name="font_larger">22sp</dimen>
     <dimen name="font_normal">15sp</dimen>
@@ -884,6 +885,7 @@
     <string name="title_activity_camera">CameraActivity</string>
     <string name="title_activity_card_request">CardRequest</string>
     <string name="title_activity_distribution">Distribution</string>
+    <string name="title_activity_dt__qustion">DT_QustionActivity</string>
     <string name="title_activity_graduation">GraduationActivity</string>
     <string name="title_activity_graduation_update">GraduationUpdate</string>
     <string name="title_activity_map">MapActivity</string>

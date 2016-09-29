@@ -78,10 +78,11 @@ public class DynamicDataIndexAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
 
-        holder.tv_dtTitle.setText("DT Title \t\t\t: " + data.getDtTittle());
-        holder.tv_awardName.setText("Award Name \t: " + data.getAwardName());
-        holder.tv_progName.setText("Program Name : " + data.getProgramName());
-        holder.tv_ActivityName.setText("Activity Title \t : " + data.getPrgActivityTitle());
+        holder.tv_dtTitle.setText( data.getDtTittle());
+        holder.tv_awardName.setText("Award Name : " + data.getAwardName());
+        String progName=data.getProgramCode().equals("000")?" Cross Cutting":data.getProgramName();
+        holder.tv_progName.setText("Program Name : " +progName);
+        holder.tv_ActivityName.setText("Activity Title  : " + data.getPrgActivityTitle());
 
 
         holder.iv_Go.setOnClickListener(new View.OnClickListener() {

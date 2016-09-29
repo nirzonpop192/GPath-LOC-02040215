@@ -1,15 +1,19 @@
 package com.siddiquinoor.restclient.activity.sub_activity.dynamic_table;
 
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -19,7 +23,6 @@ import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 import com.siddiquinoor.restclient.utils.KEY;
-import com.siddiquinoor.restclient.views.adapters.DynamicDataIndexAdapter;
 import com.siddiquinoor.restclient.views.adapters.DynamicDataIndexDataModel;
 import com.siddiquinoor.restclient.views.adapters.DynamicTableQuesDataModel;
 import com.siddiquinoor.restclient.views.adapters.DynamicTableQusDataModelAdapter;
@@ -40,7 +43,7 @@ public class DTResponseActivity extends BaseActivity {
     private TextView tvActivityTitle;
     private TextView tvDate;
     private Calendar calendar = Calendar.getInstance();
-    private SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
+    private SimpleDateFormat mFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
     private SQLiteHandler sqlH;
     private Context mContext = DTResponseActivity.this;
     private String idAward;
@@ -51,15 +54,17 @@ public class DTResponseActivity extends BaseActivity {
     private String idProgram;
     private String strProgram;
     private ListView lv_DT_QList;
-
+    private Button btn_goToQustion;
+    private DynamicDataIndexDataModel dyIndex;
+    DynamicTableQusDataModelAdapter adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dtresponse);
+        setContentView(R.layout.activity_dt_response);
         inti();
         Intent intent = getIntent();
-        DynamicDataIndexDataModel dyIndex = intent.getParcelableExtra(KEY.DYNAMIC_INDEX_DATA_OBJECT_KEY);
+        dyIndex = intent.getParcelableExtra(KEY.DYNAMIC_INDEX_DATA_OBJECT_KEY);
         idAward = dyIndex.getAwardCode();
         strAward = dyIndex.getAwardName();
         idTable = dyIndex.getDtBasicCode();
@@ -69,7 +74,11 @@ public class DTResponseActivity extends BaseActivity {
         tvActivityTitle.setText(dyIndex.getPrgActivityTitle());
 
         loadTable(dyIndex.getcCode());
-
+        /**
+         * get Current Date by System
+         * and set Into tv
+         */
+        getCurrentDate();
         setListener();
     }
 
@@ -85,6 +94,20 @@ public class DTResponseActivity extends BaseActivity {
                 setDate();
             }
         });
+        btn_goToQustion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                        if(adapter!=null){
+                            Intent intent = new Intent(mContext, DT_QuestionActivity.class);
+                            intent.putExtra(KEY.DYNAMIC_INDEX_DATA_OBJECT_KEY,dyIndex);
+                            intent.putExtra(KEY.DYNAMIC_T_QUES_SIZE,adapter.getCount());
+                            Log.d("MOR","adapter Size:"+adapter.getCount());
+                            startActivity(intent);
+                        }
+
+            }
+        });
 
     }
 
@@ -96,27 +119,33 @@ public class DTResponseActivity extends BaseActivity {
         tvActivityTitle = (TextView) findViewById(R.id.tv_dtResponse_activity_title);
         tvDate = (TextView) findViewById(R.id.txt_dtResponse_date);
         lv_DT_QList = (ListView) findViewById(R.id.lv_DTQList);
+        btn_goToQustion = (Button) findViewById(R.id.btnHomeFooter);
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void addIconGoToQustionButton() {
+
+
+        btn_goToQustion.setText("");
+        Drawable imageHome = getResources().getDrawable(R.drawable.goto_forward);
+        btn_goToQustion.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
+        setPaddingButton(mContext, imageHome, btn_goToQustion);
 
 
     }
 
-    public void setDate() {
-        new DatePickerDialog(DTResponseActivity.this, datepickerD, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
-    }
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
 
-    DatePickerDialog.OnDateSetListener datepickerD = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            calendar.set(Calendar.YEAR, year);
-            calendar.set(Calendar.MONTH, monthOfYear);
-            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateDate();
-        }
-    };
-
-    public void updateDate() {
-        tvDate.setText(format.format(calendar.getTime()));
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        addIconGoToQustionButton();
     }
 
 
@@ -148,7 +177,12 @@ public class DTResponseActivity extends BaseActivity {
                     position = i;
                 }
             }
+
             spTableName.setSelection(position);
+            /**
+             * disable spinner
+             */
+            spTableName.setEnabled(false);
         }
 
 
@@ -195,6 +229,10 @@ public class DTResponseActivity extends BaseActivity {
                 }
             }
             spAward.setSelection(position);
+            /**
+             * disable spinner
+             */
+            spAward.setEnabled(false);
         }
 
 
@@ -224,6 +262,7 @@ public class DTResponseActivity extends BaseActivity {
 
     /**
      * LOAD :: Program
+     * todo: change the sql
      */
     private void loadProgram(final String cCode, final String donorCode, final String awardCode) {
 
@@ -232,7 +271,11 @@ public class DTResponseActivity extends BaseActivity {
                 + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'";
 
         List<SpinnerHelper> listProgram = sqlH.getListAndID(SQLiteHandler.COUNTRY_PROGRAM_TABLE, criteria, null, false);
-
+/**
+ *  replace the Select Program by Cross Cutting
+ */
+        listProgram.remove(0);
+        listProgram.add(0, new SpinnerHelper(0, "000", "Cross Cutting"));
 
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listProgram);
 
@@ -249,6 +292,10 @@ public class DTResponseActivity extends BaseActivity {
                 }
             }
             spProgram.setSelection(position);
+            /**
+             * disable spinner
+             */
+            spProgram.setEnabled(false);
         }
 
 
@@ -267,11 +314,15 @@ public class DTResponseActivity extends BaseActivity {
 
     } // end Load Spinner
 
+    /**
+     * Load :: list View
+     * @param dtBasicCode Dynamic Basic Code
+     */
 
     public void loadDT_questionView(String dtBasicCode) {
 
-        List<DynamicTableQuesDataModel> dataList = sqlH.getDynamicQuesionList(dtBasicCode);
-        DynamicTableQusDataModelAdapter adapter=null;
+        List<DynamicTableQuesDataModel> dataList = sqlH.getDynamicQuestionList(dtBasicCode);
+
 
         ArrayList<DynamicTableQuesDataModel> dataArray = new ArrayList<DynamicTableQuesDataModel>();
         if (dataList.size() != 0) {
@@ -287,7 +338,7 @@ public class DTResponseActivity extends BaseActivity {
 /**
  * Assign the Adapter in list
  */
-             adapter = new DynamicTableQusDataModelAdapter((Activity) mContext, dataArray);
+            adapter = new DynamicTableQusDataModelAdapter((Activity) mContext, dataArray);
 
 
         }
@@ -303,6 +354,48 @@ public class DTResponseActivity extends BaseActivity {
 
         }
 
+
     }
+    /**
+     * Date & time Session
+     */
+    public void getCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+
+        String strDate =  mFormat.format(calendar.getTime());
+        displayDate(strDate);
+    }
+
+    private void displayDate(String strDate) {
+        tvDate.setText(strDate);
+    }
+
+    public void setDate() {
+        new DatePickerDialog(mContext, datepickerD, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    /**
+     * date Time picker Listener
+     */
+
+    DatePickerDialog.OnDateSetListener datepickerD = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, monthOfYear);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateDate();
+        }
+    };
+
+    public void updateDate() {
+
+
+        displayDate( mFormat.format(calendar.getTime()));
+
+    }
+
+
 
 }

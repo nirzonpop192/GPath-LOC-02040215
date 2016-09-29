@@ -312,7 +312,7 @@ public class AssignActivity extends BaseActivity {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpGotoButton() {
         btnGoTo.setText("");
-        Drawable imageGoto = getResources().getDrawable(R.drawable.goto_b);
+        Drawable imageGoto = getResources().getDrawable(R.drawable.goto_forward);
         btnGoTo.setCompoundDrawablesRelativeWithIntrinsicBounds(imageGoto, null, null, null);
 
         int leftPadd, rightPadd, topPadd, bottomPadd;

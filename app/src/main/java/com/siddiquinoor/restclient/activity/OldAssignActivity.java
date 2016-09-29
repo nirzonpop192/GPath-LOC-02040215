@@ -225,7 +225,7 @@ public class OldAssignActivity extends BaseActivity implements AdapterView.OnIte
      */
     private void setUpGotoButton() {
         btnGoTo.setText("");
-        Drawable imageGoto = getResources().getDrawable(R.drawable.goto_b);
+        Drawable imageGoto = getResources().getDrawable(R.drawable.goto_forward);
         btnGoTo.setCompoundDrawablesRelativeWithIntrinsicBounds(imageGoto, null, null, null);
         btnGoTo.setPadding(180, 10, 180, 10);
     }

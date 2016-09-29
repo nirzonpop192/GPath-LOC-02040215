@@ -43,17 +43,17 @@ public class AssignPW extends BaseActivity {
     public static final int PW_GRD_DAYS_270 = 270;
     private final String TAG = "AssignPW";
 
-    TextView tv_HhName;
+    private TextView tv_HhName;
 
-    TextView tv_MemberName;
-    TextView tv_MemberId;
-    TextView tv_AsCriteria;
-    TextView tv_regDate;
-    TextView tv_LmpDate;
+    private TextView tv_MemberName;
+    private TextView tv_MemberId;
+    private TextView tv_AsCriteria;
+    private TextView tv_regDate;
+    private TextView tv_LmpDate;
 
     Button btnSave;
 
-    SQLiteHandler sqlH;
+    private SQLiteHandler sqlH;
     private Button btnHome;
     private Button btnSummary;
     private Button btnBackToAssign;
@@ -67,7 +67,6 @@ public class AssignPW extends BaseActivity {
     private Context mContext;
 
 
-    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
     private SimpleDateFormat formatUSA = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
     private Calendar calendar = Calendar.getInstance();
 
@@ -109,7 +108,7 @@ public class AssignPW extends BaseActivity {
         assignMem = mIntent.getExtras().getParcelable(KEY.ASSIGN_DATA_OBJECT_KEY);
         memberId15D = mIntent.getExtras().getString(KEY.MEMBER_ID);
         if (assignMem != null) {
-         //   Log.d("SAFA", " getMember_age :" + assignMem.getMember_age());
+            //   Log.d("SAFA", " getMember_age :" + assignMem.getMember_age());
 
             String memRegDir = mIntent.getStringExtra(KEY.DIRECTORY);
 
@@ -117,11 +116,11 @@ public class AssignPW extends BaseActivity {
             setTextToTextViews();
 
 
-            idGroupCat=assignMem.getGroupCatCode();
-            strGroupCat=assignMem.getGroupCatName();
-            idGroup=assignMem.getGroupCode();
-            strGroup=assignMem.getGroupName();
-            idActive=assignMem.getActiveCode();
+            idGroupCat = assignMem.getGroupCatCode();
+            strGroupCat = assignMem.getGroupCatName();
+            idGroup = assignMem.getGroupCode();
+            strGroup = assignMem.getGroupName();
+            idActive = assignMem.getActiveCode();
 
 
             loadGroupCategory(assignMem.getCountryCode(), assignMem.getDonor_code(), assignMem.getAward_code(), assignMem.getProgram_code());
@@ -347,7 +346,7 @@ public class AssignPW extends BaseActivity {
      * ** LOAD: Active Status
      */
     private void loadActiveStatus() {
-        int pos=0;
+        int pos = 0;
 
         ArrayAdapter<CharSequence> adptMartial = ArrayAdapter.createFromResource(
                 this, R.array.arrActive, R.layout.spinner_layout);
@@ -400,11 +399,11 @@ public class AssignPW extends BaseActivity {
                 erroDialog.showErrorDialog(mContext, "Missing registration date. Save attempt denied.");
             } else if (lmpDate.equals("")) {
                 erroDialog.showErrorDialog(mContext, "Missing LMP date. Save attempt denied.");
-            } else if (idGroup==null||idGroup.equals("00")) {
+            } else if (idGroup == null || idGroup.equals("00")) {
                 erroDialog.showErrorDialog(mContext, "Missing Group. Save attempt denied.");
-            }else if (assignMem.getMember_age()==null) {
+            } else if (assignMem.getMember_age() == null) {
                 erroDialog.showErrorDialog(mContext, "Invalid age specified.");
-            }else if (Integer.parseInt(assignMem.getMember_age()) < 12 || Integer.parseInt(assignMem.getMember_age()) > 40) {
+            } else if (Integer.parseInt(assignMem.getMember_age()) < 12 || Integer.parseInt(assignMem.getMember_age()) > 40) {
                 erroDialog.showErrorDialog(mContext, "Invalid age specified.");
             } else {
 
@@ -613,7 +612,7 @@ public class AssignPW extends BaseActivity {
         iAssign.putExtra(AssignActivity.ASSIGN_DONOR_CODE, assignMem.getDonor_code());
         iAssign.putExtra(AssignActivity.ASSIGN_CRITERIA_CODE, assignMem.getService_code());
         iAssign.putExtra(AssignActivity.ASSIGN_CRITERIA_STR, assignMem.getTemCriteriaString());
-        iAssign.putExtra(KEY.MEMBER_ID,memberId15D);
+        iAssign.putExtra(KEY.MEMBER_ID, memberId15D);
 
 
         startActivity(iAssign);
@@ -761,8 +760,8 @@ public class AssignPW extends BaseActivity {
      */
     private String calculateGRDDate(String regDate) {
         String outputDate = "";
-        SimpleDateFormat myFormat = new SimpleDateFormat("MM-dd-yyyy",Locale.ENGLISH);
-        SimpleDateFormat saveFormat = new SimpleDateFormat("MM-dd-yyyy",Locale.ENGLISH);
+        SimpleDateFormat myFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
+        SimpleDateFormat saveFormat = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
         Calendar calendar = Calendar.getInstance();
         try {
             calendar.setTime(myFormat.parse(regDate));

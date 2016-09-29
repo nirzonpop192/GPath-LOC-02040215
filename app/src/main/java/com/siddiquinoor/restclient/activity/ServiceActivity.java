@@ -518,7 +518,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
      */
  /*   private void setUpGotoButton() {
         btnHome.setText("");
-        Drawable imageGoto = getResources().getDrawable(R.drawable.goto_b);
+        Drawable imageGoto = getResources().getDrawable(R.drawable.goto_forward);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageGoto, null, null, null);
         btnHome.setPadding(180, 10, 180, 10);
     }
@@ -527,7 +527,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
     private void addIconHomeButton() {
 
         btnHome.setText("");
-        Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
+        Drawable imageHome = getResources().getDrawable(R.drawable.goto_forward);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
 
 
@@ -558,10 +558,8 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
             case R.id.btnHomeFooter:
 
                 //    goToAlert();
+                goToMainActivity((Activity) mContext);
 
-                finish();
-                Intent iHome = new Intent(mContext, MainActivity.class);
-                startActivity(iHome);
 
                 break;
             case R.id.btnRegisterFooter:
@@ -628,25 +626,22 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
                             switch (progName) {
 
                                 case DRR:
-                                       switch (idDistributionType)    {
-                                           case DistributionActivity.NONE :
-                                           break;
-                                           case DistributionActivity.FOOD_TYPE:
-                                               wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "FoodFlag");
-                                               break;
-                                           case DistributionActivity.NON_FOOD_TYPE:
-                                               wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "NFoodFlag");
-                                               break;
-                                           case DistributionActivity.CASH_TYPE:
-                                               wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "CashFlag");
-                                               break;
-                                           case DistributionActivity.VOUCHER_TYPE:
-                                               wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "VOFlag");
-                                               break;
-                                       }
-
-
-
+                                    switch (idDistributionType) {
+                                        case DistributionActivity.NONE:
+                                            break;
+                                        case DistributionActivity.FOOD_TYPE:
+                                            wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "FoodFlag");
+                                            break;
+                                        case DistributionActivity.NON_FOOD_TYPE:
+                                            wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "NFoodFlag");
+                                            break;
+                                        case DistributionActivity.CASH_TYPE:
+                                            wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "CashFlag");
+                                            break;
+                                        case DistributionActivity.VOUCHER_TYPE:
+                                            wd = sqlH.get_ProgSrvDefaultDays(idCountry, idDonor, idAward, idProgram, idService, "VOFlag");
+                                            break;
+                                    }
 
 
                                     Log.d("SAVE", "wd:" + wd);

@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:2:1-330:12
+ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:2:1-333:12
 	package
 		ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:3:5-42
 		INJECTED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml
@@ -248,7 +248,7 @@ MERGED from [org.osmdroid:osmdroid-android:5.2] D:\Android\GPath-LOC-02040215\ap
 	android:name
 		ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:32:9-64
 application
-ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:35:5-328:19
+ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:35:5-331:19
 MERGED from [com.journeyapps:zxing-android-embedded:2.3.0] D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.journeyapps\zxing-android-embedded\2.3.0\AndroidManifest.xml:48:5-56:19
 MERGED from [com.journeyapps:zxing-android-integration:2.3.0] D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.journeyapps\zxing-android-integration\2.3.0\AndroidManifest.xml:9:5-10:19
 MERGED from [com.android.support:appcompat-v7:22.2.0] D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\AndroidManifest.xml:22:5-20
@@ -963,9 +963,15 @@ ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:323:9-
 	android:name
 		ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:324:13-49
 activity#com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DTResponseActivity
-ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:327:9-101
+ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:327:9-92
 	android:name
 		ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:327:19-89
+activity#com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DT_QuestionActivity
+ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:328:9-330:75
+	android:label
+		ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:330:13-63
+	android:name
+		ADDED from D:\Android\GPath-LOC-02040215\app\src\main\AndroidManifest.xml:329:13-84
 uses-feature#android.hardware.camera.front
 ADDED from [com.journeyapps:zxing-android-embedded:2.3.0] D:\Android\GPath-LOC-02040215\app\build\intermediates\exploded-aar\com.journeyapps\zxing-android-embedded\2.3.0\AndroidManifest.xml:29:5-31:36
 	android:required

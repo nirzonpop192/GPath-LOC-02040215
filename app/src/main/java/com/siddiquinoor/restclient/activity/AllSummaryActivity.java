@@ -135,7 +135,7 @@ public class AllSummaryActivity extends BaseActivity implements View.OnClickList
 
     private void setUpGoButton() {
         btnGo.setText("");
-        Drawable imageGoto = getResources().getDrawable(R.drawable.goto_b);
+        Drawable imageGoto = getResources().getDrawable(R.drawable.goto_forward);
         btnGo.setCompoundDrawablesRelativeWithIntrinsicBounds(imageGoto, null, null, null);
         int leftPadd, rightPadd,topPadd,bottomPadd;
         CalculationPadding calPadd = new CalculationPadding();

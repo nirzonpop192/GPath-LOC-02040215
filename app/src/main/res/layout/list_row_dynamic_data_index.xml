@@ -10,6 +10,7 @@
 
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/dt_index_row_tv_dtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +23,7 @@
         android:gravity="center_vertical"
         android:hint="DTTitle"
         android:paddingTop="2dp"
-        android:textSize="18sp" />
+        android:textSize="@dimen/dt_index_txt_size_22"/>
 
 
     <TextView
@@ -32,7 +33,7 @@
 
 
         android:layout_below="@+id/dt_index_row_tv_ProgramName"
-        android:textSize="18sp"
+        android:textSize="@dimen/dt_index_txt_size_22"
 
         android:text="ActivityTitle"
         />
@@ -43,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:textSize="18sp"
+        android:textSize="@dimen/dt_index_txt_size_22"
         android:layout_alignEnd="@+id/dt_index_row_tv_AwardName"
         android:layout_alignRight="@+id/dt_index_row_tv_AwardName"
         android:layout_below="@+id/dt_index_row_tv_AwardName"
@@ -55,7 +56,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
 
-        android:src="@drawable/goto_b"
+        android:src="@drawable/goto_forward"
         android:layout_alignBottom="@+id/dt_index_row_tv_ProgramName"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -66,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/dt_index_row_tv_dtTitle"
 
-        android:textSize="18sp"
+        android:textSize="@dimen/dt_index_txt_size_22"
         android:layout_alignRight="@+id/dt_index_row_tv_dtTitle"
         android:layout_below="@+id/dt_index_row_tv_dtTitle"
         android:text="Award Name" />

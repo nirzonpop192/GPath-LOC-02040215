@@ -5511,7 +5511,33 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<DynamicTableQuesDataModel> getDynamicQuesionList(String dtBasicCode) {
+    public DynamicTableQuesDataModel getSingleDynamicQuestion(String dtBasicCode, int index){
+        DynamicTableQuesDataModel singleQus=new DynamicTableQuesDataModel();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT * FROM " + DTQ_TABLE +
+                " WHERE " + DT_BASIC_COL + "= '" + dtBasicCode + "'"+
+              //  " AND " + DTQ_CODE_COL + "= '" + dtQuestionCode + "'"+
+                " LIMIT 1 OFFSET "+String.valueOf(index);
+
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor!= null){
+            if(cursor.moveToFirst()){
+                singleQus.setDtBasicCode(cursor.getString(0));
+                singleQus.setDtQCode(cursor.getString(1));
+                singleQus.setqText(cursor.getString(2));
+                singleQus.setqResModeCode(cursor.getString(3));
+                singleQus.setqSeq(cursor.getString(4));
+                singleQus.setAllowNullFlag(cursor.getString(5));
+            }
+            cursor.close();
+            db.close();
+        }
+        return singleQus;
+    }
+
+    public ArrayList<DynamicTableQuesDataModel> getDynamicQuestionList(String dtBasicCode) {
         ArrayList<DynamicTableQuesDataModel> list = new ArrayList<DynamicTableQuesDataModel>();
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT * FROM " + DTQ_TABLE +

@@ -161,6 +161,8 @@ public class KEY {
     public static final String LOCATION_CODE = "locationCode";
     public static final String LOCATION_NAME = "locationName";
     public static final String ADD_FLAG_KEY = "add";
+    public static final String DYNAMIC_T_QUES_SIZE = "qusSize";
+
 
 
 }

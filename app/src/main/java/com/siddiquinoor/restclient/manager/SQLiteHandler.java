@@ -5538,14 +5538,21 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return singleQus;
     }
 
-    public DTQResponseModeDataModel getAnswerResponse(String qResponseMode){
+    /**
+     * invoking
+     * @see com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DT_QuestionActivity#loadAnswer(String)
+     * @param qResMode question Response Mode  ques's ans type
+     * @return ans repose mode
+     */
+
+    public DTQResponseModeDataModel getAnswerResponse(String qResMode){
         DTQResponseModeDataModel responseMode =new DTQResponseModeDataModel();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT * FROM " + DTQRES_MODE_TABLE +
-                " WHERE " + QRES_MODE_COL + "= '" + qResponseMode+ "'" ;
+                " WHERE " + QRES_MODE_COL + "= '" + qResMode+ "'" ;
 
-        //String qResMode,qResLupText, qDataType, qLookUpUdfName, qResponseValuseControl;
+
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor!= null){
             if(cursor.moveToFirst()){
@@ -5560,7 +5567,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             cursor.close();
             db.close();
         }
-        Log.d("responseTest",responseMode.getDtResponseValueControl()+"");
+        Log.d("responseTest",responseMode.getDtResponseValueControl()+"  setDtQResLupText:"
+        +responseMode.getDtQResLupText());
         return responseMode;
     }
 
@@ -5694,7 +5702,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + " , " + " grpDetail." + SQLiteHandler.STATUS
                 + " , " + " grpDetail." + SQLiteHandler.PROJECT_NO_COL
                 + " , " + " grpDetail." + SQLiteHandler.PROJECT_TITLE
-
 
                 + " FROM " + COMMUNITY_GROUP_CATEGORY_TABLE + " AS cgc "
 
@@ -8693,32 +8700,32 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             case COUNTRY_TABLE:
                 selectQuery = "SELECT DISTINCT " + COUNTRY_TABLE + "." + COUNTRY_CODE + ", " + COUNTRY_TABLE + "." + COUNTRY_NAME + " FROM " + table_name + criteria;
                 selectLabel = "Select Country";
-                //listItem.add("Select Village");
+
                 break;
 
             case DISTRICT_TABLE:
                 selectQuery = "SELECT " + table_name + "." + DISTRICT_CODE_COL + ", " + table_name + "." + DISTRICT_NAME_COL + " FROM " + table_name + criteria;
                 //selectLabel += getLayerLabel(cCode, "1"); show select Country
                 selectLabel = "Select " + getLayerLabel(cCode, "1");
-                //listItem.add("Select District");
+
                 break;
 
             case UPAZILLA_TABLE:
                 selectQuery = "SELECT " + table_name + "." + UPCODE_COL + ", " + table_name + "." + UPZILLA_NAME_COL + " FROM " + table_name + criteria;
                 selectLabel += getLayerLabel(cCode, "2");
-                //listItem.add("Select Upazilla");
+
                 break;
 
             case UNIT_TABLE:
                 selectQuery = "SELECT " + table_name + "." + UCODE_COL + ", " + table_name + "." + UNITE_NAME_COL + " FROM " + table_name + criteria;
                 selectLabel += getLayerLabel(cCode, "3");
-                //listItem.add("Select Upazilla");
+
                 break;
 
             case VILLAGE_TABLE:
                 selectQuery = "SELECT " + table_name + "." + VCODE_COL + ", " + table_name + "." + VILLAGE_NAME_COL + " FROM " + table_name + criteria;
                 selectLabel += getLayerLabel(cCode, "4");
-                //listItem.add("Select Village");
+
                 break;
 
             case RELATION_TABLE:

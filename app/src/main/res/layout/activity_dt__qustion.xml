@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
 
     tools:context=".activity.sub_activity.dynamic_table.DT_QuestionActivity">
+
     <include
         android:id="@+id/header"
         layout="@layout/header" />
@@ -22,40 +23,46 @@
 
 
     </RelativeLayout>
+
     <TextView
         android:id="@+id/tv_DtQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/page_title"
         android:padding="10dp"
         android:text="Qus"
-        android:layout_below="@+id/page_title"
-        android:textStyle="bold"
         android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textStyle="bold" />
+
     <include
         android:id="@+id/footer"
-        layout="@layout/footer"/>
+        layout="@layout/footer" />
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/footer"
         android:layout_below="@+id/tv_DtQuestion"
-        android:layout_above="@+id/footer">
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_dtTimePicker"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="New Text"
             android:padding="10dp"
-            android:textSize="20sp"
-            android:id="@+id/tv_dtTimePicker" />
+            android:text="New Text"
+            android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/edt"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="New Text"
             android:padding="10dp"
-            android:textSize="20sp"
-            android:id="@+id/edt" />
+            android:text="New Text"
+            android:textSize="20sp" />
+        <Spinner
+            android:id="@+id/dt_sp"
+            style="@style/spinner_style"
+           />
     </LinearLayout>
 </RelativeLayout>

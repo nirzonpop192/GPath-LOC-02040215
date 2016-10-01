@@ -11,7 +11,6 @@ public class Schema {
     private static final String CREATE_TABLE_IF_NOT_EXISTS = "CREATE TABLE IF NOT EXISTS ";
 
 
-
     /**
      * The patten of Table & serial
      * 1> userLogin
@@ -1664,7 +1663,7 @@ public class Schema {
     }
 
     public static String createTableDTQResMode() {
-        return "CREATE TABLE    "   + SQLiteHandler.DTQRES_MODE_TABLE + "   (   " +
+        return "CREATE TABLE    " + SQLiteHandler.DTQRES_MODE_TABLE + "   (   " +
                 "      " + SQLiteHandler.QRES_MODE_COL + "      TEXT NOT NULL,   " +
                 "      " + SQLiteHandler.QRES_LUP_TEXT_COL + "      TEXT,   " +
                 "      " + SQLiteHandler.DATA_TYPE_COL + "      TEXT,   " +
@@ -1682,6 +1681,7 @@ public class Schema {
                 "      " + SQLiteHandler.QRES_MODE_COL + "      TEXT,   " +
                 "      " + SQLiteHandler.QSEQ_SCOL + "      INTEGER,   " +
                 "      " + SQLiteHandler.ALLOW_NULL_COL + "      TEXT,   " +
+                "      " + SQLiteHandler.LUP_TABLE_NAME + "      TEXT,   " +
                 "   PRIMARY KEY(" + SQLiteHandler.DT_BASIC_COL + " ," + SQLiteHandler.DTQ_CODE_COL + " )   " +
                 ")";
     }
@@ -1734,7 +1734,6 @@ public class Schema {
                 "   PRIMARY KEY(" + SQLiteHandler.TABLE_NAME_COL + ")   " +
                 ")";
     }
-
 
 
 }

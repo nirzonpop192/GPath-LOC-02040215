@@ -21,7 +21,7 @@
         android:paddingTop="2dp"
         android:textSize="18sp" />
 
-    <ImageButton
+<!--    <ImageButton
         android:id="@+id/dt_q_row_ibtn_go"
 
         android:layout_width="40dp"
@@ -30,7 +30,7 @@
         android:layout_alignParentEnd="true"
 
         android:layout_alignParentRight="true"
-        android:src="@drawable/goto_forward" />
+        android:src="@drawable/goto_forward" />-->
 
 
 </RelativeLayout>

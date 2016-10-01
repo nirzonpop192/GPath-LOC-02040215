@@ -17,7 +17,7 @@ public class AppConfig {
      * UAT
      * //Windows Server Azure VM Live Server
      */
-    public static final String API_LINK = "http://pciapp.cloudapp.net/api/";
+   // public static final String API_LINK = "http://pciapp.cloudapp.net/api/";
     //LIVE LINK
     //  public static final String API_LINK = "http://pciapp.cloudapp.net/apilive/";
     /************************************************************************/
@@ -25,7 +25,7 @@ public class AppConfig {
     /***********************************************************************
      * //  Localhost
      */
-    //public static final String API_LINK = "http://192.168.49.1/api/local/";
+    public static final String API_LINK = "http://192.168.49.1/api/local/";
     /************************************************************************/
     /***********************************************************************
      * //  Localhost out side ngrok

@@ -15,6 +15,10 @@ public class DynamicDataIndexDataModel implements Parcelable {
     private String programName;
     private String prgActivityTitle;
     private String cCode;
+    private String opMode;
+    private String donorCode;
+    private String OpMonthCode;
+    private String OpMonthDate;
 
     public DynamicDataIndexDataModel() {
     }
@@ -43,6 +47,10 @@ public class DynamicDataIndexDataModel implements Parcelable {
         programName = in.readString();
         prgActivityTitle = in.readString();
         cCode = in.readString();
+        opMode = in.readString();
+        donorCode = in.readString();
+        OpMonthCode = in.readString();
+        OpMonthDate = in.readString();
 
     }
 
@@ -56,6 +64,42 @@ public class DynamicDataIndexDataModel implements Parcelable {
         dest.writeString(programName);
         dest.writeString(prgActivityTitle);
         dest.writeString(cCode);
+        dest.writeString(opMode);
+        dest.writeString(donorCode);
+        dest.writeString(OpMonthCode);
+        dest.writeString(OpMonthDate);
+    }
+
+    public String getOpMonthDate() {
+        return OpMonthDate;
+    }
+
+    public void setOpMonthDate(String opMonthDate) {
+        OpMonthDate = opMonthDate;
+    }
+
+    public String getOpMonthCode() {
+        return OpMonthCode;
+    }
+
+    public void setOpMonthCode(String opMonthCode) {
+        OpMonthCode = opMonthCode;
+    }
+
+    public String getDonorCode() {
+        return donorCode;
+    }
+
+    public void setDonorCode(String donorCode) {
+        this.donorCode = donorCode;
+    }
+
+    public String getOpMode() {
+        return opMode;
+    }
+
+    public void setOpMode(String opMode) {
+        this.opMode = opMode;
     }
 
     public String getcCode() {

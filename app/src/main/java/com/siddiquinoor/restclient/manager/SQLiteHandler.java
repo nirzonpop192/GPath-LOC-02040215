@@ -223,6 +223,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String RESPONSE_VALUE_CONTROL_COL = "ResponseValueControl";
     public static final String QTEXT_COL = "QText";
     public static final String ALLOW_NULL_COL = "AllowNull";
+    public static final String LUP_TABLE_NAME = "LUPTableName";
+
     public static final String QSEQ_SCOL = "QSeq";
     public static final String DT_ENU_ID_COL = "DTEnuID";
     public static final String OP_MODE_COL = "OpMode";
@@ -5512,19 +5514,19 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
-    public DynamicTableQuesDataModel getSingleDynamicQuestion(String dtBasicCode, int index){
-        DynamicTableQuesDataModel singleQus=new DynamicTableQuesDataModel();
+    public DynamicTableQuesDataModel getSingleDynamicQuestion(String dtBasicCode, int index) {
+        DynamicTableQuesDataModel singleQus = new DynamicTableQuesDataModel();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT * FROM " + DTQ_TABLE +
-                " WHERE " + DT_BASIC_COL + "= '" + dtBasicCode + "'"+
-              //  " AND " + DTQ_CODE_COL + "= '" + dtQuestionCode + "'"+
-                " LIMIT 1 OFFSET "+String.valueOf(index);
+                " WHERE " + DT_BASIC_COL + "= '" + dtBasicCode + "'" +
+                //  " AND " + DTQ_CODE_COL + "= '" + dtQuestionCode + "'"+
+                " LIMIT 1 OFFSET " + String.valueOf(index);
 
 
         Cursor cursor = db.rawQuery(sql, null);
-        if (cursor!= null){
-            if(cursor.moveToFirst()){
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
                 singleQus.setDtBasicCode(cursor.getString(0));
                 singleQus.setDtQCode(cursor.getString(1));
                 singleQus.setqText(cursor.getString(2));
@@ -5540,22 +5542,23 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * invoking
-     * @see com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DT_QuestionActivity#loadAnswer(String)
+     *
      * @param qResMode question Response Mode  ques's ans type
      * @return ans repose mode
+     * @see com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DT_QuestionActivity#loadAnswer(String)
      */
 
-    public DTQResponseModeDataModel getAnswerResponse(String qResMode){
-        DTQResponseModeDataModel responseMode =new DTQResponseModeDataModel();
+    public DTQResponseModeDataModel getAnswerResponse(String qResMode) {
+        DTQResponseModeDataModel responseMode = new DTQResponseModeDataModel();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT * FROM " + DTQRES_MODE_TABLE +
-                " WHERE " + QRES_MODE_COL + "= '" + qResMode+ "'" ;
+                " WHERE " + QRES_MODE_COL + "= '" + qResMode + "'";
 
 
         Cursor cursor = db.rawQuery(sql, null);
-        if (cursor!= null){
-            if(cursor.moveToFirst()){
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
 
                 responseMode.setDtQResMode(cursor.getString(0));
                 responseMode.setDtQResLupText(cursor.getString(1));
@@ -5567,8 +5570,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             cursor.close();
             db.close();
         }
-        Log.d("responseTest",responseMode.getDtResponseValueControl()+"  setDtQResLupText:"
-        +responseMode.getDtQResLupText());
+        Log.d("responseTest", responseMode.getDtResponseValueControl() + "  setDtQResLupText:"
+                + responseMode.getDtQResLupText());
         return responseMode;
     }
 
@@ -5607,16 +5610,19 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         ArrayList<DynamicDataIndexDataModel> list = new ArrayList<DynamicDataIndexDataModel>();
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT dtB." + DT_TITLE_COL + "  " +
-                " ,dtCPgr." + DT_BASIC_COL + " AS dtBasicCode  " +
-                " ,donor." + DONOR_NAME_COL + " || '-' || award." + AWARD_S_NAME_COL + " AS awardName  " +
-                " ,dtCPgr." + DONOR_CODE_COL + " || '' || dtCPgr." + AWARD_CODE_COL + " AS awardCode  " +
-                " ,prg." + PROGRAM_SHORT_NAME_COL + "  " +
-                " ,dtCPgr." + PROGRAM_CODE_COL + "  " +
-                " ,dtCPgr." + PROG_ACTIVITY_TITLE_COL +
-                " ,dtCPgr." + COUNTRY_CODE_COL
+                " , dtCPgr." + DT_BASIC_COL + " AS dtBasicCode  " +
+                " , donor." + DONOR_NAME_COL + " || '-' || award." + AWARD_S_NAME_COL + " AS awardName  " +
+                " , dtCPgr." + DONOR_CODE_COL + " || '' || dtCPgr." + AWARD_CODE_COL + " AS awardCode  " +
+                " , prg." + PROGRAM_SHORT_NAME_COL + "  " +
+                " , dtCPgr." + PROGRAM_CODE_COL + "  " +
+                " , dtCPgr." + PROG_ACTIVITY_TITLE_COL +
+                " , dtCPgr." + COUNTRY_CODE_COL +
+                " , dtB." + DT_OP_MODE_COL +
+
+                " , dtCPgr." + DONOR_CODE_COL
                 + "  FROM " +
                 DT_COUNTRY_PROGRAM_TABLE + " AS dtCPgr  " +
-                " LEFT JOIN " + DT_BASIC_TABLE + "  as dtB  " +
+                " LEFT JOIN " + DT_BASIC_TABLE + "  AS dtB  " +
                 " ON dtB." + DT_BASIC_COL + " = dtCpgr." + DT_BASIC_COL + "   " +
                 " LEFT JOIN " +
                 ADM_AWARD_TABLE + " as award  " +
@@ -5649,6 +5655,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
                 data.setPrgActivityTitle(cursor.getString(6));
                 data.setcCode(cursor.getString(7));
+                data.setOpMode(cursor.getString(8));
+                data.setDonorCode(cursor.getString(9));
 
 
                 list.add(data);
@@ -11456,6 +11464,49 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
+     * This method invoking Form
+     *  @see {@link com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DTResponseActivity.btn_goToQustion}
+     * This method  return Date the Range of Dt
+     * @param cCode  Country Code
+     * @param opMonth Op Month Code
+     * @return A  Hash Map of startDate & end Date
+     */
+
+    public HashMap<String, String> getDynamicTableDateRange(String cCode, String opMonth) {
+        HashMap<String, String> dateRange = new HashMap<String, String>();
+
+
+        String sql = "SELECT  "
+                + "  " + USA_START_DATE
+                + " , " + USA_END_DATE
+                + " FROM " + OP_MONTH_TABLE
+                + " WHERE " + COUNTRY_CODE_COL + " = '" + cCode + "'"
+                + " AND " + STATUS + "= 'A'"
+                + " AND " + OPERATION_CODE_COL + " = '5'"
+                + " AND " + OP_MONTH_CODE_COL + " = '" + opMonth + "'";
+
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+
+            dateRange.put("sdate", cursor.getString(0));      // Start Date
+            dateRange.put("edate", cursor.getString(1));    // End Date
+
+            cursor.close();
+            db.close();
+        } else {
+
+            dateRange.put("sdate", null);                   // Start Date
+            dateRange.put("edate", null);                   // End Date
+        }
+
+
+        return dateRange;
+    }
+
+    /**
      * Getting user data from database [for future use]
      * review the method
      */
@@ -11463,14 +11514,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         HashMap<String, String> dateRange = new HashMap<String, String>();
 
 
-        String selectQuery = "SELECT  " + COUNTRY_CODE_COL + " , " + START_DATE +
-                " , " + END_DATE + " FROM " + OP_MONTH_TABLE + " WHERE " + COUNTRY_CODE_COL + " = '" + cCode + "'" +
-                " AND " + STATUS + "= 'A'"
+        String sql = "SELECT  " + COUNTRY_CODE_COL
+                + " , " + START_DATE +
+                " , " + END_DATE
+                + " FROM " + OP_MONTH_TABLE
+                + " WHERE " + COUNTRY_CODE_COL + " = '" + cCode + "'"
+                + " AND " + STATUS + "= 'A'"
                 + " AND " + OPERATION_CODE_COL + " = '1'" +
                 "  ORDER BY " + OP_MONTH_CODE_COL + "   DESC   LIMIT 1 ";
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = db.rawQuery(sql, null);
         cursor.moveToFirst();
         if (cursor.getCount() > 0) {
             dateRange.put("c_code", cursor.getString(0));    // CountryCode as Country Code
@@ -11987,7 +12041,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addIntoDTQTable(String dtBasic, String dtqCode, String qText, String qResMode, String qSeq, String allowNull) {
+    public void addIntoDTQTable(String dtBasic, String dtqCode, String qText, String qResMode, String qSeq, String allowNull, String lub_tableName) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -11997,6 +12051,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(QRES_MODE_COL, qResMode);
         values.put(QSEQ_SCOL, qSeq);
         values.put(ALLOW_NULL_COL, allowNull);
+        values.put(LUP_TABLE_NAME, lub_tableName);
 
         long id = db.insert(DTQ_TABLE, null, values);
         db.close();

@@ -89,7 +89,6 @@ public abstract class BaseActivity extends Activity {
          */
 
 
-
         if (!ac.DEV_ENVIRONMENT) {
             if (!session.isLoggedIn()) {
                 intent = new Intent(app_context, LoginActivity.class);
@@ -348,9 +347,9 @@ public abstract class BaseActivity extends Activity {
             curr_date = test_date;
         } else {
             curr_date = test_date;
-//                    + " 00:00:00.000";
+
         }
-        //SimpleDateFormat nformat = new SimpleDateFormat("MMMM dd, yyyy", Locale.ENGLISH);
+
         SimpleDateFormat format = new SimpleDateFormat("MM-dd-yyyy", Locale.ENGLISH);
 
         Date newDate = format.parse(curr_date);
@@ -478,20 +477,19 @@ public abstract class BaseActivity extends Activity {
     }
 
     /**
-     *
      * @param context invoking class name
-     * @param image Drawable image
-     * @param btn button view
+     * @param image   Drawable image
+     * @param btn     button view
      */
-    protected void setPaddingButton(Context context, Drawable image , Button btn){
-        int leftPadd,rightPadd,topPadd,bottomPadd;
+    protected void setPaddingButton(Context context, Drawable image, Button btn) {
+        int leftPadd, rightPadd, topPadd, bottomPadd;
         CalculationPadding calPadd = new CalculationPadding();
 
         leftPadd = rightPadd = calPadd.calculateViewPadding(context, image, btn);
         /**
          * get the value  from resource
          */
-        topPadd=bottomPadd=getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
+        topPadd = bottomPadd = getResources().getInteger(R.integer.top_bottom_icon_pad_int_5);
 
         btn.setPadding(leftPadd, topPadd, rightPadd, bottomPadd);
     }

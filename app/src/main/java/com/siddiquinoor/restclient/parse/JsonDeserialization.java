@@ -1555,6 +1555,7 @@ public class JsonDeserialization {
         String QResMode;
         String QSeq;
         String AllowNull;
+        String LUPTableName;
 
 
         for (int i = 0; i < size; i++) {
@@ -1568,10 +1569,11 @@ public class JsonDeserialization {
                 QResMode = jsonObject.getString("QResMode");
                 QSeq = jsonObject.getString("QSeq");
                 AllowNull = jsonObject.getString("AllowNull");
+                LUPTableName = jsonObject.getString("LUPTableName");
 
-                sqlH.addIntoDTQTable(DTBasic, DTQCode, QText, QResMode, QSeq, AllowNull);
+                sqlH.addIntoDTQTable(DTBasic, DTQCode, QText, QResMode, QSeq, AllowNull,LUPTableName);
 
-                Log.d(TAG, "DT Ans Table");
+//                Log.d(TAG, "DT Ans Table");
 
             } catch (Exception e) {
                 Log.e(TAG, "Exception : " + e);

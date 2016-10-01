@@ -70,6 +70,10 @@
 
                 <TextView
                     style="@style/txt_label"
+                    android:text="Month" />
+
+                <TextView
+                    style="@style/txt_label"
                     android:text="Date" />
 
 
@@ -98,6 +102,10 @@
 
                 <TextView
                     android:id="@+id/tv_dtResponse_activity_title"
+                    style="@style/spinner_style" />
+
+                <Spinner
+                    android:id="@+id/sp_dtMonth"
                     style="@style/spinner_style" />
 
                 <TextView

@@ -3,7 +3,7 @@ package com.siddiquinoor.restclient.utils;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 
@@ -26,7 +26,7 @@ public class CalculationPadding {
         int imageWidth = imageSize.getmWidth();
         imageWidth = imageWidth / 2;
         int p = (int) (deviceWidth / 2) - imageWidth;
-        Log.i(TAG, "padding :" + p);
+
         return p;
     }
 

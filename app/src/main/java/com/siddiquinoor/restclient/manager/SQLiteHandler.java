@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import com.siddiquinoor.restclient.data_model.AGR_DataModel;
 import com.siddiquinoor.restclient.data_model.AssignDDR_FFA_DataModel;
 import com.siddiquinoor.restclient.data_model.DTQResponseModeDataModel;
+import com.siddiquinoor.restclient.data_model.DT_ATableDataModel;
 import com.siddiquinoor.restclient.data_model.FDPItem;
 import com.siddiquinoor.restclient.data_model.GPS_LocationAttributeDataModel;
 import com.siddiquinoor.restclient.data_model.GPS_LocationDataModel;
@@ -1235,6 +1236,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.delete(UNIT_TABLE, null, null);
             db.delete(VILLAGE_TABLE, null, null);
             db.delete(RELATION_TABLE, null, null);
+            /**
+             * todo do not delete AWARd Table program table Service Table
+             */
             db.delete(ADM_AWARD_TABLE, null, null);
             db.delete(ADM_DONOR_TABLE, null, null);
             db.delete(PROGRAM_MASTER_TABLE, null, null);
@@ -5546,10 +5550,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      *
      * @param qResMode question Response Mode  ques's ans type
      * @return ans repose mode
-     * @see com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DT_QuestionActivity#loadAnswer(String)
+     * @see com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DT_QuestionActivity#loadDT_QResMode(String)
      */
 
-    public DTQResponseModeDataModel getAnswerResponse(String qResMode) {
+    public DTQResponseModeDataModel getDT_QResMode(String qResMode) {
         DTQResponseModeDataModel responseMode = new DTQResponseModeDataModel();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -5574,6 +5578,63 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         Log.d("responseTest", responseMode.getDtResponseValueControl() + "  setDtQResLupText:"
                 + responseMode.getDtQResLupText());
         return responseMode;
+    }
+
+
+    public List<DT_ATableDataModel> getDTA_Table(String dtBasic, String dtQCode) {
+
+        List<DT_ATableDataModel> listDTA = new ArrayList<DT_ATableDataModel>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT * FROM " + DT_A_TABLE +
+                " WHERE " + DT_BASIC_COL + "= '" + dtBasic + "'" +
+                " AND " + DTQ_CODE_COL + "= '" + dtQCode + "'";
+
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            do {
+                DT_ATableDataModel dta = new DT_ATableDataModel();
+
+                dta.setDTBasic(cursor.getString(0));
+                dta.setDt_QCode(cursor.getString(1));
+                dta.setDt_ACode(cursor.getString(2));
+                dta.setDt_ALabel(cursor.getString(3));
+                dta.setDt_AValue(cursor.getString(4));
+                dta.setDt_Seq(cursor.getString(5));
+                dta.setDt_AShort(cursor.getString(6));
+                dta.setDt_ScoreCode(cursor.getString(7));
+                dta.setDt_SkipDTQCode(cursor.getString(8));
+                dta.setDt_ACompareCode(cursor.getString(9));
+                dta.setShowHide(cursor.getString(10));
+                dta.setMaxValue(cursor.getInt(11));
+                dta.setMinValue(cursor.getInt(12));
+                dta.setDataType(cursor.getString(13));
+                dta.setMarkOnGrid(cursor.getString(14));
+
+                listDTA.add(dta);
+
+                Log.d("MOR_SQL",
+
+                        "DTBasic() :" + dta.getDTBasic() +
+                                "\n Dt_QCode()      :" + dta.getDt_QCode() +
+                                "\n Dt_ACode()      :" + dta.getDt_ACode() +
+                                "\n Dt_ALabel()     :" + dta.getDt_ALabel() +
+                                "\n Dt_AValue()     :" + dta.getDt_AValue() +
+                                "\n Dt_Seq()        :" + dta.getDt_Seq() +
+                                "\n Dt_ScoreCode()  :" + dta.getDt_ScoreCode() +
+                                "\n Dt_SkipDTQCode():" + dta.getDt_SkipDTQCode()
+
+                );
+            } while (cursor.moveToNext());
+
+            cursor.close();
+            db.close();
+        }
+
+
+
+        return listDTA;
+
     }
 
     public ArrayList<DynamicTableQuesDataModel> getDynamicQuestionList(String dtBasicCode) {
@@ -5607,8 +5668,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
-     *
-     * @param cCode Country Code
+     * @param cCode         Country Code
      * @param dtTitleSearch Search Key
      * @return DT index list
      */
@@ -5627,7 +5687,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 " , dtCPgr." + COUNTRY_CODE_COL +
                 " , dtB." + DT_OP_MODE_COL +
 
-                " , dtCPgr." + DONOR_CODE_COL+
+                " , dtCPgr." + DONOR_CODE_COL +
                 " , dtCPgr." + PROG_ACTIVITY_CODE_COL
                 + "  FROM " +
                 DT_COUNTRY_PROGRAM_TABLE + " AS dtCPgr  " +
@@ -11475,11 +11535,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * This method invoking Form
-     *  @see {@link com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DTResponseActivity.btn_goToQustion}
-     * This method  return Date the Range of Dt
-     * @param cCode  Country Code
+     *
+     * @param cCode   Country Code
      * @param opMonth Op Month Code
      * @return A  Hash Map of startDate & end Date
+     * @see {@link com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DTResponseActivity.btn_goToQustion}
+     * This method  return Date the Range of Dt
      */
 
     public HashMap<String, String> getDynamicTableDateRange(String cCode, String opMonth) {

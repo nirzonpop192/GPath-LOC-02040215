@@ -3,7 +3,6 @@ package com.siddiquinoor.restclient.activity.sub_activity.dynamic_table;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -17,11 +16,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.data_model.DTQResponseModeDataModel;
+import com.siddiquinoor.restclient.data_model.DT_ATableDataModel;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 import com.siddiquinoor.restclient.utils.KEY;
@@ -73,11 +71,14 @@ public class DT_QuestionActivity extends BaseActivity {
      */
     private Spinner dt_spinner;
     private EditText edt;
+
+    private String idSpinner;
+    private String strSpinner;
     /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     * #mDTATable is Dterminator of Check Box item &  value
+     * it is assigned by {@link #displayQuestion(DynamicTableQuesDataModel)} method
      */
-    private GoogleApiClient client;
+    List<DT_ATableDataModel> mDTATableList;
 
     /**
      * @param sIState savedInstanceState
@@ -93,9 +94,7 @@ public class DT_QuestionActivity extends BaseActivity {
 
         setListener();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
     }
 
 
@@ -111,9 +110,17 @@ public class DT_QuestionActivity extends BaseActivity {
                     if (tv_dtTimePicker.getVisibility() == View.VISIBLE) {
                         if (tv_dtTimePicker.getText().toString().equals("Click for Date")) {
                             Toast.makeText(DT_QuestionActivity.this, "Set Date First ", Toast.LENGTH_SHORT).show();
-                        }else {
+                        } else {
                             nextQuestion();
                         }
+                    } else if (dt_spinner.getVisibility() == View.VISIBLE) {
+
+                        if (idSpinner.equals("00")) {
+                            Toast.makeText(mContext, "Select Item", Toast.LENGTH_SHORT).show();
+                        }
+
+                        Log.d("MOR", idSpinner);
+
                     }
                 } else {
 
@@ -121,8 +128,7 @@ public class DT_QuestionActivity extends BaseActivity {
                     /**
                      *  TODO: 9/29/2016  save method & update method
                      */
-                saveData("");
-
+                    saveData("");
 
 
                     /**
@@ -163,7 +169,10 @@ public class DT_QuestionActivity extends BaseActivity {
     }
 
 
-    private void saveOnResponseTable( String ansValue) {
+    private void saveOnResponseTable(String ansValue) {
+        /**
+         * Todo: implemet the mDTATable
+         */
 
 
         String DTBasic = dyIndex.getDtBasicCode();
@@ -236,9 +245,17 @@ public class DT_QuestionActivity extends BaseActivity {
         }
     }
 
+    /**
+     * @param qusObject DTQTable object
+     *                  {@link #mDTATableList} must be assigned before invoking {@link #loadDT_QResMode(String)}
+     */
+
     private void displayQuestion(DynamicTableQuesDataModel qusObject) {
         tv_DtQuestion.setText(qusObject.getqText());
+        mDTATableList = sqlH.getDTA_Table(qusObject.getDtBasicCode(), qusObject.getDtQCode());
+
         loadDT_QResMode(qusObject.getqResModeCode());
+
 
     }
 
@@ -338,7 +355,7 @@ public class DT_QuestionActivity extends BaseActivity {
      */
     private void loadDT_QResMode(String resMode) {
 
-        DTQResponseModeDataModel dtqResponseModeDataModel = sqlH.getAnswerResponse(resMode);
+        DTQResponseModeDataModel dtqResponseModeDataModel = sqlH.getDT_QResMode(resMode);
         String dataType = dtqResponseModeDataModel.getDtDataType();
         String responseControl = dtqResponseModeDataModel.getDtResponseValueControl();
         String resLupText = dtqResponseModeDataModel.getDtQResLupText();
@@ -387,6 +404,10 @@ public class DT_QuestionActivity extends BaseActivity {
                     loadSpinnerList(dyIndex.getcCode(), resLupText);
 
 
+                    break;
+                case "CheckBox":
+                    mDTATableList.size()
+                            // // TODO: 10/2/2016  worke Shubo vai
                     break;
             }// end of switch
         }// end of if
@@ -563,8 +584,8 @@ public class DT_QuestionActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
 
-                String strUnion = ((SpinnerHelper) dt_spinner.getSelectedItem()).getValue();
-                String idUnion = ((SpinnerHelper) dt_spinner.getSelectedItem()).getId();
+                strSpinner = ((SpinnerHelper) dt_spinner.getSelectedItem()).getValue();
+                idSpinner = ((SpinnerHelper) dt_spinner.getSelectedItem()).getId();
 
 
             }

@@ -143,6 +143,10 @@ public class DTResponseActivity extends BaseActivity {
     }
 
     private void GoToDT_QuestionPage() {
+        /**
+         * resetting Adm Award Code
+         */
+        dyIndex.setAwardCode(idAward);
 
         /**
          * set opMonth Code & op month Date

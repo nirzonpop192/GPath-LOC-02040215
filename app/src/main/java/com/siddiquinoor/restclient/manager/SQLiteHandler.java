@@ -5533,6 +5533,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 singleQus.setqResModeCode(cursor.getString(3));
                 singleQus.setqSeq(cursor.getString(4));
                 singleQus.setAllowNullFlag(cursor.getString(5));
+                singleQus.setLup_TableName(cursor.getString(6));
             }
             cursor.close();
             db.close();
@@ -5605,6 +5606,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
+    /**
+     *
+     * @param cCode Country Code
+     * @param dtTitleSearch Search Key
+     * @return DT index list
+     */
+
     public ArrayList<DynamicDataIndexDataModel> getDynamicTableIndexList(final String cCode, String dtTitleSearch) {
 
         ArrayList<DynamicDataIndexDataModel> list = new ArrayList<DynamicDataIndexDataModel>();
@@ -5619,7 +5627,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 " , dtCPgr." + COUNTRY_CODE_COL +
                 " , dtB." + DT_OP_MODE_COL +
 
-                " , dtCPgr." + DONOR_CODE_COL
+                " , dtCPgr." + DONOR_CODE_COL+
+                " , dtCPgr." + PROG_ACTIVITY_CODE_COL
                 + "  FROM " +
                 DT_COUNTRY_PROGRAM_TABLE + " AS dtCPgr  " +
                 " LEFT JOIN " + DT_BASIC_TABLE + "  AS dtB  " +
@@ -5657,6 +5666,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 data.setcCode(cursor.getString(7));
                 data.setOpMode(cursor.getString(8));
                 data.setDonorCode(cursor.getString(9));
+                data.setProgramActivityCode(cursor.getString(10));
 
 
                 list.add(data);

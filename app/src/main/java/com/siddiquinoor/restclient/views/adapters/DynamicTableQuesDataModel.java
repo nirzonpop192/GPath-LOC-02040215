@@ -13,6 +13,7 @@ public class DynamicTableQuesDataModel implements Parcelable {
     private String qResModeCode;
     private String qSeq;
     private String allowNullFlag;
+    private String lup_TableName;
 
     // to pass the class object
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
@@ -42,6 +43,7 @@ public class DynamicTableQuesDataModel implements Parcelable {
         qResModeCode = in.readString();
         qSeq = in.readString();
         allowNullFlag = in.readString();
+        lup_TableName = in.readString();
 
 
     }
@@ -55,11 +57,20 @@ public class DynamicTableQuesDataModel implements Parcelable {
         dest.writeString(qResModeCode);
         dest.writeString(qSeq);
         dest.writeString(allowNullFlag);
+        dest.writeString(lup_TableName);
     }
 
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public String getLup_TableName() {
+        return lup_TableName;
+    }
+
+    public void setLup_TableName(String lup_TableName) {
+        this.lup_TableName = lup_TableName;
     }
 
     public String getDtBasicCode() {

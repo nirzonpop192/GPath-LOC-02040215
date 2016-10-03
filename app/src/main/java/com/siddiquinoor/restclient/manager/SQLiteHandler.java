@@ -5567,15 +5567,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
                 responseMode.setDtQResMode(cursor.getString(0));
                 responseMode.setDtQResLupText(cursor.getString(1));
-                responseMode.setDtDataType(cursor.getString(2));
+                responseMode.setDtDataType(cursor.getString(2).trim());
                 responseMode.setDtLookUpUDFName(cursor.getString(3));
-                responseMode.setDtResponseValueControl(cursor.getString(4));
+                responseMode.setDtResponseValueControl(cursor.getString(4).trim());
 
             }
             cursor.close();
             db.close();
         }
-        Log.d("responseTest", responseMode.getDtResponseValueControl() + "  setDtQResLupText:"
+        Log.d("responseTest", " ResMode:" + responseMode.getDtQResMode()
+                + " \tResponseValueControl" + responseMode.getDtResponseValueControl()
+                + "  setDtQResLupText:"
                 + responseMode.getDtQResLupText());
         return responseMode;
     }
@@ -5613,7 +5615,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
                 listDTA.add(dta);
 
-                Log.d("MOR_SQL",
+          /*      Log.d("MOR_SQL",
 
                         "DTBasic() :" + dta.getDTBasic() +
                                 "\n Dt_QCode()      :" + dta.getDt_QCode() +
@@ -5624,13 +5626,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                                 "\n Dt_ScoreCode()  :" + dta.getDt_ScoreCode() +
                                 "\n Dt_SkipDTQCode():" + dta.getDt_SkipDTQCode()
 
-                );
+                );*/
             } while (cursor.moveToNext());
 
             cursor.close();
             db.close();
         }
-
 
 
         return listDTA;

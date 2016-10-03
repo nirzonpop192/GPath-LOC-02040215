@@ -39,9 +39,9 @@
         layout="@layout/footer" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/footer"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tv_DtQuestion"
         android:orientation="vertical">
 
@@ -54,15 +54,28 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/edt"
+            android:id="@+id/edt_dt"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:padding="10dp"
             android:text="New Text"
             android:textSize="20sp" />
+
         <Spinner
             android:id="@+id/dt_sp"
-            style="@style/spinner_style"
-           />
+            style="@style/spinner_style" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footer"
+
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayout">
+
     </LinearLayout>
 </RelativeLayout>

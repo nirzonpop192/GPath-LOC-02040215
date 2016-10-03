@@ -10,9 +10,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +38,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class DT_QuestionActivity extends BaseActivity {
+public class DT_QuestionActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
 
     public static final String TEXT = "Text";
     public static final String NUMBER = "Number";
@@ -51,15 +55,19 @@ public class DT_QuestionActivity extends BaseActivity {
     public static final String SERVICE_SITE = "Service Site";
     public static final String DISTRIBUTION_POINT = "Distribution Point";
     public static final String COMMUNITY_GROUP = "Community Group";
+    public static final String CHECK_BOX = "Checkbox";
 
     private SQLiteHandler sqlH;
     private final Context mContext = DT_QuestionActivity.this;
     private DynamicDataIndexDataModel dyIndex;
     private int totalQuestion;
-    private TextView tv_DtQuestion, tv_dtTimePicker;
+    private TextView tv_DtQuestion;
     private Button btnNextQues;
     private DynamicTableQuesDataModel mQuestion;
     private Button btnPreviousQus;
+
+
+    private List<CheckBox> mCheckBox_List = new ArrayList<CheckBox>();
     int mQusIndex;
     /**
      * For Date time picker
@@ -70,12 +78,18 @@ public class DT_QuestionActivity extends BaseActivity {
      * Dynamic view
      */
     private Spinner dt_spinner;
-    private EditText edt;
+    private EditText dt_edt;
+    private TextView _dt_tv_DatePicker;
+    private int numChecked = 0;
 
     private String idSpinner;
     private String strSpinner;
+
+    private LinearLayout dt_llayout_CheckBox;
+
+//    private int getCall = 1;
     /**
-     * #mDTATable is Dterminator of Check Box item &  value
+     * #mDTATable is Deliminator of Check Box item &  value
      * it is assigned by {@link #displayQuestion(DynamicTableQuesDataModel)} method
      */
     List<DT_ATableDataModel> mDTATableList;
@@ -107,20 +121,67 @@ public class DT_QuestionActivity extends BaseActivity {
                  *
                  */
                 if (mQuestion.getAllowNullFlag().equals("N")) {
-                    if (tv_dtTimePicker.getVisibility() == View.VISIBLE) {
-                        if (tv_dtTimePicker.getText().toString().equals("Click for Date")) {
+                    if (_dt_tv_DatePicker.getVisibility() == View.VISIBLE) {
+                        if (_dt_tv_DatePicker.getText().toString().equals("Click for Date")) {
                             Toast.makeText(DT_QuestionActivity.this, "Set Date First ", Toast.LENGTH_SHORT).show();
                         } else {
+                            /**
+                             * mDTATableList.get(0) wil be single
+                             */
+                            saveData(_dt_tv_DatePicker.getText().toString(), mDTATableList.get(0));
                             nextQuestion();
                         }
                     } else if (dt_spinner.getVisibility() == View.VISIBLE) {
 
                         if (idSpinner.equals("00")) {
                             Toast.makeText(mContext, "Select Item", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // // TODO: 10/2/2016 Do something for spinner
+                            /**
+                             * {@link DT_QuestionActivity#saveData(String, DT_ATableDataModel)}
+                             */
+
+//                            {@li}saveData(strSpinner);
+                            /**
+                             * NEXT QUESTION
+                             */
+                            nextQuestion();
                         }
 
                         Log.d("MOR", idSpinner);
+                    }// end spinner
+                    /**
+                     * Edit Text
+                     */
+                    else if (dt_edt.getVisibility() == View.VISIBLE) {
+                        if (dt_edt.getText().toString().equals("New Text")) {
+                            Toast.makeText(mContext, "Insert  Text", Toast.LENGTH_SHORT).show();
+                        } else {
 
+                            saveData(dt_edt.getText().toString(), mDTATableList.get(0));
+                            /**
+                             * NEXT QUESTION
+                             */
+                            nextQuestion();
+
+                        }
+                    }
+                    /**
+                     * Spinner
+                     */
+                    else if (dt_llayout_CheckBox.getVisibility() == View.VISIBLE) {
+                        if (numChecked <= 0)
+                            Toast.makeText(DT_QuestionActivity.this, " Please select a option.", Toast.LENGTH_SHORT).show();
+                        else {
+                            int i = 0;
+                            for (CheckBox cb : mCheckBox_List) {
+                                if (cb.isChecked()) {
+                                    Toast.makeText(mContext, "Check Box no:" + (i + 1) + " is checked", Toast.LENGTH_SHORT).show();
+                                    saveData("", mDTATableList.get(i));
+                                }
+                                i++;
+                            }
+                        }
                     }
                 } else {
 
@@ -128,7 +189,7 @@ public class DT_QuestionActivity extends BaseActivity {
                     /**
                      *  TODO: 9/29/2016  save method & update method
                      */
-                    saveData("");
+//                    saveData("");
 
 
                     /**
@@ -164,16 +225,15 @@ public class DT_QuestionActivity extends BaseActivity {
         });
     }
 
-    private void saveData(String ansValue) {
-        saveOnResponseTable(ansValue);
+    private void saveData(String ansValue, DT_ATableDataModel ansMOde) {
+        saveOnResponseTable(ansValue, ansMOde);
     }
 
 
-    private void saveOnResponseTable(String ansValue) {
+    private void saveOnResponseTable(String ansValue, DT_ATableDataModel ansMOde) {
         /**
-         * Todo: implemet the mDTATable
+         * Todo: implemet the mDTATableList
          */
-
 
         String DTBasic = dyIndex.getDtBasicCode();
         String AdmCountryCode = dyIndex.getcCode();
@@ -198,7 +258,10 @@ public class DT_QuestionActivity extends BaseActivity {
         String DataType = null;
 
 
-        Log.d("MOR", " for save process"
+        DTAValue = ansMOde.getDt_AValue().equals("null") || ansMOde.getDt_AValue().length() == 0 ? ansValue : ansMOde.getDt_AValue();
+
+
+        Log.d("MOR_1", " for save process"
                 + "\n DTBasic          : " + DTBasic
                 + "\n AdmCountryCode   : " + AdmCountryCode
                 + "\n AdmDonorCode     : " + AdmDonorCode
@@ -215,6 +278,8 @@ public class DT_QuestionActivity extends BaseActivity {
                 + "\n OpMonthCode      : " + OpMonthCode
                 + "\n DataType         : " + DataType
         );
+
+
 
               /*  *//**
          * main Exiquation
@@ -248,6 +313,7 @@ public class DT_QuestionActivity extends BaseActivity {
     /**
      * @param qusObject DTQTable object
      *                  {@link #mDTATableList} must be assigned before invoking {@link #loadDT_QResMode(String)}
+     *                  {@link #mDTATableList} needed in {@link #saveData(String, DT_ATableDataModel)} (String)} method
      */
 
     private void displayQuestion(DynamicTableQuesDataModel qusObject) {
@@ -282,15 +348,16 @@ public class DT_QuestionActivity extends BaseActivity {
      */
 
     private void hideViews() {
-        tv_dtTimePicker.setVisibility(View.GONE);
-        edt.setVisibility(View.GONE);
+        _dt_tv_DatePicker.setVisibility(View.GONE);
+        dt_edt.setVisibility(View.GONE);
         dt_spinner.setVisibility(View.GONE);
+        dt_llayout_CheckBox.setVisibility(View.GONE);
     }
 
     private void viewReference() {
         tv_DtQuestion = (TextView) findViewById(R.id.tv_DtQuestion);
 
-
+        dt_llayout_CheckBox = (LinearLayout) findViewById(R.id.ll_checkBox);
         btnNextQues = (Button) findViewById(R.id.btnHomeFooter);
         btnPreviousQus = (Button) findViewById(R.id.btnRegisterFooter);
         btnNextQues.setText("Next");
@@ -299,8 +366,8 @@ public class DT_QuestionActivity extends BaseActivity {
          * dynamic view reference
          */
 
-        tv_dtTimePicker = (TextView) findViewById(R.id.tv_dtTimePicker);
-        edt = (EditText) findViewById(R.id.edt);
+        _dt_tv_DatePicker = (TextView) findViewById(R.id.tv_dtTimePicker);
+        dt_edt = (EditText) findViewById(R.id.edt_dt);
         dt_spinner = (Spinner) findViewById(R.id.dt_sp);
 
 
@@ -365,12 +432,12 @@ public class DT_QuestionActivity extends BaseActivity {
 
                     switch (dataType) {
                         case TEXT:
-                            edt.setVisibility(View.VISIBLE);
-                            edt.setInputType(InputType.TYPE_CLASS_TEXT);
+                            dt_edt.setVisibility(View.VISIBLE);
+                            dt_edt.setInputType(InputType.TYPE_CLASS_TEXT);
                             break;
                         case NUMBER:
-                            edt.setVisibility(View.VISIBLE);
-                            edt.setInputType(InputType.TYPE_CLASS_NUMBER);
+                            dt_edt.setVisibility(View.VISIBLE);
+                            dt_edt.setInputType(InputType.TYPE_CLASS_NUMBER);
                             break;
 
                     }// end of switch
@@ -385,9 +452,9 @@ public class DT_QuestionActivity extends BaseActivity {
                      * getCurrentDate();
                      */
 
-                    tv_dtTimePicker.setVisibility(View.VISIBLE);
-                    tv_dtTimePicker.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    tv_dtTimePicker.setOnClickListener(new View.OnClickListener() {
+                    _dt_tv_DatePicker.setVisibility(View.VISIBLE);
+                    _dt_tv_DatePicker.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    _dt_tv_DatePicker.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             setDate();
@@ -405,12 +472,72 @@ public class DT_QuestionActivity extends BaseActivity {
 
 
                     break;
-                case "CheckBox":
-                    mDTATableList.size()
-                            // // TODO: 10/2/2016  worke Shubo vai
+                case CHECK_BOX:
+
+                    dt_llayout_CheckBox.setVisibility(View.VISIBLE);
+//                    if (mDTATableList.size() > 0 && getCall == 1) {
+                    if (mDTATableList.size() > 0 ) {
+                        loadDynamicCheckBox(mDTATableList);
+                    }
+
+
+                    // // TODO: 10/2/2016  worke Shubo vai
                     break;
+
             }// end of switch
         }// end of if
+
+    }
+
+
+    /**
+     * Shuvo vai
+     *
+     * @param checkBoxItemName ans Mode
+     */
+
+    private void loadDynamicCheckBox(List<DT_ATableDataModel> checkBoxItemName) {
+/**
+ * if bari khao  remove this code
+ * if calild view
+ */
+        dt_llayout_CheckBox.removeAllViews();
+//       getCall++;
+
+
+        for (int i = 0; i < checkBoxItemName.size(); i++) {
+            TableRow row = new TableRow(this);
+            row.setId(i);
+            LinearLayout.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
+            row.setLayoutParams(layoutParams);
+            CheckBox checkBox = new CheckBox(this);
+            checkBox.setOnCheckedChangeListener(DT_QuestionActivity.this);
+            checkBox.setId(i);
+            /**
+             * set Text label
+             */
+            checkBox.setText(checkBoxItemName.get(i).getDt_ALabel());
+
+            row.addView(checkBox);
+            /**
+             * {@link #btnNextQues} needed
+             */
+            mCheckBox_List.add(checkBox);
+            dt_llayout_CheckBox.addView(row);
+        }
+
+
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+
+        if (isChecked) {
+            numChecked++;
+        } else {
+            numChecked--;
+        }
+
 
     }
 
@@ -426,7 +553,7 @@ public class DT_QuestionActivity extends BaseActivity {
     }
 
     private void displayDate(String strDate) {
-        tv_dtTimePicker.setText(strDate);
+        _dt_tv_DatePicker.setText(strDate);
     }
 
     public void setDate() {

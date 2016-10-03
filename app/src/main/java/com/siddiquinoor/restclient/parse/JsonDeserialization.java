@@ -1242,7 +1242,7 @@ public class JsonDeserialization {
 
         long lgMaxValue = -1;
         if (string != null) {
-            if (string.equals("null")) {
+            if (string.equals("null")|| string.length()==0) {
                 lgMaxValue = 0;
             } else {
                 lgMaxValue = Long.parseLong(string);

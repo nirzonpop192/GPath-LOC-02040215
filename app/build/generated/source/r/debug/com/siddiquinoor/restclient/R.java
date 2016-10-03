@@ -2181,7 +2181,7 @@ containing a value of this type.
         public static final int next=0x7f0200b6;
         public static final int no_photo=0x7f0200b7;
         public static final int no_photo_big=0x7f0200b8;
-        public static final int notification_template_icon_bg=0x7f0200d0;
+        public static final int notification_template_icon_bg=0x7f0200d1;
         public static final int person=0x7f0200b9;
         public static final int powered_by_google_dark=0x7f0200ba;
         public static final int powered_by_google_light=0x7f0200bb;
@@ -2198,13 +2198,14 @@ containing a value of this type.
         public static final int shape_box=0x7f0200c6;
         public static final int show=0x7f0200c7;
         public static final int specific=0x7f0200c8;
-        public static final int summession_b=0x7f0200c9;
-        public static final int sync=0x7f0200ca;
-        public static final int table_box_border=0x7f0200cb;
-        public static final int voucher_icon=0x7f0200cc;
-        public static final int voucher_icon_1=0x7f0200cd;
-        public static final int zoom_in=0x7f0200ce;
-        public static final int zoom_out=0x7f0200cf;
+        public static final int stop=0x7f0200c9;
+        public static final int summession_b=0x7f0200ca;
+        public static final int sync=0x7f0200cb;
+        public static final int table_box_border=0x7f0200cc;
+        public static final int voucher_icon=0x7f0200cd;
+        public static final int voucher_icon_1=0x7f0200ce;
+        public static final int zoom_in=0x7f0200cf;
+        public static final int zoom_out=0x7f0200d0;
     }
     public static final class id {
         public static final int ChFhEhDh_aiv=0x7f0f00c3;

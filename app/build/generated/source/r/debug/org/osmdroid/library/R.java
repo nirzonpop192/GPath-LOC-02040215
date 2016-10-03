@@ -24,8 +24,8 @@ public final class R {
 		public static final int next = 0x7f0200b6;
 		public static final int person = 0x7f0200b9;
 		public static final int previous = 0x7f0200bc;
-		public static final int zoom_in = 0x7f0200ce;
-		public static final int zoom_out = 0x7f0200cf;
+		public static final int zoom_in = 0x7f0200cf;
+		public static final int zoom_out = 0x7f0200d0;
 	}
 	public static final class id {
 		public static final int bubble_description = 0x7f0f0368;

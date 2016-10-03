@@ -27,7 +27,8 @@ import android.widget.Toast;
 
 
 import com.siddiquinoor.restclient.R;
-import com.siddiquinoor.restclient.data_model.DTQResponseModeDataModel;
+import com.siddiquinoor.restclient.data_model.DTQResModeDataModel;
+import com.siddiquinoor.restclient.data_model.DTResponseTableDataModel;
 import com.siddiquinoor.restclient.data_model.DT_ATableDataModel;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
@@ -48,7 +49,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     public static final String TEXT = "Text";
     public static final String NUMBER = "Number";
     public static final String Date = "Date";
-    public static final String DateTime = "Datetime";
+    public static final String Date_OR_Time = "Datetime";
     public static final String Textbox = "Textbox";
     public static final String COMBO_BOX = "Combobox";
     public static final String GEO_LAYER_3 = "Geo Layer 3";
@@ -62,6 +63,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     public static final String COMMUNITY_GROUP = "Community Group";
     public static final String CHECK_BOX = "Checkbox";
     public static final String RADIO_BUTTON = "Radio Button";
+    public static final String DATE_TIME = "Datetime";
+    public static final String DATE = "Date";
 
     private SQLiteHandler sqlH;
     private final Context mContext = DT_QuestionActivity.this;
@@ -100,7 +103,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     /**
      * DTQResMode
      */
-    DTQResponseModeDataModel mDTQResMode;
+    DTQResModeDataModel mDTQResMode;
 
     /**
      * #mDTATable is Deliminator of Check Box item &  value
@@ -210,7 +213,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                     break;
 
 
-                case DateTime:
+                case Date_OR_Time:
 
                     if (_dt_tv_DatePicker.getText().toString().equals("Click for Date")) {
                         Toast.makeText(DT_QuestionActivity.this, "Set Date First ", Toast.LENGTH_SHORT).show();
@@ -294,12 +297,12 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
     }
 
-    private void saveData(String ansValue, DT_ATableDataModel ansMOde) {
-        saveOnResponseTable(ansValue, ansMOde);
+    private void saveData(String ansValue, DT_ATableDataModel dtATable) {
+        saveOnResponseTable(ansValue, dtATable);
     }
 
 
-    private void saveOnResponseTable(String ansValue, DT_ATableDataModel ansMOde) {
+    private void saveOnResponseTable(String ansValue, DT_ATableDataModel dtATable) {
         /**
          * Todo: implement the mDTATableList
          */
@@ -312,8 +315,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         String DTEnuID = getStaffID();
 
         String DTQCode = mDTQ.getDtQCode();
-        String DTACode = null;
-        String DTRSeq = null;
+        String DTACode = dtATable.getDt_ACode();
+        String DTRSeq = dtATable.getDt_Seq();
         String DTAValue = null;
         String ProgActivityCode = dyIndex.getProgramActivityCode();
         String DTTimeString = null;
@@ -324,10 +327,10 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         }
         String OpMode = dyIndex.getOpMode();
         String OpMonthCode = dyIndex.getOpMonthCode();
-        String DataType = null;
+        String DataType = dtATable.getDataType();
 
 
-        DTAValue = ansMOde.getDt_AValue().equals("null") || ansMOde.getDt_AValue().length() == 0 ? ansValue : ansMOde.getDt_AValue();
+        DTAValue = dtATable.getDt_AValue().equals("null") || dtATable.getDt_AValue().length() == 0 ? ansValue : dtATable.getDt_AValue();
 
 
         Log.d("MOR_1", " for save process"
@@ -352,11 +355,11 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
               /*  *//**
          * main Exiquation
-         *//*
+         */
 
-                sqlH.addIntoDTResponseTable(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode,
-                        DTRSeq, DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
-*/
+        sqlH.addIntoDTResponseTable(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode,
+                DTRSeq, DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
+
     }
 
     /**
@@ -528,13 +531,24 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         String dataType = mDTQResMode.getDtDataType();
 
         String resLupText = mDTQResMode.getDtQResLupText();
-        // TODO: 10/3/2016 add retreving Code
+/**
+ * Resort Data if Data exits
+ */
+        DTResponseTableDataModel loadAns = sqlH.getDTResponseTableData(dyIndex.getDtBasicCode(), dyIndex.getcCode(), dyIndex.getDonorCode(), dyIndex.getAwardCode(), dyIndex.getProgramCode(), getStaffID(), mDTQ.getDtQCode(), mDTATableList.get(0).getDt_ACode(), mQusIndex);
+
         if (dataType != null) {
             switch (responseControl) {
                 case Textbox:
 
                     dt_edt.setVisibility(View.VISIBLE);
-                    dt_edt.setText("");
+                    /**
+                     * if data exit show data
+                     */
+                    if (loadAns != null)
+                        dt_edt.setText(loadAns.getDtaValue());
+                    else
+                        dt_edt.setText("");
+
                     switch (dataType) {
                         case TEXT:
                             dt_edt.setHint("Text");
@@ -550,26 +564,46 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                     break;
 
 
-                case DateTime:
-                    /**
-                     * use it latter {@link #getCurrentDate()}
-                     *
-                     * getCurrentDate();
-                     */
+                case Date_OR_Time:
 
                     _dt_tv_DatePicker.setVisibility(View.VISIBLE);
-                    _dt_tv_DatePicker.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    _dt_tv_DatePicker.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            setDate();
-                        }
-                    });
+
+                    /**
+                     * if data exit show data
+                     */
+                    if (loadAns != null)
+                        _dt_tv_DatePicker.setText(loadAns.getDtaValue());
+                    else
+                        _dt_tv_DatePicker.setText("");
+
+                    switch (dataType) {
+                        case DATE_TIME:
+                            getTimeStamp(_dt_tv_DatePicker);
+                            break;
+                        case DATE:
+
+                            _dt_tv_DatePicker.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    setDate();
+                                }
+                            });
+                            break;
+                    }
+
 
                     break;
                 case COMBO_BOX:
 
                     dt_spinner.setVisibility(View.VISIBLE);
+                 /*   *//**
+                 * if data exit show data
+                 *//*
+                    if (loadAns != null)
+                    //// TODO: 10/3/2016  set value if dataexit
+                    else
+                        //// TODO: 10/3/2016  set value defult*/
+
                     loadSpinnerList(dyIndex.getcCode(), resLupText);
 
 
@@ -593,6 +627,30 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         }// end of if
 
     }//  end of loadDT_QResMode
+
+    /**
+     * Shuvo
+     * this method only show the System Current Time
+     *
+     * @param tv Text view For Show
+     */
+
+    private void getTimeStamp(TextView tv) {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR); //Current Hour
+        int month = c.get(Calendar.MONTH); //Current Hour
+        int day = c.get(Calendar.DATE); //Current Hour
+
+        int hourOfDay = c.get(Calendar.HOUR_OF_DAY); //Current Hour
+        int minute = c.get(Calendar.MINUTE); //Current Minute
+
+
+        String am_pm = (hourOfDay < 12) ? "AM" : "PM";
+
+        String timeStamp = year + "/" + month + "/" + day + "  " + hourOfDay + ":" + minute + " " + am_pm;
+
+        tv.setText(timeStamp);
+    }
 
 
     /**

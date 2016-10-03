@@ -22,7 +22,8 @@ import android.widget.ImageView;
 
 import com.siddiquinoor.restclient.data_model.AGR_DataModel;
 import com.siddiquinoor.restclient.data_model.AssignDDR_FFA_DataModel;
-import com.siddiquinoor.restclient.data_model.DTQResponseModeDataModel;
+import com.siddiquinoor.restclient.data_model.DTQResModeDataModel;
+import com.siddiquinoor.restclient.data_model.DTResponseTableDataModel;
 import com.siddiquinoor.restclient.data_model.DT_ATableDataModel;
 import com.siddiquinoor.restclient.data_model.FDPItem;
 import com.siddiquinoor.restclient.data_model.GPS_LocationAttributeDataModel;
@@ -5553,8 +5554,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * @see com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DT_QuestionActivity#loadDT_QResMode(String)
      */
 
-    public DTQResponseModeDataModel getDT_QResMode(String qResMode) {
-        DTQResponseModeDataModel responseMode = new DTQResponseModeDataModel();
+    public DTQResModeDataModel getDT_QResMode(String qResMode) {
+        DTQResModeDataModel responseMode = new DTQResModeDataModel();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT * FROM " + DTQRES_MODE_TABLE +
@@ -5583,8 +5584,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
-     *<p>The DTA Table store the Default Value of All Dynamic View's default value </p>
+     * <p>The DTA Table store the Default Value of All Dynamic View's default value </p>
      * invoke in {@link com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DT_QuestionActivity#displayQuestion(DynamicTableQuesDataModel)}
+     *
      * @param dtBasic Basic Code
      * @param dtQCode Question Code
      * @return list of the default View's answer
@@ -12161,6 +12163,46 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         long id = db.insert(DT_RESPONSE_TABLE_COL, null, values);
         db.close();
     }
+
+    public DTResponseTableDataModel getDTResponseTableData(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,
+                                                           String dtEnuId, String dtqCode, String dtaCode, int dtrSeq) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        DTResponseTableDataModel dtResponse = null;
+        String sql = "SELECT * FROM " + DT_RESPONSE_TABLE_COL + "" +
+
+
+                " WHERE " + DT_BASIC_COL + " = '" + dtBasic + "' " +
+                " AND " + COUNTRY_CODE_COL + " = '" + countryCode + "' " +
+                " AND " + DONOR_CODE_COL + " = '" + donorCode + "' " +
+                " AND " + AWARD_CODE_COL + " = '" + awardCode + "' " +
+                " AND " + PROGRAM_CODE_COL + " = '" + programCode + "' " +
+                " AND " + DT_ENU_ID_COL + " = '" + dtEnuId + "' " +
+                " AND " + DTQ_CODE_COL + " = '" + dtqCode + "' " +
+                " AND " + DTA_CODE_COL + " = '" + dtaCode + "' " +
+                " AND " + DT_RSEQ_COL + " = " + dtrSeq;
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+
+                dtResponse = new DTResponseTableDataModel();
+
+                dtResponse.setDtaValue(cursor.getString(9));
+               /* dtResponse.setDtBasic(cursor.getString(0));
+                dtResponse.setCountryCode(cursor.getString(1));
+                dtResponse.setDonorCode(cursor.getString(2));
+                dtResponse.setAwardCode(cursor.getString(3));
+                dtResponse.setProgramCode(cursor.getString(4));
+                dtResponse.setDtEnuId(cursor.getString(5));
+                dtResponse.setDtqCode(cursor.getString(6));*/
+
+
+            }
+            cursor.close();
+            db.close();
+        }
+        return dtResponse;
+    }
+
 
     public void addIntoDTTableDefinition(String tableName, String fieldName, String fieldDefinition, String fieldShortName,
                                          String valueUdf, String lupTableName, String adminOnly, String entryBy, String entryDate) {

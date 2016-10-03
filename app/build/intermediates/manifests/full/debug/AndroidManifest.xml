@@ -366,7 +366,8 @@
         <activity android:name="com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DTResponseActivity" />
         <activity
             android:name="com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DT_QuestionActivity"
-            android:label="@string/title_activity_dt__qustion" />
+            android:label="@string/title_activity_dt__qustion"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.google.zxing.client.android.CaptureActivity"
             android:clearTaskOnLaunch="true"

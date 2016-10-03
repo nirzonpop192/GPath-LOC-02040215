@@ -31,7 +31,7 @@
         android:layout_below="@+id/page_title"
         android:padding="10dp"
         android:text="Qus"
-        android:textSize="20sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <include
@@ -49,16 +49,22 @@
             android:id="@+id/tv_dtTimePicker"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
             android:padding="10dp"
+            android:singleLine="true"
             android:text="Click for Date"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
             android:textSize="20sp" />
 
         <EditText
             android:id="@+id/edt_dt"
+            style="@style/edit_text"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:hint="Input"
             android:padding="10dp"
-            android:text="New Text"
             android:textSize="20sp" />
 
         <Spinner
@@ -72,10 +78,22 @@
         android:id="@+id/ll_checkBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/footer"
 
-        android:orientation="vertical"
-        android:layout_below="@+id/linearLayout">
+        android:layout_below="@+id/linearLayout"
+        android:orientation="vertical">
 
     </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/footer"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ll_checkBox"
+        android:orientation="vertical">
+
+    </RadioGroup>
+
 </RelativeLayout>

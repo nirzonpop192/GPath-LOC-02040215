@@ -5582,6 +5582,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return responseMode;
     }
 
+    /**
+     *<p>The DTA Table store the Default Value of All Dynamic View's default value </p>
+     * invoke in {@link com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DT_QuestionActivity#displayQuestion(DynamicTableQuesDataModel)}
+     * @param dtBasic Basic Code
+     * @param dtQCode Question Code
+     * @return list of the default View's answer
+     */
 
     public List<DT_ATableDataModel> getDTA_Table(String dtBasic, String dtQCode) {
 

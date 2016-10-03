@@ -1,8 +1,11 @@
 package com.siddiquinoor.restclient.activity.sub_activity.dynamic_table;
 
+import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -15,6 +18,8 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -56,6 +61,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     public static final String DISTRIBUTION_POINT = "Distribution Point";
     public static final String COMMUNITY_GROUP = "Community Group";
     public static final String CHECK_BOX = "Checkbox";
+    public static final String RADIO_BUTTON = "Radio Button";
 
     private SQLiteHandler sqlH;
     private final Context mContext = DT_QuestionActivity.this;
@@ -63,11 +69,10 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     private int totalQuestion;
     private TextView tv_DtQuestion;
     private Button btnNextQues;
-    private DynamicTableQuesDataModel mQuestion;
+    private DynamicTableQuesDataModel mDTQ;
     private Button btnPreviousQus;
 
 
-    private List<CheckBox> mCheckBox_List = new ArrayList<CheckBox>();
     int mQusIndex;
     /**
      * For Date time picker
@@ -80,19 +85,36 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     private Spinner dt_spinner;
     private EditText dt_edt;
     private TextView _dt_tv_DatePicker;
-    private int numChecked = 0;
+    private RadioGroup radioGroup;
+    private RadioButton rdbtn;
+    /**
+     * To determined the either any Check box is Selected or nor
+     */
+    private int countCheckedCheckBox = 0;
 
     private String idSpinner;
     private String strSpinner;
 
     private LinearLayout dt_llayout_CheckBox;
 
-//    private int getCall = 1;
+    /**
+     * DTQResMode
+     */
+    DTQResponseModeDataModel mDTQResMode;
+
     /**
      * #mDTATable is Deliminator of Check Box item &  value
      * it is assigned by {@link #displayQuestion(DynamicTableQuesDataModel)} method
      */
     List<DT_ATableDataModel> mDTATableList;
+    /**
+     * List for Dynamic
+     */
+
+    private List<RadioButton> mRadioButton_List = new ArrayList<RadioButton>();
+
+    private List<CheckBox> mCheckBox_List = new ArrayList<CheckBox>();
+
 
     /**
      * @param sIState savedInstanceState
@@ -120,85 +142,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                  * TODO: SET VALIDATION
                  *
                  */
-                if (mQuestion.getAllowNullFlag().equals("N")) {
-                    if (_dt_tv_DatePicker.getVisibility() == View.VISIBLE) {
-                        if (_dt_tv_DatePicker.getText().toString().equals("Click for Date")) {
-                            Toast.makeText(DT_QuestionActivity.this, "Set Date First ", Toast.LENGTH_SHORT).show();
-                        } else {
-                            /**
-                             * mDTATableList.get(0) wil be single
-                             */
-                            saveData(_dt_tv_DatePicker.getText().toString(), mDTATableList.get(0));
-                            nextQuestion();
-                        }
-                    } else if (dt_spinner.getVisibility() == View.VISIBLE) {
-
-                        if (idSpinner.equals("00")) {
-                            Toast.makeText(mContext, "Select Item", Toast.LENGTH_SHORT).show();
-                        } else {
-                            // // TODO: 10/2/2016 Do something for spinner
-                            /**
-                             * {@link DT_QuestionActivity#saveData(String, DT_ATableDataModel)}
-                             */
-
-//                            {@li}saveData(strSpinner);
-                            /**
-                             * NEXT QUESTION
-                             */
-                            nextQuestion();
-                        }
-
-                        Log.d("MOR", idSpinner);
-                    }// end spinner
-                    /**
-                     * Edit Text
-                     */
-                    else if (dt_edt.getVisibility() == View.VISIBLE) {
-                        if (dt_edt.getText().toString().equals("New Text")) {
-                            Toast.makeText(mContext, "Insert  Text", Toast.LENGTH_SHORT).show();
-                        } else {
-
-                            saveData(dt_edt.getText().toString(), mDTATableList.get(0));
-                            /**
-                             * NEXT QUESTION
-                             */
-                            nextQuestion();
-
-                        }
-                    }
-                    /**
-                     * Spinner
-                     */
-                    else if (dt_llayout_CheckBox.getVisibility() == View.VISIBLE) {
-                        if (numChecked <= 0)
-                            Toast.makeText(DT_QuestionActivity.this, " Please select a option.", Toast.LENGTH_SHORT).show();
-                        else {
-                            int i = 0;
-                            for (CheckBox cb : mCheckBox_List) {
-                                if (cb.isChecked()) {
-                                    Toast.makeText(mContext, "Check Box no:" + (i + 1) + " is checked", Toast.LENGTH_SHORT).show();
-                                    saveData("", mDTATableList.get(i));
-                                }
-                                i++;
-                            }
-                        }
-                    }
-                } else {
-
-
-                    /**
-                     *  TODO: 9/29/2016  save method & update method
-                     */
-//                    saveData("");
-
-
-                    /**
-                     * NEXT QUESTION
-                     */
-                    nextQuestion();
-
-
-                }// end of else where ans is not magneto
+                saveProcessValidation();
 
 
             }
@@ -225,6 +169,131 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         });
     }
 
+    private void saveProcessValidation() {
+
+
+        String responseControl = mDTQResMode.getDtResponseValueControl();
+
+
+        if (mDTQ.getAllowNullFlag().equals("N")) {
+
+            switch (responseControl) {
+                case Textbox:
+
+                    String edtInput = dt_edt.getText().toString();
+
+                    if (edtInput.equals("Text") || edtInput.equals("Number")) {
+                        Toast.makeText(mContext, "Insert  Text", Toast.LENGTH_SHORT).show();
+
+                    /* use this Snippet Code  later
+                      switch (dataType) {
+                            case TEXT:
+
+                                break;
+                            case NUMBER:
+
+                                break;
+
+                        }// end of switch*/
+                    } else {
+
+
+                        saveData(edtInput, mDTATableList.get(0));
+                        /**
+                         * NEXT QUESTION
+                         */
+                        nextQuestion();
+
+                    }
+
+
+                    break;
+
+
+                case DateTime:
+
+                    if (_dt_tv_DatePicker.getText().toString().equals("Click for Date")) {
+                        Toast.makeText(DT_QuestionActivity.this, "Set Date First ", Toast.LENGTH_SHORT).show();
+                    } else {
+                        /**
+                         * mDTATableList.get(0) wil be single
+                         */
+                        saveData(_dt_tv_DatePicker.getText().toString(), mDTATableList.get(0));
+                        nextQuestion();
+                    }
+
+
+                    break;
+                case COMBO_BOX:
+
+                    if (idSpinner.equals("00")) {
+                        Toast.makeText(mContext, "Select Item", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // // TODO: 10/2/2016 Do something for spinner
+                        /**
+                         * {@link DT_QuestionActivity#saveData(String, DT_ATableDataModel)}
+                         */
+                        saveData(strSpinner, mDTATableList.get(0));
+
+                        /**
+                         * NEXT QUESTION
+                         */
+                        nextQuestion();
+                    }
+
+
+                    break;
+                case CHECK_BOX:
+
+                    if (countCheckedCheckBox <= 0)
+                        Toast.makeText(DT_QuestionActivity.this, " Please select a option.", Toast.LENGTH_SHORT).show();
+                    else {
+                        int i = 0;
+                        for (CheckBox cb : mCheckBox_List) {
+                            if (cb.isChecked()) {
+                                Toast.makeText(mContext, "Check Box no:" + (i + 1) + " is checked", Toast.LENGTH_SHORT).show();
+                                saveData("", mDTATableList.get(i));
+                            }// end of if condition
+                            i++;
+                        }// end of for each loop
+                    }// end of else
+
+
+                    break;
+                case RADIO_BUTTON:
+                    int i = 0;
+                    for (RadioButton rb : mRadioButton_List) {
+                        if (rb.isChecked()) {
+                            Toast.makeText(mContext, "Radio Button no:" + (i + 1) + " is checked", Toast.LENGTH_SHORT).show();
+                            saveData("", mDTATableList.get(i));
+                        }
+                        i++;
+                    }
+                    break;
+
+            }// end of switch
+
+        }// end of the AllowNullFlag
+        else {
+
+
+            /**
+             *  TODO: 9/29/2016  save method & update method
+             */
+//                    saveData("");
+
+
+            /**
+             * NEXT QUESTION
+             */
+            nextQuestion();
+
+
+        }// end of else where ans is not magneto
+
+
+    }
+
     private void saveData(String ansValue, DT_ATableDataModel ansMOde) {
         saveOnResponseTable(ansValue, ansMOde);
     }
@@ -232,7 +301,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
     private void saveOnResponseTable(String ansValue, DT_ATableDataModel ansMOde) {
         /**
-         * Todo: implemet the mDTATableList
+         * Todo: implement the mDTATableList
          */
 
         String DTBasic = dyIndex.getDtBasicCode();
@@ -242,7 +311,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         String AdmProgCode = dyIndex.getProgramCode();
         String DTEnuID = getStaffID();
 
-        String DTQCode = mQuestion.getDtQCode();
+        String DTQCode = mDTQ.getDtQCode();
         String DTACode = null;
         String DTRSeq = null;
         String DTAValue = null;
@@ -305,6 +374,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
             displayQuestion(nextQus);
         } else if (mQusIndex == totalQuestion) {
+            addStopIconNextButton();
             mQusIndex = totalQuestion - 1;
 //                    Log.d("MOR", "mQusIndex: " + mQusIndex);
         }
@@ -319,6 +389,16 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     private void displayQuestion(DynamicTableQuesDataModel qusObject) {
         tv_DtQuestion.setText(qusObject.getqText());
         mDTATableList = sqlH.getDTA_Table(qusObject.getDtBasicCode(), qusObject.getDtQCode());
+        /**
+         * {@link #mDTATableList} if it's size is zero than there will be IndexOutOfBoundsException
+         * occur
+         * the poxy data prevent to occur that Exception
+         */
+        if (mDTATableList.size() == 0) {
+            DT_ATableDataModel proxyDATA_data = new DT_ATableDataModel(mDTQ.getDtBasicCode(), mDTQ.getDtQCode(), "null", "No Recoded in DB", "null", "null", "null", "null", "null", "null", "N", 0, 0, "Text", "null");
+            mDTATableList.add(proxyDATA_data);
+        }
+
 
         loadDT_QResMode(qusObject.getqResModeCode());
 
@@ -352,12 +432,15 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         dt_edt.setVisibility(View.GONE);
         dt_spinner.setVisibility(View.GONE);
         dt_llayout_CheckBox.setVisibility(View.GONE);
+        radioGroup.setVisibility(View.GONE);
     }
 
+    /**
+     * Refer the all the necessary view in java object
+     */
     private void viewReference() {
         tv_DtQuestion = (TextView) findViewById(R.id.tv_DtQuestion);
 
-        dt_llayout_CheckBox = (LinearLayout) findViewById(R.id.ll_checkBox);
         btnNextQues = (Button) findViewById(R.id.btnHomeFooter);
         btnPreviousQus = (Button) findViewById(R.id.btnRegisterFooter);
         btnNextQues.setText("Next");
@@ -366,12 +449,27 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
          * dynamic view reference
          */
 
+        dt_llayout_CheckBox = (LinearLayout) findViewById(R.id.ll_checkBox);
         _dt_tv_DatePicker = (TextView) findViewById(R.id.tv_dtTimePicker);
         dt_edt = (EditText) findViewById(R.id.edt_dt);
         dt_spinner = (Spinner) findViewById(R.id.dt_sp);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
 
     }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void addStopIconNextButton() {
+
+
+        btnNextQues.setText("");
+        Drawable imageHome = getResources().getDrawable(R.drawable.stop);
+        btnNextQues.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
+        setPaddingButton(mContext, imageHome, btnNextQues);
+
+
+    }
+
 
     /**
      * the method invoked once  in {@link  #onCreate(Bundle)}
@@ -411,8 +509,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
 
     public DynamicTableQuesDataModel loadQuestion(final String dtBasic, final int qusIndex) {
-        mQuestion = sqlH.getSingleDynamicQuestion(dtBasic, qusIndex);
-        return mQuestion;
+        mDTQ = sqlH.getSingleDynamicQuestion(dtBasic, qusIndex);
+        return mDTQ;
     }
 
     /**
@@ -422,22 +520,29 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
      */
     private void loadDT_QResMode(String resMode) {
 
-        DTQResponseModeDataModel dtqResponseModeDataModel = sqlH.getDT_QResMode(resMode);
-        String dataType = dtqResponseModeDataModel.getDtDataType();
-        String responseControl = dtqResponseModeDataModel.getDtResponseValueControl();
-        String resLupText = dtqResponseModeDataModel.getDtQResLupText();
+/**
+ *  the {@link #mDTQResMode} is needed in the save process in {@link #saveProcessValidation()}
+ */
+        mDTQResMode = sqlH.getDT_QResMode(resMode);
+        String responseControl = mDTQResMode.getDtResponseValueControl();
+        String dataType = mDTQResMode.getDtDataType();
+
+        String resLupText = mDTQResMode.getDtQResLupText();
+        // TODO: 10/3/2016 add retreving Code
         if (dataType != null) {
             switch (responseControl) {
                 case Textbox:
 
+                    dt_edt.setVisibility(View.VISIBLE);
+                    dt_edt.setText("");
                     switch (dataType) {
                         case TEXT:
-                            dt_edt.setVisibility(View.VISIBLE);
+                            dt_edt.setHint("Text");
                             dt_edt.setInputType(InputType.TYPE_CLASS_TEXT);
                             break;
                         case NUMBER:
-                            dt_edt.setVisibility(View.VISIBLE);
-                            dt_edt.setInputType(InputType.TYPE_CLASS_NUMBER);
+                            dt_edt.setHint("Number");
+                            dt_edt.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                             break;
 
                     }// end of switch
@@ -465,9 +570,6 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                 case COMBO_BOX:
 
                     dt_spinner.setVisibility(View.VISIBLE);
-                    // // TODO: 9/30/2016 use switch for udf
-
-
                     loadSpinnerList(dyIndex.getcCode(), resLupText);
 
 
@@ -475,19 +577,22 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                 case CHECK_BOX:
 
                     dt_llayout_CheckBox.setVisibility(View.VISIBLE);
-//                    if (mDTATableList.size() > 0 && getCall == 1) {
-                    if (mDTATableList.size() > 0 ) {
+                    if (mDTATableList.size() > 0)
                         loadDynamicCheckBox(mDTATableList);
-                    }
 
 
-                    // // TODO: 10/2/2016  worke Shubo vai
                     break;
+                case RADIO_BUTTON:
+                    radioGroup.setVisibility(View.VISIBLE);
+                    if (mDTATableList.size() > 0)
+                        loadDynamicRadioButtons(mDTATableList);
+                    break;
+
 
             }// end of switch
         }// end of if
 
-    }
+    }//  end of loadDT_QResMode
 
 
     /**
@@ -497,12 +602,15 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
      */
 
     private void loadDynamicCheckBox(List<DT_ATableDataModel> checkBoxItemName) {
-/**
- * if bari khao  remove this code
- * if calild view
- */
-        dt_llayout_CheckBox.removeAllViews();
-//       getCall++;
+        /**
+         * If there are any Children in layout Container it will reMove
+         * And the list of the Check Box {@link #mCheckBox_List} clear
+         *
+         */
+        if (dt_llayout_CheckBox.getChildCount() > 0) {
+            mCheckBox_List.clear();
+            dt_llayout_CheckBox.removeAllViews();
+        }
 
 
         for (int i = 0; i < checkBoxItemName.size(); i++) {
@@ -533,9 +641,15 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
 
         if (isChecked) {
-            numChecked++;
+            /**
+             * increase number of Selected Check box
+             */
+            countCheckedCheckBox++;
         } else {
-            numChecked--;
+            /**
+             * decrease number of  Selected  Check box
+             */
+            countCheckedCheckBox--;
         }
 
 
@@ -557,14 +671,15 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     }
 
     public void setDate() {
-        new DatePickerDialog(mContext, datepickerD, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+        new DatePickerDialog(mContext, datePickerListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
     /**
      * date Time picker Listener
+     * The Date Listener invoke in {@link #setDate()}
      */
 
-    DatePickerDialog.OnDateSetListener datepickerD = new DatePickerDialog.OnDateSetListener() {
+    DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
 
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -722,6 +837,28 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
             }
         });
+    }
+
+    public void loadDynamicRadioButtons(List<DT_ATableDataModel> radioButtonItemName) {
+
+
+        if (radioGroup.getChildCount() > 0) {
+            mRadioButton_List.clear();
+            radioGroup.removeAllViews();
+        }
+
+
+        for (int i = 0; i < radioButtonItemName.size(); i++) {
+            rdbtn = new RadioButton(this);
+            rdbtn.setId(i);
+//            Log.d("Shuvo", "getDt_ALabel:" + radioButtonItemName.get(i).getDt_ALabel());
+            rdbtn.setText(radioButtonItemName.get(i).getDt_ALabel());
+            radioGroup.addView(rdbtn);
+
+            mRadioButton_List.add(rdbtn);
+
+        }
+
     }
 
 

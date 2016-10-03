@@ -327,7 +327,9 @@
         <activity android:name=".activity.sub_activity.dynamic_table.DTResponseActivity" />
         <activity
             android:name=".activity.sub_activity.dynamic_table.DT_QuestionActivity"
-            android:label="@string/title_activity_dt__qustion"></activity>
+            android:label="@string/title_activity_dt__qustion"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            />
     </application>
 
 </manifest>

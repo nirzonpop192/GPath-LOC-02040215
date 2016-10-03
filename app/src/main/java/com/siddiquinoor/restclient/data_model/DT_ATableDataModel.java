@@ -38,6 +38,24 @@ public class DT_ATableDataModel implements Parcelable{
         }
     };
 
+    public DT_ATableDataModel(String DTBasic, String dt_QCode, String dt_ACode, String dt_ALabel, String dt_AValue, String dt_Seq, String dt_AShort, String dt_ScoreCode, String dt_SkipDTQCode, String dt_ACompareCode, String showHide, int maxValue, int minValue, String dataType, String markOnGrid) {
+        this.DTBasic = DTBasic;
+        this.dt_QCode = dt_QCode;
+        this.dt_ACode = dt_ACode;
+        this.dt_ALabel = dt_ALabel;
+        this.dt_AValue = dt_AValue;
+        this.dt_Seq = dt_Seq;
+        this.dt_AShort = dt_AShort;
+        this.dt_ScoreCode = dt_ScoreCode;
+        this.dt_SkipDTQCode = dt_SkipDTQCode;
+        this.dt_ACompareCode = dt_ACompareCode;
+        ShowHide = showHide;
+        this.maxValue = maxValue;
+        this.minValue = minValue;
+        this.dataType = dataType;
+        this.markOnGrid = markOnGrid;
+    }
+
     /**
      * Constructor
      */

@@ -101,7 +101,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     /**
      * To determined the either any Check box is Selected or nor
      */
-    private int countCheckedCheckBox = 0;
+    private int countChecked = 0;
 
     private String idSpinner;
     private String strSpinner;
@@ -148,6 +148,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     private LinearLayout dt_layout_checkBox_EditText;
 
     private LinearLayout ll_editText;
+    private TextView tv_ErrorDisplay;
 
     /**
      * @param sIState savedInstanceState
@@ -295,8 +296,11 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                     String edtInput = dt_edt.getText().toString();
 
                     if (edtInput.equals("Text") || edtInput.equals("Number") || edtInput.length() == 0) {
-                        Toast.makeText(mContext, "Insert  Text", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(mContext, "Insert  Text", Toast.LENGTH_SHORT).show();
                         errorIndicator();
+                        displayError("Insert  Text");
+
+
                         /**
                          * todo : show Dialog
                          */
@@ -313,6 +317,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                         }// end of switch*/
                     } else {
                         normalIndicator();
+                        hideError();
+
 
                         saveData(edtInput, mDTATableList.get(0));
                         /**
@@ -329,13 +335,15 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                 case Date_OR_Time:
 
                     if (_dt_tv_DatePicker.getText().toString().equals("Click for Date")) {
-                        Toast.makeText(DT_QuestionActivity.this, "Set Date First ", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(DT_QuestionActivity.this, "Set Date First ", Toast.LENGTH_SHORT).show();
                         errorIndicator();
+                        displayError("Set Date First");
                         /**
                          * todo : show Dialog
                          */
                     } else {
                         normalIndicator();
+                        hideError();
                         /**
                          * mDTATableList.get(0) wil be single
                          */
@@ -348,14 +356,16 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                 case COMBO_BOX:
 
                     if (idSpinner.equals("00")) {
-                        Toast.makeText(mContext, "Select Item", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(mContext, "Select Item", Toast.LENGTH_SHORT).show();
                         errorIndicator();
+                        displayError("Select Item");
                         /**
                          * todo : show Dialog
                          */
                     } else {
                         normalIndicator();
-                        // // TODO: 10/2/2016 Do something for spinner
+                        hideError();
+
                         /**
                          * {@link DT_QuestionActivity#saveData(String, DT_ATableDataModel)}
                          */
@@ -371,14 +381,14 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                     break;
                 case CHECK_BOX:
 
-                    if (countCheckedCheckBox <= 0) {
-                        Toast.makeText(DT_QuestionActivity.this, " Please select a option.", Toast.LENGTH_SHORT).show();
+                    if (countChecked <= 0) {
+//                        Toast.makeText(DT_QuestionActivity.this, " Please select a option.", Toast.LENGTH_SHORT).show();
                         errorIndicator();
-                        /**
-                         * todo : show Dialog
-                         */
+                        displayError("Select a option.");
+
                     } else {
                         normalIndicator();
+                        hideError();
                         i = 0;
                         for (CheckBox cb : mCheckBox_List) {
                             if (cb.isChecked()) {
@@ -407,17 +417,32 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
                 case RADIO_BUTTON_N_TEXTBOX:
 
+                    boolean error = false;
+
                     i = 0;
                     for (RadioButton rb : mRadioButtonForRadioAndEdit_List) {
                         if (rb.isChecked()) {
                             Toast.makeText(mContext, "Radio Button no:" + (i + 1) + " is checked"
                                     + " the value of the : " + mEditTextForRadioAndEdit_List.get(i).getText(), Toast.LENGTH_SHORT).show();
-                            saveData("", mDTATableList.get(i));
+                            if (mEditTextForRadioAndEdit_List.get(i).getText().length() == 0) {
+                                errorIndicator();
+                                displayError("Insert value for Selected Option");
+                                error = true;
+                                break;
+
+                            } else {
+                                normalIndicator();
+                                hideError();
+                                saveData(mEditTextForRadioAndEdit_List.get(i).getText().toString(), mDTATableList.get(i));
+                            }
+
+
                         }
                         i++;
                     }
 
-                    nextQuestion();
+                    if (!error)
+                        nextQuestion();
                     break;
 
                 case CHECKBOX_N_TEXTBOX:
@@ -429,7 +454,17 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                         if (cb.isChecked()) {
                             Toast.makeText(mContext, "Radio Button no:" + (k + 1) + " is checked"
                                     + " the value of the : " + mEditTextForCheckBoxAndEdit_List.get(k).getText(), Toast.LENGTH_SHORT).show();
-                            saveData("", mDTATableList.get(k));
+                            if (mEditTextForCheckBoxAndEdit_List.get(k).getText().length() == 0) {
+                                errorIndicator();
+                                displayError("Insert value for Selected Option");
+                                break;
+                            } else {
+                                normalIndicator();
+                                hideError();
+                                saveData(mEditTextForCheckBoxAndEdit_List.get(k).getText().toString(), mDTATableList.get(k));
+                            }
+
+
                         }
                         k++;
                     }
@@ -458,6 +493,16 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         }// end of else where ans is not magneto
 
 
+    }
+
+    private void hideError() {
+        if (tv_ErrorDisplay.getVisibility() == View.VISIBLE)
+            tv_ErrorDisplay.setVisibility(View.GONE);
+    }
+
+    private void displayError(String errorMsg) {
+        tv_ErrorDisplay.setVisibility(View.VISIBLE);
+        tv_ErrorDisplay.setText(errorMsg);
     }
 
     private void saveData(String ansValue, DT_ATableDataModel dtATable) {
@@ -665,6 +710,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
         dt_layout_Radio_N_EditText.setVisibility(View.GONE);
         dt_layout_checkBox_parent.setVisibility(View.GONE);
+        tv_ErrorDisplay.setVisibility(View.GONE);
 
     }
 
@@ -708,6 +754,11 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         dt_layout_checkBox_Checkbox = (LinearLayout) findViewById(R.id.ll_checkBoxAndEditTextCheckbox);
         dt_layout_checkBox_EditText = (LinearLayout) findViewById(R.id.et_CheckBoxAndEditText);
         dt_layout_Radio_N_EditText = (LinearLayout) findViewById(R.id.ll_radioGroupAndEditText);
+
+        /**
+         * Error label
+         */
+        tv_ErrorDisplay = (TextView) findViewById(R.id.tv_dt_errorLable);
 
 
     }
@@ -805,6 +856,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
  */
         DTResponseTableDataModel loadAns = sqlH.getDTResponseTableData(dyIndex.getDtBasicCode(), dyIndex.getcCode(), dyIndex.getDonorCode(), dyIndex.getAwardCode(), dyIndex.getProgramCode(), getStaffID(), mDTQ.getDtQCode(), mDTATableList.get(0).getDt_ACode());
 
+        countChecked = 0;
         if (dataType != null) {
             switch (responseControl) {
                 case Textbox:
@@ -994,16 +1046,17 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
 
+
         if (isChecked) {
             /**
              * increase number of Selected Check box
              */
-            countCheckedCheckBox++;
+            countChecked++;
         } else {
             /**
              * decrease number of  Selected  Check box
              */
-            countCheckedCheckBox--;
+            countChecked--;
         }
 
 
@@ -1239,6 +1292,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             rdbtn.setId(i);
 
             rdbtn.setText(label);
+            rdbtn.setOnCheckedChangeListener(DT_QuestionActivity.this);
             radioGroupForRadioAndEditText.addView(rdbtn);
             mRadioButtonForRadioAndEdit_List.add(rdbtn);
 

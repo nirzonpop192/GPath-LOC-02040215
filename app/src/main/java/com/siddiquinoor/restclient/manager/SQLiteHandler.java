@@ -12164,12 +12164,82 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateIntoDTResponseTable(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,
+                                          String dtEnuId, String dtqCode, String dtaCode, String dtrSeq, String dtaValue,
+                                          String progActivityCode, String dttTimeString, String opMode, String opMonthCode, String dataType){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String where =  DT_BASIC_COL + " = '" + dtBasic + "' " +
+                " AND " + COUNTRY_CODE_COL + " = '" + countryCode + "' " +
+                " AND " + DONOR_CODE_COL + " = '" + donorCode + "' " +
+                " AND " + AWARD_CODE_COL + " = '" + awardCode + "' " +
+                " AND " + PROGRAM_CODE_COL + " = '" + programCode + "' " +
+                " AND " + DT_ENU_ID_COL + " = '" + dtEnuId + "' " +
+                " AND " + DTQ_CODE_COL + " = '" + dtqCode + "' " +
+                " AND " + DTA_CODE_COL + " = '" + dtaCode + "' " +
+                " AND " + DT_RSEQ_COL + " = " + dtrSeq;
+
+        ContentValues values = new ContentValues();
+
+        values.put(DTA_VALUE_COL, dtaValue);
+        values.put(PROG_ACTIVITY_CODE_COL, progActivityCode);
+        values.put(DTTIME_STRING_COL, dttTimeString);
+        values.put(OP_MODE_COL, opMode);
+        values.put(OP_MONTH_CODE_COL, opMonthCode);
+        values.put(DATA_TYPE_COL, dataType);
+
+
+        int id=db.update(DT_RESPONSE_TABLE_COL,values,where,null);
+
+        Log.d("DT_UP"," no of row :"+id);
+
+    }
+
+
+    /**
+     * this method check either data exits or not
+     * @param dtBasic     - dynamic table  basic code
+     * @param countryCode - country code
+     * @param donorCode   - donor Code
+     * @param awardCode   - award code
+     * @param programCode - program code
+     * @param dtEnuId     - staff id or entry by code
+     * @param dtqCode     - dynamic table question
+     * @param dtaCode     - dynamic table
+     * @param dtrSeq      - dynamic Response Sequence
+     * @return either data exist or not
+     */
+    public boolean isDataExitsInDTAResponse_Table(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,
+                                                  String dtEnuId, String dtqCode, String dtaCode) {
+
+        DTResponseTableDataModel mDta = getDTResponseTableData(dtBasic, countryCode, donorCode, awardCode, programCode, dtEnuId, dtqCode, dtaCode);
+        if (mDta != null)
+            return true;
+        else
+            return false;
+
+    }
+
+
+    /**
+     * @param dtBasic     - dynamic table  basic code
+     * @param countryCode - country code
+     * @param donorCode   - donor Code
+     * @param awardCode   - award code
+     * @param programCode - program code
+     * @param dtEnuId     - staff id or entry by code
+     * @param dtqCode     - dynamic table question
+     * @param dtaCode     - dynamic table
+     * @param dtrSeq      - dynamic Response Sequence
+     * @return DTResponse Objec only need {@link DTResponseTableDataModel#getDtaValue()}
+     */
+
     public DTResponseTableDataModel getDTResponseTableData(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,
                                                            String dtEnuId, String dtqCode, String dtaCode, int dtrSeq) {
         SQLiteDatabase db = this.getReadableDatabase();
         DTResponseTableDataModel dtResponse = null;
         String sql = "SELECT * FROM " + DT_RESPONSE_TABLE_COL + "" +
-
 
                 " WHERE " + DT_BASIC_COL + " = '" + dtBasic + "' " +
                 " AND " + COUNTRY_CODE_COL + " = '" + countryCode + "' " +
@@ -12187,13 +12257,15 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 dtResponse = new DTResponseTableDataModel();
 
                 dtResponse.setDtaValue(cursor.getString(9));
-               /* dtResponse.setDtBasic(cursor.getString(0));
-                dtResponse.setCountryCode(cursor.getString(1));
+                dtResponse.setDtBasic(cursor.getString(cursor.getColumnIndex(DT_BASIC_COL)));
+                dtResponse.setDtqCode(cursor.getString(cursor.getColumnIndex(DTQ_CODE_COL)));
+                dtResponse.setDtaCode(cursor.getString(cursor.getColumnIndex(DTA_CODE_COL)));
+               /* dtResponse.setCountryCode(cursor.getString(1));
                 dtResponse.setDonorCode(cursor.getString(2));
                 dtResponse.setAwardCode(cursor.getString(3));
                 dtResponse.setProgramCode(cursor.getString(4));
                 dtResponse.setDtEnuId(cursor.getString(5));
-                dtResponse.setDtqCode(cursor.getString(6));*/
+               */
 
 
             }
@@ -12203,6 +12275,42 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return dtResponse;
     }
 
+
+
+    public DTResponseTableDataModel getDTResponseTableData(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,
+                                                           String dtEnuId, String dtqCode, String dtaCode) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        DTResponseTableDataModel dtResponse = null;
+        String sql = "SELECT * FROM " + DT_RESPONSE_TABLE_COL + "" +
+
+                " WHERE " + DT_BASIC_COL + " = '" + dtBasic + "' " +
+                " AND " + COUNTRY_CODE_COL + " = '" + countryCode + "' " +
+                " AND " + DONOR_CODE_COL + " = '" + donorCode + "' " +
+                " AND " + AWARD_CODE_COL + " = '" + awardCode + "' " +
+                " AND " + PROGRAM_CODE_COL + " = '" + programCode + "' " +
+                " AND " + DT_ENU_ID_COL + " = '" + dtEnuId + "' " +
+                " AND " + DTQ_CODE_COL + " = '" + dtqCode + "' " +
+                " AND " + DTA_CODE_COL + " = '" + dtaCode + "' " ;
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+
+                dtResponse = new DTResponseTableDataModel();
+
+                dtResponse.setDtaValue(cursor.getString(9));
+                dtResponse.setDtBasic(cursor.getString(cursor.getColumnIndex(DT_BASIC_COL)));
+                dtResponse.setDtqCode(cursor.getString(cursor.getColumnIndex(DTQ_CODE_COL)));
+                dtResponse.setDtaCode(cursor.getString(cursor.getColumnIndex(DTA_CODE_COL)));
+
+
+
+            }
+            cursor.close();
+            db.close();
+        }
+        return dtResponse;
+    }
 
     public void addIntoDTTableDefinition(String tableName, String fieldName, String fieldDefinition, String fieldShortName,
                                          String valueUdf, String lupTableName, String adminOnly, String entryBy, String entryDate) {

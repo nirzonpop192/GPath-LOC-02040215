@@ -796,6 +796,10 @@
         "source": "D:\\WorkSpace\\AndroidStudioProject\\G-path New\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\22.2.0\\res\\drawable\\mr_ic_media_route_mono_light.xml"
     },
     {
+        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\dynamic_icon_42.png",
+        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\dynamic_icon_42.png"
+    },
+    {
         "merged": "G:\\TD&shuvo\\Td_project\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\person.png",
         "source": "G:\\TD&shuvo\\Td_project\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\org.osmdroid\\osmdroid-android\\5.2\\res\\drawable\\person.png"
     },
@@ -1158,6 +1162,10 @@
     {
         "merged": "G:\\TD&shuvo\\Td_project\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
         "source": "G:\\TD&shuvo\\Td_project\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\dynamic_icon.png",
+        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\dynamic_icon.png"
     },
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\assign.png",

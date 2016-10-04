@@ -242,7 +242,7 @@
                         android:layout_marginEnd="4dp"
                         android:layout_marginRight="4dp"
                         android:layout_weight="0.125"
-                        android:drawableLeft="@drawable/summession_b"
+                        android:drawableLeft="@drawable/dynamic_icon_42"
                         android:gravity="center_vertical"
                         android:paddingLeft="15dp"
                         android:paddingStart="15dp"

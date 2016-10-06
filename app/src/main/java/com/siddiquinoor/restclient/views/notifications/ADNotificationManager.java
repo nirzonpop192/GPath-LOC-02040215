@@ -2,9 +2,12 @@ package com.siddiquinoor.restclient.views.notifications;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -123,6 +126,34 @@ public class ADNotificationManager {
         alertDialog.show();
     }
 
+
+    public void showWarningDialog(Context context, String message) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+
+
+
+        alertDialog.setTitle("Error");
+        alertDialog.setCancelable(true);
+
+        // Setting Dialog Message
+        alertDialog.setMessage(message);
+
+
+       alertDialog.requestWindowFeature(Window.FEATURE_LEFT_ICON);
+        alertDialog.setIcon(R.drawable.warning_32);
+
+
+        // Setting  Button
+        alertDialog.setButton(Dialog.BUTTON_POSITIVE, "Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.dismiss();
+            }
+        });
+        // Showing Alert Message
+        alertDialog.show();
+    }
+
     /**
      * Function to show settings alert dialog
      * On pressing Settings button will lauch Settings Options
@@ -156,7 +187,6 @@ public class ADNotificationManager {
     }
 
     /**
-     *
      * @param activity
      * @param title
      * @param msg
@@ -168,7 +198,7 @@ public class ADNotificationManager {
          */
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder((Context) activity);
         /**
-         * convert the layout xml convert java objet by inflater
+         * convert the layout xml convert java object by inflater
          */
         LayoutInflater inflater = activity.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.custom_dialog_layout, null);
@@ -181,7 +211,6 @@ public class ADNotificationManager {
         tvMsg.setText(msg);
 
         Button dialogButton = (Button) dialogView.findViewById(R.id.custom_dialog_button);
-
 
 
         final AlertDialog dialog = dialogBuilder.create();
@@ -198,6 +227,26 @@ public class ADNotificationManager {
 
         dialog.show();
 
+    }
+    private AlertDialog.Builder  createCustomBuilder( Activity activity, String title,String msg){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder((Context) activity);
+        /**
+         * convert the layout xml convert java object by inflater
+         */
+        LayoutInflater inflater = activity.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.custom_dialog_layout, null);
+        dialogBuilder.setView(dialogView);
+
+        final TextView tvTitle = (TextView) dialogView.findViewById(R.id.custom_dialog_title);
+        tvTitle.setText(title);
+
+        final TextView tvMsg = (TextView) dialogView.findViewById(R.id.custom_dialog_msg);
+        tvMsg.setText(msg);
+
+        Button dialogButton = (Button) dialogView.findViewById(R.id.custom_dialog_button);
+
+
+        return dialogBuilder;
     }
 
 }

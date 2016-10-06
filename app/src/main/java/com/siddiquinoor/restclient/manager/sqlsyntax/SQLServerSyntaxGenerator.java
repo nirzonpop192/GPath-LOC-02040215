@@ -3499,7 +3499,7 @@ public class SQLServerSyntaxGenerator {
                 " , [DistFlag] " +
                 " , [EntryDate] " +
                 " , [EntryBy] " +
-                // todo: set values [SrvOpMonthCode]        ,[DistFlag]
+
                 " ) " +
                 "  VALUES " +
                 " ( " + getAdmCountryCode() +
@@ -4909,6 +4909,7 @@ public class SQLServerSyntaxGenerator {
         grpCatCode = checkStringNull(grpCatCode);
         GrpCatCode = grpCatCode;
     }
+    // TODO: 10/6/2016  there is a na error
 
     public String insertIntoCommunityGroupTable() {
         return "INSERT INTO [dbo].[CommunityGroup] " +
@@ -5267,5 +5268,7 @@ public class SQLServerSyntaxGenerator {
        +"          AND HHID =  "+getHHID();
     }
 
-
+// TODO: 10/6/2016  add syntax t for the Insert method for DTResponse table
+    // TODO: 10/6/2016  add syntax for the update method for the DTResponse  Table 
+    // TODO: 10/6/2016  add syntax for the delete method for the  DTResponse  Table
 }

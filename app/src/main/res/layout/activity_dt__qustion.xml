@@ -166,7 +166,7 @@
     <!--  End  EDIT_TEXT & Check Button -->
 
     <!--Error Label-->
-    <TextView
+  <!--  <TextView
         android:id="@+id/tv_dt_errorLable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
         android:text="ERROR"
         android:textColor="@color/red"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
 
     <LinearLayout
 

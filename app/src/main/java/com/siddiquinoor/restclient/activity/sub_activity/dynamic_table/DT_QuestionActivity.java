@@ -40,6 +40,7 @@ import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.views.adapters.DynamicDataIndexDataModel;
 import com.siddiquinoor.restclient.views.adapters.DynamicTableQuesDataModel;
 import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
+import com.siddiquinoor.restclient.views.notifications.ADNotificationManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -73,8 +74,14 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     public static final String RADIO_BUTTON_N_TEXTBOX = "Radio Button, Textbox";
     public static final String CHECKBOX_N_TEXTBOX = "Checkbox, Textbox";
     public static final String LOOKUP_LIST = "Lookup List";
-
+    /**
+     * Database helper
+     */
     private SQLiteHandler sqlH;
+    /**
+     * alert Dialog
+     */
+    private ADNotificationManager dialog;
     private final Context mContext = DT_QuestionActivity.this;
     private DynamicDataIndexDataModel dyIndex;
     private int totalQuestion;
@@ -131,7 +138,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
      */
 
     private RadioGroup radioGroupForRadioAndEditText;
-   // private LinearLayout llRadioGroupAndEditText;
+    // private LinearLayout llRadioGroupAndEditText;
     private List<RadioButton> mRadioButtonForRadioAndEdit_List = new ArrayList<RadioButton>();
     private List<EditText> mEditTextForRadioAndEdit_List = new ArrayList<EditText>();
     private List<EditText> mEditTextForCheckBoxAndEdit_List = new ArrayList<EditText>();
@@ -157,7 +164,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     private LinearLayout subParent_ET_layout_FOR_CB_N_ET;
 
     private LinearLayout ll_editText;
-    private TextView tv_ErrorDisplay;
+//    private TextView tv_ErrorDisplay;
 
     /**
      * mDTResponse Sequence  DTRSeq
@@ -317,7 +324,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
                     } else {
                         normalIndicator();
-                        hideError();
+
 
 
                         saveData(edtInput, mDTATableList.get(0));
@@ -341,7 +348,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                          */
                     } else {
                         normalIndicator();
-                        hideError();
+
                         /**
                          * mDTATableList.get(0) wil be single
                          */
@@ -362,7 +369,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                          */
                     } else {
                         normalIndicator();
-                        hideError();
+
 
                         /**
                          * {@link DT_QuestionActivity#saveData(String, DT_ATableDataModel)}
@@ -386,7 +393,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
                     } else {
                         normalIndicator();
-                        hideError();
+
                         i = 0;
                         for (CheckBox cb : mCheckBox_List) {
                             if (cb.isChecked()) {
@@ -430,7 +437,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
                             } else {
                                 normalIndicator();
-                                hideError();
+
                                 saveData(mEditTextForRadioAndEdit_List.get(i).getText().toString(), mDTATableList.get(i));
                             }
 
@@ -458,8 +465,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                                 break;
                             } else {
                                 normalIndicator();
-                                hideError();
-                                // todo solved error
+
+
                                 saveData(mEditTextForCheckBoxAndEdit_List.get(k).getText().toString(), mDTATableList.get(k));
                             }
 
@@ -494,14 +501,19 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
     }
 
-    private void hideError() {
-        if (tv_ErrorDisplay.getVisibility() == View.VISIBLE)
-            tv_ErrorDisplay.setVisibility(View.GONE);
-    }
+
+
+    /**
+     *
+     * @param errorMsg Massage In valid
+     */
 
     private void displayError(String errorMsg) {
-        tv_ErrorDisplay.setVisibility(View.VISIBLE);
-        tv_ErrorDisplay.setText(errorMsg);
+
+
+        dialog.showWarningDialog( mContext,errorMsg);
+
+
     }
 
     private void saveData(String ansValue, DT_ATableDataModel dtATable) {
@@ -682,6 +694,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     private void inti() {
         viewReference();
         sqlH = new SQLiteHandler(mContext);
+
+         dialog=new ADNotificationManager();
         Intent intent = getIntent();
         dyIndex = intent.getParcelableExtra(KEY.DYNAMIC_INDEX_DATA_OBJECT_KEY);
         totalQuestion = intent.getIntExtra(KEY.DYNAMIC_T_QUES_SIZE, 0);
@@ -708,7 +722,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
         dt_layout_Radio_N_EditText.setVisibility(View.GONE);
         parent_layout_FOR_CB_N_ET.setVisibility(View.GONE);
-        tv_ErrorDisplay.setVisibility(View.GONE);
+
 
     }
 
@@ -748,6 +762,9 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         ll_editText = (LinearLayout) findViewById(R.id.llEditText);
 
         radioGroupForRadioAndEditText = (RadioGroup) findViewById(R.id.radioGroupForRadioAndEdit);
+        /**
+         * CheckBox and EditText
+         */
         parent_layout_FOR_CB_N_ET = (LinearLayout) findViewById(R.id.ll_CheckBoxAndEditTextParent);
         subParent_CB_layout_FOR_CB_N_ET = (LinearLayout) findViewById(R.id.ll_checkBoxAndEditTextCheckbox);
         subParent_ET_layout_FOR_CB_N_ET = (LinearLayout) findViewById(R.id.et_CheckBoxAndEditText);
@@ -756,8 +773,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         /**
          * Error label
          */
-        tv_ErrorDisplay = (TextView) findViewById(R.id.tv_dt_errorLable);
-
+//        tv_ErrorDisplay = (TextView) findViewById(R.id.tv_dt_errorLable);
 
     }
 
@@ -874,9 +890,12 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                             dt_edt.setInputType(InputType.TYPE_CLASS_TEXT);
                             break;
                         case NUMBER:
-                            //// TODO: 10/5/2016  check integer
+
                             dt_edt.setHint("Number");
-                            dt_edt.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                            if (resLupText.equals("Number (not decimal)"))
+                                dt_edt.setInputType(InputType.TYPE_CLASS_NUMBER);
+                            else
+                                dt_edt.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                             break;
 
                     }// end of switch
@@ -1164,9 +1183,6 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                 list = sqlH.getListAndID(SQLiteHandler.CUSTOM_QUERY, udf, cCode, false);
                 break;
 
-            /**
-             * todo what is looup list combo
-             */
 
             case LOOKUP_LIST:
 
@@ -1247,7 +1263,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             rdbtn.setId(i);
             rdbtn.setTextSize(24); // set text size
 
-            rdbtn.setPadding(0,10,0,10);     // set padding
+            rdbtn.setPadding(0, 10, 0, 10);     // set padding
 
             rdbtn.setText(radioButtonItemName.get(i).getDt_ALabel()); // set lable
             radioGroup.addView(rdbtn);
@@ -1284,7 +1300,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
             rdbtn.setTextSize(24); // set text size
 
-            rdbtn.setPadding(0,10,0,10);     // set padding
+            rdbtn.setPadding(0, 10, 0, 10);     // set padding
 
             rdbtn.setOnCheckedChangeListener(DT_QuestionActivity.this);
 
@@ -1335,9 +1351,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     /**
      * If there are any Children in layout Container it will reMove
      * And the list of the Check Box {@link #mEditTextForCheckBoxAndEdit_List}
-     *  and {@link #mCheckBoxForCheckBoxAndEdit_List }
+     * and {@link #mCheckBoxForCheckBoxAndEdit_List }
      * clear
-     *
      */
 
     private void loadDynamicCheckBoxAndEditText(List<DT_ATableDataModel> List_DtATable, String dataType) {

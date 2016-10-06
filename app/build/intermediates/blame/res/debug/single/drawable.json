@@ -8,28 +8,28 @@
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\org.osmdroid\\osmdroid-android\\5.2\\res\\drawable\\center.png"
     },
     {
-        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\delete.png",
-        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\delete.png"
+        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\exit.png",
+        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\exit.png"
     },
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_btn_check_material.xml"
     },
     {
-        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\exit.png",
-        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\exit.png"
+        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\delete.png",
+        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\delete.png"
     },
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\previous.png",
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\org.osmdroid\\osmdroid-android\\5.2\\res\\drawable\\previous.png"
     },
     {
-        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
-        "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_textfield_search_material.xml"
-    },
-    {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\book_40.png",
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\book_40.png"
+    },
+    {
+        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
+        "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\group_unite.png",
@@ -72,24 +72,24 @@
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_list_selector_holo_light.xml"
     },
     {
-        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\marker_default.png",
-        "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\org.osmdroid\\osmdroid-android\\5.2\\res\\drawable\\marker_default.png"
-    },
-    {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\map_btn_icon.png",
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\map_btn_icon.png"
+    },
+    {
+        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\marker_default.png",
+        "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\org.osmdroid\\osmdroid-android\\5.2\\res\\drawable\\marker_default.png"
     },
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\add_member.png",
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\add_member.png"
     },
     {
-        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\dynamic_icon_42.png",
-        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\dynamic_icon_42.png"
-    },
-    {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_action_person.png",
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\ic_action_person.png"
+    },
+    {
+        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\dynamic_icon_42.png",
+        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\dynamic_icon_42.png"
     },
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_light.xml",
@@ -132,12 +132,12 @@
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\8.1.0\\res\\drawable\\common_signin_btn_icon_light.xml"
     },
     {
-        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_action_add_to_queue.png",
-        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\ic_action_add_to_queue.png"
-    },
-    {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\cam.png",
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\cam.png"
+    },
+    {
+        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_action_add_to_queue.png",
+        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\ic_action_add_to_queue.png"
     },
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mr_ic_settings_dark.xml",
@@ -214,6 +214,10 @@
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\specific.png",
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\specific.png"
+    },
+    {
+        "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\warning_32.png",
+        "source": "D:\\Android\\GPath-LOC-02040215\\app\\src\\main\\res\\drawable\\warning_32.png"
     },
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\logout.png",

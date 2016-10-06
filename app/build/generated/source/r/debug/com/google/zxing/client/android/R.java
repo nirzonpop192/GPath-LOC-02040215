@@ -39,7 +39,7 @@ public final class R {
 		public static final int zxing_viewfinder_view = 0x7f0f044d;
 	}
 	public static final class layout {
-		public static final int zxing_capture = 0x7f04007c;
+		public static final int zxing_capture = 0x7f04007d;
 	}
 	public static final class raw {
 		public static final int zxing_beep = 0x7f070001;

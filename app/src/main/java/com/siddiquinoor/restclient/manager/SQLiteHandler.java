@@ -8724,6 +8724,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return padded_id;
     }
 
+    // tod Error in the db
     public String getNextGroupId(String cCode, String donorCode, String awardCode, String progCode) {
         String grpCode = "";
         SQLiteDatabase db = this.getReadableDatabase();

@@ -72,6 +72,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     public static final String DATE = "Date";
     public static final String RADIO_BUTTON_N_TEXTBOX = "Radio Button, Textbox";
     public static final String CHECKBOX_N_TEXTBOX = "Checkbox, Textbox";
+    public static final String LOOKUP_LIST = "Lookup List";
 
     private SQLiteHandler sqlH;
     private final Context mContext = DT_QuestionActivity.this;
@@ -130,7 +131,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
      */
 
     private RadioGroup radioGroupForRadioAndEditText;
-    private LinearLayout llRadioGroupAndEditText;
+   // private LinearLayout llRadioGroupAndEditText;
     private List<RadioButton> mRadioButtonForRadioAndEdit_List = new ArrayList<RadioButton>();
     private List<EditText> mEditTextForRadioAndEdit_List = new ArrayList<EditText>();
     private List<EditText> mEditTextForCheckBoxAndEdit_List = new ArrayList<EditText>();
@@ -142,13 +143,27 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     /**
      * Layout
      */
-    private LinearLayout dt_llayout_CheckBox;
-    private LinearLayout dt_layout_checkBox_parent;
-    private LinearLayout dt_layout_checkBox_Checkbox;
-    private LinearLayout dt_layout_checkBox_EditText;
+    private LinearLayout parent_layout_onlyFor_CB;
+    private LinearLayout parent_layout_FOR_CB_N_ET;
+    /**
+     * This layout is child of
+     * {@link #parent_layout_FOR_CB_N_ET}
+     */
+    private LinearLayout subParent_CB_layout_FOR_CB_N_ET;
+    /**
+     * This layout is child of
+     * {@link #parent_layout_FOR_CB_N_ET}
+     */
+    private LinearLayout subParent_ET_layout_FOR_CB_N_ET;
 
     private LinearLayout ll_editText;
     private TextView tv_ErrorDisplay;
+
+    /**
+     * mDTResponse Sequence  DTRSeq
+     */
+    private int mDTRSeq;
+
 
     /**
      * @param sIState savedInstanceState
@@ -172,19 +187,13 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         btnNextQues.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 saveProcessValidation();
-
-
             }
         });
         btnPreviousQus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 previousQuestion();
-
-
             }
         });
         btnHome.setOnClickListener(new View.OnClickListener() {
@@ -275,7 +284,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     }
 
     private void normalIndicator() {
-        tv_DtQuestion.setTextColor(getResources().getColor(R.color.black));
+        tv_DtQuestion.setTextColor(getResources().getColor(R.color.blue_dark));
     }
 
     /**
@@ -296,7 +305,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                     String edtInput = dt_edt.getText().toString();
 
                     if (edtInput.equals("Text") || edtInput.equals("Number") || edtInput.length() == 0) {
-//                        Toast.makeText(mContext, "Insert  Text", Toast.LENGTH_SHORT).show();
+
                         errorIndicator();
                         displayError("Insert  Text");
 
@@ -305,29 +314,18 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                          * todo : show Dialog
                          */
 
-                    /* use this Snippet Code  later
-                      switch (dataType) {
-                            case TEXT:
 
-                                break;
-                            case NUMBER:
-
-                                break;
-
-                        }// end of switch*/
                     } else {
                         normalIndicator();
                         hideError();
 
 
                         saveData(edtInput, mDTATableList.get(0));
-                        /**
-                         * NEXT QUESTION
-                         */
+                        // NEXT QUESTION
+
                         nextQuestion();
 
                     }
-
 
                     break;
 
@@ -446,7 +444,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                     break;
 
                 case CHECKBOX_N_TEXTBOX:
-                    // // TODO: 04/10/2016
+
 
                     normalIndicator();
                     int k = 0;
@@ -461,6 +459,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                             } else {
                                 normalIndicator();
                                 hideError();
+                                // todo solved error
                                 saveData(mEditTextForCheckBoxAndEdit_List.get(k).getText().toString(), mDTATableList.get(k));
                             }
 
@@ -515,9 +514,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
      */
 
     private void saveOnResponseTable(String ansValue, DT_ATableDataModel dtATable) {
-        /**
-         * Todo: implement the mDTATableList
-         */
+
 
         String DTBasic = dyIndex.getDtBasicCode();
         String AdmCountryCode = dyIndex.getcCode();
@@ -528,10 +525,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
         String DTQCode = mDTQ.getDtQCode();
         String DTACode = dtATable.getDt_ACode();
-        /**
-         * todo ask nzmul kalam what is DTRSeq is it qus in dex or nor- Done
-         */
-        String DTRSeq = dtATable.getDt_Seq();
+        /**    DTRSeq is user input serial no         */
+        int DTRSeq = mDTRSeq;
         String DTAValue = null;
         String ProgActivityCode = dyIndex.getProgramActivityCode();
         String DTTimeString = null;
@@ -577,14 +572,14 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
          * main execute
          * Insert or update operation
          */
-        if (sqlH.isDataExitsInDTAResponse_Table(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode)) {
+        if (sqlH.isDataExitsInDTAResponse_Table(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode, mDTRSeq)) {
             sqlH.updateIntoDTResponseTable(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode,
-                    DTRSeq, DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
+                    String.valueOf(DTRSeq), DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
             // TODO: 10/4/2016 upload syntax
         } else {
 
             sqlH.addIntoDTResponseTable(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode,
-                    DTRSeq, DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
+                    String.valueOf(DTRSeq), DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
             // TODO: 10/4/2016  upload syntax
         }
 
@@ -617,7 +612,6 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             if (mQusIndex == totalQuestion - 1) {
                 addStopIconButton(btnNextQues);
 
-
             }
 
 
@@ -626,7 +620,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             Log.d("ICON", "before set icon  ");
             addStopIconButton(btnNextQues);
             mQusIndex = totalQuestion - 1;
-//                    Log.d("MOR", "mQusIndex: " + mQusIndex);
+
         }
     }
 
@@ -649,7 +643,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
         } else if (mQusIndex < 0) {
             mQusIndex = 0;
-//                    Log.d("MOR", "mQusIndex: " + mQusIndex);
+
         }
     }
 
@@ -692,6 +686,10 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         dyIndex = intent.getParcelableExtra(KEY.DYNAMIC_INDEX_DATA_OBJECT_KEY);
         totalQuestion = intent.getIntExtra(KEY.DYNAMIC_T_QUES_SIZE, 0);
         mQusIndex = 0;
+
+
+        mDTRSeq = sqlH.getNextDTResponseSequence(dyIndex.getDtBasicCode(), dyIndex.getcCode(), dyIndex.getDonorCode(), dyIndex.getAwardCode(), dyIndex.getProgramCode(), getStaffID());
+        Log.d("RES", "DTRSec for next mDTRSeq: " + mDTRSeq);
         hideViews();
 
     }
@@ -704,12 +702,12 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         _dt_tv_DatePicker.setVisibility(View.GONE);
         dt_edt.setVisibility(View.GONE);
         dt_spinner.setVisibility(View.GONE);
-        dt_llayout_CheckBox.setVisibility(View.GONE);
+        parent_layout_onlyFor_CB.setVisibility(View.GONE);
         radioGroup.setVisibility(View.GONE);
 
 
         dt_layout_Radio_N_EditText.setVisibility(View.GONE);
-        dt_layout_checkBox_parent.setVisibility(View.GONE);
+        parent_layout_FOR_CB_N_ET.setVisibility(View.GONE);
         tv_ErrorDisplay.setVisibility(View.GONE);
 
     }
@@ -738,7 +736,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
          * dynamic view reference
          */
 
-        dt_llayout_CheckBox = (LinearLayout) findViewById(R.id.ll_checkBox);
+        parent_layout_onlyFor_CB = (LinearLayout) findViewById(R.id.ll_checkBox);
         _dt_tv_DatePicker = (TextView) findViewById(R.id.tv_dtTimePicker);
         dt_edt = (EditText) findViewById(R.id.edt_dt);
         dt_spinner = (Spinner) findViewById(R.id.dt_sp);
@@ -750,9 +748,9 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         ll_editText = (LinearLayout) findViewById(R.id.llEditText);
 
         radioGroupForRadioAndEditText = (RadioGroup) findViewById(R.id.radioGroupForRadioAndEdit);
-        dt_layout_checkBox_parent = (LinearLayout) findViewById(R.id.ll_CheckBoxAndEditTextParent);
-        dt_layout_checkBox_Checkbox = (LinearLayout) findViewById(R.id.ll_checkBoxAndEditTextCheckbox);
-        dt_layout_checkBox_EditText = (LinearLayout) findViewById(R.id.et_CheckBoxAndEditText);
+        parent_layout_FOR_CB_N_ET = (LinearLayout) findViewById(R.id.ll_CheckBoxAndEditTextParent);
+        subParent_CB_layout_FOR_CB_N_ET = (LinearLayout) findViewById(R.id.ll_checkBoxAndEditTextCheckbox);
+        subParent_ET_layout_FOR_CB_N_ET = (LinearLayout) findViewById(R.id.et_CheckBoxAndEditText);
         dt_layout_Radio_N_EditText = (LinearLayout) findViewById(R.id.ll_radioGroupAndEditText);
 
         /**
@@ -854,7 +852,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 /**
  * Resort Data if Data exits
  */
-        DTResponseTableDataModel loadAns = sqlH.getDTResponseTableData(dyIndex.getDtBasicCode(), dyIndex.getcCode(), dyIndex.getDonorCode(), dyIndex.getAwardCode(), dyIndex.getProgramCode(), getStaffID(), mDTQ.getDtQCode(), mDTATableList.get(0).getDt_ACode());
+        DTResponseTableDataModel loadAns = sqlH.getDTResponseTableData(dyIndex.getDtBasicCode(), dyIndex.getcCode(), dyIndex.getDonorCode(), dyIndex.getAwardCode(), dyIndex.getProgramCode(), getStaffID(), mDTQ.getDtQCode(), mDTATableList.get(0).getDt_ACode(), mDTRSeq);
 
         countChecked = 0;
         if (dataType != null) {
@@ -876,6 +874,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                             dt_edt.setInputType(InputType.TYPE_CLASS_TEXT);
                             break;
                         case NUMBER:
+                            //// TODO: 10/5/2016  check integer
                             dt_edt.setHint("Number");
                             dt_edt.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                             break;
@@ -927,14 +926,13 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                     else
                         strSpinner = null;
 
-
                     loadSpinnerList(dyIndex.getcCode(), resLupText);
 
 
                     break;
                 case CHECK_BOX:
 
-                    dt_llayout_CheckBox.setVisibility(View.VISIBLE);
+                    parent_layout_onlyFor_CB.setVisibility(View.VISIBLE);
                     if (mDTATableList.size() > 0)
                         loadDynamicCheckBox(mDTATableList);
 
@@ -944,19 +942,22 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                     radioGroup.setVisibility(View.VISIBLE);
                     if (mDTATableList.size() > 0)
                         loadRadioButtons(mDTATableList);
+
                     break;
 
 
                 case RADIO_BUTTON_N_TEXTBOX:
                     dt_layout_Radio_N_EditText.setVisibility(View.VISIBLE);
+
                     if (mDTATableList.size() > 0)
-                        loadDynamicRadioButtonAndEditText(mDTATableList, dataType);
+                        loadRadioButtonAndEditText(mDTATableList, dataType);
 
                     break;
                 case CHECKBOX_N_TEXTBOX:
-                    dt_layout_checkBox_parent.setVisibility(View.VISIBLE);
+                    parent_layout_FOR_CB_N_ET.setVisibility(View.VISIBLE);
+
                     if (mDTATableList.size() > 0)
-                        loadDynamicCheckBoxAndEditText(mDTATableList);
+                        loadDynamicCheckBoxAndEditText(mDTATableList, dataType);
                     break;
 
 
@@ -964,30 +965,6 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         }// end of if
 
     }//  end of loadDT_QResMode
-
-    /**
-     * Shuvo
-     * this method only show the System Current Time
-     *
-     * @param tv Text view For Show
-     */
-
-    private void getTimeStamp(TextView tv) {
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DATE);
-
-        int hourOfDay = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
-
-
-        String am_pm = (hourOfDay < 12) ? "AM" : "PM";
-
-        String timeStamp = year + "/" + month + "/" + day + "  " + hourOfDay + ":" + minute + " " + am_pm;
-
-        tv.setText(timeStamp);
-    }
 
 
     /**
@@ -1002,9 +979,9 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
          * And the list of the Check Box {@link #mCheckBox_List} clear
          *
          */
-        if (dt_llayout_CheckBox.getChildCount() > 0) {
+        if (parent_layout_onlyFor_CB.getChildCount() > 0) {
             mCheckBox_List.clear();
-            dt_llayout_CheckBox.removeAllViews();
+            parent_layout_onlyFor_CB.removeAllViews();
         }
 
 
@@ -1024,7 +1001,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
              * set check box is checked or not
              */
 
-            DTResponseTableDataModel loadAns = sqlH.getDTResponseTableData(dyIndex.getDtBasicCode(), dyIndex.getcCode(), dyIndex.getDonorCode(), dyIndex.getAwardCode(), dyIndex.getProgramCode(), getStaffID(), mDTQ.getDtQCode(), dtA_Table_Data.get(i).getDt_ACode(), Integer.parseInt(dtA_Table_Data.get(i).getDt_Seq()));
+            DTResponseTableDataModel loadAns = sqlH.getDTResponseTableData(dyIndex.getDtBasicCode(), dyIndex.getcCode(), dyIndex.getDonorCode(), dyIndex.getAwardCode(), dyIndex.getProgramCode(), getStaffID(), mDTQ.getDtQCode(), dtA_Table_Data.get(i).getDt_ACode(), mDTRSeq);
             if (loadAns != null) {
                 if (loadAns.getDtaValue().equals("Y")) {
                     checkBox.setChecked(true);
@@ -1037,7 +1014,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
              * {@link #btnNextQues} needed
              */
             mCheckBox_List.add(checkBox);
-            dt_llayout_CheckBox.addView(row);
+            parent_layout_onlyFor_CB.addView(row);
         }
 
 
@@ -1191,7 +1168,19 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
              * todo what is looup list combo
              */
 
-            case "Lookup List":
+            case LOOKUP_LIST:
+
+                udf = "SELECT " + SQLiteHandler.DT_LUP_TABLE + "." + SQLiteHandler.LIST_CODE_COL
+                        + ", " + SQLiteHandler.DT_LUP_TABLE + "." + SQLiteHandler.LIST_NAME_COL
+                        + " FROM " + SQLiteHandler.DT_LUP_TABLE
+                        + " WHERE " + SQLiteHandler.DT_LUP_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "= '" + cCode + "' "
+
+                        + " AND " + SQLiteHandler.DT_LUP_TABLE + "." + SQLiteHandler.TABLE_NAME_COL + "= '" + mDTQ.getLup_TableName() + "'"
+                ;
+
+                list = sqlH.getListAndID(SQLiteHandler.CUSTOM_QUERY, udf, cCode, false);
+                break;
+
 
             case COMMUNITY_GROUP:
                 udf = "SELECT " + SQLiteHandler.COMMUNITY_GROUP_TABLE + "." + SQLiteHandler.GROUP_CODE_COL
@@ -1213,12 +1202,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
 
         dt_spinner.setAdapter(dataAdapter);
-        /**
-         * todo Retrieving Code for previous button
-         *
-         */
 
-
+        /**      Retrieving Code for previous button         */
         if (strSpinner != null) {
             for (int i = 0; i < dt_spinner.getCount(); i++) {
                 String union = dt_spinner.getItemAtPosition(i).toString();
@@ -1260,8 +1245,11 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         for (int i = 0; i < radioButtonItemName.size(); i++) {
             RadioButton rdbtn = new RadioButton(this);
             rdbtn.setId(i);
+            rdbtn.setTextSize(24); // set text size
 
-            rdbtn.setText(radioButtonItemName.get(i).getDt_ALabel());
+            rdbtn.setPadding(0,10,0,10);     // set padding
+
+            rdbtn.setText(radioButtonItemName.get(i).getDt_ALabel()); // set lable
             radioGroup.addView(rdbtn);
 
             mRadioButton_List.add(rdbtn);
@@ -1277,8 +1265,9 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
      * @param List_DtATable
      */
 
-    public void loadDynamicRadioButtonAndEditText(List<DT_ATableDataModel> List_DtATable, String dataType) {
-        if (radioGroupForRadioAndEditText.getChildCount() > 0) {
+    public void loadRadioButtonAndEditText(List<DT_ATableDataModel> List_DtATable, String dataType) {
+
+        if (ll_editText.getChildCount() > 0) {
             mRadioButtonForRadioAndEdit_List.clear();
             mEditTextForRadioAndEdit_List.clear();
             radioGroupForRadioAndEditText.removeAllViews();
@@ -1291,12 +1280,23 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             RadioButton rdbtn = new RadioButton(this);
             rdbtn.setId(i);
 
-            rdbtn.setText(label);
+            rdbtn.setText(label); // set label
+
+            rdbtn.setTextSize(24); // set text size
+
+            rdbtn.setPadding(0,10,0,10);     // set padding
+
             rdbtn.setOnCheckedChangeListener(DT_QuestionActivity.this);
-            radioGroupForRadioAndEditText.addView(rdbtn);
-            mRadioButtonForRadioAndEdit_List.add(rdbtn);
+
 
             EditText et = new EditText(this);
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(0, 5, 0, 5);
+            et.setLayoutParams(params);
             et.setHint(label);
             et.setId(i);
             /**
@@ -1308,6 +1308,22 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             }
             et.setBackgroundColor(Color.WHITE);
 
+
+/**
+ *
+ * todo aad index after set DTRespose Sequn {@link #saveOnResponseTable(String, DT_ATableDataModel)}
+ */
+            DTResponseTableDataModel loadAns = sqlH.getDTResponseTableData(dyIndex.getDtBasicCode(), dyIndex.getcCode(), dyIndex.getDonorCode(), dyIndex.getAwardCode(), dyIndex.getProgramCode(), getStaffID(), mDTQ.getDtQCode(), List_DtATable.get(i).getDt_ACode(), mDTRSeq);
+            if (loadAns != null) {
+                rdbtn.setChecked(true);
+                String value = loadAns.getDtaValue();
+                et.setText(value);
+            }
+
+
+            radioGroupForRadioAndEditText.addView(rdbtn);
+            mRadioButtonForRadioAndEdit_List.add(rdbtn);
+
             ll_editText.addView(et);
             mEditTextForRadioAndEdit_List.add(et);
 
@@ -1316,28 +1332,28 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
     }
 
+    /**
+     * If there are any Children in layout Container it will reMove
+     * And the list of the Check Box {@link #mEditTextForCheckBoxAndEdit_List}
+     *  and {@link #mCheckBoxForCheckBoxAndEdit_List }
+     * clear
+     *
+     */
 
-    private void loadDynamicCheckBoxAndEditText(List<DT_ATableDataModel> checkBoxItemName) {
-        /**
-         * If there are any Children in layout Container it will reMove
-         * And the list of the Check Box {@link #mEditTextForCheckBoxAndEdit_List}
-         *  and {@link #mCheckBoxForCheckBoxAndEdit_List }
-         * clear
-         *
-         */
-        if (dt_llayout_CheckBox.getChildCount() > 0) {
-            mEditTextForCheckBoxAndEdit_List.clear();
-            dt_layout_checkBox_parent.removeAllViews();
-            dt_layout_checkBox_EditText.removeAllViews();
-            dt_layout_checkBox_Checkbox.removeAllViews();
+    private void loadDynamicCheckBoxAndEditText(List<DT_ATableDataModel> List_DtATable, String dataType) {
 
+        if (subParent_CB_layout_FOR_CB_N_ET.getChildCount() > 0) {
+
+            subParent_ET_layout_FOR_CB_N_ET.removeAllViews();
+            subParent_CB_layout_FOR_CB_N_ET.removeAllViews();
             mCheckBoxForCheckBoxAndEdit_List.clear();
+            mEditTextForCheckBoxAndEdit_List.clear();
         }
 
 
-        for (int i = 0; i < checkBoxItemName.size(); i++) {
+        for (int i = 0; i < List_DtATable.size(); i++) {
 
-            String label = checkBoxItemName.get(i).getDt_ALabel();
+            String label = List_DtATable.get(i).getDt_ALabel();
             TableRow row = new TableRow(this);
             row.setId(i);
             LinearLayout.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
@@ -1345,10 +1361,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             CheckBox checkBox = new CheckBox(this);
             checkBox.setOnCheckedChangeListener(DT_QuestionActivity.this);
             checkBox.setId(i);
-            /**
-             * set Text label
-             */
-            checkBox.setText(label);
+
+            checkBox.setText(label); //  set Text label
 
             row.addView(checkBox);
 
@@ -1356,20 +1370,62 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             EditText et = new EditText(this);
             et.setHint(label);
             et.setId(i);
-            dt_layout_checkBox_EditText.addView(et);
+
+            /**
+             * sof keyboard type
+             */
+            if (dataType.equals(NUMBER)) {
+                et.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+
+            }
+            et.setBackgroundColor(Color.WHITE);
+
+            /**
+             * This snippets work for Check Box Well  but not for the radio button
+             * todo aad index after set DTRespose Sequn {@link #saveOnResponseTable(String, DT_ATableDataModel)}
+             */
+            DTResponseTableDataModel loadAns = sqlH.getDTResponseTableData(dyIndex.getDtBasicCode(), dyIndex.getcCode(), dyIndex.getDonorCode(), dyIndex.getAwardCode(), dyIndex.getProgramCode(), getStaffID(), mDTQ.getDtQCode(), List_DtATable.get(i).getDt_ACode(), mDTRSeq);
+            if (loadAns != null) {
+                checkBox.setChecked(true);
+                String value = loadAns.getDtaValue();
+                et.setText(value);
+            }
+
+            subParent_ET_layout_FOR_CB_N_ET.addView(et);
             /**
              * {@link #btnNextQues} needed
              *
              */
 
             mEditTextForCheckBoxAndEdit_List.add(et);
-            dt_layout_checkBox_Checkbox.addView(row);
+            subParent_CB_layout_FOR_CB_N_ET.addView(row);
             mCheckBoxForCheckBoxAndEdit_List.add(checkBox);
         }
 
 
     }
 
+    /**
+     * Shuvo
+     * this method only show the System Current Time
+     *
+     * @param tv Text view For Show
+     */
+
+    private void getTimeStamp(TextView tv) {
+        final Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DATE);
+
+        int hourOfDay = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+
+        String am_pm = (hourOfDay < 12) ? "AM" : "PM";
+        String timeStamp = year + "/" + month + "/" + day + "  " + hourOfDay + ":" + minute + " " + am_pm;
+
+        tv.setText(timeStamp);
+    }
 
 }
 

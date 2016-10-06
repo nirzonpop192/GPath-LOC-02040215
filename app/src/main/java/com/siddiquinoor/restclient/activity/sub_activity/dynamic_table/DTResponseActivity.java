@@ -57,8 +57,8 @@ public class DTResponseActivity extends BaseActivity {
     private String strTable;
     private String idProgram;
     private String strProgram;
-    private ListView lv_DT_QList;
-    private Button btn_goToQustion,btn_BackToQustion;
+    // private ListView lv_DT_QList;
+    private Button btn_goToQustion, btn_BackToQustion;
     private DynamicDataIndexDataModel dyIndex;
     DynamicTableQusDataModelAdapter adapter = null;
     private String idMonth;
@@ -134,7 +134,7 @@ public class DTResponseActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DynamicData.class);
-                intent.putExtra(KEY.COUNTRY_ID,dyIndex.getcCode());
+                intent.putExtra(KEY.COUNTRY_ID, dyIndex.getcCode());
                 finish();
                 startActivity(intent);
             }
@@ -174,7 +174,7 @@ public class DTResponseActivity extends BaseActivity {
         spDtMonth = (Spinner) findViewById(R.id.sp_dtMonth);
         tvActivityTitle = (TextView) findViewById(R.id.tv_dtResponse_activity_title);
         tvDate = (TextView) findViewById(R.id.txt_dtResponse_date);
-        lv_DT_QList = (ListView) findViewById(R.id.lv_DTQList);
+//        lv_DT_QList = (ListView) findViewById(R.id.lv_DTQList);
         btn_goToQustion = (Button) findViewById(R.id.btnHomeFooter);
         btn_BackToQustion = (Button) findViewById(R.id.btnRegisterFooter);
 
@@ -231,10 +231,7 @@ public class DTResponseActivity extends BaseActivity {
 
 
         List<SpinnerHelper> listProgram = sqlH.getListAndID(SQLiteHandler.CUSTOM_QUERY, sql, null, false);
-
-
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listProgram);
-
         dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
 
         spTableName.setAdapter(dataAdapter);
@@ -262,6 +259,9 @@ public class DTResponseActivity extends BaseActivity {
                 strTable = ((SpinnerHelper) spTableName.getSelectedItem()).getValue();
                 idTable = ((SpinnerHelper) spTableName.getSelectedItem()).getId();
                 loadAward(cCode);
+                /**
+                 * Do not delete # loadDT_questionView method
+                 */
                 loadDT_questionView(idTable);
 
             }
@@ -394,7 +394,6 @@ public class DTResponseActivity extends BaseActivity {
 
         String criteria = "SELECT " + SQLiteHandler.OP_MONTH_CODE_COL + " AS OpMonthID, "
                 + SQLiteHandler.MONTH_LABEL + " FROM " + SQLiteHandler.OP_MONTH_TABLE
-
                 + " WHERE " +
                 SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "'"
                 + " AND " + SQLiteHandler.STATUS + " = '" + "A" + "' "
@@ -447,6 +446,7 @@ public class DTResponseActivity extends BaseActivity {
 
     /**
      * Load :: list View
+     * the list is not needed
      *
      * @param dtBasicCode Dynamic Basic Code
      */
@@ -464,23 +464,25 @@ public class DTResponseActivity extends BaseActivity {
             for (DynamicTableQuesDataModel data : dataList) {
                 /**
                  * add contacts data in arrayList
-                 */
+                 * */
+
                 dataArray.add(data);
             }
             /**
              * Assign the Adapter in list
-             */
+             * */
+
             adapter = new DynamicTableQusDataModelAdapter((Activity) mContext, dataArray);
         }
 
         if (adapter != null) {
             if (adapter.getCount() != 0) {
                 adapter.notifyDataSetChanged();
-                lv_DT_QList.setAdapter(adapter);
-            } else {
+//   /** hide the list View */    lv_DT_QList.setAdapter(adapter);
+            } /*else {
                 new ADNotificationManager().showInfromDialog(mContext, "NO Data", "No data Found");
 
-            }
+            }*/
 
         }
 

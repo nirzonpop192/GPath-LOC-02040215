@@ -2,13 +2,5 @@
     {
         "merged": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\xml\\zxing_preferences.xml",
         "source": "D:\\Android\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.journeyapps\\zxing-android-embedded\\2.3.0\\res\\xml\\zxing_preferences.xml"
-    },
-    {
-        "merged": "G:\\TD&shuvo\\Td_project\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\xml\\zxing_preferences.xml",
-        "source": "G:\\TD&shuvo\\Td_project\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.journeyapps\\zxing-android-embedded\\2.3.0\\res\\xml\\zxing_preferences.xml"
-    },
-    {
-        "merged": "D:\\WorkSpace\\AndroidStudioProject\\G-path New\\GPath-LOC-02040215\\app\\build\\intermediates\\res\\merged\\debug\\xml\\zxing_preferences.xml",
-        "source": "D:\\WorkSpace\\AndroidStudioProject\\G-path New\\GPath-LOC-02040215\\app\\build\\intermediates\\exploded-aar\\com.journeyapps\\zxing-android-embedded\\2.3.0\\res\\xml\\zxing_preferences.xml"
     }
 ]

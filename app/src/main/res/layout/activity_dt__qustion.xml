@@ -31,6 +31,7 @@
         android:layout_below="@+id/page_title"
         android:padding="10dp"
         android:text="Qus"
+        android:textColor="@color/blue_dark"
         android:textSize="28sp"
         android:textStyle="bold" />
 
@@ -75,8 +76,9 @@
         android:id="@+id/ll_checkBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_DtQuestion"
 
-        android:layout_below="@+id/linearLayout"
+
         android:orientation="vertical">
 
     </LinearLayout>
@@ -134,7 +136,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/ll_nextO_preview"
-        android:layout_below="@+id/tv_dt_errorLable"
+        android:layout_below="@+id/tv_DtQuestion"
         android:orientation="horizontal"
         android:weightSum="1">
 

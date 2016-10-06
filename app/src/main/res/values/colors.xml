@@ -43,6 +43,8 @@
     <color name="green">#26ae90</color>
     <color name="blue">#FF007DAE</color>
     <color name="blue_light">#4c00b6ff</color>
+    <color name="blue_dark_native">#000550</color>
+    <color name="blue_dark">#627C9F</color>
     <color name="orange">#FF9D2F</color>
     <color name="red">#ea4c88</color>
     <color name="title_bg_col">#627C9F</color>

@@ -1178,7 +1178,7 @@ public class JsonDeserialization {
     }
 
 
-    public static void DTAnswerParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+    public static void DTA_Parser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
 
         int size = jsonArrayData.length();
         String DTBasic;
@@ -1220,11 +1220,27 @@ public class JsonDeserialization {
                 MarkOnGrid = jsonObject.getString("MarkOnGrid");
 
 
-
+                Log.d("NIR_192",
+                        "in DTA table  DTBasic :" + DTBasic +
+                                " DTQCode :" + DTQCode +
+                                " DTACode :" + DTACode +
+                                " DTALabel :" + DTALabel +
+                                " DTAValue :" + DTAValue +
+                                " DTSeq :" + DTSeq +
+                                " DTAShort :" + DTAShort +
+                                " DTScoreCode :" + DTScoreCode +
+                                " DTSkipDTQCode :" + DTSkipDTQCode +
+                                " DTACompareCode :" + DTACompareCode +
+                                " ShowHide :" + ShowHide +
+                                " MaxValue :" + MaxValue +
+                                " MinValue :" + MinValue +
+                                " DataType :" + DataType +
+                                " MarkOnGrid :" + MarkOnGrid
+                );
 
 
                 sqlH.addIntoDTATable(DTBasic, DTQCode, DTACode, DTALabel, DTAValue, StringToLongNullCheck(DTSeq), DTAShort, DTScoreCode, DTSkipDTQCode, DTACompareCode, ShowHide
-                        , StringToLongNullCheck(MaxValue) , StringToLongNullCheck(MinValue), DataType, MarkOnGrid, "", "");
+                        , StringToLongNullCheck(MaxValue), StringToLongNullCheck(MinValue), DataType, MarkOnGrid, "", "");
 
                 Log.d(TAG, "DT Ans Table");
 
@@ -1238,14 +1254,14 @@ public class JsonDeserialization {
 
     }
 
-    private static long StringToLongNullCheck( String string){
+    private static long StringToLongNullCheck(String string) {
 
         long lgMaxValue = -1;
         if (string != null) {
-            if (string.equals("null")|| string.length()==0) {
+            if (string.equals("null") || string.length() == 0) {
                 lgMaxValue = 0;
             } else {
-                lgMaxValue = Long.parseLong(string);
+                lgMaxValue =(long) Double.parseDouble(string);
             }
         }
 
@@ -1498,15 +1514,14 @@ public class JsonDeserialization {
                 sqlH.addIntoDTResponseTable(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode,
                         DTRSeq, DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
 
-                Log.d(TAG, "DT Ans Table");
+//                Log.d(TAG, "DT Ans Table");
 
             } catch (Exception e) {
-                Log.e(TAG, "Exception : " + e);
+//                Log.e(TAG, "Exception : " + e);
                 e.printStackTrace();
             }
 
 
-            // Log.d(TAG, "Country Code : " + AdmCountryCode + " Country hhName : " + AdmCountryName);
         }
 
     }
@@ -1571,7 +1586,7 @@ public class JsonDeserialization {
                 AllowNull = jsonObject.getString("AllowNull");
                 LUPTableName = jsonObject.getString("LUPTableName");
 
-                sqlH.addIntoDTQTable(DTBasic, DTQCode, QText, QResMode, QSeq, AllowNull,LUPTableName);
+                sqlH.addIntoDTQTable(DTBasic, DTQCode, QText, QResMode, QSeq, AllowNull, LUPTableName);
 
 //                Log.d(TAG, "DT Ans Table");
 
@@ -1597,13 +1612,40 @@ public class JsonDeserialization {
             try {
 
                 JSONObject jsonObject = jsonArrayData.getJSONObject(i);
-
                 GeoLevel = jsonObject.getString("GeoLevel");
                 GeoLevelName = jsonObject.getString("GeoLevelName");
                 ListUDFName = jsonObject.getString("ListUDFName");
                 sqlH.addIntoDTGeoListLevel(GeoLevel, GeoLevelName, ListUDFName, "", "");
 
-                Log.d(TAG, "DT Ans Table");
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+
+
+        }
+
+    }
+
+
+    public static void DTLUPParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+        String AdmCountryCode;
+        String TableName;
+        String ListCode;
+        String ListName;
+
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+                AdmCountryCode = jsonObject.getString("AdmCountryCode");
+                TableName = jsonObject.getString("TableName");
+                ListCode = jsonObject.getString("ListCode");
+                ListName = jsonObject.getString("ListName");
+                sqlH.addIntoDTLUP(AdmCountryCode, TableName, ListCode, ListName);
 
             } catch (Exception e) {
                 Log.e(TAG, "Exception : " + e);

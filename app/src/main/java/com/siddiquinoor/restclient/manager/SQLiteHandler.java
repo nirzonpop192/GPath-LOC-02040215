@@ -180,7 +180,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String PROGRAM_ORGANIZATION_ROLE_TABLE = "ProgOrgNRole";
     public static final String PROGRAM_ORGANIZATION_NAME_TABLE = "ProgOrgN";
 
-    public static final String DT_RESPONSE_TABLE_COL = "DTResponseTable";
+    public static final String DT_RESPONSE_TABLE = "DTResponseTable";
     public static final String DT_CATEGORY_TABLE = "DTCategory";
     public static final String DT_COUNTRY_PROGRAM_TABLE = "DTCountryProgram";
     public static final String DTGEO_LIST_LEVEL_COL = "DTGeoListLevel";
@@ -188,6 +188,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String DTQ_TABLE = "DTQTable";
     public static final String DT_TABLE_DEFINITION_TABLE = "DTTableDefinition";
     public static final String DTTABLE_LIST_CATEGORY_TABLE = "DTTableListCategory";
+
+    public static final String LIST_CODE_COL = "ListCode";
+    public static final String LIST_NAME_COL = "ListName";
+    public static final String DT_LUP_TABLE = "DTLUP";
+
 
     public static final String DT_A_TABLE = "DTATable";
     public static final String DT_BASIC_TABLE = "DTBasic";
@@ -231,7 +236,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String DT_ENU_ID_COL = "DTEnuID";
     public static final String OP_MODE_COL = "OpMode";
     public static final String DTTIME_STRING_COL = "DTTimeString";
-    public static final String DT_RSEQ_COL = "DTRSeq";
+    public static final String DT_R_SEQ_COL = "DTRSeq";
     public static final String DTA_VALUE_COL = "DTAValue";
     public static final String TABLE_NAME_COL = "TableName";
     public static final String FIELD_NAME_COL = "FieldName";
@@ -1102,6 +1107,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.execSQL(Schema.createTableDTResponseTable());
         db.execSQL(Schema.createTableDTTableDefinition());
         db.execSQL(Schema.createTaleDTTableListCategory());
+        db.execSQL(Schema.createTaleDT_LUP_Table());
 
 
         Log.d(TAG, "  Create All Table ");
@@ -1203,9 +1209,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.execSQL(DROP_TABLE_IF_EXISTS + DTGEO_LIST_LEVEL_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + DTQRES_MODE_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + DTQ_TABLE);
-            db.execSQL(DROP_TABLE_IF_EXISTS + DT_RESPONSE_TABLE_COL);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DT_RESPONSE_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + DT_TABLE_DEFINITION_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + DTTABLE_LIST_CATEGORY_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + DT_LUP_TABLE);
 
 
             Log.d(TAG, "All table Dropped.");
@@ -1374,9 +1381,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.delete(DTGEO_LIST_LEVEL_TABLE, null, null);
             db.delete(DTQRES_MODE_TABLE, null, null);
             db.delete(DTQ_TABLE, null, null);
-            db.delete(DT_RESPONSE_TABLE_COL, null, null);
+            db.delete(DT_RESPONSE_TABLE, null, null);
             db.delete(DT_TABLE_DEFINITION_TABLE, null, null);
             db.delete(DTTABLE_LIST_CATEGORY_TABLE, null, null);
+            db.delete(DT_LUP_TABLE, null, null);
 
 
             Log.d(TAG, "All User data Deleted.");
@@ -1432,7 +1440,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         long id = db.insert(LUP_GPS_LIST_TABLE, null, values);
         db.close();
-//        Log.d(TAG, "Insert into " + STAFF_MASTER_TABLE + " Table: " + id);
 
 
     }
@@ -1456,7 +1463,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(STAFF_ADMIN_ROLE_COL, staffAdimRole);
         long id = db.insert(STAFF_MASTER_TABLE, null, values);
         db.close();
-        Log.d(TAG, "Insert into " + STAFF_MASTER_TABLE + " Table: " + id);
+
     }
 
     public static final String TYPE_OF_GROUP = "TypeOfGroup";
@@ -1490,7 +1497,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(PROJECT_TITLE, projectTitle);
         long id = db.insert(COMMUNITY_GRP_DETAIL_TABLE, null, values);
         db.close();
-        Log.d(TAG, "NEW Insert into " + COMMUNITY_GRP_DETAIL_TABLE + " Table: " + id);
+
     }
 
     /**
@@ -1511,16 +1518,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COUNTRY_CODE_COL, cCode);
-
-
         values.put(DONOR_CODE_COL, donorCode);
         values.put(AWARD_CODE_COL, awardCode);
-
-
         values.put(PROGRAM_CODE_COL, progCode);
         values.put(GROUP_CAT_CODE_COL, groupCatCode);
         values.put(GROUP_CAT_NAME_COL, groupCatName);
-
         values.put(GROUP_CAT_SHORT_NAME_COL, groupCatShortName);
 
 
@@ -1585,17 +1587,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(UPCODE_COL, upCode);
         values.put(UCODE_COL, unCode);
         values.put(VCODE_COL, vCode);
-
         values.put(DONOR_CODE_COL, donorCode);
         values.put(AWARD_CODE_COL, awardCode);
-
         values.put(HHID_COL, hhID);
         values.put(HH_MEM_ID, memID);
-
         values.put(PROGRAM_CODE_COL, progCode);
         values.put(SERVICE_CODE_COL, srvCode);
         values.put(GROUP_CODE_COL, grpCode);
-
         values.put(ACTIVE_COL, active);
         values.put(ENTRY_BY, entryBy);
         values.put(ENTRY_DATE, entryDate);
@@ -1617,11 +1615,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(COUNTRY_CODE_COL, cCode);
         values.put(DONOR_CODE_COL, donorCode);
         values.put(AWARD_CODE_COL, awardCode);
-
         values.put(PROGRAM_CODE_COL, progCode);
         values.put(ANIMAL_CODE_COL, animalCode);
         values.put(ANIMAL_TYPE_COL, animalType);
-
 
         long id = db.insert(LUP_COMMUNITY_ANIMAL_TABLE, null, values);
         db.close();
@@ -1640,7 +1636,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(COUNTRY_CODE_COL, cCode);
         values.put(DONOR_CODE_COL, donorCode);
         values.put(AWARD_CODE_COL, awardCode);
-
         values.put(PROGRAM_CODE_COL, progCode);
         values.put(CROP_CODE_COL, cropCode);
         values.put(CROP_NAME_COL, corpName);
@@ -1664,11 +1659,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(COUNTRY_CODE_COL, cCode);
         values.put(DONOR_CODE_COL, donorCode);
         values.put(AWARD_CODE_COL, awardCode);
-
         values.put(PROGRAM_CODE_COL, progCode);
         values.put(LOAN_CODE_COL, loanCode);
         values.put(LOAN_SOURCE_COL, loanSource);
-
 
         long id = db.insert(LUP_COMMUNITY_LOAN_SOURCE_TABLE, null, values);
         db.close();
@@ -1687,7 +1680,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(COUNTRY_CODE_COL, cCode);
         values.put(DONOR_CODE_COL, donorCode);
         values.put(AWARD_CODE_COL, awardCode);
-
         values.put(PROGRAM_CODE_COL, progCode);
         values.put(LEAD_CODE_COL, leadCode);
         values.put(LEAD_POSITION_COL, leadPosition);
@@ -1709,8 +1701,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(COUNTRY_CODE_COL, cCode);
         values.put(SERVICE_CENTER_CODE_COL, srvCenCode);
         values.put(SERVICE_CENTER_NAME_COL, srvCenName);
-
-        values.put(FDP_CODE_COL, fdpCode); //
+        values.put(FDP_CODE_COL, fdpCode);
 
         long id = db.insert(SERVICE_CENTER_TABLE, null, values);
         db.close();
@@ -2275,7 +2266,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         // insert
         long id = db.insert(SERVICE_SPECIFIC_TABLE, null, values);
         db.close();
-        Log.d(TAG, "New " + SERVICE_SPECIFIC_TABLE + "  added: " + id);
+
         return id;
     }
 
@@ -5519,13 +5510,46 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
+
+    public int getNextDTResponseSequence(String dtBasic,String cCode,String  donorCode,String awardCode, String prgCode, String entryBy){
+        int nextDTRSeq;
+        SQLiteDatabase db = this.getReadableDatabase();
+        int tem=-1;
+        String sql=" Select "+ DT_R_SEQ_COL +" from "+ DT_RESPONSE_TABLE +" " +
+                " WHERE " +
+                " "+DT_BASIC_COL+" = '"+dtBasic+"' " +
+                " AND "+COUNTRY_CODE_COL+" = '"+cCode+"' " +
+                " AND "+DONOR_CODE_COL+" = '"+donorCode+"' " +
+                " AND "+AWARD_CODE_COL+" = '"+awardCode+"' " +
+                " AND "+PROGRAM_CODE_COL+" = '"+prgCode+"' " +
+                " AND "+DT_ENU_ID_COL+" = '"+entryBy+"' " +
+                " GROUP By "+DT_R_SEQ_COL+" " +
+                " order by "+DT_R_SEQ_COL+" DESC " +
+                " limit 1";
+        Cursor cursor= db.rawQuery(sql,null);
+        if (cursor!=null){
+            if(cursor.moveToFirst()){
+                tem=cursor.getInt(cursor.getColumnIndex(DT_R_SEQ_COL));
+            }
+            cursor.close();
+            db.close();
+
+        }
+
+        if (tem>0){
+            nextDTRSeq=tem+1;
+        }else
+            nextDTRSeq=1;
+        return nextDTRSeq;
+
+    }
+
     public DynamicTableQuesDataModel getSingleDynamicQuestion(String dtBasicCode, int index) {
         DynamicTableQuesDataModel singleQus = new DynamicTableQuesDataModel();
 
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT * FROM " + DTQ_TABLE +
                 " WHERE " + DT_BASIC_COL + "= '" + dtBasicCode + "'" +
-                //  " AND " + DTQ_CODE_COL + "= '" + dtQuestionCode + "'"+
                 " LIMIT 1 OFFSET " + String.valueOf(index);
 
 
@@ -11109,42 +11133,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
-   /* public long addRegistrationForMalawi(String c_code, String dname, String upname, String uname, String vname, String addressName, String pid, String r_date, String pname, String sex, String HHSize, String latitude, String longitude, String AGLand, String VStatus, String MStatus, String EntryBy, String EntryDate, String v_group, String wRankCode) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-
-        values.put(COUNTRY_CODE, c_code); // country name
-        values.put(DISTRICT_NAME_COL, dname); // district name
-        values.put(UPZILLA_NAME_COL, upname); // upazilla name
-        values.put(UNITE_NAME_COL, uname); // Unit name
-        values.put(VILLAGE_NAME_COL, vname); // Unit name
-        values.put(REGN_ADDRESS_LOOKUP_CODE_COL, addressName);
-        values.put(PID_COL, pid); // Personal code
-        values.put(REG_DATE_COL, r_date); // Registration name
-        values.put(PNAME_COL, pname); // Person name
-        values.put(SEX_COL, sex); // sex
-        values.put(HH_SIZE, HHSize); // sex
-        values.put(LATITUDE_COL, latitude); // Latitude
-        values.put(LONGITUDE_COL, longitude); // Longitude
-        values.put(AG_LAND, AGLand); // Longitude
-        values.put(V_STATUS, VStatus); // Longitude
-        values.put(M_STATUS, MStatus); // Longitude
-        values.put(ENTRY_BY, EntryBy); // Longitude
-        values.put(ENTRY_DATE, EntryDate); // Date of creation
-        values.put(VSLA_GROUP, v_group); // VSLA_GROUP
-        values.put(W_RANK_COL, wRankCode); // VSLA_GROUP
-
-        // Inserting Row into local database
-        long id = db.insert(REGISTRATION_TABLE, null, values);
-        db.close(); // Closing database connection
-
-        Log.d(TAG, "New Registration data added into Registration Table: " + id);
-        return id;
-    }*/
-
-
     public long addRegistrationForMalawi(String c_code, String dname, String upname, String uname, String vname, String addressName, String pid, String r_date, String pname, String sex, String HHSize, String latitude, String longitude, String AGLand, String VStatus, String MStatus, String EntryBy, String EntryDate, String v_group, String wRankCode, String LTp2Hectres, String LT3mFoodStock, String NoMajorCommonLiveStock, String ReceiveNoFormalWages, String NoIGA, String RelyPiecework) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -11373,7 +11361,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         // Inserting Row
         long id = db.insert(LOGIN_TABLE, null, values);
         db.close(); // Closing database connection
-
         Log.d("MOR_12", "New user inserted into User Login: " + id);
     }
 
@@ -12029,7 +12016,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_BY, entryBy);
         values.put(ENTRY_DATE, entryDate);
 
-        long id = db.insert(DT_A_TABLE, null, values);
+        db.insert(DT_A_TABLE, null, values);
         db.close();
     }
 
@@ -12052,7 +12039,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_BY, entryBy);
         values.put(ENTRY_DATE, entryDate);
 
-        long id = db.insert(DT_BASIC_TABLE, null, values);
+        db.insert(DT_BASIC_TABLE, null, values);
         db.close();
     }
 
@@ -12067,7 +12054,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_BY, entryBy);
         values.put(ENTRY_DATE, entryDate);
 
-        long id = db.insert(DT_CATEGORY_TABLE, null, values);
+        db.insert(DT_CATEGORY_TABLE, null, values);
         db.close();
     }
 
@@ -12090,7 +12077,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_BY, entryBy);
         values.put(ENTRY_DATE, entryDate);
 
-        long id = db.insert(DT_COUNTRY_PROGRAM_TABLE, null, values);
+        db.insert(DT_COUNTRY_PROGRAM_TABLE, null, values);
         db.close();
     }
 
@@ -12104,7 +12091,21 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_BY, entryBy);
         values.put(ENTRY_DATE, entryDate);
 
-        long id = db.insert(DTGEO_LIST_LEVEL_TABLE, null, values);
+        db.insert(DTGEO_LIST_LEVEL_TABLE, null, values);
+        db.close();
+    }
+
+    public void addIntoDTLUP(String cCode, String tableName, String listCode, String listName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COUNTRY_CODE_COL, cCode);
+        values.put(TABLE_NAME_COL, tableName);
+        values.put(LIST_CODE_COL, listCode);
+        values.put(LIST_NAME_COL, listName);
+
+
+        db.insert(DT_LUP_TABLE, null, values);
         db.close();
     }
 
@@ -12152,7 +12153,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(DT_ENU_ID_COL, dtEnuId);
         values.put(DTQ_CODE_COL, dtqCode);
         values.put(DTA_CODE_COL, dtaCode);
-        values.put(DT_RSEQ_COL, dtrSeq);
+        values.put(DT_R_SEQ_COL, dtrSeq);
         values.put(DTA_VALUE_COL, dtaValue);
         values.put(PROG_ACTIVITY_CODE_COL, progActivityCode);
         values.put(DTTIME_STRING_COL, dttTimeString);
@@ -12160,17 +12161,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(OP_MONTH_CODE_COL, opMonthCode);
         values.put(DATA_TYPE_COL, dataType);
 
-        long id = db.insert(DT_RESPONSE_TABLE_COL, null, values);
+        long id = db.insert(DT_RESPONSE_TABLE, null, values);
         db.close();
     }
 
     public void updateIntoDTResponseTable(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,
                                           String dtEnuId, String dtqCode, String dtaCode, String dtrSeq, String dtaValue,
-                                          String progActivityCode, String dttTimeString, String opMode, String opMonthCode, String dataType){
+                                          String progActivityCode, String dttTimeString, String opMode, String opMonthCode, String dataType) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String where =  DT_BASIC_COL + " = '" + dtBasic + "' " +
+        String where = DT_BASIC_COL + " = '" + dtBasic + "' " +
                 " AND " + COUNTRY_CODE_COL + " = '" + countryCode + "' " +
                 " AND " + DONOR_CODE_COL + " = '" + donorCode + "' " +
                 " AND " + AWARD_CODE_COL + " = '" + awardCode + "' " +
@@ -12178,7 +12179,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 " AND " + DT_ENU_ID_COL + " = '" + dtEnuId + "' " +
                 " AND " + DTQ_CODE_COL + " = '" + dtqCode + "' " +
                 " AND " + DTA_CODE_COL + " = '" + dtaCode + "' " +
-                " AND " + DT_RSEQ_COL + " = " + dtrSeq;
+                " AND " + DT_R_SEQ_COL + " = " + dtrSeq;
 
         ContentValues values = new ContentValues();
 
@@ -12190,15 +12191,16 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(DATA_TYPE_COL, dataType);
 
 
-        int id=db.update(DT_RESPONSE_TABLE_COL,values,where,null);
+        int id = db.update(DT_RESPONSE_TABLE, values, where, null);
 
-        Log.d("DT_UP"," no of row :"+id);
+        Log.d("DT_UP", " no of row :" + id);
 
     }
 
 
     /**
      * this method check either data exits or not
+     *
      * @param dtBasic     - dynamic table  basic code
      * @param countryCode - country code
      * @param donorCode   - donor Code
@@ -12207,13 +12209,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * @param dtEnuId     - staff id or entry by code
      * @param dtqCode     - dynamic table question
      * @param dtaCode     - dynamic table
-     * @param dtrSeq      - dynamic Response Sequence
+
      * @return either data exist or not
      */
     public boolean isDataExitsInDTAResponse_Table(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,
-                                                  String dtEnuId, String dtqCode, String dtaCode) {
+                                                  String dtEnuId, String dtqCode, String dtaCode,int dtRSeq) {
 
-        DTResponseTableDataModel mDta = getDTResponseTableData(dtBasic, countryCode, donorCode, awardCode, programCode, dtEnuId, dtqCode, dtaCode);
+        DTResponseTableDataModel mDta = getDTResponseTableData(dtBasic, countryCode, donorCode, awardCode, programCode, dtEnuId, dtqCode, dtaCode,dtRSeq);
         if (mDta != null)
             return true;
         else
@@ -12239,7 +12241,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                                                            String dtEnuId, String dtqCode, String dtaCode, int dtrSeq) {
         SQLiteDatabase db = this.getReadableDatabase();
         DTResponseTableDataModel dtResponse = null;
-        String sql = "SELECT * FROM " + DT_RESPONSE_TABLE_COL + "" +
+        String sql = "SELECT * FROM " + DT_RESPONSE_TABLE + "" +
 
                 " WHERE " + DT_BASIC_COL + " = '" + dtBasic + "' " +
                 " AND " + COUNTRY_CODE_COL + " = '" + countryCode + "' " +
@@ -12249,7 +12251,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 " AND " + DT_ENU_ID_COL + " = '" + dtEnuId + "' " +
                 " AND " + DTQ_CODE_COL + " = '" + dtqCode + "' " +
                 " AND " + DTA_CODE_COL + " = '" + dtaCode + "' " +
-                " AND " + DT_RSEQ_COL + " = " + dtrSeq;
+                " AND " + DT_R_SEQ_COL + " = " + dtrSeq;
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
             if (cursor.moveToFirst()) {
@@ -12275,13 +12277,24 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return dtResponse;
     }
 
-
+    /**
+     *  @deprecated
+     * @param dtBasic
+     * @param countryCode
+     * @param donorCode
+     * @param awardCode
+     * @param programCode
+     * @param dtEnuId
+     * @param dtqCode
+     * @param dtaCode
+     * @return
+     */
 
     public DTResponseTableDataModel getDTResponseTableData(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,
                                                            String dtEnuId, String dtqCode, String dtaCode) {
         SQLiteDatabase db = this.getReadableDatabase();
         DTResponseTableDataModel dtResponse = null;
-        String sql = "SELECT * FROM " + DT_RESPONSE_TABLE_COL + "" +
+        String sql = "SELECT * FROM " + DT_RESPONSE_TABLE + "" +
 
                 " WHERE " + DT_BASIC_COL + " = '" + dtBasic + "' " +
                 " AND " + COUNTRY_CODE_COL + " = '" + countryCode + "' " +
@@ -12290,7 +12303,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 " AND " + PROGRAM_CODE_COL + " = '" + programCode + "' " +
                 " AND " + DT_ENU_ID_COL + " = '" + dtEnuId + "' " +
                 " AND " + DTQ_CODE_COL + " = '" + dtqCode + "' " +
-                " AND " + DTA_CODE_COL + " = '" + dtaCode + "' " ;
+                " AND " + DTA_CODE_COL + " = '" + dtaCode + "' ";
 
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
@@ -12302,7 +12315,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 dtResponse.setDtBasic(cursor.getString(cursor.getColumnIndex(DT_BASIC_COL)));
                 dtResponse.setDtqCode(cursor.getString(cursor.getColumnIndex(DTQ_CODE_COL)));
                 dtResponse.setDtaCode(cursor.getString(cursor.getColumnIndex(DTA_CODE_COL)));
-
 
 
             }

@@ -1188,8 +1188,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
                 if (!jObj.isNull("D_T_answer")) {
+                    Log.d("NIR","in DTA");
 
-                    JsonDeserialization.DTAnswerParser(jObj.getJSONArray("D_T_answer"), db);
+                    JsonDeserialization.DTA_Parser(jObj.getJSONArray("D_T_answer"), db);
                 }
 
                 if (!jObj.isNull("D_T_basic")) {
@@ -1238,6 +1239,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                     JsonDeserialization.DTTableListCategoryParser(jObj.getJSONArray("D_T_TableListCategory"), db);
                 }
+
+                if (!jObj.isNull("D_T_LUP")) {
+
+                    JsonDeserialization.DTLUPParser(jObj.getJSONArray("D_T_LUP"), db);
+                }
+
+
+
 
 
             } catch (Exception e) {

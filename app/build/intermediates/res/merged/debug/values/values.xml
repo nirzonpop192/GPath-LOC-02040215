@@ -256,6 +256,8 @@
     <color name="bg_register">#2e3237</color>
     <color name="black">#3b4148</color>
     <color name="blue">#FF007DAE</color>
+    <color name="blue_dark">#627C9F</color>
+    <color name="blue_dark_native">#000550</color>
     <color name="blue_light">#4c00b6ff</color>
     <color name="blue_text">#e8222cd7</color>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>

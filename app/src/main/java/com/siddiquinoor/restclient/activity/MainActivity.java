@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.activity.sub_activity.gps_sub.SearchLocation;
@@ -44,6 +46,10 @@ import com.siddiquinoor.restclient.views.notifications.AlertDialogManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -469,8 +475,46 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         viewAccessController(settings);
         //operationMode(settings);
 
-
+Button restorDb= (Button) findViewById(R.id.btnRestoreDB);
+        restorDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newbackupMethdo();
+            }
+        });
     }
+
+
+
+
+    public void newbackupMethdo() {
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+            File data = Environment.getDataDirectory();
+
+            if (sd.canWrite()) {
+                String currentDBPath = "/data/data/" +getPackageName() + "/databases/pci";
+                String backupDBPath = "pci1";
+                File currentDB = new File(currentDBPath);
+                File backupDB = new File(sd, backupDBPath);
+
+                if (currentDB.exists()) {
+                    FileChannel src = new FileInputStream(currentDB).getChannel();
+                    FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                    dst.transferFrom(src, 0, src.size());
+                    src.close();
+                    dst.close();
+                    Toast.makeText(getApplicationContext(), "Import Successful! "+ backupDB.getAbsolutePath(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Backup Failed!", Toast.LENGTH_SHORT)
+                    .show();
+
+        }
+    }
+
 
     /**
      * <p>

@@ -8724,7 +8724,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return padded_id;
     }
 
-    // tod Error in the db
+    // todo Error in the db
     public String getNextGroupId(String cCode, String donorCode, String awardCode, String progCode) {
         String grpCode = "";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -8732,7 +8732,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + " WHERE " + COUNTRY_CODE_COL + " = '" + cCode + "'"
                 + " AND " + DONOR_CODE_COL + " = '" + donorCode + "'"
                 + " AND " + AWARD_CODE_COL + " = '" + awardCode + "'"
-                + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "'";
+                + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "'" +
+                " order by "+GROUP_CODE_COL+" DESC limit 1  ";
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
             if (cursor.moveToFirst()) {

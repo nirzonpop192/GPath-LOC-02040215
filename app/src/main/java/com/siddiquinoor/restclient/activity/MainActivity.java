@@ -474,8 +474,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setAllButtonDisabled();
         viewAccessController(settings);
         //operationMode(settings);
-
-Button restorDb= (Button) findViewById(R.id.btnRestoreDB);
+/**
+ * Restore db
+ */
+        Button restorDb = (Button) findViewById(R.id.btnRestoreDB);
         restorDb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -485,16 +487,18 @@ Button restorDb= (Button) findViewById(R.id.btnRestoreDB);
     }
 
 
-
-
     public void newbackupMethdo() {
         try {
             File sd = Environment.getExternalStorageDirectory();
             File data = Environment.getDataDirectory();
 
+            String dbBy= getStaffID();
+            String backupDate=getDateTime();
+            String backupdbName="G_path_"+dbBy+"_"+backupDate+".db";
+
             if (sd.canWrite()) {
-                String currentDBPath = "/data/data/" +getPackageName() + "/databases/pci";
-                String backupDBPath = "pci1";
+                String currentDBPath = "/data/data/" + getPackageName() + "/databases/pci";
+                String backupDBPath = backupdbName;
                 File currentDB = new File(currentDBPath);
                 File backupDB = new File(sd, backupDBPath);
 
@@ -504,7 +508,7 @@ Button restorDb= (Button) findViewById(R.id.btnRestoreDB);
                     dst.transferFrom(src, 0, src.size());
                     src.close();
                     dst.close();
-                    Toast.makeText(getApplicationContext(), "Import Successful! "+ backupDB.getAbsolutePath(),
+                    Toast.makeText(getApplicationContext(), "Import Successful! " + backupDB.getAbsolutePath(),
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -526,7 +530,7 @@ Button restorDb= (Button) findViewById(R.id.btnRestoreDB);
 
     private void viewAccessController(SharedPreferences settings) {
         int operationMode = settings.getInt(UtilClass.OPERATION_MODE, 0);
-        Log.d("NIR1", "operation mode : " + operationMode);
+
         switch (operationMode) {
             case UtilClass.REGISTRATION_OPERATION_MODE:
                 btnNewReg.setEnabled(true);
@@ -535,7 +539,10 @@ Button restorDb= (Button) findViewById(R.id.btnRestoreDB);
 //                btnCardRequest.setEnabled(true);
                 btnGraduation.setEnabled(true);
                 btnGroup.setEnabled(true);
-                btnDynamicData.setEnabled(true);
+                /**
+                 * only for the new version  dynamic model is disable
+                 */
+              //  btnDynamicData.setEnabled(true);
 
 
                 break;
@@ -1232,7 +1239,7 @@ Button restorDb= (Button) findViewById(R.id.btnRestoreDB);
                 publishProgress(++progressIncremental);
 
                 if (!jObj.isNull("D_T_answer")) {
-                    Log.d("NIR","in DTA");
+                    Log.d("NIR", "in DTA");
 
                     JsonDeserialization.DTA_Parser(jObj.getJSONArray("D_T_answer"), db);
                 }
@@ -1288,9 +1295,6 @@ Button restorDb= (Button) findViewById(R.id.btnRestoreDB);
 
                     JsonDeserialization.DTLUPParser(jObj.getJSONArray("D_T_LUP"), db);
                 }
-
-
-
 
 
             } catch (Exception e) {

@@ -123,17 +123,6 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/btnRestoreDB"
-                        style="@style/btn_main_page"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_weight="0.125"
-                        android:drawableLeft="@drawable/group_unite"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="15dp"
-                        android:text="  Restore DB" />
 
                     <Button
                         android:id="@+id/btnGroup"
@@ -432,6 +421,19 @@
 
                     android:textSize="15sp" />
             </LinearLayout>
+
+            <Button
+                android:layout_width="310dp"
+                android:id="@+id/btnRestoreDB"
+                style="@style/btn_main_page"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+
+                android:drawableLeft="@drawable/database_import_32"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:text="  Restore DB" />
         </LinearLayout>
 
     </ScrollView>

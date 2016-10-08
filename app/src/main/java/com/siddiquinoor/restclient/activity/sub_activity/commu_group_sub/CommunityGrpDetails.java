@@ -863,6 +863,7 @@ public class CommunityGrpDetails extends BaseActivity {
                     sqlH.updateIntoGroupDetails(idCountry, idDonor, idAward, idProgram, idGroup, idOrg, idStaff, null, null, null, idActive, strRepresentative, strContactNo, strFormationDate, null, idStatus, entryBy, entryDate, null, null);
                     sqlH.insertIntoUploadTable(syntax.updateIntoCommunityGrpDetail());
                 } else {
+                    // todo here is the error
                     idGroup = sqlH.getNextGroupId(idCountry, idDonor, idAward, idProgram);
                     Log.d("CHUP","idGroup:"+idGroup);
                     syntax.setGrpCode(idGroup);

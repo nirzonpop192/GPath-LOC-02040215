@@ -181,8 +181,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         super.onCreate(sIState);
         setContentView(R.layout.activity_dt__qustion);
         inti();
-        DynamicTableQuesDataModel qus = fistQuestion(dyIndex.getDtBasicCode());
-        displayQuestion(qus);
+
 
         setListener();
 
@@ -629,6 +628,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
         } else if (mQusIndex >= totalQuestion) {
             Toast.makeText(mContext, "Saved Successfully", Toast.LENGTH_SHORT).show();
+
+           /* Bellow Code eneed the*/
             Log.d("ICON", "before set icon  ");
             addStopIconButton(btnNextQues);
             mQusIndex = totalQuestion - 1;
@@ -699,13 +700,20 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         Intent intent = getIntent();
         dyIndex = intent.getParcelableExtra(KEY.DYNAMIC_INDEX_DATA_OBJECT_KEY);
         totalQuestion = intent.getIntExtra(KEY.DYNAMIC_T_QUES_SIZE, 0);
+
+        initialWithFirstQues();
+
+
+    }
+
+    private void initialWithFirstQues() {
         mQusIndex = 0;
-
-
         mDTRSeq = sqlH.getNextDTResponseSequence(dyIndex.getDtBasicCode(), dyIndex.getcCode(), dyIndex.getDonorCode(), dyIndex.getAwardCode(), dyIndex.getProgramCode(), getStaffID());
         Log.d("RES", "DTRSec for next mDTRSeq: " + mDTRSeq);
         hideViews();
 
+        DynamicTableQuesDataModel qus = fistQuestion(dyIndex.getDtBasicCode());
+        displayQuestion(qus);
     }
 
     /**

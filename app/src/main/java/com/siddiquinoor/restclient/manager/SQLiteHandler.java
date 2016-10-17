@@ -3732,7 +3732,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * Used in Synchronize data in MainActivity
-     * <p/>
+     * <p>
      * for sql Query data
      */
     public ArrayList<dataUploadDB> getUploadSyntaxData() {
@@ -3764,11 +3764,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * date : 2015-10-17
-     * <p/>
+     * <p>
      * Faisal Mohammad
-     * <p/>
+     * <p>
      * SummaryAssignBaseCriteria.class
-     * <p/>
+     * <p>
      * description : base on the criteria this method will list of member which are assigned in particular Criteria or Service
      */
 
@@ -3817,7 +3817,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * :
      * 2015-11-07
-     * <p/>
+     * <p>
      * :
      */
     public String getMemberName(String cCode, String disCode,
@@ -4347,9 +4347,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * @since :2015-11-09
-     * <p/>
-     * <p/>
-     * <p/>
+     * <p>
+     * <p>
+     * <p>
      * get DalivaryStatus no from MemberCardRequestTable
      */
     public String getCardDeliveryStatus(String cCode, String donorCode, String awardCode, String disCode, String upCode, String unCode, String vCode, String hhID, String memID, String rptGroup, String reportCode, String requestSl) {
@@ -4835,8 +4835,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * @since : 2015-10-15 m:2015-10-19
-     * <p/>
-     * <p/>
+     * <p>
+     * <p>
      * this method load Assign  Criteria for Assigne Summary Criteria
      */
 
@@ -5099,7 +5099,33 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
+    // todo : check the it frist
 
+    /*public void isDataExitInCommunityGroup(String cCode, String donorCode, String awardCode, String progCode, String groupCode) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql= "SELECT * FROM "+COMMUNITY_GROUP_TABLE+
+                +" WHERE "+
+
+        COUNTRY_CODE_COL    , cCode
+        DONOR_CODE_COL      , donorCode
+        AWARD_CODE_COL      , awardCode
+        PROGRAM_CODE_COL     , progCode
+        GROUP_CODE_COL, groupCode
+    }*/
+
+
+    /**
+     * @para%m cCode
+     * @param donorCode
+     * @param awardCode
+     * @param progCode
+     * @param groupCode
+     * @param groupName
+     * @param groupCatCode
+     * @param distCode
+     * @param upCode
+     * @param srvCenterCode
+     */
     public void addCommunityGroup(String cCode, String donorCode, String awardCode, String progCode, String groupCode,
                                   String groupName, String groupCatCode, String distCode, String upCode, String srvCenterCode) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -5511,35 +5537,35 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
-    public int getNextDTResponseSequence(String dtBasic,String cCode,String  donorCode,String awardCode, String prgCode, String entryBy){
+    public int getNextDTResponseSequence(String dtBasic, String cCode, String donorCode, String awardCode, String prgCode, String entryBy) {
         int nextDTRSeq;
         SQLiteDatabase db = this.getReadableDatabase();
-        int tem=-1;
-        String sql=" Select "+ DT_R_SEQ_COL +" from "+ DT_RESPONSE_TABLE +" " +
+        int tem = -1;
+        String sql = " Select " + DT_R_SEQ_COL + " from " + DT_RESPONSE_TABLE + " " +
                 " WHERE " +
-                " "+DT_BASIC_COL+" = '"+dtBasic+"' " +
-                " AND "+COUNTRY_CODE_COL+" = '"+cCode+"' " +
-                " AND "+DONOR_CODE_COL+" = '"+donorCode+"' " +
-                " AND "+AWARD_CODE_COL+" = '"+awardCode+"' " +
-                " AND "+PROGRAM_CODE_COL+" = '"+prgCode+"' " +
-                " AND "+DT_ENU_ID_COL+" = '"+entryBy+"' " +
-                " GROUP By "+DT_R_SEQ_COL+" " +
-                " order by "+DT_R_SEQ_COL+" DESC " +
+                " " + DT_BASIC_COL + " = '" + dtBasic + "' " +
+                " AND " + COUNTRY_CODE_COL + " = '" + cCode + "' " +
+                " AND " + DONOR_CODE_COL + " = '" + donorCode + "' " +
+                " AND " + AWARD_CODE_COL + " = '" + awardCode + "' " +
+                " AND " + PROGRAM_CODE_COL + " = '" + prgCode + "' " +
+                " AND " + DT_ENU_ID_COL + " = '" + entryBy + "' " +
+                " GROUP By " + DT_R_SEQ_COL + " " +
+                " order by " + DT_R_SEQ_COL + " DESC " +
                 " limit 1";
-        Cursor cursor= db.rawQuery(sql,null);
-        if (cursor!=null){
-            if(cursor.moveToFirst()){
-                tem=cursor.getInt(cursor.getColumnIndex(DT_R_SEQ_COL));
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                tem = cursor.getInt(cursor.getColumnIndex(DT_R_SEQ_COL));
             }
             cursor.close();
             db.close();
 
         }
 
-        if (tem>0){
-            nextDTRSeq=tem+1;
-        }else
-            nextDTRSeq=1;
+        if (tem > 0) {
+            nextDTRSeq = tem + 1;
+        } else
+            nextDTRSeq = 1;
         return nextDTRSeq;
 
     }
@@ -6500,7 +6526,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * 2015-11-23
      * Faisal Mohammad
-     * <p/>
+     * <p>
      * get default Exit Reason for Graduation
      */
     public String getGRDDefaultActiveReason(String progCode, String srvCode) {
@@ -8728,12 +8754,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public String getNextGroupId(String cCode, String donorCode, String awardCode, String progCode) {
         String grpCode = "";
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "SELECT " + GROUP_CODE_COL + " FROM " + COMMUNITY_GROUP_TABLE
+        String sql = "SELECT max(" + GROUP_CODE_COL + ") FROM " + COMMUNITY_GROUP_TABLE
                 + " WHERE " + COUNTRY_CODE_COL + " = '" + cCode + "'"
                 + " AND " + DONOR_CODE_COL + " = '" + donorCode + "'"
                 + " AND " + AWARD_CODE_COL + " = '" + awardCode + "'"
-                + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "'" +
-                " order by "+GROUP_CODE_COL+" DESC limit 1  ";
+                + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "'";
+
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
             if (cursor.moveToFirst()) {
@@ -10171,7 +10197,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * added by Faisal Mohammad
-     * <p/>
+     * <p>
      * update the regestration value  RegN assign Program Service  into database
      *
      * @modify: 2015-11-25
@@ -12211,13 +12237,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * @param dtEnuId     - staff id or entry by code
      * @param dtqCode     - dynamic table question
      * @param dtaCode     - dynamic table
-
      * @return either data exist or not
      */
     public boolean isDataExitsInDTAResponse_Table(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,
-                                                  String dtEnuId, String dtqCode, String dtaCode,int dtRSeq) {
+                                                  String dtEnuId, String dtqCode, String dtaCode, int dtRSeq) {
 
-        DTResponseTableDataModel mDta = getDTResponseTableData(dtBasic, countryCode, donorCode, awardCode, programCode, dtEnuId, dtqCode, dtaCode,dtRSeq);
+        DTResponseTableDataModel mDta = getDTResponseTableData(dtBasic, countryCode, donorCode, awardCode, programCode, dtEnuId, dtqCode, dtaCode, dtRSeq);
         if (mDta != null)
             return true;
         else
@@ -12280,7 +12305,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
-     *  @deprecated
      * @param dtBasic
      * @param countryCode
      * @param donorCode
@@ -12290,6 +12314,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * @param dtqCode
      * @param dtaCode
      * @return
+     * @deprecated
      */
 
     public DTResponseTableDataModel getDTResponseTableData(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,

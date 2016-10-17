@@ -864,8 +864,9 @@ public class CommunityGrpDetails extends BaseActivity {
                     sqlH.insertIntoUploadTable(syntax.updateIntoCommunityGrpDetail());
                 } else {
                     // todo here is the error
+                    // todo set validation to prevent duplicate values
                     idGroup = sqlH.getNextGroupId(idCountry, idDonor, idAward, idProgram);
-                    Log.d("CHUP","idGroup:"+idGroup);
+
                     syntax.setGrpCode(idGroup);
 
 

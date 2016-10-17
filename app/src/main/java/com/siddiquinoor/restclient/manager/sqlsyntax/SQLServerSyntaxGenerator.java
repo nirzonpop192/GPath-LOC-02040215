@@ -2115,9 +2115,9 @@ public class SQLServerSyntaxGenerator {
     }*/
 
     public String updateRegNHHtableForMalawi() {
-        return "DELETE FROM [GPath_Android_Test].[dbo].[RegNHHTable]" +
+        return "DELETE FROM [dbo].[RegNHHTable]" +
                 " WHERE " +
-                "[AdmCountryCode] " +
+                "[AdmCountryCode]     =" +getAdmCountryCode()+
                 " AND [LayR1ListCode] =" + getLayR1ListCode() +
                 " AND [LayR2ListCode] =" + getLayR2ListCode() +
                 " AND [LayR3ListCode] =" + getLayR3ListCode() +

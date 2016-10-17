@@ -1138,6 +1138,8 @@ public class Schema {
                 + " , " + SQLiteHandler.DISTRICT_CODE_COL + " VARCHAR(4) "
                 + " , " + SQLiteHandler.UPCODE_COL + " VARCHAR(4) "
                 + " , " + SQLiteHandler.SERVICE_CENTER_CODE_COL + " VARCHAR(4) "
+
+        +" ,  PRIMARY KEY(" + SQLiteHandler.COUNTRY_CODE_COL + "," + SQLiteHandler.DONOR_CODE_COL + "," + SQLiteHandler.AWARD_CODE_COL + "," + SQLiteHandler.PROGRAM_CODE_COL + "," + SQLiteHandler.GROUP_CODE_COL  + ")   "
                 + " )";
 
 

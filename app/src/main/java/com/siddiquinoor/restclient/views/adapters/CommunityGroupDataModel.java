@@ -20,8 +20,10 @@ public class CommunityGroupDataModel implements Parcelable {
     private String orgonizationName;
     private String awardCode;
     private String awardName;
+    private String layr1Code;
     private String layr2Code;
-    private String layr2Name;
+    private String layr3Code;
+    private String layr3Name;
     private String staffCode;
     private String staffName;
 
@@ -38,9 +40,23 @@ public class CommunityGroupDataModel implements Parcelable {
     private String projectTitle;
 
 
+    public String getLayr1Code() {
+        return layr1Code;
+    }
 
+    public void setLayr1Code(String layr1Code) {
+        this.layr1Code = layr1Code;
+    }
 
-   public CommunityGroupDataModel() {
+    public String getLayr2Code() {
+        return layr2Code;
+    }
+
+    public void setLayr2Code(String layr2Code) {
+        this.layr2Code = layr2Code;
+    }
+
+    public CommunityGroupDataModel() {
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
@@ -74,8 +90,12 @@ public class CommunityGroupDataModel implements Parcelable {
         orgonizationName = in.readString();
         awardCode = in.readString();
         awardName = in.readString();
+
+
+        layr1Code = in.readString();
         layr2Code = in.readString();
-        layr2Name = in.readString();
+        layr3Code = in.readString();
+        layr3Name = in.readString();
         staffCode = in.readString();
         staffName = in.readString();
 
@@ -116,8 +136,10 @@ public class CommunityGroupDataModel implements Parcelable {
         dest.writeString(orgonizationName);
         dest.writeString(awardCode);
         dest.writeString(awardName);
+        dest.writeString(layr1Code);
         dest.writeString(layr2Code);
-        dest.writeString(layr2Name);
+        dest.writeString(layr3Code);
+        dest.writeString(layr3Name);
         dest.writeString(staffCode);
         dest.writeString(staffName);
 
@@ -240,20 +262,20 @@ public class CommunityGroupDataModel implements Parcelable {
         this.staffName = staffName;
     }
 
-    public String getLayr2Code() {
-        return layr2Code;
+    public String getLayr3Code() {
+        return layr3Code;
     }
 
-    public void setLayr2Code(String layr2Code) {
-        this.layr2Code = layr2Code;
+    public void setLayr3Code(String layr3Code) {
+        this.layr3Code = layr3Code;
     }
 
-    public String getLayr2Name() {
-        return layr2Name;
+    public String getLayr3Name() {
+        return layr3Name;
     }
 
-    public void setLayr2Name(String layr2Name) {
-        this.layr2Name = layr2Name;
+    public void setLayr3Name(String layr3Name) {
+        this.layr3Name = layr3Name;
     }
 
     public String getAwardCode() {

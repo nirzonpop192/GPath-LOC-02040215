@@ -246,7 +246,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         idWRank = intnt.getStringExtra(KEY.WALTH_RANK);
 
         criteria = "";
-        //  loadCountry();
+
 
         if (is_edit) {
             pID = intnt.getIntExtra("pID", -1);
@@ -254,7 +254,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             loadLayR2List(idCountry);
             loadLayR3List(idCountry);
             loadLayR4List(idCountry);
-            /// todo: checke Check Box
+
 
             chkBxHhCat1.setChecked(sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.LTP_2_HECTRES_COL, idCountry, idDist, idUP, idUnion, idVill, intnt.getStringExtra(KEY.REG_ID)));
             chkBxHhCat2.setChecked(sqlH.getHouseHoldRegistrationIsChecked(SQLiteHandler.LT_3_FOOD_STOCK_COL, idCountry, idDist, idUP, idUnion, idVill, intnt.getStringExtra(KEY.REG_ID)));
@@ -367,7 +367,18 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
             case R.id.btnSaveData:
 
-                saveData();
+
+                if (idDist.equals("00"))
+                    dialog.showErrorDialog(mContext, "Select " + tv_LayR1Label.getText());
+                else if (idUP.equals("00"))
+                    dialog.showErrorDialog(mContext, "Select " + tv_LayR2Label.getText());
+                else if (idUnion.equals("00"))
+                    dialog.showErrorDialog(mContext, "Select " + tv_LayR3Label.getText());
+                else if (idVill.equals("00"))
+                    dialog.showErrorDialog(mContext, "Select " + tv_LayR4Label.getText());
+                else {
+                    saveData();
+                }
 
 
                 break;

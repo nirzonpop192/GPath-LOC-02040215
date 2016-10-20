@@ -1493,14 +1493,14 @@ public class SQLiteQuery {
                 + SQLiteHandler.REG_N_DAT_COL + " , "
                 + SQLiteHandler.LUP_SRV_OPTION_LIST_TABLE + "." + SQLiteHandler.LUP_OPTION_NAME_COL + " AS vcCropStr ,"
 
-                + SQLiteHandler.AG_INVC + " , "
-                + SQLiteHandler.AG_NASFAM + " , "
-                + SQLiteHandler.AG_CU + ", "
-                + SQLiteHandler.AG_OTHER + " , "
-                + SQLiteHandler.AG_L_S_GOAT + " , "
-                + SQLiteHandler.AG_L_S_CHICKEN + " , "
-                + SQLiteHandler.AG_L_S_PIGION + " , "
-                + SQLiteHandler.AG_L_S_OTHER + "  "
+                + SQLiteHandler.AG_INVC_COL + " , "
+                + SQLiteHandler.AG_NASFAM_COL + " , "
+                + SQLiteHandler.AG_CU_COL + ", "
+                + SQLiteHandler.AG_OTHER_COL + " , "
+                + SQLiteHandler.AG_L_S_GOAT_COL + " , "
+                + SQLiteHandler.AG_L_S_CHICKEN_COL + " , "
+                + SQLiteHandler.AG_L_S_PIGION_COL + " , "
+                + SQLiteHandler.AG_L_S_OTHER_COL + "  "
 
                 + " FROM " + SQLiteHandler.REG_N_AGR_TABLE
                 + " LEFT JOIN " + SQLiteHandler.LUP_SRV_OPTION_LIST_TABLE
@@ -2605,6 +2605,21 @@ public class SQLiteQuery {
                 + " || '' || regAss." + SQLiteHandler.VCODE_COL
                 + " || '' || regAss." + SQLiteHandler.HHID_COL
                 + " || '' || regAss." + SQLiteHandler.HH_MEM_ID + " = '" + memId + "'";
+
+    }
+
+    public static String loadOrganization_sql(final String cCode, final String donorCode, final String awardCode){
+        return "SELECT progOR." + SQLiteHandler.ORG_CODE_COL +
+                " ,  pOrg." + SQLiteHandler.ORGANIZATION_NAME + " " +
+                "                                FROM " + SQLiteHandler.PROGRAM_ORGANIZATION_ROLE_TABLE + " AS progOR "
+                + "                               INNER JOIN " +
+                "                                " + SQLiteHandler.PROGRAM_ORGANIZATION_NAME_TABLE + " AS pOrg " +
+                "                               ON progOR." + SQLiteHandler.ORG_CODE_COL + " = pOrg." + SQLiteHandler.ORG_CODE_COL + "  " +
+                "                                WHERE (progOR." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "')" +
+                "                                AND (progOR." + SQLiteHandler.DONOR_CODE_COL + " = '" + donorCode + "') " +
+                "                                AND (progOR." + SQLiteHandler.AWARD_CODE_COL + " = '" + awardCode + "') " +
+                "                                AND (progOR." + SQLiteHandler.IMP_Y_N_COL + " = 'Y')" +
+                "                                ORDER BY pOrg." + SQLiteHandler.ORGANIZATION_NAME;
 
     }
 }//end of class

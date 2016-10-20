@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.siddiquinoor.restclient.R;
-import com.siddiquinoor.restclient.activity.sub_activity.commu_group_sub.CommunityGrpDetails;
+import com.siddiquinoor.restclient.activity.sub_activity.commu_group_sub.GroupDetails;
 import com.siddiquinoor.restclient.utils.KEY;
 
 
@@ -51,10 +52,11 @@ public class CommunityGroupAdapter extends BaseAdapter {
         return position;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
-         final CommunityGroupDataModel data = grpData.get(position);
+        final CommunityGroupDataModel data = grpData.get(position);
 
         if (inflater == null)
             inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -89,13 +91,13 @@ public class CommunityGroupAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-                activity.finish();
 
-                Intent intent = new Intent(activity, CommunityGrpDetails.class);
+
+                Intent intent = new Intent(activity, GroupDetails.class);
 
 
                 intent.putExtra(KEY.COMMUNITY_GRP_DATA_OBJECT_KEY, data);
-
+                activity.finish();
 
                 activity.startActivity(intent);
 

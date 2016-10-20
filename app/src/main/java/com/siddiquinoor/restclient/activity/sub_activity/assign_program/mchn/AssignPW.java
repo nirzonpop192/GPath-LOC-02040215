@@ -563,7 +563,7 @@ public class AssignPW extends BaseActivity {
                     } else {
                         sqlH.insertIntoUploadTable(assign_pw.insertInToRegNMemProgGrp());
 
-                        sqlH.addRegNmemProgGroup(assignMem.getCountryCode(), assignMem.getDonor_code(), assignMem.getAward_code(), assignMem.getDistrictCode(), assignMem.getUpazillaCode(), assignMem.getUnitCode(), assignMem.getVillageCode(), assignMem.getHh_id(), assignMem.getMemId(), assignMem.getProgram_code(), assignMem.getService_code(), idGroup, idActive, entryBy, entryDate);
+                        sqlH.addRegNmemProgGroup(assignMem.getCountryCode(), assignMem.getDonor_code(), assignMem.getAward_code(), assignMem.getDistrictCode(), assignMem.getUpazillaCode(), assignMem.getUnitCode(), assignMem.getVillageCode(), assignMem.getHh_id(), assignMem.getMemId(), assignMem.getProgram_code(), assignMem.getService_code(), idGroup,strGroup, idActive, entryBy, entryDate);
                     }
                     sqlH.insertIntoUploadTable(assign_pw.sqlSpRegNMemAwardProgCombN_Save());
                     Toast.makeText(mContext, "Saved Successfully", Toast.LENGTH_SHORT).show();

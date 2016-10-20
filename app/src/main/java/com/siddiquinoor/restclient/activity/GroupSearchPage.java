@@ -19,22 +19,19 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.siddiquinoor.restclient.R;
-import com.siddiquinoor.restclient.activity.sub_activity.commu_group_sub.CommunityGrpDetails;
+import com.siddiquinoor.restclient.activity.sub_activity.commu_group_sub.GroupDetails;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 import com.siddiquinoor.restclient.utils.KEY;
-import com.siddiquinoor.restclient.views.adapters.AssignDataModel;
 import com.siddiquinoor.restclient.views.adapters.CommunityGroupAdapter;
 import com.siddiquinoor.restclient.views.adapters.CommunityGroupDataModel;
-import com.siddiquinoor.restclient.views.adapters.MemberSearchAdapter;
 import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class GroupSearchPage extends BaseActivity {
+    // TODO: 10/18/2016  page reloading problem  
     private static final String TAG = "GroupSearchPage";
     private SQLiteHandler sqlH;
     private static ProgressDialog pDialog;
@@ -99,7 +96,7 @@ public class GroupSearchPage extends BaseActivity {
         btnAddGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GroupSearchPage.this, CommunityGrpDetails.class);
+                Intent intent = new Intent(GroupSearchPage.this, GroupDetails.class);
 
                 intent.putExtra(KEY.ADD_FLAG_KEY, true);
                 intent.putExtra(KEY.DONOR_CODE, idDonor);

@@ -61,7 +61,6 @@ public class SyncDatabase {
     private Handler progressBarHandler = new Handler();
 
 
-
     private ArrayList<dataUploadDB> queryData = new ArrayList<dataUploadDB>();
     private ArrayList<dataUploadDB> all_uploadQueryData;
 
@@ -119,7 +118,6 @@ public class SyncDatabase {
                 /** set json array for selected village */
 
 
-
                 pDialogUpload.setMessage("Downloading data ");
 
 
@@ -152,9 +150,6 @@ public class SyncDatabase {
                 }
 
                 checkLoginAndDowenReftData(username, password, array, String.valueOf(operationMode));
-
-
-
 
 
             }
@@ -747,9 +742,9 @@ public class SyncDatabase {
                             }
                         }
 
+// TODO: 10/17/2016  remove the  lay1 ,lay2,lay3 ,lay4  in the Sync process
 
-                        // Adding data into District Table
-                        if (!jObj.isNull(MainActivity.DISTRICT)) {
+                     /*   if (!jObj.isNull(MainActivity.DISTRICT)) {
                             JSONArray district = jObj.getJSONArray(MainActivity.DISTRICT);
                             size = district.length();
                             for (int i = 0; i < size; i++) {
@@ -766,7 +761,7 @@ public class SyncDatabase {
                             }
                         }
 
-                        // Adding data into Upazilla Table
+
                         if (!jObj.isNull(MainActivity.UPAZILLA)) {
 
                             JSONArray upazilla = jObj.getJSONArray(MainActivity.UPAZILLA);
@@ -788,7 +783,6 @@ public class SyncDatabase {
                         }
 
 
-                        // Adding data into Unit Table
                         if (!jObj.isNull(MainActivity.UNIT_JSON_A)) {
 
                             JSONArray unit = jObj.getJSONArray(MainActivity.UNIT_JSON_A);
@@ -809,7 +803,7 @@ public class SyncDatabase {
                             }
                         }
 
-                        // Adding data into Village Table
+
                         if (!jObj.isNull(MainActivity.VILLAGE_JSON_A)) {
 
                             JSONArray village = jObj.getJSONArray(MainActivity.VILLAGE_JSON_A);
@@ -831,7 +825,7 @@ public class SyncDatabase {
 
 
                             }
-                        }
+                        }*/
 
 
                         // Adding data into Relation Table
@@ -932,12 +926,16 @@ public class SyncDatabase {
                                 //        + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode+ " HHID : " + HHID);
                             }
                         }
-                        if (!jObj.isNull(MainActivity.SERVICE_TABLE_JSON_A)) {// this is not servie
+
+                        /**
+                         * SrvTable for Service Data
+                         */
+
+                        if (!jObj.isNull(MainActivity.SERVICE_TABLE_JSON_A)) {
                             JSONArray services_table = jObj.getJSONArray(MainActivity.SERVICE_TABLE_JSON_A);
-                            JsonDeserialization.SrvTableParser(services_table,sqlH);
+                            JsonDeserialization.SrvTableParser(services_table, sqlH);
 
                         }
-
 
 
                         /**
@@ -945,48 +943,9 @@ public class SyncDatabase {
                          * */
 
 
-
-                      /**
-                      * Below Cod eis Ok By For performance issue we use parsing class
-                      *//*
-                      if (!jObj.isNull(MainActivity.SERVICE_TABLE_JSON_A)) {// this is not servie
-                            JSONArray services_table = jObj.getJSONArray(MainActivity.SERVICE_TABLE_JSON_A);
-                            size = services_table.length();
-                            for (int i = 0; i < size; i++) {
-                                JSONObject service = services_table.getJSONObject(i);
-
-                                String AdmCountryCode = service.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String AdmDonorCode = service.getString(MainActivity.ADM_DONOR_CODE);
-                                String AdmAwardCode = service.getString(MainActivity.ADM_AWARD_CODE);
-                                String LayR1ListCode = service.getString(MainActivity.LAY_R_1_LIST_CODE);
-                                String LayR2ListCode = service.getString(MainActivity.LAY_R_2_LIST_CODE);
-                                String LayR3ListCode = service.getString(MainActivity.LAY_R_3_LIST_CODE);
-                                String LayR4ListCode = service.getString(MainActivity.LAY_R_4_LIST_CODE);
-                                String HHID = service.getString(MainActivity.HHID);
-                                String MemID = service.getString(MainActivity.MEM_ID);
-                                String ProgCode = service.getString(MainActivity.PROG_CODE);
-                                String SrvCode = service.getString(MainActivity.SRV_CODE);
-                                String OpCode = service.getString(MainActivity.OP_CODE);
-                                String OpMonthCode = service.getString(MainActivity.OP_MONTH_CODE);
-                                String SrvSL = service.getString(MainActivity.SRV_SL);
-                                String SrvCenterCode = service.getString(MainActivity.SRV_CENTER_CODE);
-                                String SrvDT = service.getString(MainActivity.SRV_DT);
-                                String SrvStatus = service.getString(MainActivity.SRV_STATUS);
-                                String DistStatus = service.getString(MainActivity.DIST_STATUS);
-                                String DistDT = service.getString(MainActivity.DIST_DT);
-                                String fdpCode = service.getString(MainActivity.FDP_CODE);
-                                String GrpCode = service.getString("GrpCode");
-                                String WD = service.getString("WD");
-
-                                sqlH.addServiceFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, HHID, MemID, ProgCode, SrvCode, OpCode, OpMonthCode, SrvSL, SrvCenterCode, SrvDT, SrvStatus, DistStatus, DistDT,fdpCode,WD,GrpCode, "1");
-
-
-                                Log.d(TAG, "In Service Table- AdmCountryCode :" + AdmCountryCode + " AdmDonorCode : " + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode + " HHID : " + HHID + " MemID : " + MemID + " ProgCode : " + ProgCode + " SrvCode : " + SrvCode + " OpCode : " + OpCode + " OpMonthCode : " + OpMonthCode +
-                                        " SrvSL : " + SrvSL + "SrvDT: " + SrvDT + " SrvStatus : " + SrvStatus);
-                            }
-
-                        }
-*/
+                        /**
+                         * Below Cod eis Ok By For performance issue we use parsing class
+                         */
 
                         // publishProgress(++progressIncremental);
 

@@ -1,158 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <include layout="@layout/header" />
+
     <include
-        android:id="@+id/footer" layout="@layout/footer" />
+        android:id="@+id/footer"
+        layout="@layout/footer" />
     <!-- TITLE PAGE   -->
-    <RelativeLayout android:id="@+id/page_title"
-        android:layout_below="@id/header"
+    <RelativeLayout
+        android:id="@+id/page_title"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header">
 
         <TextView
+            style="@style/page_title_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/green"
-            android:text="@string/btn_house_label"
-            android:textSize="@dimen/abc_text_size_large_material"
+            android:gravity="center"
             android:padding="10dp"
-            style="@style/page_title_style"
+            android:text="@string/btn_house_label"
             android:textAlignment="center"
-            android:gravity="center" />
+            android:textColor="@color/green"
+            android:textSize="@dimen/abc_text_size_large_material" />
     </RelativeLayout>
 
 
     <ScrollView
-        android:layout_above="@+id/ll_b"
         android:id="@+id/scrollableContents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_b"
 
-        android:background="@color/gray_light"
-        android:layout_below="@id/page_title" >
+        android:layout_below="@id/page_title"
+        android:background="@color/gray_light">
 
         <!-- Registration Form -->
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="vertical"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/linearLayoutBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-
-            android:paddingTop="10dip"
-
-            android:paddingBottom="20dip">
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="10dip">
 
 
             <!-- District Label layer -->
             <LinearLayout
-                android:weightSum="1"
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
                 <LinearLayout
-                    android:paddingLeft="20dp"
-                    android:layout_weight=".3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_weight=".3"
+                    android:orientation="vertical"
+                    android:paddingLeft="20dp">
+
                     <TextView
                         android:id="@+id/tv_hh_LayR1Label"
-                        android:text="@string/lbl_se_district"
                         style="@style/txt_label"
-                        />
+                        android:text="@string/lbl_se_district" />
                     <!-- Upazilla Label layer -->
                     <TextView
                         android:id="@+id/tv_hh_LayR2Label"
 
-                        android:text="Select Ta"
-                        style="@style/txt_label"/>
+                        style="@style/txt_label"
+                        android:text="Select Ta" />
+
                     <TextView
                         android:id="@+id/tv_hh_LayR3Label"
                         style="@style/txt_label"
-                        android:text="@string/lbl_se_GVH"
-                        />
+                        android:text="@string/lbl_se_GVH" />
 
                     <TextView
                         android:id="@+id/tv_hh_LayR4Label"
 
-                        android:text="@string/lbl_se_village"
-                        style="@style/txt_label"/>
+                        style="@style/txt_label"
+                        android:text="@string/lbl_se_village" />
+
                     <TextView
                         android:id="@+id/tv_hh_address"
 
-                        android:text="@string/lbl_se_address"
-                        style="@style/txt_label"/>
-                    <TextView
-
-                        android:text="Household ID"
-                        style="@style/txt_label" />
-                    <TextView
-
-                        android:text="Reg. Date"
-                        style="@style/txt_label"  />
-                    <TextView
-
-                        android:text="Household"
-                        style="@style/txt_label"/>
-                    <TextView
                         style="@style/txt_label"
-                        android:text="Gender"
-                        />
+                        android:text="@string/lbl_se_address" />
+
                     <TextView
+
                         style="@style/txt_label"
-                        android:text="VSLA Group"
-                        />
+                        android:text="Household ID" />
+
+                    <TextView
+
+                        style="@style/txt_label"
+                        android:text="Reg. Date" />
+
+                    <TextView
+
+                        style="@style/txt_label"
+                        android:text="Household" />
 
                     <TextView
                         style="@style/txt_label"
-                        android:text="HHSize"
-                        />
-                    <TextView
-                        style="@style/txt_label"
-                        android:text="Latitude"
-                        />
-                    <TextView
-                        style="@style/txt_label"
-                        android:text="Longitude"
-                        />
-                    <TextView
-                        style="@style/txt_label"
-                        android:text="V Status"
-                        />
-                    <TextView
-
-                        android:text="Status"
-                        style="@style/txt_label" />
+                        android:text="Gender" />
 
                     <TextView
+                        style="@style/txt_label"
+                        android:text="VSLA Group" />
 
-                        android:text="Wealth Rank"
-                        style="@style/txt_label" />
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="HHSize" />
+
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="Latitude" />
+
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="Longitude" />
+
+                    <TextView
+                        style="@style/txt_label"
+                        android:text="V Status" />
+
+                    <TextView
+
+                        style="@style/txt_label"
+                        android:text="Status" />
+
+                    <TextView
+
+                        style="@style/txt_label"
+                        android:text="Wealth Rank" />
 
                     <TextView
                         style="@style/txt_label"
                         android:text="Hh Type" />
 
 
-
                 </LinearLayout>
+
                 <LinearLayout
-                    android:paddingRight="20dp"
-                    android:layout_weight=".7"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_weight=".7"
+                    android:orientation="vertical"
+                    android:paddingRight="20dp">
                     <!-- District -->
                     <Spinner
                         android:id="@+id/spDistrict"
-                        style="@style/registration_spinner_style"/>
+                        style="@style/registration_spinner_style" />
                     <!-- Upazilla Label layer -->
                     <Spinner
                         android:id="@+id/spUpazilla"
@@ -166,24 +168,24 @@
                         android:id="@+id/spVillage"
 
                         style="@style/registration_spinner_style" />
+
                     <Spinner
                         android:id="@+id/spAddress"
 
                         style="@style/registration_spinner_style" />
 
 
-
                     <EditText
                         android:id="@+id/reg_id"
-                        android:hint="ID [auto generated]"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:padding="10dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@color/white"
+                        android:hint="ID [auto generated]"
+                        android:padding="10dp"
+                        android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
-                        android:layout_marginBottom="5dp"
                         android:textSize="14dp" />
 
                     <!-- Registration Date -->
@@ -195,97 +197,98 @@
                         android:padding="10dp">
 
 
-
                         <TextView
                             android:id="@+id/hh_reg_date"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Date"
-                            android:textSize="14dp"
-                            android:hint="Registration Date"
-                            android:textColor="@color/input_label_hint"
                             android:layout_alignParentTop="true"
-                            android:layout_centerHorizontal="true" />
+                            android:layout_centerHorizontal="true"
+                            android:hint="Registration Date"
+                            android:text="Date"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/input_label_hint"
+                            android:textSize="14dp" />
                     </RelativeLayout>
 
                     <!-- Name -->
-                    <EditText android:id="@+id/reg_name"
+                    <EditText
+                        android:id="@+id/reg_name"
                         android:layout_width="fill_parent"
                         android:layout_height="40dp"
-                        android:hint="Name of the Person"
-                        android:singleLine="true"
+                        android:layout_marginBottom="5dp"
                         android:background="@color/white"
+                        android:hint="Name of the Person"
+                        android:inputType="textPersonName"
                         android:padding="10dp"
+                        android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
-                        android:layout_marginBottom="5dp"
-                        android:textSize="14dp"
-                        android:inputType="textPersonName"
-                        />
+                        android:textSize="14dp" />
                     <!-- Gender Spinner -->
                     <Spinner
                         android:id="@+id/spGender"
                         style="@style/registration_spinner_style" />
+
                     <EditText
                         android:id="@+id/VSLA_group"
-                        android:hint="VSLA Group"
                         android:layout_width="fill_parent"
                         android:layout_height="40dp"
-                        android:singleLine="true"
-                        android:background="@color/white"
-                        android:padding="10dp"
-
-                        android:textSize="14dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/gray"
                         android:layout_marginBottom="5dp"
+                        android:background="@color/white"
+                        android:hint="VSLA Group"
                         android:inputType="text"
 
-                        />
-                    <EditText
-                        android:id="@+id/hh_size"
-                        android:hint="HHSize"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:background="@color/white"
                         android:padding="10dp"
-                        android:maxLength="2"
-                        android:textSize="14dp"
+                        android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
-                        android:layout_marginBottom="5dp"
-                        android:inputType="number"
+                        android:textSize="14dp"
+
                         />
+
+                    <EditText
+                        android:id="@+id/hh_size"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/white"
+                        android:hint="HHSize"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray"
+                        android:textSize="14dp" />
                     <!-- Latitude -->
                     <EditText
                         android:id="@+id/latitude"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
+                        android:layout_marginBottom="5dp"
                         android:background="@color/white"
-                        android:padding="10dp"
                         android:hint="Latitude"
-                        android:textSize="14dp"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:padding="10dp"
+                        android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
-                        android:layout_marginBottom="5dp"
-                        android:inputType="numberDecimal|numberSigned"
-                        />
-                    <EditText android:id="@+id/longitude"
+                        android:textSize="14dp" />
+
+                    <EditText
+                        android:id="@+id/longitude"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
+                        android:layout_marginBottom="5dp"
                         android:background="@color/white"
-                        android:padding="10dp"
                         android:hint="Longitude"
-                        android:textSize="14dp"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:padding="10dp"
+                        android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray"
-                        android:layout_marginBottom="5dp"
-                        android:inputType="numberDecimal|numberSigned"
-                        />
+                        android:textSize="14dp" />
+
                     <Spinner
                         android:id="@+id/spVStatus"
                         style="@style/registration_spinner_style" />
@@ -302,9 +305,9 @@
 
 
                     <LinearLayout
-                        android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
 
                         android:orientation="vertical">
 
@@ -346,13 +349,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
-
-
-
-
-
-
 
 
             <!-- M Status -->
@@ -575,22 +571,24 @@
         </LinearLayout>
         <!-- Registration Form Ends -->
     </ScrollView>
+
     <LinearLayout
 
-android:id="@+id/ll_b"
-        android:layout_above="@+id/footer"
+        android:id="@+id/ll_b"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <Button android:id="@+id/btnSaveData"
+        android:layout_above="@+id/footer"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSaveData"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="@string/btn_label_submit"
-            android:textSize="12dp"
             android:background="@drawable/button_style_inner"
-            android:textColor="@color/green" />
+            android:text="@string/btn_label_submit"
+            android:textColor="@color/green"
+            android:textSize="12dp" />
 
         <Button
 
@@ -598,23 +596,24 @@ android:id="@+id/ll_b"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="@string/btn_label_clear"
-            android:textSize="12dp"
             android:background="@drawable/button_style_inner"
-            android:textColor="@color/green"/>
+            android:text="@string/btn_label_clear"
+            android:textColor="@color/green"
+            android:textSize="12dp" />
 
-        <Button android:id="@+id/btnRegistrationRecode"
+        <Button
+            android:id="@+id/btnRegistrationRecode"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="@string/btn_label_submit"
-            android:textSize="12dp"
             android:background="@drawable/button_style_inner"
-            android:textColor="@color/green" />
+            android:text="@string/btn_label_submit"
+            android:textColor="@color/green"
+            android:textSize="12dp" />
     </LinearLayout>
 
 </RelativeLayout>
-<!--
+    <!--
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"

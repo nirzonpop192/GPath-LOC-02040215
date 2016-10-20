@@ -29,6 +29,7 @@ import com.siddiquinoor.restclient.data_model.FDPItem;
 import com.siddiquinoor.restclient.data_model.GPS_LocationAttributeDataModel;
 import com.siddiquinoor.restclient.data_model.GPS_LocationDataModel;
 import com.siddiquinoor.restclient.data_model.GPS_SubGroupAttributeDataModel;
+import com.siddiquinoor.restclient.data_model.LayRCodes;
 import com.siddiquinoor.restclient.data_model.Lup_gpsListDataModel;
 import com.siddiquinoor.restclient.data_model.RegNAssgProgSrv;
 
@@ -555,12 +556,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String DESCRIPTION_COL = "Description";
 
 
-    public static final String PRIME_Y_N = "PrimeYN";
-    public static final String SUB_Y_N = "SubYN";
-    public static final String TECH_Y_N = "TechYN";
-    public static final String IMP_Y_N = "ImpYN";
-    public static final String LONG_Y_N = "LogYN";
-    public static final String OTH_Y_N = "OthYN";
+    public static final String PRIME_Y_N_COL = "PrimeYN";
+    public static final String SUB_Y_N_COL = "SubYN";
+    public static final String TECH_Y_N_COL = "TechYN";
+    public static final String IMP_Y_N_COL = "ImpYN";
+    public static final String LONG_Y_N_COL = "LogYN";
+    public static final String OTH_Y_N_COL = "OthYN";
     public static final String ORGANIZATION_NAME = "OrgNName";
     public static final String ORGANIZATION_SHORT_NAME = "OrgNShortName";
 
@@ -878,6 +879,16 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String CROP_FAILURE_COL = "CropFailure";
     public static final String FEMALE_HEADED_COL = "FemaleHeaded";
     public static final String CHILDREN_REC_SUPP_FEED_N_COL = "ChildrenRecSuppFeedN";
+
+
+    public static final String AG_INVC_COL = "AGOINVC";
+    public static final String AG_NASFAM_COL = "AGONASFAM";
+    public static final String AG_CU_COL = "AGOCU";
+    public static final String AG_OTHER_COL = "AGOOther";
+    public static final String AG_L_S_GOAT_COL = "LSGoat";
+    public static final String AG_L_S_CHICKEN_COL = "LSChicken";
+    public static final String AG_L_S_PIGION_COL = "LSPigeon";
+    public static final String AG_L_S_OTHER_COL = "LSOther";
 
 
     //public static boolean is_online = false;
@@ -1233,16 +1244,18 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        Log.d(TAG, "Deleting all user data..");
+        /**
+         * @see  {@link #SyncDatabase.checkLoginAndDowenReftData()}
+         */
 
         try {
 
             db.delete(COUNTRY_TABLE, null, null);
             db.delete(VALID_DATE_RANGE, null, null);
-            db.delete(DISTRICT_TABLE, null, null);
+         /*   db.delete(DISTRICT_TABLE, null, null);
             db.delete(UPAZILLA_TABLE, null, null);
             db.delete(UNIT_TABLE, null, null);
-            db.delete(VILLAGE_TABLE, null, null);
+            db.delete(VILLAGE_TABLE, null, null);*/
             db.delete(RELATION_TABLE, null, null);
             /**
              * todo do not delete AWARd Table program table Service Table
@@ -1468,46 +1481,15 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     public static final String TYPE_OF_GROUP = "TypeOfGroup";
 
-    public void addIntoGroupDetails(String AdmCountryCode, String donorCode
-            , String awardCode, String progCode, String grpCode
-            , String ogrCode, String staffCode, String landSizeUnder, String iirigrationSysUsed, String fundSuppot
-            , String active, String reapName, String reapPhone, String formation, String typeOfGrp
-            , String status, String entryBy, String entryDate, String projecftNo, String projectTitle) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COUNTRY_CODE_COL, AdmCountryCode);
-        values.put(DONOR_CODE_COL, donorCode);
-        values.put(AWARD_CODE_COL, awardCode);
-        values.put(PROGRAM_CODE_COL, progCode);
-        values.put(GROUP_CODE_COL, grpCode);
-        values.put(ORG_CODE_COL, ogrCode);
-        values.put(STAFF_CODE_COL, staffCode);
-        values.put(LAND_SIZE_UNDER_IRRIGATION_COL, landSizeUnder);
-        values.put(IRRIGATION_SYSTEM_USED_COL, iirigrationSysUsed);
-        values.put(FUND_SUPPORT_COL, fundSuppot);
-        values.put(ACTIVE_COL, active);
-        values.put(REP_NAME_COL, reapName);
-        values.put(REP_PHONE_NUMBER_COL, reapPhone);
-        values.put(FORMATION_DATE_COL, formation);
-        values.put(TYPE_OF_GROUP, typeOfGrp);
-        values.put(STATUS, status);
-        values.put(ENTRY_BY, entryBy);
-        values.put(ENTRY_DATE, entryDate);
-        values.put(PROJECT_NO_COL, projecftNo);
-        values.put(PROJECT_TITLE, projectTitle);
-        long id = db.insert(COMMUNITY_GRP_DETAIL_TABLE, null, values);
-        db.close();
-
-    }
 
     /**
-     * @param cCode
-     * @param donorCode
-     * @param awardCode
-     * @param progCode
-     * @param groupCatCode
-     * @param groupCatName
-     * @param groupCatShortName
+     * @param cCode             Country Code
+     * @param donorCode         Donor Code
+     * @param awardCode         Award Code
+     * @param progCode          Program Code
+     * @param groupCatCode      group Categories Code
+     * @param groupCatName      group Categories Name
+     * @param groupCatShortName group Categories Short Name
      */
 
     public void addCommunityGroupCategoryFromOnline(String cCode, String donorCode, String awardCode, String progCode, String groupCatCode, String groupCatName
@@ -1531,9 +1513,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * @param cCode
-     * @param donorCode
-     * @param awardCode
+     * @param cCode     Country Code
+     * @param donorCode Donor Code
+     * @param awardCode Award Code
      * @param disttCode
      * @param upCode
      * @param unCode
@@ -1550,7 +1532,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             , String unCode, String vCode, String hhID, String memID
             , String progCode, String srvCode, String grpCode, String active) {
 
-        addRegNmemProgGroup(cCode, donorCode, awardCode, disttCode, upCode, unCode, vCode, hhID, memID, progCode, srvCode, grpCode, active, "", "");
+        addRegNmemProgGroup(cCode, donorCode, awardCode, disttCode, upCode, unCode, vCode, hhID, memID, progCode, srvCode, grpCode,"", active, "", "");
     }
 
     // add LUP_AnimalType list
@@ -1577,7 +1559,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     public void addRegNmemProgGroup(String cCode, String donorCode, String awardCode, String disttCode, String upCode
             , String unCode, String vCode, String hhID, String memID
-            , String progCode, String srvCode, String grpCode, String active, String entryBy, String entryDate) {
+            , String progCode, String srvCode, String grpCode, String grpName, String active, String entryBy, String entryDate) {
         SQLiteDatabase db = this.getWritableDatabase();
 
 
@@ -1594,6 +1576,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(PROGRAM_CODE_COL, progCode);
         values.put(SERVICE_CODE_COL, srvCode);
         values.put(GROUP_CODE_COL, grpCode);
+        values.put(GROUP_NAME_COL, grpName);
         values.put(ACTIVE_COL, active);
         values.put(ENTRY_BY, entryBy);
         values.put(ENTRY_DATE, entryDate);
@@ -2945,7 +2928,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         long id = db.insert(STAFF_GEO_INFO_ACCESS_TABLE, null, values);
         db.close(); // Closing database connection
 
-        Log.d(TAG, "New location  inserted into STAFF_GEO_INFO_ACCESS_TABLE : " + id);
+
     }
 
     public void addOpMonthFromOnline(String cCode, String donorCode, String awardCode, String opCode, String opMonthCode, String mLable, String sDate, String eDate, String usasDate, String usaeDate, String status) {
@@ -2969,7 +2952,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         long id = db.insert(OP_MONTH_TABLE, null, values);
         db.close(); // Closing database connection
 
-        Log.d(TAG, "New location  inserted into OP_MONTH_TABLE Table : " + id);
 
     }
 
@@ -2980,20 +2962,19 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COUNTRY_CODE_COL, cCode); // Country  code
-        values.put(GROUP_CODE_COL, grpCode); // GROUP code
-        values.put(SUB_GROUP_CODE_COL, subGrpCode); // sub GROUP code
-        values.put(LOCATION_CODE_COL, localCode); // GROUP name
-        values.put(LOCATION_NAME_COL, localName); // GROUP name
-        values.put(LATITUDE_COL, lat); // ******************
-        values.put(LONGITUDE_COL, lng); // ************
+        values.put(COUNTRY_CODE_COL, cCode);
+        values.put(GROUP_CODE_COL, grpCode);
+        values.put(SUB_GROUP_CODE_COL, subGrpCode);
+        values.put(LOCATION_CODE_COL, localCode);
+        values.put(LOCATION_NAME_COL, localName);
+        values.put(LATITUDE_COL, lat);
+        values.put(LONGITUDE_COL, lng);
 
 
         // Inserting Row
         long id = db.insert(GPS_LOCATION_TABLE, null, values);
         db.close(); // Closing database connection
 
-        Log.d(TAG, "New location  inserted into GPSLocation Table : " + id);
 
     }
 
@@ -3003,10 +2984,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(GROUP_CODE_COL, grpCode); // GROUP code
-        values.put(SUB_GROUP_CODE_COL, subGrpCode); // GROUP name
-        values.put(SUB_GROUP_NAME_COL, subGrpName); // GROUP name
-        values.put(DESCRIPTION_COL, description); // GROUP description
+        values.put(GROUP_CODE_COL, grpCode);
+        values.put(SUB_GROUP_CODE_COL, subGrpCode);
+        values.put(SUB_GROUP_NAME_COL, subGrpName);
+        values.put(DESCRIPTION_COL, description);
 
 
         // Inserting Row
@@ -3732,7 +3713,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * Used in Synchronize data in MainActivity
-     * <p>
+     * <p/>
      * for sql Query data
      */
     public ArrayList<dataUploadDB> getUploadSyntaxData() {
@@ -3764,11 +3745,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * date : 2015-10-17
-     * <p>
+     * <p/>
      * Faisal Mohammad
-     * <p>
+     * <p/>
      * SummaryAssignBaseCriteria.class
-     * <p>
+     * <p/>
      * description : base on the criteria this method will list of member which are assigned in particular Criteria or Service
      */
 
@@ -3817,7 +3798,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * :
      * 2015-11-07
-     * <p>
+     * <p/>
      * :
      */
     public String getMemberName(String cCode, String disCode,
@@ -4108,6 +4089,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.close();
 
     }
+// TODO: 10/17/2016 Rename the Column  name
 
     /**
      * @param assignDataModel
@@ -4120,29 +4102,30 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
 
-        String query = COUNTRY_CODE + " = '" + assignDataModel.getCountryCode() + "' AND " +
+        String where = COUNTRY_CODE + " = '" + assignDataModel.getCountryCode() + "' AND " +
                 DISTRICT_CODE_COL + " = '" + assignDataModel.getDistrictCode() + "' AND " +
                 UPCODE_COL + " = '" + assignDataModel.getUpazillaCode() + "' AND " +
                 UCODE_COL + " = '" + assignDataModel.getUnitCode() + "' AND " +
                 VCODE_COL + " = '" + assignDataModel.getVillageCode() + "' AND " +
                 HHID_COL + " = '" + assignDataModel.getHh_id() + "' AND " +
                 HH_MEM_ID + " = '" + assignDataModel.getMemId() + "'  ";
+
         ContentValues values = new ContentValues();
         values.put(REG_N_DAT_COL, regDate);
         values.put(LAND_SIZE_COL, landSize);
         values.put(DEPEND_ON_GANYU_COL, dependOnGruney);
         values.put(WILLINGNESS_COL, willingness);
-        values.put(AG_INVC, invc);
-        values.put(AG_NASFAM, nasfm);
-        values.put(AG_CU, cu);
-        values.put(AG_OTHER, other);
+        values.put(AG_INVC_COL, invc);
+        values.put(AG_NASFAM_COL, nasfm);
+        values.put(AG_CU_COL, cu);
+        values.put(AG_OTHER_COL, other);
 
-        values.put(AG_L_S_GOAT, goat);
-        values.put(AG_L_S_CHICKEN, chicken);
-        values.put(AG_L_S_PIGION, pigion);
-        values.put(AG_L_S_OTHER, other_sp);
+        values.put(AG_L_S_GOAT_COL, goat);
+        values.put(AG_L_S_CHICKEN_COL, chicken);
+        values.put(AG_L_S_PIGION_COL, pigion);
+        values.put(AG_L_S_OTHER_COL, other_sp);
 
-        int id = db.update(REG_N_AGR_TABLE, values, query, null);
+        int id = db.update(REG_N_AGR_TABLE, values, where, null);
         return id;
     }
 
@@ -4323,14 +4306,14 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 agr_dataModel.setRegnDate(cursor.getString(cursor.getColumnIndex(REG_N_DAT_COL)));
 
                 /** new */
-                agr_dataModel.setAgInvc(cursor.getString(cursor.getColumnIndex(AG_INVC)));
-                agr_dataModel.setAgNasfam(cursor.getString(cursor.getColumnIndex(AG_NASFAM)));
-                agr_dataModel.setAgCu(cursor.getString(cursor.getColumnIndex(AG_CU)));
-                agr_dataModel.setAgOrther(cursor.getString(cursor.getColumnIndex(AG_OTHER)));
-                agr_dataModel.setIntGoat(cursor.getInt(cursor.getColumnIndex(AG_L_S_GOAT)));
-                agr_dataModel.setIntChicken(cursor.getInt(cursor.getColumnIndex(AG_L_S_CHICKEN)));
-                agr_dataModel.setIntPegion(cursor.getInt(cursor.getColumnIndex(AG_L_S_PIGION)));
-                agr_dataModel.setIntOther(cursor.getInt(cursor.getColumnIndex(AG_L_S_OTHER)));
+                agr_dataModel.setAgInvc(cursor.getString(cursor.getColumnIndex(AG_INVC_COL)));
+                agr_dataModel.setAgNasfam(cursor.getString(cursor.getColumnIndex(AG_NASFAM_COL)));
+                agr_dataModel.setAgCu(cursor.getString(cursor.getColumnIndex(AG_CU_COL)));
+                agr_dataModel.setAgOrther(cursor.getString(cursor.getColumnIndex(AG_OTHER_COL)));
+                agr_dataModel.setIntGoat(cursor.getInt(cursor.getColumnIndex(AG_L_S_GOAT_COL)));
+                agr_dataModel.setIntChicken(cursor.getInt(cursor.getColumnIndex(AG_L_S_CHICKEN_COL)));
+                agr_dataModel.setIntPegion(cursor.getInt(cursor.getColumnIndex(AG_L_S_PIGION_COL)));
+                agr_dataModel.setIntOther(cursor.getInt(cursor.getColumnIndex(AG_L_S_OTHER_COL)));
                 Log.d("MOR1", "agr_dataModel.getAgInvc()=" + agr_dataModel.getAgInvc()
                         + agr_dataModel.getAgNasfam() + agr_dataModel.getAgCu()
                         + agr_dataModel.getAgOrther() + agr_dataModel.getIntGoat()
@@ -4347,9 +4330,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * @since :2015-11-09
-     * <p>
-     * <p>
-     * <p>
+     * <p/>
+     * <p/>
+     * <p/>
      * get DalivaryStatus no from MemberCardRequestTable
      */
     public String getCardDeliveryStatus(String cCode, String donorCode, String awardCode, String disCode, String upCode, String unCode, String vCode, String hhID, String memID, String rptGroup, String reportCode, String requestSl) {
@@ -4835,8 +4818,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * @since : 2015-10-15 m:2015-10-19
-     * <p>
-     * <p>
+     * <p/>
+     * <p/>
      * this method load Assign  Criteria for Assigne Summary Criteria
      */
 
@@ -5093,7 +5076,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
 
             }
-
+            cursor.close();
+            db.close();
         }
         return data;
 
@@ -5115,19 +5099,25 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
 
     /**
-     * @para%m cCode
-     * @param donorCode
-     * @param awardCode
-     * @param progCode
-     * @param groupCode
-     * @param groupName
-     * @param groupCatCode
-     * @param distCode
-     * @param upCode
-     * @param srvCenterCode
+     * table Schema
+     *
+     * @param cCode         Country  Code
+     * @param donorCode     donor Code
+     * @param awardCode     award Code
+     * @param progCode      program Code
+     * @param grpCode       group Code
+     * @param grpName       group Name
+     * @param grpCatCode    group Categories Code
+     * @param layR1Code     LayR1 Code
+     * @param layR2Code     LayR2 Code
+     * @param srvCenterCode Service Center Code
+     * @param entryBy       Service Center Code
+     * @param entryDate     Service Center Code
+     * @see Schema#sqlCreateCommunityGroup_Table()
      */
-    public void addCommunityGroup(String cCode, String donorCode, String awardCode, String progCode, String groupCode,
-                                  String groupName, String groupCatCode, String distCode, String upCode, String srvCenterCode) {
+    public void addCommunityGroup(String cCode, String donorCode, String awardCode, String progCode, String grpCode,
+                                  String grpName, String grpCatCode, String layR1Code, String layR2Code, String layR3Code, String srvCenterCode
+            , String entryBy, String entryDate) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -5137,17 +5127,247 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(DONOR_CODE_COL, donorCode);
         values.put(AWARD_CODE_COL, awardCode);
         values.put(PROGRAM_CODE_COL, progCode);
-        values.put(GROUP_CODE_COL, groupCode);
-        values.put(GROUP_NAME_COL, groupName);
-        values.put(GROUP_CAT_CODE_COL, groupCatCode);
-        values.put(DISTRICT_CODE_COL, distCode);
-        values.put(UPCODE_COL, upCode);
+        values.put(GROUP_CODE_COL, grpCode);
+        values.put(GROUP_NAME_COL, grpName);
+        values.put(GROUP_CAT_CODE_COL, grpCatCode);
+        values.put(DISTRICT_CODE_COL, layR1Code);
+        values.put(UPCODE_COL, layR2Code);
+        values.put(UCODE_COL, layR3Code);
         values.put(SERVICE_CENTER_CODE_COL, srvCenterCode);
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
 
         db.insert(COMMUNITY_GROUP_TABLE, null, values);
 
         db.close();
 
+    }
+
+    /**
+     * table Schema
+     *
+     * @param cCode      Country  Code
+     * @param donorCode  donor Code
+     * @param awardCode  award Code
+     * @param progCode   program Code
+     * @param grpCode    group Code
+     * @param grpName    group Name
+     * @param grpCatCode group Categories Code
+     * @param layR1Code  LayR1 Code
+     * @param layR2Code  LayR2 Code
+     * @param layR3Code  LayR3 Code
+     * @param entryBy    id of staff that modifies the data
+     * @param entryDate  date time of modified the data
+     * @see Schema#sqlCreateCommunityGroup_Table()
+     */
+    public void editCommunityGroup(String cCode, String donorCode, String awardCode, String progCode, String grpCode,
+                                   String grpName, String grpCatCode, String layR1Code, String layR2Code, String layR3Code
+            , String entryBy, String entryDate, String oldLayR1Code, String oldLayR2Code, String oldLayR3Code) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        String where = COUNTRY_CODE_COL + " = '" + cCode + "'"
+                + " AND " + DONOR_CODE_COL + " = '" + donorCode + "'"
+                + " AND " + AWARD_CODE_COL + " = '" + awardCode + "'"
+                + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "'"
+                + " AND " + GROUP_CODE_COL + " = '" + grpCode + "'";
+        /**
+         * do not delete the below the program
+         */
+     /*           + " AND " + DISTRICT_CODE_COL + " = '" + oldLayR1Code + "'"
+                + " AND " + UPCODE_COL + " = '" + oldLayR2Code + "'"
+                + " AND " + UCODE_COL + " = '" + oldLayR3Code + "'";*/
+
+
+        values.put(GROUP_NAME_COL, grpName);
+        values.put(GROUP_CAT_CODE_COL, grpCatCode);
+
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
+        values.put(DISTRICT_CODE_COL, layR1Code);
+        values.put(UPCODE_COL, layR2Code);
+        values.put(UCODE_COL, layR3Code);
+
+        db.update(COMMUNITY_GROUP_TABLE, values, where, null);
+
+        db.close();
+
+    }
+
+
+    /**
+     * @param cCode
+     * @param donorCode
+     * @param awardCode
+     * @param progCode
+     * @param grpCode
+     * @param ogrCode
+     * @param staffCode
+     * @param landSizeUnder
+     * @param iirigrationSysUsed
+     * @param fundSuppot
+     * @param active
+     * @param reapName
+     * @param reapPhone
+     * @param formation
+     * @param typeOfGrp
+     * @param status
+     * @param entryBy
+     * @param entryDate
+     * @param projecftNo
+     * @param projectTitle
+     * @param layR1Code
+     * @param layR2Code
+     * @param layR3Code
+     * @see Schema#createTableCommunityGrpDetail() table Schema
+     */
+
+    public void addIntoGroupDetails(String cCode, String donorCode, String awardCode, String progCode, String grpCode, String ogrCode, String staffCode, String landSizeUnder, String iirigrationSysUsed, String fundSuppot, String active, String reapName, String reapPhone, String formation, String typeOfGrp, String status, String entryBy, String entryDate, String projecftNo, String projectTitle, String layR1Code, String layR2Code, String layR3Code) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COUNTRY_CODE_COL, cCode);
+        values.put(DONOR_CODE_COL, donorCode);
+        values.put(AWARD_CODE_COL, awardCode);
+        values.put(PROGRAM_CODE_COL, progCode);
+        values.put(GROUP_CODE_COL, grpCode);
+        values.put(ORG_CODE_COL, ogrCode);
+
+        values.put(DISTRICT_CODE_COL, layR1Code);
+        values.put(UPCODE_COL, layR2Code);
+        values.put(UCODE_COL, layR3Code);
+
+        values.put(STAFF_CODE_COL, staffCode);
+        values.put(LAND_SIZE_UNDER_IRRIGATION_COL, landSizeUnder);
+        values.put(IRRIGATION_SYSTEM_USED_COL, iirigrationSysUsed);
+        values.put(FUND_SUPPORT_COL, fundSuppot);
+        values.put(ACTIVE_COL, active);
+        values.put(REP_NAME_COL, reapName);
+        values.put(REP_PHONE_NUMBER_COL, reapPhone);
+        values.put(FORMATION_DATE_COL, formation);
+        values.put(TYPE_OF_GROUP, typeOfGrp);
+        values.put(STATUS, status);
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
+        values.put(PROJECT_NO_COL, projecftNo);
+        values.put(PROJECT_TITLE, projectTitle);
+        db.insert(COMMUNITY_GRP_DETAIL_TABLE, null, values);
+        db.close();
+
+    }
+
+    public LayRCodes getLayRListFromCommunintyORGroupDetails(String AdmCountryCode, String donorCode
+            , String awardCode, String progCode, String grpCode, String tableName
+
+    ) {
+
+        LayRCodes layRCodes = new LayRCodes();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sql = "Select "
+                + "  " + DISTRICT_CODE_COL
+                + " , " + UPCODE_COL
+                + " , " + UCODE_COL
+                + " FROM " + tableName
+                + " WHERE " + COUNTRY_CODE_COL + " = '" + AdmCountryCode + "' "
+                + " AND " + DONOR_CODE_COL + " = '" + donorCode + "' "
+                + " AND " + AWARD_CODE_COL + " = '" + awardCode + "' "
+                + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "' "
+                + " AND " + GROUP_CODE_COL + " = '" + grpCode + "' ";
+
+
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                layRCodes.setLayR1Code(cursor.getString(0));
+                layRCodes.setLayR2Code(cursor.getString(1));
+                layRCodes.setLayR3Code(cursor.getString(2));
+            }
+            cursor.close();
+            db.close();
+        }
+        return layRCodes;
+
+
+    }
+
+    public LayRCodes getLayRListFromGroupDetails(String AdmCountryCode, String donorCode
+            , String awardCode, String progCode, String grpCode
+
+    ) {
+
+        return getLayRListFromCommunintyORGroupDetails(AdmCountryCode, donorCode
+                , awardCode, progCode, grpCode, COMMUNITY_GRP_DETAIL_TABLE);
+
+
+    }
+
+    /**
+     *  this method get the list of the community previous lay1 2 3 code if exits
+     * @param AdmCountryCode
+     * @param donorCode
+     * @param awardCode
+     * @param progCode
+     * @param grpCode
+     * @return
+     */
+    public LayRCodes getLayRListFromCommunityGroup(String AdmCountryCode, String donorCode
+            , String awardCode, String progCode, String grpCode
+
+    ) {
+
+        return getLayRListFromCommunintyORGroupDetails(AdmCountryCode, donorCode
+                , awardCode, progCode, grpCode, COMMUNITY_GROUP_TABLE);
+
+
+    }
+
+    public void editIntoGroupDetails(String AdmCountryCode, String donorCode
+            , String awardCode, String progCode, String grpCode
+            , String orgCode, String staffCode, String landSizeUnder, String iirigrationSysUsed, String fundSuppot
+            , String active, String reapName, String reapPhone, String formation, String typeOfGrp
+            , String status, String entryBy, String entryDate, String projecftNo, String projectTitle
+            , String layR1Code, String layR2Code, String layR3Code, LayRCodes oldLayR
+    ) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        String extraCondition;
+        if (oldLayR.getLayR1Code().length() > 0 && oldLayR.getLayR2Code().length() > 0 && oldLayR.getLayR3Code().length() > 0) {
+            extraCondition = " AND " + DISTRICT_CODE_COL + " = '" + oldLayR.getLayR1Code() + "'"
+                    + " AND " + UPCODE_COL + " = '" + oldLayR.getLayR2Code() + "'"
+                    + " AND " + UCODE_COL + " = '" + oldLayR.getLayR3Code() + "'";
+        } else {
+            extraCondition = "";
+        }
+        String where = COUNTRY_CODE_COL + " = '" + AdmCountryCode + "' "
+                + " AND " + DONOR_CODE_COL + " = '" + donorCode + "' "
+                + " AND " + AWARD_CODE_COL + " = '" + awardCode + "' "
+                + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "' "
+                + " AND " + GROUP_CODE_COL + " = '" + grpCode + "' "
+                + extraCondition;
+
+        values.put(ORG_CODE_COL, orgCode);
+        values.put(STAFF_CODE_COL, staffCode);
+        values.put(LAND_SIZE_UNDER_IRRIGATION_COL, landSizeUnder);
+        values.put(IRRIGATION_SYSTEM_USED_COL, iirigrationSysUsed);
+        values.put(FUND_SUPPORT_COL, fundSuppot);
+        values.put(ACTIVE_COL, active);
+        values.put(REP_NAME_COL, reapName);
+        values.put(REP_PHONE_NUMBER_COL, reapPhone);
+        values.put(FORMATION_DATE_COL, formation);
+        values.put(TYPE_OF_GROUP, typeOfGrp);
+        values.put(STATUS, status);
+        values.put(ENTRY_BY, entryBy);
+        values.put(ENTRY_DATE, entryDate);
+        values.put(PROJECT_NO_COL, projecftNo);
+        values.put(PROJECT_TITLE, projectTitle);
+        values.put(DISTRICT_CODE_COL, layR1Code);
+        values.put(UPCODE_COL, layR2Code);
+        values.put(UCODE_COL, layR3Code);
+
+
+        db.update(COMMUNITY_GRP_DETAIL_TABLE, values, where, null);
     }
 
 
@@ -5159,14 +5379,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
-    public static final String AG_INVC = "AGOINVC";
-    public static final String AG_NASFAM = "AGONASFAM";
-    public static final String AG_CU = "AGOCU";
-    public static final String AG_OTHER = "AGOOther";
-    public static final String AG_L_S_GOAT = "LSGoat";
-    public static final String AG_L_S_CHICKEN = "LSChicken";
-    public static final String AG_L_S_PIGION = "LSPigeon";
-    public static final String AG_L_S_OTHER = "LSOther";
 
     public void insertDataInto_RegNAgrTable(AGR_DataModel data, String invc, String nasfm, String cu, String other, int goat, int chicken, int pegion, int other_sp) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -5191,14 +5403,14 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(PLANTING_VALUE_CHAIN_CROP_COL, data.getPlantingVcrop());
         values.put(ENTRY_BY, data.getEntryBy());
         values.put(ENTRY_DATE, data.getEntryDate());
-        values.put(AG_INVC, invc);
-        values.put(AG_NASFAM, nasfm);
-        values.put(AG_CU, cu);
-        values.put(AG_OTHER, other);
-        values.put(AG_L_S_GOAT, goat);
-        values.put(AG_L_S_CHICKEN, chicken);
-        values.put(AG_L_S_PIGION, pegion);
-        values.put(AG_L_S_OTHER, other_sp);
+        values.put(AG_INVC_COL, invc);
+        values.put(AG_NASFAM_COL, nasfm);
+        values.put(AG_CU_COL, cu);
+        values.put(AG_OTHER_COL, other);
+        values.put(AG_L_S_GOAT_COL, goat);
+        values.put(AG_L_S_CHICKEN_COL, chicken);
+        values.put(AG_L_S_PIGION_COL, pegion);
+        values.put(AG_L_S_OTHER_COL, other_sp);
 
 
         db.insert(REG_N_AGR_TABLE, null, values);
@@ -5434,38 +5646,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return listAsignPeople;
 
 
-    }
-
-
-    public void updateIntoGroupDetails(String AdmCountryCode, String donorCode
-            , String awardCode, String progCode, String grpCode
-            , String orgCode, String staffCode, String landSizeUnder, String iirigrationSysUsed, String fundSuppot
-            , String active, String reapName, String reapPhone, String formation, String typeOfGrp
-            , String status, String entryBy, String entryDate, String projecftNo, String projectTitle) {
-        String where = "";
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        where = COUNTRY_CODE_COL + " = '" + AdmCountryCode + "' "
-                + " AND " + DONOR_CODE_COL + " = '" + donorCode + "' "
-                + " AND " + AWARD_CODE_COL + " = '" + awardCode + "' "
-                + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "' "
-                + " AND " + GROUP_CODE_COL + " = '" + grpCode + "' ";
-        values.put(ORG_CODE_COL, orgCode);
-        values.put(STAFF_CODE_COL, staffCode);
-        values.put(LAND_SIZE_UNDER_IRRIGATION_COL, landSizeUnder);
-        values.put(IRRIGATION_SYSTEM_USED_COL, iirigrationSysUsed);
-        values.put(FUND_SUPPORT_COL, fundSuppot);
-        values.put(ACTIVE_COL, active);
-        values.put(REP_NAME_COL, reapName);
-        values.put(REP_PHONE_NUMBER_COL, reapPhone);
-        values.put(FORMATION_DATE_COL, formation);
-        values.put(TYPE_OF_GROUP, typeOfGrp);
-        values.put(STATUS, status);
-        values.put(ENTRY_BY, entryBy);
-        values.put(ENTRY_DATE, entryDate);
-        values.put(PROJECT_NO_COL, projecftNo);
-        values.put(PROJECT_TITLE, projectTitle);
-        db.update(COMMUNITY_GRP_DETAIL_TABLE, values, where, null);
     }
 
 
@@ -5812,8 +5992,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
                 + " , cg." + SQLiteHandler.GROUP_CODE_COL
                 //  + " , cg." + SQLiteHandler.UPCODE_COL
-                + " , up." + UPZILLA_NAME_COL
-                + " , up." + UPCODE_COL
+                + " , un." + UNITE_NAME_COL
+                + " , un." + UCODE_COL
+                + " , un." + UPCODE_COL
+                + " , un." + DISTRICT_CODE_COL
 
                 + " , " + " cgc." + GROUP_CAT_CODE_COL
                 + " , " + " cgc." + GROUP_CAT_NAME_COL
@@ -5856,11 +6038,12 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + " ON cgc." + SQLiteHandler.DONOR_CODE_COL + " = pm." + SQLiteHandler.DONOR_CODE_COL
                 + " AND cgc." + SQLiteHandler.AWARD_CODE_COL + " = pm." + SQLiteHandler.AWARD_CODE_COL
                 + " AND cgc." + SQLiteHandler.PROGRAM_CODE_COL + " = pm." + SQLiteHandler.PROGRAM_CODE_COL
-                + " INNER JOIN " +
-                SQLiteHandler.UPAZILLA_TABLE + " AS up"
-                + " ON up." + SQLiteHandler.COUNTRY_CODE_COL + " = cgc." + SQLiteHandler.COUNTRY_CODE_COL
-                + " AND up." + DISTRICT_CODE_COL + " = cg." + DISTRICT_CODE_COL
-                + " AND up." + UPCODE_COL + " = cg." + UPCODE_COL
+                + " LEFT JOIN " +
+                SQLiteHandler.UNIT_TABLE + " AS un"
+                + " ON un." + SQLiteHandler.COUNTRY_CODE_COL + " = cgc." + SQLiteHandler.COUNTRY_CODE_COL
+                + " AND un." + DISTRICT_CODE_COL + " = cg." + DISTRICT_CODE_COL
+                + " AND un." + UPCODE_COL + " = cg." + UPCODE_COL
+                + " AND un." + UCODE_COL + " = cg." + UCODE_COL
                 + " INNER JOIN " +
                 ADM_AWARD_TABLE + " AS awd "
                 + " ON awd." + SQLiteHandler.COUNTRY_CODE_COL + " = cgc." + SQLiteHandler.COUNTRY_CODE_COL
@@ -5885,6 +6068,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
                 + " LEFT JOIN " + PROGRAM_ORGANIZATION_NAME_TABLE + " AS org "
                 + " ON org." + SQLiteHandler.ORG_CODE_COL + " = grpDetail." + SQLiteHandler.ORG_CODE_COL
+
                 + " LEFT JOIN " + SQLiteHandler.STAFF_MASTER_TABLE + " AS staff "
                 + " ON staff." + SQLiteHandler.STAFF_ID_COL + " = " + " grpDetail." + STAFF_CODE_COL
                 + " AND staff." + SQLiteHandler.COUNTRY_CODE + " = " + " cgc." + COUNTRY_CODE_COL
@@ -5914,11 +6098,15 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 data.setAwardCode(cursor.getString(cursor.getColumnIndex(AWARD_CODE_COL)));
                 data.setProgramName(cursor.getString(cursor.getColumnIndex(PROGRAM_NAME_COL)));
                 data.setProgramCode(cursor.getString(cursor.getColumnIndex(PROGRAM_CODE_COL)));
+
+                data.setLayr1Code(cursor.getString(cursor.getColumnIndex(DISTRICT_CODE_COL)));
                 data.setLayr2Code(cursor.getString(cursor.getColumnIndex(UPCODE_COL)));
-                data.setLayr2Name(cursor.getString(cursor.getColumnIndex(UPZILLA_NAME_COL)));
+                data.setLayr3Code(cursor.getString(cursor.getColumnIndex(UCODE_COL)));
+
+                data.setLayr3Name(cursor.getString(cursor.getColumnIndex(UNITE_NAME_COL)));
                 data.setOrgonizationCode(cursor.getString(cursor.getColumnIndex(ORG_CODE_COL)));
                 data.setOrgonizationName(cursor.getString(cursor.getColumnIndex(ORGANIZATION_NAME)));
-
+// TODO: 10/19/2016  fixed problem  
                 data.setStaffCode(cursor.getString(cursor.getColumnIndex(STAFF_CODE_COL)));
                 data.setStaffName(cursor.getString(cursor.getColumnIndex(STAFF_NAME_COL)));
 
@@ -5951,23 +6139,34 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
-
-    public long insertIntoProgOrgNRole(String countryCode, String donarCode, String awardCode, String organizationCode, String primeyn, String subyn, String techyn, String impyn, String logyn, String othyn) {
+    /**
+     * @param cCode     countryCode
+     * @param donarCode donarCode
+     * @param awardCode awardCode
+     * @param orgCode   organizationCode
+     * @param primeyn   primeyn
+     * @param subyn     subyn
+     * @param techyn    techyn
+     * @param impyn     impyn
+     * @param logyn     logyn
+     * @param othyn     othyn
+     * @see Schema#createTableProgOrgNRole()   the table Schema
+     */
+    public void insertIntoProgOrgNRole(String cCode, String donarCode, String awardCode, String orgCode, String primeyn, String subyn, String techyn, String impyn, String logyn, String othyn) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COUNTRY_CODE_COL, countryCode);
+        values.put(COUNTRY_CODE_COL, cCode);
         values.put(DONOR_CODE_COL, donarCode);
         values.put(AWARD_CODE_COL, awardCode);
-        values.put(ORG_CODE_COL, organizationCode);
-        values.put(PRIME_Y_N, primeyn);
-        values.put(SUB_Y_N, subyn);
-        values.put(TECH_Y_N, techyn);
-        values.put(IMP_Y_N, impyn);
-        values.put(LONG_Y_N, logyn);
-        values.put(OTH_Y_N, othyn);
-        long id = db.insert(PROGRAM_ORGANIZATION_ROLE_TABLE, null, values);
-        Log.d(TAG, "NEW Insert into " + PROGRAM_ORGANIZATION_ROLE_TABLE + " Table: " + id);
-        return id;
+        values.put(ORG_CODE_COL, orgCode);
+        values.put(PRIME_Y_N_COL, primeyn);
+        values.put(SUB_Y_N_COL, subyn);
+        values.put(TECH_Y_N_COL, techyn);
+        values.put(IMP_Y_N_COL, impyn);
+        values.put(LONG_Y_N_COL, logyn);
+        values.put(OTH_Y_N_COL, othyn);
+        db.insert(PROGRAM_ORGANIZATION_ROLE_TABLE, null, values);
+
 
     }
 
@@ -6526,7 +6725,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * 2015-11-23
      * Faisal Mohammad
-     * <p>
+     * <p/>
      * get default Exit Reason for Graduation
      */
     public String getGRDDefaultActiveReason(String progCode, String srvCode) {
@@ -7359,7 +7558,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String query = "";
-
+// TODO: 10/17/2016  use theSQLite Column  Constant
 
         query = "SELECT DISTINCT rm.*, r.PersonName, r." + ID_COL + " AS PID, rel." + RELATION_NAME + " FROM "
                 + REGISTRATION_MEMBER_TABLE + " AS rm " +
@@ -8751,14 +8950,18 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     // todo Error in the db
-    public String getNextGroupId(String cCode, String donorCode, String awardCode, String progCode) {
+    public String getNextGroupId(String cCode, String donorCode, String awardCode, String progCode ,String layR1Code, String layR2Code,String layR3Code) {
         String grpCode = "";
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT max(" + GROUP_CODE_COL + ") FROM " + COMMUNITY_GROUP_TABLE
                 + " WHERE " + COUNTRY_CODE_COL + " = '" + cCode + "'"
                 + " AND " + DONOR_CODE_COL + " = '" + donorCode + "'"
                 + " AND " + AWARD_CODE_COL + " = '" + awardCode + "'"
-                + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "'";
+                + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "'"
+                + " AND " + DISTRICT_CODE_COL + " = '" + layR1Code + "'"
+                + " AND " + UPCODE_COL + " = '" + layR2Code + "'"
+                + " AND " + UCODE_COL + " = '" + layR3Code + "'"
+                ;
 
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
@@ -10197,7 +10400,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * added by Faisal Mohammad
-     * <p>
+     * <p/>
      * update the regestration value  RegN assign Program Service  into database
      *
      * @modify: 2015-11-25

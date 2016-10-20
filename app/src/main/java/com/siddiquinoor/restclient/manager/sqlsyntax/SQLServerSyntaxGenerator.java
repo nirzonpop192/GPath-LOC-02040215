@@ -1,5 +1,7 @@
 package com.siddiquinoor.restclient.manager.sqlsyntax;
 
+import com.siddiquinoor.restclient.data_model.LayRCodes;
+
 /**
  * Created by USER on 1/12/2016.
  */
@@ -2117,7 +2119,7 @@ public class SQLServerSyntaxGenerator {
     public String updateRegNHHtableForMalawi() {
         return "DELETE FROM [dbo].[RegNHHTable]" +
                 " WHERE " +
-                "[AdmCountryCode]     =" +getAdmCountryCode()+
+                "[AdmCountryCode]     =" + getAdmCountryCode() +
                 " AND [LayR1ListCode] =" + getLayR1ListCode() +
                 " AND [LayR2ListCode] =" + getLayR2ListCode() +
                 " AND [LayR3ListCode] =" + getLayR3ListCode() +
@@ -4651,6 +4653,25 @@ public class SQLServerSyntaxGenerator {
         Active = active;
     }
 
+    private String GrpLayR1ListCode;
+    private String GrpLayR2ListCode;
+
+    public String getGrpLayR1ListCode() {
+        return GrpLayR1ListCode;
+    }
+
+    public void setGrpLayR1ListCode(String grpLayR1ListCode) {
+        GrpLayR1ListCode = checkStringNull(grpLayR1ListCode);
+    }
+
+    public String getGrpLayR2ListCode() {
+        return GrpLayR2ListCode;
+    }
+
+    public void setGrpLayR2ListCode(String grpLayR2ListCode) {
+        GrpLayR2ListCode = checkStringNull(grpLayR2ListCode);
+    }
+
     public String insertInToRegNMemProgGrp() {
         return "INSERT INTO [dbo].[RegNMemProgGrp]"
                 + " ([AdmCountryCode] "
@@ -4667,7 +4688,10 @@ public class SQLServerSyntaxGenerator {
                 + " ,[GrpCode] "
                 + " ,[Active] "
                 + " ,[EntryBy] "
-                + " ,[EntryDate]) "
+                + " ,[EntryDate]"
+                + " ,[GrpLayR1ListCode] "
+                + " ,[GrpLayR2ListCode] "
+                + " ) "
                 + "  VALUES "
                 + "          (" + getAdmCountryCode()
                 + " , " + getLayR1ListCode()
@@ -4684,6 +4708,8 @@ public class SQLServerSyntaxGenerator {
                 + " , " + getActive()
                 + " , " + getEntryBy()
                 + " , " + getEntryDate()
+                + " , " + getGrpLayR1ListCode()
+                + " , " + getGrpLayR2ListCode()
                 + " ) ";
     }
 
@@ -4694,6 +4720,8 @@ public class SQLServerSyntaxGenerator {
                 + ",[Active] =" + getActive()
                 + ",[EntryBy] = " + getEntryBy()
                 + ",[EntryDate] = " + getEntryDate()
+                + ",[GrpLayR1ListCode] = " + getGrpLayR1ListCode()
+                + ",[GrpLayR2ListCode] = " + getGrpLayR2ListCode()
                 + " WHERE "
                 + "[AdmCountryCode] = " + getAdmCountryCode()
                 + " AND [LayR1ListCode] = " + getLayR1ListCode()
@@ -4862,7 +4890,11 @@ public class SQLServerSyntaxGenerator {
                 + "   , [EntryBy] "
                 + "   , [EntryDate] "
                 + "   , [ProjectNo] "
-                + "   , [ProjectTitle] )"
+                + "   , [ProjectTitle] "
+                + "   , [LayR1Code] "
+                + "   , [LayR2Code] "
+                + "   , [LayR3Code] "
+                + " )"
                 + " VALUES "
                 + " ( "
                 + getAdmCountryCode()
@@ -4885,6 +4917,9 @@ public class SQLServerSyntaxGenerator {
                 + " , " + getEntryDate()
                 + " , " + getProjectNo()
                 + " , " + getProjectTitle()
+                + " , " + getLayR1ListCode()
+                + " , " + getLayR2ListCode()
+                + " , " + getLayR3ListCode()
                 + " ) ";
 
     }
@@ -4911,6 +4946,12 @@ public class SQLServerSyntaxGenerator {
     }
     // TODO: 10/6/2016  there is a na error
 
+    /**
+     * this Sp insert  Community Group
+     *
+     * @return string
+     */
+
     public String insertIntoCommunityGroupTable() {
         return "INSERT INTO [dbo].[CommunityGroup] " +
                 "([AdmCountryCode] " +
@@ -4922,9 +4963,10 @@ public class SQLServerSyntaxGenerator {
                 " ,[GrpCatCode] " +
                 " ,[LayR1Code] " +
                 " ,[LayR2Code] " +
+                " ,[LayR3Code] " +
                 " ,[EntryBy] " +
                 " ,[EntryDate] " +
-                " ,[SrvCenterCode]) " +
+                " ) " +
                 " VALUES " +
                 "         ( " + getAdmCountryCode() +
                 " , " + getAdmDonorCode() +
@@ -4935,10 +4977,89 @@ public class SQLServerSyntaxGenerator {
                 " , " + getGrpCatCode() +
                 " , " + getLayR1ListCode() +
                 " , " + getLayR2ListCode() +
+                " , " + getLayR3ListCode() +
                 " , " + getEntryBy() +
                 " , " + getEntryDate() +
-                " , " + getSrvCenterCode() +
+
                 " )";
+    }
+
+
+    public String updateIntoCommunityGrpDetail(LayRCodes oldLayRCodes) {
+        String condition;
+
+        if (oldLayRCodes.getLayR1Code().length() > 0 && oldLayRCodes.getLayR2Code().length() > 0 && oldLayRCodes.getLayR2Code().length() > 0) {
+            condition = " AND            [LayR1Code] = " + checkStringNull(oldLayRCodes.getLayR1Code()) +
+                    " AND            [LayR2Code] = " + checkStringNull(oldLayRCodes.getLayR2Code()) +
+                    " AND            [LayR3Code] = " + checkStringNull(oldLayRCodes.getLayR3Code());
+        } else {
+            condition = "";
+        }
+
+        return "UPDATE [dbo].[CommunityGrpDetail] " +
+                " SET " + "   [OrgCode] = " + getOrganizationCode() +
+                "     ,          [StfCode] = " + getStaffCode() +
+                "     ,          [LandSizeUnderIrrigation] = " + getLandSizeUnderIrrigation() +
+                "     ,          [IrrigationSystemUsed] = " + getIrrigationSystemUsed() +
+                "     ,          [FundSupport] = " + getFundSupport() +
+                "     ,          [ActiveStatus] = " + getActive() +
+                "     ,          [RepName] = " + getRepresentativeName() +
+                "     ,          [RepPhoneNumber] = " + getRepresentativePhoneNumber() +
+                "     ,          [FormationDate] = " + getFormationDate() +
+                "     ,          [TypeOfGroup] = " + getTypeOfGroup() +
+                "     ,          [Status] = " + getStatus() +
+                "     ,          [EntryBy] = " + getEntryBy() +
+                "     ,          [EntryDate] = " + getEntryDate() +
+                "     ,          [ProjectNo] = " + getProjectNo() +
+                "     ,          [ProjectTitle] = " + getProjectTitle() +
+                "     ,          [LayR1Code] = " + getLayR1ListCode() +
+                "     ,          [LayR2Code] = " + getLayR2ListCode() +
+                "     ,          [LayR3Code] = " + getLayR3ListCode() +
+                " WHERE          [AdmCountryCode] = " + getAdmCountryCode() +
+                " AND            [AdmDonorCode] = " + getAdmDonorCode() +
+                " AND            [AdmAwardCode] = " + getAdmAwardCode() +
+                " AND            [AdmProgCode] = " + getProgCode() +
+                " AND            [GrpCode] = " + getGrpCode() +
+                condition
+
+
+                ;
+    }
+
+    /**
+     * this method implemented  in
+     *
+     * @return
+     * @see
+     */
+    public String updateIntoCommunityGroupTable(LayRCodes oldLayRCodes) {
+
+        String condition;
+        if (oldLayRCodes.getLayR1Code().length() > 0 && oldLayRCodes.getLayR2Code().length() > 0 && oldLayRCodes.getLayR2Code().length() > 0) {
+            condition = " AND            [LayR1Code] = " + checkStringNull(oldLayRCodes.getLayR1Code()) +
+                    " AND            [LayR2Code] = " + checkStringNull(oldLayRCodes.getLayR2Code()) +
+                    " AND            [LayR3Code] = " + checkStringNull(oldLayRCodes.getLayR3Code());
+        } else {
+            condition = "";
+        }
+        return "UPDATE CommunityGroup SET "
+                + " GrpName = " + getGrpName()
+                + ",GrpCatCode = " + getGrpCatCode()
+                // TODO: 10/18/2016  layR3 Code
+
+                + "   ,  LayR1Code = " + getLayR1ListCode()
+                + "   , LayR2Code = " + getLayR2ListCode()
+                + "   , LayR3Code = " + getLayR3ListCode()
+                + " , EntryBy = " + getEntryBy()
+                + " , EntryDate = " + getEntryDate()
+                + "        WHERE AdmCountryCode = " + getAdmCountryCode()
+                + "       AND AdmDonorCode = " + getAdmDonorCode()
+                + "       AND AdmAwardCode = " + getAdmAwardCode()
+                + "       AND AdmProgCode = " + getProgCode()
+                + "       AND GrpCode = " + getGrpCode()
+                + condition
+
+                ;
     }
 
     public String sqlSpRegNMemAwardProgCombN_Save() {
@@ -5109,32 +5230,6 @@ public class SQLServerSyntaxGenerator {
     }*/
 
 
-    public String updateIntoCommunityGrpDetail()
-    {
-        return "UPDATE [dbo].[CommunityGrpDetail] "+
-                " SET " +  "   [OrgCode] = "+getOrganizationCode()+
-                "     ,      "   +  "   [StfCode] = "+getStaffCode()+
-                "     ,      "   +  "   [LandSizeUnderIrrigation] = "+getLandSizeUnderIrrigation()+
-                "     ,      "   +  "   [IrrigationSystemUsed] = "+getIrrigationSystemUsed()+
-                "     ,      "   +  "   [FundSupport] = "+getFundSupport()+
-                "     ,      "   +  "   [ActiveStatus] = "+getActive()+
-                "     ,      "   +  "   [RepName] = "+getRepresentativeName()+
-                "     ,      "   +  "   [RepPhoneNumber] = "+getRepresentativePhoneNumber()+
-                "     ,      "   +  "   [FormationDate] = "+getFormationDate()+
-                "     ,      "   +  "   [TypeOfGroup] = "+getTypeOfGroup()+
-                "     ,      "   +  "   [Status] = "+getStatus()+
-                "     ,      "   +  "   [EntryBy] = "+getEntryBy()+
-                "     ,      "   +  "   [EntryDate] = "+getEntryDate()+
-                "     ,      "   +  "   [ProjectNo] = "+getProjectNo()+
-                "     ,      "   +  "   [ProjectTitle] = "+getProjectTitle()+
-                " WHERE " +  "   [AdmCountryCode] = "+getAdmCountryCode()+
-                " AND "   +  "   [AdmDonorCode] = "+getAdmDonorCode()+
-                " AND "   +  "   [AdmAwardCode] = " +getAdmAwardCode()+
-                " AND "   +  "   [AdmProgCode] = "+getProgCode()+
-                " AND "   +  "   [GrpCode] = "+getGrpCode();
-    }
-
-
     private String OrphanedChildren;
     private String ChildHeaded;
     private String ElderlyHeaded;
@@ -5148,7 +5243,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setOrphanedChildren(String orphanedChildren) {
-        orphanedChildren= checkStringNull(orphanedChildren);
+        orphanedChildren = checkStringNull(orphanedChildren);
         OrphanedChildren = orphanedChildren;
     }
 
@@ -5157,7 +5252,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setChildHeaded(String childHeaded) {
-        childHeaded= checkStringNull(childHeaded);
+        childHeaded = checkStringNull(childHeaded);
         ChildHeaded = childHeaded;
     }
 
@@ -5166,7 +5261,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setElderlyHeaded(String elderlyHeaded) {
-        elderlyHeaded= checkStringNull(elderlyHeaded);
+        elderlyHeaded = checkStringNull(elderlyHeaded);
         ElderlyHeaded = elderlyHeaded;
     }
 
@@ -5175,7 +5270,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setChronicallyIll(String chronicallyIll) {
-        chronicallyIll= checkStringNull(chronicallyIll);
+        chronicallyIll = checkStringNull(chronicallyIll);
         ChronicallyIll = chronicallyIll;
     }
 
@@ -5184,7 +5279,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setFemaleHeaded(String femaleHeaded) {
-        femaleHeaded= checkStringNull(femaleHeaded);
+        femaleHeaded = checkStringNull(femaleHeaded);
         FemaleHeaded = femaleHeaded;
     }
 
@@ -5193,7 +5288,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setCropFailure(String cropFailure) {
-        cropFailure= checkStringNull(cropFailure);
+        cropFailure = checkStringNull(cropFailure);
         CropFailure = cropFailure;
     }
 
@@ -5202,7 +5297,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setChildrenRecSuppFeedN(String childrenRecSuppFeedN) {
-        childrenRecSuppFeedN= checkStringNull(childrenRecSuppFeedN);
+        childrenRecSuppFeedN = checkStringNull(childrenRecSuppFeedN);
         ChildrenRecSuppFeedN = childrenRecSuppFeedN;
     }
 
@@ -5226,7 +5321,7 @@ public class SQLServerSyntaxGenerator {
                 + " , [EntryBy] "
                 + " , [EntryDate] ) "
                 + "VALUES ( "
-                        + getAdmCountryCode()
+                + getAdmCountryCode()
                 + " , " + getLayR1ListCode()
                 + " , " + getLayR2ListCode()
                 + " , " + getLayR3ListCode()
@@ -5249,23 +5344,23 @@ public class SQLServerSyntaxGenerator {
 
     public String updateIntoRegN_FFA_table() {
         return " UPDATE [dbo].[RegN_FFA] "
-       +"  SET "
-       +"          [ChildHeaded]	= 	 "+getChildHeaded()
-       +"  ,[ElderlyHeaded] = 	  "+getElderlyHeaded()
-       +"  ,[ChronicallyIll] =	  "+ getChronicallyIll()
-       +"  ,[FemaleHeaded] =	  "+ getFemaleHeaded()
-       +"  ,[CropFailure]	= 	  "+ getCropFailure()
-       +"  ,[ChildrenRecSuppFeedN]= "+ getChildrenRecSuppFeedN()
-       +"  ,[Willingness] = "+ getWillingness()
-       +"  ,[EntryBy] =  "+ getEntryBy()
-       +"  ,[EntryDate]	=   "+ getEntryDate()
-       +"  WHERE MemID =  "+getMemID()
-       +"          AND AdmCountryCode =  "+getAdmCountryCode()
-       +"          AND LayR1ListCode =  "+getLayR1ListCode()
-       +"          AND LayR2ListCode =  "+getLayR2ListCode()
-       +"          AND LayR3ListCode =  "+getLayR3ListCode()
-       +"          AND LayR4ListCode =  "+getLayR4ListCode()
-       +"          AND HHID =  "+getHHID();
+                + "  SET "
+                + "          [ChildHeaded]	= 	 " + getChildHeaded()
+                + "  ,[ElderlyHeaded] = 	  " + getElderlyHeaded()
+                + "  ,[ChronicallyIll] =	  " + getChronicallyIll()
+                + "  ,[FemaleHeaded] =	  " + getFemaleHeaded()
+                + "  ,[CropFailure]	= 	  " + getCropFailure()
+                + "  ,[ChildrenRecSuppFeedN]= " + getChildrenRecSuppFeedN()
+                + "  ,[Willingness] = " + getWillingness()
+                + "  ,[EntryBy] =  " + getEntryBy()
+                + "  ,[EntryDate]	=   " + getEntryDate()
+                + "  WHERE MemID =  " + getMemID()
+                + "          AND AdmCountryCode =  " + getAdmCountryCode()
+                + "          AND LayR1ListCode =  " + getLayR1ListCode()
+                + "          AND LayR2ListCode =  " + getLayR2ListCode()
+                + "          AND LayR3ListCode =  " + getLayR3ListCode()
+                + "          AND LayR4ListCode =  " + getLayR4ListCode()
+                + "          AND HHID =  " + getHHID();
     }
 
 // TODO: 10/6/2016  add syntax t for the Insert method for DTResponse table

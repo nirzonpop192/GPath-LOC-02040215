@@ -492,9 +492,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             File sd = Environment.getExternalStorageDirectory();
             File data = Environment.getDataDirectory();
 
-            String dbBy= getStaffID();
-            String backupDate=getDateTime();
-            String backupdbName="G_path_"+dbBy+"_"+backupDate+".db";
+            String dbBy = getStaffID();
+            String backupDate = getDateTime();
+            String backupdbName = "G_path_" + dbBy + "_" + backupDate + ".db";
 
             if (sd.canWrite()) {
                 String currentDBPath = "/data/data/" + getPackageName() + "/databases/pci";
@@ -542,7 +542,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 /**
                  * only for the new version  dynamic model is disable
                  */
-              //  btnDynamicData.setEnabled(true);
+                //  btnDynamicData.setEnabled(true);
 
 
                 break;
@@ -2443,32 +2443,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
 
 
+
                 if (!jObj.isNull("community_group")) {
-                    JSONArray community_group_Datas = jObj.getJSONArray("community_group");
-                    size = community_group_Datas.length();
-                    for (int i = 0; i < size; i++) {
-                        JSONObject community_group_Data = community_group_Datas.getJSONObject(i);
 
-
-                        String AdmCountryCode = community_group_Data.getString("AdmCountryCode");
-                        String AdmDonorCode = community_group_Data.getString("AdmDonorCode");
-                        String AdmAwardCode = community_group_Data.getString("AdmAwardCode");
-                        String AdmProgCode = community_group_Data.getString("AdmProgCode");
-                        String GrpCode = community_group_Data.getString("GrpCode");
-                        String GrpName = community_group_Data.getString("GrpName");
-                        String GrpCatCode = community_group_Data.getString("GrpCatCode");
-
-
-                        String LayR1Code = community_group_Data.getString("LayR1Code");
-                        String LayR2Code = community_group_Data.getString("LayR2Code");
-                        String SrvCenterCode = community_group_Data.getString("SrvCenterCode");
-
-
-                        db.addCommunityGroup(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, GrpCode, GrpName, GrpCatCode, LayR1Code, LayR2Code, SrvCenterCode);
-
-
-                    }
+                    JsonDeserialization.CommunityGroupParser(jObj.getJSONArray("community_group"), db);
                 }
+
+
 
 
                 if (!jObj.isNull("lup_community_animal")) {
@@ -2509,10 +2490,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         String CropCatCode = lup_prog_group_crop_Data.getString("CropCatCode");
 
 
-                        Log.d("InTest", "AdmCountryCode:" + AdmCountryCode
+                    /*    Log.d("InTest", "AdmCountryCode:" + AdmCountryCode
                                 + "AdmDonorCode: " + AdmDonorCode + "AdmAwardCode : " + AdmAwardCode + "AdmProgCode:" + AdmProgCode
                                 + " CropCode: " + CropCode + "CropList:" + CropList + " CropCatCode :" + CropCatCode);
-
+*/
                         db.addLUP_ProgramGroupCropFromOnLine(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, CropCode, CropList, CropCatCode);
                     }
                 }
@@ -2533,10 +2514,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         String LoanSource = lup_community_loan_source_Data.getString("LoanSource");
 
 
-                        Log.d("InTest", "AdmCountryCode:" + AdmCountryCode
+                /*        Log.d("InTest", "AdmCountryCode:" + AdmCountryCode
                                 + "AdmDonorCode: " + AdmDonorCode + "AdmAwardCode : " + AdmAwardCode + "AdmProgCode:" + AdmProgCode
                                 + " LoanCode: " + LoanCode + "LoanSource:" + LoanSource);
-
+*/
                         db.addLUP_CommunityLoanSource(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode
                                 , LoanCode, LoanSource);
                     }
@@ -2558,9 +2539,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         String LeadPosition = lup_community_lead_position_Data.getString("LeadPosition");
 
 
-                        Log.d("InTest", "AdmCountryCode:" + AdmCountryCode
+              /*          Log.d("InTest", "AdmCountryCode:" + AdmCountryCode
                                 + "AdmDonorCode: " + AdmDonorCode + "AdmAwardCode : " + AdmAwardCode + "AdmProgCode:" + AdmProgCode
-                                + " LeadCode: " + LeadCode + "LeadPosition:" + LeadPosition);
+                                + " LeadCode: " + LeadCode + "LeadPosition:" + LeadPosition);*/
                         db.addLUP_CommunityLeadPostition(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, LeadCode, LeadPosition);
 
                     }
@@ -2583,11 +2564,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         String GrpCatShortName = community_group_category_Data.getString("GrpCatShortName");
 
 
-                        Log.d("InTest", "AdmCountryCode:" + AdmCountryCode
+           /*             Log.d("InTest", "AdmCountryCode:" + AdmCountryCode
                                 + "AdmDonorCode: " + AdmDonorCode + "AdmAwardCode : " + AdmAwardCode + "AdmProgCode:" + AdmProgCode
                                 + " GrpCatCode: " + GrpCatCode + " GrpCatName:" + GrpCatName
                                 + " GrpCatShortName: " + GrpCatShortName
-                        );
+                        );*/
                         db.addCommunityGroupCategoryFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, GrpCatCode, GrpCatName, GrpCatShortName);
 
                     }
@@ -2607,10 +2588,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         String LayR3ListCode = Lup_reg_n_add_lookup.getString("LayR3ListCode");
                         String LayR4ListCode = Lup_reg_n_add_lookup.getString("LayR4ListCode");
 
-
+/*
                         Log.d("InTest", "AdmCountryCode:" + AdmCountryCode + "RegNAddLookupCode" + RegNAddLookupCode
                                 + "RegNAddLookup: " + RegNAddLookup + "LayR1ListCode : " + LayR1ListCode + "LayR2ListCode:" + LayR2ListCode
-                                + " LayR3ListCode: " + LayR3ListCode + "LayR4ListCode:" + LayR4ListCode);
+                                + " LayR3ListCode: " + LayR3ListCode + "LayR4ListCode:" + LayR4ListCode);*/
                         db.addLUP_RegNAddLookup(AdmCountryCode, RegNAddLookupCode, RegNAddLookup, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode);
 
                     }
@@ -2632,12 +2613,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         String LogYN = prog_org_n_role_Data.getString("LogYN");
                         String ImpYN = prog_org_n_role_Data.getString("ImpYN");
                         String OthYN = prog_org_n_role_Data.getString("OthYN");
-                        Log.d("InTest", "AdmCountryCode:" + AdmCountryCode
+       /*                 Log.d("InTest", "AdmCountryCode:" + AdmCountryCode
                                 + "AdmDonorCode: " + AdmDonorCode + "AdmAwardCode : " + AdmAwardCode + "OrgNCode:" + OrgNCode
                                 + " PrimeYN: " + PrimeYN + " SubYN:" + SubYN
                                 + " TechYN: " + TechYN
                                 + " LogYN: " + LogYN + "ImpYN:" + ImpYN + " OthYN: " + OthYN
-                        );
+                        );*/
                         db.insertIntoProgOrgNRole(AdmCountryCode, AdmDonorCode, AdmAwardCode, OrgNCode, PrimeYN, SubYN, TechYN, ImpYN, LogYN, OthYN);
                     }
                 }
@@ -2653,8 +2634,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         db.insertIntoProgOrgN(OrgNCode, OrgNName, OrgNShortName);
                     }
                 }
+//// TODO: 10/18/2016  this parsing of the group detail set to parse class
+
+
 
                 if (!jObj.isNull("community_grp_detail")) {
+
+                    JsonDeserialization.CommunityGroupDetailsParser(jObj.getJSONArray("community_grp_detail"), db);
+                }
+
+
+                /*if (!jObj.isNull("community_grp_detail")) {
                     JSONArray community_grp_detail_Datas = jObj.getJSONArray("community_grp_detail");
                     size = community_grp_detail_Datas.length();
                     for (int i = 0; i < size; i++) {
@@ -2680,18 +2670,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         String EntryDate = community_grp_detail_Data.getString("EntryDate");
                         String ProjectNo = community_grp_detail_Data.getString("ProjectNo");
                         String ProjectTitle = community_grp_detail_Data.getString("ProjectTitle");
-      /*                  Log.d(TAG, "AdmCountryCode:" + AdmCountryCode + "AdmDonorCode:" + AdmDonorCode + "AdmAwardCode:" + AdmAwardCode +
+      *//*                  Log.d(TAG, "AdmCountryCode:" + AdmCountryCode + "AdmDonorCode:" + AdmDonorCode + "AdmAwardCode:" + AdmAwardCode +
                                 "AdmProgCode:" + AdmProgCode + "GrpCode:" + GrpCode + "OrgCode:" + OrgCode + "StfCode:" + StfCode + "LandSizeUnderIrrigation:" + LandSizeUnderIrrigation +
                                 "IrrigationSystemUsed:" + IrrigationSystemUsed + "FundSupport:" + FundSupport + "ActiveStatus:" + ActiveStatus +
                                 "RepName:" + RepName + "RepPhoneNumber:" + RepPhoneNumber + "FormationDate:" + FormationDate + "TypeOfGroup:" + TypeOfGroup +
-                                "Status" + Status + "EntryBy:" + EntryBy + "EntryDate:" + EntryDate + "ProjectNo:" + ProjectNo + "ProjectTitle:" + ProjectTitle);*/
+                                "Status" + Status + "EntryBy:" + EntryBy + "EntryDate:" + EntryDate + "ProjectNo:" + ProjectNo + "ProjectTitle:" + ProjectTitle);*//*
                         db.addIntoGroupDetails(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, GrpCode,
                                 OrgCode, StfCode, LandSizeUnderIrrigation, IrrigationSystemUsed, FundSupport,
                                 ActiveStatus, RepName, RepPhoneNumber, FormationDate, TypeOfGroup, Status,
                                 EntryBy, EntryDate, ProjectNo, ProjectTitle);
 
                     }
-                }
+                }*/
 
 
                 if (!jObj.isNull("staff_master")) {

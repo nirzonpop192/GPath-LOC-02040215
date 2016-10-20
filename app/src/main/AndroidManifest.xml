@@ -309,7 +309,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".activity.sub_activity.commu_group_sub.CommunityGrpDetails"
+            android:name=".activity.sub_activity.commu_group_sub.GroupDetails"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity

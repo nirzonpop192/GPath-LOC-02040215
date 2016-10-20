@@ -28,6 +28,7 @@ import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.activity.AllSummaryActivity;
 import com.siddiquinoor.restclient.activity.AssignActivity;
 import com.siddiquinoor.restclient.data_model.AGR_DataModel;
+import com.siddiquinoor.restclient.data_model.LayRCodes;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 
@@ -564,9 +565,6 @@ public class AssignAGR extends BaseActivity {
         //  cbOTHER.setOnClickListener(checkboxClickListener);
 
 
-
-
-
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -725,7 +723,6 @@ public class AssignAGR extends BaseActivity {
                 if (sqlH.ifExistsInRegNAssProgSrv(assignDataModel)) {
 
 
-
                     assignDataModel.setRegNDate(strRegDate);
                     int id = sqlH.editMemberDataIn_RegNAsgProgSrv(assignDataModel);
                     //Syntax Generator
@@ -797,13 +794,18 @@ public class AssignAGR extends BaseActivity {
                     sqlH.insertDataInto_RegNAgrTable(data, data.getStrOtherAgActivitiesINVC(), data.getStrOtherAgActivitiesNASFAM(), data.getStrOtherAgActivitiesCU(), data.getStrOtherAgActivitiesOther(), data.getIntGoat(), data.getIntChicken(), data.getIntPegion(), data.getIntOther());
                     sqlH.insertIntoUploadTable(assign_agr.insertIntoRegN_Agr_Table());
 
-                    //   Toast.makeText(mContext, "Inserted", Toast.LENGTH_SHORT).show();
+
                 }// end of else
 
                 /**
                  * check group
                  */
                 if (sqlH.ifExistsInRegNmemProgGroup(temAssignMemData.getCountryCode(), temAssignMemData.getDonor_code(), temAssignMemData.getAward_code(), temAssignMemData.getDistrictCode(), temAssignMemData.getUpazillaCode(), temAssignMemData.getUnitCode(), temAssignMemData.getVillageCode(), temAssignMemData.getHh_id(), temAssignMemData.getMemId(), temAssignMemData.getProgram_code(), temAssignMemData.getService_code())) {
+
+                    LayRCodes layRCodes_details = sqlH.getLayRListFromGroupDetails(temAssignMemData.getCountryCode(), temAssignMemData.getDonor_code(), temAssignMemData.getAward_code(), temAssignMemData.getProgram_code(), idGroup);
+
+                    assign_agr.setGrpLayR1ListCode(layRCodes_details.getLayR1Code());
+                    assign_agr.setGrpLayR2ListCode(layRCodes_details.getLayR2Code());
                     sqlH.editMemberIn_RegNmemProgGroup(temAssignMemData.getCountryCode(), temAssignMemData.getDonor_code(), temAssignMemData.getAward_code(), temAssignMemData.getDistrictCode(), temAssignMemData.getUpazillaCode(), temAssignMemData.getUnitCode(), temAssignMemData.getVillageCode(), temAssignMemData.getHh_id(), temAssignMemData.getMemId(), temAssignMemData.getProgram_code(), temAssignMemData.getService_code(), idGroup, idActive, entryBy, entryDate);
 
                     /**
@@ -813,9 +815,15 @@ public class AssignAGR extends BaseActivity {
 
 
                 } else {
+
+                    LayRCodes layRCodes_details = sqlH.getLayRListFromGroupDetails(temAssignMemData.getCountryCode(), temAssignMemData.getDonor_code(), temAssignMemData.getAward_code(), temAssignMemData.getProgram_code(), idGroup);
+
+                    assign_agr.setGrpLayR1ListCode(layRCodes_details.getLayR1Code());
+                    assign_agr.setGrpLayR2ListCode(layRCodes_details.getLayR2Code());
+
                     sqlH.insertIntoUploadTable(assign_agr.insertInToRegNMemProgGrp());
 
-                    sqlH.addRegNmemProgGroup(temAssignMemData.getCountryCode(), temAssignMemData.getDonor_code(), temAssignMemData.getAward_code(), temAssignMemData.getDistrictCode(), temAssignMemData.getUpazillaCode(), temAssignMemData.getUnitCode(), temAssignMemData.getVillageCode(), temAssignMemData.getHh_id(), temAssignMemData.getMemId(), temAssignMemData.getProgram_code(), temAssignMemData.getService_code(), idGroup, idActive, entryBy, entryDate);
+                    sqlH.addRegNmemProgGroup(temAssignMemData.getCountryCode(), temAssignMemData.getDonor_code(), temAssignMemData.getAward_code(), temAssignMemData.getDistrictCode(), temAssignMemData.getUpazillaCode(), temAssignMemData.getUnitCode(), temAssignMemData.getVillageCode(), temAssignMemData.getHh_id(), temAssignMemData.getMemId(), temAssignMemData.getProgram_code(), temAssignMemData.getService_code(), idGroup, strGroup, idActive, entryBy, entryDate);
                 }
 
                 sqlH.insertIntoUploadTable(assign_agr.sqlSpRegNMemAwardProgCombN_Save());

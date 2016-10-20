@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.sub_activity.commu_group_sub.CommunityGrpDetails">
+    tools:context=".activity.sub_activity.commu_group_sub.GroupDetails">
     <include layout="@layout/header"
         android:id="@+id/header"/>
 
@@ -45,6 +45,7 @@
                         style="@style/txt_label"
                         android:text="Program"/>
                     <TextView
+                        android:id="@+id/tv_grp_details_layR3lable"
                         style="@style/txt_label"
                         android:text="TA"/>
                     <TextView

@@ -8950,6 +8950,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     // todo Error in the db
+    // // TODO: 10/23/2016  app Crash
     public String getNextGroupId(String cCode, String donorCode, String awardCode, String progCode ,String layR1Code, String layR2Code,String layR3Code) {
         String grpCode = "";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -8958,9 +8959,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + " AND " + DONOR_CODE_COL + " = '" + donorCode + "'"
                 + " AND " + AWARD_CODE_COL + " = '" + awardCode + "'"
                 + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "'"
-                + " AND " + DISTRICT_CODE_COL + " = '" + layR1Code + "'"
-                + " AND " + UPCODE_COL + " = '" + layR2Code + "'"
-                + " AND " + UCODE_COL + " = '" + layR3Code + "'"
+            //    + " AND " + DISTRICT_CODE_COL + " = '" + layR1Code + "'"
+             //   + " AND " + UPCODE_COL + " = '" + layR2Code + "'"
+              //  + " AND " + UCODE_COL + " = '" + layR3Code + "'"
                 ;
 
         Cursor cursor = db.rawQuery(sql, null);

@@ -542,7 +542,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 /**
                  * only for the new version  dynamic model is disable
                  */
-                //  btnDynamicData.setEnabled(true);
+                  btnDynamicData.setEnabled(true);
 
 
                 break;

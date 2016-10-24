@@ -299,7 +299,9 @@ public class GroupSearchPage extends BaseActivity {
 
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            pDialog.dismiss();
+            if (pDialog.isShowing())
+                pDialog.dismiss();
+
             if (adapter != null) {
 
                 adapter.notifyDataSetChanged();

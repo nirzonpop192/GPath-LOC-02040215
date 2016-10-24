@@ -156,7 +156,7 @@ public class Schema {
 
 
     /**
-     *
+     *todo : add primary key
      */
     public static String sqlCreateRegMemberCardPrintTable() {
         return CREATE_TABLE_IF_NOT_EXISTS + SQLiteHandler.MEMBER_CARD_PRINT_TABLE + " ( "
@@ -1581,7 +1581,7 @@ public class Schema {
 
 
 
-    // TODO: 10/18/2016  add the primary key (solved)
+
     public static String createTableProgOrgNRole() {
         return CREATE_TABLE_IF_NOT_EXISTS + SQLiteHandler.PROGRAM_ORGANIZATION_ROLE_TABLE
                 + " ( "

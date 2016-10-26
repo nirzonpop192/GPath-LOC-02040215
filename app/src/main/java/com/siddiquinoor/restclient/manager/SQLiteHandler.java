@@ -11768,7 +11768,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * @param cCode   Country Code
      * @param opMonth Op Month Code
      * @return A  Hash Map of startDate & end Date
-     * @see {@link com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DTResponseActivity.btn_goToQustion}
+     * @see {@link com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DTResponseActivity.}
      * This method  return Date the Range of Dt
      */
 
@@ -12452,6 +12452,38 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         else
             return false;
 
+    }
+
+    /**
+     * delete data from DTResponseTable for unfinished data entry
+     * coded by shuvo
+     */
+
+    public void deleteFromDTResponseTable(String DTBasic, String AdmCountryCode,String AdmDonorCode,String AdmAwardCode
+    ,String AdmProgCode,String DTEnuID,int DTRSeq){
+        SQLServerSyntaxGenerator syntaxGenerator = new SQLServerSyntaxGenerator();
+
+        syntaxGenerator.setDTBasic(DTBasic);
+        syntaxGenerator.setAdmCountryCode(AdmCountryCode);
+        syntaxGenerator.setAdmDonorCode(AdmDonorCode);
+        syntaxGenerator.setAdmAwardCode(AdmAwardCode);
+        syntaxGenerator.setAdmProgCode(AdmProgCode);
+        syntaxGenerator.setDTEnuID(DTEnuID);
+        syntaxGenerator.setDTRSeq(String.valueOf(DTRSeq));
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String where = DT_BASIC_COL + " = '" + DTBasic + "' " +
+                " AND " + COUNTRY_CODE_COL + " = '" + AdmCountryCode + "' " +
+                " AND " + DONOR_CODE_COL + " = '" + AdmDonorCode + "' " +
+                " AND " + AWARD_CODE_COL + " = '" + AdmAwardCode + "' " +
+                " AND " + PROGRAM_CODE_COL + " = '" + AdmProgCode + "' " +
+                " AND " + DT_ENU_ID_COL + " = '" + DTEnuID + "' " +
+                " AND " + DT_R_SEQ_COL + " = " + DTRSeq;
+
+        db.delete(DT_RESPONSE_TABLE,where,null);
+
+        insertIntoUploadTable(syntaxGenerator.deleteFromDTResponseTable());
     }
 
 

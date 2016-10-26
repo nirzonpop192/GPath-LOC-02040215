@@ -36,6 +36,7 @@ import com.siddiquinoor.restclient.data_model.DTResponseTableDataModel;
 import com.siddiquinoor.restclient.data_model.DT_ATableDataModel;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
+import com.siddiquinoor.restclient.manager.sqlsyntax.SQLServerSyntaxGenerator;
 import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.views.adapters.DynamicDataIndexDataModel;
 import com.siddiquinoor.restclient.views.adapters.DynamicTableQuesDataModel;
@@ -255,20 +256,44 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     private void goToHomeWithDialog() {
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
-
+        /**
+         *  in unfinished condition if anyone press home button
+         *  shuvo
+         */
         // Setting Dialog Title
         alertDialog.setTitle("Home");
 
+        String massage;
+        if (mQusIndex < totalQuestion){
+
+            massage=" If you want to continue, previous questions will be deleted!!";
+            // On pressing Settings button
+            alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    deleteFromResponseTable();
+                    goToMainActivity((Activity) mContext);
+
+                }
+            });
+
+        }else{
+
+            massage=" Do you want to go to Home page ?";
+
+
+            // On pressing Settings button
+            alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+
+                    goToMainActivity((Activity) mContext);
+
+                }
+            });
+
+        }
+
         // Setting Dialog Message
-        alertDialog.setMessage(" Do you want to go to Home page ?");
-
-        // On pressing Settings button
-        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                goToMainActivity((Activity) mContext);
-
-            }
-        });
+        alertDialog.setMessage(massage);
 
         // on pressing cancel button
         alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -279,6 +304,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
         // Showing Alert Message
         alertDialog.show();
+
+
     }
 
     /**
@@ -579,6 +606,25 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
  * todo set upload syntax variable here
  */
 
+        SQLServerSyntaxGenerator syntaxGenerator = new SQLServerSyntaxGenerator();
+
+        syntaxGenerator.setDTBasic(DTBasic);
+        syntaxGenerator.setAdmCountryCode(AdmCountryCode);
+        syntaxGenerator.setAdmDonorCode(AdmDonorCode);
+        syntaxGenerator.setAdmAwardCode(AdmAwardCode);
+        syntaxGenerator.setAdmProgCode(AdmProgCode);
+        syntaxGenerator.setDTEnuID(DTEnuID);
+        syntaxGenerator.setDTQCode(DTQCode);
+        syntaxGenerator.setDTACode(DTACode);
+        syntaxGenerator.setDTRSeq(String.valueOf(mDTRSeq));
+        syntaxGenerator.setDTAValue(DTAValue);
+        syntaxGenerator.setProgActivityCode(ProgActivityCode);
+        syntaxGenerator.setDTTimeString(DTTimeString);
+        syntaxGenerator.setOpMode(OpMode);
+        syntaxGenerator.setOpMonthCode(OpMonthCode);
+        syntaxGenerator.setDataType(DataType);
+
+
         /**
          * main execute
          * Insert or update operation
@@ -587,16 +633,45 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             sqlH.updateIntoDTResponseTable(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode,
                     String.valueOf(DTRSeq), DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
             // TODO: 10/4/2016 upload syntax
+
+            sqlH.insertIntoUploadTable(syntaxGenerator.updateIntoDTResponseTable());
         } else {
 
             sqlH.addIntoDTResponseTable(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode,
                     String.valueOf(DTRSeq), DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
             // TODO: 10/4/2016  upload syntax
+
+            sqlH.insertIntoUploadTable(syntaxGenerator.insertIntoDTResponseTable());
         }
 
 
     }
 
+
+    /**
+     * delete the unfinished data form the
+     */
+
+    private void deleteFromResponseTable() {
+
+
+        String DTBasic = dyIndex.getDtBasicCode();
+        String AdmCountryCode = dyIndex.getcCode();
+        String AdmDonorCode = dyIndex.getDonorCode();
+        String AdmAwardCode = dyIndex.getAwardCode();
+        String AdmProgCode = dyIndex.getProgramCode();
+        String DTEnuID = getStaffID();
+        int DTRSeq = mDTRSeq ;
+        /**
+         * todo total Question no is less then index no
+         */
+
+
+        if (DTBasic != null && AdmCountryCode != null && AdmDonorCode != null && AdmAwardCode != null
+                && AdmProgCode != null && DTEnuID != null && DTRSeq != 0){
+            sqlH.deleteFromDTResponseTable(DTBasic,AdmCountryCode,AdmDonorCode,AdmAwardCode,AdmProgCode,DTEnuID,DTRSeq);
+        }
+}
     /**
      * Load the next Ques
      */
@@ -623,17 +698,26 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             if (mQusIndex == totalQuestion - 1) {
                 addStopIconButton(btnNextQues);
 
+
+
             }
 
 
-        } else if (mQusIndex >= totalQuestion) {
+        } else if (mQusIndex == totalQuestion) {
             Toast.makeText(mContext, "Saved Successfully", Toast.LENGTH_SHORT).show();
 
            /* Bellow Code eneed the*/
             Log.d("ICON", "before set icon  ");
             addStopIconButton(btnNextQues);
-            mQusIndex = totalQuestion - 1;
+            //mQusIndex = totalQuestion - 1;
 
+        } else if (mQusIndex > totalQuestion){
+
+            /**
+             * set icon next button
+             */
+            removeStopIconNextButton(btnNextQues);
+            initialWithFirstQues();
         }
     }
 
@@ -647,10 +731,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             DynamicTableQuesDataModel nextQus = loadPreviousQuestion(dyIndex.getDtBasicCode(), mQusIndex);
 
             displayQuestion(nextQus);
-            /**
-             * set previous  state of next button
-             */
-            removeStopIconNextButton(btnNextQues);
+
+
             if (mQusIndex == 0)
                 addStopIconButton(btnPreviousQus);
 

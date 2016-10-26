@@ -5366,4 +5366,200 @@ public class SQLServerSyntaxGenerator {
 // TODO: 10/6/2016  add syntax t for the Insert method for DTResponse table
     // TODO: 10/6/2016  add syntax for the update method for the DTResponse  Table 
     // TODO: 10/6/2016  add syntax for the delete method for the  DTResponse  Table
+
+    private String DTBasic;
+
+    public String getAdmProgCode() {
+        return AdmProgCode;
+    }
+
+    public void setAdmProgCode(String admProgCode) {
+        AdmProgCode = checkStringNull(admProgCode);
+    }
+
+    private String AdmProgCode;
+    private String DTEnuID;
+
+    public String getDTAValue() {
+        return DTAValue;
+    }
+
+    public void setDTAValue(String DTAValue) {
+        this.DTAValue = checkStringNull(DTAValue);
+    }
+
+    private String DTAValue;
+
+    public String getDTRSeq() {
+        return DTRSeq;
+    }
+
+    public void setDTRSeq(String DTRSeq) {
+        this.DTRSeq =checkIntNull(DTRSeq) ;
+    }
+
+    private String DTRSeq;
+
+    public String getDTACode() {
+        return DTACode;
+    }
+
+    public void setDTACode(String DTACode) {
+        this.DTACode = checkStringNull(DTACode);
+    }
+
+    private String DTACode;
+
+    public String getDTBasic() {
+        return DTBasic;
+    }
+
+    public void setDTBasic(String DTBasic) {
+        this.DTBasic = checkStringNull(DTBasic);
+    }
+
+    public String getDTEnuID() {
+        return DTEnuID;
+    }
+
+    public void setDTEnuID(String DTEnuID) {
+        this.DTEnuID = checkStringNull(DTEnuID);
+    }
+
+    public String getProgActivityCode() {
+        return ProgActivityCode;
+    }
+
+    public void setProgActivityCode(String progActivityCode) {
+        ProgActivityCode = checkStringNull(progActivityCode);
+    }
+
+    private String ProgActivityCode;
+
+    public String getDTTimeString() {
+        return DTTimeString;
+    }
+
+    public void setDTTimeString(String DTTimeString) {
+        this.DTTimeString = checkStringNull(DTTimeString);
+    }
+
+    private String DTTimeString;
+
+    public String getOpMode() {
+        return OpMode;
+    }
+
+    public void setOpMode(String opMode) {
+        OpMode = checkStringNull(opMode);
+    }
+
+    private String OpMode;
+
+    public String getDataType() {
+        return DataType;
+    }
+
+    public void setDataType(String dataType) {
+        DataType = checkStringNull(dataType);
+    }
+
+    private String DataType;
+
+    public String getCompleteness() {
+        return Completeness;
+    }
+
+    public void setCompleteness(String completeness) {
+        Completeness = checkStringNull(completeness);
+    }
+
+    private String Completeness;
+
+    public String getDTQCode() {
+        return DTQCode;
+    }
+
+    public void setDTQCode(String DTQCode) {
+        this.DTQCode = checkStringNull(DTQCode);
+    }
+
+    private String DTQCode;
+
+
+    public String insertIntoDTResponseTable()
+    {
+        return " INSERT INTO [dbo].[DTResponseTable]  " +
+                "            ([DTBasic]  " +
+                "            ,[AdmCountryCode]  " +
+                "            ,[AdmDonorCode]  " +
+                "            ,[AdmAwardCode]  " +
+                "            ,[AdmProgCode]  " +
+                "            ,[DTEnuID]  " +
+                "            ,[DTQCode]  " +
+                "            ,[DTACode]  " +
+                "            ,[DTRSeq]  " +
+                "            ,[DTAValue]  " +
+                "            ,[ProgActivityCode]  " +
+                "            ,[DTTimeString]  " +
+                "            ,[OpMode]  " +
+                "            ,[OpMonthCode]  " +
+                "            ,[DataType]  " +
+                "            ,[Completeness]) " +
+                "    VALUES " +
+                "            ( " +getDTBasic()+
+                "            , " +getAdmCountryCode()+
+                "            , " + getAdmDonorCode()+
+                "            , " +getAdmAwardCode()+
+                "            , " + getAdmProgCode()+
+                "            , " +getDTEnuID()+
+                "            , " +getDTQCode()+
+                "            , " +getDTACode()+
+                "            , " +getDTRSeq()+
+                "            , " +getDTAValue()+
+                "            , " +getProgActivityCode()+
+                "            , " +getDTTimeString()+
+                "            , " +getOpMode()+
+                "            , " +getOpMonthCode()+
+                "            , " +getDataType()+
+                "            ," + getCompleteness()+")";
+    }
+
+
+    public String updateIntoDTResponseTable(){
+        return " UPDATE [dbo].[DTResponseTable]\n" +
+                "        SET "+
+                "        [DTAValue] = " + getDTAValue()+
+                "        ,[ProgActivityCode] =  " + getProgActivityCode()+
+                "        ,[DTTimeString] =  " + getDTTimeString()+
+                "        ,[OpMode] =  " + getOpMode()+
+                "        ,[OpMonthCode] =  " + getOpMonthCode()+
+                "        ,[DataType] = " + getDataType()+
+                "        WHERE DTBasic =  " + getDTBasic()
+                + "          AND AdmCountryCode =  " + getAdmCountryCode()
+                + "          AND AdmDonorCode =  " + getAdmDonorCode()
+                + "          AND AdmAwardCode =  " + getAdmAwardCode()
+                + "          AND AdmProgCode =  " + getAdmProgCode()
+                + "          AND DTEnuID =  " + getDTEnuID()
+                + "          AND DTQCode =  " + getDTQCode()
+                + "          AND DTACode =  " + getDTACode()
+                + "          AND DTRSeq =  " + getDTRSeq();
+
+
+
+
+    }
+
+    public String deleteFromDTResponseTable(){
+        return
+                "DELETE FROM [dbo].[DTResponseTable]\n" +
+                "       WHERE DTBasic =  " + getDTBasic()
+                        + "          AND AdmCountryCode =  " + getAdmCountryCode()
+                        + "          AND AdmDonorCode =  " + getAdmDonorCode()
+                        + "          AND AdmAwardCode =  " + getAdmAwardCode()
+                        + "          AND AdmProgCode =  " + getAdmProgCode()
+                        + "          AND DTEnuID =  " + getDTEnuID()
+                        + "          AND DTRSeq =  " + getDTRSeq();
+    }
+
 }

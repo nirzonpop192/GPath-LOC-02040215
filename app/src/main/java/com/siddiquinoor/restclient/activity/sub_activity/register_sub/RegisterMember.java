@@ -1,10 +1,12 @@
 package com.siddiquinoor.restclient.activity.sub_activity.register_sub;
 
+import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,11 +45,9 @@ import java.util.Locale;
 public class RegisterMember extends BaseActivity {
 
     private static final String TAG = RegisterMember.class.getSimpleName();
-    //    private static final int LACTATING_MOTHER = 2;
-//    private static final int CHILD_UNDER_2 = 3;
-//    private static final int CHILD_ABOVE_2 = 4;
+
     Context mContext;
-//    private static final int PREGNANT_WOMEN = 1;
+
 
     private Button btnReg;
     private Button btnRecords;
@@ -133,23 +133,9 @@ public class RegisterMember extends BaseActivity {
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
     private Calendar calendar = Calendar.getInstance();
     private Calendar calendarChildDOB = Calendar.getInstance();
-    // private TextView lmpDate;
-    // private TextView childDOB;
 
-
-    // private Spinner spAward;
-    // private Spinner spProgram;
-    //  private Spinner spCriteria;
-
-    //private String strAward;
-    // private String idAward;
-    // private String idProgram;
-    // private String strProgram;
-    // private String idCriteria;
-    //private String strCriteria;
     private Button btn_Clear;
 
-    //private LinearLayout llAssignController;
 
     private ADNotificationManager dialog;
     private boolean isMemberSaved;
@@ -270,10 +256,7 @@ public class RegisterMember extends BaseActivity {
         pID = cIntent.getIntExtra("pID", 20);
         /** For Liberia Member Designe test
          * */
-      /*  if(str_c_code.equals("0004")){
-            lLayoutMalawiContainer.setVisibility(View.GONE);
-        }
-        else*/
+
         // no need The Liberia Containnner
         lLayoutLiberiaContainer.setVisibility(View.GONE);
 
@@ -354,29 +337,29 @@ public class RegisterMember extends BaseActivity {
 
         Intent dIntent = new Intent(RegisterMember.this, ViewRecordDetail.class);
 
-        String temp_country_name = data.getCountryName();     // spinner as 01/02
-        String district = data.getDistrict();     // spinner as 01/02
-        String upazilla = data.getUpazilla();     // spinner as 01/02
-        String unit = data.getUnitName();     // spinner as 01/02
-        String village = data.getVillage();      // spinner as 01/02
+        String temp_country_name = data.getCountryName();
+        String district = data.getDistrict();
+        String upazilla = data.getUpazilla();
+        String unit = data.getUnitName();
+        String village = data.getVillage();
 
-        String country_code = data.getCountryCode();        // spinner
-        String districtCode = data.getDistrictCode();     // spinner as 01/02
-        String upazillaCode = data.getUpazillaCode();     // spinner as 01/02
-        String unitCode = data.getUnitNameCode();     // spinner as 01/02
-        String villageCode = data.getVillageCode();      // spinner as 01/02
+        String country_code = data.getCountryCode();
+        String districtCode = data.getDistrictCode();
+        String upazillaCode = data.getUpazillaCode();
+        String unitCode = data.getUnitNameCode();
+        String villageCode = data.getVillageCode();
 
 
         String regID = districtCode + upazillaCode + unitCode + villageCode + data.getRegID();
         String regDate = data.getRegDate();
         String personName = data.getName();
-        String sex = data.getSex();          // spinner as 'M'/'F'
+        String sex = data.getSex();
         String hhSize = data.getHhSize();
         String latitude = data.getLatitude();
         String longitude = data.getLongitude();
         String agLand = data.getAgLand();
-        String vstatus = data.getvStatus();      // spinner as 'Y'/'N'
-        String mstatus = data.getmStatus();      // spinner as 'Y'/'N'
+        String vstatus = data.getvStatus();
+        String mstatus = data.getmStatus();
         String entryBy = data.getEntryBy();
         String entryDate = data.getEntryDate();
         String vsla_group = data.getVSLAGroup();
@@ -433,77 +416,6 @@ public class RegisterMember extends BaseActivity {
         //  btnSaveMember.setText("Save");
     }
 
-    private void viewReference() {
-        tvHHID = (TextView) findViewById(R.id.tv_Mreg_HH_id);
-        tvHHName = (TextView) findViewById(R.id.tv_reg_mem_hh_name);
-        tvMemID = (TextView) findViewById(R.id.mem_id);   // Member ID
-        txtMemName = (EditText) findViewById(R.id.mem_name);
-        spGender = (Spinner) findViewById(R.id.spGender);
-        txtAge = (EditText) findViewById(R.id.mem_age);
-        spRelation = (Spinner) findViewById(R.id.spRelation);
-
-
-        lLayoutLiberiaContainer = (LinearLayout) findViewById(R.id.lLayout_LiberiaViews); // to control layout
-        lLayoutMalawiContainer = (LinearLayout) findViewById(R.id.lLayout_malawiViews); // to control layout
-
-        btnSaveMember = (Button) findViewById(R.id.btnSaveMember);
-        btngotToAssigne = (Button) findViewById(R.id.btn_mem_gotoAssign);
-        btn_mem_gotoHhDetails = (Button) findViewById(R.id.btn_mem_gotoHouseholdDetails);
-        btn_Clear = (Button) findViewById(R.id.btnClearMember);
-        btnHome = (Button) findViewById(R.id.btnHomeFooter);
-        btnReg = (Button) findViewById(R.id.btnRegisterFooter);
-        setHomeButtonIcon();
-        setHhDetailsIcon();
-        setSaveButtonIcon();
-        setButtonClare();
-        setAddMember();
-        setAssigne();
-    }
-
-    private void setHhDetailsIcon() {
-        btn_mem_gotoHhDetails.setText("");
-        Drawable imageHome = getResources().getDrawable(R.drawable.hh_details);
-        btn_mem_gotoHhDetails.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        btn_mem_gotoHhDetails.setPadding(180, 5, 180, 5);
-    }
-
-    private void setHomeButtonIcon() {
-        btnHome.setText("");
-        Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
-        btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        btnHome.setPadding(180, 5, 180, 5);
-    }
-
-    private void setSaveButtonIcon() {
-        btnSaveMember.setText("");
-        Drawable imageSave = getResources().getDrawable(R.drawable.save_b);
-        btnSaveMember.setCompoundDrawablesRelativeWithIntrinsicBounds(imageSave, null, null, null);
-        btnSaveMember.setPadding(180, 5, 180, 5);
-
-    }
-
-
-    private void setButtonClare() {
-        btn_Clear.setText("");
-        Drawable imageClear = getResources().getDrawable(R.drawable.clear_b);
-        btn_Clear.setCompoundDrawablesRelativeWithIntrinsicBounds(imageClear, null, null, null);
-        btn_Clear.setPadding(180, 5, 180, 5);
-    }
-
-    private void setAddMember() {
-        btnReg.setText("");
-        Drawable addMemberIcon = getResources().getDrawable(R.drawable.registration);
-        btnReg.setCompoundDrawablesRelativeWithIntrinsicBounds(addMemberIcon, null, null, null);
-        btnReg.setPadding(180, 5, 180, 5);
-    }
-
-
-    private void setAssigne() {
-        btngotToAssigne.setText("");
-        Drawable addMemberIcon = getResources().getDrawable(R.drawable.assign);
-        btngotToAssigne.setCompoundDrawablesRelativeWithIntrinsicBounds(addMemberIcon, null, null, null);
-        btngotToAssigne.setPadding(180, 5, 180, 5);
-    }
 
 
     private void goToAssigneNewMehod() {
@@ -529,31 +441,31 @@ public class RegisterMember extends BaseActivity {
         String lmp_date = "";// lmpDate.getText().toString();
         String child_dob = "";// childDOB.getText().toString();
 
-        boolean invalid = false;
+      //  boolean invalid = false;
 
 
         // TODO :: Need to check valid date range collect from online
 
         if (str_hhMemID.equals("")) {
-            invalid = true;
+
             Toast.makeText(getApplicationContext(), "Enter any ID", Toast.LENGTH_SHORT).show();
         } else if (str_MemName.equals("")) {
-            invalid = true;
+
             dialog.showErrorDialog(mContext, "Missing Name. Enter Person Name");
-            //Toast.makeText(getApplicationContext(), "Enter Person Name", Toast.LENGTH_SHORT).show();
+
         } else if (str_age.equals("")) {
-            invalid = true;
+
             dialog.showErrorDialog(mContext, "Missing Age. Please select a Age");
-            //Toast.makeText(getApplicationContext(), "Please select a Age", Toast.LENGTH_SHORT).show();
+
         } else if (Integer.valueOf(str_age) > 99) {
-            invalid = true;
+
             dialog.showErrorDialog(mContext, "Age exceeds allowable range.");
-            //Toast.makeText(getApplicationContext(), "Please select a Age", Toast.LENGTH_SHORT).show();
+
         } else if (str_relation.equals("Select Relation")) {
-            invalid = true;
+
             dialog.showErrorDialog(mContext, "Missing relation. Please select a Relation");
-            // Toast.makeText(getApplicationContext(), "Missing relation. Please select a Relation", Toast.LENGTH_SHORT).show();
-        } else if (invalid == false) {
+
+        } else {
             if (is_edit) {
                 // Update Member data
                 sqlH.editMalawiMemberData(mID, str_MemName, str_gender, idRelation, lmp_date, child_dob, str_elderly, str_disabled, str_age, pID);
@@ -589,34 +501,7 @@ public class RegisterMember extends BaseActivity {
                 sqlH.insertIntoUploadTable(malawiMember.insertIntoRegNMemberForMalawi());
                 Toast.makeText(getApplicationContext(), "save successfully", Toast.LENGTH_LONG).show();
                 setIsMemberSaved(true);
-                //  this.finish();
 
-                      /*  if(!redirect.isEmpty()){
-                            goToNextPage(str_c_code, str_districtCode, str_upazillaCode, str_unionCode, str_villageCode, str_hhID, redirect);
-                        }else{
-                            Intent dIntent = new Intent(RegisterMember.this, RegisterMember.class);
-
-                            dIntent.putExtra("redirect", "");
-                            dIntent.putExtra("str_hhID", str_hhID);
-                            dIntent.putExtra("str_hhName", str_hhName);
-                            dIntent.putExtra("str_c_code", str_c_code);
-
-                            dIntent.putExtra("str_district", str_district);
-                            dIntent.putExtra("str_upazilla", str_upazilla);
-                            dIntent.putExtra("str_union", str_union);
-                            dIntent.putExtra("str_village", str_village);
-
-                            dIntent.putExtra("str_districtCode", str_districtCode);
-                            dIntent.putExtra("str_upazillaCode", str_upazillaCode);
-                            dIntent.putExtra("str_unionCode", str_unionCode);
-                            dIntent.putExtra("str_villageCode", str_villageCode);
-
-
-                            dIntent.putExtra("str_entry_by", str_entry_by);
-                            dIntent.putExtra("str_entry_date", str_entry_date);
-
-                            startActivity(dIntent);
-                        }*/
             }
         }
         /**
@@ -821,277 +706,96 @@ public class RegisterMember extends BaseActivity {
             updateChildDOBDate();
         }
     };
-/*
-    *//**
-     * LOAD :: Award
-     *//*
-    private void loadAward(final String idCountry) {
-
-        int position = 0;
-        String criteria = " WHERE " + SQLiteHandler.ADM_AWARD_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "='" + idCountry + "'";
-        // Spinner Drop down elements for District
-        List<SpinnerHelper> listAward = sqlH.getListAndID(SQLiteHandler.ADM_AWARD_TABLE, criteria, null, false);
-
-        // Creating adapter for spinner
-        ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listAward);
-        // Drop down layout style
-        dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
-        // attaching data adapter to spinner
-        spAward.setAdapter(dataAdapter);
 
 
-        if (idAward != null) {
-            for (int i = 0; i < spAward.getCount(); i++) {
-                String award = spAward.getItemAtPosition(i).toString();
-                if (award.equals(strAward)) {
-                    position = i;
-                }
-            }
-            spAward.setSelection(position);
-        }
 
-       *//* if (!idDist.isEmpty()) {
-            spDistrict.setSelection( getSpinnerIndex(spDistrict,idDist) );
-        }*//*
+    private void viewReference() {
+        tvHHID = (TextView) findViewById(R.id.tv_Mreg_HH_id);
+        tvHHName = (TextView) findViewById(R.id.tv_reg_mem_hh_name);
+        tvMemID = (TextView) findViewById(R.id.mem_id);   // Member ID
+        txtMemName = (EditText) findViewById(R.id.mem_name);
+        spGender = (Spinner) findViewById(R.id.spGender);
+        txtAge = (EditText) findViewById(R.id.mem_age);
+        spRelation = (Spinner) findViewById(R.id.spRelation);
+        lLayoutLiberiaContainer = (LinearLayout) findViewById(R.id.lLayout_LiberiaViews); // to control layout
+        lLayoutMalawiContainer = (LinearLayout) findViewById(R.id.lLayout_malawiViews); // to control layout
 
-        spAward.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                strAward = ((SpinnerHelper) spAward.getSelectedItem()).getValue();
-                idAward = ((SpinnerHelper) spAward.getSelectedItem()).getId();
+        btnSaveMember = (Button) findViewById(R.id.btnSaveMember);
+        btngotToAssigne = (Button) findViewById(R.id.btn_mem_gotoAssign);
+        btn_mem_gotoHhDetails = (Button) findViewById(R.id.btn_mem_gotoHouseholdDetails);
+        btn_Clear = (Button) findViewById(R.id.btnClearMember);
+        btnHome = (Button) findViewById(R.id.btnHomeFooter);
+        btnReg = (Button) findViewById(R.id.btnRegisterFooter);
 
-                // String donorId=idAward.substring(0,1)
-                idDonor = idAward.substring(0, 2);
-                loadProgram(idAward.substring(2), idDonor, idCountry);
-                Log.d(TAG, "idAward : " + idAward + " donor id :" + idAward.substring(0, 2));
-                //Log.d(TAG, "ID is: " + idDist);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-    } // end Load Award Spinner
+    }
 
 
-    *//**
-     * LOAD :: Program
-     *//*
-    private void loadProgram(final String idAward, final String donorId, final String idcCode) {
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
 
-        int position = 0;
-        String criteria = " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + idAward + "'"
-                + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorId + "'";
-        // Spinner Drop down elements for District
-        List<SpinnerHelper> listProgram = sqlH.getListAndID(SQLiteHandler.COUNTRY_PROGRAM_TABLE, criteria, null, false);
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
 
-        // Creating adapter for spinner
-        ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listProgram);
-        // Drop down layout style
-        dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
-        // attaching data adapter to spinner
-        spProgram.setAdapter(dataAdapter);
+        setHomeButtonIcon();
+        setHhDetailsIcon();
+        setSaveButtonIcon();
+        setButtonClearIcon();
+        setRegNHouseHoldIcon();
+        setAssignIcon();
+    }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setHhDetailsIcon() {
+        btn_mem_gotoHhDetails.setText("");
+        Drawable imageHHDetails = getResources().getDrawable(R.drawable.hh_details);
+        btn_mem_gotoHhDetails.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHHDetails, null, null, null);
+        setPaddingButton(mContext, imageHHDetails, btnHome);
+    }
 
-        if (idProgram != null) {
-            for (int i = 0; i < spProgram.getCount(); i++) {
-                String prog = spProgram.getItemAtPosition(i).toString();
-                if (prog.equals(strProgram)) {
-                    position = i;
-                }
-            }
-            spProgram.setSelection(position);
-        }
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setHomeButtonIcon() {
+        btnHome.setText("");
+        Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
+        btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
+        setPaddingButton(mContext, imageHome, btnHome);
+    }
 
-       *//* if (!idDist.isEmpty()) {
-            spDistrict.setSelection( getSpinnerIndex(spDistrict,idDist) );
-        }*//*
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setSaveButtonIcon() {
+        btnSaveMember.setText("");
+        Drawable imageSave = getResources().getDrawable(R.drawable.save_b);
+        btnSaveMember.setCompoundDrawablesRelativeWithIntrinsicBounds(imageSave, null, null, null);
+        setPaddingButton(mContext, imageSave, btnSaveMember);
+    }
 
-        spProgram.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                strProgram = ((SpinnerHelper) spProgram.getSelectedItem()).getValue();
-                idProgram = ((SpinnerHelper) spProgram.getSelectedItem()).getId();
-                // if(idProgram.length()>2){
-                Log.d(TAG, "load Prog data " + idProgram);
-                // loadDistributionListView(idcCode,donorId,idAward,idCriteria.substring(0,3),idCriteria.substring(3));
-                //  }
-                //  loadProgram(idAward);
-                loadCriteria(idAward, donorId, idProgram, idcCode);
-                // Log.d(TAG, "idCriteria : " + idProgram);
-                //Log.d(TAG, "ID is: " + idDist);
-            }
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setButtonClearIcon() {
+        btn_Clear.setText("");
+        Drawable imageClear = getResources().getDrawable(R.drawable.clear_b);
+        btn_Clear.setCompoundDrawablesRelativeWithIntrinsicBounds(imageClear, null, null, null);
+        setPaddingButton(mContext, imageClear, btn_Clear);
+    }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setRegNHouseHoldIcon() {
+        btnReg.setText("");
+        Drawable addMemberIcon = getResources().getDrawable(R.drawable.registration);
+        btnReg.setCompoundDrawablesRelativeWithIntrinsicBounds(addMemberIcon, null, null, null);
+        setPaddingButton(mContext, addMemberIcon, btnReg);
+    }
 
-            }
-        });
-
-    } // end Load Spinner
-
-
-    *//**
-     * LOAD :: Criteria
-     *//*
-    private void loadCriteria(final String idAward, final String donorId, final String idProgram, final String cCode) {
-
-        int position = 0;
-        String criteria = " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + idAward + "'"
-                + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorId + "'"
-                + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL + "='" + idProgram + "'";
-        // Spinner Drop down elements for District
-        List<SpinnerHelper> listCriteria = sqlH.getListAndID(SQLiteHandler.SERVICE_MASTER_TABLE, criteria, null, false);
-
-        // Creating adapter for spinner
-        ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listCriteria);
-        // Drop down layout style
-        dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
-        // attaching data adapter to spinner
-        spCriteria.setAdapter(dataAdapter);
-
-
-        if (idCriteria != null) {
-            for (int i = 0; i < spCriteria.getCount(); i++) {
-                String award = spCriteria.getItemAtPosition(i).toString();
-                if (award.equals(strCriteria)) {
-                    position = i;
-                }
-            }
-            spCriteria.setSelection(position);
-        }
-
-       *//* if (!idDist.isEmpty()) {
-            spDistrict.setSelection( getSpinnerIndex(spDistrict,idDist) );
-        }*//*
-
-        spCriteria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                strCriteria = ((SpinnerHelper) spCriteria.getSelectedItem()).getValue();
-                idCriteria = ((SpinnerHelper) spCriteria.getSelectedItem()).getId();
-
-
-                if (Integer.parseInt(idCriteria) > 0) {
-                    // Enable
-                 *//*   loadVillage(cCode,idAward,donorId, idProgram,idCriteria );// idService=idCriteria
-
-                    if (ext_village != null) {
-                        for (int i = 0; i < spVillage.getCount(); i++) {
-                            String village = spVillage.getItemAtPosition(i).toString();
-                            if (village.equals(ext_village_name)) {
-                                positionVillage = i;
-                            }
-                        }
-                        spVillage.setSelection(positionVillage);
-                    }*//*
-                }
-
-                // if(idCriteria.length()>2){
-                Log.d(TAG, "load idCriteria data " + idCriteria + " Critrei a name " + strCriteria);
-                // loadDistributionListView(idcCode,donorId,idAward,idCriteria.substring(0,3),idCriteria.substring(3));
-                // }
-                //  loadProgram(idAward);
-                // Log.d(TAG, "idCriteria : " + idCriteria);
-                //Log.d(TAG, "ID is: " + idDist);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-    } // end Load Spinner
-
-
-    */
-
-    /*    private void goToAssigneOldMethod() {
-        boolean invalid;
-        if (isMemberSaved() || is_edit) {
-            boolean generalCase = false;
-            Intent iGotoAssignePage = new Intent();// catagories
-            switch (Integer.parseInt(idCriteria)) {
-                case PREGNANT_WOMEN:
-
-                    if (str_gender.equals("F")) {
-                        str_age = txtAge.getText().toString();
-                        if (Integer.parseInt(str_age) >= 12 && Integer.parseInt(str_age) <= 40)
-                            iGotoAssignePage = new Intent(mContext, AssignPW.class);
-
-                        else dialog.showErrorDialog(mContext, "Invalid age specified.");
-                    } else {
-                        invalid = true;
-                        iGotoAssignePage = new Intent(mContext, RegisterMember.class);
-                        dialog.showErrorDialog(mContext, "Invalid identification");
-                    }
-                    break;
-                case LACTATING_MOTHER:
-                    if (str_gender.equals("F"))
-                        iGotoAssignePage = new Intent(mContext, AssignLM.class);
-                    else {
-                        invalid = true;
-                        iGotoAssignePage = new Intent(mContext, RegisterMember.class);
-                        dialog.showErrorDialog(mContext, "Invalid identification");
-                    }
-                    break;
-
-                case CHILD_UNDER_2:
-                    iGotoAssignePage = new Intent(mContext, AssignCU2.class);
-                    break;
-
-                case CHILD_ABOVE_2:
-                    iGotoAssignePage = new Intent(mContext, AssignCA2.class);
-                    break;
-                default:
-                    iGotoAssignePage = new Intent(mContext, RegisterMember.class);
-                    generalCase = true;
-                    break;
-            }
-
-            String hhMemID = tvMemID.getText().toString();
-            String hhMemName = txtMemName.getText().toString();
-            iGotoAssignePage.putExtra("directory", TAG);
-            iGotoAssignePage.putExtra("ASS_HHID", str_hhID);
-            iGotoAssignePage.putExtra("ASS_HHNAME", str_hhName);
-            iGotoAssignePage.putExtra("ASS_MMID", hhMemID);
-            iGotoAssignePage.putExtra("ASS_MMNAME", hhMemName);
-            iGotoAssignePage.putExtra("ASS_Criteria", strCriteria);
-            iGotoAssignePage.putExtra("ASS_Mem_Age", txtAge.getText().toString());
-            iGotoAssignePage.putExtra("ASS_C_Code", str_c_code);
-            iGotoAssignePage.putExtra("ASS_DistrictCode", str_districtCode);
-            iGotoAssignePage.putExtra("ASS_UpazillaCode", str_upazillaCode);
-            iGotoAssignePage.putExtra("ASS_UnitCode", str_unionCode);
-            iGotoAssignePage.putExtra("ASS_VillageCode", str_villageCode);
-            iGotoAssignePage.putExtra("ASS_Award_code", idAward.substring(0, 2));
-            iGotoAssignePage.putExtra("ASS_Award_Str", strAward);
-            iGotoAssignePage.putExtra("ASS_Program_code", idProgram);
-            iGotoAssignePage.putExtra("ASS_Program_Str", strProgram);
-            iGotoAssignePage.putExtra("ASS_Service_code", idCriteria);
-            iGotoAssignePage.putExtra("ASS_Criteria_Str", strCriteria);
-            iGotoAssignePage.putExtra("ASS_EntryBy", str_entry_by);
-            iGotoAssignePage.putExtra("ASS_EntryDate", str_entry_date);
-            iGotoAssignePage.putExtra("ASS_Donor_code", idDonor);
-            iGotoAssignePage.putExtra("ASS_Gender", gender);
-            iGotoAssignePage.putExtra("ASS_IdRelation", idRelation);
-            iGotoAssignePage.putExtra("ASS_StrRelation", str_relation);
-            iGotoAssignePage.putExtra("ASS_StrDistrict", str_district);
-            iGotoAssignePage.putExtra("ASS_StrUpzalla", str_upazilla);
-            iGotoAssignePage.putExtra("ASS_StrUnit", str_union);
-
-
-              *//*  Intent intentAddnewHH = new Intent(getApplicationContext(), AssignActivity.class);
-                intentAddnewHH.putExtra("ID_COUNTRY", str_c_code);*//*
-            if (generalCase) finish();
-
-            startActivity(iGotoAssignePage);
-        } else {
-            dialog.showInfromDialog(mContext, "Alert", " the member is not Saved yet");
-        }
-    }*/
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setAssignIcon() {
+        btngotToAssigne.setText("");
+        Drawable assignIcon = getResources().getDrawable(R.drawable.assign);
+        btngotToAssigne.setCompoundDrawablesRelativeWithIntrinsicBounds(assignIcon, null, null, null);
+        setPaddingButton(mContext, assignIcon, btngotToAssigne);
+    }
 
 
 }

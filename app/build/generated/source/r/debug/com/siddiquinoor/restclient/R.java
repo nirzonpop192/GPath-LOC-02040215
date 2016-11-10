@@ -2285,7 +2285,7 @@ containing a value of this type.
         public static final int btnCardRequest=0x7f0f01d9;
         public static final int btnClean=0x7f0f01d0;
         public static final int btnClearData=0x7f0f0445;
-        public static final int btnClearMember=0x7f0f0428;
+        public static final int btnClearMember=0x7f0f0427;
         public static final int btnDistribution=0x7f0f01db;
         public static final int btnDynamicData=0x7f0f01de;
         public static final int btnExit=0x7f0f01d1;
@@ -2301,7 +2301,7 @@ containing a value of this type.
         public static final int btnRegistrationRecode=0x7f0f0446;
         public static final int btnRestoreDB=0x7f0f01e6;
         public static final int btnSaveData=0x7f0f0444;
-        public static final int btnSaveMember=0x7f0f0427;
+        public static final int btnSaveMember=0x7f0f0428;
         public static final int btnService=0x7f0f01da;
         public static final int btnSummaryReport=0x7f0f01dd;
         public static final int btnSyncRecord=0x7f0f01e4;
@@ -2339,8 +2339,8 @@ containing a value of this type.
         public static final int btn_liberia_goAssignePage_uct=0x7f0f00f3;
         public static final int btn_location_search=0x7f0f0248;
         public static final int btn_mal_goAssignePage_ddr=0x7f0f00b7;
-        public static final int btn_mem_gotoAssign=0x7f0f0425;
-        public static final int btn_mem_gotoHouseholdDetails=0x7f0f0426;
+        public static final int btn_mem_gotoAssign=0x7f0f0426;
+        public static final int btn_mem_gotoHouseholdDetails=0x7f0f0425;
         public static final int btn_memberSearch=0x7f0f01c3;
         public static final int btn_saveDelivary_CR=0x7f0f0149;
         public static final int btn_saveRequest_CR=0x7f0f0148;

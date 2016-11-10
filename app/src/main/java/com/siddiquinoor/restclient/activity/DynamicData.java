@@ -89,15 +89,7 @@ public class DynamicData extends BaseActivity {
         btnSummary.setVisibility(View.GONE);
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private void addIconHomeButton() {
-        btnHome.setText("");
-        Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
-        btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        setPaddingButton(mContext, imageHome, btnHome);
 
-
-    }
 
     /**
      * calling getWidth() and getHeight() too early:
@@ -110,6 +102,18 @@ public class DynamicData extends BaseActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         addIconHomeButton();
+    }
+
+
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void addIconHomeButton() {
+        btnHome.setText("");
+        Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
+        btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
+        setPaddingButton(mContext, imageHome, btnHome);
+
+
     }
 
     private DynamicDataIndexAdapter adapter = null;

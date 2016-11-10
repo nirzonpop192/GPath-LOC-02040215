@@ -280,8 +280,9 @@ public class AssignAGR extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (tvRegDate.getText().toString().equals("")) {
-                    erroDialog.showErrorDialog(mContext, "Please Enter Registration Date for further Save Process");
+                    erroDialog.showErrorDialog(mContext, "Enter Registration Date ");
                 } else {
+                    // TODO: 11/6/2016  add Registration Validation  in all assigne  
                     saveAssignBeneficiary();
                 }
 
@@ -373,7 +374,7 @@ public class AssignAGR extends BaseActivity {
                 if (idGroupCat.length() > 2)
                     loadGroup(cCode, donorCode, awardCode, progCode, idGroupCat);
 
-                Log.d(TAG, "Group Category ,idGroupCat:" + idGroupCat + " strGroupCat : " + strGroupCat);
+//                Log.d(TAG, "Group Category ,idGroupCat:" + idGroupCat + " strGroupCat : " + strGroupCat);
 
             }
 
@@ -435,10 +436,8 @@ public class AssignAGR extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 strGroup = ((SpinnerHelper) spGroup.getSelectedItem()).getValue();
                 idGroup = ((SpinnerHelper) spGroup.getSelectedItem()).getId();
-                Log.d("HEO", "Group  ,idGroup:" + idGroup + " strGroup : " + strGroup);
+
                 if (idGroup.length() > 2) {
-
-
                     loadActiveStatus();
 
                 }
@@ -641,8 +640,8 @@ public class AssignAGR extends BaseActivity {
 
 
     /**
-     * @date: 2015-11-23
-     * @description: calculate the the graduation date
+     * @since : 2015-11-23
+     *  calculate the the graduation date
      */
     private String calculateGRDDate(String cCode, String donorCode, String awardCode) {
         return sqlH.getAwardGraduation(cCode, donorCode, awardCode);
@@ -692,7 +691,7 @@ public class AssignAGR extends BaseActivity {
             } else {
                 String entryBy = getStaffID();
                 assignDataModel.setEntryBy(entryBy);
-                //TODO: Have TO Set GRD Date After Discussing with Anaconda
+                //TODO: Have TO Set GRD Date After Discussing with Anaconda, Nazmul Kalam,Haouwar pula
                 assignDataModel.setGrdCode(sqlH.getGRDDefaultActiveReason(assignDataModel.getProgram_code(), assignDataModel.getService_code()));
 
                 assignDataModel.setRegNDate(tvRegDate.getText().toString());
@@ -893,7 +892,7 @@ public class AssignAGR extends BaseActivity {
     /**
      * @param b boolean
      * @return String type Data 'N' or 'Y'
-     * @description check switch value N/Y
+     *  check switch value N/Y
      */
     public String toggleButtonCheck(boolean b) {
 

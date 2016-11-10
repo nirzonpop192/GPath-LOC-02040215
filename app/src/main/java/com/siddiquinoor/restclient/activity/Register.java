@@ -10,11 +10,13 @@ package com.siddiquinoor.restclient.activity;
  * @since 1.0
  */
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -50,7 +52,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class Register extends BaseActivity implements View.OnClickListener {
+public class Register extends BaseActivity  {
 
     private static final String TAG = Register.class.getSimpleName();
 
@@ -156,7 +158,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
         viewReference();
 
-        reDOB.setOnClickListener(this);
+
 
         // Getting GPS data
         // check if GPS enabled
@@ -176,32 +178,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
             //gps.showSettingsAlert();
         }
 
-
-        btnSaveData.setOnClickListener(this);
-        btnRegistrationRecode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!idVill.equals("00")) {
-                    Intent intent = new Intent(Register.this, RegisterRecordView.class);
-                    intent.putExtra("village_code", idCountry + idDist + idUP + idUnion + idVill);
-                    intent.putExtra("village", strVillage);
-                    finish();
-                    startActivity(intent);
-                }
-
-
-            }
-        });
-
-        //   btnAddMember.setText("ADD MEMBER");
-        btnAddMember.setOnClickListener(this);
-
-
-        btnClear.setOnClickListener(this);
-
-
-        btnHome.setOnClickListener(this);
-
+setListener();
 
         regId.setEnabled(false);
 
@@ -280,6 +257,78 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
     }
 
+    private void setListener() {
+
+        btnSaveData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (idDist.equals("00"))
+                    dialog.showErrorDialog(mContext, "Select " + tv_LayR1Label.getText());
+                else if (idUP.equals("00"))
+                    dialog.showErrorDialog(mContext, "Select " + tv_LayR2Label.getText());
+                else if (idUnion.equals("00"))
+                    dialog.showErrorDialog(mContext, "Select " + tv_LayR3Label.getText());
+                else if (idVill.equals("00"))
+                    dialog.showErrorDialog(mContext, "Select " + tv_LayR4Label.getText());
+                // // TODO: 11/6/2016  add Address vilation 
+                else {
+                    saveData();
+                }
+
+            }
+        });
+        btnRegistrationRecode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!idVill.equals("00")) {
+                    Intent intent = new Intent(Register.this, RegisterRecordView.class);
+                    intent.putExtra("village_code", idCountry + idDist + idUP + idUnion + idVill);
+                    intent.putExtra("village", strVillage);
+                    finish();
+                    startActivity(intent);
+                }
+
+
+            }
+        });
+
+        //   btnAddMember.setText("ADD MEMBER");
+        btnAddMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoTheMemberRegistrationPage();
+            }
+        });
+
+
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearData();
+            }
+        });
+
+        reDOB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDate();
+            }
+        });
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMainActivity((Activity) mContext);
+            }
+        });
+
+
+    }
+
+
+
+
+
     private void viewReference() {
         // spCountry = (Spinner) findViewById(R.id.spCountry);
         spDistrict = (Spinner) findViewById(R.id.spDistrict);
@@ -306,7 +355,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         btnHome = (Button) findViewById(R.id.btnHomeFooter);
         spWRank = (Spinner) findViewById(R.id.spWRank);
 
-        /** NEWLY ADDED 8//23//16**/
+
         chkBxHhCat1 = (CheckBox) findViewById(R.id.cb_hh_type_1);
         chkBxHhCat2 = (CheckBox) findViewById(R.id.cb_hh_type_2);
         chkBxHhCat3 = (CheckBox) findViewById(R.id.cb_hh_type_3);
@@ -315,11 +364,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         chkBxHhCat6 = (CheckBox) findViewById(R.id.cb_hh_type_6);
 
 
-        setSaveButtonIcon();
-        setRegistrationRecodeIcon();
-        setHomeButtonIcon();
-        setButtonClare();
-        setAddMember();
+
     }
 
     private void setLayRLable() {
@@ -340,55 +385,6 @@ public class Register extends BaseActivity implements View.OnClickListener {
     }
 
 
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-
-            case R.id.btnRegisterFooter:
-
-                gotoTheMemberRegistrationPage();
-
-
-                break;
-
-            case R.id.btnClearData:
-
-                clearData();
-
-
-                break;
-
-            case R.id.btnHomeFooter:
-
-
-                goToMainActivity((Activity) mContext);
-                break;
-
-            case R.id.btnSaveData:
-
-
-                if (idDist.equals("00"))
-                    dialog.showErrorDialog(mContext, "Select " + tv_LayR1Label.getText());
-                else if (idUP.equals("00"))
-                    dialog.showErrorDialog(mContext, "Select " + tv_LayR2Label.getText());
-                else if (idUnion.equals("00"))
-                    dialog.showErrorDialog(mContext, "Select " + tv_LayR3Label.getText());
-                else if (idVill.equals("00"))
-                    dialog.showErrorDialog(mContext, "Select " + tv_LayR4Label.getText());
-                else {
-                    saveData();
-                }
-
-
-                break;
-
-            case R.id.hh_reg_date:
-                setDate();
-                break;
-
-        } // End Switch
-    }
 
     private void gotoTheMemberRegistrationPage() {
         finish();
@@ -427,19 +423,13 @@ public class Register extends BaseActivity implements View.OnClickListener {
     private void clearData() {
         txtLatitude.setText(String.valueOf(latitude));
         txtLongitude.setText(String.valueOf(longitude));
-
-
         // regId.setText("");
         regName.setText("");
         reDOB.setText("");
-
         hhSize.setText("");
         txtLatitude.setText("");
         txtLongitude.setText("");
-
         VSLA_group.setText("");
-
-
         loadMStatus();
         loadVStatus();
         loadWRank();
@@ -448,7 +438,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
         regId.setText(next_id);
 
         btnAddMember.setEnabled(false);
-        btnAddMember.setTextColor(getResources().getColor(R.color.input_label_hint));
+      //  btnAddMember.setTextColor(getResources().getColor(R.color.input_label_hint));
 
 
         chkBxHhCat1.setChecked(false);
@@ -543,22 +533,11 @@ public class Register extends BaseActivity implements View.OnClickListener {
         malaiwTable.setHhVSLAGroup(v_group);
         malaiwTable.setRegNAddLookupCode(idAddress);
         malaiwTable.setWRank(idWRank);
-
         malaiwTable.setLTp2Hectres(lTp2Hectres);
-
-
         malaiwTable.setLT3mFoodStock(lT3mFoodStock);
-
-
         malaiwTable.setNoMajorCommonLiveStock(noMajorCommonLiveStock);
-
-
         malaiwTable.setReceiveNoFormalWages(receiveNoFormalWages);
-
-
         malaiwTable.setNoIGA(noIGA);
-
-
         malaiwTable.setRelyPiecework(relyPiecework);
 
         if (!strLatitude.matches("")) {
@@ -625,10 +604,10 @@ public class Register extends BaseActivity implements View.OnClickListener {
                 dialog.showErrorDialog(mContext, " Invalid HH Size. Save attempt denied.");
             } else if (spGender.equals("")) {
                 //   invalid = true;
-                Toast.makeText(getApplicationContext(), "Please select a Gender", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Select a Gender", Toast.LENGTH_SHORT).show();
             } else if (regDate.equals("")) {
                 //    invalid = true;
-                Toast.makeText(getApplicationContext(), "Please select a Date", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Select a Date", Toast.LENGTH_SHORT).show();
             } else try {
 
                 HashMap<String, String> dateRange = sqlH.getDateRange(idCountry);
@@ -685,15 +664,10 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
         criteria = SQLiteQuery.getDistrictJoinQuery(idCountry);
 
-
-        // Spinner Drop down elements for District
         List<SpinnerHelper> listDistrict = sqlH.getListAndID(SQLiteHandler.DISTRICT_TABLE, criteria, cCode, false);
-
-        // Creating adapter for spinner
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listDistrict);
-        // Drop down layout style
         dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
-        // attaching data adapter to spinner
+
         spDistrict.setAdapter(dataAdapter);
 
 
@@ -707,17 +681,14 @@ public class Register extends BaseActivity implements View.OnClickListener {
             spDistrict.setSelection(position);
         }
 
-       /* if (!idDist.isEmpty()) {
-            spDistrict.setSelection( getSpinnerIndex(spDistrict,idDist) );
-        }*/
+
 
         spDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //strDistrict =  ( (SpinnerHelper) spDistrict.getSelectedItem () ).getId();
+
                 strDistrict = ((SpinnerHelper) spDistrict.getSelectedItem()).getValue();
                 idDist = ((SpinnerHelper) spDistrict.getSelectedItem()).getId();
-
                 loadLayR2List(idCountry);
             }
 
@@ -737,14 +708,12 @@ public class Register extends BaseActivity implements View.OnClickListener {
 
         criteria = SQLiteQuery.getUpzillaJoinQuery(idCountry, idDist);
 
-        // Spinner Drop down elements for District
-        List<SpinnerHelper> listUpazilla = sqlH.getListAndID(sqlH.UPAZILLA_TABLE, criteria, cCode, false);
 
-        // Creating adapter for spinner
+        List<SpinnerHelper> listUpazilla = sqlH.getListAndID(SQLiteHandler.UPAZILLA_TABLE, criteria, cCode, false);
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listUpazilla);
-        // Drop down layout style
+
         dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
-        // attaching data adapter to spinner
+
         spUpazilla.setAdapter(dataAdapter);
 
 
@@ -763,13 +732,13 @@ public class Register extends BaseActivity implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                //strUpazilla = parent.getItemAtPosition(position).toString();
+
                 strUpazilla = ((SpinnerHelper) spUpazilla.getSelectedItem()).getValue();
                 idUP = ((SpinnerHelper) spUpazilla.getSelectedItem()).getId();
 
                 loadLayR3List(idCountry);
 
-                //Log.d(TAG, "Upazilla selected: " + strUpazilla);
+
             }
 
             @Override
@@ -786,14 +755,13 @@ public class Register extends BaseActivity implements View.OnClickListener {
     private void loadLayR3List(String cCode) {
 
         criteria = SQLiteQuery.getUnionJoinQuery(idCountry, idDist, idUP);
-        // Spinner Drop down elements for District
-        List<SpinnerHelper> listUnion = sqlH.getListAndID(sqlH.UNIT_TABLE, criteria, cCode, false);
 
-        // Creating adapter for spinner
+        List<SpinnerHelper> listUnion = sqlH.getListAndID(SQLiteHandler.UNIT_TABLE, criteria, cCode, false);
+
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listUnion);
-        // Drop down layout style
+
         dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
-        // attaching data adapter to spinner
+
         spUnion.setAdapter(dataAdapter);
 
 
@@ -812,13 +780,13 @@ public class Register extends BaseActivity implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                //strUpazilla = parent.getItemAtPosition(position).toString();
+
                 strUnion = ((SpinnerHelper) spUnion.getSelectedItem()).getValue();
                 idUnion = ((SpinnerHelper) spUnion.getSelectedItem()).getId();
 
                 loadLayR4List(idCountry);
 
-                //Log.d(TAG, "Upazilla selected: " + strUpazilla);
+
             }
 
             @Override
@@ -834,14 +802,14 @@ public class Register extends BaseActivity implements View.OnClickListener {
     private void loadLayR4List(String cCode) {
 
         criteria = SQLiteQuery.getVillageJoinQuery(idCountry, idDist, idUP, idUnion);
-        // Spinner Drop down elements for District
-        List<SpinnerHelper> listVillage = sqlH.getListAndID(sqlH.VILLAGE_TABLE, criteria, cCode, false);
 
-        // Creating adapter for spinner
+        List<SpinnerHelper> listVillage = sqlH.getListAndID(SQLiteHandler.VILLAGE_TABLE, criteria, cCode, false);
+
+
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listVillage);
-        // Drop down layout style
+
         dataAdapter.setDropDownViewResource(R.layout.spinner_layout);
-        // attaching data adapter to spinner
+
         spVillage.setAdapter(dataAdapter);
 
         if (idVill != null) {
@@ -1065,7 +1033,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
                 pos = 2;
 
             spMStatus.setSelection(pos);
-            // spMStatus.setSelection(getSpinnerIndex(spMStatus, strMStatus));
+
         }
         spMStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1089,9 +1057,7 @@ public class Register extends BaseActivity implements View.OnClickListener {
     }
 
 
-/*    public void onDestroy() {
-        super.onDestroy();
-    }*/
+
 
     /**
      * DatePicker code Start
@@ -1114,43 +1080,61 @@ public class Register extends BaseActivity implements View.OnClickListener {
             updateDate();
         }
     };
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setHomeButtonIcon() {
         btnHome.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.home_b);
         btnHome.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        btnHome.setPadding(180, 5, 180, 5);
+        setPaddingButton(mContext, imageHome, btnHome);
     }
 
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setRegistrationRecodeIcon() {
         btnRegistrationRecode.setText("");
-        Drawable imageSave = getResources().getDrawable(R.drawable.search_20_20);
-        btnRegistrationRecode.setCompoundDrawablesRelativeWithIntrinsicBounds(imageSave, null, null, null);
-        btnRegistrationRecode.setPadding(100, 5, 100, 5);
-
+        Drawable search = getResources().getDrawable(R.drawable.search_20_20);
+        btnRegistrationRecode.setCompoundDrawablesRelativeWithIntrinsicBounds(search, null, null, null);
+        setPaddingButton(mContext, search, btnRegistrationRecode);
     }
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setSaveButtonIcon() {
         btnSaveData.setText("");
         Drawable imageSave = getResources().getDrawable(R.drawable.save_b);
         btnSaveData.setCompoundDrawablesRelativeWithIntrinsicBounds(imageSave, null, null, null);
-        btnSaveData.setPadding(100, 5, 100, 5);
-
+        setPaddingButton(mContext, imageSave, btnSaveData);
     }
 
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setButtonClare() {
         btnClear.setText("");
         Drawable imageClear = getResources().getDrawable(R.drawable.clear_b);
         btnClear.setCompoundDrawablesRelativeWithIntrinsicBounds(imageClear, null, null, null);
-        btnClear.setPadding(100, 5, 100, 5);
+        setPaddingButton(mContext, imageClear, btnClear);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setAddMember() {
         btnAddMember.setText("");
         Drawable addMemberIcon = getResources().getDrawable(R.drawable.add_member);
         btnAddMember.setCompoundDrawablesRelativeWithIntrinsicBounds(addMemberIcon, null, null, null);
-        btnAddMember.setPadding(180, 5, 180, 5);
+        setPaddingButton(mContext, addMemberIcon, btnAddMember);
     }
+
+
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        setSaveButtonIcon();
+        setRegistrationRecodeIcon();
+        setHomeButtonIcon();
+        setButtonClare();
+        setAddMember();
+    }
+
 }

@@ -1540,10 +1540,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * this method will need ed in Assigne Main Page also
      *
-     * @param cCode
-     * @param donorCode
-     * @param awardCode
-     * @param disttCode
+     * @param cCode Country Code
+     * @param donorCode Donor Code
+     * @param awardCode Award Code
+     * @param disttCode LayR1 Code
      * @param upCode
      * @param unCode
      * @param vCode
@@ -8974,10 +8974,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         }
 
 
-        if (!grpCode.isEmpty()) {
+        if (grpCode!=null) {
+            if (!grpCode.isEmpty()) {
             Integer temp_id = Integer.parseInt(grpCode);
             temp_id++;
-            grpCode = temp_id.toString();
+            grpCode = temp_id.toString();}
         } else {
             grpCode = "1";
         }
@@ -8989,14 +8990,14 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         String padded_id = "";
 
         if (grp_len > 0) {
-            int pad = 3 - grp_len;
+            int pad = 4 - grp_len;
 
             for (int i = 0; i < pad; i++) {
                 padded_id += "0";
             }
             padded_id = padded_id + next_grp_id;
         } else {
-            padded_id = "001";
+            padded_id = "0001";
         }
 
         return padded_id;

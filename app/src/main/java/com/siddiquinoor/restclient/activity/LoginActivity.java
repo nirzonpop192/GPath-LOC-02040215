@@ -189,7 +189,6 @@ public class LoginActivity extends BaseActivity {
 
                             try {
                                 dialog.dismiss();
-
                                 db.deleteUsersWithSelectedVillage();
 
                             } catch (Exception e) {
@@ -260,6 +259,11 @@ public class LoginActivity extends BaseActivity {
                                 pDialog.setCancelable(false);
                                 pDialog.setMessage("Loading..");
                                 pDialog.show();
+                                /**
+                                 * for selecting operation Mood
+                                 *
+                                 * shuvo
+                                 */
                                 getOperationModeAlert(user_name, password);
                             }
 

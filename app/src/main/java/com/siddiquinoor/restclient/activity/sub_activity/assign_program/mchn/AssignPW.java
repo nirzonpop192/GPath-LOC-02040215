@@ -485,7 +485,7 @@ public class AssignPW extends BaseActivity {
 
                         /**
                          * insert into local device for local device*/
-                        long id = sqlH.addMemberDataInto_RegNAsgProgSrv(assignMem);
+                        sqlH.addMemberDataInto_RegNAsgProgSrv(assignMem);
 
                         /**
                          * insert for server */

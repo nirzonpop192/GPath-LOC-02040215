@@ -819,7 +819,7 @@ int id btnAssinge 0x7f0f01d7
 int id btnCardRequest 0x7f0f01d9
 int id btnClean 0x7f0f01d0
 int id btnClearData 0x7f0f0445
-int id btnClearMember 0x7f0f0428
+int id btnClearMember 0x7f0f0427
 int id btnDistribution 0x7f0f01db
 int id btnDynamicData 0x7f0f01de
 int id btnExit 0x7f0f01d1
@@ -835,7 +835,7 @@ int id btnRegisterFooter 0x7f0f0378
 int id btnRegistrationRecode 0x7f0f0446
 int id btnRestoreDB 0x7f0f01e6
 int id btnSaveData 0x7f0f0444
-int id btnSaveMember 0x7f0f0427
+int id btnSaveMember 0x7f0f0428
 int id btnService 0x7f0f01da
 int id btnSummaryReport 0x7f0f01dd
 int id btnSyncRecord 0x7f0f01e4
@@ -873,8 +873,8 @@ int id btn_liberia_goAssignePage_cfw 0x7f0f00e0
 int id btn_liberia_goAssignePage_uct 0x7f0f00f3
 int id btn_location_search 0x7f0f0248
 int id btn_mal_goAssignePage_ddr 0x7f0f00b7
-int id btn_mem_gotoAssign 0x7f0f0425
-int id btn_mem_gotoHouseholdDetails 0x7f0f0426
+int id btn_mem_gotoAssign 0x7f0f0426
+int id btn_mem_gotoHouseholdDetails 0x7f0f0425
 int id btn_memberSearch 0x7f0f01c3
 int id btn_saveDelivary_CR 0x7f0f0149
 int id btn_saveRequest_CR 0x7f0f0148

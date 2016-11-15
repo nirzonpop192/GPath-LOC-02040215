@@ -317,10 +317,10 @@ public class GraduationActivity extends BaseActivity implements AdapterView.OnIt
                         " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
                         + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'"
                         + " AND " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL + "='" + programCode + "'"
-                        + " AND regAss." + SQLiteHandler.DISTRICT_CODE_COL
-                        + " || '' || regAss." + SQLiteHandler.UPCODE_COL
-                        + " || '' || regAss." + SQLiteHandler.UCODE_COL
-                        + " || '' || regAss." + SQLiteHandler.VCODE_COL
+                        + " AND regAss." + SQLiteHandler.LAY_R1_LIST_CODE_COL
+                        + " || '' || regAss." + SQLiteHandler.LAY_R2_LIST_CODE_COL
+                        + " || '' || regAss." + SQLiteHandler.LAY_R3_LIST_CODE_COL
+                        + " || '' || regAss." + SQLiteHandler.LAY_R4_LIST_CODE_COL
                         + " || '' || regAss." + SQLiteHandler.HHID_COL
                         + " || '' || regAss." + SQLiteHandler.HH_MEM_ID + " = '" + memId + "'";
         // Spinner Drop down elements for District

@@ -466,10 +466,10 @@ public class OldAssignActivity extends BaseActivity implements AdapterView.OnIte
         //  String criteria=" WHERE "+SQLiteHandler.COUNTRY_CODE_COL +" = '"+idcCode+"' ";
         String criteria = " AS v   INNER JOIN " + SQLiteHandler.SELECTED_VILLAGE_TABLE + " as S "
                 + " ON S." + SQLiteHandler.LAYER_CODE_COL + "  = v." + SQLiteHandler.COUNTRY_CODE_COL
-                + " ||''|| v." + SQLiteHandler.DISTRICT_CODE_COL
-                + " ||''|| v." + SQLiteHandler.UPCODE_COL
-                + " ||''|| v." + SQLiteHandler.UCODE_COL
-                + " ||''|| v." + SQLiteHandler.VCODE_COL + " ";
+                + " ||''|| v." + SQLiteHandler.LAY_R1_LIST_CODE_COL
+                + " ||''|| v." + SQLiteHandler.LAY_R2_LIST_CODE_COL
+                + " ||''|| v." + SQLiteHandler.LAY_R3_LIST_CODE_COL
+                + " ||''|| v." + SQLiteHandler.LAY_R4_LIST_CODE_COL + " ";
 
         List<SpinnerHelper> listVillage = sqlH.getListAndID(SQLiteHandler.VILLAGE_TABLE_FOR_ASSIGN, criteria, idCountry, false);
 

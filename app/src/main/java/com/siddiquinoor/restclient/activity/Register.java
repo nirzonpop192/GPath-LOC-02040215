@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -178,7 +179,7 @@ public class Register extends BaseActivity  {
             //gps.showSettingsAlert();
         }
 
-setListener();
+        setListener();
 
         regId.setEnabled(false);
 
@@ -262,7 +263,7 @@ setListener();
         btnSaveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(mContext, idAddress + "", Toast.LENGTH_SHORT).show();
                 if (idDist.equals("00"))
                     dialog.showErrorDialog(mContext, "Select " + tv_LayR1Label.getText());
                 else if (idUP.equals("00"))
@@ -271,7 +272,11 @@ setListener();
                     dialog.showErrorDialog(mContext, "Select " + tv_LayR3Label.getText());
                 else if (idVill.equals("00"))
                     dialog.showErrorDialog(mContext, "Select " + tv_LayR4Label.getText());
-                // // TODO: 11/6/2016  add Address vilation 
+
+                else if (idAddress.equals("00")){
+                    dialog.showErrorDialog(mContext,"Select Address please");
+                }
+
                 else {
                     saveData();
                 }
@@ -396,6 +401,7 @@ setListener();
             e.printStackTrace();
         }
         registeredId = regId.getText().toString();
+
         name = regName.getText().toString();
 
         Intent dIntent = new Intent(Register.this, RegisterMember.class);
@@ -600,14 +606,16 @@ setListener();
                 dialog.showErrorDialog(mContext, "HH Head hhName already exists. Save attempt denied.");
             } // same id Exits in db than it will not insert
 
+            else if (regDate.equals("")) {
+                //    invalid = true;
+                Toast.makeText(getApplicationContext(), "Select a Date", Toast.LENGTH_SHORT).show();
+            }
+
             else if (HHSize.equals("")) {
                 dialog.showErrorDialog(mContext, " Invalid HH Size. Save attempt denied.");
             } else if (spGender.equals("")) {
                 //   invalid = true;
                 Toast.makeText(getApplicationContext(), "Select a Gender", Toast.LENGTH_SHORT).show();
-            } else if (regDate.equals("")) {
-                //    invalid = true;
-                Toast.makeText(getApplicationContext(), "Select a Date", Toast.LENGTH_SHORT).show();
             } else try {
 
                 HashMap<String, String> dateRange = sqlH.getDateRange(idCountry);
@@ -983,7 +991,6 @@ setListener();
             }
             spAddress.setSelection(position);
         }
-
 
         spAddress.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

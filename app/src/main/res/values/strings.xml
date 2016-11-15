@@ -130,6 +130,17 @@
         <item>Voucher</item>
     </string-array>
 
+
+
+    <!-- Log in Mode food type-->
+    <string-array name="arrflagType">
+
+        <item>Food</item>
+        <item>Non Food</item>
+        <item>Cash</item>
+        <item>Voucher</item>
+    </string-array>
+
     <!-- Summary -->
     <string name="txt_title_summaryOp">Summary Option</string>
 
@@ -183,7 +194,7 @@
     <string name="srv_summary_TitleLable">Service Summary </string>
     <string name="tv_criteria">Criteria</string>
     <!-- LOG IN SCREEN -->
-    <string name="log_in_version_lable">GPath-LOC-02040233</string>
+    <string name="log_in_version_lable">GPath-LIV-02040234</string>
     <!-- VERSION -->
 
 

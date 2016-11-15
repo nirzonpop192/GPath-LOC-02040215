@@ -592,7 +592,7 @@ public class RegisterLiberia extends BaseActivity implements View.OnClickListene
 
 
         String criteria = " WHERE " + SQLiteHandler.HOUSE_HOLD_CATEGORY_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "' ";
-        //GROUP BY "+sqlH.DISTRICT_TABLE+"."+sqlH.DISTRICT_CODE_COL+", "+sqlH.DISTRICT_TABLE+"."+sqlH.DISTRICT_NAME_COL;
+        //GROUP BY "+sqlH.DISTRICT_TABLE+"."+sqlH.LAY_R1_LIST_CODE_COL+", "+sqlH.DISTRICT_TABLE+"."+sqlH.DISTRICT_NAME_COL;
         // Spinner Drop down elements for District
         List<SpinnerHelper> listHHCategory = sqlH.getListAndID(SQLiteHandler.HOUSE_HOLD_CATEGORY_TABLE, criteria, cCode, false);
 

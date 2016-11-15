@@ -1,5 +1,8 @@
 package com.siddiquinoor.restclient.activity;
-
+/**
+ * @autor : Faisal Mohammad
+ * This activity is used to navigate the member to Assign an graduation module
+ */
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -17,17 +20,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.siddiquinoor.restclient.R;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
-import com.siddiquinoor.restclient.utils.CalculationPadding;
 import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.views.adapters.AssignDataModel;
-import com.siddiquinoor.restclient.views.adapters.AssignDataModelAdapter;
 import com.siddiquinoor.restclient.views.adapters.MemberSearchAdapter;
 import com.siddiquinoor.restclient.views.helper.SpinnerHelper;
 
@@ -166,16 +166,16 @@ public class MemberSearchPage extends BaseActivity {
         String criteria = " AS v   INNER JOIN " + SQLiteHandler.SELECTED_VILLAGE_TABLE + " as S "
                 + " ON S." + SQLiteHandler.COUNTRY_CODE_COL
 
-                + " ||''|| S." + SQLiteHandler.DISTRICT_CODE_COL
-                + " ||''|| S." + SQLiteHandler.UPCODE_COL
-                + " ||''|| S." + SQLiteHandler.UCODE_COL
-                + " ||''|| S." + SQLiteHandler.VCODE_COL
+                + " ||''|| S." + SQLiteHandler.LAY_R1_LIST_CODE_COL
+                + " ||''|| S." + SQLiteHandler.LAY_R2_LIST_CODE_COL
+                + " ||''|| S." + SQLiteHandler.LAY_R3_LIST_CODE_COL
+                + " ||''|| S." + SQLiteHandler.LAY_R4_LIST_CODE_COL
 
                 + "  = v." + SQLiteHandler.COUNTRY_CODE_COL
-                + " ||''|| v." + SQLiteHandler.DISTRICT_CODE_COL
-                + " ||''|| v." + SQLiteHandler.UPCODE_COL
-                + " ||''|| v." + SQLiteHandler.UCODE_COL
-                + " ||''|| v." + SQLiteHandler.VCODE_COL + " ";
+                + " ||''|| v." + SQLiteHandler.LAY_R1_LIST_CODE_COL
+                + " ||''|| v." + SQLiteHandler.LAY_R2_LIST_CODE_COL
+                + " ||''|| v." + SQLiteHandler.LAY_R3_LIST_CODE_COL
+                + " ||''|| v." + SQLiteHandler.LAY_R4_LIST_CODE_COL + " ";
 
         List<SpinnerHelper> listVillage = sqlH.getListAndID(SQLiteHandler.VILLAGE_TABLE_FOR_ASSIGN, criteria, cCode, false);
 

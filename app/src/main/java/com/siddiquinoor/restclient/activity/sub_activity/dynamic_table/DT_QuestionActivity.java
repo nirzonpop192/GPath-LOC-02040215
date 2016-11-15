@@ -1205,7 +1205,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
             case GEO_LAYER_3:
 
-                udf = "SELECT " + SQLiteHandler.UNIT_TABLE + "." + SQLiteHandler.UCODE_COL
+                udf = "SELECT " + SQLiteHandler.UNIT_TABLE + "." + SQLiteHandler.LAY_R3_LIST_CODE_COL
                         + ", " + SQLiteHandler.UNIT_TABLE + "." + SQLiteHandler.UNITE_NAME_COL
                         + " FROM " + SQLiteHandler.UNIT_TABLE
                         + " WHERE " + SQLiteHandler.UNIT_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "'";
@@ -1214,7 +1214,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
                 break;
             case GEO_LAYER_2:
-                udf = "SELECT " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPCODE_COL
+                udf = "SELECT " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.LAY_R2_LIST_CODE_COL
                         + ", " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPZILLA_NAME_COL
                         + " FROM " + SQLiteHandler.UPAZILLA_TABLE
                         + " WHERE " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "'";
@@ -1225,7 +1225,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
             case GEO_LAYER_1:
 
-                udf = "SELECT " + SQLiteHandler.DISTRICT_TABLE + "." + SQLiteHandler.DISTRICT_CODE_COL
+                udf = "SELECT " + SQLiteHandler.DISTRICT_TABLE + "." + SQLiteHandler.LAY_R1_LIST_CODE_COL
                         + ", " + SQLiteHandler.DISTRICT_TABLE + "." + SQLiteHandler.DISTRICT_NAME_COL
                         + " FROM " + SQLiteHandler.DISTRICT_TABLE
                         + " WHERE " + SQLiteHandler.DISTRICT_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "'";
@@ -1235,7 +1235,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
             case GEO_LAYER_4:
 
-                udf = "SELECT " + SQLiteHandler.VILLAGE_TABLE + "." + SQLiteHandler.VCODE_COL
+                udf = "SELECT " + SQLiteHandler.VILLAGE_TABLE + "." + SQLiteHandler.LAY_R4_LIST_CODE_COL
                         + ", " + SQLiteHandler.VILLAGE_TABLE + "." + SQLiteHandler.VILLAGE_NAME_COL
                         + " FROM " + SQLiteHandler.VILLAGE_TABLE
                         + " WHERE " + SQLiteHandler.VILLAGE_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "'";

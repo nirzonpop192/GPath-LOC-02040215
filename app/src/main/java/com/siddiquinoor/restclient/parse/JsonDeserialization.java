@@ -1697,7 +1697,7 @@ public class JsonDeserialization {
 
                 EntryBy = "";
                 EntryDate = "";
-                LayR3Code = "";
+                LayR3Code = "0";
 
                 sqlH.addCommunityGroup(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, GrpCode, GrpName, GrpCatCode, LayR1Code, LayR2Code, LayR3Code, SrvCenterCode, EntryBy, EntryDate);
 

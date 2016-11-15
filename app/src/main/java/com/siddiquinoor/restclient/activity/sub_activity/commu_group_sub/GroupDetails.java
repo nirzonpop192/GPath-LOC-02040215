@@ -368,22 +368,22 @@ public class GroupDetails extends BaseActivity {
      */
     private void loadLayR3List(String cCode) {
         int position = 0;
-        String criteria = "SELECT  ut." + SQLiteHandler.DISTRICT_CODE_COL + " || '' || " + "ut." + SQLiteHandler.UPCODE_COL + " || '' || " + " ut." + SQLiteHandler.UCODE_COL
+        String criteria = "SELECT  ut." + SQLiteHandler.LAY_R1_LIST_CODE_COL + " || '' || " + "ut." + SQLiteHandler.LAY_R2_LIST_CODE_COL + " || '' || " + " ut." + SQLiteHandler.LAY_R3_LIST_CODE_COL
                 + ", " + "ut." + SQLiteHandler.UNITE_NAME_COL
                 + " FROM " + SQLiteHandler.UNIT_TABLE + " AS ut"
                 + " INNER JOIN "
 
                 + SQLiteHandler.STAFF_GEO_INFO_ACCESS_TABLE + " AS geo "
                 + " ON geo." + SQLiteHandler.COUNTRY_CODE_COL + " = " + "ut." + SQLiteHandler.COUNTRY_CODE_COL
-                + " AND geo." + SQLiteHandler.DISTRICT_CODE_COL + " = " + "ut." + SQLiteHandler.DISTRICT_CODE_COL
-                + " AND geo." + SQLiteHandler.UPCODE_COL + " = " + "ut." + SQLiteHandler.UPCODE_COL
-                + " AND geo." + SQLiteHandler.UCODE_COL + " = " + "ut." + SQLiteHandler.UCODE_COL
+                + " AND geo." + SQLiteHandler.LAY_R1_LIST_CODE_COL + " = " + "ut." + SQLiteHandler.LAY_R1_LIST_CODE_COL
+                + " AND geo." + SQLiteHandler.LAY_R2_LIST_CODE_COL + " = " + "ut." + SQLiteHandler.LAY_R2_LIST_CODE_COL
+                + " AND geo." + SQLiteHandler.LAY_R3_LIST_CODE_COL + " = " + "ut." + SQLiteHandler.LAY_R3_LIST_CODE_COL
                 + " WHERE " + "ut." + SQLiteHandler.COUNTRY_CODE_COL + "='" + cCode + "'"
                 + " AND ( geo." + SQLiteHandler.BTN_NEW_COL + " = 1 OR geo."
                 + SQLiteHandler.BTN_SAVE_COL + " = 1 OR geo."
                 + SQLiteHandler.BTN_DEL_COL + " ) ";
               /*  + " GROUP BY " +
-                SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPCODE_COL + ", " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPZILLA_NAME_COL;*/
+                SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.LAY_R2_LIST_CODE_COL + ", " + SQLiteHandler.UPAZILLA_TABLE + "." + SQLiteHandler.UPZILLA_NAME_COL;*/
         // SQLiteQuery.getUpzillaJoinQuery(idCountry, idDist);
 
 

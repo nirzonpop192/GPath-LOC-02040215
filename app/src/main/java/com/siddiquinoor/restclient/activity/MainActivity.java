@@ -1541,7 +1541,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                         db.addCountry(AdmCountryCode, AdmCountryName);
 
-                        Log.d(TAG, "Country Code : " + AdmCountryCode + " Country hhName : " + AdmCountryName);
+
                     }
                 }
                 publishProgress(++progressIncremental);
@@ -1559,7 +1559,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                         db.addValidDateRange(AdmCountryCode, StartDate, EndDate);
 
-//                        Log.d(TAG, "Country Code : " + AdmCountryCode + " Start Date : " + StartDate + " End Date: " + EndDate);
+
                     }
                 }
                 publishProgress(++progressIncremental);
@@ -1690,10 +1690,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         String ProgName = adm_program_master.getString(PROG_NAME);
                         String ProgShortName = adm_program_master.getString(PROG_SHORT_NAME);
                         String MultipleSrv = adm_program_master.getString(MULTIPLE_SRV);
-                        db.addProgram(AdmProgCode, AdmAwardCode, AdmDonorCode, ProgName, ProgShortName, MultipleSrv);
+                        db.addAdmProgramMaster(AdmProgCode, AdmAwardCode, AdmDonorCode, ProgName, ProgShortName, MultipleSrv);
 
 
-                        Log.d(TAG, "In Program master Table- AdmProgCode :" + AdmProgCode + " AdmDonorCode : " + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " ProgName : " + ProgName + " ProgShortName  : " + ProgShortName);
+
                     }
                 }
                 publishProgress(++progressIncremental);
@@ -1715,7 +1715,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         db.addServiceMaster(AdmProgCode, AdmSrvCode, AdmSrvName, AdmSrvShortName);
 
 
-                        Log.d(TAG, "In adm_service_master Table- AdmProgCode :" + AdmProgCode + " AdmSrvCode : " + AdmSrvCode + " AdmSrvName : " + AdmSrvName + " AdmSrvShortName : " + AdmSrvShortName);
+
                     }
                 }
                 publishProgress(++progressIncremental);
@@ -1743,7 +1743,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         db.addOpMonthFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode, OpCode, OpMonthCode, MonthLabel, StartDate, EndDate, UsaStartDate, UsaEndDate, Status);
 
 
-                        //       Log.d(TAG, "In adm_op_month program master Table- AdmCountryCode :" + AdmCountryCode + " AdmDonorCode : " + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " OpCode : " + OpCode + " OpMonthCode : " + OpMonthCode + " MonthLabel : " + MonthLabel + " StartDate : " + StartDate + " EndDate : " + EndDate + " Status : " + Status);
+
                     }
                 }
 
@@ -1981,7 +1981,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                         db.addVillage(AdmCountryCode, GeoLayRCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, LayR4ListName, HHCount);
 
-                        //  Log.d(TAG, "AdmCountryCode : " + AdmCountryCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode + " LayR4ListName: " + LayR4ListName+" HHCount : "+HHCount);
+
                     }
                 }
                 publishProgress(++progressIncremental);
@@ -2644,44 +2644,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
 
 
-                /*if (!jObj.isNull("community_grp_detail")) {
-                    JSONArray community_grp_detail_Datas = jObj.getJSONArray("community_grp_detail");
-                    size = community_grp_detail_Datas.length();
-                    for (int i = 0; i < size; i++) {
-                        JSONObject community_grp_detail_Data = community_grp_detail_Datas.getJSONObject(i);
-
-                        String AdmCountryCode = community_grp_detail_Data.getString("AdmCountryCode");
-                        String AdmDonorCode = community_grp_detail_Data.getString("AdmDonorCode");
-                        String AdmAwardCode = community_grp_detail_Data.getString("AdmAwardCode");
-                        String AdmProgCode = community_grp_detail_Data.getString("AdmProgCode");
-                        String GrpCode = community_grp_detail_Data.getString("GrpCode");
-                        String OrgCode = community_grp_detail_Data.getString("OrgCode");
-                        String StfCode = community_grp_detail_Data.getString("StfCode");
-                        String LandSizeUnderIrrigation = community_grp_detail_Data.getString("LandSizeUnderIrrigation");
-                        String IrrigationSystemUsed = community_grp_detail_Data.getString("IrrigationSystemUsed");
-                        String FundSupport = community_grp_detail_Data.getString("FundSupport");
-                        String ActiveStatus = community_grp_detail_Data.getString("ActiveStatus");
-                        String RepName = community_grp_detail_Data.getString("RepName");
-                        String RepPhoneNumber = community_grp_detail_Data.getString("RepPhoneNumber");
-                        String FormationDate = community_grp_detail_Data.getString("FormationDate");
-                        String TypeOfGroup = community_grp_detail_Data.getString("TypeOfGroup");
-                        String Status = community_grp_detail_Data.getString("Status");
-                        String EntryBy = community_grp_detail_Data.getString("EntryBy");
-                        String EntryDate = community_grp_detail_Data.getString("EntryDate");
-                        String ProjectNo = community_grp_detail_Data.getString("ProjectNo");
-                        String ProjectTitle = community_grp_detail_Data.getString("ProjectTitle");
-      *//*                  Log.d(TAG, "AdmCountryCode:" + AdmCountryCode + "AdmDonorCode:" + AdmDonorCode + "AdmAwardCode:" + AdmAwardCode +
-                                "AdmProgCode:" + AdmProgCode + "GrpCode:" + GrpCode + "OrgCode:" + OrgCode + "StfCode:" + StfCode + "LandSizeUnderIrrigation:" + LandSizeUnderIrrigation +
-                                "IrrigationSystemUsed:" + IrrigationSystemUsed + "FundSupport:" + FundSupport + "ActiveStatus:" + ActiveStatus +
-                                "RepName:" + RepName + "RepPhoneNumber:" + RepPhoneNumber + "FormationDate:" + FormationDate + "TypeOfGroup:" + TypeOfGroup +
-                                "Status" + Status + "EntryBy:" + EntryBy + "EntryDate:" + EntryDate + "ProjectNo:" + ProjectNo + "ProjectTitle:" + ProjectTitle);*//*
-                        db.addIntoGroupDetails(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, GrpCode,
-                                OrgCode, StfCode, LandSizeUnderIrrigation, IrrigationSystemUsed, FundSupport,
-                                ActiveStatus, RepName, RepPhoneNumber, FormationDate, TypeOfGroup, Status,
-                                EntryBy, EntryDate, ProjectNo, ProjectTitle);
-
-                    }
-                }*/
 
 
                 if (!jObj.isNull("staff_master")) {

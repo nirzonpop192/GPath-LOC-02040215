@@ -126,20 +126,20 @@ public class GroupSearchPage extends BaseActivity {
 
         int position = 0;
         String criteria = "SELECT " +
-                SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + " || '' || "
-                + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + " || '' || "
-                + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL + " AS criteriaId" + " , " +
-                SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_SHORT_NAME_COL + " AS Criteria" +
-                " FROM " + SQLiteHandler.PROGRAM_MASTER_TABLE
+                SQLiteHandler.ADM_PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + " || '' || "
+                + SQLiteHandler.ADM_PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + " || '' || "
+                + SQLiteHandler.ADM_PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL + " AS criteriaId" + " , " +
+                SQLiteHandler.ADM_PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_SHORT_NAME_COL + " AS Criteria" +
+                " FROM " + SQLiteHandler.ADM_PROGRAM_MASTER_TABLE
 
                 + " INNER JOIN " + SQLiteHandler.COUNTRY_PROGRAM_TABLE
-                + " ON " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + " = " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.DONOR_CODE_COL
-                + " AND " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + " = " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.AWARD_CODE_COL
-                + " AND " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL + " =  " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL
+                + " ON " + SQLiteHandler.ADM_PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + " = " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.DONOR_CODE_COL
+                + " AND " + SQLiteHandler.ADM_PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + " = " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.AWARD_CODE_COL
+                + " AND " + SQLiteHandler.ADM_PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL + " =  " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.PROGRAM_CODE_COL
 
                 + " WHERE " + SQLiteHandler.COUNTRY_PROGRAM_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "' "
 
-                + " GROUP BY " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_SHORT_NAME_COL
+                + " GROUP BY " + SQLiteHandler.ADM_PROGRAM_MASTER_TABLE + "." + SQLiteHandler.PROGRAM_SHORT_NAME_COL
                 + " ORDER BY Criteria ";
 
 

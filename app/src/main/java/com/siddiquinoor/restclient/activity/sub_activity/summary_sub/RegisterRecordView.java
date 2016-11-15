@@ -18,7 +18,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -172,25 +171,25 @@ public class RegisterRecordView extends BaseActivity {
 
 
     private void loadVillage() {
-        String criteria = "SELECT " + " v." + SQLiteHandler.COUNTRY_CODE_COL + " || '' ||  v." + SQLiteHandler.DISTRICT_CODE_COL + " || '' || v." + SQLiteHandler.UPCODE_COL + " || '' || v." +
-                SQLiteHandler.UCODE_COL + " || '' || v." + SQLiteHandler.VCODE_COL + " AS v_code," +
+        String criteria = "SELECT " + " v." + SQLiteHandler.COUNTRY_CODE_COL + " || '' ||  v." + SQLiteHandler.LAY_R1_LIST_CODE_COL + " || '' || v." + SQLiteHandler.LAY_R2_LIST_CODE_COL + " || '' || v." +
+                SQLiteHandler.LAY_R3_LIST_CODE_COL + " || '' || v." + SQLiteHandler.LAY_R4_LIST_CODE_COL + " AS v_code," +
                 " v." + SQLiteHandler.VILLAGE_NAME_COL + " AS Vill_Name " +
                      /*   " COUNT("+PID_COL+") AS records"*/" FROM " + SQLiteHandler.VILLAGE_TABLE + " AS v" +
                 " LEFT JOIN " + SQLiteHandler.REGISTRATION_TABLE + " AS r" +
                 " ON r." + SQLiteHandler.COUNTRY_CODE_COL + "= v." + SQLiteHandler.COUNTRY_CODE_COL + " AND " +
-                "r." + SQLiteHandler.DISTRICT_NAME_COL + "= v." + SQLiteHandler.DISTRICT_CODE_COL + " AND " +
-                "r." + SQLiteHandler.UPZILLA_NAME_COL + "= v." + SQLiteHandler.UPCODE_COL + " AND " +
-                "r." + SQLiteHandler.UNITE_NAME_COL + "= v." + SQLiteHandler.UCODE_COL + " AND " +
-                "r." + SQLiteHandler.VILLAGE_NAME_COL + "= v." + SQLiteHandler.VCODE_COL +
+                "r." + SQLiteHandler.DISTRICT_NAME_COL + "= v." + SQLiteHandler.LAY_R1_LIST_CODE_COL + " AND " +
+                "r." + SQLiteHandler.UPZILLA_NAME_COL + "= v." + SQLiteHandler.LAY_R2_LIST_CODE_COL + " AND " +
+                "r." + SQLiteHandler.UNITE_NAME_COL + "= v." + SQLiteHandler.LAY_R3_LIST_CODE_COL + " AND " +
+                "r." + SQLiteHandler.VILLAGE_NAME_COL + "= v." + SQLiteHandler.LAY_R4_LIST_CODE_COL +
                 " Inner join " + SQLiteHandler.SELECTED_VILLAGE_TABLE + " AS s"
                 + " on " + " s." + SQLiteHandler.COUNTRY_CODE_COL + "= v." + SQLiteHandler.COUNTRY_CODE_COL + " AND " +
-                "s." + SQLiteHandler.DISTRICT_CODE_COL + "= v." + SQLiteHandler.DISTRICT_CODE_COL + " AND " +
-                "s." + SQLiteHandler.UPCODE_COL + "= v." + SQLiteHandler.UPCODE_COL + " AND " +
-                "s." + SQLiteHandler.UCODE_COL + "= v." + SQLiteHandler.UCODE_COL + " AND " +
-                "s." + SQLiteHandler.VCODE_COL + "= v." + SQLiteHandler.VCODE_COL +
+                "s." + SQLiteHandler.LAY_R1_LIST_CODE_COL + "= v." + SQLiteHandler.LAY_R1_LIST_CODE_COL + " AND " +
+                "s." + SQLiteHandler.LAY_R2_LIST_CODE_COL + "= v." + SQLiteHandler.LAY_R2_LIST_CODE_COL + " AND " +
+                "s." + SQLiteHandler.LAY_R3_LIST_CODE_COL + "= v." + SQLiteHandler.LAY_R3_LIST_CODE_COL + " AND " +
+                "s." + SQLiteHandler.LAY_R4_LIST_CODE_COL + "= v." + SQLiteHandler.LAY_R4_LIST_CODE_COL +
 
                 " WHERE v." + SQLiteHandler.COUNTRY_CODE_COL + "='" + getCountryCode() + "'" + /** send the no of village for selected country added by Faisal Mohammad*/
-                "  GROUP BY v." + SQLiteHandler.COUNTRY_CODE_COL + ",v." + SQLiteHandler.DISTRICT_CODE_COL + ",v." + SQLiteHandler.UPCODE_COL + ",v." + SQLiteHandler.UCODE_COL + ",v." + SQLiteHandler.VCODE_COL;
+                "  GROUP BY v." + SQLiteHandler.COUNTRY_CODE_COL + ",v." + SQLiteHandler.LAY_R1_LIST_CODE_COL + ",v." + SQLiteHandler.LAY_R2_LIST_CODE_COL + ",v." + SQLiteHandler.LAY_R3_LIST_CODE_COL + ",v." + SQLiteHandler.LAY_R4_LIST_CODE_COL;
 
         List<SpinnerHelper> listVillage = sqlH.getListAndID(SQLiteHandler.CUSTOM_QUERY, criteria, getCountryCode(), false);
 

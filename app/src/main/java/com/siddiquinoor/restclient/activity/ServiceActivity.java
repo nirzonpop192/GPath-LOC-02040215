@@ -1015,7 +1015,8 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
         String criteria = " WHERE " + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "' "
                 + " AND " + SQLiteHandler.DONOR_CODE_COL + " = '" + donorCode + "' "
                 + " AND " + SQLiteHandler.AWARD_CODE_COL + " = '" + awardCode + "' "
-                + " AND " + SQLiteHandler.PROGRAM_CODE_COL + " = '" + progCode + "' ";
+                + " AND " + SQLiteHandler.PROGRAM_CODE_COL + " = '" + progCode + "' " +
+                " GROUP BY "+SQLiteHandler.GROUP_CAT_CODE_COL;
 
 
         // Spinner Drop down elements for District
@@ -1196,7 +1197,9 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
                         + SQLiteHandler.SERVICE_CENTER_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL
                         + " IN ( SELECT "
                         + SQLiteHandler.SELECTED_SERVICE_CENTER_TABLE + "." + SQLiteHandler.SERVICE_CENTER_CODE_COL + " || '' || "
-                        + SQLiteHandler.SELECTED_SERVICE_CENTER_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " from " + SQLiteHandler.SELECTED_SERVICE_CENTER_TABLE + ")";
+                        + SQLiteHandler.SELECTED_SERVICE_CENTER_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " from " + SQLiteHandler.SELECTED_SERVICE_CENTER_TABLE + ")" +
+                        " GROUP BY " +SQLiteHandler.SERVICE_CENTER_TABLE + "." + SQLiteHandler.SERVICE_CENTER_CODE_COL;
+
 
                 /**
                  *  todo:  where set the where  condition
@@ -1343,10 +1346,10 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
     private void loadCriteria(final String cCode, final String donorCode, final String awardCode, final String srvCenterCode, final String fdpCode, final String srvMonthCode) {
 
         int position = 0;
-        String criteria = " WHERE " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
-                + " AND " + SQLiteHandler.PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'";
+        String criteria = " WHERE " + SQLiteHandler.ADM_PROGRAM_MASTER_TABLE + "." + SQLiteHandler.AWARD_CODE_COL + "='" + awardCode + "'"
+                + " AND " + SQLiteHandler.ADM_PROGRAM_MASTER_TABLE + "." + SQLiteHandler.DONOR_CODE_COL + "='" + donorCode + "'";
         // Spinner Drop down elements for District
-        List<SpinnerHelper> listCriteria = sqlH.getListAndID(SQLiteHandler.PROGRAM_MASTER_TABLE, criteria, null, false);
+        List<SpinnerHelper> listCriteria = sqlH.getListAndID(SQLiteHandler.ADM_PROGRAM_MASTER_TABLE, criteria, null, false);
 
 
         ArrayAdapter<SpinnerHelper> dataAdapter = new ArrayAdapter<SpinnerHelper>(this, R.layout.spinner_layout, listCriteria);

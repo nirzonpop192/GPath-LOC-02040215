@@ -44,20 +44,21 @@ public final class R {
         public static final int arr_nut_attendance=0x7f0d0014;
         public static final int arr_vitA_under5=0x7f0d0015;
         public static final int arr_weight_status=0x7f0d0016;
-        public static final int assign_got_array=0x7f0d0017;
-        public static final int cameraOption=0x7f0d0018;
-        public static final int cfw_assign_goto_array=0x7f0d0019;
+        public static final int arrflagType=0x7f0d0017;
+        public static final int assign_got_array=0x7f0d0018;
+        public static final int cameraOption=0x7f0d0019;
+        public static final int cfw_assign_goto_array=0x7f0d001a;
         /** <item>Member Registration</item>
   <item>Registration</item>
          */
-        public static final int distribution_goto_array=0x7f0d001a;
-        public static final int reg_mem_goto_array=0x7f0d001b;
-        public static final int service_goto_array=0x7f0d001c;
-        public static final int spGenderItem=0x7f0d001d;
-        public static final int spWRankItem=0x7f0d001e;
-        public static final int uct_assign_goto_array=0x7f0d001f;
-        public static final int zxing_country_codes=0x7f0d0020;
-        public static final int zxing_preferences_front_light_values=0x7f0d0021;
+        public static final int distribution_goto_array=0x7f0d001b;
+        public static final int reg_mem_goto_array=0x7f0d001c;
+        public static final int service_goto_array=0x7f0d001d;
+        public static final int spGenderItem=0x7f0d001e;
+        public static final int spWRankItem=0x7f0d001f;
+        public static final int uct_assign_goto_array=0x7f0d0020;
+        public static final int zxing_country_codes=0x7f0d0021;
+        public static final int zxing_preferences_front_light_values=0x7f0d0022;
     }
     public static final class attr {
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"

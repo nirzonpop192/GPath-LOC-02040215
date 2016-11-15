@@ -34,6 +34,7 @@ import com.siddiquinoor.restclient.data_model.FDPItem;
 import com.siddiquinoor.restclient.data_model.ProgramMasterDM;
 import com.siddiquinoor.restclient.data_model.ServiceCenterItem;
 import com.siddiquinoor.restclient.data_model.SrvTableReportDM;
+import com.siddiquinoor.restclient.data_model.TemOpMonth;
 import com.siddiquinoor.restclient.data_model.VillageItem;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
 import com.siddiquinoor.restclient.controller.AppConfig;
@@ -262,7 +263,6 @@ public class LoginActivity extends BaseActivity {
                                 /**
                                  * for selecting operation Mood
                                  *
-                                 * shuvo
                                  */
                                 getOperationModeAlert(user_name, password);
                             }
@@ -315,14 +315,13 @@ public class LoginActivity extends BaseActivity {
      */
 
     List<ServiceCenterItem> serviceCenterNameList = new ArrayList<ServiceCenterItem>();
-    List<ProgramMasterDM> AdmProgramNameList = new ArrayList<ProgramMasterDM>();
-    List<CommunityGroupDM> communityGroupList = new ArrayList<CommunityGroupDM>();
-    List<SrvTableReportDM> srvTableReportList = new ArrayList<SrvTableReportDM>();
+    //List<ProgramMasterDM> AdmProgramNameList = new ArrayList<ProgramMasterDM>();
+    //List<CommunityGroupDM> communityGroupList = new ArrayList<CommunityGroupDM>();
+    //List<SrvTableReportDM> srvTableReportList = new ArrayList<SrvTableReportDM>();
     ArrayList<ServiceCenterItem> selectedServiceCenterList = new ArrayList<ServiceCenterItem>();
-    String[] serviceCenterNameStringArray;
 
 
-    public void checkServiceCenterSelection(final String user_name, final String password, final String cCode, final String donorCode, final String awardCode, final String progCode) {
+    public void checkServiceCenterSelection(final String user_name, final String password, final String cCode, final String donorCode, final String awardCode, final String progCode, final String opMothCode, final String distFlag) {
         // Tag used to cancel the request
         String tag_string_req = "req_login";
 
@@ -402,43 +401,10 @@ public class LoginActivity extends BaseActivity {
                         }
 
 
-                        if (!jObj.isNull("community_group")) {
-                            JSONArray adm_program_masters = jObj.getJSONArray("community_group");
-                            size = adm_program_masters.length();
-                            for (int i = 0; i < size; i++) {
-                                JSONObject adm_program_master = adm_program_masters.getJSONObject(i);
-
-                                String AdmCountryCode = adm_program_master.getString("AdmCountryCode");
-                                String AdmDonorCode = adm_program_master.getString("AdmDonorCode");
-                                String AdmAwardCode = adm_program_master.getString("AdmAwardCode");
-                                String AdmProgCode = adm_program_master.getString("AdmProgCode");
-                                String GrpCode = adm_program_master.getString("GrpCode");
-                                String SrvCenterCode = adm_program_master.getString("SrvCenterCode");
-
-                                CommunityGroupDM communityData = new CommunityGroupDM();
-                                communityData.setAdmCountryCode(AdmCountryCode);
-                                communityData.setAdmAwardCode(AdmAwardCode);
-                                communityData.setAdmDonorCode(AdmDonorCode);
-                                communityData.setAdmProgCode(AdmProgCode);
-                                communityData.setGrpCode(GrpCode);
-                                communityData.setSrvCenterCode(SrvCenterCode);
-
-                                communityGroupList.add(communityData);
-
-                            }
-                        }
-
-
                         hideDialog();
-                        /**
-                         *  if user has 1 country assigned
-                         */
-                        if (CountryNo.equals("1")) {
-                            getServiceCenterAlert(user_name, password, false);
-                        } else {
-                            selectedCountryList.clear();
-                            getCountryAlert(user_name, password, 3);
-                        }
+
+
+                        getServiceCenterAlert(user_name, password, false);
 
 
                     } else {
@@ -480,6 +446,8 @@ public class LoginActivity extends BaseActivity {
                 params.put("donor_code", donorCode);
                 params.put("award_code", awardCode);
                 params.put("program_code", progCode);
+                params.put("opMothCode", opMothCode);
+                params.put("distFlag", distFlag);
 
 
                 return params;
@@ -494,18 +462,15 @@ public class LoginActivity extends BaseActivity {
 
     public void checkProgramSelection(final String user_name, final String password) {
         // Tag used to cancel the request
-        String tag_string_req = "req_login";
-        AdmProgramNameList.clear();
+        String tag_string_req = "req_login_";
+//        AdmProgramNameList.clear();
 
         StringRequest strReq = new StringRequest(Method.POST,
                 AppConfig.API_LINK, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
-                /***
-                 * @deis: IN THIS STRING RESPONSE WRITE THE JSON DATA
-                 *
-                 */
+
                 AppController.getInstance().getRequestQueue().getCache().clear();
 
                 String CountryNo = "0";
@@ -517,6 +482,10 @@ public class LoginActivity extends BaseActivity {
                     if (!error) {
 
                         int size = 0;
+/**
+ * Clean the Temporary Data Base
+ */
+                        db.cleanTemTableForService();
                         // count no countries assigne
                         if (!jObj.isNull("countrie_no")) {
 
@@ -551,6 +520,28 @@ public class LoginActivity extends BaseActivity {
                         }
 
 
+                        if (!jObj.isNull(MainActivity.ADM_OP_MONTH_JSON_A)) {
+                            JSONArray adm_op_months = jObj.getJSONArray(MainActivity.ADM_OP_MONTH_JSON_A);
+                            size = adm_op_months.length();
+                            for (int i = 0; i < size; i++) {
+                                JSONObject adm_op_month = adm_op_months.getJSONObject(i);
+
+                                String AdmCountryCode = adm_op_month.getString(MainActivity.ADM_COUNTRY_CODE);
+                                String AdmDonorCode = adm_op_month.getString(MainActivity.ADM_DONOR_CODE);
+                                String AdmAwardCode = adm_op_month.getString(MainActivity.ADM_AWARD_CODE);
+                                String OpCode = adm_op_month.getString(MainActivity.OP_CODE);
+                                String OpMonthCode = adm_op_month.getString(MainActivity.OP_MONTH_CODE);
+                                String MonthLabel = adm_op_month.getString(MainActivity.MONTH_LABEL);
+                                String UsaStartDate = adm_op_month.getString(MainActivity.USA_START_DATE);
+                                String UsaEndDate = adm_op_month.getString(MainActivity.USA_END_DATE);
+                                String Status = adm_op_month.getString("Status");
+                                db.addTemporaryOpMonth(AdmCountryCode, AdmDonorCode, AdmAwardCode, OpCode, OpMonthCode, MonthLabel, UsaStartDate, UsaEndDate, Status);
+
+
+                            }
+                        }
+
+
                         if (!jObj.isNull(MainActivity.ADM_PROGRAM_MASTER_JSON_A)) {
                             JSONArray adm_program_masters = jObj.getJSONArray(MainActivity.ADM_PROGRAM_MASTER_JSON_A);
                             size = adm_program_masters.length();
@@ -564,28 +555,25 @@ public class LoginActivity extends BaseActivity {
                                 String ProgName = adm_program_master.getString(MainActivity.PROG_NAME);
                                 String ProgShortName = adm_program_master.getString(MainActivity.PROG_SHORT_NAME);
 
-                                // db.addProgram(AdmProgCode, AdmAwardCode, AdmDonorCode, ProgName, ProgShortName, MultipleSrv);
-                                ProgramMasterDM progData = new ProgramMasterDM();
-                                progData.setAdmCountryCode(AdmCountryCode);
-                                progData.setAdmProgCode(AdmProgCode);
-                                progData.setAdmAwardCode(AdmAwardCode);
-                                progData.setAdmDonorCode(AdmDonorCode);
-                                progData.setProgName(ProgName);
-                                progData.setProgShortName(ProgShortName);
+                                db.addTemporaryAdmCountryProgram(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, ProgName, ProgShortName);
 
-                                AdmProgramNameList.add(progData);
-
-
-                                Log.d(TAG, "In Program master Table- AdmProgCode :" + AdmProgCode + " AdmDonorCode : " + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " ProgName : " + ProgName + " ProgShortName  : " + ProgShortName);
                             }
                         }
 
 
                         hideDialog();
 
-// // TODO: 9/7/2016  save the selected program
-                        getProgramAlert(user_name, password);
 
+
+
+                        // if user hsa 1 country assigned
+                        if (CountryNo.equals("1")) {
+                            getProgramAlert(user_name, password, countryNameList.get(0).getAdmCountryCode());
+
+                        } else {
+                            selectedCountryList.clear();
+                            getCountryAlert(user_name, password, 2);
+                        }
 
                         //     checkServiceCenterSelection(user_name, password);
 
@@ -935,60 +923,6 @@ public class LoginActivity extends BaseActivity {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
-    public List<ServiceCenterItem> insertServiceCenterNameListToSArray(boolean countrySpec) {
-        int i;
-        if (countrySpec) {
-            ArrayList<ServiceCenterItem> temCountySpecServiceCenterList = new ArrayList<ServiceCenterItem>();
-            /**
-             * check country Code
-             */
-            for (i = 0; i < serviceCenterNameList.size(); ++i) {
-                if (selectedCountryList.get(0).getAdmCountryCode().equals(serviceCenterNameList.get(i).getAdmCountryCode())) {
-
-                    temCountySpecServiceCenterList.add(serviceCenterNameList.get(i));
-                    for (int j = 0; j < srvTableReportList.size(); j++) {
-                        if (serviceCenterNameList.get(i).getServiceCenterCode().equals(srvTableReportList.get(j).getSrvCenterCode())) {
-
-                            if (srvTableReportList.get(j).getPreparedBy().equals("null")) {
-                                temCountySpecServiceCenterList.add(serviceCenterNameList.get(i));
-                                Log.d("LOF", " serviceCenterNameList.get(i).getServiceCenterCode()=" + serviceCenterNameList.get(i).getServiceCenterCode());
-                            }
-
-                        } else {
-                            temCountySpecServiceCenterList.add(serviceCenterNameList.get(i));
-                        }
-                    }
-
-
-                }
-
-            }
-            serviceCenterNameList.clear();
-            for (i = 0; i < temCountySpecServiceCenterList.size(); ++i) {
-                serviceCenterNameList.add(temCountySpecServiceCenterList.get(i));
-            }
-
-            serviceCenterNameStringArray = new String[serviceCenterNameList.size()];
-
-            for (i = 0; i < serviceCenterNameList.size(); ++i) {
-                ServiceCenterItem serviceCenterItem = serviceCenterNameList.get(i);
-                serviceCenterNameStringArray[i] = serviceCenterItem.getServiceCenterName();
-            }
-
-
-        } else {
-            serviceCenterNameStringArray = new String[serviceCenterNameList.size()];
-            for (i = 0; i < serviceCenterNameList.size(); ++i) {
-                ServiceCenterItem serviceCenterItem = serviceCenterNameList.get(i);
-                serviceCenterNameStringArray[i] = serviceCenterItem.getServiceCenterName();
-            }
-
-
-        }
-        return serviceCenterNameList;
-
-    }
-
 
     public List<FDPItem> insertFDPNameListToSArray(boolean countrySpec) {
         int i;
@@ -1104,6 +1038,11 @@ public class LoginActivity extends BaseActivity {
 
     String strOperationMode = "";
 
+    /**
+     * @param user_name user name
+     * @param password  password
+     */
+
     private void getOperationModeAlert(final String user_name, final String password) {
         aCountryL_itemsSelected = (ArrayList<CountryNameItem>) insertCountryNameListToSArray();
         itemCheckedOpearationMode = new boolean[operationModeStringArray.length];
@@ -1123,11 +1062,11 @@ public class LoginActivity extends BaseActivity {
                 //int selectItemCount = 0;
                 if (!strOperationMode.equals("")) {
 
-                    for (int i = 0; i < itemCheckedOpearationMode.length; i++) {
-                        if (operationModeStringArray[i].equals(strOperationMode)) {
+                    for (int mode_index = 0; mode_index < itemCheckedOpearationMode.length; mode_index++) {
+                        if (operationModeStringArray[mode_index].equals(strOperationMode)) {
 
 
-                            switch (i) {
+                            switch (mode_index) {
                                 case 0:
 
                                     checkVillageSelection(user_name, password);
@@ -1169,7 +1108,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 hideDialog();
-                //mdialog.dismiss();
+
 
                 mdialog.dismiss();
             }
@@ -1197,12 +1136,18 @@ public class LoginActivity extends BaseActivity {
             builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    /**
+                     * Clean the table
+                     */
                     selectedVillageList.clear();
                     selectedCountryList.clear();
                     selectedServiceCenterList.clear();
                     if (!strCountryMode.equals("")) {
 
                         for (int i = 0; i < countryNameStringArray.length; i++) {
+                            /**
+                             * store the selected country in selectedCountryList
+                             */
                             if (countryNameStringArray[i].equals(strCountryMode)) {
                                 selectedCountryList.add(aCountryL_itemsSelected.get(i));
                             }
@@ -1215,7 +1160,8 @@ public class LoginActivity extends BaseActivity {
                                 getFDPAlert(user_name, password, true);
                                 break;
                             case UtilClass.SERVICE_OPERATION_MODE:
-                                getServiceCenterAlert(user_name, password, true);
+                                getProgramAlert(user_name, password, selectedCountryList.get(0).getAdmCountryCode());
+//                                getServiceCenterAlert(user_name, password, true);
                                 break;
                         }
                     } else {
@@ -1239,51 +1185,38 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    String temSelectedProgram;
 
-    public String[] insertProgramListToSArray() {
-        int i;
+    private void getProgramAlert(final String user_name, final String password, String countryCode) {
 
-        String[] programNameStringArray = new String[AdmProgramNameList.size()];
 
-        for (i = 0; i < AdmProgramNameList.size(); ++i) {
+        final List<ProgramMasterDM> programNames = db.getProgramListNames(countryCode);
 
-            ProgramMasterDM data = AdmProgramNameList.get(i);
-            programNameStringArray[i] = data.getProgName();
+
+        final String[] proNamesString = new String[programNames.size()];
+        for (int i = 0; i < programNames.size(); ++i) {
+            ProgramMasterDM data = programNames.get(i);
+            proNamesString[i] = data.getProgName();
 
         }
 
 
-        //}
-        return programNameStringArray;
+        itemChecked = new boolean[proNamesString.length];
+        if (proNamesString.length > 0) {
 
-    }
-
-    private void getProgramAlert(final String user_name, final String password) {
-
-        String[] programNameStringArray = insertProgramListToSArray();
-
-        itemChecked = new boolean[programNameStringArray.length];
-        if (programNameStringArray.length > 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Select  A Program");
-            builder.setMultiChoiceItems(programNameStringArray, null,
-                    new DialogInterface.OnMultiChoiceClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int selectedItemId, boolean isSelected) {
-                            if (isSelected) {
 
-                                if (((AlertDialog) dialog).getListView().getCheckedItemCount() <= 1) {
-                                    itemChecked[selectedItemId] = isSelected;
 
-                                    Log.d("REFAT----> position ", "" + selectedItemId);
-                                } else {
-                                    Toast.makeText(LoginActivity.this, "You can not permitted to select more than One Program", Toast.LENGTH_SHORT).show();
+            builder.setSingleChoiceItems(proNamesString, -1, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    temSelectedProgram = "";
+                    temSelectedProgram = proNamesString[which];
 
-                                    ((AlertDialog) dialog).getListView().setItemChecked(selectedItemId, false);
-                                }
-                            }
-                        }
-                    })
+                }
+            })
+
                     .setPositiveButton("Done", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int pos) {
@@ -1293,18 +1226,27 @@ public class LoginActivity extends BaseActivity {
                             String selectedDonorCode = "";
                             String selectedAwardCode = "";
                             for (int i = 0; i < itemChecked.length; i++) {
-                                if (itemChecked[i]) { //simplify code itemChecked[i] == true
-                                    selectedCountryCode = AdmProgramNameList.get(i).getAdmCountryCode();
-                                    selectedDonorCode = AdmProgramNameList.get(i).getAdmDonorCode();
-                                    selectedAwardCode = AdmProgramNameList.get(i).getAdmAwardCode();
-                                    selectedProgCode = AdmProgramNameList.get(i).getAdmProgCode();
+                                /**
+                                 * if indexed item is selected  than
+                                 */
+                                if (programNames.get(i).getProgName().equals(temSelectedProgram)) { //simplify code itemChecked[i] == true
+                                    // todo : update in database
+                                    selectedCountryCode = programNames.get(i).getAdmCountryCode();
+                                    selectedDonorCode = programNames.get(i).getAdmDonorCode();
+                                    selectedAwardCode = programNames.get(i).getAdmAwardCode();
+                                    selectedProgCode = programNames.get(i).getAdmProgCode();
 
+                                    Toast.makeText(mContext, "Program :" + i, Toast.LENGTH_SHORT).show();
                                 }
                             }
 
+
                             if (selectedProgCode.length() > 0) {
-//                                Log.d("BUG","selectedCountryCode: "+selectedCountryCode+" selectedDonorCode: "+ selectedDonorCode+"selectedAwardCode :"+selectedAwardCode+"selectedProgCode : "+selectedProgCode);
-                                checkServiceCenterSelection(user_name, password, selectedCountryCode, selectedDonorCode, selectedAwardCode, selectedProgCode);
+                                /**
+                                 * opMonth dialog
+                                 */
+                                hideDialog();
+                                getOpmonthAlert(user_name, password, selectedCountryCode, selectedDonorCode, selectedAwardCode, selectedProgCode);
                             }
 
 
@@ -1321,18 +1263,172 @@ public class LoginActivity extends BaseActivity {
             mdialog.show();
         } else {
             hideDialog();
-            Toast.makeText(LoginActivity.this, "No Service Center assigned. Contact Admin.", Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, " Contact Admin.", Toast.LENGTH_LONG).show();
         }
 
     }
 
 
-    ArrayList<ServiceCenterItem> aLServiceCenter_itemsSelected = new ArrayList<ServiceCenterItem>();
+    String tem;
+
+    private void getOpmonthAlert(final String user_name, final String password, final String countryCode, final String selectedDonorCode, final String selectedAwardCode, final String selectedProgCode) {
+
+
+        final List<TemOpMonth> opMonths = db.getOpMonthList(countryCode);
+
+
+        final String[] opMonthNamesString = new String[opMonths.size()];
+        for (int i = 0; i < opMonths.size(); ++i) {
+            TemOpMonth data = opMonths.get(i);
+            opMonthNamesString[i] = data.getOpMonthLable();
+
+        }
+
+
+        itemChecked = new boolean[opMonthNamesString.length];
+        if (opMonthNamesString.length > 0) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Select  A Month");
+
+
+            builder.setSingleChoiceItems(opMonthNamesString, -1, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    tem = "";
+                    tem = opMonthNamesString[which];
+
+                }
+            })
+
+                    .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int pos) {
+
+                            String selectedOpMonthCode = "";
+
+
+                            for (int i = 0; i < itemChecked.length; i++) {
+                                /**
+                                 * if indexed item is selected  than
+                                 */
+                                if (opMonths.get(i).getOpMonthLable().equals(tem)) { //simplify code itemChecked[i] == true
+                                    // todo : update in database
+                                    selectedOpMonthCode = opMonths.get(i).getOpMonthCode();
+
+
+                                }
+                            }
+
+
+                            if (selectedOpMonthCode.length() > 0) {
+                                hideDialog();
+                                getTypeFlagAlert(user_name, password, countryCode, selectedDonorCode, selectedAwardCode, selectedProgCode, selectedOpMonthCode);
+
+                            }
+
+
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+
+
+                        }
+                    });
+            mdialog = builder.create();
+            mdialog.show();
+        } else {
+            hideDialog();
+            Toast.makeText(LoginActivity.this, "No Service Month is open for Service. Contact Admin. ", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+
+    private void getTypeFlagAlert(final String user_name, final String password, final String countryCode, final String selectedDonorCode, final String selectedAwardCode, final String selectedProgCode, final String selectedOpMonthCode) {
+
+
+        final String[] typeFlagNames = mContext.getResources().getStringArray(R.array.arrflagType);
+
+
+        itemChecked = new boolean[typeFlagNames.length];
+        if (typeFlagNames.length > 0) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Select  Type");
+
+
+            builder.setSingleChoiceItems(typeFlagNames, -1, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    tem = "";
+                    tem = typeFlagNames[which];
+
+                }
+            })
+
+                    .setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int pos) {
+
+                            String typeFlag = "";
+
+
+                            if (tem.equals("Food")) {
+
+                                typeFlag = DistributionActivity.FOOD_TYPE;
+                            } else if (tem.equals("Non Food")) {
+
+                                typeFlag = DistributionActivity.NON_FOOD_TYPE;
+                            } else if (tem.equals("Cash")) {
+
+                                typeFlag = DistributionActivity.CASH_TYPE;
+                            } else {
+
+                                typeFlag = DistributionActivity.VOUCHER_TYPE;
+                            }
+
+
+                            if (typeFlag.length() > 0) {
+                                hideDialog();
+
+
+                                checkServiceCenterSelection(user_name, password, countryCode, selectedDonorCode, selectedAwardCode, selectedProgCode, selectedOpMonthCode, typeFlag);
+
+                            }
+
+
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+
+
+                        }
+                    });
+            mdialog = builder.create();
+            mdialog.show();
+        } else {
+            hideDialog();
+            Toast.makeText(LoginActivity.this, "No OpMonth is open for Service. Contact Admin. ", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
 
     private void getServiceCenterAlert(final String user_name, final String password, boolean countrySpecificFlag) {
 
-        aLServiceCenter_itemsSelected = (ArrayList<ServiceCenterItem>) insertServiceCenterNameListToSArray(countrySpecificFlag);
+        final ArrayList<ServiceCenterItem> aLServiceCenter_itemsSelected = (ArrayList<ServiceCenterItem>) serviceCenterNameList; //(ArrayList<ServiceCenterItem>) insertServiceCenterNameListToSArray(countrySpecificFlag);
+        // Initial
+        final String[] serviceCenterNameStringArray = new String[serviceCenterNameList.size()];
 
+        for (int i = 0; i < serviceCenterNameList.size(); ++i) {
+            ServiceCenterItem serviceCenterItem = serviceCenterNameList.get(i);
+            serviceCenterNameStringArray[i] = serviceCenterItem.getServiceCenterName();
+        }
         itemChecked = new boolean[serviceCenterNameStringArray.length];
         if (serviceCenterNameStringArray.length > 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -1367,12 +1463,12 @@ public class LoginActivity extends BaseActivity {
                             for (int i = 0; i < itemChecked.length; i++) {
                                 if (itemChecked[i] == true) {
 
-                                    for (int j = 0; j < communityGroupList.size(); j++) {
-                                        if (aLServiceCenter_itemsSelected.get(i).getServiceCenterCode().equals(communityGroupList.get(j).getSrvCenterCode())) {
+//                                    for (int j = 0; j < communityGroupList.size(); j++) {
+//                                        if (aLServiceCenter_itemsSelected.get(i).getServiceCenterCode().equals(communityGroupList.get(j).getSrvCenterCode())) {
                                             selectedServiceCenterList.add(aLServiceCenter_itemsSelected.get(i));
-                                            break;
-                                        }
-                                    }
+//                                            break;
+//                                        }
+//                                    }
 
 
                                 }
@@ -1998,7 +2094,7 @@ public class LoginActivity extends BaseActivity {
 
                 if (!error) {
 
-                    downLoadDynamicData(user_Name,pass_word,selectedVilJArry,operationMode);
+                    downLoadDynamicData(user_Name, pass_word, selectedVilJArry, operationMode);
       /*              *//**
                      * IF GET NO ERROR  THAN GOTO THE MAIN ACTIVITY
                      *//*

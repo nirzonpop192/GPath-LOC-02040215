@@ -553,7 +553,7 @@ public class SyncDatabase {
                                 String ProgName = adm_program_master.getString(MainActivity.PROG_NAME);
                                 String ProgShortName = adm_program_master.getString(MainActivity.PROG_SHORT_NAME);
                                 String MultipleSrv = adm_program_master.getString(MainActivity.MULTIPLE_SRV);
-                                sqlH.addProgram(AdmProgCode, AdmAwardCode, AdmDonorCode, ProgName, ProgShortName, MultipleSrv);
+                                sqlH.addAdmProgramMaster(AdmProgCode, AdmAwardCode, AdmDonorCode, ProgName, ProgShortName, MultipleSrv);
 
 
                             }

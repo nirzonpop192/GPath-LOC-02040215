@@ -8,8 +8,8 @@ package com.google.zxing.client.android;
 
 public final class R {
 	public static final class array {
-		public static final int zxing_country_codes = 0x7f0d0020;
-		public static final int zxing_preferences_front_light_values = 0x7f0d0021;
+		public static final int zxing_country_codes = 0x7f0d0021;
+		public static final int zxing_preferences_front_light_values = 0x7f0d0022;
 	}
 	public static final class color {
 		public static final int zxing_contents_text = 0x7f0e006a;

@@ -596,7 +596,7 @@ public class Schema {
 
     public static String sqlCreateADM_CountryProgram() {
         return CREATE_TABLE_IF_NOT_EXISTS + SQLiteHandler.COUNTRY_PROGRAM_TABLE + " ( "
-              + SQLiteHandler.COUNTRY_CODE_COL + " VARCHAR(5)"
+                + SQLiteHandler.COUNTRY_CODE_COL + " VARCHAR(5)"
                 + " , " + SQLiteHandler.DONOR_CODE_COL + " VARCHAR(5)"
                 + " , " + SQLiteHandler.AWARD_CODE_COL + " VARCHAR(5)"
                 + " , " + SQLiteHandler.PROGRAM_CODE_COL + " VARCHAR(5)"
@@ -629,7 +629,7 @@ public class Schema {
                 + " , " + SQLiteHandler.USA_START_DATE + " VARCHAR(20) "
                 + " , " + SQLiteHandler.USA_END_DATE + " VARCHAR(20) "
                 + " , " + SQLiteHandler.STATUS + " VARCHAR(20) "
-                + " , " + PRIMARY_KEY + " (" + SQLiteHandler.COUNTRY_CODE_COL + ", " + SQLiteHandler.DONOR_CODE_COL + ", " + SQLiteHandler.AWARD_CODE_COL + ", " + SQLiteHandler.OPERATION_CODE_COL + ", " + SQLiteHandler.OP_MONTH_CODE_COL+" ) "
+                + " , " + PRIMARY_KEY + " (" + SQLiteHandler.COUNTRY_CODE_COL + ", " + SQLiteHandler.DONOR_CODE_COL + ", " + SQLiteHandler.AWARD_CODE_COL + ", " + SQLiteHandler.OPERATION_CODE_COL + ", " + SQLiteHandler.OP_MONTH_CODE_COL + " ) "
                 + " ) ";
     }
 
@@ -1145,14 +1145,7 @@ public class Schema {
                 + SQLiteHandler.DONOR_CODE_COL + ","
                 + SQLiteHandler.AWARD_CODE_COL + ","
                 + SQLiteHandler.PROGRAM_CODE_COL + ","
-                + SQLiteHandler.GROUP_CODE_COL
-                //    + "," + SQLiteHandler.LAY_R1_LIST_CODE_COL
-                //    + "," + SQLiteHandler.LAY_R2_LIST_CODE_COL
-                /**
-                 * todo: when in live database the layer 3 implement then set it will be  as primary key in Sqlite
-                 */
-                //    + " , " + SQLiteHandler.LAY_R3_LIST_CODE_COL
-                + ")   "
+                + SQLiteHandler.GROUP_CODE_COL + "," + SQLiteHandler.LAY_R1_LIST_CODE_COL + "," + SQLiteHandler.LAY_R2_LIST_CODE_COL + " , " + SQLiteHandler.LAY_R3_LIST_CODE_COL + ")   "
                 + " )";
 
 
@@ -1169,9 +1162,9 @@ public class Schema {
                 + " , " + SQLiteHandler.AWARD_CODE_COL + " VARCHAR(4)"
                 + " , " + SQLiteHandler.PROGRAM_CODE_COL + " VARCHAR(4) "
                 + " , " + SQLiteHandler.GROUP_CODE_COL + " VARCHAR(4) "
-                + " , " + SQLiteHandler.LAY_R1_LIST_CODE_COL + " VARCHAR(4) "
-                + " , " + SQLiteHandler.LAY_R2_LIST_CODE_COL + " VARCHAR(4) "
-                + " , " + SQLiteHandler.LAY_R3_LIST_CODE_COL + " VARCHAR(4) "
+                + " , " + SQLiteHandler.LAY_R1_LIST_CODE_COL + " VARCHAR(4) DEFAULT '00' "
+                + " , " + SQLiteHandler.LAY_R2_LIST_CODE_COL + " VARCHAR(4) DEFAULT '00' "
+                + " , " + SQLiteHandler.LAY_R3_LIST_CODE_COL + " VARCHAR(4) DEFAULT '00' "
                 + " , " + SQLiteHandler.ORG_CODE_COL + " VARCHAR(4) "
                 + " , " + SQLiteHandler.STAFF_CODE_COL + " VARCHAR(4) "
                 + " , " + SQLiteHandler.LAND_SIZE_UNDER_IRRIGATION_COL + " VARCHAR(20) "
@@ -1188,7 +1181,7 @@ public class Schema {
                 + " , " + SQLiteHandler.ENTRY_BY + " VARCHAR(4) "
                 + " , " + SQLiteHandler.ENTRY_DATE + " VARCHAR(50) "
 
-                + " ,  " + PRIMARY_KEY + "("
+/*                + " ,  " + PRIMARY_KEY + "("
                 + SQLiteHandler.COUNTRY_CODE_COL + ","
                 + SQLiteHandler.DONOR_CODE_COL + ","
                 + SQLiteHandler.AWARD_CODE_COL + ","
@@ -1196,11 +1189,11 @@ public class Schema {
                 + SQLiteHandler.GROUP_CODE_COL
                 // + "," + SQLiteHandler.LAY_R1_LIST_CODE_COL
                 //  + "," + SQLiteHandler.LAY_R2_LIST_CODE_COL
-                /**
-                 * todo: when in live database the layer 3 implement then set it will be  as primary key in Sqlite
-                 */
+                *//**
+         * todo: when in live database the layer 3 implement then set it will be  as primary key in Sqlite
+         *//*
                 // + " , " + SQLiteHandler.LAY_R3_LIST_CODE_COL
-                + ")   "
+                + ")   "*/
                 + " ) ";
     }
 
@@ -1738,9 +1731,9 @@ public class Schema {
                 "      " + SQLiteHandler.DTTIME_STRING_COL + "      TEXT,   " +
                 "      " + SQLiteHandler.OP_MODE_COL + "      TEXT,   " +
                 "     " + SQLiteHandler.OP_MONTH_CODE_COL + "       TEXT,   " +
-                "     " + SQLiteHandler.DATA_TYPE_COL + "       TEXT,   " +
-                "   " + PRIMARY_KEY + "(" + SQLiteHandler.DT_BASIC_COL + "," + SQLiteHandler.COUNTRY_CODE_COL + ", " + SQLiteHandler.DONOR_CODE_COL + " ," + SQLiteHandler.AWARD_CODE_COL + " ," + SQLiteHandler.PROGRAM_CODE_COL
-                + "," + SQLiteHandler.DT_ENU_ID_COL + "," + SQLiteHandler.DTQ_CODE_COL + "," + SQLiteHandler.DTA_CODE_COL + " ," + SQLiteHandler.DT_R_SEQ_COL + ")   " +
+                "     " + SQLiteHandler.DATA_TYPE_COL + "       TEXT   " +
+                //  "  , " + PRIMARY_KEY + "(" + SQLiteHandler.DT_BASIC_COL + "," + SQLiteHandler.COUNTRY_CODE_COL + ", " + SQLiteHandler.DONOR_CODE_COL + " ," + SQLiteHandler.AWARD_CODE_COL + " ," + SQLiteHandler.PROGRAM_CODE_COL
+                //+ "," + SQLiteHandler.DT_ENU_ID_COL + "," + SQLiteHandler.DTQ_CODE_COL + "," + SQLiteHandler.DTA_CODE_COL + " ," + SQLiteHandler.DT_R_SEQ_COL + ")   " +
                 ")";
     }
 
@@ -1790,7 +1783,7 @@ public class Schema {
 
     public static String sqlCreateTemporary_CountryProgram() {
         return CREATE_TABLE_IF_NOT_EXISTS + SQLiteHandler.TEMPORARY_COUNTRY_PROGRAM_TABLE + " ( "
-               + SQLiteHandler.COUNTRY_CODE_COL + " VARCHAR(5)"
+                + SQLiteHandler.COUNTRY_CODE_COL + " VARCHAR(5)"
                 + " , " + SQLiteHandler.DONOR_CODE_COL + " VARCHAR(5)"
                 + " , " + SQLiteHandler.AWARD_CODE_COL + " VARCHAR(5)"
                 + " , " + SQLiteHandler.PROGRAM_CODE_COL + " VARCHAR(5)"
@@ -1817,7 +1810,7 @@ public class Schema {
                 + " , " + SQLiteHandler.USA_END_DATE + " VARCHAR(20) "
                 + " , " + SQLiteHandler.STATUS + " VARCHAR(20) "
                 + " , " + SQLiteHandler.IS_SELECTED_FLAG_COL + " VARCHAR(1) DEFAULT '0' "
-                + " , " + PRIMARY_KEY + " (" + SQLiteHandler.COUNTRY_CODE_COL + ", " + SQLiteHandler.DONOR_CODE_COL + ", " + SQLiteHandler.AWARD_CODE_COL + ", " + SQLiteHandler.OPERATION_CODE_COL + ", " + SQLiteHandler.OP_MONTH_CODE_COL+" ) "
+                + " , " + PRIMARY_KEY + " (" + SQLiteHandler.COUNTRY_CODE_COL + ", " + SQLiteHandler.DONOR_CODE_COL + ", " + SQLiteHandler.AWARD_CODE_COL + ", " + SQLiteHandler.OPERATION_CODE_COL + ", " + SQLiteHandler.OP_MONTH_CODE_COL + " ) "
                 + " ) ";
     }
 

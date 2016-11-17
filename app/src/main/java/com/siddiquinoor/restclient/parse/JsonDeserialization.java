@@ -1692,12 +1692,13 @@ public class JsonDeserialization {
                 GrpCatCode = community_group_Data.getString("GrpCatCode");
                 LayR1Code = community_group_Data.getString("LayR1Code");
                 LayR2Code = community_group_Data.getString("LayR2Code");
-                // // TODO: 10/19/2016  add lay R 3 Code
+                LayR3Code = community_group_Data.getString("LayR3Code");
+           
                 SrvCenterCode = community_group_Data.getString("SrvCenterCode");
 
                 EntryBy = "";
                 EntryDate = "";
-                LayR3Code = "0";
+
 
                 sqlH.addCommunityGroup(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, GrpCode, GrpName, GrpCatCode, LayR1Code, LayR2Code, LayR3Code, SrvCenterCode, EntryBy, EntryDate);
 
@@ -1748,44 +1749,47 @@ public class JsonDeserialization {
                 JSONObject community_grp_detail_Data = jsonArrayData.getJSONObject(i);
 
 
-                  AdmCountryCode                 = community_grp_detail_Data.getString("AdmCountryCode");
-                  AdmDonorCode                   = community_grp_detail_Data.getString("AdmDonorCode");
-                  AdmAwardCode                   = community_grp_detail_Data.getString("AdmAwardCode");
-                  AdmProgCode                    = community_grp_detail_Data.getString("AdmProgCode");
-                  GrpCode                        = community_grp_detail_Data.getString("GrpCode");
-                  OrgCode                        = community_grp_detail_Data.getString("OrgCode");
-                  StfCode                        = community_grp_detail_Data.getString("StfCode");
-                  LandSizeUnderIrrigation        = community_grp_detail_Data.getString("LandSizeUnderIrrigation");
-                  IrrigationSystemUsed           = community_grp_detail_Data.getString("IrrigationSystemUsed");
-                  FundSupport                       = community_grp_detail_Data.getString("FundSupport");
-                  ActiveStatus                      = community_grp_detail_Data.getString("ActiveStatus");
-                  RepName                       = community_grp_detail_Data.getString("RepName");
-                  RepPhoneNumber                    = community_grp_detail_Data.getString("RepPhoneNumber");
-                  FormationDate                     = community_grp_detail_Data.getString("FormationDate");
-                  TypeOfGroup                   = community_grp_detail_Data.getString("TypeOfGroup");
-                  Status                        = community_grp_detail_Data.getString("Status");
-                  EntryBy                       = community_grp_detail_Data.getString("EntryBy");
-                  EntryDate                         = community_grp_detail_Data.getString("EntryDate");
-                  ProjectNo                         = community_grp_detail_Data.getString("ProjectNo");
-                  ProjectTitle                      = community_grp_detail_Data.getString("ProjectTitle");
-                  LayR1Code                        = "";
-                  LayR2Code                        = "";
-                  LayR3Code                        = "";
 
 
-      /*                  Log.d(TAG, "AdmCountryCode:" + AdmCountryCode + "AdmDonorCode:" + AdmDonorCode + "AdmAwardCode:" + AdmAwardCode +
-                                "AdmProgCode:" + AdmProgCode + "GrpCode:" + GrpCode + "OrgCode:" + OrgCode + "StfCode:" + StfCode + "LandSizeUnderIrrigation:" + LandSizeUnderIrrigation +
-                                "IrrigationSystemUsed:" + IrrigationSystemUsed + "FundSupport:" + FundSupport + "ActiveStatus:" + ActiveStatus +
-                                "RepName:" + RepName + "RepPhoneNumber:" + RepPhoneNumber + "FormationDate:" + FormationDate + "TypeOfGroup:" + TypeOfGroup +
-                                "Status" + Status + "EntryBy:" + EntryBy + "EntryDate:" + EntryDate + "ProjectNo:" + ProjectNo + "ProjectTitle:" + ProjectTitle);*/
+                AdmCountryCode = community_grp_detail_Data.getString("AdmCountryCode");
+                AdmDonorCode = community_grp_detail_Data.getString("AdmDonorCode");
+                AdmAwardCode = community_grp_detail_Data.getString("AdmAwardCode");
+                AdmProgCode = community_grp_detail_Data.getString("AdmProgCode");
+                GrpCode = community_grp_detail_Data.getString("GrpCode");
+                OrgCode = community_grp_detail_Data.getString("OrgCode");
+                StfCode = community_grp_detail_Data.getString("StfCode");
+                LandSizeUnderIrrigation = community_grp_detail_Data.getString("LandSizeUnderIrrigation");
+                IrrigationSystemUsed = community_grp_detail_Data.getString("IrrigationSystemUsed");
+                FundSupport = community_grp_detail_Data.getString("FundSupport");
+                ActiveStatus = community_grp_detail_Data.getString("ActiveStatus");
+                RepName = community_grp_detail_Data.getString("RepName");
+                RepPhoneNumber = community_grp_detail_Data.getString("RepPhoneNumber");
+                FormationDate = community_grp_detail_Data.getString("FormationDate");
+                TypeOfGroup = community_grp_detail_Data.getString("TypeOfGroup");
+                Status = community_grp_detail_Data.getString("Status");
+                ProjectNo = community_grp_detail_Data.getString("ProjectNo");
+                ProjectTitle = community_grp_detail_Data.getString("ProjectTitle");
+
+                LayR1Code = community_grp_detail_Data.getString("LayR1Code");
+                LayR2Code = community_grp_detail_Data.getString("LayR2Code");
+                LayR3Code = community_grp_detail_Data.getString("LayR3Code");
 
 
                 EntryBy = "";
                 EntryDate = "";
 
+            /*    Log.d("Shuvo", "AdmCountryCode:" + AdmCountryCode + "AdmDonorCode:" + AdmDonorCode + "AdmAwardCode:" + AdmAwardCode +
+                                "AdmProgCode:" + AdmProgCode + "GrpCode:" + GrpCode + "OrgCode:" + OrgCode + "StfCode:" + StfCode + "LandSizeUnderIrrigation:" + LandSizeUnderIrrigation +
+                                "IrrigationSystemUsed:" + IrrigationSystemUsed + "FundSupport:" + FundSupport + "ActiveStatus:" + ActiveStatus +
+                                "RepName:" + RepName + "RepPhoneNumber:" + RepPhoneNumber + "FormationDate:" + FormationDate + "TypeOfGroup:" + TypeOfGroup +
+                                "Status" + Status + "EntryBy:" + EntryBy + "EntryDate:" + EntryDate + "ProjectNo:" + ProjectNo + "ProjectTitle:" + ProjectTitle
+                        + "/n LayR1Code:"+ LayR1Code + "LayR2Code:"+ LayR2Code+"LayR3Code:" + LayR3Code
+                );*/
 
 
-                // // TODO: 10/19/2016  get lary123
+
+
+
 
                 sqlH.addIntoGroupDetails(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, GrpCode,
                         OrgCode, StfCode, LandSizeUnderIrrigation, IrrigationSystemUsed, FundSupport,

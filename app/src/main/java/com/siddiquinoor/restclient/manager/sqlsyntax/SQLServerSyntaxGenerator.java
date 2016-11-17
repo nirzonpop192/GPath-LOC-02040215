@@ -5026,6 +5026,48 @@ public class SQLServerSyntaxGenerator {
                 ;
     }
 
+
+    public String updateIntoCommunityGrpDetailIfLayR3CodeNotExit(LayRCodes oldLayRCodes) {
+        String condition;
+
+        if (oldLayRCodes.getLayR1Code().length() > 0 && oldLayRCodes.getLayR2Code().length() > 0 ) {
+            condition = " AND            [LayR1Code] = " + checkStringNull(oldLayRCodes.getLayR1Code()) +
+                    " AND            [LayR2Code] = " + checkStringNull(oldLayRCodes.getLayR2Code()) ;
+
+        } else {
+            condition = "";
+        }
+
+        return "UPDATE [dbo].[CommunityGrpDetail] " +
+                " SET " + "   [OrgCode] = " + getOrganizationCode() +
+                "     ,          [StfCode] = " + getStaffCode() +
+                "     ,          [LandSizeUnderIrrigation] = " + getLandSizeUnderIrrigation() +
+                "     ,          [IrrigationSystemUsed] = " + getIrrigationSystemUsed() +
+                "     ,          [FundSupport] = " + getFundSupport() +
+                "     ,          [ActiveStatus] = " + getActive() +
+                "     ,          [RepName] = " + getRepresentativeName() +
+                "     ,          [RepPhoneNumber] = " + getRepresentativePhoneNumber() +
+                "     ,          [FormationDate] = " + getFormationDate() +
+                "     ,          [TypeOfGroup] = " + getTypeOfGroup() +
+                "     ,          [Status] = " + getStatus() +
+                "     ,          [EntryBy] = " + getEntryBy() +
+                "     ,          [EntryDate] = " + getEntryDate() +
+                "     ,          [ProjectNo] = " + getProjectNo() +
+                "     ,          [ProjectTitle] = " + getProjectTitle() +
+                "     ,          [LayR1Code] = " + getLayR1ListCode() +
+                "     ,          [LayR2Code] = " + getLayR2ListCode() +
+                "     ,          [LayR3Code] = " + getLayR3ListCode() +
+                " WHERE          [AdmCountryCode] = " + getAdmCountryCode() +
+                " AND            [AdmDonorCode] = " + getAdmDonorCode() +
+                " AND            [AdmAwardCode] = " + getAdmAwardCode() +
+                " AND            [AdmProgCode] = " + getProgCode() +
+                " AND            [GrpCode] = " + getGrpCode() +
+                condition
+
+
+                ;
+    }
+
     /**
      * this method implemented  in
      *

@@ -686,10 +686,18 @@ public class GroupDetails extends BaseActivity {
      */
 
     private void saveProcess() {
-
+        String GrpName = "";
         getText();
 
-        String GrpName = edtGroupName.getText().toString();
+        /**
+         * Set validation for GrpName
+
+         */
+        if (!addNewFlag) {
+            GrpName = strGroup;
+        } else {
+            GrpName = edtGroupName.getText().toString();
+        }
 
 
         if (idProgram.equals("00"))
@@ -704,7 +712,7 @@ public class GroupDetails extends BaseActivity {
             dialog.showErrorDialog(mContext, "Select Organization ");
         else if (idStaff.equals("00"))
             dialog.showErrorDialog(mContext, "Select Staff ");
-        else if (strRepresentative.length() == 0)
+        else if (strRepresentative.length() == 0 || strRepresentative.equals("null"))
             dialog.showErrorDialog(mContext, "Enter Representative ");
         else if (strFormationDate.equals("Date"))
             dialog.showErrorDialog(mContext, "Enter Formation Date ");
@@ -716,7 +724,7 @@ public class GroupDetails extends BaseActivity {
     }
 
     private void saveData() {
-
+        String GrpName;
         String entryBy = getStaffID();
 
         SQLServerSyntaxGenerator syntax = new SQLServerSyntaxGenerator();
@@ -739,7 +747,19 @@ public class GroupDetails extends BaseActivity {
 
         String SrvCenterCode = "";
 
-        String GrpName = edtGroupName.getText().toString();
+        /**
+         * set Validation for GrpName
+         */
+
+        /**
+         * if it edit mode the globel veriable strGroup provides the group name from 
+         * the spinner 
+         */
+        if (!addNewFlag) {
+            GrpName = strGroup;
+        } else {
+            GrpName = edtGroupName.getText().toString();
+        }
 
 
         syntax.setGrpName(GrpName);
@@ -755,10 +775,13 @@ public class GroupDetails extends BaseActivity {
  * if lay exits
  */
             LayRCodes layRCodes = sqlH.getLayRListFromGroupDetails(idCountry, idDonor, idAward, idProgram, idGroup);
-
+            Log.d("jiba", "getLayR1Code : " + layRCodes.getLayR1Code() + " getLayR2Code:" + layRCodes.getLayR2Code() + " getLayR2Code:" + layRCodes.getLayR3Code());
 
             sqlH.editIntoGroupDetails(idCountry, idDonor, idAward, idProgram, idGroup, idOrg, idStaff, null, null, null, idActive, strRepresentative, strContactNo, strFormationDate, null, idStatus, entryBy, entryDate, null, null, idLayR1Code, idLayR2Code, idLayR3Code, layRCodes);
-            sqlH.insertIntoUploadTable(syntax.updateIntoCommunityGrpDetail(layRCodes));
+            if (layRCodes.getLayR3Code().equals("-"))
+                sqlH.insertIntoUploadTable(syntax.updateIntoCommunityGrpDetailIfLayR3CodeNotExit(layRCodes));
+            else
+                sqlH.insertIntoUploadTable(syntax.updateIntoCommunityGrpDetail(layRCodes));
         } else {
 
 
@@ -779,7 +802,7 @@ public class GroupDetails extends BaseActivity {
                 /**
                  * Community Group details
                  */
-                sqlH.addIntoGroupDetails(idCountry, idDonor, idAward, idProgram, idGroup, idOrg,idStaff, null, null, null, idActive, strRepresentative, strContactNo, strFormationDate, null, idStatus, entryBy, entryDate, null, null, idLayR1Code, idLayR2Code, idLayR3Code);
+                sqlH.addIntoGroupDetails(idCountry, idDonor, idAward, idProgram, idGroup, idOrg, idStaff, null, null, null, idActive, strRepresentative, strContactNo, strFormationDate, null, idStatus, entryBy, entryDate, null, null, idLayR1Code, idLayR2Code, idLayR3Code);
                 sqlH.insertIntoUploadTable(syntax.insertIntoCommunityGrpDetail());
 
                 oldLayR1Code = idLayR1Code;
@@ -889,7 +912,8 @@ public class GroupDetails extends BaseActivity {
         String criteria = " WHERE " + SQLiteHandler.COUNTRY_CODE_COL + " = '" + cCode + "' "
                 + " AND " + SQLiteHandler.DONOR_CODE_COL + " = '" + donorCode + "' "
                 + " AND " + SQLiteHandler.AWARD_CODE_COL + " = '" + awardCode + "' "
-                + " AND " + SQLiteHandler.PROGRAM_CODE_COL + " = '" + progCode + "' ";
+                + " AND " + SQLiteHandler.PROGRAM_CODE_COL + " = '" + progCode + "' "
+                + " GROUP BY " + SQLiteHandler.GROUP_CAT_CODE_COL + " , " + SQLiteHandler.GROUP_CAT_NAME_COL;
 
 
         // Spinner Drop down elements for District
@@ -985,7 +1009,7 @@ public class GroupDetails extends BaseActivity {
                     }
 
 
-                    Log.d(TAG, "idAward : " + idAward + " donor id :" + idAward.substring(0, 2));
+                    // Log.d(TAG, "idAward : " + idAward + " donor id :" + idAward.substring(0, 2));
                 }
             }
 

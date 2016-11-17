@@ -5153,8 +5153,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_BY, entryBy);
         values.put(ENTRY_DATE, entryDate);
 
-        db.insert(COMMUNITY_GROUP_TABLE, null, values);
-
+        long i = db.insert(COMMUNITY_GROUP_TABLE, null, values);
+        Log.d("insetCGrp", "insert into " + i + " no row");
         db.close();
 
     }
@@ -5245,7 +5245,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
 
-        String sql = " INSERT INTO " + COMMUNITY_GRP_DETAIL_TABLE + " (" + COUNTRY_CODE_COL + "," + DONOR_CODE_COL
+/*        String sql = " INSERT INTO " + COMMUNITY_GRP_DETAIL_TABLE + " (" + COUNTRY_CODE_COL + "," + DONOR_CODE_COL
                 + "," + AWARD_CODE_COL + "," + PROGRAM_CODE_COL + "," + GROUP_CODE_COL
                 + "," + ORG_CODE_COL + "," + LAY_R1_LIST_CODE_COL + "," + LAY_R2_LIST_CODE_COL
                 + "," + LAY_R3_LIST_CODE_COL + "," + STAFF_CODE_COL + "," + LAND_SIZE_UNDER_IRRIGATION_COL
@@ -5265,8 +5265,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         Log.d("BUG", sql);
         Cursor cursor = db.rawQuery(sql, null);
 
-        cursor.close();
-       /* ContentValues values = new ContentValues();
+        cursor.close();*/
+        ContentValues values = new ContentValues();
         values.put(COUNTRY_CODE_COL, cCode);
         values.put(DONOR_CODE_COL, donorCode);
         values.put(AWARD_CODE_COL, awardCode);
@@ -5274,9 +5274,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(GROUP_CODE_COL, grpCode);
         values.put(ORG_CODE_COL, ogrCode);
 
-    *//*    values.put(LAY_R1_LIST_CODE_COL, layR1Code);
+        values.put(LAY_R1_LIST_CODE_COL, layR1Code);
         values.put(LAY_R2_LIST_CODE_COL, layR2Code);
-        values.put(LAY_R3_LIST_CODE_COL, layR3Code);*//*
+        values.put(LAY_R3_LIST_CODE_COL, layR3Code);
 
         values.put(STAFF_CODE_COL, staffCode);
         values.put(LAND_SIZE_UNDER_IRRIGATION_COL, landSizeUnder);
@@ -5292,7 +5292,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_DATE, entryDate);
         values.put(PROJECT_NO_COL, projecftNo);
         values.put(PROJECT_TITLE, projectTitle);
-        db.insert(COMMUNITY_GRP_DETAIL_TABLE, null, values);*/
+        db.insert(COMMUNITY_GRP_DETAIL_TABLE, null, values);
+        //Log.d("ShuvoInsert","Insert Return"+ i);
         db.close();
 
     }
@@ -5376,9 +5377,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         String extraCondition;
         if (oldLayR.getLayR1Code().length() > 0 && oldLayR.getLayR2Code().length() > 0 && oldLayR.getLayR3Code().length() > 0) {
-            extraCondition = " AND " + LAY_R1_LIST_CODE_COL + " = '" + oldLayR.getLayR1Code() + "'"
-                    + " AND " + LAY_R2_LIST_CODE_COL + " = '" + oldLayR.getLayR2Code() + "'"
-                    + " AND " + LAY_R3_LIST_CODE_COL + " = '" + oldLayR.getLayR3Code() + "'";
+            if (oldLayR.getLayR3Code().equals("-")) {
+
+                extraCondition = " AND " + LAY_R1_LIST_CODE_COL + " = '" + oldLayR.getLayR1Code() + "'"
+                        + " AND " + LAY_R2_LIST_CODE_COL + " = '" + oldLayR.getLayR2Code() + "'";
+            }
+            else{
+                extraCondition = " AND " + LAY_R1_LIST_CODE_COL + " = '" + oldLayR.getLayR1Code() + "'"
+                        + " AND " + LAY_R2_LIST_CODE_COL + " = '" + oldLayR.getLayR2Code() + "'"
+                        + " AND " + LAY_R3_LIST_CODE_COL + " = '" + oldLayR.getLayR3Code() + "'";
+            }
+
         } else {
             extraCondition = "";
         }
@@ -5409,7 +5418,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(LAY_R3_LIST_CODE_COL, layR3Code);
 
 
-        db.update(COMMUNITY_GRP_DETAIL_TABLE, values, where, null);
+        int i = db.update(COMMUNITY_GRP_DETAIL_TABLE, values, where, null);
+        Log.d("Update", "update " + i + " no of row of community detaidls ");
     }
 
 
@@ -6069,11 +6079,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
                 + " INNER JOIN "
                 + COMMUNITY_GROUP_TABLE + " AS cg "
-                + " ON cgc." + SQLiteHandler.COUNTRY_CODE_COL + " = cg." + SQLiteHandler.COUNTRY_CODE_COL
-                + " AND cgc." + SQLiteHandler.DONOR_CODE_COL + " = cg." + SQLiteHandler.DONOR_CODE_COL
-                + " AND cgc." + SQLiteHandler.AWARD_CODE_COL + " = cg." + SQLiteHandler.AWARD_CODE_COL
-                + " AND cgc." + SQLiteHandler.PROGRAM_CODE_COL + " = cg." + SQLiteHandler.PROGRAM_CODE_COL
-                + " AND cgc." + SQLiteHandler.GROUP_CAT_CODE_COL + " = cg." + SQLiteHandler.GROUP_CAT_CODE_COL
+                + " ON cgc." + SQLiteHandler.COUNTRY_CODE_COL + " =     cg." + SQLiteHandler.COUNTRY_CODE_COL
+                + " AND cgc." + SQLiteHandler.DONOR_CODE_COL + " =      cg." + SQLiteHandler.DONOR_CODE_COL
+                + " AND cgc." + SQLiteHandler.AWARD_CODE_COL + " =      cg." + SQLiteHandler.AWARD_CODE_COL
+                + " AND cgc." + SQLiteHandler.PROGRAM_CODE_COL + " =    cg." + SQLiteHandler.PROGRAM_CODE_COL
+                + " AND cgc." + SQLiteHandler.GROUP_CAT_CODE_COL + " =  cg." + SQLiteHandler.GROUP_CAT_CODE_COL
 
                 + " INNER JOIN " +
                 SQLiteHandler.ADM_PROGRAM_MASTER_TABLE + " AS pm "
@@ -6106,6 +6116,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + " AND grpDetail." + SQLiteHandler.AWARD_CODE_COL + " = cgc." + SQLiteHandler.AWARD_CODE_COL
                 + " AND grpDetail." + SQLiteHandler.PROGRAM_CODE_COL + " = pm." + SQLiteHandler.PROGRAM_CODE_COL
                 + " AND grpDetail." + SQLiteHandler.GROUP_CODE_COL + " = cg." + SQLiteHandler.GROUP_CODE_COL
+                + " AND grpDetail." + SQLiteHandler.LAY_R1_LIST_CODE_COL + " = cg." + SQLiteHandler.LAY_R1_LIST_CODE_COL
+                + " AND grpDetail." + SQLiteHandler.LAY_R2_LIST_CODE_COL + " = cg." + SQLiteHandler.LAY_R2_LIST_CODE_COL
+                + " AND grpDetail." + SQLiteHandler.LAY_R3_LIST_CODE_COL + " = cg." + SQLiteHandler.LAY_R3_LIST_CODE_COL
 
 
                 + " LEFT JOIN " + PROGRAM_ORGANIZATION_NAME_TABLE + " AS org "
@@ -6121,8 +6134,18 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + " AND cgc." + SQLiteHandler.DONOR_CODE_COL + " = '" + donorCode + "' "
                 + " AND cgc." + SQLiteHandler.AWARD_CODE_COL + " ='" + awardCode + "' "
                 + " AND cgc." + SQLiteHandler.PROGRAM_CODE_COL + " = '" + progCode + "' "
-                + " AND cg." + SQLiteHandler.GROUP_NAME_COL + " LIKE '%" + groupName + "%' ";
-
+                + " AND cg." + SQLiteHandler.GROUP_NAME_COL + " LIKE '%" + groupName + "%' "
+                + " GROUP BY "
+                + " cg." + SQLiteHandler.COUNTRY_CODE_COL
+                + ", cg." + SQLiteHandler.DONOR_CODE_COL
+                + ", cg." + SQLiteHandler.AWARD_CODE_COL
+                + ", cg." + SQLiteHandler.PROGRAM_CODE_COL
+                + ", cg." + SQLiteHandler.GROUP_CAT_CODE_COL
+                + ",  cg." + SQLiteHandler.GROUP_CODE_COL
+                + ", cg." + LAY_R1_LIST_CODE_COL
+                + ", cg." + LAY_R2_LIST_CODE_COL
+                + ", cg." + LAY_R3_LIST_CODE_COL;
+        Log.d("SQL", sql);
 
         Cursor cursor = db.rawQuery(sql, null);
 
@@ -6148,7 +6171,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 data.setLayr3Name(cursor.getString(cursor.getColumnIndex(UNITE_NAME_COL)));
                 data.setOrgonizationCode(cursor.getString(cursor.getColumnIndex(ORG_CODE_COL)));
                 data.setOrgonizationName(cursor.getString(cursor.getColumnIndex(ORGANIZATION_NAME)));
-// TODO: 10/19/2016  fixed problem  
+
                 data.setStaffCode(cursor.getString(cursor.getColumnIndex(STAFF_CODE_COL)));
                 data.setStaffName(cursor.getString(cursor.getColumnIndex(STAFF_NAME_COL)));
 
@@ -9000,10 +9023,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 + " AND " + DONOR_CODE_COL + " = '" + donorCode + "'"
                 + " AND " + AWARD_CODE_COL + " = '" + awardCode + "'"
                 + " AND " + PROGRAM_CODE_COL + " = '" + progCode + "'"
-                //    + " AND " + LAY_R1_LIST_CODE_COL + " = '" + layR1Code + "'"
-                //   + " AND " + LAY_R2_LIST_CODE_COL + " = '" + layR2Code + "'"
-                //  + " AND " + LAY_R3_LIST_CODE_COL + " = '" + layR3Code + "'"
-                ;
+                + " AND " + LAY_R1_LIST_CODE_COL + " = '" + layR1Code + "'"
+                + " AND " + LAY_R2_LIST_CODE_COL + " = '" + layR2Code + "'"
+                + " AND " + LAY_R3_LIST_CODE_COL + " = '" + layR3Code + "'";
+        Log.d("CHA", sql);
 
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
@@ -11811,7 +11834,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * @param cCode   Country Code
      * @param opMonth Op Month Code
      * @return A  Hash Map of startDate & end Date
-     * @see {@link com.siddiquinoor.restclient.activity.sub_activity.dynamic_table.DTResponseActivity.}
+     * @see {@link }
      * This method  return Date the Range of Dt
      */
 
@@ -12787,14 +12810,14 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
-    public void cleanTemTableForService(){
+    public void cleanTemTableForService() {
         SQLiteDatabase db = this.getWritableDatabase();
-        try{
+        try {
             db.delete(TEMPORARY_OP_MONTH_TABLE, null, null);
             db.delete(TEMPORARY_COUNTRY_PROGRAM_TABLE, null, null);
 
-        }catch (Exception e){
-            Log.e(TAG," Teptable "+e);
+        } catch (Exception e) {
+            Log.e(TAG, " Teptable " + e);
         }
 
     }

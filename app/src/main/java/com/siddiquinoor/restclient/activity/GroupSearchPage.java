@@ -316,7 +316,7 @@ public class GroupSearchPage extends BaseActivity {
                 listOfGroup.setFocusableInTouchMode(true);
 
             } else {
-                Log.d(TAG, "Adapter Is Empety ");
+//                Log.d(TAG, "Adapter Is Empety ");
 
             }
 

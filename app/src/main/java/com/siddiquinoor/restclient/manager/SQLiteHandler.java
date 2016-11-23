@@ -79,7 +79,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     // All Static variables
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     // Database Name
     private static final String DATABASE_NAME = "pci";
     // Android meta data table
@@ -900,10 +900,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String AG_L_S_OTHER_COL = "LSOther";
 
 
-    //public static boolean is_online = false;
 
 
-//    private ArrayList<dataDB> apps = new ArrayList<dataDB>();
+
+
 
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -913,207 +913,80 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        // create Upload  table
+
         db.execSQL(Schema.sqlCreateUploadTable());
 
-        // create User Login table
+
         db.execSQL(Schema.sqlCreateUserLoginTable());
-        // STAFF  FOR ADMIN
 
         db.execSQL(Schema.sqlCreateStaffMasterTable());
-
-        // create Country Table
         db.execSQL(Schema.sqlCreateCountry());
-
-        // create Layer Label
         db.execSQL(Schema.sqlCreateLayerLabel());
-
-
-        // create District Table
         db.execSQL(Schema.sqlCreateDistrict());
-
-
-        // create Upazilla Table
         db.execSQL(Schema.sqlCreateUpazilla());
-
-
-        // create Unit Table
         db.execSQL(sqlCreateUnit());
-
-
-        // create Village Table
         db.execSQL(Schema.sqlCreateVillage());
-
-
-        // create Valid Date Range Table
         db.execSQL(Schema.sqlCreateDateRange());
-
-
-        // create Registration Table
         db.execSQL(Schema.sqlCreateRegistration());
-
-
-        // create Relation Table
         db.execSQL(Schema.sqlCreateRegRelation());
-
-
-        // create Member Table
         db.execSQL(Schema.sqlCreateRegMember());
-
-
-        // create Service Table
         db.execSQL(Schema.sqlCreateServiceTable());
-
-
         db.execSQL(Schema.sqlCreateCountryAwardTable());
-
-
         db.execSQL(Schema.sqlCreateDonorTable());
-
-
         db.execSQL(Schema.sqlCreateProgramMasterTable());
-
-
         db.execSQL(Schema.sqlCreateServiceMasterTable());
-
-
         db.execSQL(Schema.sqlCreateRegNAssignPrgSrvTable());
-
-
         db.execSQL(Schema.sqlCreateGpsGroupTable());
-
-
         db.execSQL(Schema.sqlCreateGpsSubGroupTable());
-
-
         db.execSQL(Schema.sqlCreateGpsLocationTable());
-
-
         db.execSQL(Schema.sqlCreateOpMonthTable());
-
-
         db.execSQL(Schema.sqlCreateADM_CountryProgram());
-
-
         db.execSQL(Schema.sqlCreateRegNLMTable());
-
-
         db.execSQL(Schema.sqlCreateServiceCenterTable());
-
-
-        // create dob Reg-N-PW Table -- ADDED BY POP REMARKS
         db.execSQL(Schema.sqlCreateRegNPWTable());
-
-
         db.execSQL(Schema.sqlCreateRegNCU2Table());
-
-
-        // create dob Reg-N-CA2 Table --
         db.execSQL(Schema.sqlCreateRegNCA2Table());
-
-
-        // create dob StaffGeoInfoAccess Table --
         db.execSQL(Schema.sqlCreateStaffGeoInfoAccessTable());
-
-
-        // create dob StaffGeoInfoAccess Table --
         db.execSQL(Schema.sqlCreateHouseHoldCategoryTable());
-
-        // TO MARGE THE TABEL DELETE THE CODE
-        //   delete LIBERIA_REGISTRATION_TABLE
-        //  db.execSQL(Schema.sqlCreateLiberiaRegistrationTable());
-
-
         db.execSQL(Schema.sqlCreateGraduationTable());
-
-
         db.execSQL(Schema.sqlCreateCardTypeTable());
-
-
         db.execSQL(Schema.sqlCreateCardPrintReasonTable());
-
-
         db.execSQL(Schema.sqlCreateRegMemberCardPrintTable());
-
         db.execSQL(Schema.sqlCreate_RegN_CT_Table());
-
-
         db.execSQL(Schema.sqlCreateStaffFDPAccessTable());
-//        Log.d(TAG, " sql Create StaffFDPAccess Table ");
         db.execSQL(Schema.sqlCreateFDP_Master_Table());
-//        Log.d(TAG, "  Create FDP_Master_Table ");
-
         db.execSQL(Schema.sqlCreateDistributionTable());
-//        Log.d(TAG, "  Create Distribution Table ");
-
         db.execSQL(Schema.sqlCreateRegN_AGR_Table());
-//        Log.d(TAG, "  Create RegNArg Table ");
-
         db.execSQL(Schema.sqlCreateLUP_SrvOptionList());
-//        Log.d(TAG, "  Create LUP_SrvOptionList Table ");
-
         db.execSQL(Schema.sqlCreateRegNVUL_Table());
-//        Log.d(TAG, "  Create RegN Vul Table ");
-
         db.execSQL(Schema.sqlCreateVoucherItem_Table());
-//        Log.d(TAG, "  Create Voucher Item Table ");
-
-
         db.execSQL(Schema.sqlCreateVoucherItemMeas_Table());
-//        Log.d(TAG, "  Create VoucherItemMeas_Table ");
-
         db.execSQL(Schema.sqlCreateVoucherCountryProgItem_Table());
-//        Log.d(TAG, "  Create VoucherCountryProgItem_Table ");
-
-
         db.execSQL(Schema.sqlCreateServiceExtended_Table());
-//        Log.d(TAG, "  Create sqlCreateServiceExtended_Table_Table ");
-
-
         db.execSQL(Schema.sqlCreateDistributionExtended_Table());
-//        Log.d(TAG, "  Create sqlCreateDistributionExtended_Table ");
-
         db.execSQL(Schema.sqlCreateSelectedVillage_Table());
-//        Log.d(TAG, "  Create sqlCreateSelected Village_Table ");
-
         db.execSQL(Schema.sqlCreateSelectedFDP_Table());
-
-
         db.execSQL(Schema.sqlCreateSelectedServiceCenter_Table());
-
         db.execSQL(Schema.sqlCreateCommunityGroup_Table());
-
         db.execSQL(Schema.sqlCreateGPSSubGroupAttributes_Table());
-
         db.execSQL(Schema.sqlCreateLUP_GPS_Table());
-
         db.execSQL(Schema.sqlCreateGPSLocationAttributes_Table());
-
         db.execSQL(Schema.sqlCreateServiceSpecification_Table());
-
         db.execSQL(Schema.sqlCreateLUP_CommunityAnimalList_Table());
-
         db.execSQL(Schema.sqlCreateLUP_ProgramGroupCrop_Table());
-
         db.execSQL(Schema.sqlCreateLUP_CommunityLoanSource_Table());
-
         db.execSQL(Schema.sqlCreateLUP_CommunityLeadPosition_Table());
-
         db.execSQL(Schema.sqlCreateRegNmemProgGrp_Table());
-
         db.execSQL(Schema.sqlCreateCommunityGroupCategoryes_Table());
-
         db.execSQL(Schema.sqlCreate_Gps_Location_Content_Table());
 // // TODO: 11/13/2016  redesign  last sync time
         db.execSQL(Schema.lastSyncTime());
         db.execSQL(Schema.createTableRegN_FFA());
-
         db.execSQL(Schema.sqlCreateDistNPlanBasic());
         db.execSQL(Schema.createTableLUP_RegNAddLookup());
         db.execSQL(Schema.createTableCommunityGrpDetail());
         db.execSQL(Schema.createTableProgOrgNRole());
         db.execSQL(Schema.createTableProgOrgN());
-
         db.execSQL(Schema.sqlCreateLUP_GpsList());
 
 
@@ -1141,7 +1014,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         Log.d(TAG, "  Create All Table ");
 
-        //db.close();
+
     }
 
 
@@ -1214,21 +1087,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.execSQL(DROP_TABLE_IF_EXISTS + LUP_COMMUNITY_ANIMAL_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + LUP_PROG_GROUP_CROP_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + LUP_COMMUNITY_LOAN_SOURCE_TABLE);
-
             db.execSQL(DROP_TABLE_IF_EXISTS + LUP_COMMUNITY_LEAD_POSITION_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + REG_N_MEM_PROG_GRP_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + COMMUNITY_GROUP_CATEGORY_TABLE);
-
             db.execSQL(DROP_TABLE_IF_EXISTS + GPS_LOCATION_CONTENT_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + REG_N_FFA_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + DIST_N_PLAN_BASIC_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + COMMUNITY_GRP_DETAIL_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + PROGRAM_ORGANIZATION_NAME_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + PROGRAM_ORGANIZATION_ROLE_TABLE);
-
             db.execSQL(DROP_TABLE_IF_EXISTS + STAFF_MASTER_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + STAFF_MASTER_TABLE);
-
             db.execSQL(DROP_TABLE_IF_EXISTS + LUP_GPS_LIST_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + DT_A_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + DT_BASIC_TABLE);
@@ -1242,6 +1111,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.execSQL(DROP_TABLE_IF_EXISTS + DT_TABLE_DEFINITION_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + DTTABLE_LIST_CATEGORY_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + DT_LUP_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + TEMPORARY_COUNTRY_PROGRAM_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + TEMPORARY_OP_MONTH_TABLE);
 
 
             Log.d(TAG, "All table Dropped.");
@@ -1600,7 +1471,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_DATE, entryDate);
 
 
-        long id = db.insert(REG_N_MEM_PROG_GRP_TABLE, null, values);
+         db.insert(REG_N_MEM_PROG_GRP_TABLE, null, values);
         db.close();
 
 
@@ -1662,7 +1533,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(LOAN_CODE_COL, loanCode);
         values.put(LOAN_SOURCE_COL, loanSource);
 
-        long id = db.insert(LUP_COMMUNITY_LOAN_SOURCE_TABLE, null, values);
+        db.insert(LUP_COMMUNITY_LOAN_SOURCE_TABLE, null, values);
         db.close();
 
 
@@ -1684,7 +1555,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(LEAD_POSITION_COL, leadPosition);
 
 
-        long id = db.insert(LUP_COMMUNITY_LEAD_POSITION_TABLE, null, values);
+         db.insert(LUP_COMMUNITY_LEAD_POSITION_TABLE, null, values);
         db.close();
 
 
@@ -1702,7 +1573,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(SERVICE_CENTER_NAME_COL, srvCenName);
         values.put(FDP_CODE_COL, fdpCode);
 
-        long id = db.insert(SERVICE_CENTER_TABLE, null, values);
+       db.insert(SERVICE_CENTER_TABLE, null, values);
         db.close();
 
 
@@ -1731,7 +1602,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.insert(COUNTRY_PROGRAM_TABLE, null, values);
         db.close(); // Closing database connection
 
-        //    Log.d(TAG, "New location  inserted into COUNTRY_PROGRAM_TABLE Table : " + id);
+
     }
 
     /**
@@ -1739,7 +1610,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * INSERT OPERATION FROM HERE
      * ***********************************************************************
      */
-     /* @ Faisal Mohammad
+     /*
     * @date : 2015-09-30*/
     public void addGraduation(String programCode, String serviceCode, String grdCode, String grdTitle,
                               String defaultCatActive, String defaultCatExit) {
@@ -1754,10 +1625,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(DEFAULT_CAT_EXIT_COL, defaultCatExit);
 
         // many mort ot insert
-        // insert
-        long id = db.insert(REG_N_LUP_GRADUATION_TABLE, null, values);
+      db.insert(REG_N_LUP_GRADUATION_TABLE, null, values);
         db.close();
-        Log.d(TAG, "New REG_N_LUP_GRADUATION_TABLE  added: " + id);
+
 
     }
 
@@ -1881,9 +1751,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         Log.d(TAG, "Registration data edited for: " + pID);
     }
 
-    /* @ Faisal Mohammad
-    * @date : 2015-09-19
-    * todo: replace table name */
+
     public long addHHRegForLiberia(RegN_HH_libDataModel data) {
 
 
@@ -2043,92 +1911,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 , entryDate);
     }
 
-    /**
-     * This method insert into Service Specification Table
-     *
-     * @param cCode
-     * @param donorCode
-     * @param awardCode
-     * @param distCode
-     * @param upCode
-     * @param unCode
-     * @param vCode
-     * @param hhId
-     * @param memId
-     * @param programCode
-     * @param srvCode
-     * @param opCode
-     * @param opMonthCode
-     * @param srvCenterCode
-     * @param fdpCode
-     * @param srvStatus
-     * @param babyStatus
-     * @param gmpAttendence
-     * @param weightStatus
-     * @param nutAttendance
-     * @param vitaUnder5
-     * @param exclCurrentLybf
-     * @param dateComFeed
-     * @param camRef
-     * @param dateAncVisit
-     * @param pncVisit2D
-     * @param pncVisit1W
-     * @param pncVisit6W
-     * @param deliveryStaff_1
-     * @param deliveryStaff_2
-     * @param deliveryStaff_3
-     * @param homeSupport24H_1D
-     * @param homeSupport24H_2D
-     * @param homeSupport24H_3D
-     * @param homeSupport24H_8D
-     * @param homeSupport24H_14D
-     * @param homeSupport24H_21D
-     * @param homeSupport24H_30D
-     * @param homeSupport24H_60D
-     * @param homeSupport24H_90D
-     * @param homeSupport48H_1D
-     * @param homeSupport48H_3D
-     * @param homeSupport48H_8D
-     * @param homeSupport48H_30D
-     * @param homeSupport48H_60D
-     * @param homeSupport48H_90D
-     * @param maternal_bleeed
-     * @param maternal_seizure
-     * @param maternal_infection
-     * @param maternal_proLongedLabor
-     * @param maternal_obstructedLabor
-     * @param maternal_pprm
-     * @param nBorn_Aspyxia
-     * @param nBorn_Sepsis
-     * @param nBorn_HypoThermai
-     * @param nBorn_HyperThermai
-     * @param nBorn_noSuckling
-     * @param nBorn_Jaundices
-     * @param child_Diarrhea
-     * @param child_Pneumonia
-     * @param child_Fever
-     * @param child_CerebralPalsy
-     * @param immu_Polio
-     * @param immu_BCG
-     * @param immu_Measles
-     * @param immu_DPT_HIB
-     * @param immu_Lotta
-     * @param immU_Other
-     * @param fpCounsel_MaleCondom
-     * @param fpCounsel_FemaleCondom
-     * @param fpCounsel_Pill
-     * @param fpCounsel_Depo
-     * @param fpCounsel_LongParmanent
-     * @param fpCounsel_NoMethod
-     * @param cropCode
-     * @param loanSource
-     * @param loanAMT
-     * @param animalCode
-     * @param leadCode
-     * @param entryBy
-     * @param entryDate
-     * @return
-     */
+
 
 
     public long addServiceSpecificTable(String cCode, String donorCode, String awardCode
@@ -2269,92 +2052,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return id;
     }
 
-    /**
-     * Tis method Update the Service Specific Table
-     *
-     * @param cCode
-     * @param donorCode
-     * @param awardCode
-     * @param distCode
-     * @param upCode
-     * @param unCode
-     * @param vCode
-     * @param hhId
-     * @param memId
-     * @param programCode
-     * @param srvCode
-     * @param opCode
-     * @param opMonthCode
-     * @param srvCenterCode
-     * @param fdpCode
-     * @param babyStatus
-     * @param gmpAttendence
-     * @param weightStatus
-     * @param nutAttendance
-     * @param vitaUnder5
-     * @param exclCurrentLybf
-     * @param dateComFeed
-     * @param camRef
-     * @param camAdd
-     * @param dateAncVisit
-     * @param pncVisit2D
-     * @param pncVisit1W
-     * @param pncVisit6W
-     * @param deliveryStaff_1
-     * @param deliveryStaff_2
-     * @param deliveryStaff_3
-     * @param homeSupport24H_1D
-     * @param homeSupport24H_2D
-     * @param homeSupport24H_3D
-     * @param homeSupport24H_8D
-     * @param homeSupport24H_14D
-     * @param homeSupport24H_21D
-     * @param homeSupport24H_30D
-     * @param homeSupport24H_60D
-     * @param homeSupport24H_90D
-     * @param homeSupport48H_1D
-     * @param homeSupport48H_3D
-     * @param homeSupport48H_8D
-     * @param homeSupport48H_30D
-     * @param homeSupport48H_60D
-     * @param homeSupport48H_90D
-     * @param maternal_bleeed
-     * @param maternal_seizure
-     * @param maternal_infection
-     * @param maternal_proLongedLabor
-     * @param maternal_obstructedLabor
-     * @param maternal_pprm
-     * @param nBorn_Aspyxia
-     * @param nBorn_Sepsis
-     * @param nBorn_HypoThermai
-     * @param nBorn_HyperThermai
-     * @param nBorn_noSuckling
-     * @param nBorn_Jaundices
-     * @param child_Diarrhea
-     * @param child_Pneumonia
-     * @param child_Fever
-     * @param child_CerebralPalsy
-     * @param immu_Polio
-     * @param immu_BCG
-     * @param immu_Measles
-     * @param immu_DPT_HIB
-     * @param immu_Lotta
-     * @param immU_Other
-     * @param fpCounsel_MaleCondom
-     * @param fpCounsel_FemaleCondom
-     * @param fpCounsel_Pill
-     * @param fpCounsel_Depo
-     * @param fpCounsel_LongParmanent
-     * @param fpCounsel_NoMethod
-     * @param cropCode
-     * @param loanSource
-     * @param loanAMT
-     * @param animalCode
-     * @param leadCode
-     * @param entryBy
-     * @param entryDate
-     * @return
-     */
+
 
 
     public int uploadIntoServiceSpecificTable(String cCode, String donorCode, String awardCode
@@ -2785,9 +2483,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_DATE, assMem.getEntryDate());
         values.put(SYNC_COL, "0");
 
-        Log.d(TAG, " in Cu2 :" + CU2DOB_DATE_COL + dob);
 
-        Log.d(TAG, "asPeople.getCU2DOB_DATE_COL _Date():" + dob);
 
         String query = COUNTRY_CODE + " = '" + assMem.getCountryCode() + "' AND " +
                 LAY_R1_LIST_CODE_COL + " = '" + assMem.getDistrictCode() + "' AND " +
@@ -2873,10 +2569,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             cursor.close();
         db.close();
 
-      /*  if (savePermission.equals("1")) return true;
-        else
-            return  false;
-            */
+
         // simplefli version
         return savePermission.equals("1");
     }
@@ -3093,7 +2786,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         long id = db.insert(FDP_MASTER_TABLE, null, values);
         db.close(); // Closing database connection
 
-//        Log.d(TAG, "FDp master table inserted into " + FDP_MASTER_TABLE + ": " + id);
+
 
     }
 
@@ -3195,13 +2888,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * @param cCode
-     * @param distCode
-     * @param upCode
-     * @param unCode
-     * @param vCode
-     * @param hhID
-     * @param mmId
+
      * @return specific data exit or not
      * @see #checkDataExistInTable(String, String)
      */
@@ -3237,7 +2924,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 "  And  " + HH_MEM_ID + " = '" + mmId + "' " +
                 " And   " + PROGRAM_CODE_COL + " ='" + prgCode + "' " +
                 "  And  " + SERVICE_CODE_COL + " ='" + srvCode + "' " +
-                //   "  And  " + OPERATION_CODE_COL + " ='" + opCode + "' " +
                 "  And  " + OPERATION_CODE_COL + " = '2' " +
                 "  And  " + OP_MONTH_CODE_COL + "   ='" + opMCode + "' ";
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -3250,17 +2936,15 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 /** @tips: For Removing timestamp 2015-06-06 00:00:00.00 to 2015-06-06
                  * use mm-- dd--YYYY*/
                 String temp = cursor.getString(cursor.getColumnIndex(SERVICE_DT_COL));
-                // temp = temp.substring(0, 10);
-                // / String dateformat = "";
+
                 /**   MM--YYYY--DD*/
-                //   dateformat = dateformat + temp.substring(5, 7) + "-" + temp.substring(8, 10) + "-" + temp.substring(0, 4);
 
                 srvDetails.setServiceDate(cursor.getString(cursor.getColumnIndex(SERVICE_DT_COL)));
 
 
                 srvDetails.setServiceStatus(cursor.getString(cursor.getColumnIndex(SERVICE_STATUS_COL)));
 
-                //   Log.d(TAG, DatabaseUtils.dumpCursorToString(cursor));
+
 
                 srvSlList.add(srvDetails);
 
@@ -3297,7 +2981,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             cursor.close();
 
         db.close();
-        // mCursor.close();
+
 
         return dobDate;
 
@@ -3316,9 +3000,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery(selectQuery, null);//*keyValue,keyvalue1*/});
         if (cursor != null && cursor.moveToFirst()) {
-            // mCursor.moveToFirst();
+
             dobDate = cursor.getString(cursor.getColumnIndex(CA2DOB_DATE_COL));
-            Log.d(TAG, "dob Date of CA2" + cursor.getString(0));
+
         }
         if (cursor != null)
             cursor.close();
@@ -3327,9 +3011,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         // mCursor.close();
         if (dobDate == null) {
             dobDate = "";
-        }/* else {
-            dobDate = removeTimestamp(dobDate);
-        }*/
+        }
 
         return dobDate;
 
@@ -3510,81 +3192,61 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 data.setGmpAttendence(cursor.getString(cursor.getColumnIndex(GMP_ATTENDACE_COL)));
                 data.setWeightStatus(cursor.getString(cursor.getColumnIndex(WEIGHT_STATUS_COL)));
                 data.setNutAttendance(cursor.getString(cursor.getColumnIndex(NUT_ATTENDANCE_COL)));
-
-
                 data.setVitaUnder5(cursor.getString(cursor.getColumnIndex(VITA_UNDER5_COL)));
-
-
                 data.setExclCurrentLybf(cursor.getString(cursor.getColumnIndex(EXCLUSIVE_CURRENTLYBF_COL)));
                 data.setDateComFeed(cursor.getString(cursor.getColumnIndex(DATE_COMPFEEDING_COL)));
                 data.setCamRef(cursor.getString(cursor.getColumnIndex(CMAMREF_COL)));
                 data.setCamAdd(cursor.getString(cursor.getColumnIndex(CMAMADD_COL)));
                 data.setDateAncVisit(cursor.getString(cursor.getColumnIndex(ANCVISIT_COL)));
-
                 data.setPncVisit2D(cursor.getString(cursor.getColumnIndex(PNCVISIT_2D_COL)));
                 data.setPncVisit1W(cursor.getString(cursor.getColumnIndex(PNCVISIT_1W_COL)));
                 data.setPncVisit6W(cursor.getString(cursor.getColumnIndex(PNCVISIT_6W_COL)));
                 data.setDeliveryStaff_1(cursor.getString(cursor.getColumnIndex(DELIVERY_STAFF_1_COL)));
                 data.setDeliveryStaff_2(cursor.getString(cursor.getColumnIndex(DELIVERY_STAFF_2_COL)));
                 data.setDeliveryStaff_3(cursor.getString(cursor.getColumnIndex(DELIVERY_STAFF_3_COL)));
-
                 data.setHomeSupport24H_1D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT24H_1D_COL)));
                 data.setHomeSupport24H_2D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT24H_2D_COL)));
                 data.setHomeSupport24H_3D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT24H_3D_COL)));
                 data.setHomeSupport24H_8D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT24H_8D_COL)));
-
-
                 data.setHomeSupport24H_14D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT24H_14D_COL)));
                 data.setHomeSupport24H_21D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT24H_21D_COL)));
                 data.setHomeSupport24H_30D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT24H_30D_COL)));
                 data.setHomeSupport24H_60D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT24H_60D_COL)));
                 data.setHomeSupport24H_90D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT24H_90D_COL)));
-
-
                 data.setHomeSupport48H_1D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT48H_1D_COL)));
                 data.setHomeSupport48H_3D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT48H_3D_COL)));
                 data.setHomeSupport48H_8D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT48H_8D_COL)));
                 data.setHomeSupport48H_30D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT48H_30D_COL)));
                 data.setHomeSupport48H_60D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT48H_60D_COL)));
                 data.setHomeSupport48H_90D(cursor.getString(cursor.getColumnIndex(HOME_SUPPORT48H_90D_COL)));
-
-
                 data.setMaternal_bleeed(cursor.getString(cursor.getColumnIndex(MATERNAL_BLEEDING_COL)));
                 data.setMaternal_seizure(cursor.getString(cursor.getColumnIndex(MATERNAL_SEIZURE_COL)));
                 data.setMaternal_infection(cursor.getString(cursor.getColumnIndex(MATERNAL_INFECTION_COL)));
                 data.setMaternal_proLongedLabor(cursor.getString(cursor.getColumnIndex(MATERNAL_PROLONGEDLABOR_COL)));
                 data.setMaternal_obstructedLabor(cursor.getString(cursor.getColumnIndex(MATERNAL_OBSTRUCTEDLABOR_COL)));
                 data.setMaternal_pprm(cursor.getString(cursor.getColumnIndex(MATERNAL_PPRM_COL)));
-
-
                 data.setnBorn_Aspyxia(cursor.getString(cursor.getColumnIndex(NBORN_ASPHYXIA_COL)));
                 data.setnBorn_Sepsis(cursor.getString(cursor.getColumnIndex(NBORN_SEPSIS_COL)));
                 data.setnBorn_HypoThermai(cursor.getString(cursor.getColumnIndex(NBORN_HYPOTHERMIA_COL)));
                 data.setnBorn_HyperThermai(cursor.getString(cursor.getColumnIndex(NBORN_HYPERTHERMIA_COL)));
                 data.setnBorn_noSuckling(cursor.getString(cursor.getColumnIndex(NBORN_NOSUCKLING_COL)));
                 data.setnBorn_Jaundices(cursor.getString(cursor.getColumnIndex(NBORN_JAUNDICE_COL)));
-
-
                 data.setChild_Diarrhea(cursor.getString(cursor.getColumnIndex(CHILD_DIARRHEA_COL)));
                 data.setChild_Pneumonia(cursor.getString(cursor.getColumnIndex(CHILD_PNEUMONIA_COL)));
                 data.setChild_Fever(cursor.getString(cursor.getColumnIndex(CHILD_FEVER_COL)));
                 data.setChild_CerebralPalsy(cursor.getString(cursor.getColumnIndex(CHILD_CEREBRALPALSY_COL)));
-
                 data.setImmu_Polio(cursor.getString(cursor.getColumnIndex(IMMU_POLIO_COL)));
                 data.setImmu_BCG(cursor.getString(cursor.getColumnIndex(IMMU_BCG_COL)));
                 data.setImmu_Measles(cursor.getString(cursor.getColumnIndex(IMMU_MEASLES_COL)));
                 data.setImmu_DPT_HIB(cursor.getString(cursor.getColumnIndex(IMMU_DPT_HIB_COL)));
                 data.setImmu_Lotta(cursor.getString(cursor.getColumnIndex(IMMU_LOTTA_COL)));
                 data.setImmU_Other(cursor.getString(cursor.getColumnIndex(IMMU_OTHER_COL)));
-
                 data.setFpCounsel_MaleCondom(cursor.getString(cursor.getColumnIndex(FPCOUNSEL_MALECONDOM_COL)));
                 data.setFpCounsel_FemaleCondom(cursor.getString(cursor.getColumnIndex(FPCOUNSEL_FEMALECONDOM_COL)));
                 data.setFpCounsel_Pill(cursor.getString(cursor.getColumnIndex(FPCOUNSEL_PILL_COL)));
                 data.setFpCounsel_Depo(cursor.getString(cursor.getColumnIndex(FPCOUNSEL_DEPO_COL)));
                 data.setFpCounsel_LongParmanent(cursor.getString(cursor.getColumnIndex(FPCOUNSEL_LONGPARMANENT_COL)));
                 data.setFpCounsel_NoMethod(cursor.getString(cursor.getColumnIndex(FPCOUNSEL_NOMETHOD_COL)));
-
-
                 data.setCropCode(cursor.getString(cursor.getColumnIndex(CROP_CODE_COL)));
                 data.setLoanSource(cursor.getString(cursor.getColumnIndex(LOAN_SOURCE_COL)));
                 data.setLoanAMT(cursor.getString(cursor.getColumnIndex(LOAN_AMT_COL)));
@@ -3708,15 +3370,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
-    /**
-     * @date : 2016-01-12
-     * @modified:
-     * @author : Faisal Mohammad
-     * @email: nirzon192@gmail.com
-     * @caller: Every upload Class
-     * @status
-     * @description : it will Update Sync flag SQL SERvEr Query
-     */
+
     public int uploadStatusFlagOfUploadTable(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -3789,17 +3443,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 assignedPeople.setRegDate(cursor.getString(cursor.getColumnIndex("regDate")));
                 /** @tips: For Removing timestamp 2015-06-06 00:00:00.00 to 2015-06-06
                  * use mm-- dd--YYYY*/
-               /* String temp = cursor.getString(cursor.getColumnIndex("regDate"));
-                String dateformat = "";
-                if (temp.length() > 5) {
-                    temp = temp.substring(0, 10);
-                    dateformat = "";
-                    dateformat = dateformat + temp.substring(5, 7) + "-" + temp.substring(8, 10) + "-" + temp.substring(0, 4);
-                } else {
-                    dateformat = temp;
-                }
 
-                assignedPeople.setRegDate(dateformat);*/
 
                 assignList.add(assignedPeople);
                 //   Log.d(TAG, " Assigne summary List : " + cursor.getString(0) + " : " + cursor.getString(1) + " : " + cursor.getString(2) + " : " + cursor.getString(3));
@@ -3943,20 +3587,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
-    /**
-     * @param cCode
-     * @param disCode
-     * @param upCode
-     * @param unCode
-     * @param vCode
-     * @param hhID
-     * @param memID
-     * @param donorCode
-     * @param awardCode
-     * @param progCode
-     * @return
-     * @since 2015-11-07
-     */
+
 
     public String getProgramGraduationDateOfMember(String cCode, String disCode, String upCode, String unCode, String vCode, String hhID, String memID, String donorCode, String awardCode, String progCode) {
         String grdDate = "";

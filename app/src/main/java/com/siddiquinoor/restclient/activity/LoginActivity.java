@@ -564,15 +564,13 @@ public class LoginActivity extends BaseActivity {
                         hideDialog();
 
 
-
-
                         // if user hsa 1 country assigned
                         if (CountryNo.equals("1")) {
                             getProgramAlert(user_name, password, countryNameList.get(0).getAdmCountryCode());
 
                         } else {
                             selectedCountryList.clear();
-                            getCountryAlert(user_name, password, 2);
+                            getCountryAlert(user_name, password, UtilClass.SERVICE_OPERATION_MODE);
                         }
 
                         //     checkServiceCenterSelection(user_name, password);
@@ -1236,7 +1234,7 @@ public class LoginActivity extends BaseActivity {
                                     selectedAwardCode = programNames.get(i).getAdmAwardCode();
                                     selectedProgCode = programNames.get(i).getAdmProgCode();
 
-                                    Toast.makeText(mContext, "Program :" + i, Toast.LENGTH_SHORT).show();
+
                                 }
                             }
 
@@ -1465,7 +1463,7 @@ public class LoginActivity extends BaseActivity {
 
 //                                    for (int j = 0; j < communityGroupList.size(); j++) {
 //                                        if (aLServiceCenter_itemsSelected.get(i).getServiceCenterCode().equals(communityGroupList.get(j).getSrvCenterCode())) {
-                                            selectedServiceCenterList.add(aLServiceCenter_itemsSelected.get(i));
+                                    selectedServiceCenterList.add(aLServiceCenter_itemsSelected.get(i));
 //                                            break;
 //                                        }
 //                                    }
@@ -1526,7 +1524,7 @@ public class LoginActivity extends BaseActivity {
                                 if (((AlertDialog) dialog).getListView().getCheckedItemCount() <= 2) {
                                     itemChecked[selectedItemId] = isSelected;
 
-                                    Log.d("REFAT----> position ", "" + selectedItemId);
+
                                 } else {
                                     Toast.makeText(LoginActivity.this, "You can not permitted to select more than Two FDP", Toast.LENGTH_SHORT).show();
 
@@ -1553,7 +1551,7 @@ public class LoginActivity extends BaseActivity {
 
                             JSONArray fdpJSONarry = UtilClass.fdpCodeJSONConverter("LoginActivity", selectedFdpList, db);
                             aLfdp_itemsSelected.clear();
-                            Log.d(TAG, " FDp jeson to string :" + fdpJSONarry.toString());
+
                             /** 2 is operation code Distribution */
                             checkLogin(user_name, password, fdpJSONarry, "2"); // checking online
                             editor.putInt(UtilClass.OPERATION_MODE, 2);
@@ -1600,7 +1598,7 @@ public class LoginActivity extends BaseActivity {
                                 if (((AlertDialog) dialog).getListView().getCheckedItemCount() <= 2) {
                                     itemChecked[selectedItemId] = isSelected;
 
-                                    Log.d("REFAT----> position ", "" + selectedItemId);
+
                                 } else {
                                     Toast.makeText(LoginActivity.this, "You can not permitted to select more than Two " + aL_itemsSelected.get(0).getGeoLayRName(), Toast.LENGTH_SHORT).show();
 
@@ -1687,8 +1685,13 @@ public class LoginActivity extends BaseActivity {
                 String errorResult = response.substring(9, 14);
 
 
-                boolean error = errorResult.equals("false") ? false : true;
+                /**
+                 *  simplifies the the code
+                 *  */
+                //   boolean error = errorResult.equals("false") ? false : true;
 
+
+                boolean error = !errorResult.equals("false");
                 if (!error) {
 
 
@@ -1759,10 +1762,12 @@ public class LoginActivity extends BaseActivity {
                 AppController.getInstance().getRequestQueue().getCache().clear();
                 writeJSONToTextFile(response, REG_HOUSE_HOLD_DATA);
 
-                Log.d("DIM", " After RegN HouseHold data in txt  stape:2");
+//                Log.d("DIM", " After RegN HouseHold data in txt  stape:2");
 
 
-                // DOING STRING OPERATION TO AVOID ALLOCATE CACHE MEMORY
+                /**
+                 *  DOING STRING OPERATION TO AVOID ALLOCATE CACHE MEMORY
+                 */
 
                 String errorResult = response.substring(9, 14);
 
@@ -2097,17 +2102,7 @@ public class LoginActivity extends BaseActivity {
                     downLoadDynamicData(user_Name, pass_word, selectedVilJArry, operationMode);
       /*              *//**
                      * IF GET NO ERROR  THAN GOTO THE MAIN ACTIVITY
-                     *//*
-
-                    setLogin(true);        // login success
-                    // Launch main activity
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    setUserID(user_Name);
-                    setUserPassword(pass_word);
-                    editor.putBoolean(IS_APP_FIRST_RUN, true);
-                    editor.commit();
-
-                    startActivity(intent);*/
+                     */
                 } else {
                     // Error in login. Invalid UserName or Password
                     String errorMsg = response.substring(response.indexOf("error_msg") + 11);

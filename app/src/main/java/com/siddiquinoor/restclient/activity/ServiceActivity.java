@@ -949,7 +949,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
                 + " AND " + SQLiteHandler.PROGRAM_CODE_COL + " = '" + progCode + "' "
                 + " AND " + SQLiteHandler.GROUP_CAT_CODE_COL + " = '" + grpCateCode + "' "
                 + " AND " + SQLiteHandler.SERVICE_CENTER_CODE_COL + " = '" + srvCenterCode + "' ";
-
+        Log.d("MOR", criteria);
 
         // Spinner Drop down elements for District
         List<SpinnerHelper> listAward = sqlH.getListAndID(SQLiteHandler.COMMUNITY_GROUP_TABLE, criteria, null, false);
@@ -1016,7 +1016,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
                 + " AND " + SQLiteHandler.DONOR_CODE_COL + " = '" + donorCode + "' "
                 + " AND " + SQLiteHandler.AWARD_CODE_COL + " = '" + awardCode + "' "
                 + " AND " + SQLiteHandler.PROGRAM_CODE_COL + " = '" + progCode + "' " +
-                " GROUP BY "+SQLiteHandler.GROUP_CAT_CODE_COL;
+                " GROUP BY " + SQLiteHandler.GROUP_CAT_CODE_COL;
 
 
         // Spinner Drop down elements for District
@@ -1198,7 +1198,7 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
                         + " IN ( SELECT "
                         + SQLiteHandler.SELECTED_SERVICE_CENTER_TABLE + "." + SQLiteHandler.SERVICE_CENTER_CODE_COL + " || '' || "
                         + SQLiteHandler.SELECTED_SERVICE_CENTER_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " from " + SQLiteHandler.SELECTED_SERVICE_CENTER_TABLE + ")" +
-                        " GROUP BY " +SQLiteHandler.SERVICE_CENTER_TABLE + "." + SQLiteHandler.SERVICE_CENTER_CODE_COL;
+                        " GROUP BY " + SQLiteHandler.SERVICE_CENTER_TABLE + "." + SQLiteHandler.SERVICE_CENTER_CODE_COL;
 
 
                 /**

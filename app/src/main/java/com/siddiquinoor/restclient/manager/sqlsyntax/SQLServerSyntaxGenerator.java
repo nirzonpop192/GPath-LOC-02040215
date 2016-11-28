@@ -5030,9 +5030,9 @@ public class SQLServerSyntaxGenerator {
     public String updateIntoCommunityGrpDetailIfLayR3CodeNotExit(LayRCodes oldLayRCodes) {
         String condition;
 
-        if (oldLayRCodes.getLayR1Code().length() > 0 && oldLayRCodes.getLayR2Code().length() > 0 ) {
+        if (oldLayRCodes.getLayR1Code().length() > 0 && oldLayRCodes.getLayR2Code().length() > 0) {
             condition = " AND            [LayR1Code] = " + checkStringNull(oldLayRCodes.getLayR1Code()) +
-                    " AND            [LayR2Code] = " + checkStringNull(oldLayRCodes.getLayR2Code()) ;
+                    " AND            [LayR2Code] = " + checkStringNull(oldLayRCodes.getLayR2Code());
 
         } else {
             condition = "";
@@ -5437,7 +5437,7 @@ public class SQLServerSyntaxGenerator {
     }
 
     public void setDTRSeq(String DTRSeq) {
-        this.DTRSeq =checkIntNull(DTRSeq) ;
+        this.DTRSeq = checkIntNull(DTRSeq);
     }
 
     private String DTRSeq;
@@ -5529,8 +5529,7 @@ public class SQLServerSyntaxGenerator {
     private String DTQCode;
 
 
-    public String insertIntoDTResponseTable()
-    {
+    public String insertIntoDTResponseTable() {
         return " INSERT INTO [dbo].[DTResponseTable]  " +
                 "            ([DTBasic]  " +
                 "            ,[AdmCountryCode]  " +
@@ -5549,34 +5548,35 @@ public class SQLServerSyntaxGenerator {
                 "            ,[DataType]  " +
                 "            ,[Completeness]) " +
                 "    VALUES " +
-                "            ( " +getDTBasic()+
-                "            , " +getAdmCountryCode()+
-                "            , " + getAdmDonorCode()+
-                "            , " +getAdmAwardCode()+
-                "            , " + getAdmProgCode()+
-                "            , " +getDTEnuID()+
-                "            , " +getDTQCode()+
-                "            , " +getDTACode()+
-                "            , " +getDTRSeq()+
-                "            , " +getDTAValue()+
-                "            , " +getProgActivityCode()+
-                "            , " +getDTTimeString()+
-                "            , " +getOpMode()+
-                "            , " +getOpMonthCode()+
-                "            , " +getDataType()+
-                "            ," + getCompleteness()+")";
+                "            ( " + getDTBasic() +
+                "            , " + getAdmCountryCode() +
+                "            , " + getAdmDonorCode() +
+                "            , " + getAdmAwardCode() +
+                "            , " + getAdmProgCode() +
+                "            , " + getDTEnuID() +
+                "            , " + getDTQCode() +
+                "            , " + getDTACode() +
+                "            , " + getDTRSeq() +
+                "            , " + getDTAValue() +
+                "            , " + getProgActivityCode() +
+                "            , " + getDTTimeString() +
+                "            , " + getOpMode() +
+                "            , " + getOpMonthCode() +
+                "            , " + getDataType() +
+                "            ," + getCompleteness() + ")";
     }
 
 
-    public String updateIntoDTResponseTable(){
+    public String updateIntoDTResponseTable() {
         return " UPDATE [dbo].[DTResponseTable]\n" +
-                "        SET "+
-                "        [DTAValue] = " + getDTAValue()+
-                "        ,[ProgActivityCode] =  " + getProgActivityCode()+
-                "        ,[DTTimeString] =  " + getDTTimeString()+
-                "        ,[OpMode] =  " + getOpMode()+
-                "        ,[OpMonthCode] =  " + getOpMonthCode()+
-                "        ,[DataType] = " + getDataType()+
+                "        SET " +
+                "        [DTAValue] = " + getDTAValue() +
+                "        ,[ProgActivityCode] =  " + getProgActivityCode() +
+                "        ,[DTTimeString] =  " + getDTTimeString() +
+                "        ,[OpMode] =  " + getOpMode() +
+                "        ,[OpMonthCode] =  " + getOpMonthCode() +
+                "        ,[DataType] = " + getDataType() +
+                "        ,[Completeness] = " + getCompleteness() +
                 "        WHERE DTBasic =  " + getDTBasic()
                 + "          AND AdmCountryCode =  " + getAdmCountryCode()
                 + "          AND AdmDonorCode =  " + getAdmDonorCode()
@@ -5588,20 +5588,22 @@ public class SQLServerSyntaxGenerator {
                 + "          AND DTRSeq =  " + getDTRSeq();
 
 
-
-
     }
 
-    public String deleteFromDTResponseTable(){
+    public String deleteFromDTResponseTable() {
         return
-                "DELETE FROM [dbo].[DTResponseTable]\n" +
-                "       WHERE DTBasic =  " + getDTBasic()
+                "DELETE FROM [dbo].[DTResponseTable] " +
+                        "       WHERE DTBasic =  " + getDTBasic()
                         + "          AND AdmCountryCode =  " + getAdmCountryCode()
                         + "          AND AdmDonorCode =  " + getAdmDonorCode()
                         + "          AND AdmAwardCode =  " + getAdmAwardCode()
                         + "          AND AdmProgCode =  " + getAdmProgCode()
                         + "          AND DTEnuID =  " + getDTEnuID()
-                        + "          AND DTRSeq =  " + getDTRSeq();
+                        + "          AND DTRSeq =  " + getDTRSeq()
+                        + "          AND OpMode =  " + getOpMode()
+                        + "          AND OpMonthCode =  " + getOpMonthCode();
+
+
     }
 
 }

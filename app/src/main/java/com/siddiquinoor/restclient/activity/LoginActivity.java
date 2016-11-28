@@ -28,12 +28,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.siddiquinoor.restclient.R;
-import com.siddiquinoor.restclient.data_model.CommunityGroupDM;
-import com.siddiquinoor.restclient.data_model.CountryNameItem;
+import com.siddiquinoor.restclient.data_model.AdmCountryDataModel;
 import com.siddiquinoor.restclient.data_model.FDPItem;
 import com.siddiquinoor.restclient.data_model.ProgramMasterDM;
 import com.siddiquinoor.restclient.data_model.ServiceCenterItem;
-import com.siddiquinoor.restclient.data_model.SrvTableReportDM;
 import com.siddiquinoor.restclient.data_model.TemOpMonth;
 import com.siddiquinoor.restclient.data_model.VillageItem;
 import com.siddiquinoor.restclient.fragments.BaseActivity;
@@ -41,6 +39,7 @@ import com.siddiquinoor.restclient.controller.AppConfig;
 import com.siddiquinoor.restclient.controller.AppController;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 import com.siddiquinoor.restclient.network.ConnectionDetector;
+import com.siddiquinoor.restclient.parse.Parser;
 import com.siddiquinoor.restclient.utils.UtilClass;
 import com.siddiquinoor.restclient.views.notifications.AlertDialogManager;
 
@@ -66,6 +65,29 @@ public class LoginActivity extends BaseActivity {
     public static final String SERVICE_DATA = "service_data";
     public static final String ALL_DATA = "all_data";
     public static final String DYNAMIC_TABLE = "dynamic_table";
+    private static final int REG_MODE = 0;
+    private static final int DIST_MODE = 1;
+    private static final int SERV_MODE = 2;
+    private static final int OTHER_MODE = 3;
+
+
+    /**
+     * function to verify login details & select 2 village
+     */
+    List<VillageItem> villageNameList = new ArrayList<VillageItem>();
+    List<AdmCountryDataModel> countryNameList = new ArrayList<AdmCountryDataModel>();
+    Dialog mdialog;
+    ArrayList<VillageItem> aL_itemsSelected = new ArrayList<VillageItem>();
+    ArrayList<AdmCountryDataModel> aCountryL_itemsSelected = new ArrayList<AdmCountryDataModel>();
+    ArrayList<VillageItem> selectedVillageList = new ArrayList<VillageItem>();
+    ArrayList<AdmCountryDataModel> selectedCountryList = new ArrayList<AdmCountryDataModel>();
+    boolean[] itemChecked;
+    boolean[] itemCheckedOpearationMode;
+
+    String[] villageNameStringArray;
+    String[] countryNameStringArray;
+    private final String[] operationModeStringArray = {"Registration", "Distribution", "Service", "Other"};
+
 
     // Login Button
     private Button btnLogin;
@@ -98,6 +120,13 @@ public class LoginActivity extends BaseActivity {
     SharedPreferences settings;
     SharedPreferences.Editor editor;
     private Button btnClean;
+
+    /**
+     * function to verify login details & select 2 FDP
+     */
+
+    List<ServiceCenterItem> serviceCenterNameList = new ArrayList<ServiceCenterItem>();
+    ArrayList<ServiceCenterItem> selectedServiceCenterList = new ArrayList<ServiceCenterItem>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -190,7 +219,7 @@ public class LoginActivity extends BaseActivity {
 
                             try {
                                 dialog.dismiss();
-                                db.deleteUsersWithSelectedVillage();
+                                db.deleteUsersWithSelected_LayR4_FDP_Srv_Country();
 
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -283,6 +312,99 @@ public class LoginActivity extends BaseActivity {
         });
     }
 
+
+    String strOperationMode = "";
+
+    /**
+     * @param user_name user name
+     * @param password  password
+     */
+
+    private void getOperationModeAlert(final String user_name, final String password) {
+        aCountryL_itemsSelected = (ArrayList<AdmCountryDataModel>) insertCountryNameListToSArray();
+        itemCheckedOpearationMode = new boolean[operationModeStringArray.length];
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Operation Mode");
+
+        builder.setSingleChoiceItems(operationModeStringArray, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                strOperationMode = "";
+                strOperationMode = operationModeStringArray[which];
+            }
+        });
+        builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                if (!strOperationMode.equals("")) {
+
+                    for (int mode_index = 0; mode_index < itemCheckedOpearationMode.length; mode_index++) {
+                        if (operationModeStringArray[mode_index].equals(strOperationMode)) {
+
+                            pDialog = new ProgressDialog(mContext);
+                            pDialog.setCancelable(false);
+                            pDialog.setMessage("Downloading  data .");
+                            pDialog.show();
+                            switch (mode_index) {
+                                case REG_MODE:
+
+                                    checkVillageSelection(user_name, password);
+                                    break;
+                                case DIST_MODE:
+
+                                    checkFDPSelection(user_name, password);
+                                    break;
+                                case SERV_MODE:
+
+
+                                    checkProgramSelection(user_name, password);
+
+
+                                    break;
+
+                                case OTHER_MODE:
+
+                                    checkCountrySelection(user_name, password);
+
+
+                                    break;
+
+                                default:
+                                    hideDialog();
+                                    mdialog.dismiss();
+                                    Toast.makeText(LoginActivity.this, "Select  any one", Toast.LENGTH_SHORT).show();
+                                    break;
+
+                            }
+                        } else {
+                            hideDialog();
+                            mdialog.dismiss();
+                        }
+
+                    }
+                } else {
+                    mdialog.dismiss();
+                    hideDialog();
+                }
+
+
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                hideDialog();
+
+
+                mdialog.dismiss();
+            }
+        });
+        mdialog = builder.create();
+        mdialog.show();
+    }
+
+
     private void gotoHomePage() {
         setLogin(true);        // login success
 
@@ -308,17 +430,6 @@ public class LoginActivity extends BaseActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
-
-
-    /**
-     * function to verify login details & select 2 FDP
-     */
-
-    List<ServiceCenterItem> serviceCenterNameList = new ArrayList<ServiceCenterItem>();
-    //List<ProgramMasterDM> AdmProgramNameList = new ArrayList<ProgramMasterDM>();
-    //List<CommunityGroupDM> communityGroupList = new ArrayList<CommunityGroupDM>();
-    //List<SrvTableReportDM> srvTableReportList = new ArrayList<SrvTableReportDM>();
-    ArrayList<ServiceCenterItem> selectedServiceCenterList = new ArrayList<ServiceCenterItem>();
 
 
     public void checkServiceCenterSelection(final String user_name, final String password, final String cCode, final String donorCode, final String awardCode, final String progCode, final String opMothCode, final String distFlag) {
@@ -360,35 +471,21 @@ public class LoginActivity extends BaseActivity {
                             }
                         }
 
-
-                        if (!jObj.isNull("countries")) {
-
-                            JSONArray village = jObj.getJSONArray("countries");
+                        if (!jObj.isNull(Parser.COUNTRIES_JSON_A)) {
                             countryNameList.clear();
-                            size = village.length();
-                            for (int i = 0; i < size; i++) {
-                                JSONObject vil = village.getJSONObject(i);
-
-                                String AdmCountryCode = vil.getString("AdmCountryCode");
-                                String AdmCountryName = vil.getString("AdmCountryName");
-                                CountryNameItem countryNameItem = new CountryNameItem();
-                                countryNameItem.setAdmCountryCode(AdmCountryCode);
-                                countryNameItem.setAdmCountryName(AdmCountryName);
-                                countryNameList.add(countryNameItem);
-
-                            }
+                            countryNameList = Parser.AdmCountryParser(jObj.getJSONArray(Parser.COUNTRIES_JSON_A));
                         }
 
 
-                        if (!jObj.isNull(MainActivity.DOB_SERVICE_CENTER_JSON_A)) {// this is not servie
-                            JSONArray dob_service_centers = jObj.getJSONArray(MainActivity.DOB_SERVICE_CENTER_JSON_A);
+                        if (!jObj.isNull(Parser.DOB_SERVICE_CENTER_JSON_A)) {// this is not servie
+                            JSONArray dob_service_centers = jObj.getJSONArray(Parser.DOB_SERVICE_CENTER_JSON_A);
                             size = dob_service_centers.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject dob_service_center = dob_service_centers.getJSONObject(i);
 
-                                String AdmCountryCode = dob_service_center.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String SrvCenterCode = dob_service_center.getString(MainActivity.SRV_CENTER_CODE);
-                                String SrvCenterName = dob_service_center.getString(MainActivity.SRV_CENTER_NAME);
+                                String AdmCountryCode = dob_service_center.getString(Parser.ADM_COUNTRY_CODE);
+                                String SrvCenterCode = dob_service_center.getString(Parser.SRV_CENTER_CODE);
+                                String SrvCenterName = dob_service_center.getString(Parser.SRV_CENTER_NAME);
 
                                 ServiceCenterItem servCenterItem = new ServiceCenterItem();
                                 servCenterItem.setAdmCountryCode(AdmCountryCode);
@@ -427,7 +524,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Login Error: " + error + " Stack Tracr = " + error.getStackTrace() + " Detail = " + error.getMessage());
-                // hide the mdialog
+
                 hideDialog();
                 showAlert("Failed to retrieve data\r\nPlease try again checking your internet connectivity, Username and Password.");
 
@@ -471,7 +568,17 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onResponse(String response) {
 
+
+                /***
+                 * Clear the Cache memory
+                 *
+                 */
                 AppController.getInstance().getRequestQueue().getCache().clear();
+
+                /**
+                 * hide the Dialog bar
+                 */
+                hideDialog();
 
                 String CountryNo = "0";
                 try {
@@ -500,40 +607,26 @@ public class LoginActivity extends BaseActivity {
                             }
                         }
 
-
-                        if (!jObj.isNull("countries")) {
-
-                            JSONArray village = jObj.getJSONArray("countries");
+                        if (!jObj.isNull(Parser.COUNTRIES_JSON_A)) {
                             countryNameList.clear();
-                            size = village.length();
-                            for (int i = 0; i < size; i++) {
-                                JSONObject vil = village.getJSONObject(i);
-
-                                String AdmCountryCode = vil.getString("AdmCountryCode");
-                                String AdmCountryName = vil.getString("AdmCountryName");
-                                CountryNameItem countryNameItem = new CountryNameItem();
-                                countryNameItem.setAdmCountryCode(AdmCountryCode);
-                                countryNameItem.setAdmCountryName(AdmCountryName);
-                                countryNameList.add(countryNameItem);
-
-                            }
+                            countryNameList = Parser.AdmCountryParser(jObj.getJSONArray(Parser.COUNTRIES_JSON_A));
                         }
 
 
-                        if (!jObj.isNull(MainActivity.ADM_OP_MONTH_JSON_A)) {
-                            JSONArray adm_op_months = jObj.getJSONArray(MainActivity.ADM_OP_MONTH_JSON_A);
+                        if (!jObj.isNull(Parser.ADM_OP_MONTH_JSON_A)) {
+                            JSONArray adm_op_months = jObj.getJSONArray(Parser.ADM_OP_MONTH_JSON_A);
                             size = adm_op_months.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject adm_op_month = adm_op_months.getJSONObject(i);
 
-                                String AdmCountryCode = adm_op_month.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String AdmDonorCode = adm_op_month.getString(MainActivity.ADM_DONOR_CODE);
-                                String AdmAwardCode = adm_op_month.getString(MainActivity.ADM_AWARD_CODE);
-                                String OpCode = adm_op_month.getString(MainActivity.OP_CODE);
-                                String OpMonthCode = adm_op_month.getString(MainActivity.OP_MONTH_CODE);
-                                String MonthLabel = adm_op_month.getString(MainActivity.MONTH_LABEL);
-                                String UsaStartDate = adm_op_month.getString(MainActivity.USA_START_DATE);
-                                String UsaEndDate = adm_op_month.getString(MainActivity.USA_END_DATE);
+                                String AdmCountryCode = adm_op_month.getString(Parser.ADM_COUNTRY_CODE);
+                                String AdmDonorCode = adm_op_month.getString(Parser.ADM_DONOR_CODE);
+                                String AdmAwardCode = adm_op_month.getString(Parser.ADM_AWARD_CODE);
+                                String OpCode = adm_op_month.getString(Parser.OP_CODE);
+                                String OpMonthCode = adm_op_month.getString(Parser.OP_MONTH_CODE);
+                                String MonthLabel = adm_op_month.getString(Parser.MONTH_LABEL);
+                                String UsaStartDate = adm_op_month.getString(Parser.USA_START_DATE);
+                                String UsaEndDate = adm_op_month.getString(Parser.USA_END_DATE);
                                 String Status = adm_op_month.getString("Status");
                                 db.addTemporaryOpMonth(AdmCountryCode, AdmDonorCode, AdmAwardCode, OpCode, OpMonthCode, MonthLabel, UsaStartDate, UsaEndDate, Status);
 
@@ -542,18 +635,18 @@ public class LoginActivity extends BaseActivity {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.ADM_PROGRAM_MASTER_JSON_A)) {
-                            JSONArray adm_program_masters = jObj.getJSONArray(MainActivity.ADM_PROGRAM_MASTER_JSON_A);
+                        if (!jObj.isNull(Parser.ADM_PROGRAM_MASTER_JSON_A)) {
+                            JSONArray adm_program_masters = jObj.getJSONArray(Parser.ADM_PROGRAM_MASTER_JSON_A);
                             size = adm_program_masters.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject adm_program_master = adm_program_masters.getJSONObject(i);
 
                                 String AdmCountryCode = adm_program_master.getString("AdmCountryCode");
-                                String AdmProgCode = adm_program_master.getString(MainActivity.ADM_PROG_CODE);
-                                String AdmAwardCode = adm_program_master.getString(MainActivity.ADM_AWARD_CODE);
-                                String AdmDonorCode = adm_program_master.getString(MainActivity.ADM_DONOR_CODE);
-                                String ProgName = adm_program_master.getString(MainActivity.PROG_NAME);
-                                String ProgShortName = adm_program_master.getString(MainActivity.PROG_SHORT_NAME);
+                                String AdmProgCode = adm_program_master.getString(Parser.ADM_PROG_CODE);
+                                String AdmAwardCode = adm_program_master.getString(Parser.ADM_AWARD_CODE);
+                                String AdmDonorCode = adm_program_master.getString(Parser.ADM_DONOR_CODE);
+                                String ProgName = adm_program_master.getString(Parser.PROG_NAME);
+                                String ProgShortName = adm_program_master.getString(Parser.PROG_SHORT_NAME);
 
                                 db.addTemporaryAdmCountryProgram(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, ProgName, ProgShortName);
 
@@ -645,6 +738,11 @@ public class LoginActivity extends BaseActivity {
                  */
                 AppController.getInstance().getRequestQueue().getCache().clear();
 
+                /**
+                 * hide the Dialog bar
+                 */
+                hideDialog();
+
                 String CountryNo = "0";
                 try {
                     JSONObject jObj = new JSONObject(response);
@@ -669,28 +767,15 @@ public class LoginActivity extends BaseActivity {
                         }
 
 
-                        if (!jObj.isNull("countries")) {
-
-                            JSONArray village = jObj.getJSONArray("countries");
+                        if (!jObj.isNull(Parser.COUNTRIES_JSON_A)) {
                             countryNameList.clear();
-                            size = village.length();
-                            for (int i = 0; i < size; i++) {
-                                JSONObject vil = village.getJSONObject(i);
-
-                                String AdmCountryCode = vil.getString("AdmCountryCode");
-                                String AdmCountryName = vil.getString("AdmCountryName");
-                                CountryNameItem countryNameItem = new CountryNameItem();
-                                countryNameItem.setAdmCountryCode(AdmCountryCode);
-                                countryNameItem.setAdmCountryName(AdmCountryName);
-                                countryNameList.add(countryNameItem);
-
-                            }
+                            countryNameList = Parser.AdmCountryParser(jObj.getJSONArray(Parser.COUNTRIES_JSON_A));
                         }
 
 
-                        if (!jObj.isNull(MainActivity.STAFF_FDP_ACCESS_JSON_A)) {
+                        if (!jObj.isNull(Parser.STAFF_FDP_ACCESS_JSON_A)) {
 
-                            JSONArray village = jObj.getJSONArray(MainActivity.STAFF_FDP_ACCESS_JSON_A);
+                            JSONArray village = jObj.getJSONArray(Parser.STAFF_FDP_ACCESS_JSON_A);
                             fdpNameList.clear();
                             size = village.length();
                             for (int i = 0; i < size; i++) {
@@ -718,7 +803,7 @@ public class LoginActivity extends BaseActivity {
                             getFDPAlert(user_name, password, false);
                         } else {
                             selectedCountryList.clear();
-                            getCountryAlert(user_name, password, 2);
+                            getCountryAlert(user_name, password, UtilClass.DISTRIBUTION_OPERATION_MODE);
                         }
 
 
@@ -767,22 +852,130 @@ public class LoginActivity extends BaseActivity {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
-    /**
-     * function to verify login details & select 2 village
-     */
-    List<VillageItem> villageNameList = new ArrayList<VillageItem>();
-    List<CountryNameItem> countryNameList = new ArrayList<CountryNameItem>();
-    Dialog mdialog;
-    ArrayList<VillageItem> aL_itemsSelected = new ArrayList<VillageItem>();
-    ArrayList<CountryNameItem> aCountryL_itemsSelected = new ArrayList<CountryNameItem>();
-    ArrayList<VillageItem> selectedVillageList = new ArrayList<VillageItem>();
-    ArrayList<CountryNameItem> selectedCountryList = new ArrayList<CountryNameItem>();
-    boolean[] itemChecked;
-    boolean[] itemCheckedOpearationMode;
+    public void checkCountrySelection(final String user_name, final String password) {
+        // Tag used to cancel the request
+        String tag_string_req = "req_login";
 
-    String[] villageNameStringArray;
-    String[] countryNameStringArray;
-    private final String[] operationModeStringArray = {"Registration", "Distribution", "Service"};
+
+        StringRequest strReq = new StringRequest(Method.POST,
+                AppConfig.API_LINK, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                /***
+                 * Clear the Cache memory
+                 *
+                 */
+
+                AppController.getInstance().getRequestQueue().getCache().clear();
+
+                /**
+                 * hide the Dialog bar
+                 */
+                hideDialog();
+                String CountryNo = "0";
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+
+                    // Check for error node in json
+                    if (!error) {
+
+                        int size = 0;
+
+                        if (!jObj.isNull("countrie_no")) {
+
+                            JSONArray jsonArray = jObj.getJSONArray("countrie_no");
+
+                            size = jsonArray.length();
+                            for (int i = 0; i < size; i++) {
+                                JSONObject vil = jsonArray.getJSONObject(i);
+                                CountryNo = vil.getString("CountryNo");
+
+                            }
+                        }
+
+
+                        if (!jObj.isNull(Parser.COUNTRIES_JSON_A)) {
+                            countryNameList.clear();
+                            countryNameList = Parser.AdmCountryParser(jObj.getJSONArray(Parser.COUNTRIES_JSON_A));
+                        }
+
+
+                        hideDialog();
+                        /**
+                         *  if user haa 1 country assigned
+                         */
+
+                        if (CountryNo.equals("1")) {
+                            JSONArray jaary = new JSONArray();
+                            JSONObject mData = new JSONObject();
+
+
+                            try {
+                                mData.put("selectedLayR4Code", "00");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            Log.d(TAG, "jeson to string :" + jaary.toString());
+                            /** for Other  MOde*/
+                            checkLogin(user_name, password, jaary, "4"); // checking online
+
+                            editor.putInt(UtilClass.OPERATION_MODE, UtilClass.OTHER_OPERATION_MODE);
+                            editor.commit();
+
+                        } else {
+                            selectedCountryList.clear();
+                            getCountryAlert(user_name, password, UtilClass.OTHER_OPERATION_MODE);
+                        }
+
+
+                    } else {
+                        // Error in login. Invalid UserName or Password
+                        hideDialog();
+                        String errorMsg = response.substring(response.indexOf("error_msg") + 11);
+                        Toast.makeText(getApplicationContext(),
+                                errorMsg, Toast.LENGTH_LONG).show();
+                        // hideDialog();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error + " Stack Tracr = " + error.getStackTrace() + " Detail = " + error.getMessage());
+                // hide the mdialog
+                hideDialog();
+                showAlert("Failed to retrieve data\r\nPlease try again checking your internet connectivity, Username and Password.");
+
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("key", "PhEUT5R251");
+                params.put("task", "is_down_load_village_name");
+                params.put("user_name", user_name);
+                params.put("password", password);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
 
     public void checkVillageSelection(final String user_name, final String password) {
         // Tag used to cancel the request
@@ -799,6 +992,11 @@ public class LoginActivity extends BaseActivity {
                  *
                  */
                 AppController.getInstance().getRequestQueue().getCache().clear();
+
+                /**
+                 * hide the Dialog bar
+                 */
+                hideDialog();
 
                 String CountryNo = "0";
                 try {
@@ -823,28 +1021,15 @@ public class LoginActivity extends BaseActivity {
                         }
 
 
-                        if (!jObj.isNull("countries")) {
-
-                            JSONArray village = jObj.getJSONArray("countries");
+                        if (!jObj.isNull(Parser.COUNTRIES_JSON_A)) {
                             countryNameList.clear();
-                            size = village.length();
-                            for (int i = 0; i < size; i++) {
-                                JSONObject vil = village.getJSONObject(i);
-
-                                String AdmCountryCode = vil.getString("AdmCountryCode");
-                                String AdmCountryName = vil.getString("AdmCountryName");
-                                CountryNameItem countryNameItem = new CountryNameItem();
-                                countryNameItem.setAdmCountryCode(AdmCountryCode);
-                                countryNameItem.setAdmCountryName(AdmCountryName);
-                                countryNameList.add(countryNameItem);
-
-                            }
+                            countryNameList = Parser.AdmCountryParser(jObj.getJSONArray(Parser.COUNTRIES_JSON_A));
                         }
 
 
-                        if (!jObj.isNull(MainActivity.VILLAGE_JSON_A)) {
+                        if (!jObj.isNull(Parser.VILLAGE_JSON_A)) {
 
-                            JSONArray village = jObj.getJSONArray(MainActivity.VILLAGE_JSON_A);
+                            JSONArray village = jObj.getJSONArray(Parser.VILLAGE_JSON_A);
                             villageNameList.clear();
                             size = village.length();
                             for (int i = 0; i < size; i++) {
@@ -872,7 +1057,7 @@ public class LoginActivity extends BaseActivity {
                             getVillageAlert(user_name, password, false);
                         } else {
                             selectedCountryList.clear();
-                            getCountryAlert(user_name, password, 1);
+                            getCountryAlert(user_name, password, UtilClass.REGISTRATION_OPERATION_MODE);
                         }
 
 
@@ -1018,13 +1203,13 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-    public List<CountryNameItem> insertCountryNameListToSArray() {
+    public List<AdmCountryDataModel> insertCountryNameListToSArray() {
         int i;
         countryNameStringArray = new String[countryNameList.size()];
 
         for (i = 0; i < countryNameList.size(); ++i) {
 
-            CountryNameItem countryItem = countryNameList.get(i);
+            AdmCountryDataModel countryItem = countryNameList.get(i);
             countryNameStringArray[i] = countryItem.getAdmCountryName();
 
         }
@@ -1034,92 +1219,11 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    String strOperationMode = "";
-
-    /**
-     * @param user_name user name
-     * @param password  password
-     */
-
-    private void getOperationModeAlert(final String user_name, final String password) {
-        aCountryL_itemsSelected = (ArrayList<CountryNameItem>) insertCountryNameListToSArray();
-        itemCheckedOpearationMode = new boolean[operationModeStringArray.length];
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Operation Mode");
-
-        builder.setSingleChoiceItems(operationModeStringArray, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                strOperationMode = "";
-                strOperationMode = operationModeStringArray[which];
-            }
-        });
-        builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //int selectItemCount = 0;
-                if (!strOperationMode.equals("")) {
-
-                    for (int mode_index = 0; mode_index < itemCheckedOpearationMode.length; mode_index++) {
-                        if (operationModeStringArray[mode_index].equals(strOperationMode)) {
-
-
-                            switch (mode_index) {
-                                case 0:
-
-                                    checkVillageSelection(user_name, password);
-                                    break;
-                                case 1:
-
-                                    checkFDPSelection(user_name, password);
-                                    break;
-                                case 2:
-
-
-                                    checkProgramSelection(user_name, password);
-
-
-                                    break;
-
-                                default:
-                                    hideDialog();
-                                    mdialog.dismiss();
-                                    Toast.makeText(LoginActivity.this, "Select  any one", Toast.LENGTH_SHORT).show();
-                                    break;
-
-                            }
-                        } else {
-                            hideDialog();
-                            mdialog.dismiss();
-                        }
-
-                    }
-                } else {
-                    mdialog.dismiss();
-                    hideDialog();
-                }
-
-
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                hideDialog();
-
-
-                mdialog.dismiss();
-            }
-        });
-        mdialog = builder.create();
-        mdialog.show();
-    }
-
 
     String strCountryMode = "";
 
-    private void getCountryAlert(final String user_name, final String password, final int oparationFlag) {
-        aCountryL_itemsSelected = (ArrayList<CountryNameItem>) insertCountryNameListToSArray();
+    private void getCountryAlert(final String user_name, final String password, final int operationMode) {
+        aCountryL_itemsSelected = (ArrayList<AdmCountryDataModel>) insertCountryNameListToSArray();
         if (countryNameStringArray.length > 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Select  A Country ");
@@ -1150,7 +1254,7 @@ public class LoginActivity extends BaseActivity {
                                 selectedCountryList.add(aCountryL_itemsSelected.get(i));
                             }
                         }
-                        switch (oparationFlag) {
+                        switch (operationMode) {
                             case UtilClass.REGISTRATION_OPERATION_MODE:
                                 getVillageAlert(user_name, password, true);
                                 break;
@@ -1159,7 +1263,30 @@ public class LoginActivity extends BaseActivity {
                                 break;
                             case UtilClass.SERVICE_OPERATION_MODE:
                                 getProgramAlert(user_name, password, selectedCountryList.get(0).getAdmCountryCode());
-//                                getServiceCenterAlert(user_name, password, true);
+
+                                break;
+
+                            case UtilClass.OTHER_OPERATION_MODE:
+
+                                JSONArray jaary = new JSONArray();
+                                JSONObject mData = new JSONObject();
+
+
+                                try {
+                                    mData.put("selectedLayR4Code", "00");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                                Log.d(TAG, "jeson to string :" + jaary.toString());
+                                /** for Other  MOde*/
+                                checkLogin(user_name, password, jaary, "4"); // checking online
+
+                                editor.putInt(UtilClass.OPERATION_MODE, UtilClass.OTHER_OPERATION_MODE);
+                                editor.commit();
+
+
                                 break;
                         }
                     } else {
@@ -1244,7 +1371,7 @@ public class LoginActivity extends BaseActivity {
                                  * opMonth dialog
                                  */
                                 hideDialog();
-                                getOpmonthAlert(user_name, password, selectedCountryCode, selectedDonorCode, selectedAwardCode, selectedProgCode);
+                                getOpMonthAlert(user_name, password, selectedCountryCode, selectedDonorCode, selectedAwardCode, selectedProgCode);
                             }
 
 
@@ -1269,7 +1396,7 @@ public class LoginActivity extends BaseActivity {
 
     String tem;
 
-    private void getOpmonthAlert(final String user_name, final String password, final String countryCode, final String selectedDonorCode, final String selectedAwardCode, final String selectedProgCode) {
+    private void getOpMonthAlert(final String user_name, final String password, final String countryCode, final String selectedDonorCode, final String selectedAwardCode, final String selectedProgCode) {
 
 
         final List<TemOpMonth> opMonths = db.getOpMonthList(countryCode);
@@ -1579,7 +1706,6 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-/*  end aleart fro fdp */
 
     private void getVillageAlert(final String user_name, final String password, boolean countrySpecificFlag) {
 //        int count = 1;
@@ -1617,7 +1743,7 @@ public class LoginActivity extends BaseActivity {
                             db.deleteFromSelectedVillage();
                             selectedVillageList.clear();
                             for (int i = 0; i < itemChecked.length; i++) {
-                                if (itemChecked[i] == true) {
+                                if (itemChecked[i]) {
                                     selectedVillageList.add(aL_itemsSelected.get(i));
 
                                 }
@@ -1629,7 +1755,7 @@ public class LoginActivity extends BaseActivity {
                             /** for registration */
                             checkLogin(user_name, password, jaary, "1"); // checking online
 
-                            editor.putInt(UtilClass.OPERATION_MODE, 1);
+                            editor.putInt(UtilClass.OPERATION_MODE, UtilClass.REGISTRATION_OPERATION_MODE);
                             editor.commit();
 
 
@@ -1694,7 +1820,7 @@ public class LoginActivity extends BaseActivity {
                 boolean error = !errorResult.equals("false");
                 if (!error) {
 
-
+                    Log.d("TAG", "Before downLoad RegNHouseHold 6" + "  user_name:" + user_name + " password :" + password + " selectedVilJArry:" + selectedVilJArry + "operationMode:" + operationMode);
                     downLoadRegNHouseHold(user_name, password, selectedVilJArry, operationMode);
 
 
@@ -1731,11 +1857,12 @@ public class LoginActivity extends BaseActivity {
                 params.put("password", password);
                 params.put("lay_r_code_j", selectedVilJArry.toString());
                 params.put("operation_mode", operationMode);
-
+                Log.d("TAG1", "params:" + params.toString());
                 return params;
             }
 
         };
+        Log.d("TAG1", "strReq:" + strReq.toString());
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
@@ -1772,10 +1899,10 @@ public class LoginActivity extends BaseActivity {
                 String errorResult = response.substring(9, 14);
 
 
-                boolean error = errorResult.equals("false") ? false : true;
+                boolean error = !errorResult.equals("false");
 
                 if (!error) {
-
+                    Log.d("TAG", "Before downLoad RegNMembers 5" + "  user_Name:" + user_Name + " pass_word :" + pass_word + " selectedVilJArry:" + selectedVilJArry + "operationMode:" + operationMode);
                     downLoadRegNMembers(user_Name, pass_word, selectedVilJArry, operationMode);
 
                 } else {
@@ -1856,7 +1983,7 @@ public class LoginActivity extends BaseActivity {
 
 
                 if (!error) {
-
+                    Log.d("TAG", "Before downLoad RegNMemberProgGroup 4" + "  user_Name:" + user_Name + " pass_word :" + pass_word + " selectedVilJArry:" + selectedVilJArry + "operationMode:" + operationMode);
                     downLoadRegNMemberProgGroup(user_Name, pass_word, selectedVilJArry, operationMode);
 
                 } else {
@@ -1934,7 +2061,7 @@ public class LoginActivity extends BaseActivity {
                 boolean error = !errorResult.equals("false");
 
                 if (!error) {
-
+                    Log.d("TAG", "Before downLoad ServiceData 3" + "  user_Name:" + user_Name + " pass_word :" + pass_word + " selectedVilJArry:" + selectedVilJArry + "operationMode:" + operationMode);
                     downLoadServiceData(user_Name, pass_word, selectedVilJArry, operationMode);
 
                 } else {
@@ -2007,13 +2134,13 @@ public class LoginActivity extends BaseActivity {
                 String errorResult = response.substring(9, 14);
 
 
-                boolean error = errorResult.equals("false") ? false : true;
+                boolean error = !errorResult.equals("false");
                 Log.d("MOR", "error:" + error);
 
                 if (!error) {
 
-                    Log.d("MOR", "Before calling assigne program :");
 
+                    Log.d("TAG", "Before downLoad AssignProgSrv 2" + "  user_Name:" + user_Name + " pass_word :" + pass_word + " selectedVilJArry:" + selectedVilJArry + "operationMode:" + operationMode);
                     downLoadAssignProgSrv(user_Name, pass_word, selectedVilJArry, operationMode);
 
                 } else {
@@ -2098,7 +2225,7 @@ public class LoginActivity extends BaseActivity {
                 boolean error = !errorResult.equals("false");
 
                 if (!error) {
-
+                    Log.d("TAG", "Before Downloading Dynamic " + "  user_Name:" + user_Name + " pass_word :" + pass_word + " selectedVilJArry:" + selectedVilJArry + "operationMode:" + operationMode);
                     downLoadDynamicData(user_Name, pass_word, selectedVilJArry, operationMode);
       /*              *//**
                      * IF GET NO ERROR  THAN GOTO THE MAIN ACTIVITY
@@ -2153,7 +2280,7 @@ public class LoginActivity extends BaseActivity {
     public void downLoadDynamicData(final String user_Name, final String pass_word, final JSONArray selectedVilJArry, final String operationMode) {
         // Tag used to cancel the request
         String tag_string_req = "req_ass_prog";
-//        Log.d("MOR", "Before Response Calling ");
+        Log.d(TAG, "operationMode: " + operationMode);
 
         StringRequest strReq = new StringRequest(Method.POST,
                 AppConfig.API_LINK, new Response.Listener<String>() {
@@ -2167,7 +2294,7 @@ public class LoginActivity extends BaseActivity {
                 AppController.getInstance().getRequestQueue().getCache().clear();
                 writeJSONToTextFile(response, DYNAMIC_TABLE);
 
-                Log.d("DIM", " After Loading Dynamic Table in txt last stap :7");
+                Log.d(TAG, " After Loading Dynamic Table in txt last stap :7");
 
 
                 hideDialog();

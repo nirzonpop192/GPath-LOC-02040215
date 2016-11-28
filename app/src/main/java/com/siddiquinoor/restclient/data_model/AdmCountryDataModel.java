@@ -3,7 +3,7 @@ package com.siddiquinoor.restclient.data_model;
 /**
  * Created by USER on 5/26/2016.
  */
-public class CountryNameItem {
+public class AdmCountryDataModel {
     private String AdmCountryName;
     private String AdmCountryCode;
 

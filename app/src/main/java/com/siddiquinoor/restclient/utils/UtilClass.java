@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.siddiquinoor.restclient.activity.MainActivity;
+import com.siddiquinoor.restclient.data_model.AdmCountryDataModel;
 import com.siddiquinoor.restclient.data_model.FDPItem;
 import com.siddiquinoor.restclient.data_model.ServiceCenterItem;
 import com.siddiquinoor.restclient.data_model.VillageItem;
@@ -37,6 +38,12 @@ public class UtilClass {
      * Service Mode
      */
     public static final int SERVICE_OPERATION_MODE = 3;
+
+
+    /**
+     * OTHER Mode
+     */
+    public static final int OTHER_OPERATION_MODE = 4;
 
     /**
      * Class Tag for Debug
@@ -112,7 +119,7 @@ public class UtilClass {
 
             JSONObject mData = new JSONObject();
 
-            //mData.add(tmpData.get(j)._id);
+
             try {
                 mData.put("selectedLayR4Code", selectVillageList.get(j).getLayRCode());
                 if (className.equals("LoginActivity")) {
@@ -120,28 +127,22 @@ public class UtilClass {
                     /**
                      * if there is no address code pute in db
                      */
-                    if (selectVillageList.get(j).getLayRCode().length()> 12) {
+                    if (selectVillageList.get(j).getLayRCode().length() > 12) {
 
                         String countryCode = selectVillageList.get(j).getLayRCode().substring(0, 4);
                         String layR1Code = selectVillageList.get(j).getLayRCode().substring(4, 6);
                         String layR2Code = selectVillageList.get(j).getLayRCode().substring(6, 8);
                         String layR3Code = selectVillageList.get(j).getLayRCode().substring(8, 10);
-                        String layR4Code = selectVillageList.get(j).getLayRCode().substring(10,12);
-                        String addressCode=selectVillageList.get(j).getLayRCode().substring(12);
+                        String layR4Code = selectVillageList.get(j).getLayRCode().substring(10, 12);
+                        String addressCode = selectVillageList.get(j).getLayRCode().substring(12);
                         String layRCode = selectVillageList.get(j).getLayRCode();
                         String layR4Name = selectVillageList.get(j).getLayR4ListName();
 
-            /*        //  For Test purpose
-                    Log.d("Nir1", " countryCode : " + countryCode +
-                            " layR1Code   : " + layR1Code + " layR2Code   : " + layR2Code +
-                            " layR3Code   : " + layR3Code + " layR4Code   : " + layR4Code +
-                            " layRCode    : " + layRCode + " layR4Name   : " + layR4Name);*/
+
+                        sqlH.addSelectedVillage(countryCode, layR1Code, layR2Code, layR3Code, layR4Code, layRCode, layR4Name, addressCode);
 
 
-                        sqlH.addSelectedVillage(countryCode, layR1Code, layR2Code, layR3Code, layR4Code, layRCode, layR4Name,addressCode);
-
-
-                    }else{
+                    } else {
 
 
                         String countryCode = selectVillageList.get(j).getLayRCode().substring(0, 4);
@@ -152,14 +153,10 @@ public class UtilClass {
                         String layRCode = selectVillageList.get(j).getLayRCode();
                         String layR4Name = selectVillageList.get(j).getLayR4ListName();
 
-            /*        //  For Test purpose
-                    Log.d("Nir1", " countryCode : " + countryCode +
-                            " layR1Code   : " + layR1Code + " layR2Code   : " + layR2Code +
-                            " layR3Code   : " + layR3Code + " layR4Code   : " + layR4Code +
-                            " layRCode    : " + layRCode + " layR4Name   : " + layR4Name);*/
-                        String addressCode="";
 
-                        sqlH.addSelectedVillage(countryCode, layR1Code, layR2Code, layR3Code, layR4Code, layRCode, layR4Name,addressCode);
+                        String addressCode = "";
+
+                        sqlH.addSelectedVillage(countryCode, layR1Code, layR2Code, layR3Code, layR4Code, layRCode, layR4Name, addressCode);
 
 
                     }
@@ -175,6 +172,45 @@ public class UtilClass {
 
         Log.d("RefatJson", selectedVillageJson.toString());
         return selectedVillageJson;
+
+    }
+
+
+    public static JSONArray countryJSONConverter(String className, ArrayList<AdmCountryDataModel> selectCountryList, SQLiteHandler sqlH) {
+
+        JSONArray selectedCountryJson = new JSONArray();
+
+        for (int j = 0; j < selectCountryList.size(); j++) {
+
+            JSONObject mData = new JSONObject();
+
+
+            try {
+                mData.put("selectedLayR4Code", selectCountryList.get(j).getAdmCountryCode());
+                if (className.equals("LoginActivity")) {
+                    /**
+                     * insert the into the data base
+                     * */
+
+
+                    String countryCode = selectCountryList.get(j).getAdmCountryCode();
+                    String countryName = selectCountryList.get(j).getAdmCountryName();
+
+                    sqlH.insertSelectedCountry(countryCode, countryName);
+
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+            selectedCountryJson.put(mData);
+        }
+
+
+        Log.d("NirJson", selectedCountryJson.toString());
+        return selectedCountryJson;
 
     }
 
@@ -253,13 +289,7 @@ public class UtilClass {
                     String countryCode = selectedSrvCenterList.get(j).getAdmCountryCode();
                     String ServiceCenterCode = selectedSrvCenterList.get(j).getServiceCenterCode();
                     String ServiceCenterName = selectedSrvCenterList.get(j).getServiceCenterName();
-                    Log.d(TAG,
-                            " countryCode : " + countryCode +
-
-                                    " ServiceCenterCode   : " + ServiceCenterCode +
-                                    " ServiceCenterName   : " + ServiceCenterName
-
-                    );
+                    Log.d(TAG, " countryCode : " + countryCode + " ServiceCenterCode   : " + ServiceCenterCode + " ServiceCenterName   : " + ServiceCenterName);
                     sqlH.addSelectedServiceCenter(countryCode, ServiceCenterCode, ServiceCenterName);
                 }
             } catch (JSONException e) {
@@ -292,13 +322,11 @@ public class UtilClass {
     }
 
 
-
     /**
      * @since : 2016-09-18
-     *
+     * <p/>
      * calculate Graduation date for all program and service
      * todo:      pw,lm,cu2,ca2,agr,ddr, uat
-     *
      */
     public static String calculateGRDDate(String cCode, String donorCode, String awardCode, SQLiteHandler sqLiteHandler) {
         return sqLiteHandler.getAwardGraduation(cCode, donorCode, awardCode);

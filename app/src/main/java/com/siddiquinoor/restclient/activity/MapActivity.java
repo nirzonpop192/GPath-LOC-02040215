@@ -1,6 +1,7 @@
 package com.siddiquinoor.restclient.activity;
 
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
@@ -611,24 +613,40 @@ public class MapActivity extends BaseActivity {
         spLocation = (Spinner) findViewById(R.id.spMap_location);
         ibtnSetAttributes = (ImageButton) findViewById(R.id.ibtn_setAttributes);
         ibtnSetNearBy = (ImageButton) findViewById(R.id.ibtn_setNearby);
-        setUpSaveButton();
-        setUpGpsButton();
+
 
     }
-
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpSaveButton() {
         btnSave.setText("");
         Drawable saveImage = getResources().getDrawable(R.drawable.save_b);
         btnSave.setCompoundDrawablesRelativeWithIntrinsicBounds(saveImage, null, null, null);
-        btnSave.setPadding(LEFT_PADDING, TOP_PADDING, RIGHT_PADDING, BOTTOM_PADDING);
-    }
 
+        setPaddingButton(MapActivity.this, saveImage, btnSave);
+    }
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setUpGpsButton() {
 
         btnBackToLocSEARCH.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.goto_back);
         btnBackToLocSEARCH.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
-        btnBackToLocSEARCH.setPadding(LEFT_PADDING, TOP_PADDING, RIGHT_PADDING, BOTTOM_PADDING);
+
+        setPaddingButton(MapActivity.this, imageHome, btnBackToLocSEARCH);
+    }
+
+
+    /**
+     * calling getWidth() and getHeight() too early:
+     * When  the UI has not been sized and laid out on the screen yet..
+     *
+     * @param hasFocus the value will be true when UI is focus
+     */
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        setUpSaveButton();
+        setUpGpsButton();
     }
 
 

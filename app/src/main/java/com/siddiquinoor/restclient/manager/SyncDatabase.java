@@ -31,7 +31,7 @@ import com.siddiquinoor.restclient.controller.AppController;
 import com.siddiquinoor.restclient.controller.SessionManager;
 
 import com.siddiquinoor.restclient.network.ConnectionDetector;
-import com.siddiquinoor.restclient.parse.JsonDeserialization;
+import com.siddiquinoor.restclient.parse.Parser;
 import com.siddiquinoor.restclient.utils.UtilClass;
 import com.siddiquinoor.restclient.views.notifications.AlertDialogManager;
 
@@ -131,9 +131,9 @@ public class SyncDatabase {
                 pDialogUpload.show();
 
                 SharedPreferences settings;
-
+// TODO: 11/28/2016  service & aorther  
                 settings = my_activity.getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE); //1
-                int operationMode = settings.getInt(UtilClass.OPERATION_MODE, 0); //2
+                int operationMode = settings.getInt(UtilClass.OPERATION_MODE, 0);
                 /** for sefty rea SON*/
                 JSONArray array = UtilClass.layR4CodeJSONConverter("SyncDatabase", sqlH.getSelectedVillageList(), sqlH);
 
@@ -319,7 +319,7 @@ public class SyncDatabase {
                                     array = UtilClass.srvCenterCodeJSONConverter("SyncDatabase", sqlH.getSelectedServiceCenterList(), sqlH);
                                     break;
 
-
+// // TODO: 11/28/2016  for Orther operation  
                                 default:
                                     break;
                             }
@@ -417,15 +417,15 @@ public class SyncDatabase {
 
 
                         // Adding data into Country Table
-                        if (!jObj.isNull(MainActivity.COUNTRIES_JSON_A)) {
-                            JSONArray countries = jObj.getJSONArray(MainActivity.COUNTRIES_JSON_A);
+                        if (!jObj.isNull(Parser.COUNTRIES_JSON_A)) {
+                            JSONArray countries = jObj.getJSONArray(Parser.COUNTRIES_JSON_A);
                             size = countries.length();
                             //   lunchBarDialog("countries",size);
                             for (int i = 0; i < size; i++) {
                                 JSONObject country = countries.getJSONObject(i);
 
-                                String AdmCountryCode = country.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String AdmCountryName = country.getString(MainActivity.ADM_COUNTRY_NAME);
+                                String AdmCountryCode = country.getString(Parser.ADM_COUNTRY_CODE);
+                                String AdmCountryName = country.getString(Parser.ADM_COUNTRY_NAME);
 
                                 sqlH.addCountry(AdmCountryCode, AdmCountryName);
 
@@ -436,15 +436,15 @@ public class SyncDatabase {
                         pDialogUpload.setProgress(1);
 
                         // Adding data into Valid Registration Date Table
-                        if (!jObj.isNull(MainActivity.VALID_DATES_JSON_A)) {
-                            JSONArray valid_dates = jObj.getJSONArray(MainActivity.VALID_DATES_JSON_A);
+                        if (!jObj.isNull(Parser.VALID_DATES_JSON_A)) {
+                            JSONArray valid_dates = jObj.getJSONArray(Parser.VALID_DATES_JSON_A);
                             size = valid_dates.length();
                             // lunchBarDialog("valid_dates",size);
                             for (int i = 0; i < size; i++) {
                                 JSONObject valid_date = valid_dates.getJSONObject(i);
-                                String AdmCountryCode = valid_date.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String StartDate = valid_date.getString(MainActivity.START_DATE);
-                                String EndDate = valid_date.getString(MainActivity.END_DATE);
+                                String AdmCountryCode = valid_date.getString(Parser.ADM_COUNTRY_CODE);
+                                String StartDate = valid_date.getString(Parser.START_DATE);
+                                String EndDate = valid_date.getString(Parser.END_DATE);
 
                                 sqlH.addValidDateRange(AdmCountryCode, StartDate, EndDate);
 
@@ -452,30 +452,30 @@ public class SyncDatabase {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.GPS_GROUP_JSON_A)) {
-                            JSONArray gps_groups = jObj.getJSONArray(MainActivity.GPS_GROUP_JSON_A);
+                        if (!jObj.isNull(Parser.GPS_GROUP_JSON_A)) {
+                            JSONArray gps_groups = jObj.getJSONArray(Parser.GPS_GROUP_JSON_A);
                             size = gps_groups.length();
 
                             for (int i = 0; i < size; i++) {
                                 JSONObject gps_group = gps_groups.getJSONObject(i);
-                                String GrpCode = gps_group.getString(MainActivity.GRP_CODE);
-                                String GrpName = gps_group.getString(MainActivity.GRP_NAME);
-                                String Description = gps_group.getString(MainActivity.DESCRIPTION);
+                                String GrpCode = gps_group.getString(Parser.GRP_CODE);
+                                String GrpName = gps_group.getString(Parser.GRP_NAME);
+                                String Description = gps_group.getString(Parser.DESCRIPTION);
 
                                 sqlH.addGpsGroup(GrpCode, GrpName, Description);
 
                             }
                         }
 
-                        if (!jObj.isNull(MainActivity.GPS_SUBGROUP_JSON_A)) {
-                            JSONArray gps_subgroups = jObj.getJSONArray(MainActivity.GPS_SUBGROUP_JSON_A);
+                        if (!jObj.isNull(Parser.GPS_SUBGROUP_JSON_A)) {
+                            JSONArray gps_subgroups = jObj.getJSONArray(Parser.GPS_SUBGROUP_JSON_A);
                             size = gps_subgroups.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject gps_subgroup = gps_subgroups.getJSONObject(i);
-                                String GrpCode = gps_subgroup.getString(MainActivity.GRP_CODE);
-                                String SubGrpCode = gps_subgroup.getString(MainActivity.SUB_GRP_CODE);
-                                String SubGrpName = gps_subgroup.getString(MainActivity.SUB_GRP_NAME);
-                                String Description = gps_subgroup.getString(MainActivity.DESCRIPTION);
+                                String GrpCode = gps_subgroup.getString(Parser.GRP_CODE);
+                                String SubGrpCode = gps_subgroup.getString(Parser.SUB_GRP_CODE);
+                                String SubGrpName = gps_subgroup.getString(Parser.SUB_GRP_NAME);
+                                String Description = gps_subgroup.getString(Parser.DESCRIPTION);
                                 sqlH.addGpsSubGroup(GrpCode, SubGrpCode, SubGrpName, Description);
 
 
@@ -483,14 +483,14 @@ public class SyncDatabase {
                         }
                         // * Adding data into GPS Location Table
 
-                        if (!jObj.isNull(MainActivity.GPS_LOCATION_JSON_A)) {
-                            JSONArray gps_locations = jObj.getJSONArray(MainActivity.GPS_LOCATION_JSON_A);
+                        if (!jObj.isNull(Parser.GPS_LOCATION_JSON_A)) {
+                            JSONArray gps_locations = jObj.getJSONArray(Parser.GPS_LOCATION_JSON_A);
                             size = gps_locations.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject gps_location = gps_locations.getJSONObject(i);
-                                String AdmCountryCode = gps_location.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String GrpCode = gps_location.getString(MainActivity.GRP_CODE);
-                                String SubGrpCode = gps_location.getString(MainActivity.SUB_GRP_CODE);
+                                String AdmCountryCode = gps_location.getString(Parser.ADM_COUNTRY_CODE);
+                                String GrpCode = gps_location.getString(Parser.GRP_CODE);
+                                String SubGrpCode = gps_location.getString(Parser.SUB_GRP_CODE);
                                 String LocationCode = gps_location.getString("LocationCode");
                                 String LocationName = gps_location.getString("LocationName");
                                 String Long = gps_location.getString("Long");
@@ -505,15 +505,15 @@ public class SyncDatabase {
 
                         // * Adding data into adm_countryaward Table
                         pDialogUpload.setProgress(5);
-                        if (!jObj.isNull(MainActivity.ADM_COUNTRY_AWARD_JSON_A)) {
-                            JSONArray adm_countryawards = jObj.getJSONArray(MainActivity.ADM_COUNTRY_AWARD_JSON_A);
+                        if (!jObj.isNull(Parser.ADM_COUNTRY_AWARD_JSON_A)) {
+                            JSONArray adm_countryawards = jObj.getJSONArray(Parser.ADM_COUNTRY_AWARD_JSON_A);
                             size = adm_countryawards.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject adm_countryaward = adm_countryawards.getJSONObject(i);
 
-                                String AdmCountryCode = adm_countryaward.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String AdmDonorCode = adm_countryaward.getString(MainActivity.ADM_DONOR_CODE);
-                                String AdmAwardCode = adm_countryaward.getString(MainActivity.ADM_AWARD_CODE);
+                                String AdmCountryCode = adm_countryaward.getString(Parser.ADM_COUNTRY_CODE);
+                                String AdmDonorCode = adm_countryaward.getString(Parser.ADM_DONOR_CODE);
+                                String AdmAwardCode = adm_countryaward.getString(Parser.ADM_AWARD_CODE);
                                 String AwardRefNumber = adm_countryaward.getString("AwardRefNumber");
                                 String AwardStartDate = adm_countryaward.getString("AwardStartDate");
                                 String AwardEndDate = adm_countryaward.getString("AwardEndDate");
@@ -527,45 +527,45 @@ public class SyncDatabase {
                             }
                         }
 
-                        if (!jObj.isNull(MainActivity.ADM_DONOR_JSON_A)) {
+                        if (!jObj.isNull(Parser.ADM_DONOR_JSON_A)) {
 
-                            JSONArray adm_donors = jObj.getJSONArray(MainActivity.ADM_DONOR_JSON_A);
+                            JSONArray adm_donors = jObj.getJSONArray(Parser.ADM_DONOR_JSON_A);
                             size = adm_donors.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject adm_donor = adm_donors.getJSONObject(i);
 
-                                String AdmDonorCode = adm_donor.getString(MainActivity.ADM_DONOR_CODE);
+                                String AdmDonorCode = adm_donor.getString(Parser.ADM_DONOR_CODE);
                                 String AdmDonorName = adm_donor.getString("AdmDonorName");
                                 sqlH.addDonorName(AdmDonorCode, AdmDonorName);
 
 
                             }
                         }
-                        if (!jObj.isNull(MainActivity.ADM_PROGRAM_MASTER_JSON_A)) {
-                            JSONArray adm_program_masters = jObj.getJSONArray(MainActivity.ADM_PROGRAM_MASTER_JSON_A);
+                        if (!jObj.isNull(Parser.ADM_PROGRAM_MASTER_JSON_A)) {
+                            JSONArray adm_program_masters = jObj.getJSONArray(Parser.ADM_PROGRAM_MASTER_JSON_A);
                             size = adm_program_masters.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject adm_program_master = adm_program_masters.getJSONObject(i);
 
-                                String AdmProgCode = adm_program_master.getString(MainActivity.ADM_PROG_CODE);
-                                String AdmAwardCode = adm_program_master.getString(MainActivity.ADM_AWARD_CODE);
-                                String AdmDonorCode = adm_program_master.getString(MainActivity.ADM_DONOR_CODE);
-                                String ProgName = adm_program_master.getString(MainActivity.PROG_NAME);
-                                String ProgShortName = adm_program_master.getString(MainActivity.PROG_SHORT_NAME);
-                                String MultipleSrv = adm_program_master.getString(MainActivity.MULTIPLE_SRV);
+                                String AdmProgCode = adm_program_master.getString(Parser.ADM_PROG_CODE);
+                                String AdmAwardCode = adm_program_master.getString(Parser.ADM_AWARD_CODE);
+                                String AdmDonorCode = adm_program_master.getString(Parser.ADM_DONOR_CODE);
+                                String ProgName = adm_program_master.getString(Parser.PROG_NAME);
+                                String ProgShortName = adm_program_master.getString(Parser.PROG_SHORT_NAME);
+                                String MultipleSrv = adm_program_master.getString(Parser.MULTIPLE_SRV);
                                 sqlH.addAdmProgramMaster(AdmProgCode, AdmAwardCode, AdmDonorCode, ProgName, ProgShortName, MultipleSrv);
 
 
                             }
                         }
-                        if (!jObj.isNull(MainActivity.ADM_SERVICE_MASTER_JSON_A)) {
-                            JSONArray adm_service_masters = jObj.getJSONArray(MainActivity.ADM_SERVICE_MASTER_JSON_A);
+                        if (!jObj.isNull(Parser.ADM_SERVICE_MASTER_JSON_A)) {
+                            JSONArray adm_service_masters = jObj.getJSONArray(Parser.ADM_SERVICE_MASTER_JSON_A);
                             size = adm_service_masters.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject adm_service_master = adm_service_masters.getJSONObject(i);
 
-                                String AdmProgCode = adm_service_master.getString(MainActivity.ADM_PROG_CODE);
-                                String AdmSrvCode = adm_service_master.getString(MainActivity.ADM_SRV_CODE);
+                                String AdmProgCode = adm_service_master.getString(Parser.ADM_PROG_CODE);
+                                String AdmSrvCode = adm_service_master.getString(Parser.ADM_SRV_CODE);
                                 String AdmSrvName = adm_service_master.getString("AdmSrvName");
                                 String AdmSrvShortName = adm_service_master.getString("AdmSrvShortName");
 
@@ -576,22 +576,22 @@ public class SyncDatabase {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.ADM_OP_MONTH_JSON_A)) {
-                            JSONArray adm_op_months = jObj.getJSONArray(MainActivity.ADM_OP_MONTH_JSON_A);
+                        if (!jObj.isNull(Parser.ADM_OP_MONTH_JSON_A)) {
+                            JSONArray adm_op_months = jObj.getJSONArray(Parser.ADM_OP_MONTH_JSON_A);
                             size = adm_op_months.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject adm_op_month = adm_op_months.getJSONObject(i);
 
-                                String AdmCountryCode = adm_op_month.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String AdmDonorCode = adm_op_month.getString(MainActivity.ADM_DONOR_CODE);
-                                String AdmAwardCode = adm_op_month.getString(MainActivity.ADM_AWARD_CODE);
+                                String AdmCountryCode = adm_op_month.getString(Parser.ADM_COUNTRY_CODE);
+                                String AdmDonorCode = adm_op_month.getString(Parser.ADM_DONOR_CODE);
+                                String AdmAwardCode = adm_op_month.getString(Parser.ADM_AWARD_CODE);
                                 String OpCode = adm_op_month.getString("OpCode");
-                                String OpMonthCode = adm_op_month.getString(MainActivity.OP_MONTH_CODE);
+                                String OpMonthCode = adm_op_month.getString(Parser.OP_MONTH_CODE);
                                 String MonthLabel = adm_op_month.getString("MonthLabel");
-                                String StartDate = adm_op_month.getString(MainActivity.START_DATE);
-                                String EndDate = adm_op_month.getString(MainActivity.END_DATE);
-                                String UsaStartDate = adm_op_month.getString(MainActivity.USA_START_DATE);
-                                String UsaEndDate = adm_op_month.getString(MainActivity.USA_END_DATE);
+                                String StartDate = adm_op_month.getString(Parser.START_DATE);
+                                String EndDate = adm_op_month.getString(Parser.END_DATE);
+                                String UsaStartDate = adm_op_month.getString(Parser.USA_START_DATE);
+                                String UsaEndDate = adm_op_month.getString(Parser.USA_END_DATE);
                                 String Status = adm_op_month.getString("Status");
                                 sqlH.addOpMonthFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode, OpCode, OpMonthCode, MonthLabel, StartDate, EndDate, UsaStartDate, UsaEndDate, Status);
                             }
@@ -601,25 +601,25 @@ public class SyncDatabase {
                         //adm_country_program Table
 
 
-                        if (!jObj.isNull(MainActivity.ADM_COUNTRY_PROGRAM_JSON_A)) {// this is not servie
-                            JSONArray adm_country_programs = jObj.getJSONArray(MainActivity.ADM_COUNTRY_PROGRAM_JSON_A);
+                        if (!jObj.isNull(Parser.ADM_COUNTRY_PROGRAM_JSON_A)) {// this is not servie
+                            JSONArray adm_country_programs = jObj.getJSONArray(Parser.ADM_COUNTRY_PROGRAM_JSON_A);
                             size = adm_country_programs.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject adm_country_program = adm_country_programs.getJSONObject(i);
-                                String AdmCountryCode = adm_country_program.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String AdmDonorCode = adm_country_program.getString(MainActivity.ADM_DONOR_CODE);
-                                String AdmAwardCode = adm_country_program.getString(MainActivity.ADM_AWARD_CODE);
-                                String AdmProgCode = adm_country_program.getString(MainActivity.ADM_PROG_CODE);
-                                String AdmSrvCode = adm_country_program.getString(MainActivity.ADM_SRV_CODE);
-                                String FoodFlag = adm_country_program.getString(MainActivity.FOOD_FLAG);
-                                String NFoodFlag = adm_country_program.getString(MainActivity.N_FOOD_FLAG);
-                                String CashFlag = adm_country_program.getString(MainActivity.CASH_FLAG);
-                                String VOFlag = adm_country_program.getString(MainActivity.VO_FLAG);
-                                String DefaultFoodDays = adm_country_program.getString(MainActivity.DEFAULT_FOOD_DAYS);
-                                String DefaultNFoodDays = adm_country_program.getString(MainActivity.DEFAULT_N_FOOD_DAYS);
-                                String DefaultCashDays = adm_country_program.getString(MainActivity.DEFAULT_CASH_DAYS);
-                                String DefaultVODays = adm_country_program.getString(MainActivity.DEFAULT_VO_DAYS);
-                                String SrvSpecific = adm_country_program.getString(MainActivity.SRV_SPECIFIC);
+                                String AdmCountryCode = adm_country_program.getString(Parser.ADM_COUNTRY_CODE);
+                                String AdmDonorCode = adm_country_program.getString(Parser.ADM_DONOR_CODE);
+                                String AdmAwardCode = adm_country_program.getString(Parser.ADM_AWARD_CODE);
+                                String AdmProgCode = adm_country_program.getString(Parser.ADM_PROG_CODE);
+                                String AdmSrvCode = adm_country_program.getString(Parser.ADM_SRV_CODE);
+                                String FoodFlag = adm_country_program.getString(Parser.FOOD_FLAG);
+                                String NFoodFlag = adm_country_program.getString(Parser.N_FOOD_FLAG);
+                                String CashFlag = adm_country_program.getString(Parser.CASH_FLAG);
+                                String VOFlag = adm_country_program.getString(Parser.VO_FLAG);
+                                String DefaultFoodDays = adm_country_program.getString(Parser.DEFAULT_FOOD_DAYS);
+                                String DefaultNFoodDays = adm_country_program.getString(Parser.DEFAULT_N_FOOD_DAYS);
+                                String DefaultCashDays = adm_country_program.getString(Parser.DEFAULT_CASH_DAYS);
+                                String DefaultVODays = adm_country_program.getString(Parser.DEFAULT_VO_DAYS);
+                                String SrvSpecific = adm_country_program.getString(Parser.SRV_SPECIFIC);
 
                                 sqlH.insertAdmCountryProgram(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, AdmSrvCode, FoodFlag,
                                         NFoodFlag, CashFlag, VOFlag, DefaultFoodDays, DefaultNFoodDays, DefaultCashDays, DefaultVODays, SrvSpecific);
@@ -631,20 +631,20 @@ public class SyncDatabase {
                         // * Adding data into  dob_service_center  Table
 
 
-                        if (!jObj.isNull(MainActivity.DOB_SERVICE_CENTER_JSON_A)) {// this is not servie
-                            JSONArray dob_service_centers = jObj.getJSONArray(MainActivity.DOB_SERVICE_CENTER_JSON_A);
+                        if (!jObj.isNull(Parser.DOB_SERVICE_CENTER_JSON_A)) {// this is not servie
+                            JSONArray dob_service_centers = jObj.getJSONArray(Parser.DOB_SERVICE_CENTER_JSON_A);
                             size = dob_service_centers.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject dob_service_center = dob_service_centers.getJSONObject(i);
 
-                                String AdmCountryCode = dob_service_center.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String SrvCenterCode = dob_service_center.getString(MainActivity.SRV_CENTER_CODE);
-                                String SrvCenterName = dob_service_center.getString(MainActivity.SRV_CENTER_NAME);
+                                String AdmCountryCode = dob_service_center.getString(Parser.ADM_COUNTRY_CODE);
+                                String SrvCenterCode = dob_service_center.getString(Parser.SRV_CENTER_CODE);
+                                String SrvCenterName = dob_service_center.getString(Parser.SRV_CENTER_NAME);
 
                                 // String SrvCenterAddress = dob_service_center.getString("SrvCenterAddress");
                                 //   String SrvCenterCatCode = dob_service_center.getString("SrvCenterCatCode");
 
-                                String FDPCode = dob_service_center.getString(MainActivity.FDP_CODE);
+                                String FDPCode = dob_service_center.getString(Parser.FDP_CODE);
 
                                 // db.addServiceCenter(AdmCountryCode, SrvCenterCode, SrvCenterName, SrvCenterAddress, SrvCenterCatCode, FDPCode);
                                 sqlH.addServiceCenter(AdmCountryCode, SrvCenterCode, SrvCenterName, FDPCode);
@@ -656,25 +656,25 @@ public class SyncDatabase {
                         // * Adding data into  dbo_staff_geo_info_access  Table
 
 
-                        if (!jObj.isNull(MainActivity.STAFF_ACCESS_INFO_JSON_A)) {// this is not servie
-                            JSONArray staff_access_info_accesses = jObj.getJSONArray(MainActivity.STAFF_ACCESS_INFO_JSON_A);
+                        if (!jObj.isNull(Parser.STAFF_ACCESS_INFO_JSON_A)) {// this is not servie
+                            JSONArray staff_access_info_accesses = jObj.getJSONArray(Parser.STAFF_ACCESS_INFO_JSON_A);
                             size = staff_access_info_accesses.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject staff_access_info_access = staff_access_info_accesses.getJSONObject(i);
 
-                                String StfCode = staff_access_info_access.getString(MainActivity.STF_CODE);
-                                String AdmCountryCode = staff_access_info_access.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String AdmDonorCode = staff_access_info_access.getString(MainActivity.ADM_DONOR_CODE);
-                                String AdmAwardCode = staff_access_info_access.getString(MainActivity.ADM_AWARD_CODE);
-                                String LayRListCode = staff_access_info_access.getString(MainActivity.LAY_R_LIST_CODE);
-                                String btnNew = staff_access_info_access.getString(MainActivity.BTN_NEW1);
-                                String btnSave = staff_access_info_access.getString(MainActivity.BTN_SAVE);
-                                String btnDel = staff_access_info_access.getString(MainActivity.BTN_DEL);
-                                String btnPepr = staff_access_info_access.getString(MainActivity.BTN_PEPR);
-                                String btnAprv = staff_access_info_access.getString(MainActivity.BTN_APRV);
-                                String btnRevw = staff_access_info_access.getString(MainActivity.BTN_REVW);
-                                String btnVrfy = staff_access_info_access.getString(MainActivity.BTN_VRFY);
-                                String btnDTran = staff_access_info_access.getString(MainActivity.BTN_D_TRAN);
+                                String StfCode = staff_access_info_access.getString(Parser.STF_CODE);
+                                String AdmCountryCode = staff_access_info_access.getString(Parser.ADM_COUNTRY_CODE);
+                                String AdmDonorCode = staff_access_info_access.getString(Parser.ADM_DONOR_CODE);
+                                String AdmAwardCode = staff_access_info_access.getString(Parser.ADM_AWARD_CODE);
+                                String LayRListCode = staff_access_info_access.getString(Parser.LAY_R_LIST_CODE);
+                                String btnNew = staff_access_info_access.getString(Parser.BTN_NEW1);
+                                String btnSave = staff_access_info_access.getString(Parser.BTN_SAVE);
+                                String btnDel = staff_access_info_access.getString(Parser.BTN_DEL);
+                                String btnPepr = staff_access_info_access.getString(Parser.BTN_PEPR);
+                                String btnAprv = staff_access_info_access.getString(Parser.BTN_APRV);
+                                String btnRevw = staff_access_info_access.getString(Parser.BTN_REVW);
+                                String btnVrfy = staff_access_info_access.getString(Parser.BTN_VRFY);
+                                String btnDTran = staff_access_info_access.getString(Parser.BTN_D_TRAN);
 
 
                                 //String FDPCode = dbo_staff_geo_info_access.getString("FDPCode");
@@ -688,16 +688,16 @@ public class SyncDatabase {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.LB_REG_HH_CATEGORY_JSON_A)) {
-                            JSONArray lb_reg_hh_categorys = jObj.getJSONArray(MainActivity.LB_REG_HH_CATEGORY_JSON_A);
+                        if (!jObj.isNull(Parser.LB_REG_HH_CATEGORY_JSON_A)) {
+                            JSONArray lb_reg_hh_categorys = jObj.getJSONArray(Parser.LB_REG_HH_CATEGORY_JSON_A);
                             size = lb_reg_hh_categorys.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject lb_reg_hh_category = lb_reg_hh_categorys.getJSONObject(i);
 
 
-                                String AdmCountryCode = lb_reg_hh_category.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String HHHeadCatCode = lb_reg_hh_category.getString(MainActivity.HH_HEAD_CAT_CODE);
-                                String CatName = lb_reg_hh_category.getString(MainActivity.CAT_NAME);
+                                String AdmCountryCode = lb_reg_hh_category.getString(Parser.ADM_COUNTRY_CODE);
+                                String HHHeadCatCode = lb_reg_hh_category.getString(Parser.HH_HEAD_CAT_CODE);
+                                String CatName = lb_reg_hh_category.getString(Parser.CAT_NAME);
 
                                 sqlH.addHHCategory(AdmCountryCode, HHHeadCatCode, CatName);
 
@@ -706,18 +706,18 @@ public class SyncDatabase {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.REG_LUP_GRADUATION_JSON_A)) {
-                            JSONArray reg_lup_graduations = jObj.getJSONArray(MainActivity.REG_LUP_GRADUATION_JSON_A);
+                        if (!jObj.isNull(Parser.REG_LUP_GRADUATION_JSON_A)) {
+                            JSONArray reg_lup_graduations = jObj.getJSONArray(Parser.REG_LUP_GRADUATION_JSON_A);
                             size = reg_lup_graduations.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject reg_lup_graduation = reg_lup_graduations.getJSONObject(i);
 
-                                String AdmProgCode = reg_lup_graduation.getString(MainActivity.ADM_PROG_CODE);
-                                String AdmSrvCode = reg_lup_graduation.getString(MainActivity.ADM_SRV_CODE);
-                                String GRDCode = reg_lup_graduation.getString(MainActivity.GRD_CODE);
-                                String GRDTitle = reg_lup_graduation.getString(MainActivity.GRD_TITLE);
-                                String DefaultCatActive = reg_lup_graduation.getString(MainActivity.DEFAULT_CAT_ACTIVE);
-                                String DefaultCatExit = reg_lup_graduation.getString(MainActivity.DEFAULT_CAT_EXIT);
+                                String AdmProgCode = reg_lup_graduation.getString(Parser.ADM_PROG_CODE);
+                                String AdmSrvCode = reg_lup_graduation.getString(Parser.ADM_SRV_CODE);
+                                String GRDCode = reg_lup_graduation.getString(Parser.GRD_CODE);
+                                String GRDTitle = reg_lup_graduation.getString(Parser.GRD_TITLE);
+                                String DefaultCatActive = reg_lup_graduation.getString(Parser.DEFAULT_CAT_ACTIVE);
+                                String DefaultCatExit = reg_lup_graduation.getString(Parser.DEFAULT_CAT_EXIT);
 
 
                                 sqlH.addGraduation(AdmProgCode, AdmSrvCode, GRDCode, GRDTitle, DefaultCatActive, DefaultCatExit);
@@ -727,15 +727,15 @@ public class SyncDatabase {
                         }
 
                         // Adding data into Layer Label Table
-                        if (!jObj.isNull(MainActivity.LAYER_LABELS_JSON_A)) {
-                            JSONArray layer_labels = jObj.getJSONArray(MainActivity.LAYER_LABELS_JSON_A);
+                        if (!jObj.isNull(Parser.LAYER_LABELS_JSON_A)) {
+                            JSONArray layer_labels = jObj.getJSONArray(Parser.LAYER_LABELS_JSON_A);
                             size = layer_labels.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject layer_label = layer_labels.getJSONObject(i);
 
-                                String AdmCountryCode = layer_label.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String GeoLayRCode = layer_label.getString(MainActivity.GEO_LAY_R_CODE);
-                                String GeoLayRName = layer_label.getString(MainActivity.GEO_LAY_R_NAME);
+                                String AdmCountryCode = layer_label.getString(Parser.ADM_COUNTRY_CODE);
+                                String GeoLayRCode = layer_label.getString(Parser.GEO_LAY_R_CODE);
+                                String GeoLayRName = layer_label.getString(Parser.GEO_LAY_R_NAME);
                                 sqlH.addLayerLabel(AdmCountryCode, GeoLayRCode, GeoLayRName);
 
 
@@ -744,16 +744,16 @@ public class SyncDatabase {
 
 // TODO: 10/17/2016  remove the  lay1 ,lay2,lay3 ,lay4  in the Sync process
 
-                     /*   if (!jObj.isNull(MainActivity.DISTRICT)) {
-                            JSONArray district = jObj.getJSONArray(MainActivity.DISTRICT);
+                     /*   if (!jObj.isNull(Parser.DISTRICT)) {
+                            JSONArray district = jObj.getJSONArray(Parser.DISTRICT);
                             size = district.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject dist = district.getJSONObject(i);
 
-                                String AdmCountryCode = dist.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String GeoLayRCode = dist.getString(MainActivity.GEO_LAY_R_CODE);
-                                String LayRListCode = dist.getString(MainActivity.LAY_R_LIST_CODE);
-                                String LayRListName = dist.getString(MainActivity.LAY_R_LIST_NAME);
+                                String AdmCountryCode = dist.getString(Parser.ADM_COUNTRY_CODE);
+                                String GeoLayRCode = dist.getString(Parser.GEO_LAY_R_CODE);
+                                String LayRListCode = dist.getString(Parser.LAY_R_LIST_CODE);
+                                String LayRListName = dist.getString(Parser.LAY_R_LIST_NAME);
 
                                 sqlH.addDistrict(AdmCountryCode, GeoLayRCode, LayRListCode, LayRListName);
 
@@ -762,19 +762,19 @@ public class SyncDatabase {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.UPAZILLA)) {
+                        if (!jObj.isNull(Parser.UPAZILLA)) {
 
-                            JSONArray upazilla = jObj.getJSONArray(MainActivity.UPAZILLA);
+                            JSONArray upazilla = jObj.getJSONArray(Parser.UPAZILLA);
 
                             size = upazilla.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject up = upazilla.getJSONObject(i);
 
-                                String AdmCountryCode = up.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String GeoLayRCode = up.getString(MainActivity.GEO_LAY_R_CODE);
-                                String LayR1ListCode = up.getString(MainActivity.LAY_R_1_LIST_CODE);
-                                String LayR2ListCode = up.getString(MainActivity.LAY_R_2_LIST_CODE);
-                                String LayR2ListName = up.getString(MainActivity.LAY_R_2_LIST_NAME);
+                                String AdmCountryCode = up.getString(Parser.ADM_COUNTRY_CODE);
+                                String GeoLayRCode = up.getString(Parser.GEO_LAY_R_CODE);
+                                String LayR1ListCode = up.getString(Parser.LAY_R_1_LIST_CODE);
+                                String LayR2ListCode = up.getString(Parser.LAY_R_2_LIST_CODE);
+                                String LayR2ListName = up.getString(Parser.LAY_R_2_LIST_NAME);
 
                                 sqlH.addUpazilla(AdmCountryCode, GeoLayRCode, LayR1ListCode, LayR2ListCode, LayR2ListName);
 
@@ -783,19 +783,19 @@ public class SyncDatabase {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.UNIT_JSON_A)) {
+                        if (!jObj.isNull(Parser.UNIT_JSON_A)) {
 
-                            JSONArray unit = jObj.getJSONArray(MainActivity.UNIT_JSON_A);
+                            JSONArray unit = jObj.getJSONArray(Parser.UNIT_JSON_A);
                             size = unit.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject un = unit.getJSONObject(i);
 
-                                String AdmCountryCode = un.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String GeoLayRCode = un.getString(MainActivity.GEO_LAY_R_CODE);
-                                String LayR1ListCode = un.getString(MainActivity.LAY_R_1_LIST_CODE);
-                                String LayR2ListCode = un.getString(MainActivity.LAY_R_2_LIST_CODE);
-                                String LayR3ListCode = un.getString(MainActivity.LAY_R_3_LIST_CODE);
-                                String LayR3ListName = un.getString(MainActivity.LAY_R_3_LIST_NAME);
+                                String AdmCountryCode = un.getString(Parser.ADM_COUNTRY_CODE);
+                                String GeoLayRCode = un.getString(Parser.GEO_LAY_R_CODE);
+                                String LayR1ListCode = un.getString(Parser.LAY_R_1_LIST_CODE);
+                                String LayR2ListCode = un.getString(Parser.LAY_R_2_LIST_CODE);
+                                String LayR3ListCode = un.getString(Parser.LAY_R_3_LIST_CODE);
+                                String LayR3ListName = un.getString(Parser.LAY_R_3_LIST_NAME);
 
                                 sqlH.addUnit(AdmCountryCode, GeoLayRCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR3ListName);
 
@@ -804,22 +804,22 @@ public class SyncDatabase {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.VILLAGE_JSON_A)) {
+                        if (!jObj.isNull(Parser.VILLAGE_JSON_A)) {
 
-                            JSONArray village = jObj.getJSONArray(MainActivity.VILLAGE_JSON_A);
+                            JSONArray village = jObj.getJSONArray(Parser.VILLAGE_JSON_A);
 
                             size = village.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject vil = village.getJSONObject(i);
 
-                                String AdmCountryCode = vil.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String GeoLayRCode = vil.getString(MainActivity.GEO_LAY_R_CODE);
-                                String LayR1ListCode = vil.getString(MainActivity.LAY_R_1_LIST_CODE);
-                                String LayR2ListCode = vil.getString(MainActivity.LAY_R_2_LIST_CODE);
-                                String LayR3ListCode = vil.getString(MainActivity.LAY_R_3_LIST_CODE);
-                                String LayR4ListCode = vil.getString(MainActivity.LAY_R_4_LIST_CODE);
-                                String LayR4ListName = vil.getString(MainActivity.LAY_R_4_LIST_NAME);
-                                String HHCount = vil.getString(MainActivity.HH_COUNT);
+                                String AdmCountryCode = vil.getString(Parser.ADM_COUNTRY_CODE);
+                                String GeoLayRCode = vil.getString(Parser.GEO_LAY_R_CODE);
+                                String LayR1ListCode = vil.getString(Parser.LAY_R_1_LIST_CODE);
+                                String LayR2ListCode = vil.getString(Parser.LAY_R_2_LIST_CODE);
+                                String LayR3ListCode = vil.getString(Parser.LAY_R_3_LIST_CODE);
+                                String LayR4ListCode = vil.getString(Parser.LAY_R_4_LIST_CODE);
+                                String LayR4ListName = vil.getString(Parser.LAY_R_4_LIST_NAME);
+                                String HHCount = vil.getString(Parser.HH_COUNT);
 
                                 sqlH.addVillage(AdmCountryCode, GeoLayRCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, LayR4ListName, HHCount);
 
@@ -829,9 +829,9 @@ public class SyncDatabase {
 
 
                         // Adding data into Relation Table
-                        if (!jObj.isNull(MainActivity.RELATION_JSON_A)) {
+                        if (!jObj.isNull(Parser.RELATION_JSON_A)) {
 
-                            JSONArray relation = jObj.getJSONArray(MainActivity.RELATION_JSON_A);
+                            JSONArray relation = jObj.getJSONArray(Parser.RELATION_JSON_A);
 
                             size = relation.length();
 
@@ -840,8 +840,8 @@ public class SyncDatabase {
                                 JSONObject rel = relation.getJSONObject(i);
 
 
-                                String Relation_Code = rel.getString(MainActivity.HH_RELATION_CODE);
-                                String RelationName = rel.getString(MainActivity.RELATION_NAME);
+                                String Relation_Code = rel.getString(Parser.HH_RELATION_CODE);
+                                String RelationName = rel.getString(Parser.RELATION_NAME);
 
                                 sqlH.addRelation(Relation_Code, RelationName);
 
@@ -850,15 +850,15 @@ public class SyncDatabase {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.REPORT_TEMPLATE)) {
-                            JSONArray report_templates = jObj.getJSONArray(MainActivity.REPORT_TEMPLATE);
+                        if (!jObj.isNull(Parser.REPORT_TEMPLATE)) {
+                            JSONArray report_templates = jObj.getJSONArray(Parser.REPORT_TEMPLATE);
                             size = report_templates.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject report_template = report_templates.getJSONObject(i);
 
-                                String AdmCountryCode = report_template.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String RptLabel = report_template.getString(MainActivity.RPT_LABEL);
-                                String Code = report_template.getString(MainActivity.RPT_G_N_CODE);
+                                String AdmCountryCode = report_template.getString(Parser.ADM_COUNTRY_CODE);
+                                String RptLabel = report_template.getString(Parser.RPT_LABEL);
+                                String Code = report_template.getString(Parser.RPT_G_N_CODE);
 
                                 sqlH.addCardType(AdmCountryCode, RptLabel, Code);
 
@@ -867,14 +867,14 @@ public class SyncDatabase {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.CARD_PRINT_REASON)) {
-                            JSONArray card_print_reasons = jObj.getJSONArray(MainActivity.CARD_PRINT_REASON);
+                        if (!jObj.isNull(Parser.CARD_PRINT_REASON)) {
+                            JSONArray card_print_reasons = jObj.getJSONArray(Parser.CARD_PRINT_REASON);
                             size = card_print_reasons.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject card_print_reason = card_print_reasons.getJSONObject(i);
 
-                                String ReasonCode = card_print_reason.getString(MainActivity.REASON_CODE);
-                                String ReasonTitle = card_print_reason.getString(MainActivity.REASON_TITLE);
+                                String ReasonCode = card_print_reason.getString(Parser.REASON_CODE);
+                                String ReasonTitle = card_print_reason.getString(Parser.REASON_TITLE);
 
                                 sqlH.addCardPrintReason(ReasonCode, ReasonTitle);
 
@@ -883,18 +883,18 @@ public class SyncDatabase {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.STAFF_FDP_ACCESS_JSON_A)) {
-                            JSONArray staff_fdp_accesses = jObj.getJSONArray(MainActivity.STAFF_FDP_ACCESS_JSON_A);
+                        if (!jObj.isNull(Parser.STAFF_FDP_ACCESS_JSON_A)) {
+                            JSONArray staff_fdp_accesses = jObj.getJSONArray(Parser.STAFF_FDP_ACCESS_JSON_A);
                             size = staff_fdp_accesses.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject staff_fdp_access = staff_fdp_accesses.getJSONObject(i);
 
-                                String StfCode = staff_fdp_access.getString(MainActivity.STF_CODE);
-                                String AdmCountryCode = staff_fdp_access.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String FDPCode = staff_fdp_access.getString(MainActivity.FDP_CODE);
-                                String btnNew = staff_fdp_access.getString(MainActivity.BTN_NEW);
-                                String btnSave = staff_fdp_access.getString(MainActivity.BTN_SAVE);
-                                String btnDel = staff_fdp_access.getString(MainActivity.BTN_DEL);
+                                String StfCode = staff_fdp_access.getString(Parser.STF_CODE);
+                                String AdmCountryCode = staff_fdp_access.getString(Parser.ADM_COUNTRY_CODE);
+                                String FDPCode = staff_fdp_access.getString(Parser.FDP_CODE);
+                                String btnNew = staff_fdp_access.getString(Parser.BTN_NEW);
+                                String btnSave = staff_fdp_access.getString(Parser.BTN_SAVE);
+                                String btnDel = staff_fdp_access.getString(Parser.BTN_DEL);
 
 
                                 sqlH.addStaffFDPAccess(StfCode, AdmCountryCode, FDPCode, btnNew, btnSave, btnDel);
@@ -905,19 +905,19 @@ public class SyncDatabase {
                         }
 
 
-                        if (!jObj.isNull(MainActivity.FDP_MASTER_JSON_A)) {
-                            JSONArray fdp_masters = jObj.getJSONArray(MainActivity.FDP_MASTER_JSON_A);
+                        if (!jObj.isNull(Parser.FDP_MASTER_JSON_A)) {
+                            JSONArray fdp_masters = jObj.getJSONArray(Parser.FDP_MASTER_JSON_A);
                             size = fdp_masters.length();
                             for (int i = 0; i < size; i++) {
                                 JSONObject fdp_master = fdp_masters.getJSONObject(i);
 
-                                String AdmCountryCode = fdp_master.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String FDPCode = fdp_master.getString(MainActivity.FDP_CODE);
-                                String FDPName = fdp_master.getString(MainActivity.FDP_NAME);
-                                String FDPCatCode = fdp_master.getString(MainActivity.FDP_CAT_CODE);
-                                String WHCode = fdp_master.getString(MainActivity.WH_CODE);
-                                String LayR1Code = fdp_master.getString(MainActivity.LAY_R_1_CODE);
-                                String LayR2Code = fdp_master.getString(MainActivity.LAY_R_2_CODE);
+                                String AdmCountryCode = fdp_master.getString(Parser.ADM_COUNTRY_CODE);
+                                String FDPCode = fdp_master.getString(Parser.FDP_CODE);
+                                String FDPName = fdp_master.getString(Parser.FDP_NAME);
+                                String FDPCatCode = fdp_master.getString(Parser.FDP_CAT_CODE);
+                                String WHCode = fdp_master.getString(Parser.WH_CODE);
+                                String LayR1Code = fdp_master.getString(Parser.LAY_R_1_CODE);
+                                String LayR2Code = fdp_master.getString(Parser.LAY_R_2_CODE);
 
 
                                 sqlH.addFDPMaster(AdmCountryCode, FDPCode, FDPName, FDPCatCode, WHCode, LayR1Code, LayR2Code);
@@ -931,9 +931,9 @@ public class SyncDatabase {
                          * SrvTable for Service Data
                          */
 
-                        if (!jObj.isNull(MainActivity.SERVICE_TABLE_JSON_A)) {
-                            JSONArray services_table = jObj.getJSONArray(MainActivity.SERVICE_TABLE_JSON_A);
-                            JsonDeserialization.SrvTableParser(services_table, sqlH);
+                        if (!jObj.isNull(Parser.SERVICE_TABLE_JSON_A)) {
+                            JSONArray services_table = jObj.getJSONArray(Parser.SERVICE_TABLE_JSON_A);
+                            Parser.SrvTableParser(services_table, sqlH);
 
                         }
 
@@ -955,23 +955,23 @@ public class SyncDatabase {
                             for (int i = 0; i < size; i++) {
                                 JSONObject service = services_exe_table.getJSONObject(i);
 
-                                String AdmCountryCode = service.getString(MainActivity.ADM_COUNTRY_CODE);
-                                String AdmDonorCode = service.getString(MainActivity.ADM_DONOR_CODE);
-                                String AdmAwardCode = service.getString(MainActivity.ADM_AWARD_CODE);
-                                String LayR1ListCode = service.getString(MainActivity.LAY_R_1_LIST_CODE);
-                                String LayR2ListCode = service.getString(MainActivity.LAY_R_2_LIST_CODE);
-                                String LayR3ListCode = service.getString(MainActivity.LAY_R_3_LIST_CODE);
-                                String LayR4ListCode = service.getString(MainActivity.LAY_R_4_LIST_CODE);
-                                String HHID = service.getString(MainActivity.HHID);
-                                String MemID = service.getString(MainActivity.MEM_ID);
-                                String ProgCode = service.getString(MainActivity.PROG_CODE);
-                                String SrvCode = service.getString(MainActivity.SRV_CODE);
-                                String OpCode = service.getString(MainActivity.OP_CODE);
-                                String OpMonthCode = service.getString(MainActivity.OP_MONTH_CODE);
-                                String VOItmSpec = service.getString(MainActivity.VO_ITM_SPEC);
-                                String VOItmUnit = service.getString(MainActivity.VO_ITM_UNIT);
-                                String VORefNumber = service.getString(MainActivity.VO_REF_NUMBER);
-                                String VOItmCost = service.getString(MainActivity.VO_ITM_COST);
+                                String AdmCountryCode = service.getString(Parser.ADM_COUNTRY_CODE);
+                                String AdmDonorCode = service.getString(Parser.ADM_DONOR_CODE);
+                                String AdmAwardCode = service.getString(Parser.ADM_AWARD_CODE);
+                                String LayR1ListCode = service.getString(Parser.LAY_R_1_LIST_CODE);
+                                String LayR2ListCode = service.getString(Parser.LAY_R_2_LIST_CODE);
+                                String LayR3ListCode = service.getString(Parser.LAY_R_3_LIST_CODE);
+                                String LayR4ListCode = service.getString(Parser.LAY_R_4_LIST_CODE);
+                                String HHID = service.getString(Parser.HHID);
+                                String MemID = service.getString(Parser.MEM_ID);
+                                String ProgCode = service.getString(Parser.PROG_CODE);
+                                String SrvCode = service.getString(Parser.SRV_CODE);
+                                String OpCode = service.getString(Parser.OP_CODE);
+                                String OpMonthCode = service.getString(Parser.OP_MONTH_CODE);
+                                String VOItmSpec = service.getString(Parser.VO_ITM_SPEC);
+                                String VOItmUnit = service.getString(Parser.VO_ITM_UNIT);
+                                String VORefNumber = service.getString(Parser.VO_REF_NUMBER);
+                                String VOItmCost = service.getString(Parser.VO_ITM_COST);
 
                                 sqlH.addServiceExtendedFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode, LayR1ListCode, LayR2ListCode, LayR3ListCode,
                                         LayR4ListCode, HHID, MemID, ProgCode, SrvCode, OpCode, OpMonthCode,
@@ -989,12 +989,12 @@ public class SyncDatabase {
                             for (int i = 0; i < size; i++) {
                                 JSONObject lup_srv_option_listData = lup_srv_option_listDatas.getJSONObject(i);
                                 //AGR_DataModel data = new AGR_DataModel();
-                                String countryCode = lup_srv_option_listData.getString(MainActivity.ADM_COUNTRY_CODE);
+                                String countryCode = lup_srv_option_listData.getString(Parser.ADM_COUNTRY_CODE);
 
-                                String programCode = lup_srv_option_listData.getString(MainActivity.PROG_CODE);
-                                String serviceCode = lup_srv_option_listData.getString(MainActivity.SRV_CODE);
-                                String LUPOptionCode = lup_srv_option_listData.getString(MainActivity.LUP_OPTION_CODE);
-                                String LUPOptionName = lup_srv_option_listData.getString(MainActivity.LUP_OPTION_NAME);
+                                String programCode = lup_srv_option_listData.getString(Parser.PROG_CODE);
+                                String serviceCode = lup_srv_option_listData.getString(Parser.SRV_CODE);
+                                String LUPOptionCode = lup_srv_option_listData.getString(Parser.LUP_OPTION_CODE);
+                                String LUPOptionName = lup_srv_option_listData.getString(Parser.LUP_OPTION_NAME);
 
                                 sqlH.addInLupSrvOptionListFromOnline(countryCode, programCode, serviceCode, LUPOptionCode, LUPOptionName);
 

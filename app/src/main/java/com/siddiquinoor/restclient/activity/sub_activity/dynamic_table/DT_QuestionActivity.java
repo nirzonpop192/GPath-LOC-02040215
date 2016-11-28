@@ -252,37 +252,39 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         addNextOrPreviousButton(btnPreviousQus);
     }
 
-    //kjk
+    /**
+     * {@link #deleteFromResponseTable()}
+     */
     private void goToHomeWithDialog() {
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
         /**
          *  in unfinished condition if anyone press home button
-         *  shuvo
+         *  Setting Dialog Title
          */
-        // Setting Dialog Title
+
         alertDialog.setTitle("Home");
 
         String massage;
-        if (mQusIndex < totalQuestion){
+        if (mQusIndex < totalQuestion) {
 
-            massage=" If you want to continue, previous questions will be deleted!!";
+            massage = "Your response is incomplete.\nDo you want to quit ?";
             // On pressing Settings button
-            alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    deleteFromResponseTable();
-                    goToMainActivity((Activity) mContext);
+                    dialog.cancel();
+                    confirmationDialog();
 
                 }
             });
 
-        }else{
+        } else {
 
-            massage=" Do you want to go to Home page ?";
+            massage = " Do you want to go to Home page ?";
 
 
             // On pressing Settings button
-            alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
 
                     goToMainActivity((Activity) mContext);
@@ -296,7 +298,48 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         alertDialog.setMessage(massage);
 
         // on pressing cancel button
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+
+
+    }
+
+
+    private void confirmationDialog() {
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
+        /**
+         *  in unfinished condition if anyone press home button
+         *  Setting Dialog Title
+         */
+
+        alertDialog.setTitle("Home");
+
+        String massage;
+
+
+        massage = "Incomplete response will be deleted!!";
+        // On pressing Settings button
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                deleteFromResponseTable();
+                goToMainActivity((Activity) mContext);
+
+            }
+        });
+
+
+        // Setting Dialog Message
+        alertDialog.setMessage(massage);
+
+        // on pressing cancel button
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
@@ -350,7 +393,6 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
                     } else {
                         normalIndicator();
-
 
 
                         saveData(edtInput, mDTATableList.get(0));
@@ -528,16 +570,14 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
     }
 
 
-
     /**
-     *
      * @param errorMsg Massage In valid
      */
 
     private void displayError(String errorMsg) {
 
 
-        dialog.showWarningDialog( mContext,errorMsg);
+        dialog.showWarningDialog(mContext, errorMsg);
 
 
     }
@@ -623,6 +663,9 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         syntaxGenerator.setOpMode(OpMode);
         syntaxGenerator.setOpMonthCode(OpMonthCode);
         syntaxGenerator.setDataType(DataType);
+        syntaxGenerator.setCompleteness("Y");
+
+
 
 
         /**
@@ -632,14 +675,17 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         if (sqlH.isDataExitsInDTAResponse_Table(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode, mDTRSeq)) {
             sqlH.updateIntoDTResponseTable(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode,
                     String.valueOf(DTRSeq), DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
-            // TODO: 10/4/2016 upload syntax
-
+            /**
+             *  upload syntax
+             */
             sqlH.insertIntoUploadTable(syntaxGenerator.updateIntoDTResponseTable());
         } else {
 
             sqlH.addIntoDTResponseTable(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTQCode, DTACode,
                     String.valueOf(DTRSeq), DTAValue, ProgActivityCode, DTTimeString, OpMode, OpMonthCode, DataType);
-            // TODO: 10/4/2016  upload syntax
+            /**
+             *  upload syntax
+             */
 
             sqlH.insertIntoUploadTable(syntaxGenerator.insertIntoDTResponseTable());
         }
@@ -660,18 +706,23 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         String AdmDonorCode = dyIndex.getDonorCode();
         String AdmAwardCode = dyIndex.getAwardCode();
         String AdmProgCode = dyIndex.getProgramCode();
+        String OpMode = dyIndex.getOpMode();
+        String getOpMonthCode = dyIndex.getOpMonthCode();
         String DTEnuID = getStaffID();
-        int DTRSeq = mDTRSeq ;
+        int DTRSeq = mDTRSeq;
         /**
-         * todo total Question no is less then index no
+         *  total Question no is less then index no
+         *  the Delete Syntax in  the {@link SQLiteHandler#deleteFromDTResponseTable(String, String, String, String, String, String, int, String, String)}
+         *
          */
 
 
         if (DTBasic != null && AdmCountryCode != null && AdmDonorCode != null && AdmAwardCode != null
-                && AdmProgCode != null && DTEnuID != null && DTRSeq != 0){
-            sqlH.deleteFromDTResponseTable(DTBasic,AdmCountryCode,AdmDonorCode,AdmAwardCode,AdmProgCode,DTEnuID,DTRSeq);
+                && AdmProgCode != null && DTEnuID != null && DTRSeq != 0) {
+            sqlH.deleteFromDTResponseTable(DTBasic, AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, DTEnuID, DTRSeq, OpMode, getOpMonthCode);
         }
-}
+    }
+
     /**
      * Load the next Ques
      */
@@ -682,8 +733,10 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
          * to check does index exceed the max value
          */
 
+        if (mQusIndex != totalQuestion)
+            hideViews();
 
-        hideViews();
+
         if (mQusIndex < totalQuestion) {
             DynamicTableQuesDataModel nextQus = loadNextQuestion(dyIndex.getDtBasicCode(), mQusIndex);
 
@@ -696,8 +749,8 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
             removeStopIconNextButton(btnPreviousQus);
 
             if (mQusIndex == totalQuestion - 1) {
-                addStopIconButton(btnNextQues);
 
+//                addSaveIconButton(btnNextQues);
 
 
             }
@@ -706,20 +759,65 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         } else if (mQusIndex == totalQuestion) {
             Toast.makeText(mContext, "Saved Successfully", Toast.LENGTH_SHORT).show();
 
-           /* Bellow Code eneed the*/
+           /* Bellow Code end the*/
             Log.d("ICON", "before set icon  ");
             addStopIconButton(btnNextQues);
-            //mQusIndex = totalQuestion - 1;
 
-        } else if (mQusIndex > totalQuestion){
+
+        } else if (mQusIndex > totalQuestion) {
 
             /**
+             * new set of ans
              * set icon next button
              */
-            removeStopIconNextButton(btnNextQues);
-            initialWithFirstQues();
+
+            continueDialog();
+
         }
     }
+
+    private void continueDialog() {
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
+        /**
+         *  in unfinished condition if anyone press home button
+         *  Setting Dialog Title
+         */
+
+        alertDialog.setTitle("Continue !!");
+
+        String massage;
+
+
+        massage = "Do you want to continue ?";
+        // On pressing Settings button
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                removeStopIconNextButton(btnNextQues);
+                initialWithFirstQues();
+
+
+            }
+        });
+
+
+        // Setting Dialog Message
+        alertDialog.setMessage(massage);
+
+        // on pressing cancel button
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                goToMainActivity((Activity) mContext);
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+
+
+    }
+
 
     private void previousQuestion() {
         --mQusIndex;
@@ -778,7 +876,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
         viewReference();
         sqlH = new SQLiteHandler(mContext);
 
-         dialog=new ADNotificationManager();
+        dialog = new ADNotificationManager();
         Intent intent = getIntent();
         dyIndex = intent.getParcelableExtra(KEY.DYNAMIC_INDEX_DATA_OBJECT_KEY);
         totalQuestion = intent.getIntExtra(KEY.DYNAMIC_T_QUES_SIZE, 0);
@@ -873,6 +971,18 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
 
         button.setText("");
         Drawable imageHome = getResources().getDrawable(R.drawable.stop);
+        button.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
+        setPaddingButton(mContext, imageHome, button);
+
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void addSaveIconButton(Button button) {
+        Log.d("ICON", "in icon set icon  ");
+
+        button.setText("");
+        Drawable imageHome = getResources().getDrawable(R.drawable.save_b);
         button.setCompoundDrawablesRelativeWithIntrinsicBounds(imageHome, null, null, null);
         setPaddingButton(mContext, imageHome, button);
 
@@ -1003,7 +1113,7 @@ public class DT_QuestionActivity extends BaseActivity implements CompoundButton.
                     if (loadAns != null)
                         _dt_tv_DatePicker.setText(loadAns.getDtaValue());
                     else
-                        _dt_tv_DatePicker.setText("");
+                        _dt_tv_DatePicker.setText("Select Date");
 
                     switch (dataType) {
                         case DATE_TIME:

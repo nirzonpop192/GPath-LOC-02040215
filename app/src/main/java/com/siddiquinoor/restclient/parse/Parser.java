@@ -4,16 +4,324 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.siddiquinoor.restclient.activity.MainActivity;
+import com.siddiquinoor.restclient.data_model.AdmCountryDataModel;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 /**
  * Created by Faisal on 7/16/2016.
  * this Class DCeserializ the Json data
  */
-public class JsonDeserialization {
+public class Parser {
+
+    /**
+     * Json column values constant
+     */
+    public static final String ADM_COUNTRY_CODE = "AdmCountryCode";
+    public static final String ADM_DONOR_CODE = "AdmDonorCode";
+    public static final String ADM_AWARD_CODE = "AdmAwardCode";
+    public static final String LAY_R_1_LIST_CODE = "LayR1ListCode";
+    public static final String LAY_R_2_LIST_CODE = "LayR2ListCode";
+    public static final String LAY_R_3_LIST_CODE = "LayR3ListCode";
+    public static final String LAY_R_4_LIST_CODE = "LayR4ListCode";
+    public static final String PROG_CODE = "ProgCode";
+    public static final String SRV_CODE = "SrvCode";
+    public static final String OP_MONTH_CODE = "OpMonthCode";
+    public static final String FDP_CODE = "FDPCode";
+    public static final String ID = "ID";
+    //  public static final String ID = ID;
+    public static final String DIST_STATUS = "DistStatus";
+    public static final String HHID = "HHID";
+    public static final String MEM_ID = "MemID";
+    public static final String GEO_LAY_R_CODE = "GeoLayRCode";
+    public static final String GEO_LAY_R_NAME = "GeoLayRName";
+    public static final String LAY_R_4_LIST_NAME = "LayR4ListName";
+    public static final String ADM_PROG_CODE = "AdmProgCode";
+    public static final String ADM_SRV_CODE = "AdmSrvCode";
+    public static final String GRD_CODE = "GRDCode";
+    public static final String DEFAULT_CAT_ACTIVE = "DefaultCatActive";
+    public static final String GRD_TITLE = "GRDTitle";
+    public static final String DEFAULT_CAT_EXIT = "DefaultCatExit";
+    public static final String LAY_R_1_CODE = "LayR1Code";
+    public static final String LAY_R_2_CODE = "LayR2Code";
+    public static final String WH_CODE = "WHCode";
+    public static final String FDP_CAT_CODE = "FDPCatCode";
+    public static final String FDP_NAME = "FDPName";
+    public static final String RPT_GROUP = "RptGroup";
+    public static final String RPT_CODE = "RptCode";
+    public static final String REQUEST_SL = "RequestSL";
+    public static final String BTN_NEW1 = "btnNew";
+    public static final String BTN_NEW = BTN_NEW1;
+    public static final String BTN_SAVE = "btnSave";
+    public static final String BTN_DEL = "btnDel";
+    public static final String PLANTING_VALUE_CHAIN_CROP = "PlantingValueChainCrop";
+    public static final String VULNERABLE_HH = "VulnerableHH";
+    public static final String WINTER_CULTIVATION = "WinterCultivation";
+    public static final String WILLINGNESS = "Willingness";
+    public static final String DEPEND_ON_GANYU = "DependOnGanyu";
+    public static final String PROG_NAME = "ProgName";
+    public static final String PROG_SHORT_NAME = "ProgShortName";
+    public static final String REG_N_DATE = "RegNDate";
+    public static final String ENTRY_BY = "EntryBy";
+    public static final String ENTRY_DATE = "EntryDate";
+    public static final String ELDERLY_YN = "ElderlyYN";
+    public static final String LAND_SIZE = "LandSize";
+    public static final String REASON_CODE = "ReasonCode";
+    public static final String REQUEST_DATE = "RequestDate";
+    public static final String PRINT_DATE = "PrintDate";
+    public static final String PRINT_BY = "PrintBy";
+    public static final String DELIVERY_DATE = "DeliveryDate";
+    public static final String DELIVERED_BY = "DeliveredBy";
+    public static final String DEL_STATUS = "DelStatus";
+    public static final String P_BSC_MEM_NAME_1_FIRST = "P_BSCMemName1_First";
+    public static final String P_BSC_MEM_NAME_1_MIDDLE = "P_BSCMemName1_Middle";
+    public static final String P_BSC_MEM_NAME_1_LAST = "P_BSCMemName1_Last";
+    public static final String P_BSC_MEM_1_TITLE_POSITION = "P_BSCMem1_TitlePosition";
+    public static final String PROXY_TYPE_ID = "Proxy_Type_ID";
+    public static final String PROXY_ID_NO = "Proxy_ID_NO";
+    public static final String P_BSC_MEM_NAME_2_FIRST = "P_BSCMemName2_First";
+    public static final String P_BSC_MEM_NAME_2_MIDDLE = "P_BSCMemName2_Middle";
+    public static final String P_BSC_MEM_NAME_2_LAST = "P_BSCMemName2_Last";
+    public static final String P_BSC_MEM_2_TITLE_POSITION = "P_BSCMem2_TitlePosition";
+    public static final String V_BSC_MEM_NAME_1_FIRST = "V_BSCMemName1_First";
+    public static final String V_BSC_MEM_NAME_1_MIDDLE = "V_BSCMemName1_Middle";
+    public static final String V_BSC_MEM_NAME_1_LAST = "V_BSCMemName1_Last";
+    public static final String V_BSC_MEM_1_TITLE_POSITION = "V_BSCMem1_TitlePosition";
+    public static final String V_BSC_MEM_NAME_2_FIRST = "V_BSCMemName2_First";
+    public static final String V_BSC_MEM_NAME_2_MIDDLE = "V_BSCMemName2_Middle";
+    public static final String V_BSC_MEM_NAME_2_LAST = "V_BSCMemName2_Last";
+    public static final String V_BSC_MEM_2_TITLE_POSITION = "V_BSCMem2_TitlePosition";
+    public static final String PROXY_DESIGNATION = "Proxy_Designation";
+    public static final String PROXY_NAME_FIRST = "Proxy_Name_First";
+    public static final String PROXY_NAME_MIDDLE = "Proxy_Name_Middle";
+    public static final String PROXY_NAME_LAST = "Proxy_Name_Last";
+    public static final String PROXY_BIRTH_YEAR = "Proxy_BirthYear";
+    public static final String PROXY_PHOTO = "Proxy_Photo";
+    public static final String CHILD_DOB = "ChildDOB";
+    public static final String ELDERLY = "Elderly";
+    public static final String BIRTH_YEAR = "BirthYear";
+    public static final String PHOTO = "Photo";
+    public static final String TYPE_ID = "Type_ID";
+    public static final String ADM_COUNTRY_NAME = "AdmCountryName";
+    public static final String START_DATE = "StartDate";
+    public static final String END_DATE = "EndDate";
+    public static final String GRP_CODE = "GrpCode";
+    public static final String GRP_NAME = "GrpName";
+    public static final String DESCRIPTION = "Description";
+    public static final String SUB_GRP_CODE = "SubGrpCode";
+    public static final String SUB_GRP_NAME = "SubGrpName";
+
+
+    // json array key name
+    public static final String SERVICE_TABLE_JSON_A = "service_table";
+    public static final String REGN_LM_JSON_A = "regn_lm";
+    public static final String REGN_PW_JSON_A = "regn_pw";
+
+    public static final String REG_N_AGR_JSON_A = "reg_n_agr";
+
+
+    public static final String REG_MEM_CARD_REQUEST_JSON_A = "reg_mem_card_request";
+    public static final String STAFF_FDP_ACCESS_JSON_A = "staff_fdp_access";
+    public static final String FDP_MASTER_JSON_A = "fdp_master";
+    public static final String DISTRIBUTION_TABLE_JSON_A = "distribution_table";
+    public static final String LUP_SRV_OPTION_LIST = "lup_srv_option_list";
+    public static final String CARD_PRINT_REASON = "card_print_reason";
+    public static final String REPORT_TEMPLATE = "report_template";
+    public static final String MEMBERS_JSON_A = "members";
+    public static final String REGISTRATION_JSON_A = "registration";
+    public static final String VILLAGE_JSON_A = "village";
+    public static final String UNIT_JSON_A = "unit";
+    public static final String UPAZILLA = "upazilla";
+    public static final String DISTRICT = "district";
+    public static final String REG_LUP_GRADUATION_JSON_A = "reg_lup_graduation";
+    public static final String LB_REG_HH_CATEGORY_JSON_A = "lb_reg_hh_category";
+    public static final String REGN_CA_2 = "regn_ca2";
+    public static final String ADM_PROGRAM_MASTER_JSON_A = "adm_program_master";
+    public static final String ADM_SERVICE_MASTER_JSON_A = "adm_service_master";
+    public static final String ADM_COUNTRY_AWARD_JSON_A = "adm_countryaward";
+    public static final String GPS_LOCATION_JSON_A = "gps_location";
+    public static final String GPS_SUBGROUP_JSON_A = "gps_subgroup";
+    public static final String GPS_GROUP_JSON_A = "gps_group";
+    public static final String VALID_DATES_JSON_A = "valid_dates";
+    public static final String COUNTRIES_JSON_A = "countries";
+
+    public static final String USR_ID = "UsrID";
+    public static final String REGN_CU_2_JSON_A = "regn_cu2";
+    public static final String STAFF_ACCESS_INFO_JSON_A = "staff_access_info";
+    public static final String RELATION_JSON_A = "relation";
+    public static final String USER_JSON_A = "user";
+    public static final String ADM_DONOR_JSON_A = "adm_donor";
+    public static final String ADM_OP_MONTH_JSON_A = "adm_op_month";
+    public static final String ADM_COUNTRY_PROGRAM_JSON_A = "adm_country_program";
+    public static final String DOB_SERVICE_CENTER_JSON_A = "dob_service_center";
+    public static final String LAYER_LABELS_JSON_A = "layer_labels";
+
+    public static final String FOOD_FLAG = "FoodFlag";
+    public static final String N_FOOD_FLAG = "NFoodFlag";
+    public static final String CASH_FLAG = "CashFlag";
+    public static final String VO_FLAG = "VOFlag";
+
+    public static final String SRV_CENTER_CODE = "SrvCenterCode";
+    public static final String SRV_CENTER_NAME = "SrvCenterName";
+    public static final String BTN_PEPR = "btnPepr";
+    public static final String BTN_APRV = "btnAprv";
+    public static final String BTN_REVW = "btnRevw";
+    public static final String BTN_VRFY = "btnVrfy";
+    public static final String BTN_D_TRAN = "btnDTran";
+    public static final String STF_CODE = "StfCode";
+    public static final String LAY_R_LIST_CODE = "LayRListCode";
+    public static final String HH_HEAD_CAT_CODE = "HHHeadCatCode";
+    public static final String CAT_NAME = "CatName";
+
+    public static final String LAY_R_LIST_NAME = "LayRListName";
+    public static final String LAY_R_2_LIST_NAME = "LayR2ListName";
+    public static final String LAY_R_3_LIST_NAME = "LayR3ListName";
+    public static final String HH_COUNT = "HHCount";
+    public static final String HH_RELATION_CODE = "HHRelationCode";
+    public static final String RELATION_NAME = "RelationName";
+    public static final String RPT_LABEL = "RptLabel";
+    public static final String RPT_G_N_CODE = "Code";
+    public static final String REASON_TITLE = "ReasonTitle";
+    public static final String LUP_OPTION_CODE = "LUPOptionCode";
+    public static final String LUP_OPTION_NAME = "LUPOptionName";
+    public static final String USR_LOG_IN_NAME = "UsrLogInName";
+    public static final String USR_EMAIL_VERIFICATION = "UsrEmailVerification";
+    public static final String USR_STATUS = "UsrStatus";
+    public static final String USR_EMAIL = "UsrEmail";
+    public static final String USR_LAST_NAME = "UsrLastName";
+    public static final String USR_FIRST_NAME = "UsrFirstName";
+    public static final String USR_LOG_IN_PW = "UsrLogInPW";
+    public static final String REG_M_ASSIGN_PROG_SRV_JSON_A = "reg_m_assign_prog_srv";
+    public static final String CA_2_DOB = "CA2DOB";
+    public static final String CA_2_GRD_DATE = "CA2GRDDate";
+    public static final String LMGRD_DATE = "LMGRDDate";
+    public static final String LMDOB = "LMDOB";
+    public static final String CU_2_DOB = "CU2DOB";
+    public static final String CU_2_GRD_DATE = "CU2GRDDate";
+    public static final String LOCATION_CODE = "LocationCode";
+    public static final String LOCATION_NAME = "LocationName";
+    public static final String LONG = "Long";
+    public static final String LATD = "Latd";
+    public static final String AWARD_REF_NUMBER = "AwardRefNumber";
+    public static final String AWARD_START_DATE = "AwardStartDate";
+    public static final String AWARD_END_DATE = "AwardEndDate";
+    public static final String AWARD_SHORT_NAME = "AwardShortName";
+    public static final String AWARD_STATUS = "AwardStatus";
+    public static final String ADM_DONOR_NAME = "AdmDonorName";
+    public static final String OP_CODE = "OpCode";
+    public static final String SRV_SL = "SrvSL";
+    public static final String SRV_DT = "SrvDT";
+    public static final String SRV_STATUS = "SrvStatus";
+    public static final String DIST_DT = "DistDT";
+    public static final String GRD_DATE = "GRDDate";
+    public static final String LMP_DATE = "LMPDate";
+    public static final String PWGRD_DATE = "PWGRDDate";
+    public static final String AFT_CNT_WAGE_ENR = "AFTCntWageEnr";
+    public static final String BRF_CNT_WAGE_ENR = "BRFCntWageEnr";
+    public static final String BRF_ACRE_ORCHARDS = "BRFAcreOrchards";
+    public static final String BRF_VAL_ORCHARDS = "BRFValOrchards";
+    public static final String AFT_ACRE_ORCHARDS = "AFTAcreOrchards";
+    public static final String AFT_VAL_ORCHARDS = "AFTValOrchards";
+    public static final String BRF_VAL_EMPLOYMENT = "BRFValEmployment";
+    public static final String AFT_VAL_EMPLOYMENT = "AFTValEmployment";
+    public static final String BRF_VAL_REMITTANCES = "BRFValRemittances";
+    public static final String EXTRA_CHRONICALLY_ILL_DISABLED_PERSON_BECAUSE_EBOLA = "ExtraChronicallyIllDisabledPersonBecauseEbola";
+    public static final String BRF_CNT_CATTLE = "BRFCntCattle";
+    public static final String BRF_VAL_CATTLE = "BRFValCattle";
+    public static final String DISTRICT_NAME = "DistrictName";
+    public static final String UPAZILLA_NAME = "UpazillaName";
+    public static final String UNIT_NAME = "UnitName";
+    public static final String VILLAGE_NAME = "VillageName";
+    public static final String HH_MEM_ID = "HHMemID";
+    public static final String MEM_NAME = "MemName";
+    public static final String MEM_SEX = "MemSex";
+    public static final String HH_RELATION = "HHRelation";
+    public static final String DISABLED = "Disabled";
+    public static final String MEM_AGE = "MemAge";
+    public static final String MARITAL_STATUS = "MaritalStatus";
+    public static final String CONTACT_NO = "ContactNo";
+    public static final String MEM_OTHER_ID = "MemOtherID";
+    public static final String MEM_NAME_FIRST = "MemName_First";
+    public static final String MEM_NAME_MIDDLE = "MemName_Middle";
+    public static final String MEM_NAME_LAST = "MemName_Last";
+    public static final String REGISTRATION_ID = "RegistrationID";
+    public static final String PERSON_NAME = "PersonName";
+    public static final String SEX = "SEX";
+    public static final String HH_SIZE = "HHSize";
+    public static final String LATITUDE = "Latitude";
+    public static final String LONGITUDE = "Longitude";
+    public static final String AG_LAND = "AGLand";
+    public static final String V_STATUS = "VStatus";
+    public static final String M_STATUS = "MStatus";
+    public static final String VSLA_GROUP = "VSLAGroup";
+    public static final String GPS_LONG_SWAP = "GPSLongSwap";
+    public static final String HH_HEAD_CAT = "HHHeadCat";
+    public static final String LT_2_YRS_M = "LT2yrsM";
+    public static final String LT_2_YRS_F = "LT2yrsF";
+    public static final String M_2_TO_5_YRS = "M2to5yrs";
+    public static final String F_2_TO_5_YRS = "F2to5yrs";
+    public static final String M_6_TO_12_YRS = "M6to12yrs";
+    public static final String AFT_CNT_CATTLE = "AFTCntCattle";
+    public static final String F_6_TO_12_YRS = "F6to12yrs";
+    public static final String M_13_TO_17_YRS = "M13to17yrs";
+    public static final String BRF_CNT_OTHER = "BRFCntOther";
+    public static final String BRF_VAL_OTHER = "BRFValOther";
+    public static final String AFT_CNT_OTHER = "AFTCntOther";
+    public static final String AFT_VAL_OTHER = "AFTValOther";
+    public static final String BRF_ACRE_CULTIVABLE = "BRFAcreCultivable";
+    public static final String BRF_VAL_CULTIVABLE = "BRFValCultivable";
+    public static final String F_13_TO_17_YRS = "F13to17yrs";
+    public static final String ORPHN_LT_18_YRS_M = "Orphn_LT18yrsM";
+    public static final String MONTH_LABEL = "MonthLabel";
+    public static final String USA_START_DATE = "UsaStartDate";
+    public static final String USA_END_DATE = "UsaEndDate";
+    public static final String ORPHN_LT_18_YRS_F = "Orphn_LT18yrsF";
+    public static final String ADLT_18_TO_59_M = "Adlt_18to59M";
+    public static final String ADLT_18_TO_59_F = "Adlt_18to59F";
+    public static final String ELD_60_P_M = "Eld_60pM";
+    public static final String ELD_60_P_F = "Eld_60pF";
+    public static final String PLW = "PLW";
+    public static final String CHRONICALLY_ILL = "ChronicallyIll";
+    public static final String LIVING_DECEASED_CONTRACT_EBOLA = "LivingDeceasedContractEbola";
+    public static final String REG_N_CT_JSON_A = "reg_n_ct";
+    public static final String C_11_CT_PR = "C11_CT_PR";
+    public static final String C_21_CT_PR = "C21_CT_PR";
+    public static final String C_31_CT_PR = "C31_CT_PR";
+    public static final String C_32_CT_PR = "C32_CT_PR";
+    public static final String C_33_CT_PR = "C33_CT_PR";
+    public static final String C_34_CT_PR = "C34_CT_PR";
+    public static final String C_35_CT_PR = "C35_CT_PR";
+    public static final String C_36_CT_PR = "C36_CT_PR";
+    public static final String C_37_CT_PR = "C37_CT_PR";
+    public static final String C_38_CT_PR = "C38_CT_PR";
+    public static final String EXTRA_ELDERLY_PERSON_BECAUSE_EBOLA = "ExtraElderlyPersonBecauseEbola";
+    public static final String EXTRA_CHILD_BECAUSE_EBOLA = "ExtraChildBecauseEbola";
+    public static final String AFT_VAL_CATTLE = "AFTValCattle";
+    public static final String BRF_CNT_SHEEP_GOATS = "BRFCntSheepGoats";
+    public static final String BRF_VAL_SHEEP_GOATS = "BRFValSheepGoats";
+    public static final String MULTIPLE_SRV = "MultipleSrv";
+    public static final String DISTRIBUTION_EXT_TABLE_JSON_A = "distribution_ext_table";
+    public static final String VO_ITM_SPEC = "VOItmSpec";
+    public static final String VO_ITM_UNIT = "VOItmUnit";
+    public static final String VO_REF_NUMBER = "VORefNumber";
+    public static final String VO_ITM_COST = "VOItmCost";
+    public static final String DEFAULT_FOOD_DAYS = "DefaultFoodDays";
+    public static final String DEFAULT_N_FOOD_DAYS = "DefaultNFoodDays";
+    public static final String DEFAULT_CASH_DAYS = "DefaultCashDays";
+    public static final String DEFAULT_VO_DAYS = "DefaultVODays";
+    public static final String SRV_SPECIFIC = "SrvSpecific";
+
+    public static final String DIST_FLAG = "DistFlag";
+    public static final String SRV_OP_MONTH_CODE = "SrvOpMonthCode";
+    public static final String VO_ITM_MEAS_TABLE_JSON_A = "vo_itm_meas_table";
+    public static final String LUP_GPS_TABLE_JSON_A = "lup_gps_table";
+    public static final String GPS_SUB_GROUP_ATTRIBUTES_JSON_A = "gps_sub_group_attributes";
+    public static final String GPS_LOCATION_ATTRIBUTES_JSON_A = "gps_location_attributes";
+
 
     private static final String TAG = "JsonDeserialization";
 
@@ -34,7 +342,7 @@ public class JsonDeserialization {
         String RegistrationID;
         String RegNDate;
         String PersonName;
-        String SEX;
+        String sex;
         String HHSize;
         String Latitude;
         String Longitude;
@@ -69,7 +377,7 @@ public class JsonDeserialization {
         String Adlt_18to59F;
         String Eld_60pM;
         String Eld_60pF;
-        String PLW;
+        String plw;
         String ChronicallyIll;
         String LivingDeceasedContractEbola;
         String ExtraChildBecauseEbola;
@@ -131,9 +439,9 @@ public class JsonDeserialization {
 
 
             // Adding existing registration data into local database
-            if (!jObj.isNull(MainActivity.REGISTRATION_JSON_A)) {
+            if (!jObj.isNull(REGISTRATION_JSON_A)) {
 
-                JSONArray registration = jObj.getJSONArray(MainActivity.REGISTRATION_JSON_A);
+                JSONArray registration = jObj.getJSONArray(REGISTRATION_JSON_A);
 
 
                 // Adding data into Registration Table
@@ -143,25 +451,25 @@ public class JsonDeserialization {
 
                     JSONObject reg = registration.getJSONObject(i);
 
-                    AdmCountryCode = reg.getString(MainActivity.ADM_COUNTRY_CODE);
-                    DistrictName = reg.getString(MainActivity.DISTRICT_NAME);
-                    UpazillaName = reg.getString(MainActivity.UPAZILLA_NAME);
-                    UnitName = reg.getString(MainActivity.UNIT_NAME);
-                    VillageName = reg.getString(MainActivity.VILLAGE_NAME);
-                    RegistrationID = reg.getString(MainActivity.REGISTRATION_ID);
-                    RegNDate = reg.getString(MainActivity.REG_N_DATE);
-                    PersonName = reg.getString(MainActivity.PERSON_NAME);
-                    SEX = reg.getString(MainActivity.SEX);
-                    HHSize = reg.getString(MainActivity.HH_SIZE);
-                    Latitude = reg.getString(MainActivity.LATITUDE);
-                    Longitude = reg.getString(MainActivity.LONGITUDE);
-                    AGLand = reg.getString(MainActivity.AG_LAND);
-                    VStatus = reg.getString(MainActivity.V_STATUS);
-                    MStatus = reg.getString(MainActivity.M_STATUS);
-                    EntryBy = reg.getString(MainActivity.ENTRY_BY);
-                    EntryDate = reg.getString(MainActivity.ENTRY_DATE);
-                    VSLAGroup = reg.getString(MainActivity.VSLA_GROUP);
-                    GPSLongSwap = reg.getString(MainActivity.GPS_LONG_SWAP);
+                    AdmCountryCode = reg.getString(ADM_COUNTRY_CODE);
+                    DistrictName = reg.getString(DISTRICT_NAME);
+                    UpazillaName = reg.getString(UPAZILLA_NAME);
+                    UnitName = reg.getString(UNIT_NAME);
+                    VillageName = reg.getString(VILLAGE_NAME);
+                    RegistrationID = reg.getString(REGISTRATION_ID);
+                    RegNDate = reg.getString(REG_N_DATE);
+                    PersonName = reg.getString(PERSON_NAME);
+                    sex = reg.getString(SEX);
+                    HHSize = reg.getString(HH_SIZE);
+                    Latitude = reg.getString(LATITUDE);
+                    Longitude = reg.getString(LONGITUDE);
+                    AGLand = reg.getString(AG_LAND);
+                    VStatus = reg.getString(V_STATUS);
+                    MStatus = reg.getString(M_STATUS);
+                    EntryBy = reg.getString(ENTRY_BY);
+                    EntryDate = reg.getString(ENTRY_DATE);
+                    VSLAGroup = reg.getString(VSLA_GROUP);
+                    GPSLongSwap = reg.getString(GPS_LONG_SWAP);
                     RegNAddLookupCode = reg.getString("RegNAddLookupCode");
                     LTp2Hectres = reg.getString("LTp2Hectres");
                     LT3mFoodStock = reg.getString("LT3mFoodStock");
@@ -170,67 +478,67 @@ public class JsonDeserialization {
                     NoIGA = reg.getString("NoIGA");
                     RelyPiecework = reg.getString("RelyPiecework");
 
-                    HHHeadCat = reg.getString(MainActivity.HH_HEAD_CAT);
-                    LT2yrsM = reg.getString(MainActivity.LT_2_YRS_M);
-                    LT2yrsF = reg.getString(MainActivity.LT_2_YRS_F);
-                    M2to5yrs = reg.getString(MainActivity.M_2_TO_5_YRS);
-                    F2to5yrs = reg.getString(MainActivity.F_2_TO_5_YRS);
-                    M6to12yrs = reg.getString(MainActivity.M_6_TO_12_YRS);
-                    F6to12yrs = reg.getString(MainActivity.F_6_TO_12_YRS);
-                    M13to17yrs = reg.getString(MainActivity.M_13_TO_17_YRS);
-                    F13to17yrs = reg.getString(MainActivity.F_13_TO_17_YRS);
-                    Orphn_LT18yrsM = reg.getString(MainActivity.ORPHN_LT_18_YRS_M);
-                    Orphn_LT18yrsF = reg.getString(MainActivity.ORPHN_LT_18_YRS_F);
-                    Adlt_18to59M = reg.getString(MainActivity.ADLT_18_TO_59_M);
-                    Adlt_18to59F = reg.getString(MainActivity.ADLT_18_TO_59_F);
-                    Eld_60pM = reg.getString(MainActivity.ELD_60_P_M);
-                    Eld_60pF = reg.getString(MainActivity.ELD_60_P_F);
-                    PLW = reg.getString(MainActivity.PLW);
-                    ChronicallyIll = reg.getString(MainActivity.CHRONICALLY_ILL);
-                    LivingDeceasedContractEbola = reg.getString(MainActivity.LIVING_DECEASED_CONTRACT_EBOLA);
-                    ExtraChildBecauseEbola = reg.getString(MainActivity.EXTRA_CHILD_BECAUSE_EBOLA);
-                    ExtraElderlyPersonBecauseEbola = reg.getString(MainActivity.EXTRA_ELDERLY_PERSON_BECAUSE_EBOLA);
-                    ExtraChronicallyIllDisabledPersonBecauseEbola = reg.getString(MainActivity.EXTRA_CHRONICALLY_ILL_DISABLED_PERSON_BECAUSE_EBOLA);
-                    BRFCntCattle = reg.getString(MainActivity.BRF_CNT_CATTLE);
-                    BRFValCattle = reg.getString(MainActivity.BRF_VAL_CATTLE);
-                    AFTCntCattle = reg.getString(MainActivity.AFT_CNT_CATTLE);
-                    AFTValCattle = reg.getString(MainActivity.AFT_VAL_CATTLE);
-                    BRFCntSheepGoats = reg.getString(MainActivity.BRF_CNT_SHEEP_GOATS);
-                    BRFValSheepGoats = reg.getString(MainActivity.BRF_VAL_SHEEP_GOATS);
+                    HHHeadCat = reg.getString(HH_HEAD_CAT);
+                    LT2yrsM = reg.getString(LT_2_YRS_M);
+                    LT2yrsF = reg.getString(LT_2_YRS_F);
+                    M2to5yrs = reg.getString(M_2_TO_5_YRS);
+                    F2to5yrs = reg.getString(F_2_TO_5_YRS);
+                    M6to12yrs = reg.getString(M_6_TO_12_YRS);
+                    F6to12yrs = reg.getString(F_6_TO_12_YRS);
+                    M13to17yrs = reg.getString(M_13_TO_17_YRS);
+                    F13to17yrs = reg.getString(F_13_TO_17_YRS);
+                    Orphn_LT18yrsM = reg.getString(ORPHN_LT_18_YRS_M);
+                    Orphn_LT18yrsF = reg.getString(ORPHN_LT_18_YRS_F);
+                    Adlt_18to59M = reg.getString(ADLT_18_TO_59_M);
+                    Adlt_18to59F = reg.getString(ADLT_18_TO_59_F);
+                    Eld_60pM = reg.getString(ELD_60_P_M);
+                    Eld_60pF = reg.getString(ELD_60_P_F);
+                    plw = reg.getString(PLW);
+                    ChronicallyIll = reg.getString(CHRONICALLY_ILL);
+                    LivingDeceasedContractEbola = reg.getString(LIVING_DECEASED_CONTRACT_EBOLA);
+                    ExtraChildBecauseEbola = reg.getString(EXTRA_CHILD_BECAUSE_EBOLA);
+                    ExtraElderlyPersonBecauseEbola = reg.getString(EXTRA_ELDERLY_PERSON_BECAUSE_EBOLA);
+                    ExtraChronicallyIllDisabledPersonBecauseEbola = reg.getString(EXTRA_CHRONICALLY_ILL_DISABLED_PERSON_BECAUSE_EBOLA);
+                    BRFCntCattle = reg.getString(BRF_CNT_CATTLE);
+                    BRFValCattle = reg.getString(BRF_VAL_CATTLE);
+                    AFTCntCattle = reg.getString(AFT_CNT_CATTLE);
+                    AFTValCattle = reg.getString(AFT_VAL_CATTLE);
+                    BRFCntSheepGoats = reg.getString(BRF_CNT_SHEEP_GOATS);
+                    BRFValSheepGoats = reg.getString(BRF_VAL_SHEEP_GOATS);
                     AFTCntSheepGoats = reg.getString("AFTCntSheepGoats");
                     AFTValSheepGoats = reg.getString("AFTValSheepGoats");
                     BRFCntPoultry = reg.getString("BRFCntPoultry");
                     BRFValPoultry = reg.getString("BRFValPoultry");
                     AFTCntPoultry = reg.getString("AFTCntPoultry");
                     AFTValPoultry = reg.getString("AFTValPoultry");
-                    BRFCntOther = reg.getString(MainActivity.BRF_CNT_OTHER);
-                    BRFValOther = reg.getString(MainActivity.BRF_VAL_OTHER);
-                    AFTCntOther = reg.getString(MainActivity.AFT_CNT_OTHER);
-                    AFTValOther = reg.getString(MainActivity.AFT_VAL_OTHER);
-                    BRFAcreCultivable = reg.getString(MainActivity.BRF_ACRE_CULTIVABLE);
-                    BRFValCultivable = reg.getString(MainActivity.BRF_VAL_CULTIVABLE);
+                    BRFCntOther = reg.getString(BRF_CNT_OTHER);
+                    BRFValOther = reg.getString(BRF_VAL_OTHER);
+                    AFTCntOther = reg.getString(AFT_CNT_OTHER);
+                    AFTValOther = reg.getString(AFT_VAL_OTHER);
+                    BRFAcreCultivable = reg.getString(BRF_ACRE_CULTIVABLE);
+                    BRFValCultivable = reg.getString(BRF_VAL_CULTIVABLE);
                     AFTAcreCultivable = reg.getString("AFTAcreCultivable");
                     AFTValCultivable = reg.getString("AFTValCultivable");
                     BRFAcreNonCultivable = reg.getString("BRFAcreNonCultivable");
                     BRFValNonCultivable = reg.getString("BRFValNonCultivable");
                     AFTAcreNonCultivable = reg.getString("AFTAcreNonCultivable");
                     AFTValNonCultivable = reg.getString("AFTValNonCultivable");
-                    BRFAcreOrchards = reg.getString(MainActivity.BRF_ACRE_ORCHARDS);
-                    BRFValOrchards = reg.getString(MainActivity.BRF_VAL_ORCHARDS);
-                    AFTAcreOrchards = reg.getString(MainActivity.AFT_ACRE_ORCHARDS);
-                    AFTValOrchards = reg.getString(MainActivity.AFT_VAL_ORCHARDS);
+                    BRFAcreOrchards = reg.getString(BRF_ACRE_ORCHARDS);
+                    BRFValOrchards = reg.getString(BRF_VAL_ORCHARDS);
+                    AFTAcreOrchards = reg.getString(AFT_ACRE_ORCHARDS);
+                    AFTValOrchards = reg.getString(AFT_VAL_ORCHARDS);
                     BRFValCrop = reg.getString("BRFValCrop");
                     AFTValCrop = reg.getString("AFTValCrop");
                     BRFValLivestock = reg.getString("BRFValLivestock");
                     AFTValLivestock = reg.getString("AFTValLivestock");
                     BRFValSmallBusiness = reg.getString("BRFValSmallBusiness");
                     AFTValSmallBusiness = reg.getString("AFTValSmallBusiness");
-                    BRFValEmployment = reg.getString(MainActivity.BRF_VAL_EMPLOYMENT);
-                    AFTValEmployment = reg.getString(MainActivity.AFT_VAL_EMPLOYMENT);
-                    BRFValRemittances = reg.getString(MainActivity.BRF_VAL_REMITTANCES);
+                    BRFValEmployment = reg.getString(BRF_VAL_EMPLOYMENT);
+                    AFTValEmployment = reg.getString(AFT_VAL_EMPLOYMENT);
+                    BRFValRemittances = reg.getString(BRF_VAL_REMITTANCES);
                     AFTValRemittances = reg.getString("AFTValRemittances");
-                    BRFCntWageEnr = reg.getString(MainActivity.BRF_CNT_WAGE_ENR);
-                    AFTCntWageEnr = reg.getString(MainActivity.AFT_CNT_WAGE_ENR);
+                    BRFCntWageEnr = reg.getString(BRF_CNT_WAGE_ENR);
+                    AFTCntWageEnr = reg.getString(AFT_CNT_WAGE_ENR);
                     WRank = reg.getString("WRank");
 
 
@@ -275,7 +583,7 @@ public class JsonDeserialization {
         String LayR2ListCode;
         String LayR3ListCode;
         String LayR4ListCode;
-        String HHID;
+        String hhID;
         String MemID;
         String ProgCode;
         String SrvCode;
@@ -301,34 +609,34 @@ public class JsonDeserialization {
         for (int i = 0; i < size; i++) {
             try {
                 JSONObject service = services_table.getJSONObject(i);
-                AdmCountryCode = service.getString(MainActivity.ADM_COUNTRY_CODE);
-                AdmDonorCode = service.getString(MainActivity.ADM_DONOR_CODE);
-                AdmAwardCode = service.getString(MainActivity.ADM_AWARD_CODE);
-                LayR1ListCode = service.getString(MainActivity.LAY_R_1_LIST_CODE);
-                LayR2ListCode = service.getString(MainActivity.LAY_R_2_LIST_CODE);
-                LayR3ListCode = service.getString(MainActivity.LAY_R_3_LIST_CODE);
-                LayR4ListCode = service.getString(MainActivity.LAY_R_4_LIST_CODE);
-                HHID = service.getString(MainActivity.HHID);
-                MemID = service.getString(MainActivity.MEM_ID);
-                ProgCode = service.getString(MainActivity.PROG_CODE);
-                SrvCode = service.getString(MainActivity.SRV_CODE);
-                OpCode = service.getString(MainActivity.OP_CODE);
-                OpMonthCode = service.getString(MainActivity.OP_MONTH_CODE);
-                SrvSL = service.getString(MainActivity.SRV_SL);
-                SrvCenterCode = service.getString(MainActivity.SRV_CENTER_CODE);
-                SrvDT = service.getString(MainActivity.SRV_DT);
-                SrvStatus = service.getString(MainActivity.SRV_STATUS);
-                DistStatus = service.getString(MainActivity.DIST_STATUS);
-                DistDT = service.getString(MainActivity.DIST_DT);
-                fdpCode = service.getString(MainActivity.FDP_CODE);
+                AdmCountryCode = service.getString(ADM_COUNTRY_CODE);
+                AdmDonorCode = service.getString(ADM_DONOR_CODE);
+                AdmAwardCode = service.getString(ADM_AWARD_CODE);
+                LayR1ListCode = service.getString(LAY_R_1_LIST_CODE);
+                LayR2ListCode = service.getString(LAY_R_2_LIST_CODE);
+                LayR3ListCode = service.getString(LAY_R_3_LIST_CODE);
+                LayR4ListCode = service.getString(LAY_R_4_LIST_CODE);
+                hhID = service.getString(HHID);
+                MemID = service.getString(MEM_ID);
+                ProgCode = service.getString(PROG_CODE);
+                SrvCode = service.getString(SRV_CODE);
+                OpCode = service.getString(OP_CODE);
+                OpMonthCode = service.getString(OP_MONTH_CODE);
+                SrvSL = service.getString(SRV_SL);
+                SrvCenterCode = service.getString(SRV_CENTER_CODE);
+                SrvDT = service.getString(SRV_DT);
+                SrvStatus = service.getString(SRV_STATUS);
+                DistStatus = service.getString(DIST_STATUS);
+                DistDT = service.getString(DIST_DT);
+                fdpCode = service.getString(FDP_CODE);
                 GrpCode = service.getString("GrpCode");
                 WD = service.getString("WD");
                 DistFlag = service.getString("DistFlag");
 
-                sqlH.addServiceFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, HHID, MemID, ProgCode, SrvCode, OpCode, OpMonthCode, SrvSL, SrvCenterCode, SrvDT, SrvStatus, DistStatus, DistDT, fdpCode, WD, DistFlag, GrpCode, "1");
+                sqlH.addServiceFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, hhID, MemID, ProgCode, SrvCode, OpCode, OpMonthCode, SrvSL, SrvCenterCode, SrvDT, SrvStatus, DistStatus, DistDT, fdpCode, WD, DistFlag, GrpCode, "1");
 
 
-                Log.d(TAG, "In Service Table- AdmCountryCode :" + AdmCountryCode + " AdmDonorCode : " + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode + " HHID : " + HHID + " MemID : " + MemID + " ProgCode : " + ProgCode + " SrvCode : " + SrvCode + " OpCode : " + OpCode + " OpMonthCode : " + OpMonthCode +
+                Log.d(TAG, "In Service Table- AdmCountryCode :" + AdmCountryCode + " AdmDonorCode : " + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode + " hhID : " + hhID + " MemID : " + MemID + " ProgCode : " + ProgCode + " SrvCode : " + SrvCode + " OpCode : " + OpCode + " OpMonthCode : " + OpMonthCode +
                         " SrvSL : " + SrvSL + "SrvDT: " + SrvDT + " SrvStatus : " + SrvStatus + " WD :" + WD);
             } catch (Exception e) {
                 Log.d(TAG, "Exception : " + e);
@@ -355,7 +663,7 @@ public class JsonDeserialization {
             String LayR2ListCode;
             String LayR3ListCode;
             String LayR4ListCode;
-            String HHID;
+            String hhID;
             String MemID;
             String ProgCode;
             String SrvCode;
@@ -378,34 +686,34 @@ public class JsonDeserialization {
             for (int i = 0; i < size; i++) {
                 JSONObject services_exe = services_exe_table.getJSONObject(i);
 
-                AdmCountryCode = services_exe.getString(MainActivity.ADM_COUNTRY_CODE);
-                AdmDonorCode = services_exe.getString(MainActivity.ADM_DONOR_CODE);
-                AdmAwardCode = services_exe.getString(MainActivity.ADM_AWARD_CODE);
-                LayR1ListCode = services_exe.getString(MainActivity.LAY_R_1_LIST_CODE);
-                LayR2ListCode = services_exe.getString(MainActivity.LAY_R_2_LIST_CODE);
-                LayR3ListCode = services_exe.getString(MainActivity.LAY_R_3_LIST_CODE);
-                LayR4ListCode = services_exe.getString(MainActivity.LAY_R_4_LIST_CODE);
-                HHID = services_exe.getString(MainActivity.HHID);
-                MemID = services_exe.getString(MainActivity.MEM_ID);
-                ProgCode = services_exe.getString(MainActivity.PROG_CODE);
-                SrvCode = services_exe.getString(MainActivity.SRV_CODE);
-                OpCode = services_exe.getString(MainActivity.OP_CODE);
-                OpMonthCode = services_exe.getString(MainActivity.OP_MONTH_CODE);
-                VOItmSpec = services_exe.getString(MainActivity.VO_ITM_SPEC);
-                VOItmUnit = services_exe.getString(MainActivity.VO_ITM_UNIT);
-                VORefNumber = services_exe.getString(MainActivity.VO_REF_NUMBER);
-                VOItmCost = services_exe.getString(MainActivity.VO_ITM_COST);
+                AdmCountryCode = services_exe.getString(ADM_COUNTRY_CODE);
+                AdmDonorCode = services_exe.getString(ADM_DONOR_CODE);
+                AdmAwardCode = services_exe.getString(ADM_AWARD_CODE);
+                LayR1ListCode = services_exe.getString(LAY_R_1_LIST_CODE);
+                LayR2ListCode = services_exe.getString(LAY_R_2_LIST_CODE);
+                LayR3ListCode = services_exe.getString(LAY_R_3_LIST_CODE);
+                LayR4ListCode = services_exe.getString(LAY_R_4_LIST_CODE);
+                hhID = services_exe.getString(HHID);
+                MemID = services_exe.getString(MEM_ID);
+                ProgCode = services_exe.getString(PROG_CODE);
+                SrvCode = services_exe.getString(SRV_CODE);
+                OpCode = services_exe.getString(OP_CODE);
+                OpMonthCode = services_exe.getString(OP_MONTH_CODE);
+                VOItmSpec = services_exe.getString(VO_ITM_SPEC);
+                VOItmUnit = services_exe.getString(VO_ITM_UNIT);
+                VORefNumber = services_exe.getString(VO_REF_NUMBER);
+                VOItmCost = services_exe.getString(VO_ITM_COST);
 // todo : add dist flag
 
                 sqlH.addServiceExtendedFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode, LayR1ListCode, LayR2ListCode, LayR3ListCode,
-                        LayR4ListCode, HHID, MemID, ProgCode, SrvCode, OpCode, OpMonthCode,
+                        LayR4ListCode, hhID, MemID, ProgCode, SrvCode, OpCode, OpMonthCode,
                         VOItmSpec, VOItmUnit, VORefNumber, VOItmCost, "1");
 
 
              /*   Log.d(TAG, "In Service Extendtion - AdmCountryCode :" + AdmCountryCode + " AdmDonorCode : "
                         + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " LayR1ListCode : "
                         + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : "
-                        + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode + " HHID : " + HHID
+                        + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode + " hhID : " + hhID
                         + " MemID : " + MemID + " ProgCode : " + ProgCode + " SrvCode : " + SrvCode
                         + " OpCode : " + OpCode + " OpMonthCode : " + OpMonthCode +
                         " VOItmSpec : " + VOItmSpec + "VOItmUnit: " + VOItmUnit + " VORefNumber : " + VORefNumber + " VOItmCost : " + VOItmCost);*/
@@ -430,7 +738,7 @@ public class JsonDeserialization {
             String LayR2ListCode;
             String LayR3ListCode;
             String LayR4ListCode;
-            String HHID;
+            String hhID;
             String MemID;
             String ProgCode;
             String SrvCode;
@@ -524,19 +832,19 @@ public class JsonDeserialization {
                 for (int i = 0; i < size; i++) {
                     JSONObject srvSpecific = service_specific_table.getJSONObject(i);
 
-                    AdmCountryCode = srvSpecific.getString(MainActivity.ADM_COUNTRY_CODE);
-                    AdmDonorCode = srvSpecific.getString(MainActivity.ADM_DONOR_CODE);
-                    AdmAwardCode = srvSpecific.getString(MainActivity.ADM_AWARD_CODE);
-                    LayR1ListCode = srvSpecific.getString(MainActivity.LAY_R_1_LIST_CODE);
-                    LayR2ListCode = srvSpecific.getString(MainActivity.LAY_R_2_LIST_CODE);
-                    LayR3ListCode = srvSpecific.getString(MainActivity.LAY_R_3_LIST_CODE);
-                    LayR4ListCode = srvSpecific.getString(MainActivity.LAY_R_4_LIST_CODE);
-                    HHID = srvSpecific.getString(MainActivity.HHID);
-                    MemID = srvSpecific.getString(MainActivity.MEM_ID);
-                    ProgCode = srvSpecific.getString(MainActivity.PROG_CODE);
-                    SrvCode = srvSpecific.getString(MainActivity.SRV_CODE);
-                    OpCode = srvSpecific.getString(MainActivity.OP_CODE);
-                    OpMonthCode = srvSpecific.getString(MainActivity.OP_MONTH_CODE);
+                    AdmCountryCode = srvSpecific.getString(ADM_COUNTRY_CODE);
+                    AdmDonorCode = srvSpecific.getString(ADM_DONOR_CODE);
+                    AdmAwardCode = srvSpecific.getString(ADM_AWARD_CODE);
+                    LayR1ListCode = srvSpecific.getString(LAY_R_1_LIST_CODE);
+                    LayR2ListCode = srvSpecific.getString(LAY_R_2_LIST_CODE);
+                    LayR3ListCode = srvSpecific.getString(LAY_R_3_LIST_CODE);
+                    LayR4ListCode = srvSpecific.getString(LAY_R_4_LIST_CODE);
+                    hhID = srvSpecific.getString(HHID);
+                    MemID = srvSpecific.getString(MEM_ID);
+                    ProgCode = srvSpecific.getString(PROG_CODE);
+                    SrvCode = srvSpecific.getString(SRV_CODE);
+                    OpCode = srvSpecific.getString(OP_CODE);
+                    OpMonthCode = srvSpecific.getString(OP_MONTH_CODE);
 
 
                     SrvCenterCode = srvSpecific.getString("SrvCenterCode");
@@ -621,7 +929,7 @@ public class JsonDeserialization {
 
 
                     sqlH.addServiceSpecificTableFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode, LayR1ListCode, LayR2ListCode, LayR3ListCode,
-                            LayR4ListCode, HHID, MemID, ProgCode, SrvCode, OpCode, OpMonthCode,
+                            LayR4ListCode, hhID, MemID, ProgCode, SrvCode, OpCode, OpMonthCode,
                             SrvCenterCode, FDPCode, SrvStatus, BabyStatus, GMPAttendace, WeightStatus,
                             NutAttendance, VitA_Under5, Exclusive_CurrentlyBF,
                             DateCompFeeding, CMAMRef,
@@ -658,7 +966,7 @@ public class JsonDeserialization {
                     Log.d(TAG, "Service Specific - AdmCountryCode :" + AdmCountryCode + " AdmDonorCode : "
                             + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " LayR1ListCode : "
                             + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : "
-                            + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode + " HHID : " + HHID
+                            + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode + " hhID : " + hhID
                             + " MemID : " + MemID + " ProgCode : " + ProgCode + " SrvCode : " + SrvCode
                             + " OpCode : " + OpCode + " OpMonthCode : " + OpMonthCode);*/
                 }// end of for scope
@@ -688,7 +996,7 @@ public class JsonDeserialization {
             String LayR2ListCode;
             String LayR3ListCode;
             String LayR4ListCode;
-            String HHID;
+            String hhID;
             String MemID;
             String ProgCode;
             String SrvCode;
@@ -723,17 +1031,17 @@ public class JsonDeserialization {
                     LayR2ListCode = reg_n_mem_prog_grp.getString("LayR2ListCode");
                     LayR3ListCode = reg_n_mem_prog_grp.getString("LayR3ListCode");
                     LayR4ListCode = reg_n_mem_prog_grp.getString("LayR4ListCode");
-                    HHID = reg_n_mem_prog_grp.getString(MainActivity.HHID);
+                    hhID = reg_n_mem_prog_grp.getString(HHID);
                     MemID = reg_n_mem_prog_grp.getString("MemID");
-                    ProgCode = reg_n_mem_prog_grp.getString(MainActivity.PROG_CODE);
-                    SrvCode = reg_n_mem_prog_grp.getString(MainActivity.SRV_CODE);
+                    ProgCode = reg_n_mem_prog_grp.getString(PROG_CODE);
+                    SrvCode = reg_n_mem_prog_grp.getString(SRV_CODE);
                     GrpCode = reg_n_mem_prog_grp.getString("GrpCode");
                     Active = reg_n_mem_prog_grp.getString("Active");
 
 
                     sqlH.addRegNmemProgGroupFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode
                             , LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode
-                            , HHID, MemID, ProgCode, SrvCode, GrpCode, Active
+                            , hhID, MemID, ProgCode, SrvCode, GrpCode, Active
 
                     );
 
@@ -742,7 +1050,7 @@ public class JsonDeserialization {
                             + "  AdmDonorCode:" + AdmDonorCode + "  AdmAwardCode:" + AdmAwardCode
                             + "  LayR1ListCode:" + LayR1ListCode + "  LayR2ListCode:" + LayR2ListCode
                             + "  LayR3ListCode:" + LayR3ListCode + "  LayR4ListCode:" + LayR4ListCode
-                            + "  HHID:" + HHID + "  MemID:" + MemID
+                            + "  hhID:" + hhID + "  MemID:" + MemID
                             + "  ProgCode:" + ProgCode + "  SrvCode:" + SrvCode
                             + "  GrpCode:" + GrpCode + "  Active:" + Active
 
@@ -775,9 +1083,9 @@ public class JsonDeserialization {
 
 
             // Adding existing members data into local database
-            if (!jObj.isNull(MainActivity.MEMBERS_JSON_A)) {
+            if (!jObj.isNull(MEMBERS_JSON_A)) {
 
-                JSONArray members = jObj.getJSONArray(MainActivity.MEMBERS_JSON_A);
+                JSONArray members = jObj.getJSONArray(MEMBERS_JSON_A);
 
 
                 String AdmCountryCode;
@@ -785,7 +1093,7 @@ public class JsonDeserialization {
                 String UpazillaName;
                 String UnitName;
                 String VillageName;
-                String HHID;
+                String hhID;
                 String HHMemID;
                 String MemName;
                 String MemSex;
@@ -843,69 +1151,69 @@ public class JsonDeserialization {
 
                     JSONObject member = members.getJSONObject(i);
 
-                    AdmCountryCode = member.getString(MainActivity.ADM_COUNTRY_CODE);
-                    DistrictName = member.getString(MainActivity.DISTRICT_NAME);
-                    UpazillaName = member.getString(MainActivity.UPAZILLA_NAME);
-                    UnitName = member.getString(MainActivity.UNIT_NAME);
-                    VillageName = member.getString(MainActivity.VILLAGE_NAME);
-                    HHID = member.getString(MainActivity.HHID);
-                    HHMemID = member.getString(MainActivity.HH_MEM_ID);
-                    MemName = member.getString(MainActivity.MEM_NAME);
-                    MemSex = member.getString(MainActivity.MEM_SEX);
-                    HHRelation = member.getString(MainActivity.HH_RELATION);
-                    EntryBy = member.getString(MainActivity.ENTRY_BY);
-                    EntryDate = member.getString(MainActivity.ENTRY_DATE);
-                    lmp_date = member.getString(MainActivity.LMP_DATE);
-                    child_dob = member.getString(MainActivity.CHILD_DOB);
-                    elderly = member.getString(MainActivity.ELDERLY);
-                    disabled = member.getString(MainActivity.DISABLED);
-                    MemAge = member.getString(MainActivity.MEM_AGE);
-                    RegNDate = member.getString(MainActivity.REG_N_DATE);
-                    BirthYear = member.getString(MainActivity.BIRTH_YEAR);
-                    MaritalStatus = member.getString(MainActivity.MARITAL_STATUS);
-                    ContactNo = member.getString(MainActivity.CONTACT_NO);
-                    MemOtherID = member.getString(MainActivity.MEM_OTHER_ID);
-                    MemName_First = member.getString(MainActivity.MEM_NAME_FIRST);
-                    MemName_Middle = member.getString(MainActivity.MEM_NAME_MIDDLE);
-                    MemName_Last = member.getString(MainActivity.MEM_NAME_LAST);
-                    Photo = member.getString(MainActivity.PHOTO);
-                    Type_ID = member.getString(MainActivity.TYPE_ID);
+                    AdmCountryCode = member.getString(ADM_COUNTRY_CODE);
+                    DistrictName = member.getString(DISTRICT_NAME);
+                    UpazillaName = member.getString(UPAZILLA_NAME);
+                    UnitName = member.getString(UNIT_NAME);
+                    VillageName = member.getString(VILLAGE_NAME);
+                    hhID = member.getString(HHID);
+                    HHMemID = member.getString(HH_MEM_ID);
+                    MemName = member.getString(MEM_NAME);
+                    MemSex = member.getString(MEM_SEX);
+                    HHRelation = member.getString(HH_RELATION);
+                    EntryBy = member.getString(ENTRY_BY);
+                    EntryDate = member.getString(ENTRY_DATE);
+                    lmp_date = member.getString(LMP_DATE);
+                    child_dob = member.getString(CHILD_DOB);
+                    elderly = member.getString(ELDERLY);
+                    disabled = member.getString(DISABLED);
+                    MemAge = member.getString(MEM_AGE);
+                    RegNDate = member.getString(REG_N_DATE);
+                    BirthYear = member.getString(BIRTH_YEAR);
+                    MaritalStatus = member.getString(MARITAL_STATUS);
+                    ContactNo = member.getString(CONTACT_NO);
+                    MemOtherID = member.getString(MEM_OTHER_ID);
+                    MemName_First = member.getString(MEM_NAME_FIRST);
+                    MemName_Middle = member.getString(MEM_NAME_MIDDLE);
+                    MemName_Last = member.getString(MEM_NAME_LAST);
+                    Photo = member.getString(PHOTO);
+                    Type_ID = member.getString(TYPE_ID);
                     //   String TypeID_NO                 = member.getString("TypeID_NO"); ISSUE: org.json.JSONException: No value for TypeID_NO !!! WHY FOR NULL VALUE THE TYPE ID NO GET EXCEPTION??
                     // // TODO: 7/31/2016  debug it TypeID_NO
                     TypeID_NO = "";
-                    V_BSCMemName1_First = member.getString(MainActivity.V_BSC_MEM_NAME_1_FIRST);
-                    V_BSCMemName1_Middle = member.getString(MainActivity.V_BSC_MEM_NAME_1_MIDDLE);
-                    V_BSCMemName1_Last = member.getString(MainActivity.V_BSC_MEM_NAME_1_LAST);
-                    V_BSCMem1_TitlePosition = member.getString(MainActivity.V_BSC_MEM_1_TITLE_POSITION);
-                    V_BSCMemName2_First = member.getString(MainActivity.V_BSC_MEM_NAME_2_FIRST);
-                    V_BSCMemName2_Middle = member.getString(MainActivity.V_BSC_MEM_NAME_2_MIDDLE);
-                    V_BSCMemName2_Last = member.getString(MainActivity.V_BSC_MEM_NAME_2_LAST);
-                    V_BSCMem2_TitlePosition = member.getString(MainActivity.V_BSC_MEM_2_TITLE_POSITION);
-                    Proxy_Designation = member.getString(MainActivity.PROXY_DESIGNATION);
-                    Proxy_Name_First = member.getString(MainActivity.PROXY_NAME_FIRST);
-                    Proxy_Name_Middle = member.getString(MainActivity.PROXY_NAME_MIDDLE);
-                    Proxy_Name_Last = member.getString(MainActivity.PROXY_NAME_LAST);
-                    Proxy_BirthYear = member.getString(MainActivity.PROXY_BIRTH_YEAR);
-                    Proxy_Photo = member.getString(MainActivity.PROXY_PHOTO);
-                    Proxy_Type_ID = member.getString(MainActivity.PROXY_TYPE_ID);
-                    Proxy_ID_NO = member.getString(MainActivity.PROXY_ID_NO);
-                    P_BSCMemName1_First = member.getString(MainActivity.P_BSC_MEM_NAME_1_FIRST);
-                    P_BSCMemName1_Middle = member.getString(MainActivity.P_BSC_MEM_NAME_1_MIDDLE);
-                    P_BSCMemName1_Last = member.getString(MainActivity.P_BSC_MEM_NAME_1_LAST);
-                    P_BSCMem1_TitlePosition = member.getString(MainActivity.P_BSC_MEM_1_TITLE_POSITION);
-                    P_BSCMemName2_First = member.getString(MainActivity.P_BSC_MEM_NAME_2_FIRST);
-                    P_BSCMemName2_Middle = member.getString(MainActivity.P_BSC_MEM_NAME_2_MIDDLE);
-                    P_BSCMemName2_Last = member.getString(MainActivity.P_BSC_MEM_NAME_2_LAST);
-                    P_BSCMem2_TitlePosition = member.getString(MainActivity.P_BSC_MEM_2_TITLE_POSITION);
-                    GrpCode = member.getString(MainActivity.GRP_CODE);
+                    V_BSCMemName1_First = member.getString(V_BSC_MEM_NAME_1_FIRST);
+                    V_BSCMemName1_Middle = member.getString(V_BSC_MEM_NAME_1_MIDDLE);
+                    V_BSCMemName1_Last = member.getString(V_BSC_MEM_NAME_1_LAST);
+                    V_BSCMem1_TitlePosition = member.getString(V_BSC_MEM_1_TITLE_POSITION);
+                    V_BSCMemName2_First = member.getString(V_BSC_MEM_NAME_2_FIRST);
+                    V_BSCMemName2_Middle = member.getString(V_BSC_MEM_NAME_2_MIDDLE);
+                    V_BSCMemName2_Last = member.getString(V_BSC_MEM_NAME_2_LAST);
+                    V_BSCMem2_TitlePosition = member.getString(V_BSC_MEM_2_TITLE_POSITION);
+                    Proxy_Designation = member.getString(PROXY_DESIGNATION);
+                    Proxy_Name_First = member.getString(PROXY_NAME_FIRST);
+                    Proxy_Name_Middle = member.getString(PROXY_NAME_MIDDLE);
+                    Proxy_Name_Last = member.getString(PROXY_NAME_LAST);
+                    Proxy_BirthYear = member.getString(PROXY_BIRTH_YEAR);
+                    Proxy_Photo = member.getString(PROXY_PHOTO);
+                    Proxy_Type_ID = member.getString(PROXY_TYPE_ID);
+                    Proxy_ID_NO = member.getString(PROXY_ID_NO);
+                    P_BSCMemName1_First = member.getString(P_BSC_MEM_NAME_1_FIRST);
+                    P_BSCMemName1_Middle = member.getString(P_BSC_MEM_NAME_1_MIDDLE);
+                    P_BSCMemName1_Last = member.getString(P_BSC_MEM_NAME_1_LAST);
+                    P_BSCMem1_TitlePosition = member.getString(P_BSC_MEM_1_TITLE_POSITION);
+                    P_BSCMemName2_First = member.getString(P_BSC_MEM_NAME_2_FIRST);
+                    P_BSCMemName2_Middle = member.getString(P_BSC_MEM_NAME_2_MIDDLE);
+                    P_BSCMemName2_Last = member.getString(P_BSC_MEM_NAME_2_LAST);
+                    P_BSCMem2_TitlePosition = member.getString(P_BSC_MEM_2_TITLE_POSITION);
+                    GrpCode = member.getString(GRP_CODE);
 
 
-                    sqlH.addMemberData(AdmCountryCode, DistrictName, UpazillaName, UnitName, VillageName, HHID, HHMemID, MemName, MemSex, HHRelation, EntryBy, EntryDate, lmp_date, child_dob, elderly, disabled, MemAge, RegNDate, BirthYear, MaritalStatus, ContactNo, MemOtherID, MemName_First, MemName_Middle, MemName_Last, Photo,
+                    sqlH.addMemberData(AdmCountryCode, DistrictName, UpazillaName, UnitName, VillageName, hhID, HHMemID, MemName, MemSex, HHRelation, EntryBy, EntryDate, lmp_date, child_dob, elderly, disabled, MemAge, RegNDate, BirthYear, MaritalStatus, ContactNo, MemOtherID, MemName_First, MemName_Middle, MemName_Last, Photo,
                             Type_ID, TypeID_NO, V_BSCMemName1_First, V_BSCMemName1_Middle, V_BSCMemName1_Last, V_BSCMem1_TitlePosition, V_BSCMemName2_First, V_BSCMemName2_Middle, V_BSCMemName2_Last, V_BSCMem2_TitlePosition,
                             Proxy_Designation, Proxy_Name_First, Proxy_Name_Middle, Proxy_Name_Last, Proxy_BirthYear, Proxy_Photo
                             , Proxy_Type_ID, Proxy_ID_NO, P_BSCMemName1_First, P_BSCMemName1_Middle, P_BSCMemName1_Last, P_BSCMem1_TitlePosition, P_BSCMemName2_First, P_BSCMemName2_Middle, P_BSCMemName2_Last, P_BSCMem2_TitlePosition, GrpCode);
 
-//                    Log.d(TAG, " Member table data : id:" + i + " valiues :" + AdmCountryCode + DistrictName + UpazillaName + UnitName + VillageName + HHID + HHMemID + MemName + MemSex + HHRelation + EntryBy + EntryDate + lmp_date + child_dob + elderly + disabled + MemAge + " RegNDate : " + RegNDate + "BirthYear: " + BirthYear + MaritalStatus + ContactNo + MemOtherID + MemName_First + MemName_Middle + MemName_Last + " Photo :" + Photo +
+//                    Log.d(TAG, " Member table data : id:" + i + " valiues :" + AdmCountryCode + DistrictName + UpazillaName + UnitName + VillageName + hhID + HHMemID + MemName + MemSex + HHRelation + EntryBy + EntryDate + lmp_date + child_dob + elderly + disabled + MemAge + " RegNDate : " + RegNDate + "BirthYear: " + BirthYear + MaritalStatus + ContactNo + MemOtherID + MemName_First + MemName_Middle + MemName_Last + " Photo :" + Photo +
 //                            Type_ID + TypeID_NO + V_BSCMemName1_First + V_BSCMemName1_Middle + V_BSCMemName1_Last + V_BSCMem1_TitlePosition + V_BSCMemName2_First + V_BSCMemName2_Middle + V_BSCMemName2_Last + V_BSCMem2_TitlePosition +
 //                            Proxy_Designation + Proxy_Name_First);//, Proxy_Name_Middle, Proxy_Name_Last, Proxy_BirthYear //,Proxy_Photo
                     // , Proxy_Type_ID, Proxy_ID_NO, P_BSCMemName1_First, P_BSCMemName1_Middle, P_BSCMemName1_Last, P_BSCMem1_TitlePosition, P_BSCMemName2_First, P_BSCMemName2_Middle, P_BSCMemName2_Last, P_BSCMem2_TitlePosition);
@@ -989,12 +1297,6 @@ public class JsonDeserialization {
 
                     sqlH.insertIntoGPSLocationContentTable(AdmCountryCode, GrpCode, SubGrpCode, LocationCode, ContentCode, imageByteArray, Remarks, EntryBy, EntryDate);
 
-                   /* sqlH.addRegNmemProgGroupFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode
-                            , LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode
-                            , HHID, MemID, ProgCode, SrvCode, GrpCode, Active
-
-                    );*/
-
 
                     Log.d(TAG, " GPS LoCation Location" + i + " values : AdmCountryCode:" + AdmCountryCode
                             + "  GrpCode:" + GrpCode
@@ -1041,13 +1343,13 @@ public class JsonDeserialization {
             try {
 
                 JSONObject gps_location = gps_locations.getJSONObject(i);
-                AdmCountryCode = gps_location.getString(MainActivity.ADM_COUNTRY_CODE);
-                GrpCode = gps_location.getString(MainActivity.GRP_CODE);
-                SubGrpCode = gps_location.getString(MainActivity.SUB_GRP_CODE);
-                LocationCode = gps_location.getString(MainActivity.LOCATION_CODE);
-                LocationName = gps_location.getString(MainActivity.LOCATION_NAME);
-                Long = gps_location.getString(MainActivity.LONG);
-                Latd = gps_location.getString(MainActivity.LATD);
+                AdmCountryCode = gps_location.getString(ADM_COUNTRY_CODE);
+                GrpCode = gps_location.getString(GRP_CODE);
+                SubGrpCode = gps_location.getString(SUB_GRP_CODE);
+                LocationCode = gps_location.getString(LOCATION_CODE);
+                LocationName = gps_location.getString(LOCATION_NAME);
+                Long = gps_location.getString(LONG);
+                Latd = gps_location.getString(LATD);
 
 
                 sqlH.addGpsLocation(AdmCountryCode, GrpCode, SubGrpCode, LocationCode, LocationName, Latd, Long);
@@ -1070,7 +1372,7 @@ public class JsonDeserialization {
         String LayR4ListCode;
         String AdmDonorCode;
         String AdmAwardCode;
-        String HHID;
+        String hhID;
         String MemID;
         String ProgCode;
         String SrvCode;
@@ -1085,29 +1387,29 @@ public class JsonDeserialization {
             try {
 
                 JSONObject reg_m_assign_prog_srv = jsonArrayData.getJSONObject(i);
-                AdmCountryCode = reg_m_assign_prog_srv.getString(MainActivity.ADM_COUNTRY_CODE);
-                LayR1ListCode = reg_m_assign_prog_srv.getString(MainActivity.LAY_R_1_LIST_CODE);
-                LayR2ListCode = reg_m_assign_prog_srv.getString(MainActivity.LAY_R_2_LIST_CODE);
-                LayR3ListCode = reg_m_assign_prog_srv.getString(MainActivity.LAY_R_3_LIST_CODE);
-                LayR4ListCode = reg_m_assign_prog_srv.getString(MainActivity.LAY_R_4_LIST_CODE);
-                AdmDonorCode = reg_m_assign_prog_srv.getString(MainActivity.ADM_DONOR_CODE);
-                AdmAwardCode = reg_m_assign_prog_srv.getString(MainActivity.ADM_AWARD_CODE);
-                HHID = reg_m_assign_prog_srv.getString(MainActivity.HHID);
-                MemID = reg_m_assign_prog_srv.getString(MainActivity.MEM_ID);
-                ProgCode = reg_m_assign_prog_srv.getString(MainActivity.PROG_CODE);
-                SrvCode = reg_m_assign_prog_srv.getString(MainActivity.SRV_CODE);
-                RegNDate = reg_m_assign_prog_srv.getString(MainActivity.REG_N_DATE);
-                GRDCode = reg_m_assign_prog_srv.getString(MainActivity.GRD_CODE);
-                GRDDate = reg_m_assign_prog_srv.getString(MainActivity.GRD_DATE);
+                AdmCountryCode = reg_m_assign_prog_srv.getString(ADM_COUNTRY_CODE);
+                LayR1ListCode = reg_m_assign_prog_srv.getString(LAY_R_1_LIST_CODE);
+                LayR2ListCode = reg_m_assign_prog_srv.getString(LAY_R_2_LIST_CODE);
+                LayR3ListCode = reg_m_assign_prog_srv.getString(LAY_R_3_LIST_CODE);
+                LayR4ListCode = reg_m_assign_prog_srv.getString(LAY_R_4_LIST_CODE);
+                AdmDonorCode = reg_m_assign_prog_srv.getString(ADM_DONOR_CODE);
+                AdmAwardCode = reg_m_assign_prog_srv.getString(ADM_AWARD_CODE);
+                hhID = reg_m_assign_prog_srv.getString(HHID);
+                MemID = reg_m_assign_prog_srv.getString(MEM_ID);
+                ProgCode = reg_m_assign_prog_srv.getString(PROG_CODE);
+                SrvCode = reg_m_assign_prog_srv.getString(SRV_CODE);
+                RegNDate = reg_m_assign_prog_srv.getString(REG_N_DATE);
+                GRDCode = reg_m_assign_prog_srv.getString(GRD_CODE);
+                GRDDate = reg_m_assign_prog_srv.getString(GRD_DATE);
                 SrvMin = reg_m_assign_prog_srv.getString("SrvMin");
                 SrvMax = reg_m_assign_prog_srv.getString("SrvMax");
 
 
-                sqlH.addRegNassignProgServiceFromOnline(AdmCountryCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, AdmDonorCode, AdmAwardCode, HHID, MemID, ProgCode, SrvCode, RegNDate, GRDCode, GRDDate, SrvMin, SrvMax);
+                sqlH.addRegNassignProgServiceFromOnline(AdmCountryCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, AdmDonorCode, AdmAwardCode, hhID, MemID, ProgCode, SrvCode, RegNDate, GRDCode, GRDDate, SrvMin, SrvMax);
 
 
                /* Log.d(TAG, "RegNAss- AdmCountryCode :" + AdmCountryCode + " AdmDonorCode : " + AdmDonorCode + " AdmAwardCode : " + AdmAwardCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode
-                        + " LayR4ListCode : " + LayR4ListCode + " HHID : " + HHID + " MemID : " + MemID + " ProgCode : " + ProgCode + " SrvCode : " + SrvCode +
+                        + " LayR4ListCode : " + LayR4ListCode + " hhID : " + hhID + " MemID : " + MemID + " ProgCode : " + ProgCode + " SrvCode : " + SrvCode +
                         " RegNDate : " + RegNDate + "GRDCode: " + GRDCode + " GDRDate : " + GRDDate);
 */
 
@@ -1145,13 +1447,13 @@ public class JsonDeserialization {
             for (int i = 0; i < size; i++) {
                 JSONObject reg_n_ffa_tableData = jsonArrayData.getJSONObject(i);
 
-                CountryCode = reg_n_ffa_tableData.getString(MainActivity.ADM_COUNTRY_CODE);
-                DistrictCode = reg_n_ffa_tableData.getString(MainActivity.LAY_R_1_LIST_CODE);
-                UpazillaCode = reg_n_ffa_tableData.getString(MainActivity.LAY_R_2_LIST_CODE);
-                UnitCode = reg_n_ffa_tableData.getString(MainActivity.LAY_R_3_LIST_CODE);
-                VillageCode = reg_n_ffa_tableData.getString(MainActivity.LAY_R_4_LIST_CODE);
-                HhId = reg_n_ffa_tableData.getString(MainActivity.HHID);
-                MemID = reg_n_ffa_tableData.getString(MainActivity.MEM_ID);
+                CountryCode = reg_n_ffa_tableData.getString(ADM_COUNTRY_CODE);
+                DistrictCode = reg_n_ffa_tableData.getString(LAY_R_1_LIST_CODE);
+                UpazillaCode = reg_n_ffa_tableData.getString(LAY_R_2_LIST_CODE);
+                UnitCode = reg_n_ffa_tableData.getString(LAY_R_3_LIST_CODE);
+                VillageCode = reg_n_ffa_tableData.getString(LAY_R_4_LIST_CODE);
+                HhId = reg_n_ffa_tableData.getString(HHID);
+                MemID = reg_n_ffa_tableData.getString(MEM_ID);
                 OrphanedChildren = reg_n_ffa_tableData.getString("OrphanedChildren");
                 ChildHeaded = reg_n_ffa_tableData.getString("ChildHeaded");
                 ElderlyHeaded = reg_n_ffa_tableData.getString("ElderlyHeaded");
@@ -1680,21 +1982,21 @@ public class JsonDeserialization {
         for (int i = 0; i < size; i++) {
             try {
 
-                JSONObject community_group_Data = jsonArrayData.getJSONObject(i);
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
 
 
-                AdmCountryCode = community_group_Data.getString("AdmCountryCode");
-                AdmDonorCode = community_group_Data.getString("AdmDonorCode");
-                AdmAwardCode = community_group_Data.getString("AdmAwardCode");
-                AdmProgCode = community_group_Data.getString("AdmProgCode");
-                GrpCode = community_group_Data.getString("GrpCode");
-                GrpName = community_group_Data.getString("GrpName");
-                GrpCatCode = community_group_Data.getString("GrpCatCode");
-                LayR1Code = community_group_Data.getString("LayR1Code");
-                LayR2Code = community_group_Data.getString("LayR2Code");
-                LayR3Code = community_group_Data.getString("LayR3Code");
-           
-                SrvCenterCode = community_group_Data.getString("SrvCenterCode");
+                AdmCountryCode = jsonObject.getString("AdmCountryCode");
+                AdmDonorCode = jsonObject.getString("AdmDonorCode");
+                AdmAwardCode = jsonObject.getString("AdmAwardCode");
+                AdmProgCode = jsonObject.getString("AdmProgCode");
+                GrpCode = jsonObject.getString("GrpCode");
+                GrpName = jsonObject.getString("GrpName");
+                GrpCatCode = jsonObject.getString("GrpCatCode");
+                LayR1Code = jsonObject.getString("LayR1Code");
+                LayR2Code = jsonObject.getString("LayR2Code");
+                LayR3Code = jsonObject.getString("LayR3Code");
+
+                SrvCenterCode = jsonObject.getString("SrvCenterCode");
 
                 EntryBy = "";
                 EntryDate = "";
@@ -1746,49 +2048,43 @@ public class JsonDeserialization {
         for (int i = 0; i < size; i++) {
             try {
 
-                JSONObject community_grp_detail_Data = jsonArrayData.getJSONObject(i);
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
 
 
+                AdmCountryCode = jsonObject.getString("AdmCountryCode");
+                AdmDonorCode = jsonObject.getString("AdmDonorCode");
+                AdmAwardCode = jsonObject.getString("AdmAwardCode");
+                AdmProgCode = jsonObject.getString("AdmProgCode");
+                GrpCode = jsonObject.getString("GrpCode");
+                OrgCode = jsonObject.getString("OrgCode");
+                StfCode = jsonObject.getString("StfCode");
+                LandSizeUnderIrrigation = jsonObject.getString("LandSizeUnderIrrigation");
+                IrrigationSystemUsed = jsonObject.getString("IrrigationSystemUsed");
+                FundSupport = jsonObject.getString("FundSupport");
+                ActiveStatus = jsonObject.getString("ActiveStatus");
+                RepName = jsonObject.getString("RepName");
+                RepPhoneNumber = jsonObject.getString("RepPhoneNumber");
+                FormationDate = jsonObject.getString("FormationDate");
+                TypeOfGroup = jsonObject.getString("TypeOfGroup");
+                Status = jsonObject.getString("Status");
+                ProjectNo = jsonObject.getString("ProjectNo");
+                ProjectTitle = jsonObject.getString("ProjectTitle");
 
-
-                AdmCountryCode = community_grp_detail_Data.getString("AdmCountryCode");
-                AdmDonorCode = community_grp_detail_Data.getString("AdmDonorCode");
-                AdmAwardCode = community_grp_detail_Data.getString("AdmAwardCode");
-                AdmProgCode = community_grp_detail_Data.getString("AdmProgCode");
-                GrpCode = community_grp_detail_Data.getString("GrpCode");
-                OrgCode = community_grp_detail_Data.getString("OrgCode");
-                StfCode = community_grp_detail_Data.getString("StfCode");
-                LandSizeUnderIrrigation = community_grp_detail_Data.getString("LandSizeUnderIrrigation");
-                IrrigationSystemUsed = community_grp_detail_Data.getString("IrrigationSystemUsed");
-                FundSupport = community_grp_detail_Data.getString("FundSupport");
-                ActiveStatus = community_grp_detail_Data.getString("ActiveStatus");
-                RepName = community_grp_detail_Data.getString("RepName");
-                RepPhoneNumber = community_grp_detail_Data.getString("RepPhoneNumber");
-                FormationDate = community_grp_detail_Data.getString("FormationDate");
-                TypeOfGroup = community_grp_detail_Data.getString("TypeOfGroup");
-                Status = community_grp_detail_Data.getString("Status");
-                ProjectNo = community_grp_detail_Data.getString("ProjectNo");
-                ProjectTitle = community_grp_detail_Data.getString("ProjectTitle");
-
-                LayR1Code = community_grp_detail_Data.getString("LayR1Code");
-                LayR2Code = community_grp_detail_Data.getString("LayR2Code");
-                LayR3Code = community_grp_detail_Data.getString("LayR3Code");
+                LayR1Code = jsonObject.getString("LayR1Code");
+                LayR2Code = jsonObject.getString("LayR2Code");
+                LayR3Code = jsonObject.getString("LayR3Code");
 
 
                 EntryBy = "";
                 EntryDate = "";
 
-            /*    Log.d("Shuvo", "AdmCountryCode:" + AdmCountryCode + "AdmDonorCode:" + AdmDonorCode + "AdmAwardCode:" + AdmAwardCode +
+            /*    Log.d(TAG, "AdmCountryCode:" + AdmCountryCode + "AdmDonorCode:" + AdmDonorCode + "AdmAwardCode:" + AdmAwardCode +
                                 "AdmProgCode:" + AdmProgCode + "GrpCode:" + GrpCode + "OrgCode:" + OrgCode + "StfCode:" + StfCode + "LandSizeUnderIrrigation:" + LandSizeUnderIrrigation +
                                 "IrrigationSystemUsed:" + IrrigationSystemUsed + "FundSupport:" + FundSupport + "ActiveStatus:" + ActiveStatus +
                                 "RepName:" + RepName + "RepPhoneNumber:" + RepPhoneNumber + "FormationDate:" + FormationDate + "TypeOfGroup:" + TypeOfGroup +
                                 "Status" + Status + "EntryBy:" + EntryBy + "EntryDate:" + EntryDate + "ProjectNo:" + ProjectNo + "ProjectTitle:" + ProjectTitle
                         + "/n LayR1Code:"+ LayR1Code + "LayR2Code:"+ LayR2Code+"LayR3Code:" + LayR3Code
                 );*/
-
-
-
-
 
 
                 sqlH.addIntoGroupDetails(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, GrpCode,
@@ -1805,6 +2101,124 @@ public class JsonDeserialization {
 
         }// end of for
 
+    }
+
+
+    public static void RegN_CA2Parser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        int size = jsonArrayData.length();
+
+
+        String AdmCountryCode;
+        String LayR1ListCode;
+        String LayR2ListCode;
+        String LayR3ListCode;
+        String LayR4ListCode;
+        String hhId;
+        String MemID;
+        String RegNDate;
+        String CA2DOB;
+        String AdmProgCode;
+        String AdmSrvCode;
+        String GRDCode;
+        String CA2GRDDate;
+        String ChildName;
+        String ChildSex;
+
+        for (int i = 0; i < size; i++) {
+            try {
+
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                AdmCountryCode = jsonObject.getString(ADM_COUNTRY_CODE);
+                LayR1ListCode = jsonObject.getString(LAY_R_1_LIST_CODE);
+                LayR2ListCode = jsonObject.getString(LAY_R_2_LIST_CODE);
+                LayR3ListCode = jsonObject.getString(LAY_R_3_LIST_CODE);
+                LayR4ListCode = jsonObject.getString(LAY_R_4_LIST_CODE);
+                hhId = jsonObject.getString(HHID);
+                MemID = jsonObject.getString(MEM_ID);
+                RegNDate = jsonObject.getString(REG_N_DATE);
+                CA2DOB = jsonObject.getString(CA_2_DOB);
+                AdmProgCode = jsonObject.getString(ADM_PROG_CODE);
+                AdmSrvCode = jsonObject.getString(ADM_SRV_CODE);
+                GRDCode = jsonObject.getString(GRD_CODE);
+                CA2GRDDate = jsonObject.getString(CA_2_GRD_DATE);
+                ChildName = jsonObject.getString("ChildName");
+                ChildSex = jsonObject.getString("ChildSex");
+
+
+                sqlH.addRegNCA2_FromOnLine(AdmCountryCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode,
+                        hhId, MemID, AdmProgCode, AdmSrvCode, RegNDate, GRDCode, CA2DOB, CA2GRDDate, ChildName, ChildSex);
+
+
+                Log.d(TAG, "In RegNCA2 Table- AdmCountryCode :" + AdmCountryCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode + " hhID : " + hhId + " MemID  : " + MemID + " AdmProgCode : " + AdmProgCode + " AdmSrvCode : " + AdmSrvCode + " RegNDate : " + RegNDate + " GRDCode : " + GRDCode + /*" EntryBy : " + EntryBy + " EntryDate : " + EntryDate +*/ " LMDOB : " + CA2DOB + " LMGRDDate : " + CA2GRDDate);// + " FDPCode  : " + FDPCode );
+
+
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+
+
+        }// end of for
+
+    }
+
+    /**
+     * Parse and insert into the db
+     *
+     * @param jsonArrayData countrys json array
+     * @param sqlH          database
+     */
+    public static void AdmCountryParser(JSONArray jsonArrayData, SQLiteHandler sqlH) {
+
+        ArrayList<AdmCountryDataModel> arrayList = AdmCountryParser(jsonArrayData);
+
+
+        for (int i = 0; i < arrayList.size(); i++) {
+
+            sqlH.addCountry(arrayList.get(i).getAdmCountryCode(), arrayList.get(i).getAdmCountryName());
+
+
+        }// end of for
+
+    }
+
+
+    public static ArrayList<AdmCountryDataModel> AdmCountryParser(JSONArray jsonArrayData) {
+
+        int size = jsonArrayData.length();
+
+/**
+ * to see the log use those tep veriable
+ */
+        String AdmCountryCode;
+        String AdmCountryName;
+        ArrayList<AdmCountryDataModel> arrayList = new ArrayList<>();
+
+        for (int i = 0; i < size; i++) {
+            try {
+                JSONObject jsonObject = jsonArrayData.getJSONObject(i);
+
+                AdmCountryCode = jsonObject.getString(Parser.ADM_COUNTRY_CODE);
+                AdmCountryName = jsonObject.getString(Parser.ADM_COUNTRY_NAME);
+
+                AdmCountryDataModel dataModel = new AdmCountryDataModel();
+
+                dataModel.setAdmCountryCode(AdmCountryCode);
+                dataModel.setAdmCountryName(AdmCountryName);
+
+                arrayList.add(dataModel);
+
+                Log.d(TAG, "In Adm country Table- AdmCountryCode :" + AdmCountryCode + " AdmCountryName : " + AdmCountryName);
+            } catch (Exception e) {
+                Log.e(TAG, "Exception : " + e);
+                e.printStackTrace();
+            }
+
+
+        }// end of for
+        return arrayList;
     }
 
 

@@ -36,7 +36,7 @@ import com.siddiquinoor.restclient.controller.AppController;
 import com.siddiquinoor.restclient.manager.SQLiteHandler;
 import com.siddiquinoor.restclient.manager.SyncDatabase;
 import com.siddiquinoor.restclient.network.ConnectionDetector;
-import com.siddiquinoor.restclient.parse.JsonDeserialization;
+import com.siddiquinoor.restclient.parse.Parser;
 import com.siddiquinoor.restclient.utils.KEY;
 import com.siddiquinoor.restclient.utils.UtilClass;
 import com.siddiquinoor.restclient.views.adapters.DistributionSaveDataModel;
@@ -58,307 +58,10 @@ import java.util.Locale;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    public static final String ADM_COUNTRY_CODE = "AdmCountryCode";
-    public static final String ADM_DONOR_CODE = "AdmDonorCode";
-    public static final String ADM_AWARD_CODE = "AdmAwardCode";
-    public static final String LAY_R_1_LIST_CODE = "LayR1ListCode";
-    public static final String LAY_R_2_LIST_CODE = "LayR2ListCode";
-    public static final String LAY_R_3_LIST_CODE = "LayR3ListCode";
-    public static final String LAY_R_4_LIST_CODE = "LayR4ListCode";
-    public static final String PROG_CODE = "ProgCode";
-    public static final String SRV_CODE = "SrvCode";
-    public static final String OP_MONTH_CODE = "OpMonthCode";
-    public static final String FDP_CODE = "FDPCode";
-    public static final String ID = "ID";
-    //  public static final String ID = MainActivity.ID;
-    public static final String DIST_STATUS = "DistStatus";
-    public static final String HHID = "HHID";
-    public static final String MEM_ID = "MemID";
-    public static final String GEO_LAY_R_CODE = "GeoLayRCode";
-    public static final String GEO_LAY_R_NAME = "GeoLayRName";
-    public static final String LAY_R_4_LIST_NAME = "LayR4ListName";
-    public static final String ADM_PROG_CODE = "AdmProgCode";
-    public static final String ADM_SRV_CODE = "AdmSrvCode";
-    public static final String GRD_CODE = "GRDCode";
-    public static final String DEFAULT_CAT_ACTIVE = "DefaultCatActive";
-    public static final String GRD_TITLE = "GRDTitle";
-    public static final String DEFAULT_CAT_EXIT = "DefaultCatExit";
-    public static final String LAY_R_1_CODE = "LayR1Code";
-    public static final String LAY_R_2_CODE = "LayR2Code";
-    public static final String WH_CODE = "WHCode";
-    public static final String FDP_CAT_CODE = "FDPCatCode";
-    public static final String FDP_NAME = "FDPName";
-    public static final String RPT_GROUP = "RptGroup";
-    public static final String RPT_CODE = "RptCode";
-    public static final String REQUEST_SL = "RequestSL";
-    public static final String BTN_NEW1 = "btnNew";
-    public static final String BTN_NEW = BTN_NEW1;
-    public static final String BTN_SAVE = "btnSave";
-    public static final String BTN_DEL = "btnDel";
-    public static final String PLANTING_VALUE_CHAIN_CROP = "PlantingValueChainCrop";
-    public static final String VULNERABLE_HH = "VulnerableHH";
-    public static final String WINTER_CULTIVATION = "WinterCultivation";
-    public static final String WILLINGNESS = "Willingness";
-    public static final String DEPEND_ON_GANYU = "DependOnGanyu";
-    public static final String PROG_NAME = "ProgName";
-    public static final String PROG_SHORT_NAME = "ProgShortName";
-    public static final String REG_N_DATE = "RegNDate";
-    public static final String ENTRY_BY = "EntryBy";
-    public static final String ENTRY_DATE = "EntryDate";
-    public static final String ELDERLY_YN = "ElderlyYN";
-    public static final String LAND_SIZE = "LandSize";
-    public static final String REASON_CODE = "ReasonCode";
-    public static final String REQUEST_DATE = "RequestDate";
-    public static final String PRINT_DATE = "PrintDate";
-    public static final String PRINT_BY = "PrintBy";
-    public static final String DELIVERY_DATE = "DeliveryDate";
-    public static final String DELIVERED_BY = "DeliveredBy";
-    public static final String DEL_STATUS = "DelStatus";
-    public static final String P_BSC_MEM_NAME_1_FIRST = "P_BSCMemName1_First";
-    public static final String P_BSC_MEM_NAME_1_MIDDLE = "P_BSCMemName1_Middle";
-    public static final String P_BSC_MEM_NAME_1_LAST = "P_BSCMemName1_Last";
-    public static final String P_BSC_MEM_1_TITLE_POSITION = "P_BSCMem1_TitlePosition";
-    public static final String PROXY_TYPE_ID = "Proxy_Type_ID";
-    public static final String PROXY_ID_NO = "Proxy_ID_NO";
-    public static final String P_BSC_MEM_NAME_2_FIRST = "P_BSCMemName2_First";
-    public static final String P_BSC_MEM_NAME_2_MIDDLE = "P_BSCMemName2_Middle";
-    public static final String P_BSC_MEM_NAME_2_LAST = "P_BSCMemName2_Last";
-    public static final String P_BSC_MEM_2_TITLE_POSITION = "P_BSCMem2_TitlePosition";
-    public static final String V_BSC_MEM_NAME_1_FIRST = "V_BSCMemName1_First";
-    public static final String V_BSC_MEM_NAME_1_MIDDLE = "V_BSCMemName1_Middle";
-    public static final String V_BSC_MEM_NAME_1_LAST = "V_BSCMemName1_Last";
-    public static final String V_BSC_MEM_1_TITLE_POSITION = "V_BSCMem1_TitlePosition";
-    public static final String V_BSC_MEM_NAME_2_FIRST = "V_BSCMemName2_First";
-    public static final String V_BSC_MEM_NAME_2_MIDDLE = "V_BSCMemName2_Middle";
-    public static final String V_BSC_MEM_NAME_2_LAST = "V_BSCMemName2_Last";
-    public static final String V_BSC_MEM_2_TITLE_POSITION = "V_BSCMem2_TitlePosition";
-    public static final String PROXY_DESIGNATION = "Proxy_Designation";
-    public static final String PROXY_NAME_FIRST = "Proxy_Name_First";
-    public static final String PROXY_NAME_MIDDLE = "Proxy_Name_Middle";
-    public static final String PROXY_NAME_LAST = "Proxy_Name_Last";
-    public static final String PROXY_BIRTH_YEAR = "Proxy_BirthYear";
-    public static final String PROXY_PHOTO = "Proxy_Photo";
-    public static final String CHILD_DOB = "ChildDOB";
-    public static final String ELDERLY = "Elderly";
-    public static final String BIRTH_YEAR = "BirthYear";
-    public static final String PHOTO = "Photo";
-    public static final String TYPE_ID = "Type_ID";
-    public static final String ADM_COUNTRY_NAME = "AdmCountryName";
-    public static final String START_DATE = "StartDate";
-    public static final String END_DATE = "EndDate";
-    public static final String GRP_CODE = "GrpCode";
-    public static final String GRP_NAME = "GrpName";
-    public static final String DESCRIPTION = "Description";
-    public static final String SUB_GRP_CODE = "SubGrpCode";
-    public static final String SUB_GRP_NAME = "SubGrpName";
-
-
-    // json array key name
-    public static final String SERVICE_TABLE_JSON_A = "service_table";
-    public static final String REGN_LM_JSON_A = "regn_lm";
-    public static final String REGN_PW_JSON_A = "regn_pw";
-
-    public static final String REG_N_AGR_JSON_A = "reg_n_agr";
-
-
-    public static final String REG_MEM_CARD_REQUEST_JSON_A = "reg_mem_card_request";
-    public static final String STAFF_FDP_ACCESS_JSON_A = "staff_fdp_access";
-    public static final String FDP_MASTER_JSON_A = "fdp_master";
-    public static final String DISTRIBUTION_TABLE_JSON_A = "distribution_table";
-    public static final String LUP_SRV_OPTION_LIST = "lup_srv_option_list";
-    public static final String CARD_PRINT_REASON = "card_print_reason";
-    public static final String REPORT_TEMPLATE = "report_template";
-    public static final String MEMBERS_JSON_A = "members";
-    public static final String REGISTRATION_JSON_A = "registration";
-    public static final String VILLAGE_JSON_A = "village";
-    public static final String UNIT_JSON_A = "unit";
-    public static final String UPAZILLA = "upazilla";
-    public static final String DISTRICT = "district";
-    public static final String REG_LUP_GRADUATION_JSON_A = "reg_lup_graduation";
-    public static final String LB_REG_HH_CATEGORY_JSON_A = "lb_reg_hh_category";
-    public static final String REGN_CA_2 = "regn_ca2";
-    public static final String ADM_PROGRAM_MASTER_JSON_A = "adm_program_master";
-    public static final String ADM_SERVICE_MASTER_JSON_A = "adm_service_master";
-    public static final String ADM_COUNTRY_AWARD_JSON_A = "adm_countryaward";
-    public static final String GPS_LOCATION_JSON_A = "gps_location";
-    public static final String GPS_SUBGROUP_JSON_A = "gps_subgroup";
-    public static final String GPS_GROUP_JSON_A = "gps_group";
-    public static final String VALID_DATES_JSON_A = "valid_dates";
-    public static final String COUNTRIES_JSON_A = "countries";
-
-    public static final String USR_ID = "UsrID";
-    public static final String REGN_CU_2_JSON_A = "regn_cu2";
-    public static final String STAFF_ACCESS_INFO_JSON_A = "staff_access_info";
-    public static final String RELATION_JSON_A = "relation";
-    public static final String USER_JSON_A = "user";
-    public static final String ADM_DONOR_JSON_A = "adm_donor";
-    public static final String ADM_OP_MONTH_JSON_A = "adm_op_month";
-    public static final String ADM_COUNTRY_PROGRAM_JSON_A = "adm_country_program";
-    public static final String DOB_SERVICE_CENTER_JSON_A = "dob_service_center";
-    public static final String LAYER_LABELS_JSON_A = "layer_labels";
-
-    public static final String FOOD_FLAG = "FoodFlag";
-    public static final String N_FOOD_FLAG = "NFoodFlag";
-    public static final String CASH_FLAG = "CashFlag";
-    public static final String VO_FLAG = "VOFlag";
-
-    public static final String SRV_CENTER_CODE = "SrvCenterCode";
-    public static final String SRV_CENTER_NAME = "SrvCenterName";
-    public static final String BTN_PEPR = "btnPepr";
-    public static final String BTN_APRV = "btnAprv";
-    public static final String BTN_REVW = "btnRevw";
-    public static final String BTN_VRFY = "btnVrfy";
-    public static final String BTN_D_TRAN = "btnDTran";
-    public static final String STF_CODE = "StfCode";
-    public static final String LAY_R_LIST_CODE = "LayRListCode";
-    public static final String HH_HEAD_CAT_CODE = "HHHeadCatCode";
-    public static final String CAT_NAME = "CatName";
-
-    public static final String LAY_R_LIST_NAME = "LayRListName";
-    public static final String LAY_R_2_LIST_NAME = "LayR2ListName";
-    public static final String LAY_R_3_LIST_NAME = "LayR3ListName";
-    public static final String HH_COUNT = "HHCount";
-    public static final String HH_RELATION_CODE = "HHRelationCode";
-    public static final String RELATION_NAME = "RelationName";
-    public static final String RPT_LABEL = "RptLabel";
-    public static final String RPT_G_N_CODE = "Code";
-    public static final String REASON_TITLE = "ReasonTitle";
-    public static final String LUP_OPTION_CODE = "LUPOptionCode";
-    public static final String LUP_OPTION_NAME = "LUPOptionName";
-    public static final String USR_LOG_IN_NAME = "UsrLogInName";
-    public static final String USR_EMAIL_VERIFICATION = "UsrEmailVerification";
-    public static final String USR_STATUS = "UsrStatus";
-    public static final String USR_EMAIL = "UsrEmail";
-    public static final String USR_LAST_NAME = "UsrLastName";
-    public static final String USR_FIRST_NAME = "UsrFirstName";
-    public static final String USR_LOG_IN_PW = "UsrLogInPW";
-    public static final String REG_M_ASSIGN_PROG_SRV_JSON_A = "reg_m_assign_prog_srv";
-    public static final String CA_2_DOB = "CA2DOB";
-    public static final String CA_2_GRD_DATE = "CA2GRDDate";
-    public static final String LMGRD_DATE = "LMGRDDate";
-    public static final String LMDOB = "LMDOB";
-    public static final String CU_2_DOB = "CU2DOB";
-    public static final String CU_2_GRD_DATE = "CU2GRDDate";
-    public static final String LOCATION_CODE = "LocationCode";
-    public static final String LOCATION_NAME = "LocationName";
-    public static final String LONG = "Long";
-    public static final String LATD = "Latd";
-    public static final String AWARD_REF_NUMBER = "AwardRefNumber";
-    public static final String AWARD_START_DATE = "AwardStartDate";
-    public static final String AWARD_END_DATE = "AwardEndDate";
-    public static final String AWARD_SHORT_NAME = "AwardShortName";
-    public static final String AWARD_STATUS = "AwardStatus";
-    public static final String ADM_DONOR_NAME = "AdmDonorName";
-    public static final String OP_CODE = "OpCode";
-    public static final String SRV_SL = "SrvSL";
-    public static final String SRV_DT = "SrvDT";
-    public static final String SRV_STATUS = "SrvStatus";
-    public static final String DIST_DT = "DistDT";
-    public static final String GRD_DATE = "GRDDate";
-    public static final String LMP_DATE = "LMPDate";
-    public static final String PWGRD_DATE = "PWGRDDate";
-    public static final String AFT_CNT_WAGE_ENR = "AFTCntWageEnr";
-    public static final String BRF_CNT_WAGE_ENR = "BRFCntWageEnr";
-    public static final String BRF_ACRE_ORCHARDS = "BRFAcreOrchards";
-    public static final String BRF_VAL_ORCHARDS = "BRFValOrchards";
-    public static final String AFT_ACRE_ORCHARDS = "AFTAcreOrchards";
-    public static final String AFT_VAL_ORCHARDS = "AFTValOrchards";
-    public static final String BRF_VAL_EMPLOYMENT = "BRFValEmployment";
-    public static final String AFT_VAL_EMPLOYMENT = "AFTValEmployment";
-    public static final String BRF_VAL_REMITTANCES = "BRFValRemittances";
-    public static final String EXTRA_CHRONICALLY_ILL_DISABLED_PERSON_BECAUSE_EBOLA = "ExtraChronicallyIllDisabledPersonBecauseEbola";
-    public static final String BRF_CNT_CATTLE = "BRFCntCattle";
-    public static final String BRF_VAL_CATTLE = "BRFValCattle";
-    public static final String DISTRICT_NAME = "DistrictName";
-    public static final String UPAZILLA_NAME = "UpazillaName";
-    public static final String UNIT_NAME = "UnitName";
-    public static final String VILLAGE_NAME = "VillageName";
-    public static final String HH_MEM_ID = "HHMemID";
-    public static final String MEM_NAME = "MemName";
-    public static final String MEM_SEX = "MemSex";
-    public static final String HH_RELATION = "HHRelation";
-    public static final String DISABLED = "Disabled";
-    public static final String MEM_AGE = "MemAge";
-    public static final String MARITAL_STATUS = "MaritalStatus";
-    public static final String CONTACT_NO = "ContactNo";
-    public static final String MEM_OTHER_ID = "MemOtherID";
-    public static final String MEM_NAME_FIRST = "MemName_First";
-    public static final String MEM_NAME_MIDDLE = "MemName_Middle";
-    public static final String MEM_NAME_LAST = "MemName_Last";
-    public static final String REGISTRATION_ID = "RegistrationID";
-    public static final String PERSON_NAME = "PersonName";
-    public static final String SEX = "SEX";
-    public static final String HH_SIZE = "HHSize";
-    public static final String LATITUDE = "Latitude";
-    public static final String LONGITUDE = "Longitude";
-    public static final String AG_LAND = "AGLand";
-    public static final String V_STATUS = "VStatus";
-    public static final String M_STATUS = "MStatus";
-    public static final String VSLA_GROUP = "VSLAGroup";
-    public static final String GPS_LONG_SWAP = "GPSLongSwap";
-    public static final String HH_HEAD_CAT = "HHHeadCat";
-    public static final String LT_2_YRS_M = "LT2yrsM";
-    public static final String LT_2_YRS_F = "LT2yrsF";
-    public static final String M_2_TO_5_YRS = "M2to5yrs";
-    public static final String F_2_TO_5_YRS = "F2to5yrs";
-    public static final String M_6_TO_12_YRS = "M6to12yrs";
-    public static final String AFT_CNT_CATTLE = "AFTCntCattle";
-
-    public static final String F_6_TO_12_YRS = "F6to12yrs";
-    public static final String M_13_TO_17_YRS = "M13to17yrs";
-    public static final String BRF_CNT_OTHER = "BRFCntOther";
-    public static final String BRF_VAL_OTHER = "BRFValOther";
-    public static final String AFT_CNT_OTHER = "AFTCntOther";
-    public static final String AFT_VAL_OTHER = "AFTValOther";
-    public static final String BRF_ACRE_CULTIVABLE = "BRFAcreCultivable";
-    public static final String BRF_VAL_CULTIVABLE = "BRFValCultivable";
-    public static final String F_13_TO_17_YRS = "F13to17yrs";
-    public static final String ORPHN_LT_18_YRS_M = "Orphn_LT18yrsM";
-    public static final String MONTH_LABEL = "MonthLabel";
-    public static final String USA_START_DATE = "UsaStartDate";
-    public static final String USA_END_DATE = "UsaEndDate";
-    public static final String ORPHN_LT_18_YRS_F = "Orphn_LT18yrsF";
-    public static final String ADLT_18_TO_59_M = "Adlt_18to59M";
-    public static final String ADLT_18_TO_59_F = "Adlt_18to59F";
-    public static final String ELD_60_P_M = "Eld_60pM";
-    public static final String ELD_60_P_F = "Eld_60pF";
-    public static final String PLW = "PLW";
-    public static final String CHRONICALLY_ILL = "ChronicallyIll";
-    public static final String LIVING_DECEASED_CONTRACT_EBOLA = "LivingDeceasedContractEbola";
-    public static final String REG_N_CT_JSON_A = "reg_n_ct";
-    public static final String C_11_CT_PR = "C11_CT_PR";
-    public static final String C_21_CT_PR = "C21_CT_PR";
-    public static final String C_31_CT_PR = "C31_CT_PR";
-    public static final String C_32_CT_PR = "C32_CT_PR";
-    public static final String C_33_CT_PR = "C33_CT_PR";
-    public static final String C_34_CT_PR = "C34_CT_PR";
-    public static final String C_35_CT_PR = "C35_CT_PR";
-    public static final String C_36_CT_PR = "C36_CT_PR";
-    public static final String C_37_CT_PR = "C37_CT_PR";
-    public static final String C_38_CT_PR = "C38_CT_PR";
-    public static final String EXTRA_ELDERLY_PERSON_BECAUSE_EBOLA = "ExtraElderlyPersonBecauseEbola";
-    public static final String EXTRA_CHILD_BECAUSE_EBOLA = "ExtraChildBecauseEbola";
-    public static final String AFT_VAL_CATTLE = "AFTValCattle";
-    public static final String BRF_CNT_SHEEP_GOATS = "BRFCntSheepGoats";
-    public static final String BRF_VAL_SHEEP_GOATS = "BRFValSheepGoats";
-    public static final String MULTIPLE_SRV = "MultipleSrv";
-    public static final String DISTRIBUTION_EXT_TABLE_JSON_A = "distribution_ext_table";
-    public static final String VO_ITM_SPEC = "VOItmSpec";
-    public static final String VO_ITM_UNIT = "VOItmUnit";
-    public static final String VO_REF_NUMBER = "VORefNumber";
-    public static final String VO_ITM_COST = "VOItmCost";
-    public static final String DEFAULT_FOOD_DAYS = "DefaultFoodDays";
-    public static final String DEFAULT_N_FOOD_DAYS = "DefaultNFoodDays";
-    public static final String DEFAULT_CASH_DAYS = "DefaultCashDays";
-    public static final String DEFAULT_VO_DAYS = "DefaultVODays";
-    public static final String SRV_SPECIFIC = "SrvSpecific";
     public static final String LIBERIA_COUNTRY_CODE = "0004";
-    public static final String DIST_FLAG = "DistFlag";
-    public static final String SRV_OP_MONTH_CODE = "SrvOpMonthCode";
-    public static final String VO_ITM_MEAS_TABLE_JSON_A = "vo_itm_meas_table";
-    public static final String LUP_GPS_TABLE_JSON_A = "lup_gps_table";
-    public static final String GPS_SUB_GROUP_ATTRIBUTES_JSON_A = "gps_sub_group_attributes";
-    public static final String GPS_LOCATION_ATTRIBUTES_JSON_A = "gps_location_attributes";
+    /**
+     * constant move to
+     */
 
 
     private final String TAG = MainActivity.class.getSimpleName();
@@ -421,7 +124,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         // connection manager
         cd = new ConnectionDetector(getApplicationContext());
         // find View by ID for all Views
-        viewRefernce();
+        viewReference();
 
 
         SharedPreferences settings;
@@ -481,13 +184,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         restorDb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newbackupMethdo();
+                newbackupMethod();
             }
         });
     }
 
-
-    public void newbackupMethdo() {
+    /**
+     * this method back up the
+     */
+    public void newbackupMethod() {
         try {
             File sd = Environment.getExternalStorageDirectory();
             File data = Environment.getDataDirectory();
@@ -539,10 +244,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //                btnCardRequest.setEnabled(true);
                 btnGraduation.setEnabled(true);
                 btnGroup.setEnabled(true);
-                /**
-                 * only for the new version  dynamic model is disable
-                 */
-                  btnDynamicData.setEnabled(true);
 
 
                 break;
@@ -553,6 +254,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case UtilClass.SERVICE_OPERATION_MODE:
                 btnService.setEnabled(true);
 
+                break;
+
+            case UtilClass.OTHER_OPERATION_MODE:
+                btnDynamicData.setEnabled(true);
+                btnGPS.setEnabled(true);
+                btnSummaryRep.setEnabled(false);
                 break;
         }
     }
@@ -583,7 +290,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btnCardRequest.setEnabled(false);
         btnDistribution.setEnabled(false);
         btnService.setEnabled(false);
-        //  btnGPS.setEnabled(false);
+        btnGPS.setEnabled(false);
         btnGraduation.setEnabled(false);
         btnAssign.setEnabled(false);
         btnGroup.setEnabled(false);
@@ -591,7 +298,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
-    private void viewRefernce() {
+    private void viewReference() {
 
 
         txtName = (TextView) findViewById(R.id.user_name);
@@ -600,7 +307,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         textGeoData = (TextView) findViewById(R.id.tv_geo_data_1);
         textLastSync = (TextView) findViewById(R.id.tv_last_sync);
         textSyncRequired = (TextView) findViewById(R.id.tv_sync_required);
-        textOperationMode = (TextView) findViewById(R.id.tv_operation_mode);
+//        textOperationMode = (TextView) findViewById(R.id.tv_operation_mode);
 
         btnNewReg = (Button) findViewById(R.id.btnNewReg);
         btnSummaryRep = (Button) findViewById(R.id.btnSummaryReport);
@@ -822,6 +529,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
                 break;
+
+            case UtilClass.OTHER_OPERATION_MODE:
+                criteria = " INNER JOIN " + SQLiteHandler.SELECTED_COUNTRY_TABLE + " ON "
+                        + SQLiteHandler.COUNTRY_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = "
+                        + SQLiteHandler.SELECTED_COUNTRY_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL;
+
+
+                break;
         }
 
 
@@ -895,17 +610,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 JSONObject jObj = new JSONObject(retreiveData);
 
-                if (!jObj.isNull(REG_M_ASSIGN_PROG_SRV_JSON_A)) {
+                if (!jObj.isNull(Parser.REG_M_ASSIGN_PROG_SRV_JSON_A)) {
 
-                    JsonDeserialization.regNAssignProgSrvParser(jObj.getJSONArray(REG_M_ASSIGN_PROG_SRV_JSON_A), db);
+                    Parser.regNAssignProgSrvParser(jObj.getJSONArray(Parser.REG_M_ASSIGN_PROG_SRV_JSON_A), db);
 
                 }
 
 
                 publishProgress(++progressIncremental);
 
-                if (!jObj.isNull(REGN_PW_JSON_A)) {// this is not servie
-                    JSONArray regn_pws = jObj.getJSONArray(REGN_PW_JSON_A);
+                if (!jObj.isNull(Parser.REGN_PW_JSON_A)) {// this is not servie
+                    JSONArray regn_pws = jObj.getJSONArray(Parser.REGN_PW_JSON_A);
 
 
                     String AdmCountryCode;
@@ -925,19 +640,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     for (int i = 0; i < size; i++) {
                         JSONObject regn_pw = regn_pws.getJSONObject(i);
 
-                        AdmCountryCode = regn_pw.getString(ADM_COUNTRY_CODE);
-                        LayR1ListCode = regn_pw.getString(LAY_R_1_LIST_CODE);
-                        LayR2ListCode = regn_pw.getString(LAY_R_2_LIST_CODE);
-                        LayR3ListCode = regn_pw.getString(LAY_R_3_LIST_CODE);
-                        LayR4ListCode = regn_pw.getString(LAY_R_4_LIST_CODE);
-                        HHID = regn_pw.getString(MainActivity.HHID);
-                        MemID = regn_pw.getString(MEM_ID);
-                        RegNDate = regn_pw.getString(REG_N_DATE);
-                        LMPDate = regn_pw.getString(LMP_DATE);
-                        AdmProgCode = regn_pw.getString(ADM_PROG_CODE);
-                        AdmSrvCode = regn_pw.getString(ADM_SRV_CODE);
-                        GRDCode = regn_pw.getString(GRD_CODE);
-                        PWGRDDate = regn_pw.getString(PWGRD_DATE);
+                        AdmCountryCode = regn_pw.getString(Parser.ADM_COUNTRY_CODE);
+                        LayR1ListCode = regn_pw.getString(Parser.LAY_R_1_LIST_CODE);
+                        LayR2ListCode = regn_pw.getString(Parser.LAY_R_2_LIST_CODE);
+                        LayR3ListCode = regn_pw.getString(Parser.LAY_R_3_LIST_CODE);
+                        LayR4ListCode = regn_pw.getString(Parser.LAY_R_4_LIST_CODE);
+                        HHID = regn_pw.getString(Parser.HHID);
+                        MemID = regn_pw.getString(Parser.MEM_ID);
+                        RegNDate = regn_pw.getString(Parser.REG_N_DATE);
+                        LMPDate = regn_pw.getString(Parser.LMP_DATE);
+                        AdmProgCode = regn_pw.getString(Parser.ADM_PROG_CODE);
+                        AdmSrvCode = regn_pw.getString(Parser.ADM_SRV_CODE);
+                        GRDCode = regn_pw.getString(Parser.GRD_CODE);
+                        PWGRDDate = regn_pw.getString(Parser.PWGRD_DATE);
 
 
                         sqlH.addRegNPWFromOnLine(AdmCountryCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, HHID, MemID, AdmProgCode, AdmSrvCode, RegNDate, GRDCode, LMPDate, PWGRDDate);//, SrvCenterCatCode, FDPCode);
@@ -950,8 +665,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 // Adding data into  regn_lm  Table
 
 
-                if (!jObj.isNull(REGN_LM_JSON_A)) {// this is not servie
-                    JSONArray regn_lms = jObj.getJSONArray(REGN_LM_JSON_A);
+                if (!jObj.isNull(Parser.REGN_LM_JSON_A)) {// this is not servie
+                    JSONArray regn_lms = jObj.getJSONArray(Parser.REGN_LM_JSON_A);
 
 
                     String AdmCountryCode;
@@ -973,19 +688,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     for (int i = 0; i < size; i++) {
                         JSONObject regn_lm = regn_lms.getJSONObject(i);
 
-                        AdmCountryCode = regn_lm.getString(ADM_COUNTRY_CODE);
-                        LayR1ListCode = regn_lm.getString(LAY_R_1_LIST_CODE);
-                        LayR2ListCode = regn_lm.getString(LAY_R_2_LIST_CODE);
-                        LayR3ListCode = regn_lm.getString(LAY_R_3_LIST_CODE);
-                        LayR4ListCode = regn_lm.getString(LAY_R_4_LIST_CODE);
-                        HHID = regn_lm.getString(MainActivity.HHID);
-                        MemID = regn_lm.getString(MEM_ID);
-                        RegNDate = regn_lm.getString(REG_N_DATE);
-                        LMDOB = regn_lm.getString(MainActivity.LMDOB);
-                        AdmProgCode = regn_lm.getString(ADM_PROG_CODE);
-                        AdmSrvCode = regn_lm.getString(ADM_SRV_CODE);
-                        GRDCode = regn_lm.getString(GRD_CODE);
-                        LMGRDDate = regn_lm.getString(LMGRD_DATE);
+                        AdmCountryCode = regn_lm.getString(Parser.ADM_COUNTRY_CODE);
+                        LayR1ListCode = regn_lm.getString(Parser.LAY_R_1_LIST_CODE);
+                        LayR2ListCode = regn_lm.getString(Parser.LAY_R_2_LIST_CODE);
+                        LayR3ListCode = regn_lm.getString(Parser.LAY_R_3_LIST_CODE);
+                        LayR4ListCode = regn_lm.getString(Parser.LAY_R_4_LIST_CODE);
+                        HHID = regn_lm.getString(Parser.HHID);
+                        MemID = regn_lm.getString(Parser.MEM_ID);
+                        RegNDate = regn_lm.getString(Parser.REG_N_DATE);
+                        LMDOB = regn_lm.getString(Parser.LMDOB);
+                        AdmProgCode = regn_lm.getString(Parser.ADM_PROG_CODE);
+                        AdmSrvCode = regn_lm.getString(Parser.ADM_SRV_CODE);
+                        GRDCode = regn_lm.getString(Parser.GRD_CODE);
+                        LMGRDDate = regn_lm.getString(Parser.LMGRD_DATE);
                         ChildName = regn_lm.getString("ChildName");
                         ChildSex = regn_lm.getString("ChildSex");
 
@@ -1001,8 +716,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 //regn_cu2 Table
 
 
-                if (!jObj.isNull(REGN_CU_2_JSON_A)) {// this is not servie
-                    JSONArray regn_cu2s = jObj.getJSONArray(REGN_CU_2_JSON_A);
+                if (!jObj.isNull(Parser.REGN_CU_2_JSON_A)) {// this is not servie
+                    JSONArray regn_cu2s = jObj.getJSONArray(Parser.REGN_CU_2_JSON_A);
                     size = regn_cu2s.length();
 
 
@@ -1025,19 +740,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     for (int i = 0; i < size; i++) {
                         JSONObject regn_cu2 = regn_cu2s.getJSONObject(i);
 
-                        AdmCountryCode = regn_cu2.getString(ADM_COUNTRY_CODE);
-                        LayR1ListCode = regn_cu2.getString(LAY_R_1_LIST_CODE);
-                        LayR2ListCode = regn_cu2.getString(LAY_R_2_LIST_CODE);
-                        LayR3ListCode = regn_cu2.getString(LAY_R_3_LIST_CODE);
-                        LayR4ListCode = regn_cu2.getString(LAY_R_4_LIST_CODE);
-                        HHID = regn_cu2.getString(MainActivity.HHID);
-                        MemID = regn_cu2.getString(MEM_ID);
-                        RegNDate = regn_cu2.getString(REG_N_DATE);
-                        CU2DOB = regn_cu2.getString(CU_2_DOB);
-                        AdmProgCode = regn_cu2.getString(ADM_PROG_CODE);
-                        AdmSrvCode = regn_cu2.getString(ADM_SRV_CODE);
-                        GRDCode = regn_cu2.getString(GRD_CODE);
-                        CU2GRDDate = regn_cu2.getString(CU_2_GRD_DATE);
+                        AdmCountryCode = regn_cu2.getString(Parser.ADM_COUNTRY_CODE);
+                        LayR1ListCode = regn_cu2.getString(Parser.LAY_R_1_LIST_CODE);
+                        LayR2ListCode = regn_cu2.getString(Parser.LAY_R_2_LIST_CODE);
+                        LayR3ListCode = regn_cu2.getString(Parser.LAY_R_3_LIST_CODE);
+                        LayR4ListCode = regn_cu2.getString(Parser.LAY_R_4_LIST_CODE);
+                        HHID = regn_cu2.getString(Parser.HHID);
+                        MemID = regn_cu2.getString(Parser.MEM_ID);
+                        RegNDate = regn_cu2.getString(Parser.REG_N_DATE);
+                        CU2DOB = regn_cu2.getString(Parser.CU_2_DOB);
+                        AdmProgCode = regn_cu2.getString(Parser.ADM_PROG_CODE);
+                        AdmSrvCode = regn_cu2.getString(Parser.ADM_SRV_CODE);
+                        GRDCode = regn_cu2.getString(Parser.GRD_CODE);
+                        CU2GRDDate = regn_cu2.getString(Parser.CU_2_GRD_DATE);
                         ChildName = regn_cu2.getString("ChildName");
                         ChildSex = regn_cu2.getString("ChildSex");
 
@@ -1058,80 +773,40 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 //* Adding data into  regn_ca2  Table
 
 
-                if (!jObj.isNull(REGN_CA_2)) {// this is not servie
-                    JSONArray regn_ca2s = jObj.getJSONArray(REGN_CA_2);
-                    size = regn_ca2s.length();
+                if (!jObj.isNull(Parser.REGN_CA_2)) {
+//                    Log.d("NIR", "in DTA");
 
-                    String AdmCountryCode;
-                    String LayR1ListCode;
-                    String LayR2ListCode;
-                    String LayR3ListCode;
-                    String LayR4ListCode;
-                    String HHID;
-                    String MemID;
-                    String RegNDate;
-                    String CA2DOB;
-                    String AdmProgCode;
-                    String AdmSrvCode;
-                    String GRDCode;
-                    String CA2GRDDate;
-                    String ChildName;
-                    String ChildSex;
-                    for (int i = 0; i < size; i++) {
-                        JSONObject regn_ca2 = regn_ca2s.getJSONObject(i);
-
-                        AdmCountryCode = regn_ca2.getString(ADM_COUNTRY_CODE);
-                        LayR1ListCode = regn_ca2.getString(LAY_R_1_LIST_CODE);
-                        LayR2ListCode = regn_ca2.getString(LAY_R_2_LIST_CODE);
-                        LayR3ListCode = regn_ca2.getString(LAY_R_3_LIST_CODE);
-                        LayR4ListCode = regn_ca2.getString(LAY_R_4_LIST_CODE);
-                        HHID = regn_ca2.getString(MainActivity.HHID);
-                        MemID = regn_ca2.getString(MEM_ID);
-                        RegNDate = regn_ca2.getString(REG_N_DATE);
-                        CA2DOB = regn_ca2.getString(CA_2_DOB);
-                        AdmProgCode = regn_ca2.getString(ADM_PROG_CODE);
-                        AdmSrvCode = regn_ca2.getString(ADM_SRV_CODE);
-                        GRDCode = regn_ca2.getString(GRD_CODE);
-                        CA2GRDDate = regn_ca2.getString(CA_2_GRD_DATE);
-                        ChildName = regn_ca2.getString("ChildName");
-                        ChildSex = regn_ca2.getString("ChildSex");
-
-
-                        db.addRegNCA2_FromOnLine(AdmCountryCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode,
-                                HHID, MemID, AdmProgCode, AdmSrvCode, RegNDate, GRDCode, CA2DOB, CA2GRDDate, ChildName, ChildSex);
-
-
-                        Log.d("nir", "In RegNCA2 Table- AdmCountryCode :" + AdmCountryCode + " LayR1ListCode : " + LayR1ListCode + " LayR2ListCode : " + LayR2ListCode + " LayR3ListCode : " + LayR3ListCode + " LayR4ListCode : " + LayR4ListCode + " HHID : " + HHID + " MemID  : " + MemID + " AdmProgCode : " + AdmProgCode + " AdmSrvCode : " + AdmSrvCode + " RegNDate : " + RegNDate + " GRDCode : " + GRDCode + /*" EntryBy : " + EntryBy + " EntryDate : " + EntryDate +*/ " LMDOB : " + CA2DOB + " LMGRDDate : " + CA2GRDDate);// + " FDPCode  : " + FDPCode );
-                    }
+                    Parser.RegN_CA2Parser(jObj.getJSONArray(Parser.REGN_CA_2), db);
                 }
+
 
                 publishProgress(++progressIncremental);
 
-                if (!jObj.isNull(REG_N_AGR_JSON_A)) {
+                if (!jObj.isNull(Parser.REG_N_AGR_JSON_A)) {
 
 
-                    JSONArray reg_n_agr_tableDatas = jObj.getJSONArray(REG_N_AGR_JSON_A);
+                    JSONArray reg_n_agr_tableDatas = jObj.getJSONArray(Parser.REG_N_AGR_JSON_A);
                     size = reg_n_agr_tableDatas.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject reg_n_agr_tableData = reg_n_agr_tableDatas.getJSONObject(i);
                         AGR_DataModel data = new AGR_DataModel();
-                        data.setCountryCode(reg_n_agr_tableData.getString(ADM_COUNTRY_CODE));
+                        data.setCountryCode(reg_n_agr_tableData.getString(Parser.ADM_COUNTRY_CODE));
 
-                        data.setDistrictCode(reg_n_agr_tableData.getString(LAY_R_1_LIST_CODE));
-                        data.setUpazillaCode(reg_n_agr_tableData.getString(LAY_R_2_LIST_CODE));
-                        data.setUnitCode(reg_n_agr_tableData.getString(LAY_R_3_LIST_CODE));
-                        data.setVillageCode(reg_n_agr_tableData.getString(LAY_R_4_LIST_CODE));
-                        data.setHhId(reg_n_agr_tableData.getString(HHID));
+                        data.setDistrictCode(reg_n_agr_tableData.getString(Parser.LAY_R_1_LIST_CODE));
+                        data.setUpazillaCode(reg_n_agr_tableData.getString(Parser.LAY_R_2_LIST_CODE));
+                        data.setUnitCode(reg_n_agr_tableData.getString(Parser.LAY_R_3_LIST_CODE));
+                        data.setVillageCode(reg_n_agr_tableData.getString(Parser.LAY_R_4_LIST_CODE));
+                        data.setHhId(reg_n_agr_tableData.getString(Parser.HHID));
 
-                        data.setHhMemId(reg_n_agr_tableData.getString(MEM_ID));
-                        data.setRegnDate(reg_n_agr_tableData.getString(REG_N_DATE));
-                        data.setElderleyYN(reg_n_agr_tableData.getString(ELDERLY_YN));
-                        data.setLandSize(reg_n_agr_tableData.getString(LAND_SIZE));
-                        data.setDepenonGanyu(reg_n_agr_tableData.getString(DEPEND_ON_GANYU));
-                        data.setWillingness(reg_n_agr_tableData.getString(WILLINGNESS));
-                        data.setWinterCultivation(reg_n_agr_tableData.getString(WINTER_CULTIVATION));
-                        data.setVulnerableHh(reg_n_agr_tableData.getString(VULNERABLE_HH));
-                        data.setPlantingVcrop(reg_n_agr_tableData.getString(PLANTING_VALUE_CHAIN_CROP));
+                        data.setHhMemId(reg_n_agr_tableData.getString(Parser.MEM_ID));
+                        data.setRegnDate(reg_n_agr_tableData.getString(Parser.REG_N_DATE));
+                        data.setElderleyYN(reg_n_agr_tableData.getString(Parser.ELDERLY_YN));
+                        data.setLandSize(reg_n_agr_tableData.getString(Parser.LAND_SIZE));
+                        data.setDepenonGanyu(reg_n_agr_tableData.getString(Parser.DEPEND_ON_GANYU));
+                        data.setWillingness(reg_n_agr_tableData.getString(Parser.WILLINGNESS));
+                        data.setWinterCultivation(reg_n_agr_tableData.getString(Parser.WINTER_CULTIVATION));
+                        data.setVulnerableHh(reg_n_agr_tableData.getString(Parser.VULNERABLE_HH));
+                        data.setPlantingVcrop(reg_n_agr_tableData.getString(Parser.PLANTING_VALUE_CHAIN_CROP));
 
 
                         String AGOINVC = reg_n_agr_tableData.getString("AGOINVC");
@@ -1152,29 +827,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
 
-                if (!jObj.isNull(REG_N_CT_JSON_A)) {
-                    JSONArray reg_n_ct_tableDatas = jObj.getJSONArray(REG_N_CT_JSON_A);
+                if (!jObj.isNull(Parser.REG_N_CT_JSON_A)) {
+                    JSONArray reg_n_ct_tableDatas = jObj.getJSONArray(Parser.REG_N_CT_JSON_A);
                     size = reg_n_ct_tableDatas.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject reg_n_ct_tableData = reg_n_ct_tableDatas.getJSONObject(i);
                         CTDataModel data = new CTDataModel();
-                        data.setCountryCode(reg_n_ct_tableData.getString(ADM_COUNTRY_CODE));
-                        data.setDistrictCode(reg_n_ct_tableData.getString(LAY_R_1_LIST_CODE));
-                        data.setUpazillaCode(reg_n_ct_tableData.getString(LAY_R_2_LIST_CODE));
-                        data.setUnitCode(reg_n_ct_tableData.getString(LAY_R_3_LIST_CODE));
-                        data.setVillageCode(reg_n_ct_tableData.getString(LAY_R_4_LIST_CODE));
-                        data.setHhId(reg_n_ct_tableData.getString(HHID));
-                        data.setMemID(reg_n_ct_tableData.getString(MEM_ID));
-                        data.setC11CtPr(reg_n_ct_tableData.getString(C_11_CT_PR));
-                        data.setC21CtPr(reg_n_ct_tableData.getString(C_21_CT_PR));
-                        data.setC31CtPr(reg_n_ct_tableData.getString(C_31_CT_PR));
-                        data.setC32CtPr(reg_n_ct_tableData.getString(C_32_CT_PR));
-                        data.setC33CtPr(reg_n_ct_tableData.getString(C_33_CT_PR));
-                        data.setC34CtPr(reg_n_ct_tableData.getString(C_34_CT_PR));
-                        data.setC35CtPr(reg_n_ct_tableData.getString(C_35_CT_PR));
-                        data.setC36CtPr(reg_n_ct_tableData.getString(C_36_CT_PR));
-                        data.setC37CtPr(reg_n_ct_tableData.getString(C_37_CT_PR));
-                        data.setC38CtPr(reg_n_ct_tableData.getString(C_38_CT_PR));
+                        data.setCountryCode(reg_n_ct_tableData.getString(Parser.ADM_COUNTRY_CODE));
+                        data.setDistrictCode(reg_n_ct_tableData.getString(Parser.LAY_R_1_LIST_CODE));
+                        data.setUpazillaCode(reg_n_ct_tableData.getString(Parser.LAY_R_2_LIST_CODE));
+                        data.setUnitCode(reg_n_ct_tableData.getString(Parser.LAY_R_3_LIST_CODE));
+                        data.setVillageCode(reg_n_ct_tableData.getString(Parser.LAY_R_4_LIST_CODE));
+                        data.setHhId(reg_n_ct_tableData.getString(Parser.HHID));
+                        data.setMemID(reg_n_ct_tableData.getString(Parser.MEM_ID));
+                        data.setC11CtPr(reg_n_ct_tableData.getString(Parser.C_11_CT_PR));
+                        data.setC21CtPr(reg_n_ct_tableData.getString(Parser.C_21_CT_PR));
+                        data.setC31CtPr(reg_n_ct_tableData.getString(Parser.C_31_CT_PR));
+                        data.setC32CtPr(reg_n_ct_tableData.getString(Parser.C_32_CT_PR));
+                        data.setC33CtPr(reg_n_ct_tableData.getString(Parser.C_33_CT_PR));
+                        data.setC34CtPr(reg_n_ct_tableData.getString(Parser.C_34_CT_PR));
+                        data.setC35CtPr(reg_n_ct_tableData.getString(Parser.C_35_CT_PR));
+                        data.setC36CtPr(reg_n_ct_tableData.getString(Parser.C_36_CT_PR));
+                        data.setC37CtPr(reg_n_ct_tableData.getString(Parser.C_37_CT_PR));
+                        data.setC38CtPr(reg_n_ct_tableData.getString(Parser.C_38_CT_PR));
 
 
                         db.addMemIntoCT_Table(data);
@@ -1188,7 +863,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (!jObj.isNull("reg_n_ffa")) {
 
 
-                    JsonDeserialization.reg_N_FFAParser(jObj.getJSONArray("reg_n_ffa"), db);
+                    Parser.reg_N_FFAParser(jObj.getJSONArray("reg_n_ffa"), db);
 
                 }
 
@@ -1239,61 +914,61 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
                 if (!jObj.isNull("D_T_answer")) {
-                    Log.d("NIR", "in DTA");
+//                    Log.d("NIR", "in DTA");
 
-                    JsonDeserialization.DTA_Parser(jObj.getJSONArray("D_T_answer"), db);
+                    Parser.DTA_Parser(jObj.getJSONArray("D_T_answer"), db);
                 }
 
                 if (!jObj.isNull("D_T_basic")) {
 
-                    JsonDeserialization.DTBasicParser(jObj.getJSONArray("D_T_basic"), db);
+                    Parser.DTBasicParser(jObj.getJSONArray("D_T_basic"), db);
                 }
 
                 if (!jObj.isNull("D_T_category")) {
 
-                    JsonDeserialization.DTCategoryParser(jObj.getJSONArray("D_T_category"), db);
+                    Parser.DTCategoryParser(jObj.getJSONArray("D_T_category"), db);
                 }
 
                 if (!jObj.isNull("D_T_CountryProgram")) {
 
-                    JsonDeserialization.DTCountryProgramParser(jObj.getJSONArray("D_T_CountryProgram"), db);
+                    Parser.DTCountryProgramParser(jObj.getJSONArray("D_T_CountryProgram"), db);
                 }
 
 
                 if (!jObj.isNull("D_T_GeoListLevel")) {
 
-                    JsonDeserialization.DTGeoListLevelParser(jObj.getJSONArray("D_T_GeoListLevel"), db);
+                    Parser.DTGeoListLevelParser(jObj.getJSONArray("D_T_GeoListLevel"), db);
                 }
 
 
                 if (!jObj.isNull("D_T_QTable")) {
 
-                    JsonDeserialization.DTQTableParser(jObj.getJSONArray("D_T_QTable"), db);
+                    Parser.DTQTableParser(jObj.getJSONArray("D_T_QTable"), db);
                 }
 
                 if (!jObj.isNull("D_T_QResMode")) {
 
-                    JsonDeserialization.DTQResModeParser(jObj.getJSONArray("D_T_QResMode"), db);
+                    Parser.DTQResModeParser(jObj.getJSONArray("D_T_QResMode"), db);
                 }
 
                 if (!jObj.isNull("D_T_ResponseTable")) {
 
-                    JsonDeserialization.DTResponseTableParser(jObj.getJSONArray("D_T_ResponseTable"), db);
+                    Parser.DTResponseTableParser(jObj.getJSONArray("D_T_ResponseTable"), db);
                 }
 
                 if (!jObj.isNull("D_T_TableDefinition")) {
 
-                    JsonDeserialization.DTTableDefinitionParser(jObj.getJSONArray("D_T_TableDefinition"), db);
+                    Parser.DTTableDefinitionParser(jObj.getJSONArray("D_T_TableDefinition"), db);
                 }
 
                 if (!jObj.isNull("D_T_TableListCategory")) {
 
-                    JsonDeserialization.DTTableListCategoryParser(jObj.getJSONArray("D_T_TableListCategory"), db);
+                    Parser.DTTableListCategoryParser(jObj.getJSONArray("D_T_TableListCategory"), db);
                 }
 
                 if (!jObj.isNull("D_T_LUP")) {
 
-                    JsonDeserialization.DTLUPParser(jObj.getJSONArray("D_T_LUP"), db);
+                    Parser.DTLUPParser(jObj.getJSONArray("D_T_LUP"), db);
                 }
 
 
@@ -1335,7 +1010,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
              * the parsing held by other class
              */
 
-            JsonDeserialization.RegistrationNHHParser(retreiveData, db);
+            Parser.RegistrationNHHParser(retreiveData, db);
 
 
             return null;
@@ -1374,14 +1049,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             try {
                 JSONObject jObj = new JSONObject(retreiveData);
 
-                if (!jObj.isNull(MainActivity.SERVICE_TABLE_JSON_A)) {// this is not servie
+                if (!jObj.isNull(Parser.SERVICE_TABLE_JSON_A)) {// this is not servie
 //
 //
-                    JSONArray services_data = jObj.getJSONArray(MainActivity.SERVICE_TABLE_JSON_A);
+                    JSONArray services_data = jObj.getJSONArray(Parser.SERVICE_TABLE_JSON_A);
 
 
                     publishProgress(++progressIncremental);
-                    JsonDeserialization.SrvTableParser(services_data, db);
+                    Parser.SrvTableParser(services_data, db);
                 }
 
 
@@ -1389,7 +1064,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     JSONArray services_exe_table = jObj.getJSONArray("service_exe_table");
 
                     publishProgress(++progressIncremental);
-                    JsonDeserialization.SrvExtTableParser(services_exe_table, db);
+                    Parser.SrvExtTableParser(services_exe_table, db);
                 }
             } catch (Exception e) {
                 Log.d(TAG, "Exception : " + e);
@@ -1426,7 +1101,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         protected Void doInBackground(Void... params) {
 
             String retreiveData = readDataFromFile(LoginActivity.REG_MEMBER_DATA);
-            JsonDeserialization.RegNMemberParser(retreiveData, db);
+            Parser.RegNMemberParser(retreiveData, db);
             publishProgress(++progressIncremental);
 
             return null;
@@ -1460,13 +1135,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             String retreiveData = readDataFromFile(LoginActivity.REG_MEMBER_PROG_GROUP_DATA);
 
-            JsonDeserialization.RegNMemProGrpParser(retreiveData, db);
+            Parser.RegNMemProGrpParser(retreiveData, db);
             publishProgress(++progressIncremental);
 
-            JsonDeserialization.GpsLocationContentParser(retreiveData, db);
+            Parser.GpsLocationContentParser(retreiveData, db);
             publishProgress(++progressIncremental);
 
-            JsonDeserialization.SrvSpecificTableParser(retreiveData, db);
+            Parser.SrvSpecificTableParser(retreiveData, db);
             publishProgress(++progressIncremental);
 
 
@@ -1475,6 +1150,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private int progressIncremental;
+
+    /**
+     * todo :All json parser goes to the parse package
+     */
 
     private class Inject_All_DataIntoSQLite extends AsyncTask<Void, Integer, Void> {
 
@@ -1503,18 +1182,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 JSONObject jObj = new JSONObject(retrieveData);
 
-                String user_id = jObj.getString(USR_ID);
-                JSONObject user = jObj.getJSONObject(USER_JSON_A);
-                String country_code = user.getString(ADM_COUNTRY_CODE);
-                String login_name = user.getString(USR_LOG_IN_NAME);
-                String login_pw = user.getString(USR_LOG_IN_PW);
-                String first_name = user.getString(USR_FIRST_NAME);
-                String last_name = user.getString(USR_LAST_NAME);
-                String email = user.getString(USR_EMAIL);
-                String email_verification = user.getString(USR_EMAIL_VERIFICATION);
-                String user_status = user.getString(USR_STATUS);
-                String entry_by = user.getString(ENTRY_BY);
-                String entry_date = user.getString(ENTRY_DATE);
+                String user_id = jObj.getString(Parser.USR_ID);
+                JSONObject user = jObj.getJSONObject(Parser.USER_JSON_A);
+                String country_code = user.getString(Parser.ADM_COUNTRY_CODE);
+                String login_name = user.getString(Parser.USR_LOG_IN_NAME);
+                String login_pw = user.getString(Parser.USR_LOG_IN_PW);
+                String first_name = user.getString(Parser.USR_FIRST_NAME);
+                String last_name = user.getString(Parser.USR_LAST_NAME);
+                String email = user.getString(Parser.USR_EMAIL);
+                String email_verification = user.getString(Parser.USR_EMAIL_VERIFICATION);
+                String user_status = user.getString(Parser.USR_STATUS);
+                String entry_by = user.getString(Parser.ENTRY_BY);
+                String entry_date = user.getString(Parser.ENTRY_DATE);
 
                 setUserName(first_name); // Setting User hhName into session
                 setStaffID(user_id); // Setting Staff ID to use when sync data
@@ -1528,34 +1207,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
                 publishProgress(++progressIncremental);
-                // Adding data into Country Table
-                if (!jObj.isNull(COUNTRIES_JSON_A)) {
-                    JSONArray countries = jObj.getJSONArray(COUNTRIES_JSON_A);
-                    size = countries.length();
-
-                    for (int i = 0; i < size; i++) {
-                        JSONObject country = countries.getJSONObject(i);
-
-                        String AdmCountryCode = country.getString(ADM_COUNTRY_CODE);
-                        String AdmCountryName = country.getString(ADM_COUNTRY_NAME);
-
-                        db.addCountry(AdmCountryCode, AdmCountryName);
 
 
-                    }
+                if (!jObj.isNull(Parser.COUNTRIES_JSON_A)) {
+
+                    Parser.AdmCountryParser(jObj.getJSONArray(Parser.COUNTRIES_JSON_A), db);
                 }
+
+
                 publishProgress(++progressIncremental);
 
                 // Adding data into Valid Registration Date Table
-                if (!jObj.isNull(VALID_DATES_JSON_A)) {
-                    JSONArray valid_dates = jObj.getJSONArray(VALID_DATES_JSON_A);
+                if (!jObj.isNull(Parser.VALID_DATES_JSON_A)) {
+                    JSONArray valid_dates = jObj.getJSONArray(Parser.VALID_DATES_JSON_A);
                     size = valid_dates.length();
 
                     for (int i = 0; i < size; i++) {
                         JSONObject valid_date = valid_dates.getJSONObject(i);
-                        String AdmCountryCode = valid_date.getString(ADM_COUNTRY_CODE);
-                        String StartDate = valid_date.getString(START_DATE);
-                        String EndDate = valid_date.getString(END_DATE);
+                        String AdmCountryCode = valid_date.getString(Parser.ADM_COUNTRY_CODE);
+                        String StartDate = valid_date.getString(Parser.START_DATE);
+                        String EndDate = valid_date.getString(Parser.END_DATE);
 
                         db.addValidDateRange(AdmCountryCode, StartDate, EndDate);
 
@@ -1567,17 +1238,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 // create table
                 // Adding data into GPS group Table
-                if (!jObj.isNull(GPS_GROUP_JSON_A)) {
-                    JSONArray gps_groups = jObj.getJSONArray(GPS_GROUP_JSON_A);
+                if (!jObj.isNull(Parser.GPS_GROUP_JSON_A)) {
+                    JSONArray gps_groups = jObj.getJSONArray(Parser.GPS_GROUP_JSON_A);
                     size = gps_groups.length();
                     //  lunchBarDialog("gps_group",size);
                     for (int i = 0; i < size; i++) {
                         JSONObject gps_group = gps_groups.getJSONObject(i);
 
 
-                        String GrpCode = gps_group.getString(GRP_CODE);
-                        String GrpName = gps_group.getString(GRP_NAME);
-                        String Description = gps_group.getString(DESCRIPTION);
+                        String GrpCode = gps_group.getString(Parser.GRP_CODE);
+                        String GrpName = gps_group.getString(Parser.GRP_NAME);
+                        String Description = gps_group.getString(Parser.DESCRIPTION);
 
 
                         db.addGpsGroup(GrpCode, GrpName, Description);
@@ -1590,15 +1261,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
                 // Adding data into GPS SUb group Table
 
-                if (!jObj.isNull(GPS_SUBGROUP_JSON_A)) {
-                    JSONArray gps_subgroups = jObj.getJSONArray(GPS_SUBGROUP_JSON_A);
+                if (!jObj.isNull(Parser.GPS_SUBGROUP_JSON_A)) {
+                    JSONArray gps_subgroups = jObj.getJSONArray(Parser.GPS_SUBGROUP_JSON_A);
                     size = gps_subgroups.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject gps_subgroup = gps_subgroups.getJSONObject(i);
-                        String GrpCode = gps_subgroup.getString(GRP_CODE);
-                        String SubGrpCode = gps_subgroup.getString(SUB_GRP_CODE);
-                        String SubGrpName = gps_subgroup.getString(SUB_GRP_NAME);
-                        String Description = gps_subgroup.getString(DESCRIPTION);
+                        String GrpCode = gps_subgroup.getString(Parser.GRP_CODE);
+                        String SubGrpCode = gps_subgroup.getString(Parser.SUB_GRP_CODE);
+                        String SubGrpName = gps_subgroup.getString(Parser.SUB_GRP_NAME);
+                        String Description = gps_subgroup.getString(Parser.DESCRIPTION);
                         db.addGpsSubGroup(GrpCode, SubGrpCode, SubGrpName, Description);
 
 
@@ -1608,9 +1279,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 // * Adding data into GPS Location Table
 
-                if (!jObj.isNull(GPS_LOCATION_JSON_A)) {
-                    JSONArray gps_locations = jObj.getJSONArray(GPS_LOCATION_JSON_A);
-                    JsonDeserialization.gpsLocationParse(gps_locations, db);
+                if (!jObj.isNull(Parser.GPS_LOCATION_JSON_A)) {
+                    JSONArray gps_locations = jObj.getJSONArray(Parser.GPS_LOCATION_JSON_A);
+                    Parser.gpsLocationParse(gps_locations, db);
 
 
                 }
@@ -1619,7 +1290,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 // * Adding data into adm_countryaward Table
 
-                if (!jObj.isNull(ADM_COUNTRY_AWARD_JSON_A)) {
+                if (!jObj.isNull(Parser.ADM_COUNTRY_AWARD_JSON_A)) {
 
                     String AdmCountryCode;
                     String AdmDonorCode;
@@ -1629,19 +1300,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     String AwardEndDate;
                     String AwardShortName;
                     String AwardStatus;
-                    JSONArray adm_countryawards = jObj.getJSONArray(ADM_COUNTRY_AWARD_JSON_A);
+                    JSONArray adm_countryawards = jObj.getJSONArray(Parser.ADM_COUNTRY_AWARD_JSON_A);
                     size = adm_countryawards.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject adm_countryaward = adm_countryawards.getJSONObject(i);
 
-                        AdmCountryCode = adm_countryaward.getString(ADM_COUNTRY_CODE);
-                        AdmDonorCode = adm_countryaward.getString(ADM_DONOR_CODE);
-                        AdmAwardCode = adm_countryaward.getString(ADM_AWARD_CODE);
-                        AwardRefNumber = adm_countryaward.getString(AWARD_REF_NUMBER);
-                        AwardStartDate = adm_countryaward.getString(AWARD_START_DATE);
-                        AwardEndDate = adm_countryaward.getString(AWARD_END_DATE);
-                        AwardShortName = adm_countryaward.getString(AWARD_SHORT_NAME);
-                        AwardStatus = adm_countryaward.getString(AWARD_STATUS);
+                        AdmCountryCode = adm_countryaward.getString(Parser.ADM_COUNTRY_CODE);
+                        AdmDonorCode = adm_countryaward.getString(Parser.ADM_DONOR_CODE);
+                        AdmAwardCode = adm_countryaward.getString(Parser.ADM_AWARD_CODE);
+                        AwardRefNumber = adm_countryaward.getString(Parser.AWARD_REF_NUMBER);
+                        AwardStartDate = adm_countryaward.getString(Parser.AWARD_START_DATE);
+                        AwardEndDate = adm_countryaward.getString(Parser.AWARD_END_DATE);
+                        AwardShortName = adm_countryaward.getString(Parser.AWARD_SHORT_NAME);
+                        AwardStatus = adm_countryaward.getString(Parser.AWARD_STATUS);
 
 
                         db.addCountryAward(AdmCountryCode, AdmDonorCode, AdmAwardCode, AwardRefNumber, AwardStartDate, AwardEndDate, AwardShortName, AwardStatus);
@@ -1657,15 +1328,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 // * Adding data into DonorName Table
 
 
-                if (!jObj.isNull(ADM_DONOR_JSON_A)) {
+                if (!jObj.isNull(Parser.ADM_DONOR_JSON_A)) {
 
-                    JSONArray adm_donors = jObj.getJSONArray(ADM_DONOR_JSON_A);
+                    JSONArray adm_donors = jObj.getJSONArray(Parser.ADM_DONOR_JSON_A);
                     size = adm_donors.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject adm_donor = adm_donors.getJSONObject(i);
 
-                        String AdmDonorCode = adm_donor.getString(ADM_DONOR_CODE);
-                        String AdmDonorName = adm_donor.getString(ADM_DONOR_NAME);
+                        String AdmDonorCode = adm_donor.getString(Parser.ADM_DONOR_CODE);
+                        String AdmDonorName = adm_donor.getString(Parser.ADM_DONOR_NAME);
                         db.addDonorName(AdmDonorCode, AdmDonorName);
 
 
@@ -1678,20 +1349,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 // * Adding data into adm_program_master Table
 
-                if (!jObj.isNull(ADM_PROGRAM_MASTER_JSON_A)) {
-                    JSONArray adm_program_masters = jObj.getJSONArray(ADM_PROGRAM_MASTER_JSON_A);
+                if (!jObj.isNull(Parser.ADM_PROGRAM_MASTER_JSON_A)) {
+                    JSONArray adm_program_masters = jObj.getJSONArray(Parser.ADM_PROGRAM_MASTER_JSON_A);
                     size = adm_program_masters.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject adm_program_master = adm_program_masters.getJSONObject(i);
 
-                        String AdmProgCode = adm_program_master.getString(ADM_PROG_CODE);
-                        String AdmAwardCode = adm_program_master.getString(ADM_AWARD_CODE);
-                        String AdmDonorCode = adm_program_master.getString(ADM_DONOR_CODE);
-                        String ProgName = adm_program_master.getString(PROG_NAME);
-                        String ProgShortName = adm_program_master.getString(PROG_SHORT_NAME);
-                        String MultipleSrv = adm_program_master.getString(MULTIPLE_SRV);
+                        String AdmProgCode = adm_program_master.getString(Parser.ADM_PROG_CODE);
+                        String AdmAwardCode = adm_program_master.getString(Parser.ADM_AWARD_CODE);
+                        String AdmDonorCode = adm_program_master.getString(Parser.ADM_DONOR_CODE);
+                        String ProgName = adm_program_master.getString(Parser.PROG_NAME);
+                        String ProgShortName = adm_program_master.getString(Parser.PROG_SHORT_NAME);
+                        String MultipleSrv = adm_program_master.getString(Parser.MULTIPLE_SRV);
                         db.addAdmProgramMaster(AdmProgCode, AdmAwardCode, AdmDonorCode, ProgName, ProgShortName, MultipleSrv);
-
 
 
                     }
@@ -1701,19 +1371,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 // * Adding data into adm_service_master Table
                 // *
-                if (!jObj.isNull(ADM_SERVICE_MASTER_JSON_A)) {
-                    JSONArray adm_service_masters = jObj.getJSONArray(ADM_SERVICE_MASTER_JSON_A);
+                if (!jObj.isNull(Parser.ADM_SERVICE_MASTER_JSON_A)) {
+                    JSONArray adm_service_masters = jObj.getJSONArray(Parser.ADM_SERVICE_MASTER_JSON_A);
                     size = adm_service_masters.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject adm_service_master = adm_service_masters.getJSONObject(i);
 
-                        String AdmProgCode = adm_service_master.getString(ADM_PROG_CODE);
-                        String AdmSrvCode = adm_service_master.getString(ADM_SRV_CODE);
+                        String AdmProgCode = adm_service_master.getString(Parser.ADM_PROG_CODE);
+                        String AdmSrvCode = adm_service_master.getString(Parser.ADM_SRV_CODE);
                         String AdmSrvName = adm_service_master.getString("AdmSrvName");
                         String AdmSrvShortName = adm_service_master.getString("AdmSrvShortName");
 
                         db.addServiceMaster(AdmProgCode, AdmSrvCode, AdmSrvName, AdmSrvShortName);
-
 
 
                     }
@@ -1722,26 +1391,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 //adm_op_month
 
 
-                if (!jObj.isNull(ADM_OP_MONTH_JSON_A)) {
-                    JSONArray adm_op_months = jObj.getJSONArray(ADM_OP_MONTH_JSON_A);
+                if (!jObj.isNull(Parser.ADM_OP_MONTH_JSON_A)) {
+                    JSONArray adm_op_months = jObj.getJSONArray(Parser.ADM_OP_MONTH_JSON_A);
                     size = adm_op_months.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject adm_op_month = adm_op_months.getJSONObject(i);
 
-                        String AdmCountryCode = adm_op_month.getString(ADM_COUNTRY_CODE);
-                        String AdmDonorCode = adm_op_month.getString(ADM_DONOR_CODE);
-                        String AdmAwardCode = adm_op_month.getString(ADM_AWARD_CODE);
-                        String OpCode = adm_op_month.getString(OP_CODE);
-                        String OpMonthCode = adm_op_month.getString(OP_MONTH_CODE);
-                        String MonthLabel = adm_op_month.getString(MONTH_LABEL);
-                        String StartDate = adm_op_month.getString(START_DATE);
-                        String EndDate = adm_op_month.getString(END_DATE);
+                        String AdmCountryCode = adm_op_month.getString(Parser.ADM_COUNTRY_CODE);
+                        String AdmDonorCode = adm_op_month.getString(Parser.ADM_DONOR_CODE);
+                        String AdmAwardCode = adm_op_month.getString(Parser.ADM_AWARD_CODE);
+                        String OpCode = adm_op_month.getString(Parser.OP_CODE);
+                        String OpMonthCode = adm_op_month.getString(Parser.OP_MONTH_CODE);
+                        String MonthLabel = adm_op_month.getString(Parser.MONTH_LABEL);
+                        String StartDate = adm_op_month.getString(Parser.START_DATE);
+                        String EndDate = adm_op_month.getString(Parser.END_DATE);
 
-                        String UsaStartDate = adm_op_month.getString(USA_START_DATE);
-                        String UsaEndDate = adm_op_month.getString(USA_END_DATE);
+                        String UsaStartDate = adm_op_month.getString(Parser.USA_START_DATE);
+                        String UsaEndDate = adm_op_month.getString(Parser.USA_END_DATE);
                         String Status = adm_op_month.getString("Status");
                         db.addOpMonthFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode, OpCode, OpMonthCode, MonthLabel, StartDate, EndDate, UsaStartDate, UsaEndDate, Status);
-
 
 
                     }
@@ -1750,25 +1418,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
 
-                if (!jObj.isNull(ADM_COUNTRY_PROGRAM_JSON_A)) {
-                    JSONArray adm_country_programs = jObj.getJSONArray(ADM_COUNTRY_PROGRAM_JSON_A);
+                if (!jObj.isNull(Parser.ADM_COUNTRY_PROGRAM_JSON_A)) {
+                    JSONArray adm_country_programs = jObj.getJSONArray(Parser.ADM_COUNTRY_PROGRAM_JSON_A);
                     size = adm_country_programs.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject adm_country_program = adm_country_programs.getJSONObject(i);
-                        String AdmCountryCode = adm_country_program.getString(ADM_COUNTRY_CODE);
-                        String AdmDonorCode = adm_country_program.getString(ADM_DONOR_CODE);
-                        String AdmAwardCode = adm_country_program.getString(ADM_AWARD_CODE);
-                        String AdmProgCode = adm_country_program.getString(ADM_PROG_CODE);
-                        String AdmSrvCode = adm_country_program.getString(ADM_SRV_CODE);
-                        String FoodFlag = adm_country_program.getString(FOOD_FLAG);
-                        String NFoodFlag = adm_country_program.getString(N_FOOD_FLAG);
-                        String CashFlag = adm_country_program.getString(CASH_FLAG);
-                        String VOFlag = adm_country_program.getString(VO_FLAG);
-                        String DefaultFoodDays = adm_country_program.getString(DEFAULT_FOOD_DAYS);
-                        String DefaultNFoodDays = adm_country_program.getString(DEFAULT_N_FOOD_DAYS);
-                        String DefaultCashDays = adm_country_program.getString(DEFAULT_CASH_DAYS);
-                        String DefaultVODays = adm_country_program.getString(DEFAULT_VO_DAYS);
-                        String SrvSpecific = adm_country_program.getString(SRV_SPECIFIC);
+                        String AdmCountryCode = adm_country_program.getString(Parser.ADM_COUNTRY_CODE);
+                        String AdmDonorCode = adm_country_program.getString(Parser.ADM_DONOR_CODE);
+                        String AdmAwardCode = adm_country_program.getString(Parser.ADM_AWARD_CODE);
+                        String AdmProgCode = adm_country_program.getString(Parser.ADM_PROG_CODE);
+                        String AdmSrvCode = adm_country_program.getString(Parser.ADM_SRV_CODE);
+                        String FoodFlag = adm_country_program.getString(Parser.FOOD_FLAG);
+                        String NFoodFlag = adm_country_program.getString(Parser.N_FOOD_FLAG);
+                        String CashFlag = adm_country_program.getString(Parser.CASH_FLAG);
+                        String VOFlag = adm_country_program.getString(Parser.VO_FLAG);
+                        String DefaultFoodDays = adm_country_program.getString(Parser.DEFAULT_FOOD_DAYS);
+                        String DefaultNFoodDays = adm_country_program.getString(Parser.DEFAULT_N_FOOD_DAYS);
+                        String DefaultCashDays = adm_country_program.getString(Parser.DEFAULT_CASH_DAYS);
+                        String DefaultVODays = adm_country_program.getString(Parser.DEFAULT_VO_DAYS);
+                        String SrvSpecific = adm_country_program.getString(Parser.SRV_SPECIFIC);
 
 
                         db.insertAdmCountryProgram(AdmCountryCode, AdmDonorCode, AdmAwardCode, AdmProgCode, AdmSrvCode, FoodFlag, NFoodFlag, CashFlag, VOFlag, DefaultFoodDays, DefaultNFoodDays, DefaultCashDays, DefaultVODays, SrvSpecific);
@@ -1783,19 +1451,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 // * Adding data into  dob_service_center  Table
 
 
-                if (!jObj.isNull(DOB_SERVICE_CENTER_JSON_A)) {// this is not servie
-                    JSONArray dob_service_centers = jObj.getJSONArray(DOB_SERVICE_CENTER_JSON_A);
+                if (!jObj.isNull(Parser.DOB_SERVICE_CENTER_JSON_A)) {// this is not servie
+                    JSONArray dob_service_centers = jObj.getJSONArray(Parser.DOB_SERVICE_CENTER_JSON_A);
                     size = dob_service_centers.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject dob_service_center = dob_service_centers.getJSONObject(i);
 
-                        String AdmCountryCode = dob_service_center.getString(ADM_COUNTRY_CODE);
-                        String SrvCenterCode = dob_service_center.getString(SRV_CENTER_CODE);
-                        String SrvCenterName = dob_service_center.getString(SRV_CENTER_NAME);
+                        String AdmCountryCode = dob_service_center.getString(Parser.ADM_COUNTRY_CODE);
+                        String SrvCenterCode = dob_service_center.getString(Parser.SRV_CENTER_CODE);
+                        String SrvCenterName = dob_service_center.getString(Parser.SRV_CENTER_NAME);
                         // String SrvCenterAddress = dob_service_center.getString("SrvCenterAddress");
                         //   String SrvCenterCatCode = dob_service_center.getString("SrvCenterCatCode");
 
-                        String FDPCode = dob_service_center.getString(FDP_CODE);
+                        String FDPCode = dob_service_center.getString(Parser.FDP_CODE);
 
 
                         db.addServiceCenter(AdmCountryCode, SrvCenterCode, SrvCenterName, FDPCode);
@@ -1810,25 +1478,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 // * Adding data into  dbo_staff_geo_info_access  Table
 
 
-                if (!jObj.isNull(STAFF_ACCESS_INFO_JSON_A)) {// this is not servie
-                    JSONArray staff_access_info_accesses = jObj.getJSONArray(STAFF_ACCESS_INFO_JSON_A);
+                if (!jObj.isNull(Parser.STAFF_ACCESS_INFO_JSON_A)) {// this is not servie
+                    JSONArray staff_access_info_accesses = jObj.getJSONArray(Parser.STAFF_ACCESS_INFO_JSON_A);
                     size = staff_access_info_accesses.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject staff_access_info_access = staff_access_info_accesses.getJSONObject(i);
 
-                        String StfCode = staff_access_info_access.getString(STF_CODE);
-                        String AdmCountryCode = staff_access_info_access.getString(ADM_COUNTRY_CODE);
-                        String AdmDonorCode = staff_access_info_access.getString(ADM_DONOR_CODE);
-                        String AdmAwardCode = staff_access_info_access.getString(ADM_AWARD_CODE);
-                        String LayRListCode = staff_access_info_access.getString(LAY_R_LIST_CODE);
-                        String btnNew = staff_access_info_access.getString(BTN_NEW1);
-                        String btnSave = staff_access_info_access.getString(BTN_SAVE);
-                        String btnDel = staff_access_info_access.getString(BTN_DEL);
-                        String btnPepr = staff_access_info_access.getString(BTN_PEPR);
-                        String btnAprv = staff_access_info_access.getString(BTN_APRV);
-                        String btnRevw = staff_access_info_access.getString(BTN_REVW);
-                        String btnVrfy = staff_access_info_access.getString(BTN_VRFY);
-                        String btnDTran = staff_access_info_access.getString(BTN_D_TRAN);
+                        String StfCode = staff_access_info_access.getString(Parser.STF_CODE);
+                        String AdmCountryCode = staff_access_info_access.getString(Parser.ADM_COUNTRY_CODE);
+                        String AdmDonorCode = staff_access_info_access.getString(Parser.ADM_DONOR_CODE);
+                        String AdmAwardCode = staff_access_info_access.getString(Parser.ADM_AWARD_CODE);
+                        String LayRListCode = staff_access_info_access.getString(Parser.LAY_R_LIST_CODE);
+                        String btnNew = staff_access_info_access.getString(Parser.BTN_NEW1);
+                        String btnSave = staff_access_info_access.getString(Parser.BTN_SAVE);
+                        String btnDel = staff_access_info_access.getString(Parser.BTN_DEL);
+                        String btnPepr = staff_access_info_access.getString(Parser.BTN_PEPR);
+                        String btnAprv = staff_access_info_access.getString(Parser.BTN_APRV);
+                        String btnRevw = staff_access_info_access.getString(Parser.BTN_REVW);
+                        String btnVrfy = staff_access_info_access.getString(Parser.BTN_VRFY);
+                        String btnDTran = staff_access_info_access.getString(Parser.BTN_D_TRAN);
 
 
                         //String FDPCode = dbo_staff_geo_info_access.getString("FDPCode");
@@ -1844,14 +1512,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
 
 
-                if (!jObj.isNull(LB_REG_HH_CATEGORY_JSON_A)) {
-                    JSONArray lb_reg_hh_categorys = jObj.getJSONArray(LB_REG_HH_CATEGORY_JSON_A);
+                if (!jObj.isNull(Parser.LB_REG_HH_CATEGORY_JSON_A)) {
+                    JSONArray lb_reg_hh_categorys = jObj.getJSONArray(Parser.LB_REG_HH_CATEGORY_JSON_A);
                     size = lb_reg_hh_categorys.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject lb_reg_hh_category = lb_reg_hh_categorys.getJSONObject(i);
-                        String AdmCountryCode = lb_reg_hh_category.getString(ADM_COUNTRY_CODE);
-                        String HHHeadCatCode = lb_reg_hh_category.getString(HH_HEAD_CAT_CODE);
-                        String CatName = lb_reg_hh_category.getString(CAT_NAME);
+                        String AdmCountryCode = lb_reg_hh_category.getString(Parser.ADM_COUNTRY_CODE);
+                        String HHHeadCatCode = lb_reg_hh_category.getString(Parser.HH_HEAD_CAT_CODE);
+                        String CatName = lb_reg_hh_category.getString(Parser.CAT_NAME);
                         db.addHHCategory(AdmCountryCode, HHHeadCatCode, CatName);
 
 
@@ -1862,18 +1530,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
 
-                if (!jObj.isNull(REG_LUP_GRADUATION_JSON_A)) {
-                    JSONArray reg_lup_graduations = jObj.getJSONArray(REG_LUP_GRADUATION_JSON_A);
+                if (!jObj.isNull(Parser.REG_LUP_GRADUATION_JSON_A)) {
+                    JSONArray reg_lup_graduations = jObj.getJSONArray(Parser.REG_LUP_GRADUATION_JSON_A);
                     size = reg_lup_graduations.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject reg_lup_graduation = reg_lup_graduations.getJSONObject(i);
 
-                        String AdmProgCode = reg_lup_graduation.getString(ADM_PROG_CODE);
-                        String AdmSrvCode = reg_lup_graduation.getString(ADM_SRV_CODE);
-                        String GRDCode = reg_lup_graduation.getString(GRD_CODE);
-                        String GRDTitle = reg_lup_graduation.getString(GRD_TITLE);
-                        String DefaultCatActive = reg_lup_graduation.getString(DEFAULT_CAT_ACTIVE);
-                        String DefaultCatExit = reg_lup_graduation.getString(DEFAULT_CAT_EXIT);
+                        String AdmProgCode = reg_lup_graduation.getString(Parser.ADM_PROG_CODE);
+                        String AdmSrvCode = reg_lup_graduation.getString(Parser.ADM_SRV_CODE);
+                        String GRDCode = reg_lup_graduation.getString(Parser.GRD_CODE);
+                        String GRDTitle = reg_lup_graduation.getString(Parser.GRD_TITLE);
+                        String DefaultCatActive = reg_lup_graduation.getString(Parser.DEFAULT_CAT_ACTIVE);
+                        String DefaultCatExit = reg_lup_graduation.getString(Parser.DEFAULT_CAT_EXIT);
 
 
                         db.addGraduation(AdmProgCode, AdmSrvCode, GRDCode, GRDTitle, DefaultCatActive, DefaultCatExit);
@@ -1884,15 +1552,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 publishProgress(++progressIncremental);
                 // Adding data into Layer Label Table
-                if (!jObj.isNull(LAYER_LABELS_JSON_A)) {
-                    JSONArray layer_labels = jObj.getJSONArray(LAYER_LABELS_JSON_A);
+                if (!jObj.isNull(Parser.LAYER_LABELS_JSON_A)) {
+                    JSONArray layer_labels = jObj.getJSONArray(Parser.LAYER_LABELS_JSON_A);
                     size = layer_labels.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject layer_label = layer_labels.getJSONObject(i);
 
-                        String AdmCountryCode = layer_label.getString(ADM_COUNTRY_CODE);
-                        String GeoLayRCode = layer_label.getString(GEO_LAY_R_CODE);
-                        String GeoLayRName = layer_label.getString(GEO_LAY_R_NAME);
+                        String AdmCountryCode = layer_label.getString(Parser.ADM_COUNTRY_CODE);
+                        String GeoLayRCode = layer_label.getString(Parser.GEO_LAY_R_CODE);
+                        String GeoLayRName = layer_label.getString(Parser.GEO_LAY_R_NAME);
                         db.addLayerLabel(AdmCountryCode, GeoLayRCode, GeoLayRName);
 
 
@@ -1901,16 +1569,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
                 // Adding data into District Table
-                if (!jObj.isNull(DISTRICT)) {
-                    JSONArray district = jObj.getJSONArray(DISTRICT);
+                if (!jObj.isNull(Parser.DISTRICT)) {
+                    JSONArray district = jObj.getJSONArray(Parser.DISTRICT);
                     size = district.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject dist = district.getJSONObject(i);
 
-                        String AdmCountryCode = dist.getString(ADM_COUNTRY_CODE);
-                        String GeoLayRCode = dist.getString(GEO_LAY_R_CODE);
-                        String LayRListCode = dist.getString(LAY_R_LIST_CODE);
-                        String LayRListName = dist.getString(LAY_R_LIST_NAME);
+                        String AdmCountryCode = dist.getString(Parser.ADM_COUNTRY_CODE);
+                        String GeoLayRCode = dist.getString(Parser.GEO_LAY_R_CODE);
+                        String LayRListCode = dist.getString(Parser.LAY_R_LIST_CODE);
+                        String LayRListName = dist.getString(Parser.LAY_R_LIST_NAME);
 
                         db.addDistrict(AdmCountryCode, GeoLayRCode, LayRListCode, LayRListName);
 
@@ -1919,19 +1587,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 publishProgress(++progressIncremental);
                 // Adding data into Upazilla Table
-                if (!jObj.isNull(UPAZILLA)) {
+                if (!jObj.isNull(Parser.UPAZILLA)) {
 
-                    JSONArray upazilla = jObj.getJSONArray(UPAZILLA);
+                    JSONArray upazilla = jObj.getJSONArray(Parser.UPAZILLA);
 
                     size = upazilla.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject up = upazilla.getJSONObject(i);
 
-                        String AdmCountryCode = up.getString(ADM_COUNTRY_CODE);
-                        String GeoLayRCode = up.getString(GEO_LAY_R_CODE);
-                        String LayR1ListCode = up.getString(LAY_R_1_LIST_CODE);
-                        String LayR2ListCode = up.getString(LAY_R_2_LIST_CODE);
-                        String LayR2ListName = up.getString(LAY_R_2_LIST_NAME);
+                        String AdmCountryCode = up.getString(Parser.ADM_COUNTRY_CODE);
+                        String GeoLayRCode = up.getString(Parser.GEO_LAY_R_CODE);
+                        String LayR1ListCode = up.getString(Parser.LAY_R_1_LIST_CODE);
+                        String LayR2ListCode = up.getString(Parser.LAY_R_2_LIST_CODE);
+                        String LayR2ListName = up.getString(Parser.LAY_R_2_LIST_NAME);
 
                         db.addUpazilla(AdmCountryCode, GeoLayRCode, LayR1ListCode, LayR2ListCode, LayR2ListName);
 
@@ -1941,19 +1609,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
                 // Adding data into Unit Table
-                if (!jObj.isNull(UNIT_JSON_A)) {
+                if (!jObj.isNull(Parser.UNIT_JSON_A)) {
 
-                    JSONArray unit = jObj.getJSONArray(UNIT_JSON_A);
+                    JSONArray unit = jObj.getJSONArray(Parser.UNIT_JSON_A);
                     size = unit.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject un = unit.getJSONObject(i);
 
-                        String AdmCountryCode = un.getString(ADM_COUNTRY_CODE);
-                        String GeoLayRCode = un.getString(GEO_LAY_R_CODE);
-                        String LayR1ListCode = un.getString(LAY_R_1_LIST_CODE);
-                        String LayR2ListCode = un.getString(LAY_R_2_LIST_CODE);
-                        String LayR3ListCode = un.getString(LAY_R_3_LIST_CODE);
-                        String LayR3ListName = un.getString(LAY_R_3_LIST_NAME);
+                        String AdmCountryCode = un.getString(Parser.ADM_COUNTRY_CODE);
+                        String GeoLayRCode = un.getString(Parser.GEO_LAY_R_CODE);
+                        String LayR1ListCode = un.getString(Parser.LAY_R_1_LIST_CODE);
+                        String LayR2ListCode = un.getString(Parser.LAY_R_2_LIST_CODE);
+                        String LayR3ListCode = un.getString(Parser.LAY_R_3_LIST_CODE);
+                        String LayR3ListName = un.getString(Parser.LAY_R_3_LIST_NAME);
 
                         db.addUnit(AdmCountryCode, GeoLayRCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR3ListName);
 
@@ -1962,22 +1630,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 publishProgress(++progressIncremental);
                 // Adding data into Village Table
-                if (!jObj.isNull(VILLAGE_JSON_A)) {
+                if (!jObj.isNull(Parser.VILLAGE_JSON_A)) {
 
-                    JSONArray village = jObj.getJSONArray(VILLAGE_JSON_A);
+                    JSONArray village = jObj.getJSONArray(Parser.VILLAGE_JSON_A);
 
                     size = village.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject vil = village.getJSONObject(i);
 
-                        String AdmCountryCode = vil.getString(ADM_COUNTRY_CODE);
-                        String GeoLayRCode = vil.getString(GEO_LAY_R_CODE);
-                        String LayR1ListCode = vil.getString(LAY_R_1_LIST_CODE);
-                        String LayR2ListCode = vil.getString(LAY_R_2_LIST_CODE);
-                        String LayR3ListCode = vil.getString(LAY_R_3_LIST_CODE);
-                        String LayR4ListCode = vil.getString(LAY_R_4_LIST_CODE);
-                        String LayR4ListName = vil.getString(LAY_R_4_LIST_NAME);
-                        String HHCount = vil.getString(HH_COUNT);
+                        String AdmCountryCode = vil.getString(Parser.ADM_COUNTRY_CODE);
+                        String GeoLayRCode = vil.getString(Parser.GEO_LAY_R_CODE);
+                        String LayR1ListCode = vil.getString(Parser.LAY_R_1_LIST_CODE);
+                        String LayR2ListCode = vil.getString(Parser.LAY_R_2_LIST_CODE);
+                        String LayR3ListCode = vil.getString(Parser.LAY_R_3_LIST_CODE);
+                        String LayR4ListCode = vil.getString(Parser.LAY_R_4_LIST_CODE);
+                        String LayR4ListName = vil.getString(Parser.LAY_R_4_LIST_NAME);
+                        String HHCount = vil.getString(Parser.HH_COUNT);
 
                         db.addVillage(AdmCountryCode, GeoLayRCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode, LayR4ListName, HHCount);
 
@@ -1987,9 +1655,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
                 // Adding data into Relation Table
-                if (!jObj.isNull(RELATION_JSON_A)) {
+                if (!jObj.isNull(Parser.RELATION_JSON_A)) {
 
-                    JSONArray relation = jObj.getJSONArray(RELATION_JSON_A);
+                    JSONArray relation = jObj.getJSONArray(Parser.RELATION_JSON_A);
 
                     size = relation.length();
 
@@ -1997,8 +1665,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                         JSONObject rel = relation.getJSONObject(i);
 
-                        String Relation_Code = rel.getString(HH_RELATION_CODE);
-                        String RelationName = rel.getString(RELATION_NAME);
+                        String Relation_Code = rel.getString(Parser.HH_RELATION_CODE);
+                        String RelationName = rel.getString(Parser.RELATION_NAME);
 
                         db.addRelation(Relation_Code, RelationName);
 
@@ -2008,15 +1676,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
 
-                if (!jObj.isNull(REPORT_TEMPLATE)) {
-                    JSONArray report_templates = jObj.getJSONArray(REPORT_TEMPLATE);
+                if (!jObj.isNull(Parser.REPORT_TEMPLATE)) {
+                    JSONArray report_templates = jObj.getJSONArray(Parser.REPORT_TEMPLATE);
                     size = report_templates.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject report_template = report_templates.getJSONObject(i);
 
-                        String AdmCountryCode = report_template.getString(ADM_COUNTRY_CODE);
-                        String RptLabel = report_template.getString(RPT_LABEL);
-                        String Code = report_template.getString(RPT_G_N_CODE);
+                        String AdmCountryCode = report_template.getString(Parser.ADM_COUNTRY_CODE);
+                        String RptLabel = report_template.getString(Parser.RPT_LABEL);
+                        String Code = report_template.getString(Parser.RPT_G_N_CODE);
 
                         db.addCardType(AdmCountryCode, RptLabel, Code);
 
@@ -2027,14 +1695,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
 
-                if (!jObj.isNull(CARD_PRINT_REASON)) {
-                    JSONArray card_print_reasons = jObj.getJSONArray(CARD_PRINT_REASON);
+                if (!jObj.isNull(Parser.CARD_PRINT_REASON)) {
+                    JSONArray card_print_reasons = jObj.getJSONArray(Parser.CARD_PRINT_REASON);
                     size = card_print_reasons.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject card_print_reason = card_print_reasons.getJSONObject(i);
 
-                        String ReasonCode = card_print_reason.getString(REASON_CODE);
-                        String ReasonTitle = card_print_reason.getString(REASON_TITLE);
+                        String ReasonCode = card_print_reason.getString(Parser.REASON_CODE);
+                        String ReasonTitle = card_print_reason.getString(Parser.REASON_TITLE);
 
                         db.addCardPrintReason(ReasonCode, ReasonTitle);
 
@@ -2045,33 +1713,33 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
 
-                if (!jObj.isNull(REG_MEM_CARD_REQUEST_JSON_A)) {
-                    JSONArray reg_mem_card_requests = jObj.getJSONArray(REG_MEM_CARD_REQUEST_JSON_A);
+                if (!jObj.isNull(Parser.REG_MEM_CARD_REQUEST_JSON_A)) {
+                    JSONArray reg_mem_card_requests = jObj.getJSONArray(Parser.REG_MEM_CARD_REQUEST_JSON_A);
                     size = reg_mem_card_requests.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject reg_mem_card_request = reg_mem_card_requests.getJSONObject(i);
 
-                        String AdmCountryCode = reg_mem_card_request.getString(ADM_COUNTRY_CODE);
-                        String AdmDonorCode = reg_mem_card_request.getString(ADM_DONOR_CODE);
-                        String AdmAwardCode = reg_mem_card_request.getString(ADM_AWARD_CODE);
-                        String LayR1ListCode = reg_mem_card_request.getString(LAY_R_1_LIST_CODE);
-                        String LayR2ListCode = reg_mem_card_request.getString(LAY_R_2_LIST_CODE);
-                        String LayR3ListCode = reg_mem_card_request.getString(LAY_R_3_LIST_CODE);
-                        String LayR4ListCode = reg_mem_card_request.getString(LAY_R_4_LIST_CODE);
-                        String HHID = reg_mem_card_request.getString(MainActivity.HHID);
-                        String MemID = reg_mem_card_request.getString(MEM_ID);
-                        String RptGroup = reg_mem_card_request.getString(RPT_GROUP);
-                        String RptCode = reg_mem_card_request.getString(RPT_CODE);
-                        String RequestSL = reg_mem_card_request.getString(REQUEST_SL);
-                        String ReasonCode = reg_mem_card_request.getString(REASON_CODE);
-                        String RequestDate = reg_mem_card_request.getString(REQUEST_DATE);
-                        String PrintDate = reg_mem_card_request.getString(PRINT_DATE);
-                        String PrintBy = reg_mem_card_request.getString(PRINT_BY);
-                        String DeliveryDate = reg_mem_card_request.getString(DELIVERY_DATE);
-                        String DeliveredBy = reg_mem_card_request.getString(DELIVERED_BY);
-                        String DelStatus = reg_mem_card_request.getString(DEL_STATUS);
-                        String EntryBy = reg_mem_card_request.getString(ENTRY_BY);
-                        String EntryDate = reg_mem_card_request.getString(ENTRY_DATE);
+                        String AdmCountryCode = reg_mem_card_request.getString(Parser.ADM_COUNTRY_CODE);
+                        String AdmDonorCode = reg_mem_card_request.getString(Parser.ADM_DONOR_CODE);
+                        String AdmAwardCode = reg_mem_card_request.getString(Parser.ADM_AWARD_CODE);
+                        String LayR1ListCode = reg_mem_card_request.getString(Parser.LAY_R_1_LIST_CODE);
+                        String LayR2ListCode = reg_mem_card_request.getString(Parser.LAY_R_2_LIST_CODE);
+                        String LayR3ListCode = reg_mem_card_request.getString(Parser.LAY_R_3_LIST_CODE);
+                        String LayR4ListCode = reg_mem_card_request.getString(Parser.LAY_R_4_LIST_CODE);
+                        String HHID = reg_mem_card_request.getString(Parser.HHID);
+                        String MemID = reg_mem_card_request.getString(Parser.MEM_ID);
+                        String RptGroup = reg_mem_card_request.getString(Parser.RPT_GROUP);
+                        String RptCode = reg_mem_card_request.getString(Parser.RPT_CODE);
+                        String RequestSL = reg_mem_card_request.getString(Parser.REQUEST_SL);
+                        String ReasonCode = reg_mem_card_request.getString(Parser.REASON_CODE);
+                        String RequestDate = reg_mem_card_request.getString(Parser.REQUEST_DATE);
+                        String PrintDate = reg_mem_card_request.getString(Parser.PRINT_DATE);
+                        String PrintBy = reg_mem_card_request.getString(Parser.PRINT_BY);
+                        String DeliveryDate = reg_mem_card_request.getString(Parser.DELIVERY_DATE);
+                        String DeliveredBy = reg_mem_card_request.getString(Parser.DELIVERED_BY);
+                        String DelStatus = reg_mem_card_request.getString(Parser.DEL_STATUS);
+                        String EntryBy = reg_mem_card_request.getString(Parser.ENTRY_BY);
+                        String EntryDate = reg_mem_card_request.getString(Parser.ENTRY_DATE);
 
                         db.addCardRequestDataFromOnline(AdmCountryCode, AdmDonorCode, AdmAwardCode, LayR1ListCode, LayR2ListCode, LayR3ListCode, LayR4ListCode,
                                 HHID, MemID, RptGroup, RptCode, RequestSL, ReasonCode, RequestDate,
@@ -2085,18 +1753,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
 
-                if (!jObj.isNull(STAFF_FDP_ACCESS_JSON_A)) {
-                    JSONArray staff_fdp_accesses = jObj.getJSONArray(STAFF_FDP_ACCESS_JSON_A);
+                if (!jObj.isNull(Parser.STAFF_FDP_ACCESS_JSON_A)) {
+                    JSONArray staff_fdp_accesses = jObj.getJSONArray(Parser.STAFF_FDP_ACCESS_JSON_A);
                     size = staff_fdp_accesses.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject staff_fdp_access = staff_fdp_accesses.getJSONObject(i);
 
-                        String StfCode = staff_fdp_access.getString(STF_CODE);
-                        String AdmCountryCode = staff_fdp_access.getString(ADM_COUNTRY_CODE);
-                        String FDPCode = staff_fdp_access.getString(FDP_CODE);
-                        String btnNew = staff_fdp_access.getString(BTN_NEW);
-                        String btnSave = staff_fdp_access.getString(BTN_SAVE);
-                        String btnDel = staff_fdp_access.getString(BTN_DEL);
+                        String StfCode = staff_fdp_access.getString(Parser.STF_CODE);
+                        String AdmCountryCode = staff_fdp_access.getString(Parser.ADM_COUNTRY_CODE);
+                        String FDPCode = staff_fdp_access.getString(Parser.FDP_CODE);
+                        String btnNew = staff_fdp_access.getString(Parser.BTN_NEW);
+                        String btnSave = staff_fdp_access.getString(Parser.BTN_SAVE);
+                        String btnDel = staff_fdp_access.getString(Parser.BTN_DEL);
 
 
                         db.addStaffFDPAccess(StfCode, AdmCountryCode, FDPCode, btnNew, btnSave, btnDel);
@@ -2109,19 +1777,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 publishProgress(++progressIncremental);
 
-                if (!jObj.isNull(FDP_MASTER_JSON_A)) {
-                    JSONArray fdp_masters = jObj.getJSONArray(FDP_MASTER_JSON_A);
+                if (!jObj.isNull(Parser.FDP_MASTER_JSON_A)) {
+                    JSONArray fdp_masters = jObj.getJSONArray(Parser.FDP_MASTER_JSON_A);
                     size = fdp_masters.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject fdp_master = fdp_masters.getJSONObject(i);
 
-                        String AdmCountryCode = fdp_master.getString(ADM_COUNTRY_CODE);
-                        String FDPCode = fdp_master.getString(FDP_CODE);
-                        String FDPName = fdp_master.getString(FDP_NAME);
-                        String FDPCatCode = fdp_master.getString(FDP_CAT_CODE);
-                        String WHCode = fdp_master.getString(WH_CODE);
-                        String LayR1Code = fdp_master.getString(LAY_R_1_CODE);
-                        String LayR2Code = fdp_master.getString(LAY_R_2_CODE);
+                        String AdmCountryCode = fdp_master.getString(Parser.ADM_COUNTRY_CODE);
+                        String FDPCode = fdp_master.getString(Parser.FDP_CODE);
+                        String FDPName = fdp_master.getString(Parser.FDP_NAME);
+                        String FDPCatCode = fdp_master.getString(Parser.FDP_CAT_CODE);
+                        String WHCode = fdp_master.getString(Parser.WH_CODE);
+                        String LayR1Code = fdp_master.getString(Parser.LAY_R_1_CODE);
+                        String LayR2Code = fdp_master.getString(Parser.LAY_R_2_CODE);
 
 
                         db.addFDPMaster(AdmCountryCode, FDPCode, FDPName, FDPCatCode, WHCode, LayR1Code, LayR2Code);
@@ -2135,28 +1803,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
 
-                if (!jObj.isNull(DISTRIBUTION_TABLE_JSON_A)) {
-                    JSONArray distribution_tableDatas = jObj.getJSONArray(DISTRIBUTION_TABLE_JSON_A);
+                if (!jObj.isNull(Parser.DISTRIBUTION_TABLE_JSON_A)) {
+                    JSONArray distribution_tableDatas = jObj.getJSONArray(Parser.DISTRIBUTION_TABLE_JSON_A);
                     size = distribution_tableDatas.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject distribution_tableData = distribution_tableDatas.getJSONObject(i);
                         DistributionSaveDataModel data = new DistributionSaveDataModel();
-                        data.setCountryCode(distribution_tableData.getString(ADM_COUNTRY_CODE));
-                        data.setAdmDonorCode(distribution_tableData.getString(ADM_DONOR_CODE));
-                        data.setAdmAwardCode(distribution_tableData.getString(ADM_AWARD_CODE));
-                        data.setDistrictCode(distribution_tableData.getString(LAY_R_1_LIST_CODE));
-                        data.setUpCode(distribution_tableData.getString(LAY_R_2_LIST_CODE));
-                        data.setUniteCode(distribution_tableData.getString(LAY_R_3_LIST_CODE));
-                        data.setVillageCode(distribution_tableData.getString(LAY_R_4_LIST_CODE));
-                        data.setProgCode(distribution_tableData.getString(PROG_CODE));
-                        data.setSrvCode(distribution_tableData.getString(SRV_CODE));
-                        data.setOpMonthCode(distribution_tableData.getString(OP_MONTH_CODE));
-                        data.setFDPCode(distribution_tableData.getString(FDP_CODE));
-                        data.setID(distribution_tableData.getString(ID));
-                        data.setDistStatus(distribution_tableData.getString(DIST_STATUS));
-
-                        data.setSrvOpMonthCode(distribution_tableData.getString(SRV_OP_MONTH_CODE));
-                        data.setDistFlag(distribution_tableData.getString(DIST_FLAG));
+                        data.setCountryCode(distribution_tableData.getString(Parser.ADM_COUNTRY_CODE));
+                        data.setAdmDonorCode(distribution_tableData.getString(Parser.ADM_DONOR_CODE));
+                        data.setAdmAwardCode(distribution_tableData.getString(Parser.ADM_AWARD_CODE));
+                        data.setDistrictCode(distribution_tableData.getString(Parser.LAY_R_1_LIST_CODE));
+                        data.setUpCode(distribution_tableData.getString(Parser.LAY_R_2_LIST_CODE));
+                        data.setUniteCode(distribution_tableData.getString(Parser.LAY_R_3_LIST_CODE));
+                        data.setVillageCode(distribution_tableData.getString(Parser.LAY_R_4_LIST_CODE));
+                        data.setProgCode(distribution_tableData.getString(Parser.PROG_CODE));
+                        data.setSrvCode(distribution_tableData.getString(Parser.SRV_CODE));
+                        data.setOpMonthCode(distribution_tableData.getString(Parser.OP_MONTH_CODE));
+                        data.setFDPCode(distribution_tableData.getString(Parser.FDP_CODE));
+                        data.setID(distribution_tableData.getString(Parser.ID));
+                        data.setDistStatus(distribution_tableData.getString(Parser.DIST_STATUS));
+                        data.setSrvOpMonthCode(distribution_tableData.getString(Parser.SRV_OP_MONTH_CODE));
+                        data.setDistFlag(distribution_tableData.getString(Parser.DIST_FLAG));
                         data.setWd(distribution_tableData.getString("WD"));
 
                         db.addInDistributionTableFormOnLine(data);
@@ -2170,31 +1837,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
 
-                if (!jObj.isNull(DISTRIBUTION_EXT_TABLE_JSON_A)) {
-                    JSONArray distribution_ext_tableDatas = jObj.getJSONArray(DISTRIBUTION_EXT_TABLE_JSON_A);
+                if (!jObj.isNull(Parser.DISTRIBUTION_EXT_TABLE_JSON_A)) {
+                    JSONArray distribution_ext_tableDatas = jObj.getJSONArray(Parser.DISTRIBUTION_EXT_TABLE_JSON_A);
                     size = distribution_ext_tableDatas.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject distribution_ext_tableData = distribution_ext_tableDatas.getJSONObject(i);
                         // DistributionSaveDataModel data = new DistributionSaveDataModel();
 
-                        String AdmCountryCode = distribution_ext_tableData.getString(ADM_COUNTRY_CODE);
-                        String AdmDonorCode = distribution_ext_tableData.getString(ADM_DONOR_CODE);
-                        String AdmAwardCode = distribution_ext_tableData.getString(ADM_AWARD_CODE);
-                        String LayR1ListCode = distribution_ext_tableData.getString(LAY_R_1_LIST_CODE);
-                        String LayR2ListCode = distribution_ext_tableData.getString(LAY_R_2_LIST_CODE);
-                        String LayR3ListCode = distribution_ext_tableData.getString(LAY_R_3_LIST_CODE);
-                        String LayR4ListCode = distribution_ext_tableData.getString(LAY_R_4_LIST_CODE);
-                        String ProgCode = distribution_ext_tableData.getString(PROG_CODE);
-                        String SrvCode = distribution_ext_tableData.getString(SRV_CODE);
-                        String OpMonthCode = distribution_ext_tableData.getString(OP_MONTH_CODE);
-                        String FDPCode = distribution_ext_tableData.getString(FDP_CODE);
-                        String ID = distribution_ext_tableData.getString(MainActivity.ID);
-                        String VOItmSpec = distribution_ext_tableData.getString(VO_ITM_SPEC);
-                        String VOItmUnit = distribution_ext_tableData.getString(VO_ITM_UNIT);
-                        String VORefNumber = distribution_ext_tableData.getString(VO_REF_NUMBER);
-
-                        String SrvOpMonthCode = distribution_ext_tableData.getString(SRV_OP_MONTH_CODE);
-                        String DistFlag = distribution_ext_tableData.getString(DIST_FLAG);
+                        String AdmCountryCode = distribution_ext_tableData.getString(Parser.ADM_COUNTRY_CODE);
+                        String AdmDonorCode = distribution_ext_tableData.getString(Parser.ADM_DONOR_CODE);
+                        String AdmAwardCode = distribution_ext_tableData.getString(Parser.ADM_AWARD_CODE);
+                        String LayR1ListCode = distribution_ext_tableData.getString(Parser.LAY_R_1_LIST_CODE);
+                        String LayR2ListCode = distribution_ext_tableData.getString(Parser.LAY_R_2_LIST_CODE);
+                        String LayR3ListCode = distribution_ext_tableData.getString(Parser.LAY_R_3_LIST_CODE);
+                        String LayR4ListCode = distribution_ext_tableData.getString(Parser.LAY_R_4_LIST_CODE);
+                        String ProgCode = distribution_ext_tableData.getString(Parser.PROG_CODE);
+                        String SrvCode = distribution_ext_tableData.getString(Parser.SRV_CODE);
+                        String OpMonthCode = distribution_ext_tableData.getString(Parser.OP_MONTH_CODE);
+                        String FDPCode = distribution_ext_tableData.getString(Parser.FDP_CODE);
+                        String ID = distribution_ext_tableData.getString(Parser.ID);
+                        String VOItmSpec = distribution_ext_tableData.getString(Parser.VO_ITM_SPEC);
+                        String VOItmUnit = distribution_ext_tableData.getString(Parser.VO_ITM_UNIT);
+                        String VORefNumber = distribution_ext_tableData.getString(Parser.VO_REF_NUMBER);
+                        String SrvOpMonthCode = distribution_ext_tableData.getString(Parser.SRV_OP_MONTH_CODE);
+                        String DistFlag = distribution_ext_tableData.getString(Parser.DIST_FLAG);
 
 
                         //data.setDistStatus(distribution_ext_tableData.getString(DIST_STATUS);
@@ -2222,14 +1888,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         JSONObject distbasic = distbasic_table.getJSONObject(i);
                         // DistributionSaveDataModel data = new DistributionSaveDataModel();
 
-                        String AdmCountryCode = distbasic.getString(ADM_COUNTRY_CODE);
-                        String AdmDonorCode = distbasic.getString(ADM_DONOR_CODE);
-                        String AdmAwardCode = distbasic.getString(ADM_AWARD_CODE);
-                        String ProgCode = distbasic.getString(PROG_CODE);
+                        String AdmCountryCode = distbasic.getString(Parser.ADM_COUNTRY_CODE);
+                        String AdmDonorCode = distbasic.getString(Parser.ADM_DONOR_CODE);
+                        String AdmAwardCode = distbasic.getString(Parser.ADM_AWARD_CODE);
+                        String ProgCode = distbasic.getString(Parser.PROG_CODE);
                         String OpCode = distbasic.getString("OpCode");
                         String SrvOpMonthCode = distbasic.getString("SrvOpMonthCode");
                         String DisOpMonthCode = distbasic.getString("DisOpMonthCode");
-                        String FDPCode = distbasic.getString(FDP_CODE);
+                        String FDPCode = distbasic.getString(Parser.FDP_CODE);
                         String DistFlag = distbasic.getString("DistFlag");
                         ///   String FoodFlag = distbasic.getString("FoodFlag");
                         String OrgCode = distbasic.getString("OrgCode");
@@ -2262,18 +1928,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 publishProgress(++progressIncremental);
 
 
-                if (!jObj.isNull(LUP_SRV_OPTION_LIST)) {
-                    JSONArray lup_srv_option_listDatas = jObj.getJSONArray(LUP_SRV_OPTION_LIST);
+                if (!jObj.isNull(Parser.LUP_SRV_OPTION_LIST)) {
+                    JSONArray lup_srv_option_listDatas = jObj.getJSONArray(Parser.LUP_SRV_OPTION_LIST);
                     size = lup_srv_option_listDatas.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject lup_srv_option_listData = lup_srv_option_listDatas.getJSONObject(i);
 
-                        String countryCode = lup_srv_option_listData.getString(ADM_COUNTRY_CODE);
+                        String countryCode = lup_srv_option_listData.getString(Parser.ADM_COUNTRY_CODE);
 
-                        String programCode = lup_srv_option_listData.getString(PROG_CODE);
-                        String serviceCode = lup_srv_option_listData.getString(SRV_CODE);
-                        String LUPOptionCode = lup_srv_option_listData.getString(LUP_OPTION_CODE);
-                        String LUPOptionName = lup_srv_option_listData.getString(LUP_OPTION_NAME);
+                        String programCode = lup_srv_option_listData.getString(Parser.PROG_CODE);
+                        String serviceCode = lup_srv_option_listData.getString(Parser.SRV_CODE);
+                        String LUPOptionCode = lup_srv_option_listData.getString(Parser.LUP_OPTION_CODE);
+                        String LUPOptionName = lup_srv_option_listData.getString(Parser.LUP_OPTION_NAME);
 
 
                         db.addInLupSrvOptionListFromOnline(countryCode, programCode, serviceCode, LUPOptionCode, LUPOptionName);
@@ -2307,8 +1973,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //                publishProgress(39);
                 publishProgress(++progressIncremental);
 
-                if (!jObj.isNull(VO_ITM_MEAS_TABLE_JSON_A)) {
-                    JSONArray vo_itm_meas_tableDatas = jObj.getJSONArray(VO_ITM_MEAS_TABLE_JSON_A);
+                if (!jObj.isNull(Parser.VO_ITM_MEAS_TABLE_JSON_A)) {
+                    JSONArray vo_itm_meas_tableDatas = jObj.getJSONArray(Parser.VO_ITM_MEAS_TABLE_JSON_A);
                     size = vo_itm_meas_tableDatas.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject vo_itm_meas_tableData = vo_itm_meas_tableDatas.getJSONObject(i);
@@ -2354,7 +2020,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         CatCode = vo_country_prog_itmData.getString("CatCode");
                         ItmCode = vo_country_prog_itmData.getString("ItmCode");
                         MeasRCode = vo_country_prog_itmData.getString("MeasRCode");
-                        VOItmSpec = vo_country_prog_itmData.getString(VO_ITM_SPEC);
+                        VOItmSpec = vo_country_prog_itmData.getString(Parser.VO_ITM_SPEC);
                         UnitCost = vo_country_prog_itmData.getString("UnitCost");
                         Active = vo_country_prog_itmData.getString("Active");
                         Currency = vo_country_prog_itmData.getString("Currency");
@@ -2368,8 +2034,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
 
 
-                if (!jObj.isNull(LUP_GPS_TABLE_JSON_A)) {
-                    JSONArray lup_gps_table_Datas = jObj.getJSONArray(LUP_GPS_TABLE_JSON_A);
+                if (!jObj.isNull(Parser.LUP_GPS_TABLE_JSON_A)) {
+                    JSONArray lup_gps_table_Datas = jObj.getJSONArray(Parser.LUP_GPS_TABLE_JSON_A);
                     size = lup_gps_table_Datas.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject lup_gps_tableData = lup_gps_table_Datas.getJSONObject(i);
@@ -2391,8 +2057,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
 
 
-                if (!jObj.isNull(GPS_SUB_GROUP_ATTRIBUTES_JSON_A)) {
-                    JSONArray gps_sub_group_attributes_Datas = jObj.getJSONArray(GPS_SUB_GROUP_ATTRIBUTES_JSON_A);
+                if (!jObj.isNull(Parser.GPS_SUB_GROUP_ATTRIBUTES_JSON_A)) {
+                    JSONArray gps_sub_group_attributes_Datas = jObj.getJSONArray(Parser.GPS_SUB_GROUP_ATTRIBUTES_JSON_A);
                     size = gps_sub_group_attributes_Datas.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject gps_sub_group_attributes_Data = gps_sub_group_attributes_Datas.getJSONObject(i);
@@ -2416,8 +2082,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
 
 
-                if (!jObj.isNull(GPS_LOCATION_ATTRIBUTES_JSON_A)) {
-                    JSONArray gps_location_attributes_Datas = jObj.getJSONArray(GPS_LOCATION_ATTRIBUTES_JSON_A);
+                if (!jObj.isNull(Parser.GPS_LOCATION_ATTRIBUTES_JSON_A)) {
+                    JSONArray gps_location_attributes_Datas = jObj.getJSONArray(Parser.GPS_LOCATION_ATTRIBUTES_JSON_A);
                     size = gps_location_attributes_Datas.length();
                     for (int i = 0; i < size; i++) {
                         JSONObject gps_location_attributes_Data = gps_location_attributes_Datas.getJSONObject(i);
@@ -2443,13 +2109,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
 
 
-
                 if (!jObj.isNull("community_group")) {
 
-                    JsonDeserialization.CommunityGroupParser(jObj.getJSONArray("community_group"), db);
+                    Parser.CommunityGroupParser(jObj.getJSONArray("community_group"), db);
                 }
-
-
 
 
                 if (!jObj.isNull("lup_community_animal")) {
@@ -2637,13 +2300,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //// TODO: 10/18/2016  this parsing of the group detail set to parse class
 
 
-
                 if (!jObj.isNull("community_grp_detail")) {
 
-                    JsonDeserialization.CommunityGroupDetailsParser(jObj.getJSONArray("community_grp_detail"), db);
+                    Parser.CommunityGroupDetailsParser(jObj.getJSONArray("community_grp_detail"), db);
                 }
-
-
 
 
                 if (!jObj.isNull("staff_master")) {
@@ -2753,15 +2413,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Log.d("NIR1", "operation mode : " + operationMode);
         switch (operationMode) {
             case UtilClass.REGISTRATION_OPERATION_MODE:
-                /*btnNewReg.setEnabled(true);
-                btnAssign.setEnabled(true);
-                btnService.setEnabled(true);*/
+
                 textOperationMode.setText("REGISTRATION");
                 List<String> list;
                 list = db.selectGeoDataVillage();
                 String villageName = "";
                 for (int i = 0; i < list.size(); i++) {
-                    // Log.d("REFAT121---->",""+list.get(i));
+
                     villageName += list.get(i) + "\n";
                 }
                 textGeoData.setText(villageName);
@@ -2774,7 +2432,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 list = db.selectGeoDataFDP();
                 String fdPName = "";
                 for (int i = 0; i < list.size(); i++) {
-                    // Log.d("REFAT121---->",""+list.get(i));
+
                     fdPName += list.get(i) + "\n";
                 }
                 textGeoData.setText(fdPName);
@@ -2782,14 +2440,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case UtilClass.SERVICE_OPERATION_MODE:
 
                 textOperationMode.setText("SERVICE");
-                //List<String> list;
+
                 list = db.selectGeoDataCenter();
                 String centerName = "";
                 for (int i = 0; i < list.size(); i++) {
-                    //   Log.d("REFAT121---->",""+list.get(i));
+
                     centerName += list.get(i) + "\n";
                 }
                 textGeoData.setText(centerName);
+
+                break;
+
+
+            case UtilClass.OTHER_OPERATION_MODE:
+
+                textOperationMode.setText("ORTHER");
+
+
+                textGeoData.setText("NOT APPLICABLE");
 
                 break;
         }

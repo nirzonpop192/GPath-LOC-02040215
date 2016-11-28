@@ -79,7 +79,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     // All Static variables
 
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     // Database Name
     private static final String DATABASE_NAME = "pci";
     // Android meta data table
@@ -162,6 +162,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String SERVICE_EXTENDED_TABLE = "ServiceExtended";
     public static final String DISTRIBUTION_EXTENDED_TABLE = "DistributionExtended";
     public static final String SELECTED_VILLAGE_TABLE = "SelectedVillage";
+    public static final String SELECTED_COUNTRY_TABLE = "SelectedCountry";
     public static final String SELECTED_FDP_TABLE = "SelectedFDP";
     public static final String SELECTED_SERVICE_CENTER_TABLE = "SelectedCenter";
     public static final String COMMUNITY_GROUP_TABLE = "CommunityGroup";
@@ -900,11 +901,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public static final String AG_L_S_OTHER_COL = "LSOther";
 
 
-
-
-
-
-
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -964,7 +960,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.execSQL(Schema.sqlCreateVoucherCountryProgItem_Table());
         db.execSQL(Schema.sqlCreateServiceExtended_Table());
         db.execSQL(Schema.sqlCreateDistributionExtended_Table());
-        db.execSQL(Schema.sqlCreateSelectedVillage_Table());
+
         db.execSQL(Schema.sqlCreateSelectedFDP_Table());
         db.execSQL(Schema.sqlCreateSelectedServiceCenter_Table());
         db.execSQL(Schema.sqlCreateCommunityGroup_Table());
@@ -1011,6 +1007,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.execSQL(Schema.sqlCreateTemporary_CountryProgram());
         db.execSQL(Schema.sqlCreateTemporary_OpMonthTable());
 
+
+        db.execSQL(Schema.sqlCreateSelectedVillage_Table());
+        db.execSQL(Schema.sqlCreateSelectedCountry());
 
         Log.d(TAG, "  Create All Table ");
 
@@ -1113,6 +1112,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             db.execSQL(DROP_TABLE_IF_EXISTS + DT_LUP_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + TEMPORARY_COUNTRY_PROGRAM_TABLE);
             db.execSQL(DROP_TABLE_IF_EXISTS + TEMPORARY_OP_MONTH_TABLE);
+            db.execSQL(DROP_TABLE_IF_EXISTS + SELECTED_COUNTRY_TABLE);
 
 
             Log.d(TAG, "All table Dropped.");
@@ -1182,12 +1182,27 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void deleteUsersWithSelectedVillage() {
+    public void deleteUsersWithSelected_LayR4_FDP_Srv_Country() {
         deleteUsers();
         SQLiteDatabase database = this.getWritableDatabase();
-        database.delete(SELECTED_VILLAGE_TABLE, null, null);/// Delete selected Village TABLE
-        database.delete(SELECTED_FDP_TABLE, null, null);/// Delete selected Village TABLE
-        database.delete(SELECTED_SERVICE_CENTER_TABLE, null, null);/// Delete selected Village TABLE
+        /**
+         * Delete selected Village TABLE
+         */
+        database.delete(SELECTED_VILLAGE_TABLE, null, null);
+        /**
+         * Delete selected FDp TABLE
+         */
+        database.delete(SELECTED_FDP_TABLE, null, null);
+        /**
+         * Delete selected Service TABLE
+         */
+        database.delete(SELECTED_SERVICE_CENTER_TABLE, null, null);
+        /**
+         * Delete selected Country TABLE
+         */
+        database.delete(SELECTED_COUNTRY_TABLE, null, null);
+
+        database.close();
 
     }
 
@@ -1471,7 +1486,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(ENTRY_DATE, entryDate);
 
 
-         db.insert(REG_N_MEM_PROG_GRP_TABLE, null, values);
+        db.insert(REG_N_MEM_PROG_GRP_TABLE, null, values);
         db.close();
 
 
@@ -1555,7 +1570,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(LEAD_POSITION_COL, leadPosition);
 
 
-         db.insert(LUP_COMMUNITY_LEAD_POSITION_TABLE, null, values);
+        db.insert(LUP_COMMUNITY_LEAD_POSITION_TABLE, null, values);
         db.close();
 
 
@@ -1573,7 +1588,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(SERVICE_CENTER_NAME_COL, srvCenName);
         values.put(FDP_CODE_COL, fdpCode);
 
-       db.insert(SERVICE_CENTER_TABLE, null, values);
+        db.insert(SERVICE_CENTER_TABLE, null, values);
         db.close();
 
 
@@ -1625,7 +1640,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(DEFAULT_CAT_EXIT_COL, defaultCatExit);
 
         // many mort ot insert
-      db.insert(REG_N_LUP_GRADUATION_TABLE, null, values);
+        db.insert(REG_N_LUP_GRADUATION_TABLE, null, values);
         db.close();
 
 
@@ -1912,8 +1927,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
-
-
     public long addServiceSpecificTable(String cCode, String donorCode, String awardCode
             , String distCode, String upCode, String unCode, String vCode, String hhId, String memId, String programCode
             , String srvCode, String opCode, String opMonthCode, String srvCenterCode
@@ -2051,8 +2064,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         return id;
     }
-
-
 
 
     public int uploadIntoServiceSpecificTable(String cCode, String donorCode, String awardCode
@@ -2484,7 +2495,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(SYNC_COL, "0");
 
 
-
         String query = COUNTRY_CODE + " = '" + assMem.getCountryCode() + "' AND " +
                 LAY_R1_LIST_CODE_COL + " = '" + assMem.getDistrictCode() + "' AND " +
                 LAY_R2_LIST_CODE_COL + " = '" + assMem.getUpazillaCode() + "' AND " +
@@ -2787,7 +2797,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
 
 
-
     }
 
 
@@ -2888,7 +2897,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
     /**
-
      * @return specific data exit or not
      * @see #checkDataExistInTable(String, String)
      */
@@ -2943,7 +2951,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
 
                 srvDetails.setServiceStatus(cursor.getString(cursor.getColumnIndex(SERVICE_STATUS_COL)));
-
 
 
                 srvSlList.add(srvDetails);
@@ -3585,8 +3592,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         return grdDate;
     }
-
-
 
 
     public String getProgramGraduationDateOfMember(String cCode, String disCode, String upCode, String unCode, String vCode, String hhID, String memID, String donorCode, String awardCode, String progCode) {
@@ -5012,8 +5017,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
                 extraCondition = " AND " + LAY_R1_LIST_CODE_COL + " = '" + oldLayR.getLayR1Code() + "'"
                         + " AND " + LAY_R2_LIST_CODE_COL + " = '" + oldLayR.getLayR2Code() + "'";
-            }
-            else{
+            } else {
                 extraCondition = " AND " + LAY_R1_LIST_CODE_COL + " = '" + oldLayR.getLayR1Code() + "'"
                         + " AND " + LAY_R2_LIST_CODE_COL + " = '" + oldLayR.getLayR2Code() + "'"
                         + " AND " + LAY_R3_LIST_CODE_COL + " = '" + oldLayR.getLayR3Code() + "'";
@@ -9183,11 +9187,26 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         values.put(COUNTRY_CODE, code); // Country code
         values.put(COUNTRY_NAME, name); // Country name
 
-        // Inserting Row
-        long id = db.insert(COUNTRY_TABLE, null, values);
+
+        db.insert(COUNTRY_TABLE, null, values);
         db.close(); // Closing database connection
 
-        Log.d(TAG, "New Country inserted: " + id);
+//        Log.d(TAG, "New Country inserted: " + id);
+    }
+
+    public void insertSelectedCountry(String code, String name) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COUNTRY_CODE, code);
+        values.put(COUNTRY_NAME, name);
+
+
+        db.insert(SELECTED_COUNTRY_TABLE, null, values);
+        db.close();
+
+
     }
 
 
@@ -12153,11 +12172,9 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * delete data from DTResponseTable for unfinished data entry
-     * coded by shuvo
      */
 
-    public void deleteFromDTResponseTable(String DTBasic, String AdmCountryCode, String AdmDonorCode, String AdmAwardCode
-            , String AdmProgCode, String DTEnuID, int DTRSeq) {
+    public void deleteFromDTResponseTable(String DTBasic, String AdmCountryCode, String AdmDonorCode, String AdmAwardCode, String AdmProgCode, String DTEnuID, int DTRSeq, String OpMode, String OpMonthCode) {
         SQLServerSyntaxGenerator syntaxGenerator = new SQLServerSyntaxGenerator();
 
         syntaxGenerator.setDTBasic(DTBasic);
@@ -12166,6 +12183,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         syntaxGenerator.setAdmAwardCode(AdmAwardCode);
         syntaxGenerator.setAdmProgCode(AdmProgCode);
         syntaxGenerator.setDTEnuID(DTEnuID);
+        syntaxGenerator.setOpMode(OpMode);
+        syntaxGenerator.setOpMonthCode(OpMonthCode);
         syntaxGenerator.setDTRSeq(String.valueOf(DTRSeq));
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -12176,9 +12195,15 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 " AND " + AWARD_CODE_COL + " = '" + AdmAwardCode + "' " +
                 " AND " + PROGRAM_CODE_COL + " = '" + AdmProgCode + "' " +
                 " AND " + DT_ENU_ID_COL + " = '" + DTEnuID + "' " +
-                " AND " + DT_R_SEQ_COL + " = " + DTRSeq;
-
+                " AND " + DT_R_SEQ_COL + " = " + DTRSeq +
+                " AND " + OP_MODE_COL + " = '" + OpMode + "' " +
+                " AND " + OP_MONTH_CODE_COL + " = '" + OpMonthCode + "' ";
         db.delete(DT_RESPONSE_TABLE, where, null);
+
+        db.close();
+        /**
+         * insert into uploadTable Syntax
+         */
 
         insertIntoUploadTable(syntaxGenerator.deleteFromDTResponseTable());
     }
@@ -12194,7 +12219,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
      * @param dtqCode     - dynamic table question
      * @param dtaCode     - dynamic table
      * @param dtrSeq      - dynamic Response Sequence
-     * @return DTResponse Objec only need {@link DTResponseTableDataModel#getDtaValue()}
+     * @return DTResponse Object only need {@link DTResponseTableDataModel#getDtaValue()}
      */
 
     public DTResponseTableDataModel getDTResponseTableData(String dtBasic, String countryCode, String donorCode, String awardCode, String programCode,

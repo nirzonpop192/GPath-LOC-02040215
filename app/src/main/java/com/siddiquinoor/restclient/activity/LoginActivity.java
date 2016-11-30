@@ -908,15 +908,10 @@ public class LoginActivity extends BaseActivity {
                          */
 
                         if (CountryNo.equals("1")) {
+
+
                             JSONArray jaary = new JSONArray();
-                            JSONObject mData = new JSONObject();
 
-
-                            try {
-                                mData.put("selectedLayR4Code", "00");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
 
 
                             Log.d(TAG, "jeson to string :" + jaary.toString());
@@ -1267,16 +1262,16 @@ public class LoginActivity extends BaseActivity {
                                 break;
 
                             case UtilClass.OTHER_OPERATION_MODE:
+                                /**
+                                 * only need the json array for put parameter
+                                 */
 
                                 JSONArray jaary = new JSONArray();
-                                JSONObject mData = new JSONObject();
-
-
-                                try {
-                                    mData.put("selectedLayR4Code", "00");
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                                /**
+                                 * only for multiple Country Access user
+                                 * value will be insert
+                                 */
+                                db.insertSelectedCountry(selectedCountryList.get(0).getAdmCountryCode(), selectedCountryList.get(0).getAdmCountryName());
 
 
                                 Log.d(TAG, "jeson to string :" + jaary.toString());
@@ -1586,14 +1581,10 @@ public class LoginActivity extends BaseActivity {
                             db.deleteFromSelectedServiceCenter();
                             selectedServiceCenterList.clear();
                             for (int i = 0; i < itemChecked.length; i++) {
-                                if (itemChecked[i] == true) {
+                                if (itemChecked[i]) {
 
-//                                    for (int j = 0; j < communityGroupList.size(); j++) {
-//                                        if (aLServiceCenter_itemsSelected.get(i).getServiceCenterCode().equals(communityGroupList.get(j).getSrvCenterCode())) {
+
                                     selectedServiceCenterList.add(aLServiceCenter_itemsSelected.get(i));
-//                                            break;
-//                                        }
-//                                    }
 
 
                                 }
@@ -1670,7 +1661,7 @@ public class LoginActivity extends BaseActivity {
                             db.deleteFromSelectedFDP();
                             selectedFdpList.clear();
                             for (int i = 0; i < itemChecked.length; i++) {
-                                if (itemChecked[i] == true) {
+                                if (itemChecked[i]) {
                                     selectedFdpList.add(aLfdp_itemsSelected.get(i));
 
                                 }

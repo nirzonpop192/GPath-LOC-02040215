@@ -131,29 +131,16 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bbfa6c68-24f6-4379-bbc2-497898403be8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/data_model/CountryNameItem.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/parse/JsonDeserialization.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$1$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$1$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$1$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$1$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$10.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$11.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$11.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$12.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$12.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$13.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$13.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$14.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$14.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$15.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$15.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$16.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$16.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$17.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$17.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$18.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$18.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$19.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$19.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$2$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$2$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$2$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$2$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$20.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$20.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$21.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$21.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$22.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$22.class" />
@@ -164,7 +151,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$27.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$27.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$28.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$28.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$29.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$29.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$30.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$30.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$31.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$31.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$32.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$32.class" />
@@ -175,74 +161,37 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$37.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$37.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$38.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$38.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$39.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$39.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$40.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$40.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$41.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$41.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$42.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$42.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$43.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$43.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$44.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$44.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$45.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$45.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$7.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity$9.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/LoginActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_All_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_All_DataIntoSQLite.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_RegNAssProgSrvDataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_RegNAssProgSrvDataIntoSQLite.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_HouseH_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_HouseH_DataIntoSQLite.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_DataIntoSQLite.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_Prog_Grp_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Reg_Member_Prog_Grp_DataIntoSQLite.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Service_DataIntoSQLite.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$Inject_Service_DataIntoSQLite.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$MainTask.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity$MainTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$10.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$11.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$11.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$3$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$3$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$3$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$3$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$7.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/activity/MapActivity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/controller/AppConfig.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/controller/AppConfig.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/SQLiteHandler.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/SQLiteHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/SyncDatabase$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/SyncDatabase$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/SyncDatabase.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/SyncDatabase.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/sqlsyntax/SQLServerSyntaxGenerator.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/sqlsyntax/SQLServerSyntaxGenerator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/sqlsyntax/Schema.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/manager/sqlsyntax/Schema.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/utils/UtilClass.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/siddiquinoor/restclient/utils/UtilClass.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/8.1.0/jars/classes.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/8.1.0/jars/classes.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug-androidTest.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MapActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MapActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/dynamic_table/DT_QuestionActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/dynamic_table/DT_QuestionActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/controller/AppConfig.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/controller/AppConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SyncDatabase.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SyncDatabase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLServerSyntaxGenerator.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLServerSyntaxGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/Schema.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/Schema.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/utils/UtilClass.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/utils/UtilClass.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/data_model/CountryNameItem.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/data_model/AdmCountryDataModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/parse/JsonDeserialization.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/parse/Parser.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -265,26 +214,18 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/controller/AppConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="36.62069">
-              <caret line="2368" column="17" selection-start-line="2368" selection-start-column="17" selection-end-line="2368" selection-end-column="17" />
-              <folding>
-                <element signature="e#4776#4923#0" expanded="true" />
-                <element signature="e#4922#4923#0" expanded="true" />
-                <element signature="e#5679#5830#0" expanded="true" />
-                <element signature="e#5829#5830#0" expanded="true" />
-                <element signature="e#19709#19724#0" expanded="true" />
-                <element signature="e#20936#20937#0" expanded="true" />
-                <element signature="e#20973#20974#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.86875">
+              <caret line="548" column="106" selection-start-line="548" selection-start-column="106" selection-end-line="548" selection-end-column="106" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -292,78 +233,67 @@
       <file leaf-file-name="LoginActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.7586207">
-              <caret line="1288" column="0" selection-start-line="1288" selection-start-column="0" selection-end-line="1288" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="889" column="0" selection-start-line="889" selection-start-column="0" selection-end-line="889" selection-end-column="0" />
               <folding>
                 <element signature="method#onCreate#0;class#LoginActivity#0" expanded="false" />
-                <element signature="e#10527#10571#0" expanded="true" />
                 <element signature="method#gotoHomePage#0;class#LoginActivity#0" expanded="false" />
-                <element signature="e#36906#36922#0" expanded="true" />
                 <element signature="method#insertVillageNameListToSArray#0;class#LoginActivity#0" expanded="false" />
-                <element signature="e#46386#49010#0" expanded="true" />
-                <element signature="e#49009#49010#0" expanded="true" />
-                <element signature="e#49062#49365#0" expanded="true" />
-                <element signature="e#49364#49365#0" expanded="true" />
-                <element signature="e#50216#50496#0" expanded="true" />
-                <element signature="e#50495#50496#0" expanded="true" />
-                <element signature="e#50546#52266#0" expanded="true" />
-                <element signature="e#52265#52266#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ServiceActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/ServiceActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="951" column="31" selection-start-line="951" selection-start-column="31" selection-end-line="951" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegisterLiberia.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/RegisterLiberia.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SQLiteHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.068966">
+              <caret line="8746" column="0" selection-start-line="8746" selection-start-column="0" selection-end-line="8746" selection-end-column="0" />
+              <folding>
+                <element signature="e#51220#51221#0" expanded="true" />
+                <element signature="e#51253#51254#0" expanded="true" />
+                <element signature="e#405989#406004#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Schema.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/Schema.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="1811" column="80" selection-start-line="1811" selection-start-column="58" selection-end-line="1811" selection-end-column="80" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3314121">
-              <caret line="196" column="58" selection-start-line="196" selection-start-column="50" selection-end-line="196" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DistributionActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/DistributionActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="534" column="52" selection-start-line="534" selection-start-column="52" selection-end-line="534" selection-end-column="52" />
+              <caret line="195" column="26" selection-start-line="195" selection-start-column="26" selection-end-line="195" selection-end-column="26" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SQLiteQuery.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1300" column="99" selection-start-line="1300" selection-start-column="99" selection-end-line="1300" selection-end-column="99" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="device-2016-11-28-201842.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/device-2016-11-28-201842.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DT_QuestionActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/dynamic_table/DT_QuestionActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="21.586206">
-              <caret line="325" column="0" selection-start-line="325" selection-start-column="0" selection-end-line="325" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#10253#10484#0" expanded="true" />
-                <element signature="e#10483#10484#0" expanded="true" />
-                <element signature="e#10646#10811#0" expanded="true" />
-                <element signature="e#10810#10811#0" expanded="true" />
-                <element signature="e#25506#25727#0" expanded="true" />
-                <element signature="e#25726#25727#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -372,7 +302,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/utils/UtilClass.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="178" column="35" selection-start-line="178" selection-start-column="35" selection-end-line="178" selection-end-column="35" />
+              <caret line="198" column="73" selection-start-line="198" selection-start-column="19" selection-end-line="198" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -381,9 +311,11 @@
       <file leaf-file-name="Parser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/parse/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="2172" column="32" selection-start-line="2172" selection-start-column="32" selection-end-line="2172" selection-end-column="32" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2343,15 +2275,15 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/data_model/AdmCountryDataModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/parse/Parser.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/Schema.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLServerSyntaxGenerator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/dynamic_table/DT_QuestionActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/utils/UtilClass.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/SQLiteQuery.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/controller/AppConfig.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -2386,10 +2318,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2411,38 +2343,6 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2460,72 +2360,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="restclient" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="parse" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="network" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2568,51 +2402,11 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="garbage" />
+              <option name="myItemId" value="manager" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fragments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data_model" />
+              <option name="myItemId" value="sqlsyntax" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2683,36 +2477,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="sub_activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="GPath-LOC-02040215" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restclient" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sub_activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dynamic_table" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -3037,12 +2801,6 @@
       <option name="number" value="Default" />
       <updated>1471765770678</updated>
     </task>
-    <task id="LOCAL-00012" summary="FFA intregrated&#10;">
-      <created>1474202704637</created>
-      <option name="number" value="00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1474202704637</updated>
-    </task>
     <task id="LOCAL-00013" summary="AGR decimal bug fixing&#10;">
       <created>1474203487077</created>
       <option name="number" value="00013" />
@@ -3331,7 +3089,13 @@
       <option name="project" value="LOCAL" />
       <updated>1479905227140</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="fix orther op mode">
+      <created>1480349794535</created>
+      <option name="number" value="00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1480349794536</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -3347,13 +3111,12 @@
     <frame x="-8" y="-8" width="1376" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Documentation" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.05451448" sideWeight="0.49088147" order="13" side_tool="false" content_ui="tabs" x="92" y="92" width="1176" height="544" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.70187396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22146508" sideWeight="0.7104863" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.67972744" sideWeight="0.7104863" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27768314" sideWeight="0.48176292" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -3368,6 +3131,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2431611" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28960818" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.05451448" sideWeight="0.49088147" order="13" side_tool="false" content_ui="tabs" x="92" y="92" width="1176" height="544" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -3378,16 +3142,16 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.05451448" sideWeight="0.49088147" order="13" side_tool="false" content_ui="tabs" x="92" y="92" width="1176" height="544" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27768314" sideWeight="0.7104863" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.59284496" sideWeight="0.506079" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.081771724" sideWeight="0.8731003" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.081771724" sideWeight="0.8731003" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17206132" sideWeight="0.49392098" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2431611" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28960818" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -3421,7 +3185,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Dynamic Data index" />
     <MESSAGE value="Dynamic Data Index Complete" />
     <MESSAGE value="Dynamic Data  Qus List" />
     <MESSAGE value="Response" />
@@ -3446,7 +3209,8 @@
     <MESSAGE value="Service Center  validation  in log in" />
     <MESSAGE value="revise community  group" />
     <MESSAGE value="fix multiple Assigned Staff" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix multiple Assigned Staff" />
+    <MESSAGE value="fix orther op mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix orther op mode" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3573,7 +3337,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java</url>
-          <line>1602</line>
+          <line>1593</line>
           <properties />
           <option name="timeStamp" value="46" />
         </line-breakpoint>
@@ -3585,13 +3349,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java</url>
-          <line>1601</line>
+          <line>1592</line>
           <properties />
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java</url>
-          <line>1567</line>
+          <line>1562</line>
           <properties />
           <option name="timeStamp" value="51" />
         </line-breakpoint>
@@ -3788,31 +3552,31 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java</url>
-          <line>1317</line>
+          <line>1312</line>
           <properties />
           <option name="timeStamp" value="134" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java</url>
-          <line>1320</line>
+          <line>1315</line>
           <properties />
           <option name="timeStamp" value="135" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java</url>
-          <line>1328</line>
+          <line>1323</line>
           <properties />
           <option name="timeStamp" value="136" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java</url>
-          <line>1331</line>
+          <line>1326</line>
           <properties />
           <option name="timeStamp" value="137" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java</url>
-          <line>1401</line>
+          <line>1396</line>
           <properties />
           <option name="timeStamp" value="138" />
         </line-breakpoint>
@@ -3866,7 +3630,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java</url>
-          <line>1264</line>
+          <line>1259</line>
           <properties />
           <option name="timeStamp" value="152" />
         </line-breakpoint>
@@ -3890,7 +3654,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java</url>
-          <line>1829</line>
+          <line>1820</line>
           <properties />
           <option name="timeStamp" value="158" />
         </line-breakpoint>
@@ -3923,6 +3687,36 @@
           <line>1115</line>
           <properties />
           <option name="timeStamp" value="164" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java</url>
+          <line>532</line>
+          <properties />
+          <option name="timeStamp" value="165" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java</url>
+          <line>925</line>
+          <properties />
+          <option name="timeStamp" value="166" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java</url>
+          <line>9038</line>
+          <properties />
+          <option name="timeStamp" value="168" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java</url>
+          <line>561</line>
+          <properties />
+          <option name="timeStamp" value="169" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java</url>
+          <line>547</line>
+          <properties />
+          <option name="timeStamp" value="170" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/dynamic_table/DT_QuestionActivity.java</url>
@@ -3967,7 +3761,7 @@
           <option name="timeStamp" value="148" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="165" />
+      <option name="time" value="171" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -4065,13 +3859,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/reg_nhh_mem_schema.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/register_sub/RegisterMember.java">
@@ -4124,13 +3918,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_community_grp_details.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="66" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="66" />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://G:/Android/sdk/sources/android-21/android/content/Intent.java">
@@ -4196,14 +3990,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/ServiceActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="951" column="31" selection-start-line="951" selection-start-column="31" selection-end-line="951" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/device-2016-11-26-185511.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -4221,9 +4007,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-          <folding>
-            <element signature="e#2423#2424#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4245,9 +4028,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="255" column="0" selection-start-line="242" selection-start-column="4" selection-end-line="255" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4256,15 +4036,15 @@
         <state vertical-scroll-proportion="-19.37931">
           <caret line="133" column="39" selection-start-line="133" selection-start-column="39" selection-end-line="133" selection-end-column="39" />
           <folding>
-            <element signature="e#5236#5478#0" expanded="true" />
-            <element signature="e#5477#5478#0" expanded="true" />
-            <element signature="e#5811#5812#0" expanded="true" />
-            <element signature="e#5863#5864#0" expanded="true" />
-            <element signature="e#5940#5941#0" expanded="true" />
-            <element signature="e#5975#5976#0" expanded="true" />
-            <element signature="e#7179#7180#0" expanded="true" />
-            <element signature="e#7223#7224#0" expanded="true" />
-            <element signature="e#12541#12557#0" expanded="true" />
+            <element signature="e#5236#5478#0" expanded="false" />
+            <element signature="e#5477#5478#0" expanded="false" />
+            <element signature="e#5811#5812#0" expanded="false" />
+            <element signature="e#5863#5864#0" expanded="false" />
+            <element signature="e#5940#5941#0" expanded="false" />
+            <element signature="e#5975#5976#0" expanded="false" />
+            <element signature="e#7179#7180#0" expanded="false" />
+            <element signature="e#7223#7224#0" expanded="false" />
+            <element signature="e#12541#12557#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -4273,7 +4053,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="32" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4281,23 +4060,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.033989266">
           <caret line="1470" column="0" selection-start-line="1470" selection-start-column="0" selection-end-line="1470" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/Schema.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.0">
-          <caret line="1813" column="44" selection-start-line="1813" selection-start-column="32" selection-end-line="1813" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.965517">
-          <caret line="3368" column="16" selection-start-line="3368" selection-start-column="16" selection-end-line="3368" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4308,62 +4070,9 @@
           <folding>
             <element signature="method#insertInToRegNMemProgGrp#0;class#SQLServerSyntaxGenerator#0" expanded="false" />
             <element signature="method#UpdateRegNMemProgGrp#0;class#SQLServerSyntaxGenerator#0" expanded="false" />
-            <element signature="e#189542#189543#0" expanded="true" />
-            <element signature="e#189577#189578#0" expanded="true" />
+            <element signature="e#189542#189543#0" expanded="false" />
+            <element signature="e#189577#189578#0" expanded="false" />
             <marker date="1480340831075" expanded="true" signature="187463:189922" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/utils/UtilClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="178" column="35" selection-start-line="178" selection-start-column="35" selection-end-line="178" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/device-2016-11-28-201842.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/dynamic_table/DT_QuestionActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="21.586206">
-          <caret line="325" column="0" selection-start-line="325" selection-start-column="0" selection-end-line="325" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10253#10484#0" expanded="true" />
-            <element signature="e#10483#10484#0" expanded="true" />
-            <element signature="e#10646#10811#0" expanded="true" />
-            <element signature="e#10810#10811#0" expanded="true" />
-            <element signature="e#25506#25727#0" expanded="true" />
-            <element signature="e#25726#25727#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/parse/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0">
-          <caret line="2172" column="32" selection-start-line="2172" selection-start-column="32" selection-end-line="2172" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="36.62069">
-          <caret line="2368" column="17" selection-start-line="2368" selection-start-column="17" selection-end-line="2368" selection-end-column="17" />
-          <folding>
-            <element signature="e#4776#4923#0" expanded="true" />
-            <element signature="e#4922#4923#0" expanded="true" />
-            <element signature="e#5679#5830#0" expanded="true" />
-            <element signature="e#5829#5830#0" expanded="true" />
-            <element signature="e#19709#19724#0" expanded="true" />
-            <element signature="e#20936#20937#0" expanded="true" />
-            <element signature="e#20973#20974#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -4384,40 +4093,116 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/controller/AppConfig.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/sub_activity/dynamic_table/DT_QuestionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-          <folding />
+          <caret line="325" column="0" selection-start-line="325" selection-start-column="0" selection-end-line="325" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#6412#6413#0" expanded="false" />
+            <element signature="e#6467#6468#0" expanded="false" />
+            <element signature="e#6614#6615#0" expanded="false" />
+            <element signature="e#6664#6665#0" expanded="false" />
+            <element signature="e#6807#6808#0" expanded="false" />
+            <element signature="e#6859#6860#0" expanded="false" />
+            <element signature="e#9672#9673#0" expanded="false" />
+            <element signature="e#9719#9720#0" expanded="false" />
+            <element signature="e#10753#10754#0" expanded="false" />
+            <element signature="e#10800#10801#0" expanded="false" />
+            <element signature="e#36114#36115#0" expanded="false" />
+            <element signature="e#36195#36196#0" expanded="false" />
+            <element signature="e#40474#40475#0" expanded="false" />
+            <element signature="e#40524#40525#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/parse/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.7586207">
-          <caret line="1288" column="0" selection-start-line="1288" selection-start-column="0" selection-end-line="1288" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2172" column="32" selection-start-line="2172" selection-start-column="32" selection-end-line="2172" selection-end-column="32" />
           <folding>
-            <element signature="method#onCreate#0;class#LoginActivity#0" expanded="false" />
-            <element signature="e#10527#10571#0" expanded="true" />
-            <element signature="method#gotoHomePage#0;class#LoginActivity#0" expanded="false" />
-            <element signature="e#36906#36922#0" expanded="true" />
-            <element signature="method#insertVillageNameListToSArray#0;class#LoginActivity#0" expanded="false" />
-            <element signature="e#46386#49010#0" expanded="true" />
-            <element signature="e#49009#49010#0" expanded="true" />
-            <element signature="e#49062#49365#0" expanded="true" />
-            <element signature="e#49364#49365#0" expanded="true" />
-            <element signature="e#50216#50496#0" expanded="true" />
-            <element signature="e#50495#50496#0" expanded="true" />
-            <element signature="e#50546#52266#0" expanded="true" />
-            <element signature="e#52265#52266#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3314121">
-          <caret line="196" column="58" selection-start-line="196" selection-start-column="50" selection-end-line="196" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="195" column="26" selection-start-line="195" selection-start-column="26" selection-end-line="195" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/controller/AppConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/ServiceActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="951" column="31" selection-start-line="951" selection-start-column="31" selection-end-line="951" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/RegisterLiberia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/utils/UtilClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="198" column="73" selection-start-line="198" selection-start-column="19" selection-end-line="198" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/sqlsyntax/Schema.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1811" column="80" selection-start-line="1811" selection-start-column="58" selection-end-line="1811" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/manager/SQLiteHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.068966">
+          <caret line="8746" column="0" selection-start-line="8746" selection-start-column="0" selection-end-line="8746" selection-end-column="0" />
+          <folding>
+            <element signature="e#51220#51221#0" expanded="true" />
+            <element signature="e#51253#51254#0" expanded="true" />
+            <element signature="e#405989#406004#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="889" column="0" selection-start-line="889" selection-start-column="0" selection-end-line="889" selection-end-column="0" />
+          <folding>
+            <element signature="method#onCreate#0;class#LoginActivity#0" expanded="false" />
+            <element signature="method#gotoHomePage#0;class#LoginActivity#0" expanded="false" />
+            <element signature="method#insertVillageNameListToSArray#0;class#LoginActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/siddiquinoor/restclient/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.86875">
+          <caret line="548" column="106" selection-start-line="548" selection-start-column="106" selection-end-line="548" selection-end-column="106" />
           <folding />
         </state>
       </provider>

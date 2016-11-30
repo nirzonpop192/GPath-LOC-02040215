@@ -531,10 +531,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
 
             case UtilClass.OTHER_OPERATION_MODE:
-                criteria = " INNER JOIN " + SQLiteHandler.SELECTED_COUNTRY_TABLE + " ON "
-                        + SQLiteHandler.COUNTRY_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = "
-                        + SQLiteHandler.SELECTED_COUNTRY_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL;
+/**
+ * check  user  has access in multiple countries
+ */
+                if (db.isMultipleCountryAccessUser()) {
+                    criteria = " INNER JOIN " + SQLiteHandler.SELECTED_COUNTRY_TABLE + " ON "
+                            + SQLiteHandler.COUNTRY_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = "
+                            + SQLiteHandler.SELECTED_COUNTRY_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL;
 
+
+                } else {
+
+//                    StaffGeoInfoAccess
+//
+//                    where(btnNew = 1or btnSave = 1or btnDel) Group By CountryCode
+                    criteria = " INNER JOIN " + SQLiteHandler.STAFF_GEO_INFO_ACCESS_TABLE + " AS staffAcces ON "
+                            + SQLiteHandler.COUNTRY_TABLE + "." + SQLiteHandler.COUNTRY_CODE_COL + " = " +"staffAcces." + SQLiteHandler.COUNTRY_CODE_COL
+                            + " WHERE (" + SQLiteHandler.BTN_NEW_COL + " = '1' " +
+                            " OR " + SQLiteHandler.BTN_SAVE_COL + " = 1" +
+                            " OR " + SQLiteHandler.BTN_DEL_COL + " = 1 ) GROUP BY " + " staffAcces." + SQLiteHandler.COUNTRY_CODE_COL;
+                    ;
+
+                }
 
                 break;
         }

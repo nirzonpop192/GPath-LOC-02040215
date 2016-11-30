@@ -12478,4 +12478,26 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     }
 
+
+    public boolean isMultipleCountryAccessUser() {
+        Cursor cursor;
+        String count = "0";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = " SELECT * FROM " + SELECTED_COUNTRY_TABLE;
+        Log.d(TAG, query);
+        cursor = db.rawQuery(query, null);
+
+        Log.d(TAG, " " + cursor.getCount());
+        if (cursor.getCount() > 0) {
+            cursor.close();
+            db.close();
+            return true;
+        } else {
+            db.close();
+            return false;
+        }
+
+    }
+
 }
